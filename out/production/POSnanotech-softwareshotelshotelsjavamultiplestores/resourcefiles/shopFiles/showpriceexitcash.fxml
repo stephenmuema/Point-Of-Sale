@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ShopControllers.PriceCashControllerExit">
+   <children>
+      <AnchorPane prefHeight="500.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="complete" layoutX="23.0" layoutY="283.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="254.0" text="COMPLETE " textFill="RED">
+               <font>
+                  <Font size="37.0" />
+               </font>
+            </Button>
+            <TextField fx:id="cash" alignment="CENTER" layoutX="23.0" layoutY="185.0" prefHeight="50.0" prefWidth="325.0" promptText="PRICE">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </TextField>
+            <Button fx:id="goonlinepayments" layoutX="300.0" layoutY="283.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="254.0" text="ONLINE" textFill="RED">
+               <font>
+                  <Font size="37.0" />
+               </font>
+            </Button>
+            <AnchorPane prefHeight="138.0" prefWidth="600.0" style="-fx-background-color: black;">
+               <children>
+                  <Label fx:id="price" alignment="CENTER" contentDisplay="CENTER" layoutX="97.0" layoutY="49.0" prefHeight="70.0" prefWidth="185.0" text="0.00" textAlignment="CENTER" textFill="#f20606">
+                     <font>
+                        <Font name="Clarendon BT Roman" size="43.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="balance" alignment="CENTER" contentDisplay="CENTER" layoutX="415.0" layoutY="49.0" prefHeight="70.0" prefWidth="165.0" text="0.00" textAlignment="CENTER" textFill="#f20606">
+                     <font>
+                        <Font name="Clarendon BT Roman" size="43.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="7.0" layoutY="64.0" prefHeight="41.0" prefWidth="72.0" text="PRICE" textFill="#f8f8f8">
+                     <font>
+                        <Font name="Century751 BT Italic" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="300.0" layoutY="64.0" prefHeight="41.0" prefWidth="96.0" text="BALANCE" textFill="WHITE">
+                     <font>
+                        <Font name="Century751 BT Italic" size="17.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="back" layoutX="508.0" layoutY="8.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="72.0" text="BACK" />
+               </children>
+            </AnchorPane>
+            <Button fx:id="done" layoutX="458.0" layoutY="185.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="DONE" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

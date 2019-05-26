@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.Font?>
+<?import java.net.URL?>
+<VBox fx:id="panel" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ShopControllers.AddshopController">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="Account">
+                    <items>
+                        <MenuItem fx:id="logoutMenu" mnemonicParsing="false" text="Log out"/>
+                        <MenuItem fx:id="exitMenu" mnemonicParsing="false" text="Quit"/>
+                        <MenuItem fx:id="accountdetailsMenu" mnemonicParsing="false" text="Account Details"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Short Cuts">
+                    <items>
+                        <MenuItem fx:id="CreatorsMenu" mnemonicParsing="false" text="Creators"/>
+                        <MenuItem fx:id="helpMenu" mnemonicParsing="false" text="Help"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Panel">
+                    <items>
+                        <MenuItem fx:id="stores" mnemonicParsing="false" text="Stores"/>
+                        <MenuItem fx:id="stocks" mnemonicParsing="false" text="Stock management"/>
+                        <MenuItem mnemonicParsing="false" text="Audits"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+
+        <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0">
+            <items>
+                <AnchorPane prefHeight="611.0" prefWidth="283.0" styleClass="subPanel">
+                    <children>
+                        <Label fx:id="clock" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="241.0"
+                               prefHeight="66.0" prefWidth="226.0" text="00:00:00">
+                            <font>
+                                <Font name="Gabriola" size="44.0"/>
+                            </font>
+                            <textFill>
+                                <LinearGradient endX="1.0" endY="0.19047619047619047">
+                                    <stops>
+                                        <Stop color="#ff0842"/>
+                                        <Stop color="#7d7c38" offset="0.14559386973180072"/>
+                                        <Stop color="#ff3a38" offset="0.48659003831417624"/>
+                                        <Stop color="#100fb8" offset="0.8467432950191567"/>
+                                        <Stop color="#1a10e0" offset="1.0"/>
+                                    </stops>
+                                </LinearGradient>
+                            </textFill>
+                        </Label>
+                        <Button fx:id="home" layoutX="47.0" layoutY="485.0" mnemonicParsing="false" prefHeight="60.0"
+                                prefWidth="203.0" styleClass="buttongreen" text="HOME"/>
+                    </children>
+                </AnchorPane>
+                <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="611.0" prefWidth="892.0"
+                            styleClass="mainPanel">
+                    <children>
+                        <Label alignment="CENTER" layoutX="138.0" layoutY="-13.0" style="&#10;"
+                               text="SHOPS &amp; STORES " textAlignment="CENTER" wrapText="false">
+                            <font>
+                                <Font name="FangSong" size="37.0" fx:id="x1"/>
+                            </font>
+                        </Label>
+                        <TabPane fx:id="tabpane" layoutX="14.0" layoutY="30.0" pickOnBounds="false" prefHeight="569.0"
+                                 prefWidth="873.0" tabClosingPolicy="UNAVAILABLE">
+                            <tabs>
+                                <Tab text="ADD A NEW STORE">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="413.0" prefWidth="482.0"
+                                                    styleClass="form">
+                                            <children>
+                                                <ImageView fx:id="storeimageselected" fitHeight="192.0" fitWidth="318.0"
+                                                           layoutX="353.0" layoutY="252.0" pickOnBounds="true"
+                                                           preserveRatio="true"/>
+                                                <AnchorPane layoutX="65.0" layoutY="14.0" prefHeight="440.0"
+                                                            prefWidth="755.0" styleClass="forminner">
+                                                    <children>
+                                                        <Button fx:id="storeimageselection" layoutX="63.0"
+                                                                layoutY="202.0" mnemonicParsing="false"
+                                                                prefHeight="59.0" prefWidth="158.0"
+                                                                styleClass="buttonorange" text="STORE IMAGE"/>
+                                                        <TextField fx:id="employeenum" layoutX="89.0" layoutY="83.0"
+                                                                   prefHeight="43.0" prefWidth="235.0"
+                                                                   promptText="EMPLOYEE NUMBER"
+                                                                   styleClass="textfields"/>
+                                                        <TextField fx:id="storename" layoutX="89.0" layoutY="14.0"
+                                                                   prefHeight="43.0" prefWidth="235.0"
+                                                                   promptText="STORE NAME" styleClass="textfields"/>
+                                                        <TextArea fx:id="description" layoutX="402.0" layoutY="89.0"
+                                                                  prefHeight="113.0" prefWidth="331.0"
+                                                                  promptText="SHORT DESCRIPTION ABOUT THE STORE"
+                                                                  styleClass="textfields"/>
+                                                        <TextField fx:id="storelocation" layoutX="449.0" layoutY="14.0"
+                                                                   prefHeight="43.0" prefWidth="236.0"
+                                                                   promptText="STORE LOCATION" styleClass="textfields"/>
+                                                        <Button fx:id="addstore" layoutX="271.0" layoutY="357.0"
+                                                                mnemonicParsing="false" prefHeight="61.0"
+                                                                prefWidth="226.0" styleClass="buttongreen"
+                                                                text="ADD SHOP/STORE">
+                                                            <font>
+                                                                <Font name="Gabriola" size="28.0"/>
+                                                            </font>
+                                                        </Button>
+                                                    </children>
+                                                </AnchorPane>
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                                <Tab fx:id="existingstoredtab" text="VIEW EXISTING STORES">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                            <children>
+                                                <ScrollPane layoutX="11.0" layoutY="9.0" prefHeight="420.0"
+                                                            prefWidth="850.0">
+                                                    <content>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="406.0"
+                                                                    prefWidth="844.0">
+                                                            <children>
+                                                                <TableView fx:id="tab" layoutY="7.0" prefHeight="398.0"
+                                                                           prefWidth="842.0">
+                                                                    <placeholder>
+                                                                        <Label text=""/>
+                                                                    </placeholder>
+                                                                    <columns>
+                                                                        <TableColumn fx:id="storeName" prefWidth="116.0"
+                                                                                     text="NAME"/>
+                                                                        <TableColumn fx:id="storeLoc" prefWidth="228.0"
+                                                                                     text="LOCATION"/>
+                                                                        <TableColumn fx:id="employeeNumber"
+                                                                                     prefWidth="260.0"
+                                                                                     text="EMPLOYEES NUMBER"/>
+                                                                        <TableColumn fx:id="storeId" prefWidth="236.0"
+                                                                                     text="SHOP NUMBER"/>
+                                                                    </columns>
+                                                                </TableView>
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </content>
+                                                </ScrollPane>
+                                                <AnchorPane layoutX="31.0" layoutY="439.0" prefHeight="76.0"
+                                                            prefWidth="608.0">
+                                                    <children>
+                                                        <Button fx:id="delete" layoutX="48.0" layoutY="12.0"
+                                                                mnemonicParsing="false" prefHeight="54.0"
+                                                                prefWidth="204.0" styleClass="buttonred"
+                                                                text="DELETE SELECTED STORE"/>
+                                                        <Button fx:id="storelistaspdf" layoutX="390.0" layoutY="12.0"
+                                                                mnemonicParsing="false" prefHeight="54.0"
+                                                                prefWidth="204.0" styleClass="buttongreen"
+                                                                text="GET STORE LIST AS PDF"/>
+                                                    </children>
+                                                </AnchorPane>
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                            </tabs>
+                        </TabPane>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+        <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0">
+            <children>
+                <Pane prefHeight="43.0" prefWidth="894.0" style="-fx-background-color: #000000;" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Hyperlink layoutX="399.0" layoutY="3.0" text="A product of nanotech softwares"
+                                   textFill="#f51500"/>
+                    </children>
+                </Pane>
+            </children>
+            <padding>
+                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+            </padding>
+        </HBox>
+    </children>
+    <stylesheets>
+        <URL value="@../styles/buttons.css"/>
+        <URL value="@../styles/Login.css"/>
+        <URL value="@../styles/panels.css"/>
+        <URL value="@../styles/css.css"/>
+    </stylesheets>
+</VBox>

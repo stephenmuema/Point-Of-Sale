@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="sleeping" prefHeight="600.0" prefWidth="1024.0"
+            styleClass="parent"
+            stylesheets="@styles/css.css" xmlns="http://javafx.com/javafx/10.0.1"
+            fx:controller="Controllers.SleepingController">
+    <Button id="resume" layoutX="357.0" layoutY="186.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="289.0"
+            style="-fx-background-color: violet;" text="RESUME">
+        <font>
+            <Font name="FangSong" size="48.0"/>
+        </font>
+        <textFill>
+            <LinearGradient>
+                <stops>
+                    <Stop color="#a62d36"/>
+                    <Stop color="#155c16" offset="0.5963581782991663"/>
+                    <Stop color="#815ac6" offset="1.0"/>
+                </stops>
+            </LinearGradient>
+        </textFill>
+    </Button>
+</AnchorPane>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.Font?>
+<?import java.net.URL?>
+<VBox fx:id="carWash" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CarWashControllers.CarwashSalesController">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="Account">
+                    <items>
+                        <MenuItem fx:id="logoutMenu" mnemonicParsing="false" text="Log out"/>
+                        <MenuItem fx:id="exitMenu" mnemonicParsing="false" text="Quit"/>
+                        <MenuItem fx:id="accountdetailsMenu" mnemonicParsing="false" text="Account Details"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Short Cuts">
+                    <items>
+                        <MenuItem fx:id="CreatorsMenu" mnemonicParsing="false" text="Creators"/>
+                        <MenuItem fx:id="helpMenu" mnemonicParsing="false" text="Help"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Panel">
+                    <items>
+                        <MenuItem fx:id="stores" mnemonicParsing="false" text="Stores"/>
+                        <MenuItem fx:id="stocks" mnemonicParsing="false" text="Stock management"/>
+                        <MenuItem mnemonicParsing="false" text="Audits"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+
+        <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="653.0" prefWidth="1200.0">
+            <items>
+                <AnchorPane styleClass="subPanel" stylesheets="@../styles/panels.css">
+                    <children>
+                        <Label fx:id="clock" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="118.0"
+                               prefHeight="66.0" prefWidth="226.0" text="TIME">
+                            <font>
+                                <Font name="Gabriola" size="44.0"/>
+                            </font>
+                            <textFill>
+                                <LinearGradient endX="1.0" endY="0.19047619047619047">
+                                    <stops>
+                                        <Stop color="#ff0842"/>
+                                        <Stop color="#7d7c38" offset="0.14559386973180072"/>
+                                        <Stop color="#ff3a38" offset="0.48659003831417624"/>
+                                        <Stop color="#100fb8" offset="0.8467432950191567"/>
+                                        <Stop color="#1a10e0" offset="1.0"/>
+                                    </stops>
+                                </LinearGradient>
+                            </textFill>
+                        </Label>
+                        <Button fx:id="home" layoutX="31.0" layoutY="407.0" mnemonicParsing="false" prefHeight="72.0"
+                                prefWidth="209.0" styleClass="buttons" text="HOME"/>
+                        <Button fx:id="home1" layoutX="31.0" layoutY="232.0" mnemonicParsing="false" prefHeight="72.0"
+                                prefWidth="209.0" styleClass="buttons" text="LOYALTY POINTS"/>
+                    </children>
+                </AnchorPane>
+                <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="647.0" prefWidth="888.0"
+                            styleClass="form" stylesheets="@../styles/Login.css">
+                    <children>
+                        <Label alignment="CENTER" layoutX="418.0" layoutY="-13.0" style="&#10;" text="CAR WASH"
+                               textAlignment="CENTER" textFill="WHITE" wrapText="false">
+                            <font>
+                                <Font name="FangSong" size="37.0" fx:id="x1"/>
+                            </font>
+                        </Label>
+                        <TabPane fx:id="tabpane" layoutY="34.0" pickOnBounds="false" prefHeight="617.0"
+                                 prefWidth="874.0" tabClosingPolicy="UNAVAILABLE">
+                            <tabs>
+                                <Tab fx:id="newclients" text="NEW CUSTOMERS">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="413.0" prefWidth="482.0">
+                                            <children>
+                                                <AnchorPane layoutX="234.0" layoutY="22.0" prefHeight="488.0"
+                                                            prefWidth="421.0" styleClass="forminner">
+                                                    <children>
+                                                        <Button fx:id="submit" layoutX="96.0" layoutY="381.0"
+                                                                mnemonicParsing="false" prefHeight="66.0"
+                                                                prefWidth="243.0" styleClass="buttons"
+                                                                stylesheets="@../styles/css.css" text="SUBMIT"/>
+                                                        <TextField fx:id="contact" alignment="CENTER" layoutX="56.0"
+                                                                   layoutY="289.0" prefHeight="54.0" prefWidth="321.0"
+                                                                   promptText="CONTACT" styleClass="textfields"/>
+                                                        <TextField fx:id="registration" alignment="CENTER"
+                                                                   layoutX="56.0" layoutY="194.0" prefHeight="54.0"
+                                                                   prefWidth="321.0" promptText="REGISTRATION"
+                                                                   styleClass="textfields"/>
+                                                        <TextField fx:id="identification" alignment="CENTER"
+                                                                   layoutX="56.0" layoutY="106.0" prefHeight="54.0"
+                                                                   prefWidth="321.0"
+                                                                   promptText="IDENTIFICATION/PASSPORT NUMBER"
+                                                                   styleClass="textfields"/>
+                                                        <TextField fx:id="name" alignment="CENTER" layoutX="57.0"
+                                                                   layoutY="14.0" prefHeight="54.0" prefWidth="320.0"
+                                                                   promptText="NAME" styleClass="textfields"/>
+                                                    </children>
+                                                </AnchorPane>
+                                                <Hyperlink fx:id="link" layoutX="390.0" layoutY="527.0"
+                                                           prefHeight="34.0" prefWidth="179.0" text="NanotechSoftwares"
+                                                           textFill="#f50707" underline="true">
+                                                    <font>
+                                                        <Font size="17.0"/>
+                                                    </font>
+                                                </Hyperlink>
+                                                <Label layoutX="287.0" layoutY="529.0" prefHeight="30.0"
+                                                       prefWidth="92.0" text="Powered by" textFill="#fff4f4">
+                                                    <font>
+                                                        <Font size="17.0"/>
+                                                    </font>
+                                                </Label>
+                                                <!--<TextField fx:id="amount" alignment="CENTER" layoutX="212.0" layoutY="315.0" prefHeight="25.0" prefWidth="321.0" promptText="AMOUNT" />-->
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                                <Tab fx:id="clients" text="PENDING JOBS">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                            <children>
+                                                <ScrollPane layoutX="11.0" layoutY="9.0" prefHeight="582.0"
+                                                            prefWidth="858.0">
+                                                    <content>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="572.0"
+                                                                    prefWidth="849.0">
+                                                            <children>
+                                                                <TableView fx:id="tab" layoutY="7.0" prefHeight="564.0"
+                                                                           prefWidth="848.0">
+                                                                    <placeholder>
+                                                                        <Label text=""/>
+                                                                    </placeholder>
+                                                                    <columns>
+                                                                        <TableColumn fx:id="Name" prefWidth="104.0"
+                                                                                     text="NAME"/>
+                                                                        <TableColumn fx:id="reg" prefWidth="129.0"
+                                                                                     text="REGISTRATION"/>
+                                                                        <TableColumn fx:id="id" prefWidth="156.0"
+                                                                                     text="ID NUMBER"/>
+                                                                        <TableColumn fx:id="status" prefWidth="126.0"
+                                                                                     text="STATUS"/>
+                                                                        <TableColumn fx:id="operator" prefWidth="215.0"
+                                                                                     text="WASHER"/>
+                                                                        <TableColumn fx:id="payout" prefWidth="113.0"
+                                                                                     text="CASH PAID"/>
+                                                                    </columns>
+                                                                </TableView>
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </content>
+                                                </ScrollPane>
+                                                <!--<Button fx:id="delete" layoutX="139.0" layoutY="399.0"-->
+                                                <!--mnemonicParsing="false" prefHeight="54.0"-->
+                                                <!--prefWidth="204.0" style="-fx-background-color: RED;"-->
+                                                <!--text="DELETE SELECTED DETAILS"/>-->
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                            </tabs>
+                        </TabPane>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+    <stylesheets>
+        <URL value="@../styles/Login.css"/>
+        <URL value="@../styles/css.css"/>
+    </stylesheets>
+</VBox>

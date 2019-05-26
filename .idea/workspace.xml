@@ -1,0 +1,1295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="POSnanotech-softwareshotelshotelsjavamultiplestores:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/POSnanotech_softwaresjava$Launch.ic" NAME="Launch Coverage Results" MODIFIED="1553773325628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="78" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="nanotechsoftwarespos@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="nanotechsoftwarespos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="nanotechsoftwarespos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="nanotechsoftwarespos: schema" type="ebfa3cd1:MariaImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="nanotechsoftwarespos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="nanotechsoftwarespos: schema" type="ebfa3cd1:MariaImplModel$Schema" />
+        <item name="costs: table" type="dbc44a63:MariaImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="shoppingCartDb.db" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="shoppingCartDb.db" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="shoppingCartDb.db" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="shoppingCartDb.db" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+        <item name="cartItems: table" type="3d80ac25:SqliteImplModel$Table" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SplashScreenController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="31" selection-start-column="31" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Launch.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="33" column="13" selection-end-line="232" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/testing/CARTMASTER.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="5" column="13" selection-end-line="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/testing/cartcontroller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="27" column="13" selection-end-line="237" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/securityandtime/Security.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="9" column="13" selection-end-line="21" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="CSS File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>ITEM</find>
+      <find>item</find>
+      <find>other</find>
+      <find>link</find>
+      <find>suppliers</find>
+      <find>statementlocal</find>
+      <find>stocks</find>
+      <find>connection</find>
+      <find>update</find>
+      <find>isbefore</find>
+      <find>relo</find>
+      <find>complete</find>
+      <find>select * from users</find>
+      <find>user.get</find>
+      <find>user.put</find>
+      <find>online</find>
+      <find>pay cash</find>
+      <find>STORES</find>
+      <find>audits</find>
+      <find>logout</find>
+      <find>pdf</find>
+      <find>mouse</find>
+      <find>mousebutt</find>
+      <find>cate</find>
+      <find>tomo</find>
+      <find>chat</find>
+      <find>click</find>
+      <find>pay</find>
+      <find>menu</find>
+      <find>getClass().getClassLoader().getResource</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="PUSH_TAGS">
+      <GitPushTagMode />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/Mpesa/Mpesa.java" />
+        <option value="$PROJECT_DIR$/src/resourcefiles/panelAdmin.fxml" />
+        <option value="$PROJECT_DIR$/src/resourcefiles/styles/buttons.css" />
+        <option value="$PROJECT_DIR$/src/resourcefiles/styles/tablecolors.css" />
+        <option value="$PROJECT_DIR$/src/MasterClasses/SalesMaster.java" />
+        <option value="$PROJECT_DIR$/src/MasterClasses/CategorySalesMasterClass.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/PriceCashControllerExit.java" />
+        <option value="$PROJECT_DIR$/src/MasterClasses/ItemStocks.java" />
+        <option value="$PROJECT_DIR$/src/MasterClasses/ItemStocksMaster.java" />
+        <option value="$PROJECT_DIR$/src/resourcefiles/audits.fxml" />
+        <option value="$PROJECT_DIR$/src/Controllers/AddshopController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/CarwashController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/EmployeesController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/IdleMonitor.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/LicensingController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/SignupController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/SleepingController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/StocksController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/UserDetailsController.java" />
+        <option value="$PROJECT_DIR$/src/logging/LogClass.java" />
+        <option value="$PROJECT_DIR$/src/securityandtime/AesCipher.java" />
+        <option value="$PROJECT_DIR$/src/securityandtime/CheckConn.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/ShopController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/AdminPanelController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/AuditController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/ChatController.java" />
+        <option value="$PROJECT_DIR$/src/resourcefiles/panel.fxml" />
+        <option value="$PROJECT_DIR$/src/Controllers/PanelController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/CarwashSalesController.java" />
+        <option value="$PROJECT_DIR$/src/resourcefiles/carwashprice.fxml" />
+        <option value="$PROJECT_DIR$/src/Controllers/CarwashCompleteController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/AuthenticationControllers/SignupController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/ShopControllers/OnlinePaymentsController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/ShopControllers/PriceCashControllerExit.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/AdminPanelController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/EmployeesController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/PanelController.java" />
+        <option value="$PROJECT_DIR$/src/resourcefiles/carwashFiles/carwash.fxml" />
+        <option value="$PROJECT_DIR$/src/resourcefiles/carwashFiles/carwashSales.fxml" />
+        <option value="$PROJECT_DIR$/src/resourcefiles/shopFiles/addshop.fxml" />
+        <option value="$PROJECT_DIR$/src/resourcefiles/shopFiles/shop.fxml" />
+        <option value="$PROJECT_DIR$/src/securityandtime/config.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/CarWashControllers/CarwashController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/CarWashControllers/CarwashSalesController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/ShopControllers/AddshopController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/ShopControllers/AuditController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/ShopControllers/StocksController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/ShopControllers/ShopController.java" />
+        <option value="$PROJECT_DIR$/code" />
+        <option value="$PROJECT_DIR$/README.md" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-13" />
+    <option name="width" value="136" />
+    <option name="height" value="39" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="POSnanotech-softwaresjava with car wash section" type="b2602c69:ProjectViewProjectNode" />
+              <item name="POSnanotech-softwaresjava with car wash section" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql&#10;mariadb&#10;sqlite&#10;oracle" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="true" />
+    <property name="Repository.Attach.JavaDocs" value="true" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553896549631" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect" value="SQLite" />
+    <property name="create.test.in.the.same.root" value="true" />
+    <property name="database.console.LAST_STATE" value="false" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/chatbox/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/resourcefiles/AuthenticationFiles" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\UserAccountManagementFiles" />
+      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\AuthenticationFiles" />
+      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\chatFiles" />
+      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\shopFiles" />
+      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\carwashFiles" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="chatting" />
+      <recent name="Controllers" />
+      <recent name="MasterClasses" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PROJECTS\POSnanotech-softwaresjava" />
+      <recent name="D:\PROJECTS\POSnanotech-softwaresjava\src\resourcefiles\images" />
+      <recent name="D:\PROJECTS\POSnanotech-softwaresjava\librariesmine" />
+      <recent name="D:\PROJECTS\POSnanotech-softwaresjava\src\resourcefiles\sounds" />
+      <recent name="D:\PROJECTS\POSnanotech-softwaresjava\src\chatbox\" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Controllers" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="MasterClasses" />
+      <recent name="Controllers" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Launch">
+    <configuration name="AesCipher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="securityandtime.AesCipher" />
+      <module name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="securityandtime.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Launch" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Launch" />
+      <module name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainLauncher (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chatbox.client.client.login.MainLauncher" />
+      <module name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chatbox.client.client.login.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainLauncher (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chatbox.client.login.MainLauncher" />
+      <module name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chatbox.client.login.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReceiptMasterClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MasterClasses.ReceiptMasterClass" />
+      <module name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="MasterClasses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chatbox.server.server.Server" />
+      <module name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chatbox.server.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Launch" />
+      <item itemvalue="Application.MainLauncher (1)" />
+      <item itemvalue="Application.Server" />
+      <item itemvalue="Application.MainLauncher (2)" />
+      <item itemvalue="Application.ReceiptMasterClass" />
+      <item itemvalue="Application.AesCipher" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.AesCipher" />
+        <item itemvalue="Application.ReceiptMasterClass" />
+        <item itemvalue="Application.MainLauncher (2)" />
+        <item itemvalue="Application.Server" />
+        <item itemvalue="Application.MainLauncher (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="AUTOSCROLL_FROM_SOURCE" value="true" />
+    <option name="ACTIVE_ACTIONS" value=",SHOW_LAMBDA,SHOW_ANONYMOUS,SHOW_PROPERTIES,SHOW_INTERFACES,SHOW_INHERITED" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="" />
+      <created>1541870161022</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1541870161022</updated>
+      <workItem from="1541870216363" duration="4688000" />
+      <workItem from="1541875092396" duration="48046000" />
+      <workItem from="1541977645439" duration="6232000" />
+      <workItem from="1541984054791" duration="2048000" />
+      <workItem from="1542020738647" duration="16292000" />
+      <workItem from="1542050967861" duration="38000" />
+      <workItem from="1542092387356" duration="3706000" />
+      <workItem from="1542183175435" duration="2306000" />
+      <workItem from="1542204412192" duration="593000" />
+      <workItem from="1542212511731" duration="102000" />
+      <workItem from="1542722856831" duration="4297000" />
+      <workItem from="1543320061414" duration="1062000" />
+      <workItem from="1543746995974" duration="19705000" />
+      <workItem from="1543919598304" duration="6650000" />
+      <workItem from="1543978428982" duration="8231000" />
+      <workItem from="1544113116601" duration="2518000" />
+      <workItem from="1544355762729" duration="1857000" />
+      <workItem from="1544915366084" duration="8639000" />
+      <workItem from="1545027446257" duration="19016000" />
+      <workItem from="1545052783893" duration="8990000" />
+      <workItem from="1545105137934" duration="5204000" />
+      <workItem from="1545146419027" duration="3807000" />
+      <workItem from="1545201655435" duration="2262000" />
+      <workItem from="1545205970446" duration="11727000" />
+      <workItem from="1545251152164" duration="277000" />
+      <workItem from="1545251763318" duration="166000" />
+      <workItem from="1545280202360" duration="13770000" />
+      <workItem from="1545311417424" duration="1428000" />
+      <workItem from="1545379403263" duration="4707000" />
+      <workItem from="1545411056107" duration="4531000" />
+      <workItem from="1545427110623" duration="595000" />
+      <workItem from="1546762654386" duration="3531000" />
+      <workItem from="1546766925014" duration="1678000" />
+      <workItem from="1546780042671" duration="672000" />
+      <workItem from="1546783102135" duration="642000" />
+      <workItem from="1546856169414" duration="131000" />
+      <workItem from="1546888292351" duration="6746000" />
+      <workItem from="1546919378568" duration="5301000" />
+      <workItem from="1547092464287" duration="8651000" />
+      <workItem from="1547101701952" duration="1183000" />
+      <workItem from="1547134753943" duration="4221000" />
+      <workItem from="1547555656369" duration="575000" />
+      <workItem from="1547885647945" duration="4701000" />
+      <workItem from="1547915781577" duration="964000" />
+      <workItem from="1547934277226" duration="1705000" />
+      <workItem from="1547964222270" duration="11235000" />
+      <workItem from="1547976520166" duration="5469000" />
+      <workItem from="1547982136856" duration="8054000" />
+      <workItem from="1548039160060" duration="10727000" />
+      <workItem from="1548181138646" duration="7526000" />
+      <workItem from="1548228463038" duration="350000" />
+      <workItem from="1548228986246" duration="1358000" />
+      <workItem from="1548388072087" duration="7084000" />
+      <workItem from="1548518666155" duration="634000" />
+      <workItem from="1548694659509" duration="7590000" />
+      <workItem from="1548740240677" duration="3318000" />
+      <workItem from="1548758275139" duration="607000" />
+      <workItem from="1548813545149" duration="4644000" />
+      <workItem from="1548867900965" duration="1947000" />
+      <workItem from="1548923096494" duration="756000" />
+      <workItem from="1548926428981" duration="639000" />
+      <workItem from="1548946432765" duration="81000" />
+      <workItem from="1548946835773" duration="1853000" />
+      <workItem from="1549012213739" duration="1149000" />
+      <workItem from="1549291195347" duration="1600000" />
+      <workItem from="1549299675972" duration="4269000" />
+      <workItem from="1549330336115" duration="8495000" />
+      <workItem from="1549354612942" duration="3066000" />
+      <workItem from="1549373928298" duration="592000" />
+      <workItem from="1549845109507" duration="10455000" />
+      <workItem from="1549876705505" duration="862000" />
+      <workItem from="1550142691180" duration="1922000" />
+      <workItem from="1550145836791" duration="733000" />
+      <workItem from="1550228449306" duration="236000" />
+      <workItem from="1550755665736" duration="4893000" />
+      <workItem from="1550825742169" duration="1485000" />
+      <workItem from="1550830348165" duration="905000" />
+      <workItem from="1550838223783" duration="640000" />
+      <workItem from="1550908446108" duration="3685000" />
+      <workItem from="1550998013178" duration="13361000" />
+      <workItem from="1551015459431" duration="1072000" />
+      <workItem from="1551088240625" duration="354000" />
+      <workItem from="1551117769874" duration="597000" />
+      <workItem from="1551144236308" duration="2611000" />
+      <workItem from="1551179358742" duration="717000" />
+      <workItem from="1551249371367" duration="622000" />
+      <workItem from="1551255461989" duration="1332000" />
+      <workItem from="1551260914916" duration="4153000" />
+      <workItem from="1551282829785" duration="1788000" />
+      <workItem from="1551340064553" duration="699000" />
+      <workItem from="1551447103173" duration="6885000" />
+      <workItem from="1551470299179" duration="7602000" />
+      <workItem from="1551613596829" duration="11163000" />
+      <workItem from="1551627940954" duration="5669000" />
+      <workItem from="1551688846540" duration="1629000" />
+      <workItem from="1551706330306" duration="12678000" />
+      <workItem from="1551726967384" duration="114000" />
+      <workItem from="1551767960969" duration="432000" />
+      <workItem from="1551769205044" duration="5000" />
+      <workItem from="1551769452710" duration="4738000" />
+      <workItem from="1551779024159" duration="930000" />
+      <workItem from="1551784502547" duration="3000" />
+      <workItem from="1551784556778" duration="812000" />
+      <workItem from="1551824387196" duration="12000" />
+      <workItem from="1551824708078" duration="1129000" />
+      <workItem from="1551829994900" duration="39000" />
+      <workItem from="1551858773246" duration="2718000" />
+      <workItem from="1551863420438" duration="783000" />
+      <workItem from="1551947656215" duration="4144000" />
+      <workItem from="1551977221214" duration="29377000" />
+      <workItem from="1552051461167" duration="5147000" />
+      <workItem from="1552066382758" duration="2353000" />
+      <workItem from="1552116521414" duration="5273000" />
+      <workItem from="1552133170081" duration="1052000" />
+      <workItem from="1552389435661" duration="140000" />
+      <workItem from="1552390102415" duration="2359000" />
+      <workItem from="1552394696552" duration="2035000" />
+      <workItem from="1552398902527" duration="1212000" />
+      <workItem from="1552459291105" duration="17452000" />
+      <workItem from="1553098935801" duration="4367000" />
+      <workItem from="1553178868622" duration="2324000" />
+      <workItem from="1553200973398" duration="1117000" />
+      <workItem from="1553405982368" duration="14053000" />
+      <workItem from="1553487013539" duration="644000" />
+      <workItem from="1553770536808" duration="6219000" />
+      <workItem from="1553882483202" duration="658000" />
+      <workItem from="1553883692181" duration="2969000" />
+      <workItem from="1553901477050" duration="146000" />
+      <workItem from="1553901737281" duration="101000" />
+      <workItem from="1553928057062" duration="15062000" />
+      <workItem from="1553955008261" duration="7727000" />
+      <workItem from="1553967139082" duration="2047000" />
+      <workItem from="1553999057940" duration="19054000" />
+      <workItem from="1554062077929" duration="673000" />
+      <workItem from="1554112051873" duration="235000" />
+      <workItem from="1554143117712" duration="18242000" />
+      <workItem from="1554186100829" duration="32310000" />
+      <workItem from="1554278431070" duration="3281000" />
+      <workItem from="1554284214357" duration="7084000" />
+      <workItem from="1554367376035" duration="793000" />
+      <workItem from="1554368223527" duration="628000" />
+      <workItem from="1554371208707" duration="8622000" />
+      <workItem from="1554387664177" duration="9977000" />
+      <workItem from="1554454036784" duration="7208000" />
+      <workItem from="1554561755702" duration="1522000" />
+      <workItem from="1554593686827" duration="1544000" />
+      <workItem from="1554882570698" duration="17000" />
+      <workItem from="1555010659917" duration="1295000" />
+      <workItem from="1555066691355" duration="98000" />
+      <workItem from="1555147076232" duration="580000" />
+      <workItem from="1555311415173" duration="1180000" />
+      <workItem from="1555394488379" duration="5183000" />
+      <workItem from="1555589051120" duration="14410000" />
+      <workItem from="1555668591771" duration="486000" />
+      <workItem from="1556001707442" duration="3179000" />
+      <workItem from="1556113985068" duration="489000" />
+      <workItem from="1556114502367" duration="144000" />
+      <workItem from="1556114731810" duration="8710000" />
+      <workItem from="1556196650574" duration="3280000" />
+      <workItem from="1556305094028" duration="586000" />
+      <workItem from="1556442023844" duration="743000" />
+      <workItem from="1556444301995" duration="5693000" />
+      <workItem from="1556451835179" duration="1465000" />
+      <workItem from="1556477586663" duration="5715000" />
+      <workItem from="1556519660568" duration="1193000" />
+      <workItem from="1556524089556" duration="4779000" />
+      <workItem from="1556545020234" duration="796000" />
+      <workItem from="1556546864375" duration="2611000" />
+      <workItem from="1556619753194" duration="1913000" />
+      <workItem from="1556736705400" duration="31923000" />
+      <workItem from="1556789892304" duration="709000" />
+      <workItem from="1556791718700" duration="21689000" />
+      <workItem from="1556889571312" duration="4653000" />
+      <workItem from="1556914280520" duration="6827000" />
+      <workItem from="1556946816833" duration="5168000" />
+      <workItem from="1556954748082" duration="1385000" />
+      <workItem from="1557072531488" duration="381000" />
+      <workItem from="1557118148974" duration="3417000" />
+      <workItem from="1557202311536" duration="6568000" />
+      <workItem from="1557216920562" duration="1028000" />
+      <workItem from="1557224289965" duration="593000" />
+      <workItem from="1557295293317" duration="981000" />
+      <workItem from="1557299920506" duration="5209000" />
+      <workItem from="1557508945989" duration="17159000" />
+      <workItem from="1557557215637" duration="13964000" />
+      <workItem from="1557601812533" duration="1356000" />
+      <workItem from="1557648834538" duration="6534000" />
+      <workItem from="1557657332178" duration="1512000" />
+      <workItem from="1558503765199" duration="9535000" />
+      <workItem from="1558906457229" duration="3929000" />
+    </task>
+    <task id="LOCAL-00001" summary="before shopping cart">
+      <created>1552048112305</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1552048112306</updated>
+    </task>
+    <task id="LOCAL-00002" summary="before shopping cart">
+      <created>1552048649615</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1552048649615</updated>
+    </task>
+    <task id="LOCAL-00003" summary="before shopping cart">
+      <created>1552049120658</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1552049120658</updated>
+    </task>
+    <task id="LOCAL-00004" summary="after cart operations before details">
+      <created>1554281198173</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1554281198173</updated>
+    </task>
+    <task id="LOCAL-00005" summary="after cart operations before details">
+      <created>1554281250706</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1554281250706</updated>
+    </task>
+    <task id="LOCAL-00006" summary="chat box gui">
+      <created>1555607267711</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1555607267712</updated>
+    </task>
+    <task id="LOCAL-00007" summary="chat box gui">
+      <created>1556542876685</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1556542876685</updated>
+    </task>
+    <task id="LOCAL-00008" summary="chat box gui">
+      <created>1558908837509</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1558908837509</updated>
+    </task>
+    <task id="LOCAL-00009" summary="chat box gui">
+      <created>1558910395264</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1558910395264</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="829477000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8519794" visible="true" weight="0.2753404" />
+      <window_info id="Structure" order="1" sideWeight="0.14802065" side_tool="true" weight="0.19288956" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.494705" weight="0.14402619" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.45662847" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.4924357" visible="true" weight="0.13420622" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.17021276" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.57937807" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.049099836" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5075643" side_tool="true" weight="0.31260228" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.109656304" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Console" order="13" weight="0.2405892" />
+      <window_info anchor="bottom" id="CGEdit" order="14" />
+      <window_info anchor="bottom" id="Duplicate detector" order="15" weight="0.48608837" />
+      <window_info active="true" anchor="bottom" id="Inspection Results" order="16" visible="true" weight="0.95090014" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Database" order="7" sideWeight="0.497545" weight="0.1633888" />
+      <window_info anchor="right" id="Maven Projects" order="8" />
+      <window_info anchor="right" id="Maven" order="9" weight="0.32980332" />
+      <window_info anchor="right" id="Coverage" order="10" sideWeight="0.502455" side_tool="true" visible="true" weight="0.19288956" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8519794" visible="true" weight="0.3184569" />
+      <window_info id="Structure" order="1" sideWeight="0.14802065" side_tool="true" weight="0.19288956" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.49546143" weight="0.31260228" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.45662847" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49394855" weight="0.4222586" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.17021276" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.049099836" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.049099836" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5060514" side_tool="true" weight="0.7037643" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.109656304" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Console" order="13" weight="0.2405892" />
+      <window_info anchor="bottom" id="CGEdit" order="14" />
+      <window_info anchor="bottom" id="Duplicate detector" order="15" weight="0.48608837" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Database" order="7" sideWeight="0.497545" weight="0.20574887" />
+      <window_info anchor="right" id="Maven Projects" order="8" />
+      <window_info anchor="right" id="Maven" order="9" weight="0.32980332" />
+      <window_info anchor="right" id="Coverage" order="10" sideWeight="0.502455" side_tool="true" visible="true" weight="0.19288956" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/POSnanotech-softwaresjava" />
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="before shopping cart" />
+    <MESSAGE value="after cart operations before details" />
+    <MESSAGE value="chat box gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="chat box gui" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/MasterClasses/SalesMaster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-end-line="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterClasses/StockMaster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="13" selection-end-line="140" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterClasses/Storemaster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OnlinePayments/Mpesa/Hookah.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="16" column="13" selection-end-line="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OnlinePayments/Mpesa/Mpesa.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="13" selection-end-line="363" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/AuthenticationFiles/licensingPanel.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="37" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/AuthenticationFiles/Login.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="59" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/AuthenticationFiles/signup.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="88" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/AuthenticationFiles/SplashScreen.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="29" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/carwashFiles/carwash.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="176" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/carwashFiles/carwashprice.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="14" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/chatFiles/ChatView.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="99" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/chatFiles/TrayNotification.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="36" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/shopFiles/addshop.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="192" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/shopFiles/audits.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="235" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/shopFiles/onlinepayments.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="53" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/shopFiles/shop.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="222" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/carwashFiles/carwashSales.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="174" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/shopFiles/scanneradd.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="27" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/shopFiles/showpriceexitcash.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="58" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/shopFiles/stocks.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="205" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/styles/buttons.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/styles/ButtonStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/styles/ChatViewStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/styles/ComboBox.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/styles/css.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/styles/licensing.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="4" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/styles/ListViewStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/styles/Login.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="8" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/styles/panels.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="25" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/styles/tablecolors.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="33" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/UserAccountManagementFiles/employees.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="181" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/UserAccountManagementFiles/panel.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="109" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/UserAccountManagementFiles/panelAdmin.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="152" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/UserAccountManagementFiles/userDetails.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="17" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/sleeping.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="28" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/test.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="104" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scanhandler/BarcodeScanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="13" selection-end-line="83" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/securityandtime/AesCipher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="18" column="13" selection-end-line="234" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/securityandtime/BoardListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" selection-end-line="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/securityandtime/CheckConn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="13" selection-end-line="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/securityandtime/config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="17" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/securityandtime/Security.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="13" selection-end-line="21" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testing/cartcontroller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="27" column="13" selection-end-line="237" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testing/CARTMASTER.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="13" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Launch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="33" column="13" selection-end-line="232" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="13589" lean-forward="true" selection-start-line="13589" selection-end-line="13589" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nanotechsoftwarespos.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="361" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nanotechbusinesssolutionsdatabase(1).sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="198" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SplashScreenController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="31" selection-start-column="31" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>POSnanotech-softwareshotelshotelsjavamultiplestores:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>POSnanotech-softwareshotelshotelsjavamultiplestores</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>activation</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

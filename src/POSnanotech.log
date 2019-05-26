@@ -1,0 +1,1 @@
+INSERT INTO `carwash`(`washedby`, `registration`, `cashpaid`, `owner name`, `contact`, `status`,  `additionalcharges`, `idnumber`) VALUES ("ANON","KDC","800","STEVE MUEMA","MUEMASNYAMAI@GMAIL.COM","PENDING","9000","34556470");

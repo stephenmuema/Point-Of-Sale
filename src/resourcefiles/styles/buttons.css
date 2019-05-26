@@ -1,0 +1,56 @@
+
+.buttonred:hover {
+    -fx-background-color: purple;
+    -fx-text-fill: black;
+    -fx-border-color: #fff;
+    -fx-border-width: 3px;
+}
+
+.buttonred {
+    -fx-background-color: #ff0000;
+}
+
+.buttonyellow {
+    -fx-background-color: #ffff00;
+
+}
+
+.buttonyellow:hover {
+    -fx-background-color: purple;
+    -fx-text-fill: black;
+    -fx-border-color: #fff;
+    -fx-border-width: 3px;
+}
+
+.buttonorange {
+    -fx-background-color: #ffa500;
+}
+
+.buttonorange:hover {
+    -fx-background-color: purple;
+    -fx-text-fill: black;
+    -fx-border-color: #fff;
+    -fx-border-width: 3px;
+}
+
+.buttongreen:hover {
+    -fx-background-color: purple;
+    -fx-text-fill: black;
+    -fx-border-color: #fff;
+    -fx-border-width: 3px;
+}
+
+.buttongreen {
+    -fx-background-color: #008000;
+}
+
+.buttonviolet {
+    -fx-background-color: #ee82ee;
+}
+
+.buttonviolet:hover {
+    -fx-background-color: purple;
+    -fx-text-fill: black;
+    -fx-border-color: #fff;
+    -fx-border-width: 3px;
+}
