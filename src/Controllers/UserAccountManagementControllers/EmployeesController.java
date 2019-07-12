@@ -1,13 +1,11 @@
 package Controllers.UserAccountManagementControllers;
 
+import Controllers.UtilityClass;
 import MasterClasses.EmployeeMaster;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -21,7 +19,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
 import javafx.stage.Window;
 import javafx.util.Duration;
-import securityandtime.CheckConn;
 import securityandtime.config;
 
 import javax.activation.DataHandler;
@@ -44,7 +41,7 @@ import java.util.ResourceBundle;
 
 import static securityandtime.config.*;
 
-public class EmployeesController implements Initializable {
+public class EmployeesController extends UtilityClass implements Initializable {
     public Label clock;
     public MenuItem logout;
     public Button delete;
@@ -66,7 +63,7 @@ public class EmployeesController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        time();
+        time(clock);
         menuclick();
         buttonclick();
         editable();
@@ -447,47 +444,7 @@ public class EmployeesController implements Initializable {
         });
     }
 
-    public void time() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            String mins = null, hrs = null, secs = null, pmam = null;
-            try {
-                int minutes = Integer.parseInt(String.valueOf(CheckConn.timelogin().getMinutes()));
-                int seconds = Integer.parseInt(String.valueOf(CheckConn.timelogin().getSeconds()));
-                int hours = Integer.parseInt(String.valueOf(CheckConn.timelogin().getHours()));
 
-                if (hours >= 12) {
-//                    hrs= "0"+String.valueOf(hours-12);
-                    pmam = "PM";
-                } else {
-                    pmam = "AM";
-
-                }
-                if (minutes > 9) {
-                    mins = String.valueOf(minutes);
-                } else {
-                    mins = "0" + String.valueOf(minutes);
-
-                }
-                if (seconds > 9) {
-                    secs = String.valueOf(seconds);
-                } else {
-                    secs = "0" + String.valueOf(seconds);
-
-                }
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                clock.setText(CheckConn.timelogin().getHours() + ":" + (mins) + ":" + (secs) + " " + pmam);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }),
-                new KeyFrame(Duration.seconds(1))
-        );
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-    }
 
     public Label getClock() {
         return clock;

@@ -1,15 +1,13 @@
 package Controllers.ShopControllers;
 
 import Controllers.UserAccountManagementControllers.IdleMonitor;
+import Controllers.UtilityClass;
 import MasterClasses.Storemaster;
-import com.itextpdf.text.*;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,12 +20,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
@@ -39,7 +37,6 @@ import javafx.stage.Window;
 import javafx.util.Duration;
 import logging.LogClass;
 import org.apache.commons.io.FileUtils;
-import securityandtime.CheckConn;
 import securityandtime.config;
 
 import javax.imageio.ImageIO;
@@ -58,9 +55,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 
 import static securityandtime.config.*;
-import static securityandtime.config.site;
 
-public class AddshopController implements Initializable {
+public class AddshopController extends UtilityClass implements Initializable {
 
 
     public TableColumn<Storemaster, String> storeName;
@@ -146,7 +142,7 @@ public class AddshopController implements Initializable {
         menuclick();
         buttonClick();
         myStores();
-        time();
+        time(clock);
         IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
                 () -> {
                     try {
@@ -772,47 +768,6 @@ public class AddshopController implements Initializable {
         alert.showAndWait();
     }
 
-    private void time() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            String mins = null, hrs = null, secs = null, pmam = null;
-            try {
-                int minutes = Integer.parseInt(String.valueOf(CheckConn.timelogin().getMinutes()));
-                int seconds = Integer.parseInt(String.valueOf(CheckConn.timelogin().getSeconds()));
-                int hours = Integer.parseInt(String.valueOf(CheckConn.timelogin().getHours()));
-
-                if (hours >= 12) {
-//                    hrs= "0"+String.valueOf(hours-12);
-                    pmam = "PM";
-                } else {
-                    pmam = "AM";
-
-                }
-                if (minutes > 9) {
-                    mins = String.valueOf(minutes);
-                } else {
-                    mins = "0" + minutes;
-
-                }
-                if (seconds > 9) {
-                    secs = String.valueOf(seconds);
-                } else {
-                    secs = "0" + String.valueOf(seconds);
-
-                }
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                clock.setText(CheckConn.timelogin().getHours() + ":" + (mins) + ":" + (secs) + " " + pmam);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }),
-                new KeyFrame(Duration.seconds(1))
-        );
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-    }
 
 
     public TableColumn<Storemaster, String> getStoreName() {

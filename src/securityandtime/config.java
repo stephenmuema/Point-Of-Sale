@@ -3,9 +3,9 @@ package securityandtime;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
 
-public interface config {
-
-    String[] des = {"root", "", "jdbc:mysql://127.0.0.1/nanotechsoftwarespos"};
+public interface config {//host,user,password,des,port
+    String dbdetails[] = {"127.0.0.1/", "root", "", "jdbc:mysql://", "nanotechsoftwarespos", "3306"};
+    String[] des = {dbdetails[1], dbdetails[2], dbdetails[3] + dbdetails[0] + dbdetails[4]};
     String host = "localhost";
     String from = "muemasn@outlook.com";
     HashMap<String, Boolean> login = new HashMap<>();
@@ -19,7 +19,7 @@ public interface config {
     HashMap<String, String> license = new HashMap<>();
     String site = "https://nanotechsoftwares.co.ke";
     String sitedocs = "https://nanotechsoftwares.co.ke";
-
+    String supplierSite = "http://activationsite/";
     HashMap<String, String> action = new HashMap<>();
 
 }

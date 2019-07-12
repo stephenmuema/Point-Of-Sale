@@ -1,9 +1,9 @@
 package Controllers.UserAccountManagementControllers;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import Controllers.UtilityClass;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,18 +16,23 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Window;
 import javafx.util.Duration;
-import securityandtime.CheckConn;
 import securityandtime.config;
 
 import java.awt.*;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class AdminPanelController implements Initializable {
+import static securityandtime.config.dbdetails;
+import static securityandtime.config.supplierSite;
+
+public class AdminPanelController extends UtilityClass implements Initializable {
     public MenuItem menulogout;
     public Button addshop;
     public MenuItem details;
@@ -49,7 +54,7 @@ public class AdminPanelController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         menuClick();
         buttonClick();
-        time();
+        time(clock);
 
 
         IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(900),
@@ -89,6 +94,68 @@ public class AdminPanelController implements Initializable {
     }
 
     private void buttonClick() {
+
+        backup.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String tables[] = {"audits", "carwash", "chats", "costs", "payments", "sales", "salespercategory", "solditems"
+                        , "stocks", "stores", "subscribers", "suppliers", "timers", "users"};
+                for (String tablename : tables) {
+                    try {
+                        System.out.println(" Table " + tablename + backup("127.0.0.1", dbdetails[5], dbdetails[1], dbdetails[2], dbdetails[4], tablename));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+
+            //todo continue from backing up database
+            private String backup(String host, String port, String user, String password, String db, String table) {
+
+                //an "C:/xampp/mysql/bin/mysqldump" ---- location ito han mysqldump
+
+                Process run = null;
+                try {
+                    run = Runtime.getRuntime().exec(
+                            "C:/xampp/mysql/bin/mysqldump --host=" + host + " --port=" + port +
+                                    " --user=" + user + " --password=" + password +
+                                    " --compact --databases --add-drop-table --complete-insert --extended-insert " +
+                                    "--skip-comments --skip-triggers " + db + " --tables " + table);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                InputStream in = run.getInputStream();
+                BufferedReader br = new BufferedReader(new InputStreamReader(in));
+                StringBuffer temp = new StringBuffer();
+                int count;
+                char[] cbuf = new char[40];
+
+                while (true) {
+                    try {
+                        if (!((count = br.read(cbuf, 0, 40)) != -1)) break;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                temp.append(cbuf, 0, count);
+
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                return temp.toString();
+            }
+
+        });
         audits.setOnMouseClicked(event -> {
             try {
                 AdminPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("resourcefiles/shopFiles/audits.fxml")))));
@@ -97,13 +164,10 @@ public class AdminPanelController implements Initializable {
             }
 
         });
-        backup.setOnMouseClicked(event -> {
-            //todo back up all sql database code now to the licensing server db of the user account
-        });
         visitSuppliers.setOnMouseClicked(event -> {
             try {
 //                    todo change when created website
-                Desktop.getDesktop().browse(new URL("http://localhost/licensing/suppliers/").toURI());
+                Desktop.getDesktop().browse(new URL(supplierSite).toURI());
             } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
             }
@@ -150,47 +214,7 @@ public class AdminPanelController implements Initializable {
 //        });
     }
 
-    private void time() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            String mins = null, hrs = null, secs = null, pmam = null;
-            try {
-                int minutes = Integer.parseInt(String.valueOf(CheckConn.timelogin().getMinutes()));
-                int seconds = Integer.parseInt(String.valueOf(CheckConn.timelogin().getSeconds()));
-                int hours = Integer.parseInt(String.valueOf(CheckConn.timelogin().getHours()));
 
-                if (hours >= 12) {
-//                    hrs= "0"+String.valueOf(hours-12);
-                    pmam = "PM";
-                } else {
-                    pmam = "AM";
-
-                }
-                if (minutes > 9) {
-                    mins = String.valueOf(minutes);
-                } else {
-                    mins = "0" + String.valueOf(minutes);
-
-                }
-                if (seconds > 9) {
-                    secs = String.valueOf(seconds);
-                } else {
-                    secs = "0" + String.valueOf(seconds);
-
-                }
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                clock.setText(CheckConn.timelogin().getHours() + ":" + (mins) + ":" + (secs) + " " + pmam);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }),
-                new KeyFrame(Duration.seconds(1))
-        );
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-    }
 
     public MenuItem getMenulogout() {
         return menulogout;

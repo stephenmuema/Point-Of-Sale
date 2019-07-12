@@ -2,10 +2,8 @@ package Controllers.CarWashControllers;
 //deals with cr wash cashiers
 
 import Controllers.UserAccountManagementControllers.IdleMonitor;
+import Controllers.UtilityClass;
 import MasterClasses.CarWashMaster;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,11 +16,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Side;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseButton;
@@ -34,7 +32,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.util.Duration;
-import securityandtime.CheckConn;
 import securityandtime.config;
 
 import java.awt.*;
@@ -48,7 +45,7 @@ import java.util.ResourceBundle;
 
 import static securityandtime.config.*;
 
-public class CarwashSalesController implements Initializable {
+public class CarwashSalesController extends UtilityClass implements Initializable {
     public VBox carWash;
     public Tab clients;
     public TableView<CarWashMaster> tab;
@@ -86,7 +83,7 @@ public class CarwashSalesController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        time();
+        time(clock);
 //loadTab();
         editable();
         buttonListeners();
@@ -698,48 +695,6 @@ public class CarwashSalesController implements Initializable {
         );
     }
 
-    public void time() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            String mins = null, hrs = null, secs = null, pmam = null;
-            try {
-                int minutes = Integer.parseInt(String.valueOf(CheckConn.timelogin().getMinutes()));
-                int seconds = Integer.parseInt(String.valueOf(CheckConn.timelogin().getSeconds()));
-                int hours = Integer.parseInt(String.valueOf(CheckConn.timelogin().getHours()));
-
-                if (hours >= 12) {
-//                    hrs= "0"+String.valueOf(hours-12);
-                    pmam = "PM";
-                } else {
-                    pmam = "AM";
-
-                }
-                if (minutes > 9) {
-                    mins = String.valueOf(minutes);
-                } else {
-                    mins = "0" + String.valueOf(minutes);
-
-                }
-                if (seconds > 9) {
-                    secs = String.valueOf(seconds);
-                } else {
-                    secs = "0" + String.valueOf(seconds);
-
-                }
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                clock.setText(CheckConn.timelogin().getHours() + ":" + (mins) + ":" + (secs) + " " + pmam);
-
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }),
-                new KeyFrame(Duration.seconds(1))
-        );
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-    }
 
     private void compete() {
         tab.setOnMouseClicked(new EventHandler<MouseEvent>() {

@@ -26,8 +26,6 @@ import static securityandtime.config.*;
 
 public class LicensingController implements Initializable {
     public AnchorPane panel;
-    //    public RadioButton radiotrial;
-//    public RadioButton radioactivate;
     public Button getlicensebutton;
     public TextArea licensearea;
     public Button confirm;

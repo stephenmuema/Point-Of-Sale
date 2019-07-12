@@ -1,10 +1,8 @@
 package Controllers.ShopControllers;
 
 import Controllers.UserAccountManagementControllers.IdleMonitor;
+import Controllers.UtilityClass;
 import MasterClasses.StockMaster;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,7 +25,6 @@ import javafx.stage.Window;
 import javafx.util.Duration;
 import logging.LogClass;
 import org.apache.commons.io.FileUtils;
-import securityandtime.CheckConn;
 import securityandtime.config;
 
 import javax.imageio.ImageIO;
@@ -45,7 +42,7 @@ import java.util.logging.Level;
 import static securityandtime.config.des;
 import static securityandtime.config.user;
 
-public class StocksController implements Initializable {
+public class StocksController extends UtilityClass implements Initializable {
     public MenuItem logout;
     public Label clock;
     public Font x1;
@@ -77,7 +74,7 @@ public class StocksController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        time();
+        time(clock);
         menuclick();
         buttonclick();
         IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(9000),
@@ -728,46 +725,6 @@ public class StocksController implements Initializable {
         alert.showAndWait();
     }
 
-    private void time() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            String mins = null, hrs = null, secs = null, pmam = null;
-            try {
-                int minutes = Integer.parseInt(String.valueOf(CheckConn.timelogin().getMinutes()));
-                int seconds = Integer.parseInt(String.valueOf(CheckConn.timelogin().getSeconds()));
-                int hours = Integer.parseInt(String.valueOf(CheckConn.timelogin().getHours()));
 
-                if (hours >= 12) {
-//                    hrs= "0"+String.valueOf(hours-12);
-                    pmam = "PM";
-                } else {
-                    pmam = "AM";
-
-                }
-                if (minutes > 9) {
-                    mins = String.valueOf(minutes);
-                } else {
-                    mins = "0" + minutes;
-
-                }
-                if (seconds > 9) {
-                    secs = String.valueOf(seconds);
-                } else {
-                    secs = "0" + String.valueOf(seconds);
-
-                }
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            try {
-                clock.setText(CheckConn.timelogin().getHours() + ":" + (mins) + ":" + (secs) + " " + pmam);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }),
-                new KeyFrame(Duration.seconds(1))
-        );
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-    }
 
 }

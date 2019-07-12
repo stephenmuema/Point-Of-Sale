@@ -1,8 +1,6 @@
 package Controllers.AuthenticationControllers;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import Controllers.UtilityClass;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +15,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Window;
-import javafx.util.Duration;
 import logging.LogClass;
 import securityandtime.Security;
 import securityandtime.config;
@@ -30,8 +27,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -40,7 +35,7 @@ import static securityandtime.config.des;
 import static securityandtime.config.site;
 
 //end of imports
-public class LoginController implements Initializable {
+public class LoginController extends UtilityClass implements Initializable {
 
     public Label clock;
     public String emailSubmit, pass;
@@ -83,7 +78,7 @@ public class LoginController implements Initializable {
         });
 
         buttonClick();
-        time();
+        timeMain(clock);
         enterpressed();
     }
 
@@ -328,21 +323,4 @@ public class LoginController implements Initializable {
 
     //fetch time each second
 //    todo include network time from server  later
-    private void time() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            //                int minutes = Integer.parseInt(String.valueOf(CheckConn.timelogin().getMinutes()));
-//                int seconds = Integer.parseInt(String.valueOf(CheckConn.timelogin().getSeconds()));
-//                int hours = Integer.parseInt(String.valueOf(CheckConn.timelogin().getHours()));
-
-            //                    hrs= "0"+String.valueOf(hours-12);
-            //            display time
-            clock.setText(String.valueOf(new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss a").format(Calendar.getInstance().getTime())));
-            //                clock.setText(CheckConn.timelogin().getHours() + ":" + (mins) +":" + (secs)+ " " + pmam);
-        }),
-                new KeyFrame(Duration.seconds(1))
-        );
-//        refresh every one second
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-    }
 }

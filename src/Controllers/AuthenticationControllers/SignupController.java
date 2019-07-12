@@ -1,8 +1,6 @@
 package Controllers.AuthenticationControllers;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import Controllers.UtilityClass;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
-import javafx.util.Duration;
 import logging.LogClass;
-import securityandtime.CheckConn;
 import securityandtime.Security;
 
 import java.awt.*;
@@ -28,8 +24,6 @@ import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -38,7 +32,7 @@ import static securityandtime.config.des;
 import static securityandtime.config.site;
 
 //end of imports
-public class SignupController implements Initializable {
+public class SignupController extends UtilityClass implements Initializable {
     public Label clock;
     @FXML
     private PasswordField password, passwordconfirmation;
@@ -142,7 +136,7 @@ public class SignupController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 //
-
+        timeMain(clock);
         link.setOnMousePressed(event -> {
             try {
 //                    todo change when created website
@@ -154,7 +148,6 @@ public class SignupController implements Initializable {
 
 
         listenEnter();
-        time();
         login1.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -332,44 +325,6 @@ public class SignupController implements Initializable {
         System.exit(0);
     }
 
-    private void time() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            String mins = null, hrs = null, secs = null, pmam = null;
-            try {
-                int minutes = Integer.parseInt(String.valueOf(CheckConn.timelogin().getMinutes()));
-                int seconds = Integer.parseInt(String.valueOf(CheckConn.timelogin().getSeconds()));
-                int hours = Integer.parseInt(String.valueOf(CheckConn.timelogin().getHours()));
-
-                if (hours >= 12) {
-//                    hrs= "0"+String.valueOf(hours-12);
-                    pmam = "PM";
-                } else {
-                    pmam = "AM";
-
-                }
-                if (minutes > 9) {
-                    mins = String.valueOf(minutes);
-                } else {
-                    mins = "0" + minutes;
-
-                }
-                if (seconds > 9) {
-                    secs = String.valueOf(seconds);
-                } else {
-                    secs = "0" + String.valueOf(seconds);
-
-                }
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-//                            clock.setText(Calendar.getInstance().getTime().toString());
-            clock.setText(String.valueOf(new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss a").format(Calendar.getInstance().getTime())));
-        }),
-                new KeyFrame(Duration.seconds(1))
-        );
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-    }
 
 }
 

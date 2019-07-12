@@ -36,7 +36,6 @@ public class SplashScreenController implements Initializable {
                 date.setTime(Long.parseLong(license.get("time")) + System.currentTimeMillis());
 
                 owner.setText(license.get("name") + " " + ".Expires on " + new SimpleDateFormat("yyyy/MM/dd").format(date));
-//                expiry.setText(s2);
             } else {
                 date.setTime(Long.parseLong(license.get("time")) + System.currentTimeMillis());
 

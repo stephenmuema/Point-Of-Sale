@@ -1,4 +1,5 @@
 import Controllers.ShopControllers.ShopController;
+import com.sun.istack.internal.NotNull;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -13,7 +14,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import logging.LogClass;
-import org.jetbrains.annotations.NotNull;
 import securityandtime.CheckConn;
 
 import java.io.File;
@@ -29,7 +29,7 @@ import java.util.logging.Level;
 import static securityandtime.config.*;
 
 /**
- * @author Steve
+ * @author Steve muema
  */
 public class Launch extends Application {
 
@@ -50,7 +50,6 @@ public class Launch extends Application {
         ExecutorService service = Executors.newFixedThreadPool(4);
         service.submit(() -> {
             if (CheckConn.pingHost(securityandtime.config.host, 443, 2000)) {
-//            todo change host to ping
                 LogClass.getLogger().log(Level.INFO, "CONNECTED");
 
             } else {
