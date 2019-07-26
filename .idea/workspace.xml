@@ -7,128 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controllers/UtilityClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/POSnanotech_softwareshotelshotelsjavamultiplestores_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/POSnanotech_softwareshotelshotelsjavamultiplestores_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/798f5b01-197b-46e0-9fe7-d4a3d4a7b861.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/798f5b01-197b-46e0-9fe7-d4a3d4a7b861.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c6654f24-5769-4dd2-b801-a9983091b0eb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c6654f24-5769-4dd2-b801-a9983091b0eb.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/POSnanotech_softwareshotelshotelsjavamultiplestores_jar/POSnanotech-softwareshotelshotelsjavamultiplestores.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/POSnanotech_softwareshotelshotelsjavamultiplestores_jar/POSnanotech-softwareshotelshotelsjavamultiplestores.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/LicensingController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/LicensingController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/LicensingController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/LicensingController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/LicensingController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/LicensingController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/LicensingController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/LicensingController$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/LicensingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/LicensingController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/LoginController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/LoginController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/SignupController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/SignupController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/SignupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/AuthenticationControllers/SignupController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$10.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$9.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$SendEmail.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController$SendEmail.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$10.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$11.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$12.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController$9.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/CarWashControllers/CarwashSalesController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController$9.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AddshopController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AuditController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AuditController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AuditController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AuditController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AuditController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AuditController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AuditController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AuditController$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AuditController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AuditController$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AuditController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AuditController$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AuditController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/AuditController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/ShopController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/StocksController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/StocksController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/StocksController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/StocksController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/StocksController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/StocksController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/StocksController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/StocksController$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/StocksController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/StocksController$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/StocksController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/StocksController$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/StocksController$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/StocksController$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/StocksController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/ShopControllers/StocksController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/AdminPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/AdminPanelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/EmployeesController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/EmployeesController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/EmployeesController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/EmployeesController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/EmployeesController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/EmployeesController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/EmployeesController$SendEmail.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/EmployeesController$SendEmail.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/EmployeesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/EmployeesController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/PanelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/PanelController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/PanelController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/PanelController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/PanelController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/PanelController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/PanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Controllers/UserAccountManagementControllers/PanelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Launch$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Launch$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Launch$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Launch$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Launch$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Launch$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Launch.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/Launch.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/META-INF/POSnanotech-softwareshotelshotelsjavamultiplestores.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/MasterClasses/CartMaster.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/MasterClasses/CartMaster.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/POSnanotech.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/SplashScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/SplashScreenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/AuthenticationFiles/licensingPanel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/AuthenticationFiles/licensingPanel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/UserAccountManagementFiles/employees.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/UserAccountManagementFiles/employees.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/UserAccountManagementFiles/panel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/UserAccountManagementFiles/panel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/UserAccountManagementFiles/panelAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/UserAccountManagementFiles/panelAdmin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/UserAccountManagementFiles/userDetails.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/UserAccountManagementFiles/userDetails.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/carwashFiles/carwashprice.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/carwashFiles/carwashprice.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/shopFiles/audits.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/shopFiles/showpriceexitcash.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/shopFiles/showpriceexitcash.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/styles/buttons.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/styles/buttons.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/styles/licensing.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/resourcefiles/styles/licensing.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/securityandtime/AesCipher.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/securityandtime/AesCipher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/securityandtime/config.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/POSnanotech-softwareshotelshotelsjavamultiplestores/securityandtime/config.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shoppingCartDb.db" beforeDir="false" afterPath="$PROJECT_DIR$/shoppingCartDb.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/AuthenticationControllers/LicensingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/AuthenticationControllers/LicensingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/AuthenticationControllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/AuthenticationControllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/AuthenticationControllers/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/AuthenticationControllers/SignupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/CarWashControllers/CarwashController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/CarWashControllers/CarwashController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/CarWashControllers/CarwashSalesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/CarWashControllers/CarwashSalesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/ShopControllers/AddshopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/ShopControllers/AddshopController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/ShopControllers/AuditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/ShopControllers/AuditController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/ShopControllers/StocksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/ShopControllers/StocksController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/AdminPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/AdminPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/EmployeesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/EmployeesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/PanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/PanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Launch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/POSnanotech.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SplashScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SplashScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/securityandtime/AesCipher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/securityandtime/AesCipher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/securityandtime/config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/securityandtime/config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/ShopControllers/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/ShopControllers/ShopController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -213,8 +95,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/AdminPanelController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3145">
-              <caret line="215" selection-start-line="215" selection-end-line="215" />
+            <state relative-caret-position="3179">
+              <caret line="217" selection-start-line="217" selection-end-line="217" />
             </state>
           </provider>
         </entry>
@@ -222,7 +104,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Launch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
+            <state relative-caret-position="1139">
               <caret line="67" column="57" selection-start-line="67" selection-start-column="57" selection-end-line="67" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -240,11 +122,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controllers/ShopControllers/ShopController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="181">
-              <caret line="459" column="44" selection-start-line="459" selection-start-column="33" selection-end-line="459" selection-end-column="44" />
+              <caret line="111" column="169" selection-start-line="111" selection-start-column="165" selection-end-line="111" selection-end-column="169" />
+              <folding>
+                <element signature="e#15031#15032#0" expanded="true" />
+                <element signature="e#15058#15059#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Controllers/ShopControllers/StocksController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="407" column="49" selection-start-line="407" selection-end-line="408" />
             </state>
           </provider>
         </entry>
@@ -252,7 +147,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/EmployeesController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6766">
+            <state relative-caret-position="6919">
               <caret line="446" selection-start-line="446" selection-end-line="446" />
             </state>
           </provider>
@@ -261,20 +156,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/PanelController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="55" column="18" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
+            <state relative-caret-position="1360">
+              <caret line="112" column="31" selection-start-line="112" selection-start-column="31" selection-end-line="112" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/resourcefiles/UserAccountManagementFiles/panelAdmin.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2023">
               <caret line="119" column="29" selection-start-line="119" selection-start-column="29" selection-end-line="119" selection-end-column="29" />
             </state>
           </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
     </leaf>
@@ -290,11 +185,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>other</find>
-      <find>link</find>
-      <find>suppliers</find>
-      <find>statementlocal</find>
-      <find>stocks</find>
       <find>connection</find>
       <find>update</find>
       <find>isbefore</find>
@@ -320,6 +210,11 @@
       <find>getClass().getClassLoader().getResource</find>
       <find>backup</find>
       <find>clock</find>
+      <find>statementLocal</find>
+      <find>connectionDbLocal</find>
+      <find>image</find>
+      <find>insert into</find>
+      <find>file</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -379,12 +274,12 @@
         <option value="$PROJECT_DIR$/src/Controllers/CarWashControllers/CarwashSalesController.java" />
         <option value="$PROJECT_DIR$/src/Controllers/ShopControllers/AddshopController.java" />
         <option value="$PROJECT_DIR$/src/Controllers/ShopControllers/AuditController.java" />
-        <option value="$PROJECT_DIR$/src/Controllers/ShopControllers/ShopController.java" />
         <option value="$PROJECT_DIR$/src/Controllers/ShopControllers/StocksController.java" />
         <option value="$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/EmployeesController.java" />
         <option value="$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/PanelController.java" />
         <option value="$PROJECT_DIR$/src/securityandtime/config.java" />
         <option value="$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/AdminPanelController.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/ShopControllers/ShopController.java" />
       </list>
     </option>
   </component>
@@ -411,7 +306,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -422,30 +316,26 @@
             <path>
               <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
               <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="librariesmine" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
               <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="librariesmine" type="462c0819:PsiDirectoryNode" />
+              <item name="commons-io-2.6.jar" type="ab9368bb:PsiFileNode" />
             </path>
             <path>
               <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
               <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-              <item name="POSnanotech_softwareshotelshotelsjavamultiplestores_jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="librariesmine" type="462c0819:PsiDirectoryNode" />
+              <item name="commons-io-2.6.jar" type="ab9368bb:PsiFileNode" />
+              <item name="io" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -828,7 +718,13 @@
       <workItem from="1562341777881" duration="234000" />
       <workItem from="1562349126153" duration="167000" />
       <workItem from="1562908499572" duration="35000" />
-      <workItem from="1562908613422" duration="828000" />
+      <workItem from="1562908613422" duration="2242000" />
+      <workItem from="1562946881444" duration="1092000" />
+      <workItem from="1563262940640" duration="612000" />
+      <workItem from="1563544876339" duration="97000" />
+      <workItem from="1563739368582" duration="883000" />
+      <workItem from="1563744798955" duration="54000" />
+      <workItem from="1563744866327" duration="809000" />
     </task>
     <task id="LOCAL-00001" summary="before shopping cart">
       <created>1552048112305</created>
@@ -893,11 +789,18 @@
       <option name="project" value="LOCAL" />
       <updated>1558910395264</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="chat box gui">
+      <created>1562910589594</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1562910589594</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="844677000" />
+    <option name="totallyTimeSpent" value="849638000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -909,10 +812,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8519794" visible="true" weight="0.23298033" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8519794" visible="true" weight="0.25567323" />
       <window_info id="Structure" order="1" sideWeight="0.14802065" side_tool="true" weight="0.19288956" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -1013,22 +916,6 @@
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/resourcefiles/shopFiles/showpriceexitcash.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="58" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resourcefiles/shopFiles/stocks.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="205" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/resourcefiles/styles/buttons.css">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1100,44 +987,44 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/resourcefiles/UserAccountManagementFiles/employees.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="181" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/resourcefiles/UserAccountManagementFiles/panel.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="109" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/resourcefiles/UserAccountManagementFiles/userDetails.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="17" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/resourcefiles/sleeping.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="28" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/resourcefiles/test.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="104" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/scanhandler/BarcodeScanner.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1327,13 +1214,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controllers/ShopControllers/StocksController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="727" column="3" selection-start-line="727" selection-start-column="3" selection-end-line="727" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/util/Collections.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1345,49 +1225,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/AdminPanelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3145">
-          <caret line="215" selection-start-line="215" selection-end-line="215" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/EmployeesController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6766">
-          <caret line="446" selection-start-line="446" selection-end-line="446" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/PanelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="55" column="18" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resourcefiles/UserAccountManagementFiles/panelAdmin.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2023">
-          <caret line="119" column="29" selection-start-line="119" selection-start-column="29" selection-end-line="119" selection-end-column="29" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Launch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="67" column="57" selection-start-line="67" selection-start-column="57" selection-end-line="67" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controllers/ShopControllers/PriceCashControllerExit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="68" column="29" selection-start-line="68" selection-start-column="29" selection-end-line="68" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/AdminPanelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3179">
+          <caret line="217" selection-start-line="217" selection-end-line="217" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Launch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="67" column="57" selection-start-line="67" selection-start-column="57" selection-end-line="67" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1398,10 +1259,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/EmployeesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6919">
+          <caret line="446" selection-start-line="446" selection-end-line="446" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controllers/UserAccountManagementControllers/PanelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1360">
+          <caret line="112" column="31" selection-start-line="112" selection-start-column="31" selection-end-line="112" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resourcefiles/UserAccountManagementFiles/panelAdmin.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2023">
+          <caret line="119" column="29" selection-start-line="119" selection-start-column="29" selection-end-line="119" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controllers/ShopControllers/ShopController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
-          <caret line="459" column="44" selection-start-line="459" selection-start-column="33" selection-end-line="459" selection-end-column="44" />
+          <caret line="111" column="169" selection-start-line="111" selection-start-column="165" selection-end-line="111" selection-end-column="169" />
+          <folding>
+            <element signature="e#15031#15032#0" expanded="true" />
+            <element signature="e#15058#15059#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/librariesmine/commons-io-2.6.jar!/org/apache/commons/io/FileUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controllers/ShopControllers/StocksController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="407" column="49" selection-start-line="407" selection-end-line="408" />
         </state>
       </provider>
     </entry>

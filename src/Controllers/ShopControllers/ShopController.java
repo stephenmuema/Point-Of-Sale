@@ -753,9 +753,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     Desktop.getDesktop().browse(new URL(sitedocs).toURI());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (URISyntaxException e) {
+                } catch (IOException | URISyntaxException e) {
                     e.printStackTrace();
                 }
             }
@@ -765,9 +763,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     Desktop.getDesktop().browse(new URL(site).toURI());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (URISyntaxException e) {
+                } catch (IOException | URISyntaxException e) {
                     e.printStackTrace();
                 }
             }
@@ -1049,6 +1045,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
         tableLoad();
     }
 
+    //method to show an alert
     private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
