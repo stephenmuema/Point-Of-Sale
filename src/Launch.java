@@ -22,6 +22,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
@@ -35,9 +36,7 @@ public class Launch extends Application {
 
     static Stage stage = null;
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
         Launch.CallerMethod();
 //the launcher main method
@@ -120,13 +119,9 @@ public class Launch extends Application {
                 System.out.print((char) b);
             }
 
-            System.out.println();
 
 
             long time = CheckConn.timelogin().getTime() / 1000;//get current time
-            System.out.println("time = " + time);
-            System.out.println(System.currentTimeMillis());
-            System.out.println();
             System.out.println(time + Long.parseLong(builder.toString().split(":::")[2]));
             if (time > Long.parseLong(builder.toString().split(":::")[2])) {
                 Parent root = FXMLLoader.load(getClass().getResource("resourcefiles/AuthenticationFiles/licensingPanel.fxml"));
@@ -163,7 +158,7 @@ public class Launch extends Application {
                 AnchorPane root = FXMLLoader.load(getClass().getResource("resourcefiles/AuthenticationFiles/SplashScreen.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                Media hit = new Media(getClass().getClassLoader().getResource("resourcefiles/sounds/notification.wav").toString());
+                Media hit = new Media(Objects.requireNonNull(getClass().getClassLoader().getResource("resourcefiles/sounds/notification.wav")).toString());
                 MediaPlayer mediaPlayer = new MediaPlayer(hit);
                 mediaPlayer.play();
                 stage.initStyle(StageStyle.DECORATED);
@@ -195,7 +190,7 @@ public class Launch extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("resourcefiles/AuthenticationFiles/licensingPanel.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            Media hit = new Media(getClass().getClassLoader().getResource("resourcefiles/sounds/notification.wav").toString());
+            Media hit = new Media(Objects.requireNonNull(getClass().getClassLoader().getResource("resourcefiles/sounds/notification.wav")).toString());
             MediaPlayer mediaPlayer = new MediaPlayer(hit);
             mediaPlayer.play();
             stage.initStyle(StageStyle.DECORATED);
@@ -208,7 +203,6 @@ public class Launch extends Application {
                 }
             });
 //            0700758591
-//            todo addlogo to database
             stage.setMaxWidth(1024.0);
             stage.setMaxHeight(600.0);
 //        APP TITLE

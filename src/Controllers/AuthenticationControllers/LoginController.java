@@ -145,7 +145,6 @@ public class LoginController extends UtilityClass implements Initializable {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.isBeforeFirst()) {
                 while (resultSet.next()) {
-//                    System.out.println(resultSet.getInt(1)+" "+resultSet.getString(7));
                     if (resultSet.getBoolean(8)) {
                         //if account exists and password matches hashed password
                         if ((resultSet.getString(7).equals(Security.hashPassword(pass)))) {
@@ -163,7 +162,6 @@ public class LoginController extends UtilityClass implements Initializable {
 
                                     config.user.put("user", resultSet.getString(5));
                                     config.key.put("key", resultSet.getString(3));
-//                                    System.out.println(key.get("key"));
 
 
                                 } catch (IOException e) {
@@ -205,7 +203,6 @@ public class LoginController extends UtilityClass implements Initializable {
             } else {
                 showAlert(Alert.AlertType.WARNING, parent.getScene().getWindow(),
                         "WRONG NAME/EMAIL !!", "PLEASE RE-ENTER A VALID USER NAME OR EMAIL");
-//                System.out.println("resultSet lacks values");
 //                LogClass.getLogger().log(Level.SEVERE, " LOGIN ERROR");
 //name or email does not exist
             }

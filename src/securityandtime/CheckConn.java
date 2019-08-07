@@ -81,9 +81,8 @@ public class CheckConn {
 ////            System.out.println(time.toString());
 //            return time;
 //        }
-        Date time = new Date();
-//            System.out.println(time.toString());
-        return time;
+        //            System.out.println(time.toString());
+        return new Date();
     }
 //        public static void main(String args[]) throws IOException {
 //

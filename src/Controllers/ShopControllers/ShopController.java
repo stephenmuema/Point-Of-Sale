@@ -532,24 +532,20 @@ public class ShopController extends CartIdGenerator implements Initializable {
                 new EventHandler<TableColumn.CellEditEvent<CartMaster, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<CartMaster, String> t) {
-                        ((CartMaster) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setItemNumber(t.getNewValue());
+                        t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).setItemNumber(t.getNewValue());
                         String newval = t.getNewValue();
 
-                        String price = String.valueOf(Integer.parseInt(newval) * Integer.parseInt(((CartMaster) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).getItemPrice()));
+                        String price = String.valueOf(Integer.parseInt(newval) * Integer.parseInt(t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).getItemPrice()));
 
-                        ((CartMaster) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setItemCumulativeCost(Integer.parseInt(price));
+                        t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).setItemCumulativeCost(Integer.parseInt(price));
 
                         System.out.println("price=" + price);
                         try {
-                            statementLocal.executeUpdate("UPDATE cartItems set amount=" + newval + " ,cumulativeprice=" + price + " WHERE itemid=" + ((CartMaster) t.getTableView().getItems().get(
-                                    t.getTablePosition().getRow())
-                            ).getItemId());
+                            statementLocal.executeUpdate("UPDATE cartItems set amount=" + newval + " ,cumulativeprice=" + price + " WHERE itemid=" + t.getTableView().getItems().get(
+                                    t.getTablePosition().getRow()).getItemId());
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
@@ -566,7 +562,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
         );
     }
 
-    void tableLoad() {
+    private void tableLoad() {
 /*
        1 create a sqlite database
        2 create a transaction id each time a new transaction is started
@@ -818,7 +814,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
                 pricegot.put("price", Integer.valueOf(totalprice.getText()));
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("resourcefiles/shopFiles/onlinepayments.fxml"));
                 try {
-                    Parent parent = (Parent) fxmlLoader.load();
+                    Parent parent = fxmlLoader.load();
                     Stage stage = new Stage();
                     stage.setScene(new Scene(parent));
                     stage.initStyle(StageStyle.UNDECORATED);
@@ -839,7 +835,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
             pricegot.put("price", Integer.valueOf(totalprice.getText()));
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("resourcefiles/shopFiles/showpriceexitcash.fxml"));
             try {
-                Parent parent = (Parent) fxmlLoader.load();
+                Parent parent = fxmlLoader.load();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(parent));
                 stage.initStyle(StageStyle.UNDECORATED);
@@ -1001,13 +997,13 @@ public class ShopController extends CartIdGenerator implements Initializable {
                 if (minutes > 9) {
                     mins = String.valueOf(minutes);
                 } else {
-                    mins = "0" + String.valueOf(minutes);
+                    mins = "0" + minutes;
 
                 }
                 if (seconds > 9) {
                     secs = String.valueOf(seconds);
                 } else {
-                    secs = "0" + String.valueOf(seconds);
+                    secs = "0" + seconds;
 
                 }
             } catch (IOException e1) {

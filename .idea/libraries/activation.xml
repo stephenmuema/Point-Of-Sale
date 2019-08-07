@@ -1,10 +1,30 @@
 <component name="libraryTable">
   <library name="activation">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/librariesmine/activation.jar!/" />
-      <root url="jar://$PROJECT_DIR$/librariesmine/mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/activation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/apache-commons-net.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/apache-commons.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/commons-codec-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/commons-io-2.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/itextpdf-5.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/javax.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/joda-time-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/json-20190129.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/json-simple-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/mysql-connector-java-8.0.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/okhttp-3.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/okio-1.13.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/opencsv-4.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/slf4j.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/sqlite-jdbc-3.23.1.jar!/" />
     </CLASSES>
-    <JAVADOC />
-    <SOURCES />
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/joda-time-2.4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/apache-commons-net.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/librariesmine/joda-time-2.4-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>
