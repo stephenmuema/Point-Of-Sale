@@ -32,27 +32,27 @@ import static securityandtime.config.*;
 /**
  * @author Steve muema
  */
-public class Launch extends Application {
+public class Launcher extends Application {
 
     static Stage stage = null;
 
 
     public static void main(String[] args) {
-        Launch.CallerMethod();
+        Launcher.CallerMethod();
 //the launcher main method
         launch(args);
     }
 
     private static void CallerMethod() {
-        LogClass.getLogger().log(Level.INFO, "LAUNCH CLASS:::ONLY LOG NEGATIVE MESSAGES");
+//        LogClass.getLogger().log(Level.INFO, "LAUNCH CLASS:::ONLY LOG NEGATIVE MESSAGES");
         new CheckConn();
-        ExecutorService service = Executors.newFixedThreadPool(4);
+        ExecutorService service = Executors.newCachedThreadPool();
         service.submit(() -> {
             if (CheckConn.pingHost(securityandtime.config.host, 443, 2000)) {
                 LogClass.getLogger().log(Level.INFO, "CONNECTED");
 
             } else {
-                LogClass.getLogger().log(Level.INFO, "NOT CONNECTED");
+                LogClass.getLogger().log(Level.WARNING, "NOT CONNECTED");
 
             }
         });
@@ -85,7 +85,7 @@ public class Launch extends Application {
         } catch (SQLException e) {
             // if the error message is "out of memory",
             // it probably means no securityandtime file is found
-            System.err.println(e.getMessage());
+//            System.err.println(e.getMessage());
         } finally {
             try {
                 if (connection != null)
@@ -110,28 +110,28 @@ public class Launch extends Application {
             byte[] fileContent = new byte[(int) file.length()];
 
             int i = fileInputStream.read(fileContent);
-            System.out.println("bytes read are " + i);
+//            System.out.println("bytes read are " + i);
             StringBuilder builder = new StringBuilder();
 
             for (byte b : fileContent
             ) {
                 builder.append((char) b);
-                System.out.print((char) b);
+//                System.out.print((char) b);
             }
 
 
 
             long time = CheckConn.timelogin().getTime() / 1000;//get current time
-            System.out.println(time + Long.parseLong(builder.toString().split(":::")[2]));
+//            System.out.println(time + Long.parseLong(builder.toString().split(":::")[2]));
             if (time > Long.parseLong(builder.toString().split(":::")[2])) {
-                Parent root = FXMLLoader.load(getClass().getResource("resourcefiles/AuthenticationFiles/licensingPanel.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("../resources/AuthenticationFiles/licensingPanel.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                Media hit = new Media(getClass().getClassLoader().getResource("resourcefiles/sounds/notification.wav").toString());
+                Media hit = new Media(getClass().getClassLoader().getResource("sounds/notification.wav").toString());
                 MediaPlayer mediaPlayer = new MediaPlayer(hit);
                 mediaPlayer.play();
                 stage.initStyle(StageStyle.DECORATED);
-                stage.getIcons().add(new Image("resourcefiles/images/banner_hardware.png"));
+                stage.getIcons().add(new Image("images/logo.png"));
                 stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                     @Override
                     public void handle(WindowEvent event) {
@@ -147,7 +147,7 @@ public class Launch extends Application {
                 stage.setMaxHeight(700.0);
                 stage.setMaximized(false);
                 stage.setFullScreen(false);
-                Launch.stage = stage;
+                Launcher.stage = stage;
                 stage.show();
             } else {
                 license.put("name", builder.toString().split(":::")[0]);
@@ -155,14 +155,14 @@ public class Launch extends Application {
                 license.put("time", builder.toString().split(":::")[2]);
 
                 fileInputStream.close();
-                AnchorPane root = FXMLLoader.load(getClass().getResource("resourcefiles/AuthenticationFiles/SplashScreen.fxml"));
+                AnchorPane root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/SplashScreen.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                Media hit = new Media(Objects.requireNonNull(getClass().getClassLoader().getResource("resourcefiles/sounds/notification.wav")).toString());
+                Media hit = new Media(Objects.requireNonNull(getClass().getClassLoader().getResource("sounds/notification.wav")).toString());
                 MediaPlayer mediaPlayer = new MediaPlayer(hit);
                 mediaPlayer.play();
                 stage.initStyle(StageStyle.DECORATED);
-                stage.getIcons().add(new Image("resourcefiles/images/banner_hardware.png"));
+                stage.getIcons().add(new Image("images/logo.png"));
 //        todo change title later
                 stage.setTitle("Nanotech Softwares Point of Sale 2019  (v 1.1)");
                 stage.setMaxWidth(1024.0);
@@ -181,20 +181,20 @@ public class Launch extends Application {
                         System.exit(123);
                     }
                 });
-                Launch.stage = stage;
+                Launcher.stage = stage;
                 stage.show();
             }
 //            todo distinguish admin account from cashier account
         } else {
 //            GO TO LICENSING PANEL
-            Parent root = FXMLLoader.load(getClass().getResource("resourcefiles/AuthenticationFiles/licensingPanel.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../resources/AuthenticationFiles/licensingPanel.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            Media hit = new Media(Objects.requireNonNull(getClass().getClassLoader().getResource("resourcefiles/sounds/notification.wav")).toString());
+            Media hit = new Media(Objects.requireNonNull(getClass().getClassLoader().getResource("sounds/notification.wav")).toString());
             MediaPlayer mediaPlayer = new MediaPlayer(hit);
             mediaPlayer.play();
             stage.initStyle(StageStyle.DECORATED);
-            stage.getIcons().add(new Image("resourcefiles/images/banner_hardware.png"));
+            stage.getIcons().add(new Image("images/logo.png"));
             stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent event) {
@@ -211,14 +211,10 @@ public class Launch extends Application {
             stage.setMaxHeight(700.0);
             stage.setMaximized(false);
             stage.setFullScreen(false);
-            Launch.stage = stage;
+            Launcher.stage = stage;
             stage.show();
         }
-
-
     }
-
-
 }
 
 
