@@ -3,9 +3,12 @@ package Controllers;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import securityandtime.CheckConn;
+import securityandtime.config;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -13,6 +16,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Objects;
 
 import static securityandtime.config.des;
 import static securityandtime.config.localCartDb;
@@ -51,6 +56,16 @@ public class UtilityClass {
         return connectionDbLocal;
     }
 
+    public void logout(AnchorPane panel) {
+        config.login.put("loggedout", true);
+        config.user.clear();
+        try {
+//                System.out.println("logging out");
+            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public UtilityClass setConnectionDbLocal(Connection connectionDbLocal) {
         this.connectionDbLocal = connectionDbLocal;
         return this;

@@ -16,7 +16,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -43,7 +43,7 @@ public class PanelController extends UtilityClass implements Initializable {
     @FXML
     Button logoutButton;
     @FXML
-    private VBox panel;
+    private AnchorPane panel;
     @FXML
 
     private Label clock;
@@ -225,11 +225,11 @@ public class PanelController extends UtilityClass implements Initializable {
         this.logoutButton = logoutButton;
     }
 
-    public VBox getPanel() {
+    public AnchorPane getPanel() {
         return panel;
     }
 
-    public void setPanel(VBox panel) {
+    public void setPanel(AnchorPane panel) {
         this.panel = panel;
     }
 

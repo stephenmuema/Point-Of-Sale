@@ -16,8 +16,8 @@ import java.util.ResourceBundle;
 public class UserDetailsController extends UtilityClass implements Initializable {
     public Button updateb;
     public Label name, email;
-    String namestr, emailstr;
-    Connection connection = getConnection();
+    private String namestr, emailstr;
+    private Connection connection = getConnection();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

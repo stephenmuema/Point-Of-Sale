@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Window;
 import javafx.util.Duration;
@@ -48,7 +48,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     public Button backup;
     public Button audits;
     @FXML
-    private VBox AdminPanel;
+    private AnchorPane AdminPanel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -73,13 +73,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 
     public void menuClick() {
         menulogout.setOnAction(event -> {
-            config.login.put("loggedout", true);
-
-            try {
-                AdminPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            logout(AdminPanel);
 
         });
     }
@@ -327,11 +321,11 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         this.audits = audits;
     }
 
-    public VBox getAdminPanel() {
+    public AnchorPane getAdminPanel() {
         return AdminPanel;
     }
 
-    public void setAdminPanel(VBox adminPanel) {
+    public void setAdminPanel(AnchorPane adminPanel) {
         AdminPanel = adminPanel;
     }
 

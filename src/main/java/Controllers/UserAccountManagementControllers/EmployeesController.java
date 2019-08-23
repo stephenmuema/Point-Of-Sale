@@ -16,7 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
 import javafx.util.Duration;
 import securityandtime.config;
@@ -58,7 +58,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
     @FXML
     private TableView<EmployeeMaster> tab;
     @FXML
-    private VBox parents;
+    private AnchorPane parents;
     private ObservableList<EmployeeMaster> data;
     private String time;
 
@@ -320,12 +320,14 @@ public class EmployeesController extends UtilityClass implements Initializable {
         }
         ResultSet resultSet = null;
         try {
+            assert statement != null;
             resultSet = statement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         while (true) {
             try {
+                assert resultSet != null;
                 if (!resultSet.next()) break;
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -514,11 +516,11 @@ public class EmployeesController extends UtilityClass implements Initializable {
         this.tab = tab;
     }
 
-    public VBox getParents() {
+    public AnchorPane getParents() {
         return parents;
     }
 
-    public void setParents(VBox parents) {
+    public void setParents(AnchorPane parents) {
         this.parents = parents;
     }
 

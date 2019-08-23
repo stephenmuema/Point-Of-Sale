@@ -265,13 +265,7 @@ public class AuditController extends UtilityClass implements Initializable {
     }
 
     private void logout() {
-        config.login.put("loggedout", true);
-
-        try {
-            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        logout(panel);
     }
 
     private void buttonListeners() {

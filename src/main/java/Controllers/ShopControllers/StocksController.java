@@ -466,13 +466,7 @@ public class StocksController extends UtilityClass implements Initializable {
 
     private void menuclick() {
         logout.setOnAction(event -> {
-            config.login.put("loggedout", true);
-
-            try {
-                parentsstocks.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            logout(parentsstocks);
 
         });
     }

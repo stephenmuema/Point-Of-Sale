@@ -597,13 +597,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
         logoutb.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                //logout button destroy session variables
-                config.login.put("loggedout", true);
-                try {
-                    shopPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                utilityClass.logout(shopPanel);
             }
         });
         panel.setOnMouseClicked(new EventHandler<MouseEvent>() {

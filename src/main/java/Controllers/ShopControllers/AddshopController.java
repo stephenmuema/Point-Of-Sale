@@ -190,14 +190,7 @@ public class AddshopController extends UtilityClass implements Initializable {
             }
         });
         logoutMenu.setOnAction(event -> {
-            config.login.put("loggedout", true);
-
-            try {
-//                System.out.println("logging out");
-                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            logout(panel);
         });
     }
 
