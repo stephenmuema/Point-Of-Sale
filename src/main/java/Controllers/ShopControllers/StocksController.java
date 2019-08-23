@@ -18,7 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
@@ -55,7 +55,7 @@ public class StocksController extends UtilityClass implements Initializable {
     public TableColumn<StockMaster, String> barcode;
     public TableColumn<StockMaster, String> quantity;
     public Button delete;
-    public VBox parentsstocks;
+    public AnchorPane parentsstocks;
     public TextField itemname;
     public TextField itemprice;
     public TextField itemcategory;
@@ -91,221 +91,6 @@ public class StocksController extends UtilityClass implements Initializable {
         idleMonitor.register(parentsstocks, Event.ANY);
     }
 
-    public MenuItem getLogout() {
-        return logout;
-    }
-
-    public void setLogout(MenuItem logout) {
-        this.logout = logout;
-    }
-
-    public Label getClock() {
-        return clock;
-    }
-
-    public void setClock(Label clock) {
-        this.clock = clock;
-    }
-
-    public Font getX1() {
-        return x1;
-    }
-
-    public void setX1(Font x1) {
-        this.x1 = x1;
-    }
-
-    public TabPane getTabpane() {
-        return tabpane;
-    }
-
-    public void setTabpane(TabPane tabpane) {
-        this.tabpane = tabpane;
-    }
-
-    public Tab getExistingstockdtab() {
-        return existingstockdtab;
-    }
-
-    public void setExistingstockdtab(Tab existingstockdtab) {
-        this.existingstockdtab = existingstockdtab;
-    }
-
-    public TableView<StockMaster> getTable() {
-        return table;
-    }
-
-    public void setTable(TableView<StockMaster> table) {
-        this.table = table;
-    }
-
-    public TableColumn<StockMaster, String> getName() {
-        return name;
-    }
-
-    public void setName(TableColumn<StockMaster, String> name) {
-        this.name = name;
-    }
-
-    public TableColumn<StockMaster, String> getPrice() {
-        return price;
-    }
-
-    public void setPrice(TableColumn<StockMaster, String> price) {
-        this.price = price;
-    }
-
-    public TableColumn<StockMaster, String> getCategory() {
-        return category;
-    }
-
-    public void setCategory(TableColumn<StockMaster, String> category) {
-        this.category = category;
-    }
-
-    public TableColumn<StockMaster, String> getBarcode() {
-        return barcode;
-    }
-
-    public void setBarcode(TableColumn<StockMaster, String> barcode) {
-        this.barcode = barcode;
-    }
-
-    public TableColumn<StockMaster, String> getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(TableColumn<StockMaster, String> quantity) {
-        this.quantity = quantity;
-    }
-
-    public Button getDelete() {
-        return delete;
-    }
-
-    public void setDelete(Button delete) {
-        this.delete = delete;
-    }
-
-    public VBox getParentsstocks() {
-        return parentsstocks;
-    }
-
-    public void setParentsstocks(VBox parentsstocks) {
-        this.parentsstocks = parentsstocks;
-    }
-
-    public TextField getItemname() {
-        return itemname;
-    }
-
-    public void setItemname(TextField itemname) {
-        this.itemname = itemname;
-    }
-
-    public TextField getItemprice() {
-        return itemprice;
-    }
-
-    public void setItemprice(TextField itemprice) {
-        this.itemprice = itemprice;
-    }
-
-    public TextField getItemcategory() {
-        return itemcategory;
-    }
-
-    public void setItemcategory(TextField itemcategory) {
-        this.itemcategory = itemcategory;
-    }
-
-    public TextField getItemcode() {
-        return itemcode;
-    }
-
-    public void setItemcode(TextField itemcode) {
-        this.itemcode = itemcode;
-    }
-
-    public Button getAddmanually() {
-        return addmanually;
-    }
-
-    public void setAddmanually(Button addmanually) {
-        this.addmanually = addmanually;
-    }
-
-    public Button getUsescanner() {
-        return usescanner;
-    }
-
-    public void setUsescanner(Button usescanner) {
-        this.usescanner = usescanner;
-    }
-
-    public MenuItem getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(MenuItem employees) {
-        this.employees = employees;
-    }
-
-    public TextField getAmount() {
-        return amount;
-    }
-
-    public void setAmount(TextField amount) {
-        this.amount = amount;
-    }
-
-    public Button getHome() {
-        return home;
-    }
-
-    public void setHome(Button home) {
-        this.home = home;
-    }
-
-    public Button getImage() {
-        return image;
-    }
-
-    public void setImage(Button image) {
-        this.image = image;
-    }
-
-    public File getFile() {
-        return file;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
-    public BufferedImage getBufferedImage() {
-        return bufferedImage;
-    }
-
-    public void setBufferedImage(BufferedImage bufferedImage) {
-        this.bufferedImage = bufferedImage;
-    }
-
-    public ObservableList<StockMaster> getData() {
-        return data;
-    }
-
-    public void setData(ObservableList<StockMaster> data) {
-        this.data = data;
-    }
 
     private void buttonclick() {
         image.setOnMouseClicked(event -> {
@@ -333,14 +118,7 @@ public class StocksController extends UtilityClass implements Initializable {
             }
         });
         data = FXCollections.observableArrayList();
-        Connection connection = null;
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Connection finalConnection = connection;
+        Connection connection = getConnection();
         home.setOnAction(event -> {
             try {
                 parentsstocks.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml")))));
@@ -360,8 +138,8 @@ public class StocksController extends UtilityClass implements Initializable {
             PreparedStatement preparedStatement = null;
 
             try {
-                assert finalConnection != null;
-                preparedStatement = finalConnection.prepareStatement("INSERT INTO stocks(name,itemcode,amount,category,price,image)VALUES(?,?,?,?,?,?)");
+                assert connection != null;
+                preparedStatement = connection.prepareStatement("INSERT INTO stocks(name,itemcode,amount,category,price,image)VALUES(?,?,?,?,?,?)");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -453,8 +231,8 @@ public class StocksController extends UtilityClass implements Initializable {
             StockMaster store = table.getSelectionModel().getSelectedItem();
 
             try {
-                assert finalConnection != null;
-                PreparedStatement preparedStatement = finalConnection.prepareStatement("DELETE FROM stocks WHERE id=?");
+                assert connection != null;
+                PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM stocks WHERE id=?");
 
                 preparedStatement.setInt(1, store.getId());
                 int updated = preparedStatement.executeUpdate();
@@ -463,8 +241,8 @@ public class StocksController extends UtilityClass implements Initializable {
                     data = FXCollections.observableArrayList();
 
                     try {
-                        if (finalConnection != null) {
-                            PreparedStatement statement = finalConnection.prepareStatement("SELECT * FROM stores WHERE owner=?");
+                        if (connection != null) {
+                            PreparedStatement statement = connection.prepareStatement("SELECT * FROM stores WHERE owner=?");
                             statement.setString(1, String.valueOf(user));
                             ResultSet resultSet = statement.executeQuery();
                             while (resultSet.next()) {
@@ -521,13 +299,7 @@ public class StocksController extends UtilityClass implements Initializable {
     private void fetchItems() {
 
         data = FXCollections.observableArrayList();
-        Connection connection = null;
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        Connection connection = getConnection();
         Connection finalConnection = connection;
         connection = null;
         try {
@@ -720,5 +492,246 @@ public class StocksController extends UtilityClass implements Initializable {
         alert.showAndWait();
     }
 
+    public MenuItem getLogout() {
+        return logout;
+    }
 
+    public StocksController setLogout(MenuItem logout) {
+        this.logout = logout;
+        return this;
+    }
+
+    public Label getClock() {
+        return clock;
+    }
+
+    public StocksController setClock(Label clock) {
+        this.clock = clock;
+        return this;
+    }
+
+    public Font getX1() {
+        return x1;
+    }
+
+    public StocksController setX1(Font x1) {
+        this.x1 = x1;
+        return this;
+    }
+
+    public TabPane getTabpane() {
+        return tabpane;
+    }
+
+    public StocksController setTabpane(TabPane tabpane) {
+        this.tabpane = tabpane;
+        return this;
+    }
+
+    public Tab getExistingstockdtab() {
+        return existingstockdtab;
+    }
+
+    public StocksController setExistingstockdtab(Tab existingstockdtab) {
+        this.existingstockdtab = existingstockdtab;
+        return this;
+    }
+
+    public TableView<StockMaster> getTable() {
+        return table;
+    }
+
+    public StocksController setTable(TableView<StockMaster> table) {
+        this.table = table;
+        return this;
+    }
+
+    public TableColumn<StockMaster, String> getName() {
+        return name;
+    }
+
+    public StocksController setName(TableColumn<StockMaster, String> name) {
+        this.name = name;
+        return this;
+    }
+
+    public TableColumn<StockMaster, String> getPrice() {
+        return price;
+    }
+
+    public StocksController setPrice(TableColumn<StockMaster, String> price) {
+        this.price = price;
+        return this;
+    }
+
+    public TableColumn<StockMaster, String> getCategory() {
+        return category;
+    }
+
+    public StocksController setCategory(TableColumn<StockMaster, String> category) {
+        this.category = category;
+        return this;
+    }
+
+    public TableColumn<StockMaster, String> getBarcode() {
+        return barcode;
+    }
+
+    public StocksController setBarcode(TableColumn<StockMaster, String> barcode) {
+        this.barcode = barcode;
+        return this;
+    }
+
+    public TableColumn<StockMaster, String> getQuantity() {
+        return quantity;
+    }
+
+    public StocksController setQuantity(TableColumn<StockMaster, String> quantity) {
+        this.quantity = quantity;
+        return this;
+    }
+
+    public Button getDelete() {
+        return delete;
+    }
+
+    public StocksController setDelete(Button delete) {
+        this.delete = delete;
+        return this;
+    }
+
+    public AnchorPane getParentsstocks() {
+        return parentsstocks;
+    }
+
+    public StocksController setParentsstocks(AnchorPane parentsstocks) {
+        this.parentsstocks = parentsstocks;
+        return this;
+    }
+
+    public TextField getItemname() {
+        return itemname;
+    }
+
+    public StocksController setItemname(TextField itemname) {
+        this.itemname = itemname;
+        return this;
+    }
+
+    public TextField getItemprice() {
+        return itemprice;
+    }
+
+    public StocksController setItemprice(TextField itemprice) {
+        this.itemprice = itemprice;
+        return this;
+    }
+
+    public TextField getItemcategory() {
+        return itemcategory;
+    }
+
+    public StocksController setItemcategory(TextField itemcategory) {
+        this.itemcategory = itemcategory;
+        return this;
+    }
+
+    public TextField getItemcode() {
+        return itemcode;
+    }
+
+    public StocksController setItemcode(TextField itemcode) {
+        this.itemcode = itemcode;
+        return this;
+    }
+
+    public Button getAddmanually() {
+        return addmanually;
+    }
+
+    public StocksController setAddmanually(Button addmanually) {
+        this.addmanually = addmanually;
+        return this;
+    }
+
+    public Button getUsescanner() {
+        return usescanner;
+    }
+
+    public StocksController setUsescanner(Button usescanner) {
+        this.usescanner = usescanner;
+        return this;
+    }
+
+    public MenuItem getEmployees() {
+        return employees;
+    }
+
+    public StocksController setEmployees(MenuItem employees) {
+        this.employees = employees;
+        return this;
+    }
+
+    public TextField getAmount() {
+        return amount;
+    }
+
+    public StocksController setAmount(TextField amount) {
+        this.amount = amount;
+        return this;
+    }
+
+    public Button getHome() {
+        return home;
+    }
+
+    public StocksController setHome(Button home) {
+        this.home = home;
+        return this;
+    }
+
+    public Button getImage() {
+        return image;
+    }
+
+    public StocksController setImage(Button image) {
+        this.image = image;
+        return this;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public StocksController setFile(File file) {
+        this.file = file;
+        return this;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public StocksController setLength(int length) {
+        this.length = length;
+        return this;
+    }
+
+    public BufferedImage getBufferedImage() {
+        return bufferedImage;
+    }
+
+    public StocksController setBufferedImage(BufferedImage bufferedImage) {
+        this.bufferedImage = bufferedImage;
+        return this;
+    }
+
+    public ObservableList<StockMaster> getData() {
+        return data;
+    }
+
+    public StocksController setData(ObservableList<StockMaster> data) {
+        this.data = data;
+        return this;
+    }
 }

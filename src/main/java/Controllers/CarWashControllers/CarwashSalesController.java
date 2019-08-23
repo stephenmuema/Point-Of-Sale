@@ -25,8 +25,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -38,16 +38,20 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static securityandtime.config.*;
+import static securityandtime.config.site;
+import static securityandtime.config.sitedocs;
 
 public class CarwashSalesController extends UtilityClass implements Initializable {
     public static int lastSelectedTabIndex = 0;
-    public VBox carWash;
+    public AnchorPane carWash;
     public Tab clients;
     public TableView<CarWashMaster> tab;
     public TableColumn<CarWashMaster, String> Name;
@@ -160,161 +164,6 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
         });
     }
 
-    public VBox getCarWash() {
-        return carWash;
-    }
-
-    public void setCarWash(VBox carWash) {
-        this.carWash = carWash;
-    }
-
-    public Tab getClients() {
-        return clients;
-    }
-
-    public void setClients(Tab clients) {
-        this.clients = clients;
-    }
-
-    public TableView<CarWashMaster> getTab() {
-        return tab;
-    }
-
-    public void setTab(TableView<CarWashMaster> tab) {
-        this.tab = tab;
-    }
-
-    public TableColumn<CarWashMaster, String> getName() {
-        return Name;
-    }
-
-    public void setName(TextField name) {
-        this.name = name;
-    }
-
-    public void setName(TableColumn<CarWashMaster, String> name) {
-        Name = name;
-    }
-
-    public TextField getRegistration() {
-        return registration;
-    }
-
-    public void setRegistration(TextField registration) {
-        this.registration = registration;
-    }
-
-    public TextField getContact() {
-        return contact;
-    }
-
-    public void setContact(TextField contact) {
-        this.contact = contact;
-    }
-
-    public TextField getIdentification() {
-        return identification;
-    }
-
-    public void setIdentification(TextField identification) {
-        this.identification = identification;
-    }
-
-    public Button getSubmit() {
-        return submit;
-    }
-
-    public void setSubmit(Button submit) {
-        this.submit = submit;
-    }
-
-    public Tab getNewclients() {
-        return newclients;
-    }
-
-    public void setNewclients(Tab newclients) {
-        this.newclients = newclients;
-    }
-
-    public double getTabWidth() {
-        return tabWidth;
-    }
-
-    public void setTabWidth(double tabWidth) {
-        this.tabWidth = tabWidth;
-    }
-
-    public ObservableList<CarWashMaster> getData() {
-        return data;
-    }
-
-    public void setData(ObservableList<CarWashMaster> data) {
-        this.data = data;
-    }
-
-    public TableColumn<CarWashMaster, String> getReg() {
-        return reg;
-    }
-
-    public void setReg(TableColumn<CarWashMaster, String> reg) {
-        this.reg = reg;
-    }
-
-    public TableColumn<CarWashMaster, String> getId() {
-        return id;
-    }
-
-    public void setId(TableColumn<CarWashMaster, String> id) {
-        this.id = id;
-    }
-
-    public TableColumn<CarWashMaster, String> getStatus() {
-        return status;
-    }
-
-    public void setStatus(TableColumn<CarWashMaster, String> status) {
-        this.status = status;
-    }
-
-    public TableColumn<CarWashMaster, String> getOperator() {
-        return operator;
-    }
-
-    public void setOperator(TableColumn<CarWashMaster, String> operator) {
-        this.operator = operator;
-    }
-
-    public TableColumn<CarWashMaster, String> getPayout() {
-        return payout;
-    }
-
-    public void setPayout(TableColumn<CarWashMaster, String> payout) {
-        this.payout = payout;
-    }
-
-    public Label getClock() {
-        return clock;
-    }
-
-    public void setClock(Label clock) {
-        this.clock = clock;
-    }
-
-    public Button getHome() {
-        return home;
-    }
-
-    public void setHome(Button home) {
-        this.home = home;
-    }
-
-    public TabPane getTabpane() {
-        return tabpane;
-    }
-
-    public void setTabpane(TabPane tabpane) {
-        this.tabpane = tabpane;
-    }
 
     private void tabpaneStyles() {
         tabpane.setSide(Side.TOP);
@@ -351,95 +200,85 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
 
 
     private void buttonListeners() {
-        Connection connection = null;
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Connection finalConnection = connection;
-        submit.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                String ownername = name.getText().toUpperCase();
-                String numberplate = registration.getText().toUpperCase();
-                String idnum = identification.getText().toUpperCase();
-                String contactnumber = contact.getText().toUpperCase();
+        Connection finalConnection = getConnection();
+        submit.setOnMouseClicked(event -> {
+            String ownername = name.getText().toUpperCase();
+            String numberplate = registration.getText().toUpperCase();
+            String idnum = identification.getText().toUpperCase();
+            String contactnumber = contact.getText().toUpperCase();
 
 //
 //
 //
-                if (ownername.isEmpty() || numberplate.isEmpty() || idnum.isEmpty() || contactnumber.isEmpty()) {
-                    showAlert(Alert.AlertType.ERROR, carWash.getScene().getWindow(), "FILL ALL FIELDS", "ALL FIELDS SHOULD BE FILLED TO PROCEED");
-                } else {
-                    PreparedStatement preparedStatement = null;
+            if (ownername.isEmpty() || numberplate.isEmpty() || idnum.isEmpty() || contactnumber.isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, carWash.getScene().getWindow(), "FILL ALL FIELDS", "ALL FIELDS SHOULD BE FILLED TO PROCEED");
+            } else {
+                PreparedStatement preparedStatement = null;
 
-                    try {
-                        assert finalConnection != null;
-                        preparedStatement = finalConnection.prepareStatement("INSERT INTO carwash(`ownername`,registration,idnumber,contact,status)VALUES(?,?,?,?,?)");
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-
-                    try {
-                        if (preparedStatement != null) {
-                            preparedStatement.setString(1, ownername);
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        if (preparedStatement != null) {
-                            preparedStatement.setString(2, numberplate);
-                            //                System.out.println("user name=="+user);
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        if (preparedStatement != null) {
-                            preparedStatement.setString(3, idnum);
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        if (preparedStatement != null) {
-                            preparedStatement.setString(4, contactnumber);
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        if (preparedStatement != null) {
-                            preparedStatement.setString(5, "PENDING");
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        //executequery
-                        if (preparedStatement != null) {
-                            int rows = preparedStatement.executeUpdate();
-                            if (rows > 0) {
-                                System.out.println(rows);
-                                showAlert(Alert.AlertType.INFORMATION, carWash.getScene().getWindow(), "SUCCESS ", "YOUR ITEM WAS ADDED SUCCESSFULLY");
-                                name.clear();
-                                registration.clear();
-                                identification.clear();
-                                contact.clear();
-                            } else {
-                                showAlert(Alert.AlertType.WARNING, carWash.getScene().getWindow(), "  FAILURE", "ERROR WHEN INSERTING ITEMS");
-
-                            }
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                try {
+                    assert finalConnection != null;
+                    preparedStatement = finalConnection.prepareStatement("INSERT INTO carwash(`ownername`,registration,idnumber,contact,status)VALUES(?,?,?,?,?)");
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
 
+                try {
+                    if (preparedStatement != null) {
+                        preparedStatement.setString(1, ownername);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    if (preparedStatement != null) {
+                        preparedStatement.setString(2, numberplate);
+                        //                System.out.println("user name=="+user);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    if (preparedStatement != null) {
+                        preparedStatement.setString(3, idnum);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    if (preparedStatement != null) {
+                        preparedStatement.setString(4, contactnumber);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    if (preparedStatement != null) {
+                        preparedStatement.setString(5, "PENDING");
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    //executequery
+                    if (preparedStatement != null) {
+                        int rows = preparedStatement.executeUpdate();
+                        if (rows > 0) {
+                            System.out.println(rows);
+                            showAlert(Alert.AlertType.INFORMATION, carWash.getScene().getWindow(), "SUCCESS ", "YOUR ITEM WAS ADDED SUCCESSFULLY");
+                            name.clear();
+                            registration.clear();
+                            identification.clear();
+                            contact.clear();
+                        } else {
+                            showAlert(Alert.AlertType.WARNING, carWash.getScene().getWindow(), "  FAILURE", "ERROR WHEN INSERTING ITEMS");
+
+                        }
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
+
         });
         home.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -465,7 +304,7 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
 
     private void loadTab() {
         data = FXCollections.observableArrayList();
-        Connection connection = null;
+        Connection connection = getConnection();
 
 
 //        for (Node n: tab.lookupAll("TableRow")) {
@@ -481,13 +320,13 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
 //                    break;
 //            }
 
-
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//
+//        try {
+//            connection = DriverManager
+//                    .getConnection(des[2], des[0], des[1]);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
         try {
 //                        DISPLAYING CLIENTS
             if (connection != null) {
@@ -530,62 +369,48 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
 
     private void editable() {
         tab.setEditable(true);
-        Connection connection = null;
-
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Connection finalConnection = connection;
+        Connection connection = getConnection();
         Name.setCellFactory(TextFieldTableCell.forTableColumn());
         Name.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<CarWashMaster, String>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<CarWashMaster, String> t) {
-                        t.getTableView().getItems().get(
-                                t.getTablePosition().getRow()).setName(t.getNewValue());
-                        String newval = t.getNewValue();
-                        PreparedStatement preparedStatement = null;
-                        try {
-                            CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
-                            String id = carWashMaster.getId();
-                            assert finalConnection != null;
-                            preparedStatement = finalConnection.prepareStatement("UPDATE carwash set `ownername`=? where id=?");
-                            preparedStatement.setString(1, newval);
-                            preparedStatement.setString(2, id);
-                            preparedStatement.executeUpdate();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
+                t -> {
+                    t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).setName(t.getNewValue());
+                    String newval = t.getNewValue();
+                    PreparedStatement preparedStatement = null;
+                    try {
+                        CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
+                        String id = carWashMaster.getId();
+                        assert connection != null;
+                        preparedStatement = connection.prepareStatement("UPDATE carwash set `ownername`=? where id=?");
+                        preparedStatement.setString(1, newval);
+                        preparedStatement.setString(2, id);
+                        preparedStatement.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
 
 //                        preparedStatement.setString(1, name.getText());
-                    }
                 }
         );
         reg.setCellFactory(TextFieldTableCell.forTableColumn());
         reg.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<CarWashMaster, String>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<CarWashMaster, String> t) {
-                        t.getTableView().getItems().get(
-                                t.getTablePosition().getRow()).setName(t.getNewValue());
-                        String newval = t.getNewValue();
-                        PreparedStatement preparedStatement = null;
-                        try {
-                            CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
-                            String id = carWashMaster.getId();
-                            preparedStatement = finalConnection.prepareStatement("UPDATE carwash set registration=? where id=?");
-                            preparedStatement.setString(1, newval);
-                            preparedStatement.setString(2, id);
-                            preparedStatement.executeUpdate();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
+                t -> {
+                    t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).setName(t.getNewValue());
+                    String newval = t.getNewValue();
+                    PreparedStatement preparedStatement = null;
+                    try {
+                        CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
+                        String id = carWashMaster.getId();
+                        preparedStatement = connection.prepareStatement("UPDATE carwash set registration=? where id=?");
+                        preparedStatement.setString(1, newval);
+                        preparedStatement.setString(2, id);
+                        preparedStatement.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
 
 //                        preparedStatement.setString(1, name.getText());
-                    }
                 }
         );
         id.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -600,7 +425,7 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
                         try {
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
-                            preparedStatement = finalConnection.prepareStatement("UPDATE carwash set idnumber=? where id=?");
+                            preparedStatement = connection.prepareStatement("UPDATE carwash set idnumber=? where id=?");
                             preparedStatement.setString(1, newval);
                             preparedStatement.setString(2, id);
                             preparedStatement.executeUpdate();
@@ -624,7 +449,7 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
                         try {
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
-                            preparedStatement = finalConnection.prepareStatement("UPDATE carwash set status=? where id=?");
+                            preparedStatement = connection.prepareStatement("UPDATE carwash set status=? where id=?");
                             preparedStatement.setString(1, newval);
                             preparedStatement.setString(2, id);
                             preparedStatement.executeUpdate();
@@ -648,7 +473,7 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
                         try {
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
-                            preparedStatement = finalConnection.prepareStatement("UPDATE carwash set washedby=? where id=?");
+                            preparedStatement = connection.prepareStatement("UPDATE carwash set washedby=? where id=?");
                             preparedStatement.setString(1, newval);
                             preparedStatement.setString(2, id);
                             preparedStatement.executeUpdate();
@@ -673,7 +498,7 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
                         try {
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
-                            preparedStatement = finalConnection.prepareStatement("UPDATE carwash set cashpaid=? where id=?");
+                            preparedStatement = connection.prepareStatement("UPDATE carwash set cashpaid=? where id=?");
                             preparedStatement.setString(1, newval);
                             preparedStatement.setString(2, id);
                             preparedStatement.executeUpdate();
@@ -709,5 +534,226 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
                 }
             }
         });
+    }
+
+    public AnchorPane getCarWash() {
+        return carWash;
+    }
+
+    public CarwashSalesController setCarWash(AnchorPane carWash) {
+        this.carWash = carWash;
+        return this;
+    }
+
+    public Tab getClients() {
+        return clients;
+    }
+
+    public CarwashSalesController setClients(Tab clients) {
+        this.clients = clients;
+        return this;
+    }
+
+    public TableView<CarWashMaster> getTab() {
+        return tab;
+    }
+
+    public CarwashSalesController setTab(TableView<CarWashMaster> tab) {
+        this.tab = tab;
+        return this;
+    }
+
+    public TableColumn<CarWashMaster, String> getName() {
+        return Name;
+    }
+
+    public CarwashSalesController setName(TextField name) {
+        this.name = name;
+        return this;
+    }
+
+    public CarwashSalesController setName(TableColumn<CarWashMaster, String> name) {
+        Name = name;
+        return this;
+    }
+
+    public TextField getRegistration() {
+        return registration;
+    }
+
+    public CarwashSalesController setRegistration(TextField registration) {
+        this.registration = registration;
+        return this;
+    }
+
+    public TextField getContact() {
+        return contact;
+    }
+
+    public CarwashSalesController setContact(TextField contact) {
+        this.contact = contact;
+        return this;
+    }
+
+    public TextField getIdentification() {
+        return identification;
+    }
+
+    public CarwashSalesController setIdentification(TextField identification) {
+        this.identification = identification;
+        return this;
+    }
+
+    public Button getSubmit() {
+        return submit;
+    }
+
+    public CarwashSalesController setSubmit(Button submit) {
+        this.submit = submit;
+        return this;
+    }
+
+    public Tab getNewclients() {
+        return newclients;
+    }
+
+    public CarwashSalesController setNewclients(Tab newclients) {
+        this.newclients = newclients;
+        return this;
+    }
+
+    public MenuItem getLogoutMenu() {
+        return logoutMenu;
+    }
+
+    public CarwashSalesController setLogoutMenu(MenuItem logoutMenu) {
+        this.logoutMenu = logoutMenu;
+        return this;
+    }
+
+    public MenuItem getExitMenu() {
+        return exitMenu;
+    }
+
+    public CarwashSalesController setExitMenu(MenuItem exitMenu) {
+        this.exitMenu = exitMenu;
+        return this;
+    }
+
+    public MenuItem getAccountdetailsMenu() {
+        return accountdetailsMenu;
+    }
+
+    public CarwashSalesController setAccountdetailsMenu(MenuItem accountdetailsMenu) {
+        this.accountdetailsMenu = accountdetailsMenu;
+        return this;
+    }
+
+    public MenuItem getCreatorsMenu() {
+        return CreatorsMenu;
+    }
+
+    public CarwashSalesController setCreatorsMenu(MenuItem creatorsMenu) {
+        CreatorsMenu = creatorsMenu;
+        return this;
+    }
+
+    public MenuItem getHelpMenu() {
+        return helpMenu;
+    }
+
+    public CarwashSalesController setHelpMenu(MenuItem helpMenu) {
+        this.helpMenu = helpMenu;
+        return this;
+    }
+
+    public double getTabWidth() {
+        return tabWidth;
+    }
+
+    public CarwashSalesController setTabWidth(double tabWidth) {
+        this.tabWidth = tabWidth;
+        return this;
+    }
+
+    public ObservableList<CarWashMaster> getData() {
+        return data;
+    }
+
+    public CarwashSalesController setData(ObservableList<CarWashMaster> data) {
+        this.data = data;
+        return this;
+    }
+
+    public TableColumn<CarWashMaster, String> getReg() {
+        return reg;
+    }
+
+    public CarwashSalesController setReg(TableColumn<CarWashMaster, String> reg) {
+        this.reg = reg;
+        return this;
+    }
+
+    public TableColumn<CarWashMaster, String> getId() {
+        return id;
+    }
+
+    public CarwashSalesController setId(TableColumn<CarWashMaster, String> id) {
+        this.id = id;
+        return this;
+    }
+
+    public TableColumn<CarWashMaster, String> getStatus() {
+        return status;
+    }
+
+    public CarwashSalesController setStatus(TableColumn<CarWashMaster, String> status) {
+        this.status = status;
+        return this;
+    }
+
+    public TableColumn<CarWashMaster, String> getOperator() {
+        return operator;
+    }
+
+    public CarwashSalesController setOperator(TableColumn<CarWashMaster, String> operator) {
+        this.operator = operator;
+        return this;
+    }
+
+    public TableColumn<CarWashMaster, String> getPayout() {
+        return payout;
+    }
+
+    public CarwashSalesController setPayout(TableColumn<CarWashMaster, String> payout) {
+        this.payout = payout;
+        return this;
+    }
+
+    public Label getClock() {
+        return clock;
+    }
+
+    public CarwashSalesController setClock(Label clock) {
+        this.clock = clock;
+        return this;
+    }
+
+    public Button getHome() {
+        return home;
+    }
+
+    public CarwashSalesController setHome(Button home) {
+        this.home = home;
+        return this;
+    }
+
+    public TabPane getTabpane() {
+        return tabpane;
+    }
+
+    public CarwashSalesController setTabpane(TabPane tabpane) {
+        this.tabpane = tabpane;
+        return this;
     }
 }

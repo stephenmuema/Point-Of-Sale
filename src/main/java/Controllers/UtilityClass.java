@@ -8,10 +8,54 @@ import javafx.util.Duration;
 import securityandtime.CheckConn;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import static securityandtime.config.des;
+import static securityandtime.config.localCartDb;
+
 public class UtilityClass {
+    private Connection connection;
+    private Connection connectionDbLocal;
+
+
+    {
+        try {
+            connectionDbLocal = DriverManager.getConnection(localCartDb);
+
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            connection = DriverManager
+                    .getConnection(des[2], des[0], des[1]);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public UtilityClass setConnection(Connection connection) {
+        this.connection = connection;
+        return this;
+    }
+
+    public Connection getConnectionDbLocal() {
+        return connectionDbLocal;
+    }
+
+    public UtilityClass setConnectionDbLocal(Connection connectionDbLocal) {
+        this.connectionDbLocal = connectionDbLocal;
+        return this;
+    }
+
     public void time(Label clock) {
         Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             String mins = null, hrs = null, secs = null, pmam = null;

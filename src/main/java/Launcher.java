@@ -1,4 +1,5 @@
 import Controllers.ShopControllers.ShopController;
+import Controllers.UtilityClass;
 import com.sun.istack.internal.NotNull;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -19,7 +20,6 @@ import securityandtime.CheckConn;
 import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Objects;
@@ -27,7 +27,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 
-import static securityandtime.config.*;
+import static securityandtime.config.license;
+import static securityandtime.config.licensepath;
 
 /**
  * @author Steve muema
@@ -35,7 +36,7 @@ import static securityandtime.config.*;
 public class Launcher extends Application {
 
     static Stage stage = null;
-
+    static UtilityClass utilityClass = new UtilityClass();
 
     public static void main(String[] args) {
         Launcher.CallerMethod();
@@ -64,7 +65,7 @@ public class Launcher extends Application {
         try {
 //            create cartdb
 //            todo remember to change path to db
-            connection = DriverManager.getConnection(localCartDb);
+            connection = utilityClass.getConnectionDbLocal();
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30); // set timeout to 30 sec.
             String heldTransactionsList = "CREATE TABLE IF NOT EXISTS heldTransactionList (" + "id INTEGER primary key autoincrement ,name TEXT ,transactionid text)";

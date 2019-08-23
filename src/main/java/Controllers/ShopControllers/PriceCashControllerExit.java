@@ -2,6 +2,7 @@ package Controllers.ShopControllers;
 
 import Controllers.SuperClass;
 import Controllers.UserAccountManagementControllers.IdleMonitor;
+import Controllers.UtilityClass;
 import MasterClasses.ReceiptMasterClass;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -13,7 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Duration;
@@ -30,37 +31,37 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static securityandtime.config.*;
 
-public class PriceCashControllerExit implements Initializable {
+public class PriceCashControllerExit extends UtilityClass implements Initializable {
     public Label price;
     public Button complete;
     public Button done;
     public Label balance;
     public Button goonlinepayments;
     public Button back;
-    public VBox panel;
+    public AnchorPane panel;
     public TextField cash;
-    Connection connection = null;
+    Connection connection = getConnection();
     private int pricevalue;
     private boolean completedPayment;
-    private Connection connectionDbLocal;
+    private Connection connectionDbLocal = getConnectionDbLocal();
     private int bal;
     private Statement statementLocal;
 
-    {
-
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            connectionDbLocal = DriverManager.getConnection(localCartDb);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    {
+//
+//        try {
+//            connection = DriverManager
+//                    .getConnection(des[2], des[0], des[1]);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        try {
+//            connectionDbLocal = DriverManager.getConnection(localCartDb);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     {
         try {
@@ -270,4 +271,115 @@ public class PriceCashControllerExit implements Initializable {
         alert.initOwner(owner);
         alert.showAndWait();
     }
+
+    public Label getPrice() {
+        return price;
+    }
+
+    public PriceCashControllerExit setPrice(Label price) {
+        this.price = price;
+        return this;
+    }
+
+    public Button getComplete() {
+        return complete;
+    }
+
+    public PriceCashControllerExit setComplete(Button complete) {
+        this.complete = complete;
+        return this;
+    }
+
+    public Button getDone() {
+        return done;
+    }
+
+    public PriceCashControllerExit setDone(Button done) {
+        this.done = done;
+        return this;
+    }
+
+    public Label getBalance() {
+        return balance;
+    }
+
+    public PriceCashControllerExit setBalance(Label balance) {
+        this.balance = balance;
+        return this;
+    }
+
+    public Button getGoonlinepayments() {
+        return goonlinepayments;
+    }
+
+    public PriceCashControllerExit setGoonlinepayments(Button goonlinepayments) {
+        this.goonlinepayments = goonlinepayments;
+        return this;
+    }
+
+    public Button getBack() {
+        return back;
+    }
+
+    public PriceCashControllerExit setBack(Button back) {
+        this.back = back;
+        return this;
+    }
+
+    public AnchorPane getPanel() {
+        return panel;
+    }
+
+    public PriceCashControllerExit setPanel(AnchorPane panel) {
+        this.panel = panel;
+        return this;
+    }
+
+    public TextField getCash() {
+        return cash;
+    }
+
+    public PriceCashControllerExit setCash(TextField cash) {
+        this.cash = cash;
+        return this;
+    }
+
+
+    public int getPricevalue() {
+        return pricevalue;
+    }
+
+    public PriceCashControllerExit setPricevalue(int pricevalue) {
+        this.pricevalue = pricevalue;
+        return this;
+    }
+
+    public boolean isCompletedPayment() {
+        return completedPayment;
+    }
+
+    public PriceCashControllerExit setCompletedPayment(boolean completedPayment) {
+        this.completedPayment = completedPayment;
+        return this;
+    }
+
+    public Connection getConnectionDbLocal() {
+        return connectionDbLocal;
+    }
+
+    public PriceCashControllerExit setConnectionDbLocal(Connection connectionDbLocal) {
+        this.connectionDbLocal = connectionDbLocal;
+        return this;
+    }
+
+    public int getBal() {
+        return bal;
+    }
+
+    public PriceCashControllerExit setBal(int bal) {
+        this.bal = bal;
+        return this;
+    }
+
+
 }

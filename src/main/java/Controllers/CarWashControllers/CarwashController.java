@@ -24,7 +24,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
 import javafx.util.Duration;
 import securityandtime.config;
@@ -78,7 +78,7 @@ public class CarwashController extends UtilityClass implements Initializable {
     @FXML
     private TableView<CarWashMaster> tab;
     @FXML
-    private VBox parents;
+    private AnchorPane parents;
     private ObservableList<CarWashMaster> data;
     private String time;
 
@@ -111,15 +111,9 @@ public class CarwashController extends UtilityClass implements Initializable {
 
     private void editable() {
         tab.setEditable(true);
-        Connection connection = null;
+        Connection connection = getConnection();
 
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Connection finalConnection = connection;
+
         Name.setCellFactory(TextFieldTableCell.forTableColumn());
         Name.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<CarWashMaster, String>>() {
@@ -132,7 +126,7 @@ public class CarwashController extends UtilityClass implements Initializable {
                         try {
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
-                            preparedStatement = finalConnection.prepareStatement("UPDATE carwash set `ownername`=? where id=?");
+                            preparedStatement = connection.prepareStatement("UPDATE carwash set `ownername`=? where id=?");
                             preparedStatement.setString(1, newval.toUpperCase());
                             preparedStatement.setString(2, id);
                             preparedStatement.executeUpdate();
@@ -156,7 +150,7 @@ public class CarwashController extends UtilityClass implements Initializable {
                         try {
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
-                            preparedStatement = finalConnection.prepareStatement("UPDATE carwash set registration=? where id=?");
+                            preparedStatement = connection.prepareStatement("UPDATE carwash set registration=? where id=?");
                             preparedStatement.setString(1, newval.toUpperCase());
                             preparedStatement.setString(2, id);
                             preparedStatement.executeUpdate();
@@ -180,7 +174,7 @@ public class CarwashController extends UtilityClass implements Initializable {
                         try {
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
-                            preparedStatement = finalConnection.prepareStatement("UPDATE carwash set idnumber=? where id=?");
+                            preparedStatement = connection.prepareStatement("UPDATE carwash set idnumber=? where id=?");
                             preparedStatement.setString(1, newval.toUpperCase());
                             preparedStatement.setString(2, id);
                             preparedStatement.executeUpdate();
@@ -204,8 +198,8 @@ public class CarwashController extends UtilityClass implements Initializable {
                         try {
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
-                            assert finalConnection != null;
-                            preparedStatement = finalConnection.prepareStatement("UPDATE carwash set status=? where id=?");
+                            assert connection != null;
+                            preparedStatement = connection.prepareStatement("UPDATE carwash set status=? where id=?");
                             preparedStatement.setString(1, newval.toUpperCase());
                             preparedStatement.setString(2, id);
                             preparedStatement.executeUpdate();
@@ -229,7 +223,7 @@ public class CarwashController extends UtilityClass implements Initializable {
                         try {
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
-                            preparedStatement = finalConnection.prepareStatement("UPDATE carwash set washedby=? where id=?");
+                            preparedStatement = connection.prepareStatement("UPDATE carwash set washedby=? where id=?");
                             preparedStatement.setString(1, newval.toUpperCase());
                             preparedStatement.setString(2, id);
                             preparedStatement.executeUpdate();
@@ -254,7 +248,7 @@ public class CarwashController extends UtilityClass implements Initializable {
                         try {
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
-                            preparedStatement = finalConnection.prepareStatement("UPDATE carwash set cashpaid=? where id=?");
+                            preparedStatement = connection.prepareStatement("UPDATE carwash set cashpaid=? where id=?");
                             preparedStatement.setString(1, newval.toUpperCase());
                             preparedStatement.setString(2, id);
                             preparedStatement.executeUpdate();
@@ -270,14 +264,7 @@ public class CarwashController extends UtilityClass implements Initializable {
 
     private void buttonclick() {
         data = FXCollections.observableArrayList();
-        Connection connection = null;
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Connection finalConnection = connection;
+
         home.setOnMouseClicked(event -> {
             try {
                 parents.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml")))));
@@ -316,173 +303,6 @@ public class CarwashController extends UtilityClass implements Initializable {
         showAlert(Alert.AlertType.INFORMATION, parents.getScene().getWindow(), "OPERATION SUCCESSFUL", "your pdf was generated successfully");
     }
 
-    public Label getClock() {
-        return clock;
-    }
-
-    public void setClock(Label clock) {
-        this.clock = clock;
-    }
-
-    public MenuItem getLogout() {
-        return logout;
-    }
-
-    public void setLogout(MenuItem logout) {
-        this.logout = logout;
-    }
-
-    public Button getDelete() {
-        return delete;
-    }
-
-    public void setDelete(Button delete) {
-        this.delete = delete;
-    }
-
-    public Button getSendtomail() {
-        return sendtomail;
-    }
-
-    public void setSendtomail(Button sendtomail) {
-        this.sendtomail = sendtomail;
-    }
-
-    public Button getPrintoutaspdf() {
-        return printoutaspdf;
-    }
-
-    public void setPrintoutaspdf(Button printoutaspdf) {
-        this.printoutaspdf = printoutaspdf;
-    }
-
-    public MenuItem getStores() {
-        return stores;
-    }
-
-    public void setStores(MenuItem stores) {
-        this.stores = stores;
-    }
-
-    public MenuItem getStocks() {
-        return stocks;
-    }
-
-    public void setStocks(MenuItem stocks) {
-        this.stocks = stocks;
-    }
-
-    public Button getHome() {
-        return home;
-    }
-
-    public void setHome(Button home) {
-        this.home = home;
-    }
-
-    public Label getCash() {
-        return cash;
-    }
-
-    public void setCash(Label cash) {
-        this.cash = cash;
-    }
-
-    public Tab getPastclients() {
-        return pastclients;
-    }
-
-    public void setPastclients(Tab pastclients) {
-        this.pastclients = pastclients;
-    }
-
-    public TableColumn<CarWashMaster, String> getName() {
-        return Name;
-    }
-
-    public void setName(TableColumn<CarWashMaster, String> name) {
-        Name = name;
-    }
-
-    public TableColumn<CarWashMaster, String> getReg() {
-        return reg;
-    }
-
-    public void setReg(TableColumn<CarWashMaster, String> reg) {
-        this.reg = reg;
-    }
-
-    public TableColumn<CarWashMaster, String> getId() {
-        return id;
-    }
-
-    public void setId(TableColumn<CarWashMaster, String> id) {
-        this.id = id;
-    }
-
-    public TableColumn<CarWashMaster, String> getStatus() {
-        return status;
-    }
-
-    public void setStatus(TableColumn<CarWashMaster, String> status) {
-        this.status = status;
-    }
-
-    public TableColumn<CarWashMaster, String> getOperator() {
-        return operator;
-    }
-
-    public void setOperator(TableColumn<CarWashMaster, String> operator) {
-        this.operator = operator;
-    }
-
-    public TableColumn<CarWashMaster, String> getPayout() {
-        return payout;
-    }
-
-    public void setPayout(TableColumn<CarWashMaster, String> payout) {
-        this.payout = payout;
-    }
-
-    public int getMoneyPaid() {
-        return moneyPaid;
-    }
-
-    public void setMoneyPaid(int moneyPaid) {
-        this.moneyPaid = moneyPaid;
-    }
-
-    public TableView<CarWashMaster> getTab() {
-        return tab;
-    }
-
-    public void setTab(TableView<CarWashMaster> tab) {
-        this.tab = tab;
-    }
-
-    public VBox getParents() {
-        return parents;
-    }
-
-    public void setParents(VBox parents) {
-        this.parents = parents;
-    }
-
-    public ObservableList<CarWashMaster> getData() {
-        return data;
-    }
-
-    public void setData(ObservableList<CarWashMaster> data) {
-        this.data = data;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
 
     private void pdfGen() {
         Document document = new Document(PageSize.A4_LANDSCAPE, 20, 20, 20, 20);
@@ -546,12 +366,8 @@ public class CarwashController extends UtilityClass implements Initializable {
         t.addCell(c5);
 
 //        adding headers
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(des[2], "root", "");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        Connection connection = getConnection();
+
         PreparedStatement statement = null;
         try {
             assert connection != null;
@@ -639,14 +455,7 @@ public class CarwashController extends UtilityClass implements Initializable {
 
     private void populateTable() {
         data = FXCollections.observableArrayList();
-        Connection connection = null;
-
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        Connection connection = getConnection();
         try {
 //                        DISPLAYING CLIENTS
             if (connection != null) {
@@ -804,5 +613,239 @@ public class CarwashController extends UtilityClass implements Initializable {
                 mex.printStackTrace();
             }
         }
+    }
+
+    public Label getClock() {
+        return clock;
+    }
+
+    public CarwashController setClock(Label clock) {
+        this.clock = clock;
+        return this;
+    }
+
+    public MenuItem getLogout() {
+        return logout;
+    }
+
+    public CarwashController setLogout(MenuItem logout) {
+        this.logout = logout;
+        return this;
+    }
+
+    public Button getDelete() {
+        return delete;
+    }
+
+    public CarwashController setDelete(Button delete) {
+        this.delete = delete;
+        return this;
+    }
+
+    public Button getSendtomail() {
+        return sendtomail;
+    }
+
+    public CarwashController setSendtomail(Button sendtomail) {
+        this.sendtomail = sendtomail;
+        return this;
+    }
+
+    public Button getPrintoutaspdf() {
+        return printoutaspdf;
+    }
+
+    public CarwashController setPrintoutaspdf(Button printoutaspdf) {
+        this.printoutaspdf = printoutaspdf;
+        return this;
+    }
+
+    public Button getHome() {
+        return home;
+    }
+
+    public CarwashController setHome(Button home) {
+        this.home = home;
+        return this;
+    }
+
+    public Label getCash() {
+        return cash;
+    }
+
+    public CarwashController setCash(Label cash) {
+        this.cash = cash;
+        return this;
+    }
+
+    public Tab getPastclients() {
+        return pastclients;
+    }
+
+    public CarwashController setPastclients(Tab pastclients) {
+        this.pastclients = pastclients;
+        return this;
+    }
+
+    public TableColumn<CarWashMaster, String> getName() {
+        return Name;
+    }
+
+    public CarwashController setName(TableColumn<CarWashMaster, String> name) {
+        Name = name;
+        return this;
+    }
+
+    public TableColumn<CarWashMaster, String> getReg() {
+        return reg;
+    }
+
+    public CarwashController setReg(TableColumn<CarWashMaster, String> reg) {
+        this.reg = reg;
+        return this;
+    }
+
+    public TableColumn<CarWashMaster, String> getId() {
+        return id;
+    }
+
+    public CarwashController setId(TableColumn<CarWashMaster, String> id) {
+        this.id = id;
+        return this;
+    }
+
+    public TableColumn<CarWashMaster, String> getStatus() {
+        return status;
+    }
+
+    public CarwashController setStatus(TableColumn<CarWashMaster, String> status) {
+        this.status = status;
+        return this;
+    }
+
+    public TableColumn<CarWashMaster, String> getOperator() {
+        return operator;
+    }
+
+    public CarwashController setOperator(TableColumn<CarWashMaster, String> operator) {
+        this.operator = operator;
+        return this;
+    }
+
+    public TableColumn<CarWashMaster, String> getPayout() {
+        return payout;
+    }
+
+    public CarwashController setPayout(TableColumn<CarWashMaster, String> payout) {
+        this.payout = payout;
+        return this;
+    }
+
+    public MenuItem getStores() {
+        return stores;
+    }
+
+    public CarwashController setStores(MenuItem stores) {
+        this.stores = stores;
+        return this;
+    }
+
+    public MenuItem getStocks() {
+        return stocks;
+    }
+
+    public CarwashController setStocks(MenuItem stocks) {
+        this.stocks = stocks;
+        return this;
+    }
+
+    public MenuItem getLogoutMenu() {
+        return logoutMenu;
+    }
+
+    public CarwashController setLogoutMenu(MenuItem logoutMenu) {
+        this.logoutMenu = logoutMenu;
+        return this;
+    }
+
+    public MenuItem getExitMenu() {
+        return exitMenu;
+    }
+
+    public CarwashController setExitMenu(MenuItem exitMenu) {
+        this.exitMenu = exitMenu;
+        return this;
+    }
+
+    public MenuItem getAccountdetailsMenu() {
+        return accountdetailsMenu;
+    }
+
+    public CarwashController setAccountdetailsMenu(MenuItem accountdetailsMenu) {
+        this.accountdetailsMenu = accountdetailsMenu;
+        return this;
+    }
+
+    public MenuItem getHelpMenu() {
+        return helpMenu;
+    }
+
+    public CarwashController setHelpMenu(MenuItem helpMenu) {
+        this.helpMenu = helpMenu;
+        return this;
+    }
+
+    public MenuItem getCreatorsMenu() {
+        return CreatorsMenu;
+    }
+
+    public CarwashController setCreatorsMenu(MenuItem creatorsMenu) {
+        CreatorsMenu = creatorsMenu;
+        return this;
+    }
+
+    public int getMoneyPaid() {
+        return moneyPaid;
+    }
+
+    public CarwashController setMoneyPaid(int moneyPaid) {
+        this.moneyPaid = moneyPaid;
+        return this;
+    }
+
+    public TableView<CarWashMaster> getTab() {
+        return tab;
+    }
+
+    public CarwashController setTab(TableView<CarWashMaster> tab) {
+        this.tab = tab;
+        return this;
+    }
+
+    public AnchorPane getParents() {
+        return parents;
+    }
+
+    public CarwashController setParents(AnchorPane parents) {
+        this.parents = parents;
+        return this;
+    }
+
+    public ObservableList<CarWashMaster> getData() {
+        return data;
+    }
+
+    public CarwashController setData(ObservableList<CarWashMaster> data) {
+        this.data = data;
+        return this;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public CarwashController setTime(String time) {
+        this.time = time;
+        return this;
     }
 }

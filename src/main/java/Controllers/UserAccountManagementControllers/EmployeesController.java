@@ -39,7 +39,8 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import static securityandtime.config.*;
+import static securityandtime.config.host;
+import static securityandtime.config.user;
 
 public class EmployeesController extends UtilityClass implements Initializable {
     public Label clock;
@@ -81,15 +82,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
 
     private void editable() {
         tab.setEditable(true);
-        Connection connection = null;
-
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Connection finalConnection = connection;
+        Connection connection = getConnection();
         Name.setCellFactory(TextFieldTableCell.forTableColumn());
         Name.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<EmployeeMaster, String>>() {
@@ -102,7 +95,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
                         try {
                             EmployeeMaster employeeMaster = tab.getSelectionModel().getSelectedItem();
                             String id = employeeMaster.getId();
-                            preparedStatement = finalConnection.prepareStatement("UPDATE users set employeename=? where id=?");
+                            preparedStatement = connection.prepareStatement("UPDATE users set employeename=? where id=?");
                             preparedStatement.setString(1, newval);
                             preparedStatement.setString(2, id);
                             preparedStatement.executeUpdate();
@@ -126,7 +119,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
                         try {
                             EmployeeMaster employeeMaster = tab.getSelectionModel().getSelectedItem();
                             String id = employeeMaster.getId();
-                            preparedStatement = finalConnection.prepareStatement("UPDATE users set email=? where id=?");
+                            preparedStatement = connection.prepareStatement("UPDATE users set email=? where id=?");
                             preparedStatement.setString(1, newval);
                             preparedStatement.setString(2, id);
                             preparedStatement.executeUpdate();
@@ -142,14 +135,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
 
     private void buttonclick() {
         data = FXCollections.observableArrayList();
-        Connection connection = null;
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Connection finalConnection = connection;
+        Connection connection = getConnection();
         home.setOnMouseClicked(event -> {
             try {
                 parents.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml")))));
@@ -163,7 +149,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
 
             try {
 
-                PreparedStatement preparedStatement = finalConnection.prepareStatement("DELETE FROM users WHERE id=?");
+                PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users WHERE id=?");
 
                 preparedStatement.setString(1, selectedEmployee.getId());
                 int updated = preparedStatement.executeUpdate();
@@ -172,14 +158,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
                     data = FXCollections.observableArrayList();
                     if (existingemptab.isSelected()) {
                         data = FXCollections.observableArrayList();
-                        Connection connection1 = null;
-
-                        try {
-                            connection1 = DriverManager
-                                    .getConnection(des[2], des[0], des[1]);
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
+                        Connection connection1 = getConnection();
                         try {
 //                        DISPLAYING EMPLOYEES
                             if (connection1 != null) {
@@ -225,14 +204,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
             public void handle(Event event) {
                 if (existingemptab.isSelected()) {
                     data = FXCollections.observableArrayList();
-                    Connection connection = null;
-
-                    try {
-                        connection = DriverManager
-                                .getConnection(des[2], des[0], des[1]);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                    Connection connection = getConnection();
                     try {
 //                        DISPLAYING EMPLOYEES
                         if (connection != null) {
@@ -336,12 +308,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
         t.addCell(c3);
 
 //        adding headers
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(des[2], "root", "");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        Connection connection = getConnection();
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement("SELECT * FROM users  ");

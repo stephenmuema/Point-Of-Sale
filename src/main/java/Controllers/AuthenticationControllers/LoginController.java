@@ -24,14 +24,12 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
-import static securityandtime.config.des;
 import static securityandtime.config.site;
 
 //end of imports
@@ -137,8 +135,7 @@ public class LoginController extends UtilityClass implements Initializable {
         pass = password.getText();
         try {
 //            create a connection
-            Connection connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
+            Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE email=? OR employeename=?");
             statement.setString(1, emailSubmit);
             statement.setString(2, emailSubmit);

@@ -1,6 +1,7 @@
 package Controllers.ShopControllers;
 
 import Controllers.UserAccountManagementControllers.IdleMonitor;
+import Controllers.UtilityClass;
 import MasterClasses.CartMaster;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -27,7 +28,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
@@ -47,7 +48,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import static securityandtime.config.*;
 
 public class ShopController extends CartIdGenerator implements Initializable {
-    public VBox shopPanel;
+    public AnchorPane shopPanel;
     public Label clock;
     public Label username;
     public Button logoutb;
@@ -82,16 +83,19 @@ public class ShopController extends CartIdGenerator implements Initializable {
     private ObservableList<CartMaster> data;
     private int counter = 0;
     private String transID;
-    private Connection connectionDbLocal;
+    UtilityClass utilityClass = new UtilityClass();
+    Connection connection = utilityClass.getConnection();
+
+    private Connection connectionDbLocal = utilityClass.getConnectionDbLocal();
     private Statement statementLocal = null;
 
-    {
-        try {
-            connectionDbLocal = DriverManager.getConnection(localCartDb);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    {
+//        try {
+//            connectionDbLocal = DriverManager.getConnection(localCartDb);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     /**
      * Called to initialize a controller after its root element has been
@@ -340,13 +344,6 @@ public class ShopController extends CartIdGenerator implements Initializable {
         searchname.clear();
         barcodetext.clear();
         data = FXCollections.observableArrayList();
-        Connection connection = null;
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
 
         //            for local storage
@@ -794,5 +791,338 @@ public class ShopController extends CartIdGenerator implements Initializable {
         alert.showAndWait();
     }
 
+    public AnchorPane getShopPanel() {
+        return shopPanel;
+    }
 
+    public ShopController setShopPanel(AnchorPane shopPanel) {
+        this.shopPanel = shopPanel;
+        return this;
+    }
+
+    public Label getClock() {
+        return clock;
+    }
+
+    public ShopController setClock(Label clock) {
+        this.clock = clock;
+        return this;
+    }
+
+    public Label getUsername() {
+        return username;
+    }
+
+    public ShopController setUsername(Label username) {
+        this.username = username;
+        return this;
+    }
+
+    public Button getLogoutb() {
+        return logoutb;
+    }
+
+    public ShopController setLogoutb(Button logoutb) {
+        this.logoutb = logoutb;
+        return this;
+    }
+
+    public ImageView getLogoimage() {
+        return logoimage;
+    }
+
+    public ShopController setLogoimage(ImageView logoimage) {
+        this.logoimage = logoimage;
+        return this;
+    }
+
+    public TextField getBarcodetext() {
+        return barcodetext;
+    }
+
+    public ShopController setBarcodetext(TextField barcodetext) {
+        this.barcodetext = barcodetext;
+        return this;
+    }
+
+    public Button getSearchb() {
+        return searchb;
+    }
+
+    public ShopController setSearchb(Button searchb) {
+        this.searchb = searchb;
+        return this;
+    }
+
+    public TableView<CartMaster> getCart() {
+        return cart;
+    }
+
+    public ShopController setCart(TableView<CartMaster> cart) {
+        this.cart = cart;
+        return this;
+    }
+
+    public TableColumn<CartMaster, String> getName() {
+        return name;
+    }
+
+    public ShopController setName(TableColumn<CartMaster, String> name) {
+        this.name = name;
+        return this;
+    }
+
+    public TableColumn<CartMaster, String> getCode() {
+        return code;
+    }
+
+    public ShopController setCode(TableColumn<CartMaster, String> code) {
+        this.code = code;
+        return this;
+    }
+
+    public TableColumn<CartMaster, String> getPrice() {
+        return price;
+    }
+
+    public ShopController setPrice(TableColumn<CartMaster, String> price) {
+        this.price = price;
+        return this;
+    }
+
+    public TableColumn<CartMaster, String> getAmount() {
+        return amount;
+    }
+
+    public ShopController setAmount(TableColumn<CartMaster, String> amount) {
+        this.amount = amount;
+        return this;
+    }
+
+    public TableColumn<CartMaster, Integer> getCumulativeprice() {
+        return cumulativeprice;
+    }
+
+    public ShopController setCumulativeprice(TableColumn<CartMaster, Integer> cumulativeprice) {
+        this.cumulativeprice = cumulativeprice;
+        return this;
+    }
+
+    public Button getDeletefromcartb() {
+        return deletefromcartb;
+    }
+
+    public ShopController setDeletefromcartb(Button deletefromcartb) {
+        this.deletefromcartb = deletefromcartb;
+        return this;
+    }
+
+    public Button getOnlinepayments() {
+        return onlinepayments;
+    }
+
+    public ShopController setOnlinepayments(Button onlinepayments) {
+        this.onlinepayments = onlinepayments;
+        return this;
+    }
+
+    public Button getPaycash() {
+        return paycash;
+    }
+
+    public ShopController setPaycash(Button paycash) {
+        this.paycash = paycash;
+        return this;
+    }
+
+    public Button getHolduserdatab() {
+        return holduserdatab;
+    }
+
+    public ShopController setHolduserdatab(Button holduserdatab) {
+        this.holduserdatab = holduserdatab;
+        return this;
+    }
+
+    public Button getPanel() {
+        return panel;
+    }
+
+    public ShopController setPanel(Button panel) {
+        this.panel = panel;
+        return this;
+    }
+
+    public Button getClearb() {
+        return clearb;
+    }
+
+    public ShopController setClearb(Button clearb) {
+        this.clearb = clearb;
+        return this;
+    }
+
+    public Label getTotalprice() {
+        return totalprice;
+    }
+
+    public ShopController setTotalprice(Label totalprice) {
+        this.totalprice = totalprice;
+        return this;
+    }
+
+    public TableView<CartMaster> getListViewHeldItems() {
+        return listViewHeldItems;
+    }
+
+    public ShopController setListViewHeldItems(TableView<CartMaster> listViewHeldItems) {
+        this.listViewHeldItems = listViewHeldItems;
+        return this;
+    }
+
+    public TableColumn<CartMaster, String> getHeldname() {
+        return heldname;
+    }
+
+    public ShopController setHeldname(TableColumn<CartMaster, String> heldname) {
+        this.heldname = heldname;
+        return this;
+    }
+
+    public TableColumn<CartMaster, String> getHeldid() {
+        return heldid;
+    }
+
+    public ShopController setHeldid(TableColumn<CartMaster, String> heldid) {
+        this.heldid = heldid;
+        return this;
+    }
+
+    public Button getLoyaltiesB() {
+        return loyaltiesB;
+    }
+
+    public ShopController setLoyaltiesB(Button loyaltiesB) {
+        this.loyaltiesB = loyaltiesB;
+        return this;
+    }
+
+    public TextField getSearchname() {
+        return searchname;
+    }
+
+    public ShopController setSearchname(TextField searchname) {
+        this.searchname = searchname;
+        return this;
+    }
+
+    public MenuItem getLogoutMenu() {
+        return logoutMenu;
+    }
+
+    public ShopController setLogoutMenu(MenuItem logoutMenu) {
+        this.logoutMenu = logoutMenu;
+        return this;
+    }
+
+    public MenuItem getExitMenu() {
+        return exitMenu;
+    }
+
+    public ShopController setExitMenu(MenuItem exitMenu) {
+        this.exitMenu = exitMenu;
+        return this;
+    }
+
+    public MenuItem getAccountdetailsMenu() {
+        return accountdetailsMenu;
+    }
+
+    public ShopController setAccountdetailsMenu(MenuItem accountdetailsMenu) {
+        this.accountdetailsMenu = accountdetailsMenu;
+        return this;
+    }
+
+    public MenuItem getCreatorsMenu() {
+        return CreatorsMenu;
+    }
+
+    public ShopController setCreatorsMenu(MenuItem creatorsMenu) {
+        CreatorsMenu = creatorsMenu;
+        return this;
+    }
+
+    public MenuItem getHelpMenu() {
+        return helpMenu;
+    }
+
+    public ShopController setHelpMenu(MenuItem helpMenu) {
+        this.helpMenu = helpMenu;
+        return this;
+    }
+
+    public MenuItem getStores() {
+        return stores;
+    }
+
+    public ShopController setStores(MenuItem stores) {
+        this.stores = stores;
+        return this;
+    }
+
+    public MenuItem getStocks() {
+        return stocks;
+    }
+
+    public ShopController setStocks(MenuItem stocks) {
+        this.stocks = stocks;
+        return this;
+    }
+
+    public ArrayList<CartMaster> getArrayList() {
+        return arrayList;
+    }
+
+    public ShopController setArrayList(ArrayList<CartMaster> arrayList) {
+        this.arrayList = arrayList;
+        return this;
+    }
+
+    public ObservableList<CartMaster> getData() {
+        return data;
+    }
+
+    public ShopController setData(ObservableList<CartMaster> data) {
+        this.data = data;
+        return this;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public ShopController setCounter(int counter) {
+        this.counter = counter;
+        return this;
+    }
+
+    public ShopController setTransID(String transID) {
+        this.transID = transID;
+        return this;
+    }
+
+
+    public ShopController setConnectionDbLocal(Connection connectionDbLocal) {
+        this.connectionDbLocal = connectionDbLocal;
+        return this;
+    }
+
+    public Statement getStatementLocal() {
+        return statementLocal;
+    }
+
+    public ShopController setStatementLocal(Statement statementLocal) {
+        this.statementLocal = statementLocal;
+        return this;
+    }
 }

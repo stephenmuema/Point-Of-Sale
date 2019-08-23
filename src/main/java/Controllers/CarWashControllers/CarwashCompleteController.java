@@ -1,11 +1,12 @@
 package Controllers.CarWashControllers;
 
+import Controllers.UtilityClass;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CarwashCompleteController implements Initializable {
+public class CarwashCompleteController extends UtilityClass implements Initializable {
     /**
      * Called to initialize a controller after its root element has been
      * completely processed.

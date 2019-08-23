@@ -23,12 +23,14 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
-import static securityandtime.config.des;
 import static securityandtime.config.site;
 
 //end of imports
@@ -45,93 +47,6 @@ public class SignupController extends UtilityClass implements Initializable {
     @FXML
     private AnchorPane parent1;
 
-    public Label getClock() {
-        return clock;
-    }
-
-    public void setClock(Label clock) {
-        this.clock = clock;
-    }
-
-    public PasswordField getPassword() {
-        return password;
-    }
-
-    public void setPassword(PasswordField password) {
-        this.password = password;
-    }
-
-    public PasswordField getPasswordconfirmation() {
-        return passwordconfirmation;
-    }
-
-    public void setPasswordconfirmation(PasswordField passwordconfirmation) {
-        this.passwordconfirmation = passwordconfirmation;
-    }
-
-    public TextField getEmail() {
-        return email;
-    }
-
-    public void setEmail(TextField email) {
-        this.email = email;
-    }
-
-    public TextField getName() {
-        return name;
-    }
-
-    public void setName(TextField name) {
-        this.name = name;
-    }
-
-    public TextField getIDNUMBER() {
-        return IDNUMBER;
-    }
-
-    public void setIDNUMBER(TextField IDNUMBER) {
-        this.IDNUMBER = IDNUMBER;
-    }
-
-    public TextField getKey() {
-        return key;
-    }
-
-    public void setKey(TextField key) {
-        this.key = key;
-    }
-
-    public Hyperlink getLink() {
-        return link;
-    }
-
-    public void setLink(Hyperlink link) {
-        this.link = link;
-    }
-
-    public Button getLogin1() {
-        return login1;
-    }
-
-    public void setLogin1(Button login1) {
-        this.login1 = login1;
-    }
-
-    public Button getSignup1() {
-        return signup1;
-    }
-
-    public void setSignup1(Button signup1) {
-        this.signup1 = signup1;
-    }
-
-    public AnchorPane getParent1() {
-        return parent1;
-    }
-
-    public void setParent1(AnchorPane parent1) {
-        this.parent1 = parent1;
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -241,8 +156,7 @@ public class SignupController extends UtilityClass implements Initializable {
         messageDigest.update(str.getBytes(), 0, str.length());
         String hash = new BigInteger(1, messageDigest.digest()).toString(16);
         System.out.println("MD5: " + hash);
-        Connection connection = DriverManager
-                .getConnection(des[2], des[0], des[1]);
+        Connection connection = getConnection();
         PreparedStatement statementemail = connection.prepareStatement("SELECT * FROM users WHERE email=? ");
         statementemail.setString(1, email.getText());
         ResultSet resultSetemail = statementemail.executeQuery();
@@ -318,6 +232,105 @@ public class SignupController extends UtilityClass implements Initializable {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.showAndWait();
+    }
+
+    public Label getClock() {
+        return clock;
+    }
+
+    public SignupController setClock(Label clock) {
+        this.clock = clock;
+        return this;
+    }
+
+    public PasswordField getPassword() {
+        return password;
+    }
+
+    public SignupController setPassword(PasswordField password) {
+        this.password = password;
+        return this;
+    }
+
+    public PasswordField getPasswordconfirmation() {
+        return passwordconfirmation;
+    }
+
+    public SignupController setPasswordconfirmation(PasswordField passwordconfirmation) {
+        this.passwordconfirmation = passwordconfirmation;
+        return this;
+    }
+
+    public TextField getEmail() {
+        return email;
+    }
+
+    public SignupController setEmail(TextField email) {
+        this.email = email;
+        return this;
+    }
+
+    public TextField getName() {
+        return name;
+    }
+
+    public SignupController setName(TextField name) {
+        this.name = name;
+        return this;
+    }
+
+    public TextField getIDNUMBER() {
+        return IDNUMBER;
+    }
+
+    public SignupController setIDNUMBER(TextField IDNUMBER) {
+        this.IDNUMBER = IDNUMBER;
+        return this;
+    }
+
+    public TextField getKey() {
+        return key;
+    }
+
+    public SignupController setKey(TextField key) {
+        this.key = key;
+        return this;
+    }
+
+    public Hyperlink getLink() {
+        return link;
+    }
+
+    public SignupController setLink(Hyperlink link) {
+        this.link = link;
+        return this;
+    }
+
+    public Button getLogin1() {
+        return login1;
+    }
+
+    public SignupController setLogin1(Button login1) {
+        this.login1 = login1;
+        return this;
+    }
+
+    public Button getSignup1() {
+        return signup1;
+    }
+
+    public SignupController setSignup1(Button signup1) {
+        this.signup1 = signup1;
+        return this;
+    }
+
+    public AnchorPane getParent1() {
+        return parent1;
+    }
+
+    public SignupController setParent1(AnchorPane parent1) {
+        this.parent1 = parent1;
+        return this;
     }
 
     @FXML

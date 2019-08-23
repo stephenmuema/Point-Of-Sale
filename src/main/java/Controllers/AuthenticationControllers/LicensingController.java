@@ -1,5 +1,6 @@
 package Controllers.AuthenticationControllers;
 
+import Controllers.UtilityClass;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
@@ -16,33 +17,30 @@ import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static securityandtime.config.*;
+import static securityandtime.config.licensepath;
+import static securityandtime.config.throwables;
 
-public class LicensingController implements Initializable {
+public class LicensingController extends UtilityClass implements Initializable {
     public AnchorPane panel;
     public Button getlicensebutton;
     public TextArea licensearea;
     public Button confirm;
     public AnchorPane draggablepane;
     public Button otherproducts;
-    String decryptedString;
-    String initial;
+    private String decryptedString;
+    private String initial;
     private Connection connectionDbLocal;
     private Statement statementLocal;
 
     {
 
-        try {
-            connectionDbLocal = DriverManager.getConnection(localCartDb);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        connectionDbLocal = getConnectionDbLocal();
         try {
             assert connectionDbLocal != null;
             statementLocal = connectionDbLocal.createStatement();
@@ -140,7 +138,7 @@ public class LicensingController implements Initializable {
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    BufferedReader buf = new BufferedReader(new InputStreamReader(is));
+                    BufferedReader buf = new BufferedReader(new InputStreamReader(Objects.requireNonNull(is)));
 
                     String line = null;
                     try {
@@ -173,6 +171,7 @@ public class LicensingController implements Initializable {
             }
         });
     }
+
 
     private void buttonListeners() {
 
@@ -245,6 +244,11 @@ public class LicensingController implements Initializable {
         this.draggablepane = draggablepane;
     }
 
+    @Override
+    public LicensingController setConnectionDbLocal(Connection connectionDbLocal) {
+        this.connectionDbLocal = connectionDbLocal;
+        return this;
+    }
     public Button getOtherproducts() {
         return otherproducts;
     }
@@ -273,9 +277,6 @@ public class LicensingController implements Initializable {
         return connectionDbLocal;
     }
 
-    public void setConnectionDbLocal(Connection connectionDbLocal) {
-        this.connectionDbLocal = connectionDbLocal;
-    }
 
     public Statement getStatementLocal() {
         return statementLocal;

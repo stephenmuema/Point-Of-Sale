@@ -1,30 +1,23 @@
 package Controllers.UserAccountManagementControllers;
 
+import Controllers.UtilityClass;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import securityandtime.config;
 
 import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import static securityandtime.config.des;
-
-public class UserDetailsController implements Initializable {
+public class UserDetailsController extends UtilityClass implements Initializable {
     public Button updateb;
     public Label name, email;
     String namestr, emailstr;
-    Connection connection;
-
-    {
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    Connection connection = getConnection();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -93,11 +86,14 @@ public class UserDetailsController implements Initializable {
         this.emailstr = emailstr;
     }
 
+    @Override
     public Connection getConnection() {
         return connection;
     }
 
-    public void setConnection(Connection connection) {
+    @Override
+    public UserDetailsController setConnection(Connection connection) {
         this.connection = connection;
+        return this;
     }
 }

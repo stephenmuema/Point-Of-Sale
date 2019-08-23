@@ -1,5 +1,6 @@
 package Controllers.AuthenticationControllers;
 
+import Controllers.UtilityClass;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -7,7 +8,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
-public class AnimationGenerator {
+public class AnimationGenerator extends UtilityClass {
     public void applyTranslateAnimationOn(Node node, int duration, double from, double to) {
         TranslateTransition translateTransition
                 = new TranslateTransition(Duration.millis(duration), node);

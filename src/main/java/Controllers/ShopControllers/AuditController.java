@@ -22,7 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
 import javafx.util.Duration;
 import securityandtime.config;
@@ -38,7 +38,6 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static securityandtime.config.des;
 import static securityandtime.config.site;
 
 public class AuditController extends UtilityClass implements Initializable {
@@ -148,25 +147,18 @@ public class AuditController extends UtilityClass implements Initializable {
     public MenuItem importmenu;
     public MenuItem quitmenu;
     public MenuItem getdocumentation;
-    public VBox panel;
+    public AnchorPane panel;
     public Button topanelbutton;
     public Button tocarwashbutton;
     public Button toemployeesbutton;
     public Button logoutbutton;
     public Button tosupplierbutton;
     //db connection
-    Connection connection;
+    private Connection connection = getConnection();
     private ObservableList<EmployeeMaster> employeeMasterObservableList = FXCollections.observableArrayList();
     private ObservableList<SalesMaster> salesMasterObservableList = FXCollections.observableArrayList();
 
-    {
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     /**
      * Called to initialize a controller after its root element has been
@@ -584,12 +576,7 @@ public class AuditController extends UtilityClass implements Initializable {
         t.addCell(c3);
 
 //        adding headers
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(des[2], "root", "");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        Connection connection = getConnection();
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement("SELECT * FROM users  ");
@@ -959,11 +946,11 @@ public class AuditController extends UtilityClass implements Initializable {
         this.getdocumentation = getdocumentation;
     }
 
-    public VBox getPanel() {
+    public AnchorPane getPanel() {
         return panel;
     }
 
-    public void setPanel(VBox panel) {
+    public void setPanel(AnchorPane panel) {
         this.panel = panel;
     }
 
@@ -1007,11 +994,10 @@ public class AuditController extends UtilityClass implements Initializable {
         this.tosupplierbutton = tosupplierbutton;
     }
 
-    public Connection getConnection() {
-        return connection;
-    }
 
-    public void setConnection(Connection connection) {
+    @Override
+    public AuditController setConnection(Connection connection) {
         this.connection = connection;
+        return this;
     }
 }

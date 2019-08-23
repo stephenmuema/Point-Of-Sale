@@ -3,258 +3,275 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.*?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="700.0" prefWidth="1200.0" styleClass="mainPanel"
-      xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Controllers.ShopControllers.AuditController">
-    <children>
-        <MenuBar VBox.vgrow="NEVER">
-            <menus>
-                <Menu mnemonicParsing="false" text="Actions">
-                    <items>
-                        <MenuItem fx:id="importmenu" mnemonicParsing="false" text="Import"/>
-                        <MenuItem fx:id="logoutmenu" mnemonicParsing="false" text="Log out"/>
-                        <MenuItem fx:id="quitmenu" mnemonicParsing="false" text="Quit"/>
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                    <items>
-                        <MenuItem fx:id="getdocumentation" mnemonicParsing="false" text="Get documentation"/>
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
-        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-            <children>
-                <!--        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">-->
-                <!--          <font>-->
-                <!--            <Font size="18.0" />-->
-                <!--          </font>-->
-                <!--        </Label>-->
-                <TabPane fx:id="maintabpane" layoutX="3.0" layoutY="74.0" prefHeight="602.0" prefWidth="1203.0"
-                         tabClosingPolicy="UNAVAILABLE">
-                    <tabs>
-                        <Tab fx:id="tabemployeeaudits" text="EMPLOYEE AUDITS">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="569.0" prefWidth="1200.0">
-                                    <children>
-                                        <TableView fx:id="tableemployeelist" layoutX="22.0" layoutY="69.0"
-                                                   prefHeight="429.0" prefWidth="495.0">
-                                            <columns>
-                                                <TableColumn fx:id="employeeid" prefWidth="114.0" text="ID"/>
-                                                <TableColumn fx:id="employeename" prefWidth="114.0" text="NAME"/>
-                                                <TableColumn fx:id="employeeemail" minWidth="0.0" prefWidth="221.0"
-                                                             text="EMAIL"/>
-                                            </columns>
-                                        </TableView>
-                                        <TextField fx:id="tf1period" layoutX="45.0" layoutY="23.0"
-                                                   promptText="PERIOD IN DAYS" styleClass="textfields"/>
-                                        <Button fx:id="querytf1" layoutX="295.0" layoutY="25.0" mnemonicParsing="false"
-                                                prefHeight="36.0" prefWidth="72.0" styleClass="buttonred" text="QUERY"/>
-                                        <ScrollPane layoutX="538.0" layoutY="69.0" prefHeight="425.0" prefWidth="615.0">
-                                            <content>
-                                                <TableView fx:id="tableemployeesales" prefHeight="417.0"
-                                                           prefWidth="613.0">
-                                                    <columns>
-                                                        <TableColumn fx:id="employeetransid" prefWidth="75.0"
-                                                                     text="ID"/>
-                                                        <TableColumn fx:id="transprice" prefWidth="114.0" text="PRICE"/>
-                                                        <TableColumn fx:id="transpaid" prefWidth="117.0"
-                                                                     text="AMOUNT PAID"/>
-                                                        <TableColumn fx:id="transbalance" prefWidth="97.0"
-                                                                     text="BALANCE"/>
-                                                        <TableColumn fx:id="transmethod" prefWidth="102.0"
-                                                                     text=" METHOD"/>
-                                                        <TableColumn fx:id="transcompletion" prefWidth="107.0"
-                                                                     text="COMPLETION"/>
-                                                    </columns>
-                                                </TableView>
-                                            </content>
-                                        </ScrollPane>
-                                        <Button fx:id="showempperformancegraph" layoutX="584.0" layoutY="507.0"
-                                                mnemonicParsing="false" styleClass="buttongreen"
-                                                text="SHOW PERFORMANCE GRAPH"/>
-                                        <Button fx:id="exportfirstempreport" layoutX="786.0" layoutY="507.0"
-                                                mnemonicParsing="false" styleClass="buttonorange"
-                                                text="EXPORT EMPLOYEE REPORT"/>
-                                        <Button fx:id="exportfirstempreport1" layoutX="958.0" layoutY="507.0"
-                                                mnemonicParsing="false" styleClass="buttonred"
-                                                text="EXPORT COMPLETE  EMPLOYEE REPORT"/>
-                                    </children>
-                                </AnchorPane>
-                            </content>
-                        </Tab>
-                        <!--                <Tab fx:id="tabsalesaudits" text="SALES AUDITS">-->
-                        <!--                  <content>-->
-                        <!--                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
-                        <!--                           <children>-->
-                        <!--                              <TextField fx:id="tf2period" layoutX="63.0" layoutY="21.0" promptText="PERIOD IN DAYS" styleClass="textfields" />-->
-                        <!--                              <Button fx:id="querytf2" layoutX="311.0" layoutY="23.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="88.0" styleClass="buttonred" text="QUERY" />-->
-                        <!--&lt;!&ndash;                              <TableView fx:id="categorysalestable" layoutX="3.0" layoutY="79.0" prefHeight="490.0" prefWidth="524.0">&ndash;&gt;-->
-                        <!--&lt;!&ndash;                                <columns>&ndash;&gt;-->
-                        <!--&lt;!&ndash;                                  <TableColumn fx:id="categorysalesid" prefWidth="75.0" text="ID" />&ndash;&gt;-->
-                        <!--&lt;!&ndash;                                  <TableColumn fx:id="categorysalesname" prefWidth="149.0" text="CATEGORY" />&ndash;&gt;-->
-                        <!--&lt;!&ndash;                                    <TableColumn fx:id="categorysalespayout" prefWidth="149.0" text="PAY OUT" />&ndash;&gt;-->
-                        <!--&lt;!&ndash;                                    <TableColumn fx:id="categorysalessalesperday" prefWidth="149.0" text="SALES/DAY" />&ndash;&gt;-->
-                        <!--&lt;!&ndash;                                </columns>&ndash;&gt;-->
-                        <!--&lt;!&ndash;                              </TableView>&ndash;&gt;-->
-                        <!--&lt;!&ndash;                               todo uncomment for categorical audits&ndash;&gt;-->
-                        <!--                              <TableView fx:id="itemsalestable" layoutX="-2.0" layoutY="79.0" prefHeight="490.0" prefWidth="897.0">-->
-                        <!--                                 <columns>-->
-                        <!--                                    <TableColumn fx:id="itemsalesid" prefWidth="75.0" text="ID" />-->
-                        <!--                                    <TableColumn fx:id="itemsalesname" prefWidth="333.0" text="NAME" />-->
-                        <!--                                    <TableColumn fx:id="itemsalespayout" prefWidth="215.0" text="PAY OUT" />-->
-                        <!--                                    <TableColumn fx:id="itemsalessalesperday" prefWidth="135.0" text="SALES/DAY" />-->
-                        <!--                                    <TableColumn fx:id="itemsalessalesremainingstock" prefWidth="135.0" text="REMAINING AMOUNT" />-->
-                        <!--                                 </columns>-->
-                        <!--                              </TableView>-->
-                        <!--                              <Button layoutX="935.0" layoutY="150.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="168.0" styleClass="buttonorange" text="EXPORT ITEM REPORT" />-->
-                        <!--                              <Button layoutX="935.0" layoutY="214.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="168.0" styleClass="buttonred" text="EXPORT SALES REPORT" />-->
-                        <!--                           </children></AnchorPane>-->
-                        <!--                  </content>-->
-                        <!--                </Tab>-->
-                        <!--                  <Tab fx:id="tabcapandcost" text="CAPITAL AND COST">-->
-                        <!--                     <content>-->
-                        <!--                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
-                        <!--                           <children>-->
-                        <!--                              <TabPane fx:id="tapaneinnercapitalandcost" layoutX="12.0" layoutY="7.0" prefHeight="551.0" prefWidth="1185.0" tabClosingPolicy="UNAVAILABLE">-->
-                        <!--                                <tabs>-->
-                        <!--                                  <Tab fx:id="pastcosts" text="PAST COSTS">-->
-                        <!--                                    <content>-->
-                        <!--                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
-                        <!--                                             <children>-->
-                        <!--                                                <TableView fx:id="pastcoststable" layoutX="3.0" layoutY="5.0" prefHeight="518.0" prefWidth="993.0">-->
-                        <!--                                                  <columns>-->
-                        <!--                                                    <TableColumn fx:id="pastcoststableid" prefWidth="75.0" text="ID" />-->
-                        <!--                                                    <TableColumn fx:id="pastcoststablename" prefWidth="176.0" text="NAME" />-->
-                        <!--                                                      <TableColumn fx:id="pastcoststabledateadded" prefWidth="212.0" text="DATE ADDED" />-->
-                        <!--                                                      <TableColumn fx:id="pastcoststableamount" prefWidth="185.0" text="AMOUNT" />-->
-                        <!--                                                      <TableColumn fx:id="pastcoststableactiveinactivestatus" prefWidth="188.0" text="ACTIVE/INACTIVE" />-->
-                        <!--                                                  </columns>-->
-                        <!--                                                </TableView>-->
-                        <!--                                                <Button layoutX="1053.0" layoutY="68.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" styleClass="buttonyellow" text="EXPORT" />-->
-                        <!--                                             </children>-->
-                        <!--                                          </AnchorPane>-->
-                        <!--                                    </content>-->
-                        <!--                                  </Tab>-->
-                        <!--                                  <Tab fx:id="newcosts" text="NEW COSTS">-->
-                        <!--                                    <content>-->
-                        <!--                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
-                        <!--                                             <children>-->
-                        <!--                                                <ButtonBar layoutX="268.0" layoutY="283.0" prefHeight="40.0" prefWidth="200.0" />-->
-                        <!--                                                <AnchorPane layoutX="282.0" layoutY="42.0" prefHeight="336.0" prefWidth="405.0" styleClass="forminner">-->
-                        <!--                                                   <children>-->
-                        <!--                                                      <DatePicker fx:id="newcostsdatecreated" layoutX="93.0" layoutY="20.0" prefHeight="39.0" prefWidth="225.0" promptText="DATE CREATED" styleClass="textfields" />-->
-                        <!--                                                      <TextField fx:id="newcostsamount" layoutX="93.0" layoutY="91.0" prefHeight="39.0" prefWidth="223.0" promptText="AMOUNT" styleClass="textfields" />-->
-                        <!--                                                      <TextField fx:id="newcostsname" layoutX="96.0" layoutY="149.0" prefHeight="39.0" prefWidth="218.0" promptText="NAME" styleClass="textfields" />-->
-                        <!--                                                      <TextField fx:id="newcostsactiveinactivestatus" layoutX="98.0" layoutY="210.0" prefHeight="39.0" prefWidth="213.0" promptText="ACTIVE/INACTIVE" styleClass="textfields" />-->
-                        <!--                                                    <Button fx:id="newcostssubmit" layoutX="126.0" layoutY="269.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="185.0" styleClass="buttonorange" text="SUBMIT" />-->
-                        <!--                                                   </children>-->
-                        <!--                                                </AnchorPane>-->
-                        <!--                                             </children>-->
-                        <!--                                          </AnchorPane>-->
-                        <!--                                    </content>-->
-                        <!--                                  </Tab>-->
-                        <!--                                </tabs>-->
-                        <!--                              </TabPane>-->
-                        <!--                           </children></AnchorPane>-->
-                        <!--                     </content>-->
-                        <!--                  </Tab>-->
-                        <!--                  todo v1.2 -->
-                        <!--                  <Tab fx:id="tabfutureplans" text="FUTURE PLANS">-->
-                        <!--                     <content>-->
-                        <!--                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
-                        <!--                           <children>-->
-                        <!--&lt;!&ndash;                             table for future plans&ndash;&gt;-->
-                        <!--                              <TableView layoutX="726.0" layoutY="20.0" prefHeight="376.0" prefWidth="467.0">-->
-                        <!--                                <columns>-->
-                        <!--                                  <TableColumn prefWidth="75.0" text="NAME" />-->
-                        <!--                                  <TableColumn prefWidth="75.0" text="DATE" />-->
-                        <!--                                    <TableColumn prefWidth="316.0" text="DESCRIPTION" />-->
-                        <!--                                </columns>-->
-                        <!--                              </TableView>-->
-                        <!--                              <AnchorPane layoutX="53.0" layoutY="20.0" prefHeight="413.0" prefWidth="620.0" styleClass="forminner">-->
-                        <!--                                 <children>-->
-                        <!--                                    <TextField fx:id="tabfutureplansname" layoutX="137.0" layoutY="14.0" prefHeight="39.0" prefWidth="325.0" promptText="NAME" styleClass="textfields" />-->
-                        <!--                                    <DatePicker fx:id="tabfutureplansdateofimplementation" layoutX="137.0" layoutY="78.0" prefHeight="39.0" prefWidth="325.0" promptText="DATE OF IMPLEMENTATION" styleClass="textfields" />-->
-                        <!--                                    <TextArea fx:id="tabfutureplansdescription" layoutX="24.0" layoutY="134.0" prefHeight="200.0" prefWidth="574.0" promptText="SHORT DESCRIPTION OF THE PLANS........." styleClass="textfields" />-->
-                        <!--                                    <Button fx:id="tabfutureplanssubmit" layoutX="264.0" layoutY="356.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0" styleClass="buttonorange" text="SUBMIT" />-->
-                        <!--                                 </children>-->
-                        <!--                              </AnchorPane>-->
-                        <!--                              <Button layoutX="886.0" layoutY="415.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="147.0" styleClass="buttonorange" text="EXPORT REPORT" />-->
-                        <!--                           </children></AnchorPane>-->
-                        <!--                     </content>-->
-                        <!--                  </Tab>-->
-                        <!--                  TODO V1.2-->
-                        <Tab fx:id="tabstockalerts" text="STOCK ALERTS">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <children>
-                                        <TableView fx:id="stockalerttable" layoutX="3.0" layoutY="14.0"
-                                                   prefHeight="555.0" prefWidth="1197.0">
-                                            <columns>
-                                                <TableColumn fx:id="stockalerttableid" prefWidth="75.0" text="ID"/>
-                                                <TableColumn fx:id="stockalerttablename" prefWidth="75.0" text="NAME"/>
-                                                <TableColumn fx:id="stockalerttabledate" prefWidth="103.0" text="DATE"/>
-                                                <TableColumn fx:id="stockalerttablemarkasread" prefWidth="149.0"
-                                                             text="MARK AS READ"/>
-                                            </columns>
-                                        </TableView>
-                                    </children>
-                                </AnchorPane>
-                            </content>
-                        </Tab>
-                        <Tab fx:id="taballaudits" text="ALL AUDITS">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <children>
-                                        <AnchorPane layoutX="313.0" layoutY="98.0" prefHeight="378.0" prefWidth="578.0"
-                                                    styleClass="forminner">
-                                            <children>
-                                                <Button fx:id="exportcategoryreport" layoutX="30.0" layoutY="148.0"
-                                                        mnemonicParsing="false" prefHeight="41.0" prefWidth="225.0"
-                                                        styleClass="buttongreen" text="EXPORT CATEGORY SALES REPORT"/>
-                                                <Button fx:id="exportfullreport" layoutX="30.0" layoutY="46.0"
-                                                        mnemonicParsing="false" prefHeight="41.0" prefWidth="225.0"
-                                                        styleClass="buttongreen" text="EXPORT COMPLETE SALES REPORT"/>
-                                                <Button fx:id="exportemployeereport" layoutX="30.0" layoutY="247.0"
-                                                        mnemonicParsing="false" prefHeight="41.0" prefWidth="225.0"
-                                                        styleClass="buttongreen" text="EXPORT EMPLOYEE SALES REPORT"/>
-                                                <Button fx:id="getcateegorygraph" layoutX="339.0" layoutY="148.0"
-                                                        mnemonicParsing="false" prefHeight="41.0" prefWidth="225.0"
-                                                        styleClass="buttongreen" text="CATEGORY GRAPHS"/>
-                                                <Button fx:id="getdetailedgraph" layoutX="339.0" layoutY="46.0"
-                                                        mnemonicParsing="false" prefHeight="41.0" prefWidth="225.0"
-                                                        styleClass="buttongreen" text="DETAILED GRAPHS"/>
-                                                <Button fx:id="getemployeegraph" layoutX="339.0" layoutY="247.0"
-                                                        mnemonicParsing="false" prefHeight="41.0" prefWidth="225.0"
-                                                        styleClass="buttongreen" text="EMPLOYEE GRAPHS"/>
-                                            </children>
-                                        </AnchorPane>
-                                    </children>
-                                </AnchorPane>
-                            </content>
-                        </Tab>
-                    </tabs>
-                </TabPane>
-                <Label fx:id="clock" layoutX="238.0" layoutY="22.0" prefHeight="36.0" prefWidth="181.0"
-                       text="TIME LABEL" textFill="#fffdfd"/>
-                <Button fx:id="topanelbutton" layoutX="659.0" layoutY="22.0" mnemonicParsing="false" prefHeight="36.0"
-                        prefWidth="134.0" styleClass="buttonyellow" text="BACK TO PANEL"/>
-                <Button fx:id="tocarwashbutton" layoutX="819.0" layoutY="22.0" mnemonicParsing="false" prefHeight="36.0"
-                        prefWidth="134.0" styleClass="buttonyellow" text="CARWASH"/>
-                <Button fx:id="toemployeesbutton" layoutX="963.0" layoutY="22.0" mnemonicParsing="false"
-                        prefHeight="36.0" prefWidth="134.0" styleClass="buttonyellow" text="CASHIERS"/>
-                <Button fx:id="logoutbutton" layoutX="513.0" layoutY="22.0" mnemonicParsing="false" prefHeight="36.0"
-                        prefWidth="134.0" styleClass="buttonred" text="LOG OUT"/>
-                <Button fx:id="tosupplierbutton" layoutX="1103.0" layoutY="22.0" mnemonicParsing="false"
-                        prefHeight="36.0" prefWidth="96.0" styleClass="buttonyellow" text="SUPPLIERS"/>
-            </children>
-        </AnchorPane>
-    </children>
-    <stylesheets>
-        <URL value="@../styles/buttons.css"/>
-        <URL value="@../styles/css.css"/>
-        <URL value="@../styles/Login.css"/>
-        <URL value="@../styles/panels.css"/>
-        <URL value="@../styles/tablecolors.css"/>
-    </stylesheets>
-</VBox>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="700.0" prefWidth="1200.0"
+            styleClass="mainPanel"
+            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Controllers.ShopControllers.AuditController">
+    <VBox>
+        <children>
+            <MenuBar VBox.vgrow="NEVER">
+                <menus>
+                    <Menu mnemonicParsing="false" text="Actions">
+                        <items>
+                            <MenuItem fx:id="importmenu" mnemonicParsing="false" text="Import"/>
+                            <MenuItem fx:id="logoutmenu" mnemonicParsing="false" text="Log out"/>
+                            <MenuItem fx:id="quitmenu" mnemonicParsing="false" text="Quit"/>
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                            <MenuItem fx:id="getdocumentation" mnemonicParsing="false" text="Get documentation"/>
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+            <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+                <children>
+                    <!--        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">-->
+                    <!--          <font>-->
+                    <!--            <Font size="18.0" />-->
+                    <!--          </font>-->
+                    <!--        </Label>-->
+                    <TabPane fx:id="maintabpane" layoutX="3.0" layoutY="74.0" prefHeight="602.0" prefWidth="1203.0"
+                             tabClosingPolicy="UNAVAILABLE">
+                        <tabs>
+                            <Tab fx:id="tabemployeeaudits" text="EMPLOYEE AUDITS">
+                                <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="569.0" prefWidth="1200.0">
+                                        <children>
+                                            <TableView fx:id="tableemployeelist" layoutX="22.0" layoutY="69.0"
+                                                       prefHeight="429.0" prefWidth="495.0">
+                                                <columns>
+                                                    <TableColumn fx:id="employeeid" prefWidth="114.0" text="ID"/>
+                                                    <TableColumn fx:id="employeename" prefWidth="114.0" text="NAME"/>
+                                                    <TableColumn fx:id="employeeemail" minWidth="0.0" prefWidth="221.0"
+                                                                 text="EMAIL"/>
+                                                </columns>
+                                            </TableView>
+                                            <TextField fx:id="tf1period" layoutX="45.0" layoutY="23.0"
+                                                       promptText="PERIOD IN DAYS" styleClass="textfields"/>
+                                            <Button fx:id="querytf1" layoutX="295.0" layoutY="25.0"
+                                                    mnemonicParsing="false"
+                                                    prefHeight="36.0" prefWidth="72.0" styleClass="buttonred"
+                                                    text="QUERY"/>
+                                            <ScrollPane layoutX="538.0" layoutY="69.0" prefHeight="425.0"
+                                                        prefWidth="615.0">
+                                                <content>
+                                                    <TableView fx:id="tableemployeesales" prefHeight="417.0"
+                                                               prefWidth="613.0">
+                                                        <columns>
+                                                            <TableColumn fx:id="employeetransid" prefWidth="75.0"
+                                                                         text="ID"/>
+                                                            <TableColumn fx:id="transprice" prefWidth="114.0"
+                                                                         text="PRICE"/>
+                                                            <TableColumn fx:id="transpaid" prefWidth="117.0"
+                                                                         text="AMOUNT PAID"/>
+                                                            <TableColumn fx:id="transbalance" prefWidth="97.0"
+                                                                         text="BALANCE"/>
+                                                            <TableColumn fx:id="transmethod" prefWidth="102.0"
+                                                                         text=" METHOD"/>
+                                                            <TableColumn fx:id="transcompletion" prefWidth="107.0"
+                                                                         text="COMPLETION"/>
+                                                        </columns>
+                                                    </TableView>
+                                                </content>
+                                            </ScrollPane>
+                                            <Button fx:id="showempperformancegraph" layoutX="584.0" layoutY="507.0"
+                                                    mnemonicParsing="false" styleClass="buttongreen"
+                                                    text="SHOW PERFORMANCE GRAPH"/>
+                                            <Button fx:id="exportfirstempreport" layoutX="786.0" layoutY="507.0"
+                                                    mnemonicParsing="false" styleClass="buttonorange"
+                                                    text="EXPORT EMPLOYEE REPORT"/>
+                                            <Button fx:id="exportfirstempreport1" layoutX="958.0" layoutY="507.0"
+                                                    mnemonicParsing="false" styleClass="buttonred"
+                                                    text="EXPORT COMPLETE  EMPLOYEE REPORT"/>
+                                        </children>
+                                    </AnchorPane>
+                                </content>
+                            </Tab>
+                            <!--                <Tab fx:id="tabsalesaudits" text="SALES AUDITS">-->
+                            <!--                  <content>-->
+                            <!--                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
+                            <!--                           <children>-->
+                            <!--                              <TextField fx:id="tf2period" layoutX="63.0" layoutY="21.0" promptText="PERIOD IN DAYS" styleClass="textfields" />-->
+                            <!--                              <Button fx:id="querytf2" layoutX="311.0" layoutY="23.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="88.0" styleClass="buttonred" text="QUERY" />-->
+                            <!--&lt;!&ndash;                              <TableView fx:id="categorysalestable" layoutX="3.0" layoutY="79.0" prefHeight="490.0" prefWidth="524.0">&ndash;&gt;-->
+                            <!--&lt;!&ndash;                                <columns>&ndash;&gt;-->
+                            <!--&lt;!&ndash;                                  <TableColumn fx:id="categorysalesid" prefWidth="75.0" text="ID" />&ndash;&gt;-->
+                            <!--&lt;!&ndash;                                  <TableColumn fx:id="categorysalesname" prefWidth="149.0" text="CATEGORY" />&ndash;&gt;-->
+                            <!--&lt;!&ndash;                                    <TableColumn fx:id="categorysalespayout" prefWidth="149.0" text="PAY OUT" />&ndash;&gt;-->
+                            <!--&lt;!&ndash;                                    <TableColumn fx:id="categorysalessalesperday" prefWidth="149.0" text="SALES/DAY" />&ndash;&gt;-->
+                            <!--&lt;!&ndash;                                </columns>&ndash;&gt;-->
+                            <!--&lt;!&ndash;                              </TableView>&ndash;&gt;-->
+                            <!--&lt;!&ndash;                               todo uncomment for categorical audits&ndash;&gt;-->
+                            <!--                              <TableView fx:id="itemsalestable" layoutX="-2.0" layoutY="79.0" prefHeight="490.0" prefWidth="897.0">-->
+                            <!--                                 <columns>-->
+                            <!--                                    <TableColumn fx:id="itemsalesid" prefWidth="75.0" text="ID" />-->
+                            <!--                                    <TableColumn fx:id="itemsalesname" prefWidth="333.0" text="NAME" />-->
+                            <!--                                    <TableColumn fx:id="itemsalespayout" prefWidth="215.0" text="PAY OUT" />-->
+                            <!--                                    <TableColumn fx:id="itemsalessalesperday" prefWidth="135.0" text="SALES/DAY" />-->
+                            <!--                                    <TableColumn fx:id="itemsalessalesremainingstock" prefWidth="135.0" text="REMAINING AMOUNT" />-->
+                            <!--                                 </columns>-->
+                            <!--                              </TableView>-->
+                            <!--                              <Button layoutX="935.0" layoutY="150.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="168.0" styleClass="buttonorange" text="EXPORT ITEM REPORT" />-->
+                            <!--                              <Button layoutX="935.0" layoutY="214.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="168.0" styleClass="buttonred" text="EXPORT SALES REPORT" />-->
+                            <!--                           </children></AnchorPane>-->
+                            <!--                  </content>-->
+                            <!--                </Tab>-->
+                            <!--                  <Tab fx:id="tabcapandcost" text="CAPITAL AND COST">-->
+                            <!--                     <content>-->
+                            <!--                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
+                            <!--                           <children>-->
+                            <!--                              <TabPane fx:id="tapaneinnercapitalandcost" layoutX="12.0" layoutY="7.0" prefHeight="551.0" prefWidth="1185.0" tabClosingPolicy="UNAVAILABLE">-->
+                            <!--                                <tabs>-->
+                            <!--                                  <Tab fx:id="pastcosts" text="PAST COSTS">-->
+                            <!--                                    <content>-->
+                            <!--                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
+                            <!--                                             <children>-->
+                            <!--                                                <TableView fx:id="pastcoststable" layoutX="3.0" layoutY="5.0" prefHeight="518.0" prefWidth="993.0">-->
+                            <!--                                                  <columns>-->
+                            <!--                                                    <TableColumn fx:id="pastcoststableid" prefWidth="75.0" text="ID" />-->
+                            <!--                                                    <TableColumn fx:id="pastcoststablename" prefWidth="176.0" text="NAME" />-->
+                            <!--                                                      <TableColumn fx:id="pastcoststabledateadded" prefWidth="212.0" text="DATE ADDED" />-->
+                            <!--                                                      <TableColumn fx:id="pastcoststableamount" prefWidth="185.0" text="AMOUNT" />-->
+                            <!--                                                      <TableColumn fx:id="pastcoststableactiveinactivestatus" prefWidth="188.0" text="ACTIVE/INACTIVE" />-->
+                            <!--                                                  </columns>-->
+                            <!--                                                </TableView>-->
+                            <!--                                                <Button layoutX="1053.0" layoutY="68.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" styleClass="buttonyellow" text="EXPORT" />-->
+                            <!--                                             </children>-->
+                            <!--                                          </AnchorPane>-->
+                            <!--                                    </content>-->
+                            <!--                                  </Tab>-->
+                            <!--                                  <Tab fx:id="newcosts" text="NEW COSTS">-->
+                            <!--                                    <content>-->
+                            <!--                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
+                            <!--                                             <children>-->
+                            <!--                                                <ButtonBar layoutX="268.0" layoutY="283.0" prefHeight="40.0" prefWidth="200.0" />-->
+                            <!--                                                <AnchorPane layoutX="282.0" layoutY="42.0" prefHeight="336.0" prefWidth="405.0" styleClass="forminner">-->
+                            <!--                                                   <children>-->
+                            <!--                                                      <DatePicker fx:id="newcostsdatecreated" layoutX="93.0" layoutY="20.0" prefHeight="39.0" prefWidth="225.0" promptText="DATE CREATED" styleClass="textfields" />-->
+                            <!--                                                      <TextField fx:id="newcostsamount" layoutX="93.0" layoutY="91.0" prefHeight="39.0" prefWidth="223.0" promptText="AMOUNT" styleClass="textfields" />-->
+                            <!--                                                      <TextField fx:id="newcostsname" layoutX="96.0" layoutY="149.0" prefHeight="39.0" prefWidth="218.0" promptText="NAME" styleClass="textfields" />-->
+                            <!--                                                      <TextField fx:id="newcostsactiveinactivestatus" layoutX="98.0" layoutY="210.0" prefHeight="39.0" prefWidth="213.0" promptText="ACTIVE/INACTIVE" styleClass="textfields" />-->
+                            <!--                                                    <Button fx:id="newcostssubmit" layoutX="126.0" layoutY="269.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="185.0" styleClass="buttonorange" text="SUBMIT" />-->
+                            <!--                                                   </children>-->
+                            <!--                                                </AnchorPane>-->
+                            <!--                                             </children>-->
+                            <!--                                          </AnchorPane>-->
+                            <!--                                    </content>-->
+                            <!--                                  </Tab>-->
+                            <!--                                </tabs>-->
+                            <!--                              </TabPane>-->
+                            <!--                           </children></AnchorPane>-->
+                            <!--                     </content>-->
+                            <!--                  </Tab>-->
+                            <!--                  todo v1.2 -->
+                            <!--                  <Tab fx:id="tabfutureplans" text="FUTURE PLANS">-->
+                            <!--                     <content>-->
+                            <!--                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
+                            <!--                           <children>-->
+                            <!--&lt;!&ndash;                             table for future plans&ndash;&gt;-->
+                            <!--                              <TableView layoutX="726.0" layoutY="20.0" prefHeight="376.0" prefWidth="467.0">-->
+                            <!--                                <columns>-->
+                            <!--                                  <TableColumn prefWidth="75.0" text="NAME" />-->
+                            <!--                                  <TableColumn prefWidth="75.0" text="DATE" />-->
+                            <!--                                    <TableColumn prefWidth="316.0" text="DESCRIPTION" />-->
+                            <!--                                </columns>-->
+                            <!--                              </TableView>-->
+                            <!--                              <AnchorPane layoutX="53.0" layoutY="20.0" prefHeight="413.0" prefWidth="620.0" styleClass="forminner">-->
+                            <!--                                 <children>-->
+                            <!--                                    <TextField fx:id="tabfutureplansname" layoutX="137.0" layoutY="14.0" prefHeight="39.0" prefWidth="325.0" promptText="NAME" styleClass="textfields" />-->
+                            <!--                                    <DatePicker fx:id="tabfutureplansdateofimplementation" layoutX="137.0" layoutY="78.0" prefHeight="39.0" prefWidth="325.0" promptText="DATE OF IMPLEMENTATION" styleClass="textfields" />-->
+                            <!--                                    <TextArea fx:id="tabfutureplansdescription" layoutX="24.0" layoutY="134.0" prefHeight="200.0" prefWidth="574.0" promptText="SHORT DESCRIPTION OF THE PLANS........." styleClass="textfields" />-->
+                            <!--                                    <Button fx:id="tabfutureplanssubmit" layoutX="264.0" layoutY="356.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0" styleClass="buttonorange" text="SUBMIT" />-->
+                            <!--                                 </children>-->
+                            <!--                              </AnchorPane>-->
+                            <!--                              <Button layoutX="886.0" layoutY="415.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="147.0" styleClass="buttonorange" text="EXPORT REPORT" />-->
+                            <!--                           </children></AnchorPane>-->
+                            <!--                     </content>-->
+                            <!--                  </Tab>-->
+                            <!--                  TODO V1.2-->
+                            <Tab fx:id="tabstockalerts" text="STOCK ALERTS">
+                                <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                        <children>
+                                            <TableView fx:id="stockalerttable" layoutX="3.0" layoutY="14.0"
+                                                       prefHeight="555.0" prefWidth="1197.0">
+                                                <columns>
+                                                    <TableColumn fx:id="stockalerttableid" prefWidth="75.0" text="ID"/>
+                                                    <TableColumn fx:id="stockalerttablename" prefWidth="75.0"
+                                                                 text="NAME"/>
+                                                    <TableColumn fx:id="stockalerttabledate" prefWidth="103.0"
+                                                                 text="DATE"/>
+                                                    <TableColumn fx:id="stockalerttablemarkasread" prefWidth="149.0"
+                                                                 text="MARK AS READ"/>
+                                                </columns>
+                                            </TableView>
+                                        </children>
+                                    </AnchorPane>
+                                </content>
+                            </Tab>
+                            <Tab fx:id="taballaudits" text="ALL AUDITS">
+                                <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                        <children>
+                                            <AnchorPane layoutX="313.0" layoutY="98.0" prefHeight="378.0"
+                                                        prefWidth="578.0"
+                                                        styleClass="forminner">
+                                                <children>
+                                                    <Button fx:id="exportcategoryreport" layoutX="30.0" layoutY="148.0"
+                                                            mnemonicParsing="false" prefHeight="41.0" prefWidth="225.0"
+                                                            styleClass="buttongreen"
+                                                            text="EXPORT CATEGORY SALES REPORT"/>
+                                                    <Button fx:id="exportfullreport" layoutX="30.0" layoutY="46.0"
+                                                            mnemonicParsing="false" prefHeight="41.0" prefWidth="225.0"
+                                                            styleClass="buttongreen"
+                                                            text="EXPORT COMPLETE SALES REPORT"/>
+                                                    <Button fx:id="exportemployeereport" layoutX="30.0" layoutY="247.0"
+                                                            mnemonicParsing="false" prefHeight="41.0" prefWidth="225.0"
+                                                            styleClass="buttongreen"
+                                                            text="EXPORT EMPLOYEE SALES REPORT"/>
+                                                    <Button fx:id="getcateegorygraph" layoutX="339.0" layoutY="148.0"
+                                                            mnemonicParsing="false" prefHeight="41.0" prefWidth="225.0"
+                                                            styleClass="buttongreen" text="CATEGORY GRAPHS"/>
+                                                    <Button fx:id="getdetailedgraph" layoutX="339.0" layoutY="46.0"
+                                                            mnemonicParsing="false" prefHeight="41.0" prefWidth="225.0"
+                                                            styleClass="buttongreen" text="DETAILED GRAPHS"/>
+                                                    <Button fx:id="getemployeegraph" layoutX="339.0" layoutY="247.0"
+                                                            mnemonicParsing="false" prefHeight="41.0" prefWidth="225.0"
+                                                            styleClass="buttongreen" text="EMPLOYEE GRAPHS"/>
+                                                </children>
+                                            </AnchorPane>
+                                        </children>
+                                    </AnchorPane>
+                                </content>
+                            </Tab>
+                        </tabs>
+                    </TabPane>
+                    <Label fx:id="clock" layoutX="238.0" layoutY="22.0" prefHeight="36.0" prefWidth="181.0"
+                           text="TIME LABEL" textFill="#fffdfd"/>
+                    <Button fx:id="topanelbutton" layoutX="659.0" layoutY="22.0" mnemonicParsing="false"
+                            prefHeight="36.0"
+                            prefWidth="134.0" styleClass="buttonyellow" text="BACK TO PANEL"/>
+                    <Button fx:id="tocarwashbutton" layoutX="819.0" layoutY="22.0" mnemonicParsing="false"
+                            prefHeight="36.0"
+                            prefWidth="134.0" styleClass="buttonyellow" text="CARWASH"/>
+                    <Button fx:id="toemployeesbutton" layoutX="963.0" layoutY="22.0" mnemonicParsing="false"
+                            prefHeight="36.0" prefWidth="134.0" styleClass="buttonyellow" text="CASHIERS"/>
+                    <Button fx:id="logoutbutton" layoutX="513.0" layoutY="22.0" mnemonicParsing="false"
+                            prefHeight="36.0"
+                            prefWidth="134.0" styleClass="buttonred" text="LOG OUT"/>
+                    <Button fx:id="tosupplierbutton" layoutX="1103.0" layoutY="22.0" mnemonicParsing="false"
+                            prefHeight="36.0" prefWidth="96.0" styleClass="buttonyellow" text="SUPPLIERS"/>
+                </children>
+            </AnchorPane>
+        </children>
+        <stylesheets>
+            <URL value="@../styles/buttons.css"/>
+            <URL value="@../styles/css.css"/>
+            <URL value="@../styles/Login.css"/>
+            <URL value="@../styles/panels.css"/>
+            <URL value="@../styles/tablecolors.css"/>
+        </stylesheets>
+    </VBox>
+
+</AnchorPane>

@@ -1,13 +1,13 @@
 package Controllers.ShopControllers;
 
 import javafx.fxml.Initializable;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class scannerController implements Initializable {
-    public VBox scanner;
+    public AnchorPane scanner;
 
     /**
      * Called to initialize a controller after its root element has been

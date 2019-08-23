@@ -31,7 +31,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import javafx.util.Duration;
@@ -75,7 +75,7 @@ public class AddshopController extends UtilityClass implements Initializable {
     File file;
     int length;
     @FXML
-    private VBox panel;
+    private AnchorPane panel;
 
     @FXML
 
@@ -207,13 +207,7 @@ public class AddshopController extends UtilityClass implements Initializable {
             public void handle(Event t) {
                 if (existingstoredtab.isSelected()) {
                     data = FXCollections.observableArrayList();
-                    Connection connection = null;
-                    try {
-                        connection = DriverManager
-                                .getConnection(des[2], des[0], des[1]);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                    Connection connection = getConnection();
 
                     try {
                         if (connection != null) {
@@ -248,13 +242,7 @@ public class AddshopController extends UtilityClass implements Initializable {
             }
         });
         data = FXCollections.observableArrayList();
-        Connection connection = null;
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        Connection connection = getConnection();
         try {
             if (connection != null) {
                 PreparedStatement statement = connection.prepareStatement("SELECT * FROM stores WHERE owner=?");
@@ -286,7 +274,6 @@ public class AddshopController extends UtilityClass implements Initializable {
         tableViewActiononClick();
         tab.setEditable(true);
         storeName.setCellFactory(TextFieldTableCell.forTableColumn());
-        Connection finalConnection = connection;
         storeName.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<Storemaster, String>>() {
                     @Override
@@ -298,7 +285,8 @@ public class AddshopController extends UtilityClass implements Initializable {
                         try {
                             Storemaster store = tab.getSelectionModel().getSelectedItem();
                             String id = store.getStoreId();
-                            preparedStatement = finalConnection.prepareStatement("UPDATE stores set name=? where id=?");
+                            assert connection != null;
+                            preparedStatement = connection.prepareStatement("UPDATE stores set name=? where id=?");
                             preparedStatement.setString(1, newval);
                             preparedStatement.setString(2, id);
                             preparedStatement.executeUpdate();
@@ -322,7 +310,7 @@ public class AddshopController extends UtilityClass implements Initializable {
                         try {
                             Storemaster store = tab.getSelectionModel().getSelectedItem();
                             String id = store.getStoreId();
-                            preparedStatement = finalConnection.prepareStatement("UPDATE stores set location=? where id=?");
+                            preparedStatement = connection.prepareStatement("UPDATE stores set location=? where id=?");
                             preparedStatement.setString(1, newval);
                             preparedStatement.setString(2, id);
                             preparedStatement.executeUpdate();
@@ -344,8 +332,8 @@ public class AddshopController extends UtilityClass implements Initializable {
                     try {
                         Storemaster store = tab.getSelectionModel().getSelectedItem();
                         String id = store.getStoreId();
-                        if (finalConnection != null) {
-                            preparedStatement = finalConnection.prepareStatement("UPDATE stores set employeenumber=? where id=?");
+                        if (connection != null) {
+                            preparedStatement = connection.prepareStatement("UPDATE stores set employeenumber=? where id=?");
                         }
                         if (preparedStatement != null) {
                             preparedStatement.setString(1, newval);
@@ -437,12 +425,7 @@ public class AddshopController extends UtilityClass implements Initializable {
 
         t.addCell(c4);
 //        adding headers
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(des[2], "root", "");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        Connection connection = getConnection();
         PreparedStatement statement = null;
         try {
             assert connection != null;
@@ -536,8 +519,7 @@ public class AddshopController extends UtilityClass implements Initializable {
             Storemaster store = tab.getSelectionModel().getSelectedItem();
 
             try {
-                Connection connection = DriverManager
-                        .getConnection(des[2], des[0], des[1]);
+                Connection connection = getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM stores WHERE id=?");
 
                 preparedStatement.setString(1, store.getStoreId());
@@ -612,19 +594,8 @@ public class AddshopController extends UtilityClass implements Initializable {
 
     private void fetch() {
         data = FXCollections.observableArrayList();
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(des[2], "root", "");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        connection = null;
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        Connection connection = getConnection();
+
         try {
             if (connection != null) {
                 PreparedStatement statement = connection.prepareStatement("SELECT * FROM stores WHERE owner=?");
@@ -664,13 +635,7 @@ public class AddshopController extends UtilityClass implements Initializable {
         String name = storename.getText();
         String location = storelocation.getText();
         String stringdescription = description.getText();
-        Connection connection = null;
-        try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         try {
             assert connection != null;
@@ -846,11 +811,11 @@ public class AddshopController extends UtilityClass implements Initializable {
         this.length = length;
     }
 
-    public VBox getPanel() {
+    public AnchorPane getPanel() {
         return panel;
     }
 
-    public void setPanel(VBox panel) {
+    public void setPanel(AnchorPane panel) {
         this.panel = panel;
     }
 
