@@ -520,7 +520,7 @@ public class AuditController extends UtilityClass implements Initializable {
         Document document = new Document(PageSize.A4_LANDSCAPE, 20, 20, 20, 20);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String time = timestamp.getTime() + "employeesreport.pdf";
-        System.out.println(time);
+        //System.out.println(time);
         try {
             PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(time));
         } catch (DocumentException | FileNotFoundException e) {

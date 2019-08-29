@@ -33,7 +33,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -196,7 +195,7 @@ public class StocksController extends UtilityClass implements Initializable {
                 if (preparedStatement != null) {
                     int rows = preparedStatement.executeUpdate();
                     if (rows > 0) {
-                        System.out.println(rows);
+                        //System.out.println(rows);
                         showAlert(Alert.AlertType.INFORMATION, parentsstocks.getScene().getWindow(), "SUCCESS ", "YOUR ITEM WAS ADDED SUCCESSFULLY");
                         itemcode.clear();
                         itemname.clear();
@@ -223,7 +222,7 @@ public class StocksController extends UtilityClass implements Initializable {
                 try {
                     parentsstocks.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/employees.fxml")))));
                 } catch (IOException e) {
-                    System.out.println(Arrays.toString(e.getStackTrace()));
+                    //System.out.println(Arrays.toString(e.getStackTrace()));
                 }
             }
         });

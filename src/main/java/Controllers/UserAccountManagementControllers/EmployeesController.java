@@ -162,9 +162,8 @@ public class EmployeesController extends UtilityClass implements Initializable {
                         try {
 //                        DISPLAYING EMPLOYEES
                             if (connection1 != null) {
-                                PreparedStatement statement = connection1.prepareStatement("SELECT * FROM users ");
-//                                statement.setString(1, String.valueOf(key.get("key")));
-//                                statement.setBoolean(2, false);
+                                PreparedStatement statement = connection1.prepareStatement("SELECT * FROM users where admin=?");
+                                statement.setBoolean(1, false);
                                 ResultSet resultSet = statement.executeQuery();
                                 while (resultSet.next()) {
                                     EmployeeMaster employeeMaster = new EmployeeMaster();
@@ -208,10 +207,9 @@ public class EmployeesController extends UtilityClass implements Initializable {
                     try {
 //                        DISPLAYING EMPLOYEES
                         if (connection != null) {
-                            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users");
+                            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users where admin=?");
 //                            WHERE subscriberkey=? and admin=?
-//                            statement.setString(1, String.valueOf(key.get("key")));
-//                            statement.setBoolean(2, false);
+                            statement.setBoolean(1, false);
                             ResultSet resultSet = statement.executeQuery();
                             while (resultSet.next()) {
                                 EmployeeMaster employeeMaster = new EmployeeMaster();
@@ -241,7 +239,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
 //         send audit to email
             generateAudit();
             SendEmail sendEmail = new SendEmail(user.get("user"), "nanotechsoftwarespos@nanotechsoftwares.com", host, time);
-            System.out.println(user.get("user"));
+            //System.out.println(user.get("user"));
         });
         printoutaspdf.setOnMousePressed(event -> {
             generateAudit();
@@ -258,7 +256,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
         Document document = new Document(PageSize.A4_LANDSCAPE, 20, 20, 20, 20);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         time = timestamp.getTime() + "employeesreport.pdf";
-        System.out.println(time);
+        //System.out.println(time);
         try {
             PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(time));
         } catch (DocumentException | FileNotFoundException e) {
@@ -311,10 +309,9 @@ public class EmployeesController extends UtilityClass implements Initializable {
         Connection connection = getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement("SELECT * FROM users  ");
+            statement = connection.prepareStatement("SELECT * FROM users  where admin=?");
 //            WHERE subscriberkey=? and admin=?
-//            statement.setString(1, key.get("key"));
-//            statement.setBoolean(2, false);
+            statement.setBoolean(1, false);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -565,7 +562,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
                 BodyPart messageBodyPart = new MimeBodyPart();
 
                 // Fill the message
-                messageBodyPart.setText("WE AT NANOTECH SOFTWARES VALUE OUR CUSTOMERS");
+                messageBodyPart.setText("WE , AT NANOTECH SOFTWARES VALUE OUR CUSTOMERS");
 
                 // Create a multipar message
                 Multipart multipart = new MimeMultipart();

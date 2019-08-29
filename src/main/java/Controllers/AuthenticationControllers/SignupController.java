@@ -16,6 +16,9 @@ import javafx.stage.Window;
 import logging.LogClass;
 import securityandtime.Security;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.awt.*;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -28,6 +31,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
@@ -39,13 +43,13 @@ public class SignupController extends UtilityClass implements Initializable {
     @FXML
     private PasswordField password, passwordconfirmation;
     @FXML
-    private TextField email, name, IDNUMBER, key;
+    private TextField email, name, IDNUMBER;
     @FXML
     private Hyperlink link;
     @FXML
     private Button login1, signup1;
     @FXML
-    private AnchorPane parent1;
+    private AnchorPane parent;
 
 
     @Override
@@ -66,9 +70,9 @@ public class SignupController extends UtilityClass implements Initializable {
         login1.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                parent1.getChildren().removeAll();
+                parent.getChildren().removeAll();
                 try {
-                    parent1.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml"))));
+                    parent.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml"))));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -108,12 +112,7 @@ public class SignupController extends UtilityClass implements Initializable {
                 registerUser();
             }
         });
-        key.setOnKeyPressed(event -> {
-            KeyCode keyCode = event.getCode();
-            if (keyCode.equals(KeyCode.ENTER)) {
-                registerUser();
-            }
-        });
+
     }
 
     private void registerUser() {
@@ -121,19 +120,18 @@ public class SignupController extends UtilityClass implements Initializable {
         if (password.getText().isEmpty() ||
                 passwordconfirmation.getText().isEmpty() ||
                 email.getText().isEmpty() || name.getText().isEmpty()
-                || IDNUMBER.getText().isEmpty() ||
-                key.getText().isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, parent1.getScene().getWindow(),
+                || IDNUMBER.getText().isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, parent.getScene().getWindow(),
                     "Fill all the fields", "Please fill all the fields");
         } else {
             if (!password.getText().equals(passwordconfirmation.getText())) {
-                showAlert(Alert.AlertType.INFORMATION, parent1.getScene().getWindow(),
+                showAlert(Alert.AlertType.INFORMATION, parent.getScene().getWindow(),
                         "Your passwords don't match", "Please enter matching passwords");
             } else {
 //                Connection snm = connectiondb.getConnect();
                 try {
                     try {
-                        insertion(email, name, IDNUMBER, key, password, passwordconfirmation);
+                        insertion(email, name, IDNUMBER, password, passwordconfirmation);
                     } catch (NoSuchAlgorithmException e) {
                         e.printStackTrace();
                     }
@@ -141,7 +139,7 @@ public class SignupController extends UtilityClass implements Initializable {
 
                 } catch (SQLException e) {
                     LogClass.getLogger().log(Level.SEVERE, " Registration not successful");
-                    showAlert(Alert.AlertType.INFORMATION, parent1.getScene().getWindow(),
+                    showAlert(Alert.AlertType.INFORMATION, parent.getScene().getWindow(),
                             "Transaction unsuccessfull!!", "Registration not successful");
                     e.printStackTrace();
                 }
@@ -150,7 +148,7 @@ public class SignupController extends UtilityClass implements Initializable {
         }
     }
 
-    private void insertion(TextField email, TextField name, TextField IDNUMBER, TextField key, PasswordField password, PasswordField passwordconfirmation) throws SQLException, NoSuchAlgorithmException {
+    private void insertion(TextField email, TextField name, TextField IDNUMBER, PasswordField password, PasswordField passwordconfirmation) throws SQLException, NoSuchAlgorithmException {
         String str = email.getText() + name.getText() + password.getText() + IDNUMBER.getText() + new java.util.Date().toString();
         MessageDigest messageDigest = MessageDigest.getInstance("MD5");
         messageDigest.update(str.getBytes(), 0, str.length());
@@ -161,7 +159,7 @@ public class SignupController extends UtilityClass implements Initializable {
         statementemail.setString(1, email.getText());
         ResultSet resultSetemail = statementemail.executeQuery();
         if (resultSetemail.isBeforeFirst()) {
-            showAlert(Alert.AlertType.WARNING, parent1.getScene().getWindow(),
+            showAlert(Alert.AlertType.WARNING, parent.getScene().getWindow(),
                     "EMAIL IN USE", "EMAIL IS IN USE");
 //                System.out.println("resultSet lacks values");
             LogClass.getLogger().log(Level.SEVERE, " EMAIL IS IN USE");
@@ -172,13 +170,13 @@ public class SignupController extends UtilityClass implements Initializable {
             statementname.setString(1, name.getText());
             ResultSet resultSetname = statementname.executeQuery();
             if (resultSetname.isBeforeFirst()) {
-                showAlert(Alert.AlertType.WARNING, parent1.getScene().getWindow(),
+                showAlert(Alert.AlertType.WARNING, parent.getScene().getWindow(),
                         "NAME IN USE", "NAME IS IN USE");
 //                System.out.println("resultSet lacks values");
                 LogClass.getLogger().log(Level.SEVERE, " NAME IS IN USE");
 
             } else {
-                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users(employeename,email,password, employeeid,activated,hash,subscriberkey)VALUES(?,?,?,?,?,?,?)");
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users(employeename,email,password, employeeid,activated,hash)VALUES(?,?,?,?,?,?)");
 
                 preparedStatement.setString(1, name.getText());
                 preparedStatement.setString(2, email.getText());
@@ -186,45 +184,30 @@ public class SignupController extends UtilityClass implements Initializable {
                 preparedStatement.setString(4, IDNUMBER.getText());
                 preparedStatement.setBoolean(5, true);
                 preparedStatement.setString(6, hash);
-                preparedStatement.setString(7, key.getText());
                 if (preparedStatement.executeUpdate() > 0) {
                     LogClass.getLogger().log(Level.CONFIG, " Registration successful");
-                    showAlert(Alert.AlertType.INFORMATION, parent1.getScene().getWindow(),
+                    showAlert(Alert.AlertType.INFORMATION, parent.getScene().getWindow(),
                             "Transaction successfull!!", "Registration  successful");
-                    parent1.getChildren().removeAll();
+                    parent.getChildren().removeAll();
                     try {
-                        parent1.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml"))));
+                        parent.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml"))));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 } else {
                     LogClass.getLogger().log(Level.SEVERE, " Registration not successful");
-                    showAlert(Alert.AlertType.INFORMATION, parent1.getScene().getWindow(),
+                    showAlert(Alert.AlertType.INFORMATION, parent.getScene().getWindow(),
                             "Transaction unsuccessfull!!", "Registration not successful");
                 }
 
             }
         }
-//    Properties properties = System.getProperties();
-//    properties.setProperty("mail.smtp.host", config.host);
-//    Session session = Session.getDefaultInstance(properties);
-//
-//    //compose the message
-//    try{
-//        MimeMessage message = new MimeMessage(session);
-//        message.setFrom(new InternetAddress(config.from));
-//        message.addRecipient(Message.RecipientType.TO,new InternetAddress(email.getText()));
-//        message.setSubject("Account activation for Nanosoft POS software");
-//        message.setText("Hello, this is example of sending email");
-////        todo change email body and change email properties
-//
-//        // Send message
-//        Transport.send(message);
-//        System.out.println("message sent successfully....");
-//
-//    }catch (MessagingException mex) {mex.printStackTrace();}
+
     }
 
+    public AnchorPane getParent() {
+        return parent;
+    }
     private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -288,14 +271,6 @@ public class SignupController extends UtilityClass implements Initializable {
         return this;
     }
 
-    public TextField getKey() {
-        return key;
-    }
-
-    public SignupController setKey(TextField key) {
-        this.key = key;
-        return this;
-    }
 
     public Hyperlink getLink() {
         return link;
@@ -324,13 +299,54 @@ public class SignupController extends UtilityClass implements Initializable {
         return this;
     }
 
-    public AnchorPane getParent1() {
-        return parent1;
+    public SignupController setParent(AnchorPane parent) {
+        this.parent = parent;
+        return this;
     }
 
-    public SignupController setParent1(AnchorPane parent1) {
-        this.parent1 = parent1;
-        return this;
+    class SendMail {
+
+
+        public SendMail() {
+            final String username = "muemasn@outlook.com";  // like yourname@outlook.com
+            final String password = "Adm10735";   // password here
+
+            Properties props = new Properties();
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.host", "smtp-mail.outlook.com");
+            props.put("mail.smtp.port", "587");
+
+            Session session = Session.getInstance(props,
+                    new javax.mail.Authenticator() {
+                        @Override
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(username, password);
+                        }
+                    });
+            session.setDebug(true);
+
+            try {
+
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(username));
+                message.setRecipients(Message.RecipientType.TO,
+                        InternetAddress.parse(email.getText()));   // like inzi769@gmail.com
+                message.setSubject("NANOTECH POS ACCOUNT ACTIVATION");
+                message.setContent("<html><head></head><body>" +
+                        "<P>" +
+                        "</P>" +
+                        "</body></html>", "text/html");
+
+                Transport.send(message);
+
+                System.out.println("Done");
+
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
     }
 
     @FXML

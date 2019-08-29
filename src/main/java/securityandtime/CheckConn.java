@@ -21,7 +21,7 @@ public class CheckConn {
 
     public static Date timelogin() throws IOException {
 //        if(CheckConn.pingHost("google.com", 80, 2000)){
-////            System.out.println(CheckConn.pingHost(securityandtime.config.host, 80, 2000));
+////            //System.out.println(CheckConn.pingHost(securityandtime.config.host, 80, 2000));
 //            String TIME_SERVER = "time-a.nist.gov";
 //            NTPUDPClient timeClient = new NTPUDPClient();
 //            InetAddress inetAddress = InetAddress.getByName(TIME_SERVER);
@@ -38,10 +38,10 @@ public class CheckConn {
 //        }
 //        else {
 //            Date time = new Date();
-////            System.out.println(time.toString());
+////            //System.out.println(time.toString());
 //            return time;
 //        }
-        //            System.out.println(time.toString());
+        //            //System.out.println(time.toString());
         return new Date();
     }
 

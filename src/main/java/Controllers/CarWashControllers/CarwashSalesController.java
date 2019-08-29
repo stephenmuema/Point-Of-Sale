@@ -263,7 +263,7 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
                     if (preparedStatement != null) {
                         int rows = preparedStatement.executeUpdate();
                         if (rows > 0) {
-                            System.out.println(rows);
+                            //System.out.println(rows);
                             showAlert(Alert.AlertType.INFORMATION, carWash.getScene().getWindow(), "SUCCESS ", "YOUR ITEM WAS ADDED SUCCESSFULLY");
                             name.clear();
                             registration.clear();

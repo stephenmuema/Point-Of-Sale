@@ -10,7 +10,7 @@ public class CartIdGenerator {
     public CartIdGenerator() {
         String x = String.valueOf(new Timestamp(System.currentTimeMillis()));
         idcart = cartid.put("cartKey", x);
-        System.out.println(cartid.isEmpty());
+        //System.out.println(cartid.isEmpty());
     }
 
     public String getIdcart() {

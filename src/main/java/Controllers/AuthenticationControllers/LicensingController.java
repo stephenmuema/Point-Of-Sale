@@ -341,10 +341,10 @@ public class LicensingController extends UtilityClass implements Initializable {
             throwables.clear();
         }
         licensearea.clear();
-        System.out.println(decryptedString.split(":::")[0]);
-        System.out.println(decryptedString.split(":::")[1]);
-        System.out.println(decryptedString.split(":::")[2]);//expiry
-        System.out.println(decryptedString.split(":::")[3]);
+        //System.out.println(decryptedString.split(":::")[0]);
+        //System.out.println(decryptedString.split(":::")[1]);
+        //System.out.println(decryptedString.split(":::")[2]);//expiry
+        //System.out.println(decryptedString.split(":::")[3]);
         Platform.exit();
         System.exit(1);
     }

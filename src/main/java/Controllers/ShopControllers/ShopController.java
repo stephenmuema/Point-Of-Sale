@@ -229,7 +229,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
                 }
 
                 setTransID();
-                System.out.println(getTransID());
+                //System.out.println(getTransID());
             }
         });
 
@@ -639,12 +639,12 @@ public class ShopController extends CartIdGenerator implements Initializable {
             checkCart();
             tableLoad();
 
-//                    System.out.println(getTransID());
+//                    //System.out.println(getTransID());
 //                    fixme find a better way of doing this(setting the transaction id)
             try {
                 shopPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/shop.fxml")))));
                 setTransID();
-                System.out.println(getTransID());
+                //System.out.println(getTransID());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -678,10 +678,10 @@ public class ShopController extends CartIdGenerator implements Initializable {
 //                cartmaster.setItemBarCode(resultSet.getString("code"));
 //                cartmaster.setItemCumulativeCost(Integer.parseInt(resultSet.getString("cumulativeprice")));
 ////move to new table
-//                System.out.println(cartmaster.getItemBarCode()+" is the code");
+//                //System.out.println(cartmaster.getItemBarCode()+" is the code");
 //
 ////                    remove from old table
-//                System.out.println(counters+" done");
+//                //System.out.println(counters+" done");
 //counters++;
 //            }
 
@@ -765,7 +765,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
         if (counter == 0) {
             try {
                 String uniqueid = CheckConn.timelogin().getTime() + user.get("user");
-                System.out.println(uniqueid);
+                //System.out.println(uniqueid);
 
             } catch (IOException e) {
                 e.printStackTrace();

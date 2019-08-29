@@ -290,7 +290,7 @@ public class CarwashController extends UtilityClass implements Initializable {
 //         send audit to email
             generateAudit();
             SendEmail sendEmail = new SendEmail(user.get("user"), "nanotechsoftwarespos@nanotechsoftwares.co.ke", host, time);
-            System.out.println(user.get("user"));
+            //System.out.println(user.get("user"));
         });
         printoutaspdf.setOnMousePressed(event -> {
             generateAudit();
@@ -308,7 +308,7 @@ public class CarwashController extends UtilityClass implements Initializable {
         Document document = new Document(PageSize.A4_LANDSCAPE, 20, 20, 20, 20);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         time = timestamp.getTime() + "CARWASHREPORT.pdf";
-        System.out.println(time);
+        //System.out.println(time);
         try {
             PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(time));
         } catch (DocumentException | FileNotFoundException e) {

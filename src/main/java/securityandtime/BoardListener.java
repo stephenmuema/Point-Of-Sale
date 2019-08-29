@@ -52,7 +52,7 @@ public class BoardListener extends Thread implements ClipboardOwner {
             try {
                 result = (String) contents.getTransferData(DataFlavor.stringFlavor);
             } catch (UnsupportedFlavorException | IOException ex) {
-                System.out.println(ex);
+                //System.out.println(ex);
                 ex.printStackTrace();
             }
         }

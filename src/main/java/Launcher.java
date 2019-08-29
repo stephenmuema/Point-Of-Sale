@@ -123,7 +123,7 @@ public class Launcher extends Application {
 
 
             long time = CheckConn.timelogin().getTime() / 1000;//get current time
-//            System.out.println(time + Long.parseLong(builder.toString().split(":::")[2]));
+//            //System.out.println(time + Long.parseLong(builder.toString().split(":::")[2]));
             if (time > Long.parseLong(builder.toString().split(":::")[2])) {
                 Parent root = FXMLLoader.load(getClass().getResource("../resources/AuthenticationFiles/licensingPanel.fxml"));
                 Scene scene = new Scene(root);

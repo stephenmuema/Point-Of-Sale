@@ -44,7 +44,7 @@ public class SplashScreenController implements Initializable {
                 owner.setText("Registered to " + license.get("name"));
                 expiry.setText(s2);
             }
-//            System.out.println(license.get("time"));
+//            //System.out.println(license.get("time"));
 
 
 //

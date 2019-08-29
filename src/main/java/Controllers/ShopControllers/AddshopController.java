@@ -209,7 +209,7 @@ public class AddshopController extends UtilityClass implements Initializable {
                             ResultSet resultSet = statement.executeQuery();
                             while (resultSet.next()) {
                                 Storemaster storemaster = new Storemaster();
-                                System.out.println(resultSet.getString("name"));
+                                //System.out.println(resultSet.getString("name"));
                                 storemaster.storeName.set(resultSet.getString("name"));
                                 storemaster.storeLocation.set(resultSet.getString("location"));
                                 storemaster.employeeNumber.set(resultSet.getString("employeenumber"));
@@ -353,7 +353,7 @@ public class AddshopController extends UtilityClass implements Initializable {
             public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
                 //Check whether item is selected and set value of selected item to Label
                 if (tab.getSelectionModel().getSelectedItem() != null) {
-//                System.out.println(store.getStoreId());
+//                //System.out.println(store.getStoreId());
 //                System.out.println("Selected Row is row " + val);
                     buttonClick();
                 }
@@ -365,7 +365,7 @@ public class AddshopController extends UtilityClass implements Initializable {
         Document document = new Document(PageSize.A4_LANDSCAPE, 20, 20, 20, 20);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String time = timestamp.getTime() + "storelist.pdf";
-        System.out.println(time);
+        //System.out.println(time);
         try {
             PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(time));
         } catch (DocumentException | FileNotFoundException e) {
@@ -534,7 +534,7 @@ public class AddshopController extends UtilityClass implements Initializable {
                                 ResultSet resultSet = statement.executeQuery();
                                 while (resultSet.next()) {
                                     Storemaster storemaster = new Storemaster();
-                                    System.out.println(resultSet.getString("name"));
+                                    //System.out.println(resultSet.getString("name"));
                                     storemaster.storeName.set(resultSet.getString("name"));
                                     storemaster.storeLocation.set(resultSet.getString("location"));
                                     storemaster.employeeNumber.set(resultSet.getString("employeenumber"));
@@ -688,7 +688,7 @@ public class AddshopController extends UtilityClass implements Initializable {
             if (preparedStatement != null) {
                 int rows = preparedStatement.executeUpdate();
                 if (rows > 0) {
-                    System.out.println(rows);
+                    //System.out.println(rows);
                     showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS UPLOADING", "YOUR STORE WAS ADDED SUCCESSFULLY");
                     storename.clear();
                     storelocation.clear();

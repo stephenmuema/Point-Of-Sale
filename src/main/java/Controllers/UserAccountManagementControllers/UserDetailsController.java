@@ -28,8 +28,8 @@ public class UserDetailsController extends UtilityClass implements Initializable
 
     private void fetchDetails() {
         String identifier = config.user.get("user");
-        System.out.println(identifier);
-        String sql = "SELECT * FROM users WHERE  email=?";
+        //System.out.println(identifier);
+        String sql = "SELECT * FROM users WHERE  email= ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, identifier);
@@ -86,10 +86,6 @@ public class UserDetailsController extends UtilityClass implements Initializable
         this.emailstr = emailstr;
     }
 
-    @Override
-    public Connection getConnection() {
-        return connection;
-    }
 
     @Override
     public UserDetailsController setConnection(Connection connection) {

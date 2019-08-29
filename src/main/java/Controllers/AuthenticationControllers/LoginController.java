@@ -142,10 +142,10 @@ public class LoginController extends UtilityClass implements Initializable {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.isBeforeFirst()) {
                 while (resultSet.next()) {
-                    if (resultSet.getBoolean(8)) {
+                    if (resultSet.getBoolean("activated")) {
                         //if account exists and password matches hashed password
-                        if ((resultSet.getString(7).equals(Security.hashPassword(pass)))) {
-                            if (resultSet.getBoolean(6)) {
+                        if ((resultSet.getString("password").equals(Security.hashPassword(pass)))) {
+                            if (resultSet.getBoolean("admin")) {
 //
 //if user account is admin
                                 parent.getChildren().removeAll();
@@ -157,8 +157,8 @@ public class LoginController extends UtilityClass implements Initializable {
                                     config.login.put("loggedinasadmin", true);
                                     config.user.put("userName", resultSet.getString("employeename"));
 
-                                    config.user.put("user", resultSet.getString(5));
-                                    config.key.put("key", resultSet.getString(3));
+                                    config.user.put("user", resultSet.getString("email"));
+                                    config.key.put("key", resultSet.getString("subscribername"));
 
 
                                 } catch (IOException e) {
@@ -173,7 +173,7 @@ public class LoginController extends UtilityClass implements Initializable {
                                     //                                    work as sessions and hold user session data
                                     config.user.put("userName", resultSet.getString("employeename"));
 
-                                    config.user.put("user", resultSet.getString(5));
+                                    config.user.put("user", resultSet.getString("email"));
                                     config.login.put("loggedinasemployee", true);
 
 //                                    new ShopController().setTransID(String.valueOf(new Random().nextGaussian()));
