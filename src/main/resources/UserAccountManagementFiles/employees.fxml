@@ -152,9 +152,9 @@
                                                     <Button fx:id="delete" layoutX="39.0" layoutY="506.0"
                                                             mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0"
                                                             styleClass="buttonred" text="FIRE "/>
-                                                    <Button fx:id="suspend" layoutX="195.0" layoutY="506.0"
+                                                    <Button fx:id="suspend" layoutX="325.0" layoutY="506.0"
                                                             mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0"
-                                                            styleClass="buttonorange" text="SUSPEND"/>
+                                                            styleClass="buttonorange" text="SUSPEND/ACTIVATE"/>
                                                 </children>
                                             </AnchorPane>
                                         </content>

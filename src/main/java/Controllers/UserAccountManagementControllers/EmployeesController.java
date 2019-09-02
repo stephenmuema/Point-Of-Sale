@@ -217,12 +217,18 @@ public class EmployeesController extends UtilityClass implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 EmployeeMaster selectedEmployee = tab.getSelectionModel().getSelectedItem();
+                String newStatus;
+                if (selectedEmployee.getStatus().equalsIgnoreCase("active")) {
+                    newStatus = "suspended";
+                } else {
+                    newStatus = "active";
 
+                }
                 try {
 
                     PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET status=? WHERE id=?");
 
-                    preparedStatement.setString(1, "suspended");
+                    preparedStatement.setString(1, newStatus);
                     preparedStatement.setString(2, selectedEmployee.getId());
                     int updated = preparedStatement.executeUpdate();
                     if (updated > 0) {
