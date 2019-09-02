@@ -142,58 +142,64 @@ public class LoginController extends UtilityClass implements Initializable {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.isBeforeFirst()) {
                 while (resultSet.next()) {
-                    if (resultSet.getBoolean("activated")) {
-                        //if account exists and password matches hashed password
-                        if ((resultSet.getString("password").equals(Security.hashPassword(pass)))) {
-                            if (resultSet.getBoolean("admin")) {
+                    if (!resultSet.getString("status").equalsIgnoreCase("active")) {
+                        showAlert(Alert.AlertType.INFORMATION, parent.getScene().getWindow(),
+                                "YUR ACCOUNT IS SUSPENDED", "PLEASE INFORM the ADMINISTRATOR TO ACTIVATE YOUR ACCOUNT");
+
+                    } else {
+                        if (resultSet.getBoolean("activated")) {
+                            //if account exists and password matches hashed password
+                            if ((resultSet.getString("password").equals(Security.hashPassword(pass)))) {
+                                if (resultSet.getBoolean("admin")) {
 //
 //if user account is admin
-                                parent.getChildren().removeAll();
-                                try {
+                                    parent.getChildren().removeAll();
+                                    try {
 //                                    go to admin panel
-                                    parent.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml"))));
-                                    assert false;
+                                        parent.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml"))));
+                                        assert false;
 //                                    work as sessions and hold user session data
-                                    config.login.put("loggedinasadmin", true);
-                                    config.user.put("userName", resultSet.getString("employeename"));
+                                        config.login.put("loggedinasadmin", true);
+                                        config.user.put("userName", resultSet.getString("employeename"));
 
-                                    config.user.put("user", resultSet.getString("email"));
-                                    config.key.put("key", resultSet.getString("subscribername"));
+                                        config.user.put("user", resultSet.getString("email"));
+                                        config.key.put("key", resultSet.getString("subscribername"));
 
 
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            } else {
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                } else {
 //                                user is not admin go to normal panel
-                                parent.getChildren().removeAll();
-                                try {
-                                    parent.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panel.fxml"))));
-                                    assert false;
-                                    //                                    work as sessions and hold user session data
-                                    config.user.put("userName", resultSet.getString("employeename"));
+                                    parent.getChildren().removeAll();
+                                    try {
+                                        parent.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panel.fxml"))));
+                                        assert false;
+                                        //                                    work as sessions and hold user session data
+                                        config.user.put("userName", resultSet.getString("employeename"));
 
-                                    config.user.put("user", resultSet.getString("email"));
-                                    config.login.put("loggedinasemployee", true);
+                                        config.user.put("user", resultSet.getString("email"));
+                                        config.login.put("loggedinasemployee", true);
 
 //                                    new ShopController().setTransID(String.valueOf(new Random().nextGaussian()));
-                                    //                                    create a new transaction id for local sqlite cart
+                                        //                                    create a new transaction id for local sqlite cart
 
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
+                            } else {
+//                            if passwords do not match
+                                LogClass.getLogger().log(Level.SEVERE, " passwords do not match");
+                                showAlert(Alert.AlertType.INFORMATION, parent.getScene().getWindow(),
+                                        "WRONG PASSWORD!!", "ENTER THE CORRECT PASSWORD");
+
                             }
                         } else {
-//                            if passwords do not match
-                            LogClass.getLogger().log(Level.SEVERE, " passwords do not match");
-                            showAlert(Alert.AlertType.INFORMATION, parent.getScene().getWindow(),
-                                    "WRONG PASSWORD!!", "ENTER THE CORRECT PASSWORD");
+                            showAlert(Alert.AlertType.WARNING, parent.getScene().getWindow(),
+                                    "Activate your license/account !!", "PLEASE ACTIVATE YOUR ACCOUNT OR INFORM THE EMPLOYER TO RENEW THE LICENSE");
 
                         }
-                    } else {
-                        showAlert(Alert.AlertType.WARNING, parent.getScene().getWindow(),
-                                "Activate your license/account !!", "PLEASE ACTIVATE YOUR ACCOUNT OR INFORM THE EMPLOYER TO RENEW THE LICENSE");
-
                     }
                 }
 

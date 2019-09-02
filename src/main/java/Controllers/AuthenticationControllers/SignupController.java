@@ -43,11 +43,11 @@ public class SignupController extends UtilityClass implements Initializable {
     @FXML
     private PasswordField password, passwordconfirmation;
     @FXML
-    private TextField email, name, IDNUMBER;
+    private TextField email, name, IDNUMBER, key;
     @FXML
     private Hyperlink link;
     @FXML
-    private Button login1, signup1;
+    private Button login, signup;
     @FXML
     private AnchorPane parent;
 
@@ -67,7 +67,7 @@ public class SignupController extends UtilityClass implements Initializable {
 
 
         listenEnter();
-        login1.setOnMousePressed(new EventHandler<MouseEvent>() {
+        login.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 parent.getChildren().removeAll();
@@ -78,7 +78,7 @@ public class SignupController extends UtilityClass implements Initializable {
                 }
             }
         });
-        signup1.setOnMousePressed(event -> registerUser());
+        signup.setOnMousePressed(event -> registerUser());
     }
 
     private void listenEnter() {
@@ -112,7 +112,12 @@ public class SignupController extends UtilityClass implements Initializable {
                 registerUser();
             }
         });
-
+        key.setOnKeyPressed(event -> {
+            KeyCode keyCode = event.getCode();
+            if (keyCode.equals(KeyCode.ENTER)) {
+                registerUser();
+            }
+        });
     }
 
     private void registerUser() {
@@ -120,7 +125,8 @@ public class SignupController extends UtilityClass implements Initializable {
         if (password.getText().isEmpty() ||
                 passwordconfirmation.getText().isEmpty() ||
                 email.getText().isEmpty() || name.getText().isEmpty()
-                || IDNUMBER.getText().isEmpty()) {
+                || IDNUMBER.getText().isEmpty() ||
+                key.getText().isEmpty()) {
             showAlert(Alert.AlertType.WARNING, parent.getScene().getWindow(),
                     "Fill all the fields", "Please fill all the fields");
         } else {
@@ -131,7 +137,7 @@ public class SignupController extends UtilityClass implements Initializable {
 //                Connection snm = connectiondb.getConnect();
                 try {
                     try {
-                        insertion(email, name, IDNUMBER, password, passwordconfirmation);
+                        insertion(email, name, IDNUMBER, key, password, passwordconfirmation);
                     } catch (NoSuchAlgorithmException e) {
                         e.printStackTrace();
                     }
@@ -148,7 +154,7 @@ public class SignupController extends UtilityClass implements Initializable {
         }
     }
 
-    private void insertion(TextField email, TextField name, TextField IDNUMBER, PasswordField password, PasswordField passwordconfirmation) throws SQLException, NoSuchAlgorithmException {
+    private void insertion(TextField email, TextField name, TextField IDNUMBER, TextField key, PasswordField password, PasswordField passwordconfirmation) throws SQLException, NoSuchAlgorithmException {
         String str = email.getText() + name.getText() + password.getText() + IDNUMBER.getText() + new java.util.Date().toString();
         MessageDigest messageDigest = MessageDigest.getInstance("MD5");
         messageDigest.update(str.getBytes(), 0, str.length());
@@ -176,7 +182,7 @@ public class SignupController extends UtilityClass implements Initializable {
                 LogClass.getLogger().log(Level.SEVERE, " NAME IS IN USE");
 
             } else {
-                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users(employeename,email,password, employeeid,activated,hash)VALUES(?,?,?,?,?,?)");
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users(employeename,email,password, employeeid,activated,hash,subscriberkey)VALUES(?,?,?,?,?,?,?)");
 
                 preparedStatement.setString(1, name.getText());
                 preparedStatement.setString(2, email.getText());
@@ -184,6 +190,7 @@ public class SignupController extends UtilityClass implements Initializable {
                 preparedStatement.setString(4, IDNUMBER.getText());
                 preparedStatement.setBoolean(5, true);
                 preparedStatement.setString(6, hash);
+                preparedStatement.setString(7, key.getText());
                 if (preparedStatement.executeUpdate() > 0) {
                     LogClass.getLogger().log(Level.CONFIG, " Registration successful");
                     showAlert(Alert.AlertType.INFORMATION, parent.getScene().getWindow(),
@@ -205,8 +212,8 @@ public class SignupController extends UtilityClass implements Initializable {
 
     }
 
-    public AnchorPane getParent() {
-        return parent;
+    public TextField getKey() {
+        return key;
     }
     private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
@@ -271,6 +278,14 @@ public class SignupController extends UtilityClass implements Initializable {
         return this;
     }
 
+    public SignupController setKey(TextField key) {
+        this.key = key;
+        return this;
+    }
+
+    public Button getLogin() {
+        return login;
+    }
 
     public Hyperlink getLink() {
         return link;
@@ -281,27 +296,22 @@ public class SignupController extends UtilityClass implements Initializable {
         return this;
     }
 
-    public Button getLogin1() {
-        return login1;
-    }
-
-    public SignupController setLogin1(Button login1) {
-        this.login1 = login1;
+    public SignupController setLogin(Button login) {
+        this.login = login;
         return this;
     }
 
-    public Button getSignup1() {
-        return signup1;
+    public Button getSignup() {
+        return signup;
     }
 
-    public SignupController setSignup1(Button signup1) {
-        this.signup1 = signup1;
+    public SignupController setSignup(Button signup) {
+        this.signup = signup;
         return this;
     }
 
-    public SignupController setParent(AnchorPane parent) {
-        this.parent = parent;
-        return this;
+    public AnchorPane getParent() {
+        return parent;
     }
 
     class SendMail {
@@ -347,6 +357,11 @@ public class SignupController extends UtilityClass implements Initializable {
             }
         }
 
+    }
+
+    public SignupController setParent(AnchorPane parent) {
+        this.parent = parent;
+        return this;
     }
 
     @FXML

@@ -8,6 +8,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -51,10 +52,13 @@ public class EmployeesController extends UtilityClass implements Initializable {
     public TableColumn<EmployeeMaster, String> Name;
     public TableColumn<EmployeeMaster, String> email;
     public TableColumn<EmployeeMaster, String> id;
+    public TableColumn<EmployeeMaster, String> status;
+
     public Tab existingemptab;
     public MenuItem stores;
     public MenuItem stocks;
     public Button home;
+    public Button suspend;
     @FXML
     private TableView<EmployeeMaster> tab;
     @FXML
@@ -146,55 +150,128 @@ public class EmployeesController extends UtilityClass implements Initializable {
         });
         delete.setOnMousePressed(event -> {
             EmployeeMaster selectedEmployee = tab.getSelectionModel().getSelectedItem();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "DO YOU WANT TO DELETE THE USER?THIS OP CANNOT BE UNDONE", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+            alert.setTitle("WARNING");
+            alert.showAndWait();
 
-            try {
+            if (alert.getResult() == ButtonType.YES) {
+                try {
 
-                PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users WHERE id=?");
+                    PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users WHERE id=?");
 
-                preparedStatement.setString(1, selectedEmployee.getId());
-                int updated = preparedStatement.executeUpdate();
-                if (updated > 0) {
+                    preparedStatement.setString(1, selectedEmployee.getId());
+                    int updated = preparedStatement.executeUpdate();
+                    if (updated > 0) {
 //                                updated
-                    data = FXCollections.observableArrayList();
-                    if (existingemptab.isSelected()) {
                         data = FXCollections.observableArrayList();
-                        Connection connection1 = getConnection();
-                        try {
+                        if (existingemptab.isSelected()) {
+                            data = FXCollections.observableArrayList();
+                            Connection connection1 = getConnection();
+                            try {
 //                        DISPLAYING EMPLOYEES
-                            if (connection1 != null) {
-                                PreparedStatement statement = connection1.prepareStatement("SELECT * FROM users where admin=?");
-                                statement.setBoolean(1, false);
-                                ResultSet resultSet = statement.executeQuery();
-                                while (resultSet.next()) {
-                                    EmployeeMaster employeeMaster = new EmployeeMaster();
-                                    employeeMaster.Name.set(resultSet.getString("employeename"));
-                                    employeeMaster.email.set(resultSet.getString("email"));
-                                    employeeMaster.Id.set(resultSet.getString("id"));
-                                    data.add(employeeMaster);
+                                if (connection1 != null) {
+                                    PreparedStatement statement = connection1.prepareStatement("SELECT * FROM users where admin=?");
+                                    statement.setBoolean(1, false);
+                                    ResultSet resultSet = statement.executeQuery();
+                                    while (resultSet.next()) {
+                                        EmployeeMaster employeeMaster = new EmployeeMaster();
+                                        employeeMaster.setName(resultSet.getString("employeename"));
+                                        employeeMaster.setEmail(resultSet.getString("email"));
+                                        employeeMaster.setId(resultSet.getString("id"));
+                                        employeeMaster.setStatus(resultSet.getString("status"));
+                                        data.add(employeeMaster);
+                                    }
+                                    tab.setItems(data);
                                 }
-                                tab.setItems(data);
+                            } catch (SQLException e) {
+                                e.printStackTrace();
                             }
-                        } catch (SQLException e) {
-                            e.printStackTrace();
+
+                            assert tab != null : "fx:id=\"tab\" was not injected: check your FXML ";
+                            Name.setCellValueFactory(
+                                    new PropertyValueFactory<>("Name"));
+                            id.setCellValueFactory(
+                                    new PropertyValueFactory<>("Id"));
+                            status.setCellValueFactory(
+                                    new PropertyValueFactory<>("status"));
+                            email.setCellValueFactory(new PropertyValueFactory<>("email"));
+                            tab.refresh();
                         }
 
-                        assert tab != null : "fx:id=\"tab\" was not injected: check your FXML ";
-                        Name.setCellValueFactory(
-                                new PropertyValueFactory<>("Name"));
-                        id.setCellValueFactory(
-                                new PropertyValueFactory<>("Id"));
-                        email.setCellValueFactory(new PropertyValueFactory<>("email"));
-                        tab.refresh();
+                    } else {
+//                                not updated
+                        showAlert(Alert.AlertType.WARNING, parents.getScene().getWindow(), "ITEM COULDN'T BE REMOVED SUCCESSFULLY", "THE ITEM HAS NOT BEEN REMOVED SUCCESSFULLY");
+
                     }
 
-                } else {
-//                                not updated
-                    showAlert(Alert.AlertType.WARNING, parents.getScene().getWindow(), "ITEM COULDN'T BE REMOVED SUCCESSFULLY", "THE ITEM HAS NOT BEEN REMOVED SUCCESSFULLY");
-
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
+            } else {
+                System.out.println("I GUESS YOU STILL HAVE TO KEEP " + selectedEmployee.getName());
 
-            } catch (SQLException e) {
-                e.printStackTrace();
+            }
+
+        });
+        suspend.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                EmployeeMaster selectedEmployee = tab.getSelectionModel().getSelectedItem();
+
+                try {
+
+                    PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET status=? WHERE id=?");
+
+                    preparedStatement.setString(1, "suspended");
+                    preparedStatement.setString(2, selectedEmployee.getId());
+                    int updated = preparedStatement.executeUpdate();
+                    if (updated > 0) {
+//                                updated
+                        data = FXCollections.observableArrayList();
+                        if (existingemptab.isSelected()) {
+                            data = FXCollections.observableArrayList();
+                            Connection connection1 = getConnection();
+                            try {
+//                        DISPLAYING EMPLOYEES
+                                if (connection1 != null) {
+                                    PreparedStatement statement = connection1.prepareStatement("SELECT * FROM users where admin=?");
+                                    statement.setBoolean(1, false);
+                                    ResultSet resultSet = statement.executeQuery();
+                                    while (resultSet.next()) {
+                                        EmployeeMaster employeeMaster = new EmployeeMaster();
+                                        employeeMaster.setName(resultSet.getString("employeename"));
+                                        employeeMaster.setEmail(resultSet.getString("email"));
+                                        employeeMaster.setId(resultSet.getString("id"));
+                                        employeeMaster.setStatus(resultSet.getString("status"));
+
+                                        data.add(employeeMaster);
+                                    }
+                                    tab.setItems(data);
+                                }
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+
+                            assert tab != null : "fx:id=\"tab\" was not injected: check your FXML ";
+                            Name.setCellValueFactory(
+                                    new PropertyValueFactory<>("Name"));
+                            id.setCellValueFactory(
+                                    new PropertyValueFactory<>("Id"));
+                            status.setCellValueFactory(
+                                    new PropertyValueFactory<>("status"));
+                            email.setCellValueFactory(new PropertyValueFactory<>("email"));
+                            tab.refresh();
+                        }
+
+                    } else {
+//                                not updated
+                        showAlert(Alert.AlertType.WARNING, parents.getScene().getWindow(), "ITEM COULDN'T BE REMOVED SUCCESSFULLY", "THE ITEM HAS NOT BEEN REMOVED SUCCESSFULLY");
+
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -213,9 +290,10 @@ public class EmployeesController extends UtilityClass implements Initializable {
                             ResultSet resultSet = statement.executeQuery();
                             while (resultSet.next()) {
                                 EmployeeMaster employeeMaster = new EmployeeMaster();
-                                employeeMaster.Name.set(resultSet.getString("employeename"));
-                                employeeMaster.email.set(resultSet.getString("email"));
-                                employeeMaster.Id.set(resultSet.getString("id"));
+                                employeeMaster.setName(resultSet.getString("employeename"));
+                                employeeMaster.setEmail(resultSet.getString("email"));
+                                employeeMaster.setId(resultSet.getString("id"));
+                                employeeMaster.setStatus(resultSet.getString("status"));
                                 data.add(employeeMaster);
                             }
                             tab.setItems(data);
@@ -229,6 +307,8 @@ public class EmployeesController extends UtilityClass implements Initializable {
                             new PropertyValueFactory<>("Name"));
                     id.setCellValueFactory(
                             new PropertyValueFactory<>("Id"));
+                    status.setCellValueFactory(
+                            new PropertyValueFactory<>("status"));
                     email.setCellValueFactory(new PropertyValueFactory<>("email"));
                     tab.refresh();
                 }
@@ -459,6 +539,24 @@ public class EmployeesController extends UtilityClass implements Initializable {
 
     public TableColumn<EmployeeMaster, String> getEmail() {
         return email;
+    }
+
+    public TableColumn<EmployeeMaster, String> getStatus() {
+        return status;
+    }
+
+    public EmployeesController setStatus(TableColumn<EmployeeMaster, String> status) {
+        this.status = status;
+        return this;
+    }
+
+    public Button getSuspend() {
+        return suspend;
+    }
+
+    public EmployeesController setSuspend(Button suspend) {
+        this.suspend = suspend;
+        return this;
     }
 
     public void setEmail(TableColumn<EmployeeMaster, String> email) {

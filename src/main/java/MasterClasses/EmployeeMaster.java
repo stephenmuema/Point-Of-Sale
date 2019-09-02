@@ -10,6 +10,44 @@ public class EmployeeMaster {
     public SimpleStringProperty dateAdded = new SimpleStringProperty();
     public SimpleStringProperty number = new SimpleStringProperty();
 
+    public SimpleStringProperty status = new SimpleStringProperty();
+
+    public SimpleStringProperty idProperty() {
+        return Id;
+    }
+
+    public SimpleStringProperty nameProperty() {
+        return Name;
+    }
+
+    public SimpleStringProperty storeLocationProperty() {
+        return storeLocation;
+    }
+
+    public SimpleStringProperty emailProperty() {
+        return email;
+    }
+
+    public SimpleStringProperty dateAddedProperty() {
+        return dateAdded;
+    }
+
+    public SimpleStringProperty numberProperty() {
+        return number;
+    }
+
+    public String getStatus() {
+        return status.get();
+    }
+
+    public void setStatus(String status) {
+        this.status.set(status);
+    }
+
+    public SimpleStringProperty statusProperty() {
+        return status;
+    }
+
     public String getDateAdded() {
         return dateAdded.get();
     }

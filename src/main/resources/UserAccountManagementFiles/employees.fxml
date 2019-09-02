@@ -48,8 +48,7 @@
                     <AnchorPane prefHeight="611.0" prefWidth="311.0" styleClass="subPanel">
                         <children>
                             <Label fx:id="clock" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0"
-                                   layoutY="241.0"
-                                   prefHeight="66.0" prefWidth="226.0" text="time">
+                                   layoutY="241.0" prefHeight="66.0" prefWidth="226.0" text="time">
                                 <font>
                                     <Font name="Gabriola" size="44.0"/>
                                 </font>
@@ -66,8 +65,7 @@
                                 </textFill>
                             </Label>
                             <Button fx:id="home" layoutX="51.0" layoutY="431.0" mnemonicParsing="false"
-                                    prefHeight="66.0"
-                                    prefWidth="176.0" styleClass="buttonorange" text="HOME"/>
+                                    prefHeight="66.0" prefWidth="176.0" styleClass="buttonorange" text="HOME"/>
                         </children>
                     </AnchorPane>
                     <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="686.0" prefWidth="895.0"
@@ -80,8 +78,7 @@
                                 </font>
                             </Label>
                             <TabPane fx:id="tabpane" layoutX="14.0" layoutY="30.0" pickOnBounds="false"
-                                     prefHeight="616.0"
-                                     prefWidth="874.0" tabClosingPolicy="UNAVAILABLE">
+                                     prefHeight="616.0" prefWidth="874.0" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
                                     <Tab text="DOWNLOAD LISTS">
                                         <content>
@@ -91,8 +88,7 @@
                                                     <Button fx:id="sendtomail" layoutX="232.0" layoutY="390.0"
                                                             mnemonicParsing="false" prefHeight="61.0" prefWidth="411.0"
                                                             styleClass="buttongreen"
-                                                            text="SEND TO MY EMAIL AS SOFT COPY"
-                                                            textFill="#fffbfb">
+                                                            text="SEND TO MY EMAIL AS SOFT COPY" textFill="#fffbfb">
                                                         <font>
                                                             <Font name="Gabriola" size="28.0"/>
                                                         </font>
@@ -121,40 +117,44 @@
                                             </AnchorPane>
                                         </content>
                                     </Tab>
-                                    <Tab fx:id="existingemptab" text="MY EMPLOYEES">
+                                    <Tab fx:id="existingemptab" text="MY STAFF">
                                         <content>
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
                                                         prefWidth="200.0">
                                                 <children>
-                                                    <ScrollPane layoutX="11.0" layoutY="9.0" prefHeight="474.0"
-                                                                prefWidth="813.0">
+                                                    <ScrollPane layoutX="11.0" layoutY="9.0" prefHeight="479.0"
+                                                                prefWidth="827.0">
                                                         <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0"
-                                                                        prefHeight="473.0"
-                                                                        prefWidth="811.0">
+                                                                        prefHeight="473.0" prefWidth="830.0">
                                                                 <children>
                                                                     <TableView fx:id="tab" layoutY="1.0"
-                                                                               prefHeight="456.0"
-                                                                               prefWidth="811.0">
+                                                                               prefHeight="469.0" prefWidth="810.0">
                                                                         <placeholder>
                                                                             <Label text=""/>
                                                                         </placeholder>
                                                                         <columns>
                                                                             <TableColumn fx:id="Name" prefWidth="263.0"
                                                                                          text="NAME"/>
-                                                                            <TableColumn fx:id="email" prefWidth="335.0"
+                                                                            <TableColumn fx:id="email" prefWidth="240.0"
                                                                                          text="EMAIL"/>
-                                                                            <TableColumn fx:id="id" prefWidth="212.0"
+                                                                            <TableColumn fx:id="id" prefWidth="168.0"
                                                                                          text="ID NUMBER"/>
+                                                                            <TableColumn fx:id="status"
+                                                                                         prefWidth="138.0"
+                                                                                         text="STATUS"/>
                                                                         </columns>
                                                                     </TableView>
                                                                 </children>
                                                             </AnchorPane>
                                                         </content>
                                                     </ScrollPane>
-                                                    <Button fx:id="delete" layoutX="335.0" layoutY="519.0"
-                                                            mnemonicParsing="false" prefHeight="54.0" prefWidth="204.0"
-                                                            styleClass="buttonred" text="DELETE SELECTED DETAILS"/>
+                                                    <Button fx:id="delete" layoutX="39.0" layoutY="506.0"
+                                                            mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0"
+                                                            styleClass="buttonred" text="FIRE "/>
+                                                    <Button fx:id="suspend" layoutX="195.0" layoutY="506.0"
+                                                            mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0"
+                                                            styleClass="buttonorange" text="SUSPEND"/>
                                                 </children>
                                             </AnchorPane>
                                         </content>

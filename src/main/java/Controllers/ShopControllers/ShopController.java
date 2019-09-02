@@ -79,12 +79,12 @@ public class ShopController extends CartIdGenerator implements Initializable {
     public MenuItem helpMenu;
     public MenuItem stores;
     public MenuItem stocks;
-    ArrayList<CartMaster> arrayList = new ArrayList<CartMaster>();
+    private ArrayList<CartMaster> arrayList = new ArrayList<CartMaster>();
     private ObservableList<CartMaster> data;
     private int counter = 0;
     private String transID;
-    UtilityClass utilityClass = new UtilityClass();
-    Connection connection = utilityClass.getConnection();
+    private UtilityClass utilityClass = new UtilityClass();
+    private Connection connection = utilityClass.getConnection();
 
     private Connection connectionDbLocal = utilityClass.getConnectionDbLocal();
     private Statement statementLocal = null;
