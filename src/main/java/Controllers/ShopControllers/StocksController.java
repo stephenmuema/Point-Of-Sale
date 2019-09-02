@@ -21,7 +21,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
-import javafx.stage.Window;
 import javafx.util.Duration;
 import logging.LogClass;
 import org.apache.commons.io.FileUtils;
@@ -476,14 +475,6 @@ public class StocksController extends UtilityClass implements Initializable {
         Platform.exit();
     }
 
-    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.showAndWait();
-    }
 
     public MenuItem getLogout() {
         return logout;

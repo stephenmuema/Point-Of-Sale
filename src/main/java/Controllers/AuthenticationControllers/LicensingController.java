@@ -4,12 +4,10 @@ import Controllers.UtilityClass;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Window;
 import securityandtime.AesCipher;
 
 import java.awt.*;
@@ -349,12 +347,5 @@ public class LicensingController extends UtilityClass implements Initializable {
         System.exit(1);
     }
 
-    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.showAndWait();
-    }
+
 }

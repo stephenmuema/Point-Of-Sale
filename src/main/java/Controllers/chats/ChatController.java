@@ -1,6 +1,7 @@
 package Controllers.chats;
 
 import Controllers.UserAccountManagementControllers.IdleMonitor;
+import Controllers.UtilityClass;
 import MasterClasses.ChatMaster;
 import MasterClasses.OnlineUsersMaster;
 import javafx.event.Event;
@@ -19,7 +20,7 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class ChatController implements Initializable {
+public class ChatController extends UtilityClass implements Initializable {
     public ListView<MasterClasses.OnlineUsersMaster> userList;
     public Label onlineCountLabel;
     public ListView<MasterClasses.ChatMaster> chatPane;

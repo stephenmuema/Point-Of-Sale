@@ -33,7 +33,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Window;
 import javafx.util.Duration;
 import logging.LogClass;
 import org.apache.commons.io.FileUtils;
@@ -714,14 +713,6 @@ public class AddshopController extends UtilityClass implements Initializable {
         System.exit(0);
     }
 
-    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.showAndWait();
-    }
 
 
     public TableColumn<Storemaster, String> getStoreName() {

@@ -4,8 +4,10 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import securityandtime.CheckConn;
 import securityandtime.config;
@@ -130,6 +132,15 @@ public class UtilityClass {
 //        refresh every one second
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
+    }
+
+    public void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.showAndWait();
     }
 
 }

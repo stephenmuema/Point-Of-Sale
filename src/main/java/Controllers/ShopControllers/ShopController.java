@@ -31,7 +31,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 import javafx.util.Duration;
 import scanhandler.BarcodeScanner;
 import securityandtime.CheckConn;
@@ -330,7 +329,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
         if (!stringBuffer.toString().equals("")) {
 //            if bar code reads
             if (stringBuffer.toString().length() < 8) {
-                showAlert(Alert.AlertType.ERROR, shopPanel.getScene().getWindow(), "ERROR", "ERROR READING CODE");
+                utilityClass.showAlert(Alert.AlertType.ERROR, shopPanel.getScene().getWindow(), "ERROR", "ERROR READING CODE");
             } else {
                 zcode = stringBuffer.toString();
                 barcodetext.setText(zcode);
@@ -526,7 +525,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
     private void deletefromcart() {
         CartMaster store = cart.getSelectionModel().getSelectedItem();
         if (store == null) {
-            showAlert(Alert.AlertType.WARNING, shopPanel.getScene().getWindow(), "NO ITEM SELECTED", "SELECT ITEM TO REMOVE");
+            utilityClass.showAlert(Alert.AlertType.WARNING, shopPanel.getScene().getWindow(), "NO ITEM SELECTED", "SELECT ITEM TO REMOVE");
 
         } else {
             try {
@@ -538,10 +537,10 @@ public class ShopController extends CartIdGenerator implements Initializable {
                 if (updated > 0) {
                     tableLoad();
                 } else {
-                    showAlert(Alert.AlertType.WARNING, shopPanel.getScene().getWindow(), "ERROR", "EROR REMOVING ITEM");
+                    utilityClass.showAlert(Alert.AlertType.WARNING, shopPanel.getScene().getWindow(), "ERROR", "EROR REMOVING ITEM");
                 }
             } catch (Exception e) {
-                showAlert(Alert.AlertType.WARNING, shopPanel.getScene().getWindow(), "CONNECTION ERROR", "EROR REMOVING ITEM.CHECK YOUR CONNECTION TO THE SERVER");
+                utilityClass.showAlert(Alert.AlertType.WARNING, shopPanel.getScene().getWindow(), "CONNECTION ERROR", "EROR REMOVING ITEM.CHECK YOUR CONNECTION TO THE SERVER");
 
             }
         }
@@ -592,7 +591,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
 //        });
         clearb.setOnMouseClicked(event -> {
             clearCart();
-            showAlert(Alert.AlertType.INFORMATION, shopPanel.getScene().getWindow(), "CART CLEARED", "YOU HAVE CLEARED YOUR CART");
+            utilityClass.showAlert(Alert.AlertType.INFORMATION, shopPanel.getScene().getWindow(), "CART CLEARED", "YOU HAVE CLEARED YOUR CART");
         });
         logoutb.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -648,7 +647,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            showAlert(Alert.AlertType.INFORMATION, shopPanel.getScene().getWindow(), "SUCCESS", "HOLDING SUCCESSFULL");
+            utilityClass.showAlert(Alert.AlertType.INFORMATION, shopPanel.getScene().getWindow(), "SUCCESS", "HOLDING SUCCESSFULL");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -776,14 +775,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
     }
 
     //method to show an alert
-    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.showAndWait();
-    }
+
 
     public AnchorPane getShopPanel() {
         return shopPanel;

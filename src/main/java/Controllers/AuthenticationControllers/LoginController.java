@@ -14,7 +14,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
-import javafx.stage.Window;
 import logging.LogClass;
 import securityandtime.Security;
 import securityandtime.config;
@@ -223,15 +222,7 @@ public class LoginController extends UtilityClass implements Initializable {
     }
 
     //
-//dispaly alert
-    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.showAndWait();
-    }
+
 
     public Label getClock() {
         return clock;

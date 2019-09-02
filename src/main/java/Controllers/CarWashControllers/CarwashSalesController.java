@@ -30,7 +30,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 import javafx.util.Duration;
 import securityandtime.config;
 
@@ -293,14 +292,6 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
         });
     }
 
-    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.showAndWait();
-    }
 
     private void loadTab() {
         data = FXCollections.observableArrayList();

@@ -12,7 +12,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Window;
 import logging.LogClass;
 import securityandtime.Security;
 
@@ -215,14 +214,7 @@ public class SignupController extends UtilityClass implements Initializable {
     public TextField getKey() {
         return key;
     }
-    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.showAndWait();
-    }
+
 
     public Label getClock() {
         return clock;

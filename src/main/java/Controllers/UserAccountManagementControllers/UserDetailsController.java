@@ -1,6 +1,5 @@
 package Controllers.UserAccountManagementControllers;
 
-import Controllers.UtilityClass;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class UserDetailsController extends UtilityClass implements Initializable {
+public class UserDetailsController extends Controllers.UtilityClass implements Initializable {
     public Button updateb;
     public Label name, email;
     private String namestr, emailstr;

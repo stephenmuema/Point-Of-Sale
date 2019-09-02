@@ -38,7 +38,13 @@ public class ReceiptMasterClass {
     }
 
     public ReceiptMasterClass() {
-        StringBuffer billBuffer = new StringBuffer();
+        StringBuilder billStringBuilder = new StringBuilder();
+        billStringBuilder.append("NAME").append("\t\t    ").
+                append("PRICE").append("\t\t    ").
+                append("AMOUNT").append("\t\t    ").
+                append("PRICE").append("\n\n");
+//        billStringBuilder.append(System.getProperty("line.separator"));
+        billStringBuilder.append("\n");
         while (true) {
             try {
                 if (!resultSet.next()) break;
@@ -46,49 +52,45 @@ public class ReceiptMasterClass {
                 e.printStackTrace();
             }
             try {
-                billBuffer.append(resultSet.getString("itemname")).append("\t\t    ").
+                billStringBuilder.append(resultSet.getString("itemname")).append("\t\t    ").
                         append(resultSet.getString("itemprice")).append("\t\t    ").
                         append(resultSet.getString("amount")).append("\t\t    ").
                         append(resultSet.getString("cumulativeprice")).append("\n\n");
-                billBuffer.append(System.getProperty("line.separator"));
+                billStringBuilder.append(System.getProperty("line.separator"));
+                billStringBuilder.append("\n");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        printCard(billBuffer.toString());
+        printCard(billStringBuilder.toString());
     }
 
-    public boolean printCard(final String bill) {
+    private void printCard(final String bill) {
         final PrinterJob job = PrinterJob.getPrinterJob();
 
 
-        Printable contentToPrint = new Printable() {
-            @Override
-            public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
+        Printable contentToPrint = (graphics, pageFormat, pageIndex) -> {
 
 
-                Graphics2D g2d = (Graphics2D) graphics;
+            Graphics2D g2d = (Graphics2D) graphics;
 
-                g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
-                g2d.setFont(new Font("Algerian", Font.BOLD, 10));
+            g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+            g2d.setFont(new Font("Algerian", Font.BOLD, 10));
 
-                String[] billz = bill.split(";");
-                int y = 15;
-                //draw each String in a separate line
-                for (String s : billz) {
-                    graphics.drawString(s, 5, y);
-                    y = y + 15;
-                }
-
-                if (pageIndex > 0) {
-                    return NO_SUCH_PAGE;
-                } //Only one page
-
-
-                return PAGE_EXISTS;
+            String[] billz = bill.split("\n");
+            int y = 15;
+            //draw each String in a separate line
+            for (String s : billz) {
+                graphics.drawString(s, 5, y);
+                y = y + 15;
             }
 
+            if (pageIndex > 0) {
+                return Printable.NO_SUCH_PAGE;
+            } //Only one page
 
+
+            return Printable.PAGE_EXISTS;
         };
         PageFormat pageFormat = new PageFormat();
         pageFormat.setOrientation(PageFormat.PORTRAIT);
@@ -107,7 +109,6 @@ public class ReceiptMasterClass {
         } catch (PrinterException e) {
             System.err.println(e.getMessage());
         }
-        return true;
     }
 
 }

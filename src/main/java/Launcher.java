@@ -140,13 +140,13 @@ public class Launcher extends Application {
                         System.exit(123);
                     }
                 });
-                stage.setMaxWidth(1024.0);
-                stage.setMaxHeight(600.0);
+
 //        APP TITLE
                 stage.setTitle("Nanotech Softwares Point of Sale 2019  (v 1.1) Licensing");
                 stage.setMaxWidth(1200.0);
                 stage.setMaxHeight(700.0);
                 stage.setMaximized(false);
+
                 stage.setFullScreen(false);
                 Launcher.stage = stage;
                 stage.show();
@@ -166,14 +166,13 @@ public class Launcher extends Application {
                 stage.getIcons().add(new Image("images/logo.png"));
 //        todo change title later
                 stage.setTitle("Nanotech Softwares Point of Sale 2019  (v 1.1)");
-                stage.setMaxWidth(1024.0);
-                stage.setMaxHeight(600.0);
+
 //        APP TITLE
-                stage.setMaxWidth(1200.0);
-                stage.setMaxHeight(700.0);
+
                 stage.setWidth(1200.0);
                 stage.setHeight(700.0);
                 stage.setMaximized(false);
+
                 stage.setFullScreen(false);
                 stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                     @Override
@@ -204,8 +203,7 @@ public class Launcher extends Application {
                 }
             });
 //            0700758591
-            stage.setMaxWidth(1024.0);
-            stage.setMaxHeight(600.0);
+
 //        APP TITLE
             stage.setTitle("Nanotech Softwares Point of Sale 2019  (v 1.1) Licensing");
             stage.setMaxWidth(1200.0);

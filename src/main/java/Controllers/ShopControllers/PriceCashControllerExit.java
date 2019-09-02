@@ -16,7 +16,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.util.Duration;
 import securityandtime.config;
 
@@ -210,7 +209,7 @@ public class PriceCashControllerExit extends UtilityClass implements Initializab
                     statement.setString(4, String.valueOf(pricevalue));
                     statement.setString(5, cash.getText());
                     statement.setString(6, "CASH");
-                    statement.setString(7, "TRUE");
+                    statement.setBoolean(7, true);
 
                     statement.execute();
                 } catch (SQLException e) {
@@ -220,7 +219,7 @@ public class PriceCashControllerExit extends UtilityClass implements Initializab
 
                 completedPayment = false;
                 //todo print a receipt to customer
-                ReceiptMasterClass receiptMasterClass = new ReceiptMasterClass();
+                new ReceiptMasterClass();
 
 
                 pricevalue = 0;
@@ -263,14 +262,6 @@ public class PriceCashControllerExit extends UtilityClass implements Initializab
         });
     }
 
-    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.showAndWait();
-    }
 
     public Label getPrice() {
         return price;
@@ -363,9 +354,6 @@ public class PriceCashControllerExit extends UtilityClass implements Initializab
         return this;
     }
 
-    public Connection getConnectionDbLocal() {
-        return connectionDbLocal;
-    }
 
     public PriceCashControllerExit setConnectionDbLocal(Connection connectionDbLocal) {
         this.connectionDbLocal = connectionDbLocal;

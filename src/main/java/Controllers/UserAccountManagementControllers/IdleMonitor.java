@@ -1,5 +1,6 @@
 package Controllers.UserAccountManagementControllers;
 
+import Controllers.UtilityClass;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -10,7 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.util.Duration;
 
-public class IdleMonitor {
+public class IdleMonitor extends UtilityClass {
 
     private final Timeline idleTimeline;
 

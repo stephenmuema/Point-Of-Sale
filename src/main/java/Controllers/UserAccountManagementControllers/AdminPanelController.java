@@ -11,10 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-import javafx.stage.Window;
 import javafx.util.Duration;
 import securityandtime.config;
 
@@ -78,14 +76,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         });
     }
 
-    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.showAndWait();
-    }
+
 
     private void buttonClick() {
 
@@ -152,6 +143,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         });
         audits.setOnMouseClicked(event -> {
             try {
+                AdminPanel.getChildren().removeAll();
                 AdminPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/audits.fxml")))));
             } catch (IOException e) {
                 e.printStackTrace();

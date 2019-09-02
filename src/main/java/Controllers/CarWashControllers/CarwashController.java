@@ -25,7 +25,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Window;
 import javafx.util.Duration;
 import securityandtime.config;
 
@@ -444,14 +443,6 @@ public class CarwashController extends UtilityClass implements Initializable {
 
     }
 
-    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.showAndWait();
-    }
 
     private void populateTable() {
         data = FXCollections.observableArrayList();

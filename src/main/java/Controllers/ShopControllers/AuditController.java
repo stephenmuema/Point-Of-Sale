@@ -23,7 +23,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Window;
 import javafx.util.Duration;
 import securityandtime.config;
 
@@ -232,9 +231,7 @@ public class AuditController extends UtilityClass implements Initializable {
                 try {
                     //todo change link to supplier site
                     Desktop.getDesktop().browse(new URL(site).toURI());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (URISyntaxException e) {
+                } catch (IOException | URISyntaxException e) {
                     e.printStackTrace();
                 }
             }
@@ -256,9 +253,7 @@ public class AuditController extends UtilityClass implements Initializable {
             try {
                 //todo change link to documentation page
                 Desktop.getDesktop().browse(new URL(site).toURI());
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (URISyntaxException e) {
+            } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
             }
         });
@@ -280,14 +275,7 @@ public class AuditController extends UtilityClass implements Initializable {
 //        costsTableAndInput();// todo v1.2
     }
 
-    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.showAndWait();
-    }
+
 
     // todo v1.2
 
@@ -442,8 +430,11 @@ public class AuditController extends UtilityClass implements Initializable {
         try {
 //                        DISPLAYING EMPLOYEES
             if (connection != null) {
-                PreparedStatement statement = connection.prepareStatement("SELECT * FROM users ");
-//                                statement.setString(1, String.valueOf(key.get("key")));
+                PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE admin=? and status=? and activated=?");
+
+                statement.setBoolean(1, false);
+                statement.setString(2, "active");
+                statement.setInt(3, 1);
 //                                statement.setBoolean(2, false);
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
