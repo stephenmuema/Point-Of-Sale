@@ -35,7 +35,12 @@ public class SplashScreenController implements Initializable {
             if (Objects.equals(license.get("name"), "Trial license")) {
                 date.setTime(Long.parseLong(license.get("time")) + System.currentTimeMillis());
 
-                owner.setText(license.get("name") + " " + ".Expires on " + new SimpleDateFormat("yyyy/MM/dd").format(date));
+                date.setTime(Long.parseLong(license.get("time")) + System.currentTimeMillis());
+
+                String s2 = new SimpleDateFormat("yyyy/MM/dd").format(date);
+
+                owner.setText("Registered to " + license.get("name"));
+                expiry.setText(s2);
             } else {
                 date.setTime(Long.parseLong(license.get("time")) + System.currentTimeMillis());
 
