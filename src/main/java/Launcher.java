@@ -36,7 +36,7 @@ import static securityandtime.config.licensepath;
 public class Launcher extends Application {
 
     static Stage stage = null;
-    static UtilityClass utilityClass = new UtilityClass();
+    private static UtilityClass utilityClass = new UtilityClass();
 
     public static void main(String[] args) {
         Launcher.CallerMethod();
@@ -70,7 +70,6 @@ public class Launcher extends Application {
             statement.setQueryTimeout(30); // set timeout to 30 sec.
             String heldTransactionsList = "CREATE TABLE IF NOT EXISTS heldTransactionList (" + "id INTEGER primary key autoincrement ,name TEXT ,transactionid text)";
             statement.executeUpdate(heldTransactionsList);
-
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS settings (" + "id INTEGER primary key autoincrement ,owner TEXT ,expirydate text,creationdate text,type text)");
 
 
@@ -125,12 +124,13 @@ public class Launcher extends Application {
             long time = CheckConn.timelogin().getTime() / 1000;//get current time
 //            //System.out.println(time + Long.parseLong(builder.toString().split(":::")[2]));
             if (time > Long.parseLong(builder.toString().split(":::")[2])) {
-                Parent root = FXMLLoader.load(getClass().getResource("../resources/AuthenticationFiles/licensingPanel.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/licensingPanel.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 Media hit = new Media(getClass().getClassLoader().getResource("sounds/notification.wav").toString());
                 MediaPlayer mediaPlayer = new MediaPlayer(hit);
                 mediaPlayer.play();
+                System.out.println("Expired license");
                 stage.initStyle(StageStyle.DECORATED);
                 stage.getIcons().add(new Image("images/logo.png"));
                 stage.setOnCloseRequest(new EventHandler<WindowEvent>() {

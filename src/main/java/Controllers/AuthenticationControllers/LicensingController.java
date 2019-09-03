@@ -3,6 +3,7 @@ package Controllers.AuthenticationControllers;
 import Controllers.UtilityClass;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -63,7 +64,7 @@ public class LicensingController extends UtilityClass implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //continue licensing from here
-        licensearea.setStyle("-fx-text-inner-color: #13ff97;");
+        licensearea.setStyle("-fx-text-inner-color: #0d1dff;");
         buttonListeners();
         utilities();
 
@@ -170,7 +171,7 @@ public class LicensingController extends UtilityClass implements Initializable {
                     String fileAsString = sb.toString();
 
                     licensearea.setText(fileAsString);
-                    confirmed();
+//                    confirmed();
                     success = true;
                 }
                 /* let the source know whether the string was successfully
@@ -298,60 +299,63 @@ public class LicensingController extends UtilityClass implements Initializable {
 
     private void confirmed() {
         String license = licensearea.getText();
-        String key = "26kozQaKwRuNJ24t26kozQaKwRuNJ24t";
-        decryptedString = AesCipher.decrypt(key, license.substring(0, license.length() - 50000)).getData();
-        System.out.println("Key:" + key);
-        try {
-            FileOutputStream fileOutputStream = null;
+        if (license.length() <= 50000) {
+            showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "INVALID LICENSE FILE");
+        } else {
+            String key = "26kozQaKwRuNJ24t26kozQaKwRuNJ24t";
+            setDecryptedString(AesCipher.decrypt(key, license.substring(0, license.length() - 50000)).getData());
+            System.out.println("Key:" + key);
             try {
-                fileOutputStream = new FileOutputStream(licensepath);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            try {
-                assert fileOutputStream != null;
-                fileOutputStream.write(decryptedString.getBytes());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                fileOutputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS!!", "lICENSE ACTIVATION WAS SUCCESSFULL");
-            if (decryptedString.split(":::")[0].equals("Trial license")) {
-                boolean check = statementLocal.execute("INSERT INTO settings(owner, expirydate,creationdate,type) VALUES ('" + decryptedString.split(":::")[0] + "###" + decryptedString.split(":::")[1] + "','" + Integer.parseInt(decryptedString.split(":::")[2]) + "','" + decryptedString.split(":::")[3] + "','Trial license')");
-                if (throwables.size() > 0) {
-//            showAlert(Alert.AlertType.ERROR,panel.getScene().getWindow(),"ERROR","PLEASE CHECK YOUR LICENSE");
-                    throwables.clear();
+                FileOutputStream fileOutputStream = null;
+                try {
+                    fileOutputStream = new FileOutputStream(licensepath);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
-                licensearea.clear();
-                //System.out.println(decryptedString.split(":::")[0]);
-                //System.out.println(decryptedString.split(":::")[1]);
-                //System.out.println(decryptedString.split(":::")[2]);//expiry
-                //System.out.println(decryptedString.split(":::")[3]);
-                Platform.exit();
-                System.exit(1);
-
-            } else {
-                boolean check = statementLocal.execute("INSERT INTO settings(owner, expirydate,creationdate,type) VALUES ('" + decryptedString.split(":::")[0] + "###" + decryptedString.split(":::")[1] + "','" + Integer.parseInt(decryptedString.split(":::")[2]) + "','" + decryptedString.split(":::")[3] + "','Annual license')");
-
-                if (throwables.size() > 0) {
-//            showAlert(Alert.AlertType.ERROR,panel.getScene().getWindow(),"ERROR","PLEASE CHECK YOUR LICENSE");
-                    throwables.clear();
+                try {
+                    assert fileOutputStream != null;
+                    fileOutputStream.write(decryptedString.getBytes());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                licensearea.clear();
-                //System.out.println(decryptedString.split(":::")[0]);
-                //System.out.println(decryptedString.split(":::")[1]);
-                //System.out.println(decryptedString.split(":::")[2]);//expiry
-                //System.out.println(decryptedString.split(":::")[3]);
-                Platform.exit();
-                System.exit(1);
-            }
+                try {
+                    fileOutputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS!!", "lICENSE ACTIVATION WAS SUCCESSFULL");
+                if (getDecryptedString().split(":::")[0].equals("Trial license")) {
+                    boolean check = statementLocal.execute("INSERT INTO settings(owner, expirydate,creationdate,type) VALUES ('" + decryptedString.split(":::")[0] + "###" + decryptedString.split(":::")[1] + "','" + Integer.parseInt(decryptedString.split(":::")[2]) + "','" + decryptedString.split(":::")[3] + "','Trial license')");
+                    if (throwables.size() > 0) {
+//            showAlert(Alert.AlertType.ERROR,panel.getScene().getWindow(),"ERROR","PLEASE CHECK YOUR LICENSE");
+                        throwables.clear();
+                    }
+                    getLicensearea().clear();
+                    //System.out.println(decryptedString.split(":::")[0]);
+                    //System.out.println(decryptedString.split(":::")[1]);
+                    //System.out.println(decryptedString.split(":::")[2]);//expiry
+                    //System.out.println(decryptedString.split(":::")[3]);
+                    Platform.exit();
+                    System.exit(1);
+
+                } else {
+                    boolean check = statementLocal.execute("INSERT INTO settings(owner, expirydate,creationdate,type) VALUES ('" + decryptedString.split(":::")[0] + "###" + decryptedString.split(":::")[1] + "','" + Integer.parseInt(decryptedString.split(":::")[2]) + "','" + decryptedString.split(":::")[3] + "','Annual license')");
+
+                    if (throwables.size() > 0) {
+//            showAlert(Alert.AlertType.ERROR,panel.getScene().getWindow(),"ERROR","PLEASE CHECK YOUR LICENSE");
+                        throwables.clear();
+                    }
+                    licensearea.clear();
+                    //System.out.println(decryptedString.split(":::")[0]);
+                    //System.out.println(decryptedString.split(":::")[1]);
+                    //System.out.println(decryptedString.split(":::")[2]);//expiry
+                    //System.out.println(decryptedString.split(":::")[3]);
+                    Platform.exit();
+                    System.exit(1);
+                }
 
 //            todo check if a viable license has been created
-            //if(check){
+                //if(check){
 //    showAlert(Alert.AlertType.INFORMATION,panel.getScene().getWindow(),"SUCCESS","LICENSE REGISTRATION WAS SUCCESSFULL.RESTART THE APPLICATION FOR IT TO TAKE EFFECT");
 //
 //
@@ -361,14 +365,20 @@ public class LicensingController extends UtilityClass implements Initializable {
 //
 //}
 
-        } catch (SQLException e) {
+            } catch (SQLException e) {
 //            showAlert(Alert.AlertType.ERROR,panel.getScene().getWindow(),"ERROR","PLEASE CHECK YOUR LICENSE");
 
-            e.printStackTrace();
+                e.printStackTrace();
+            }
         }
 
-
     }
+
+    @FXML
+    private void close_app(MouseEvent event) {
+        System.exit(0);
+    }
+
 
 
 }
