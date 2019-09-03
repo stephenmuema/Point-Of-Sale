@@ -6,7 +6,7 @@
 <?import java.net.URL?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0"
-            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns="http://javafx.com/javafx/1"
             fx:controller="Controllers.AuthenticationControllers.LicensingController">
     <children>
         <AnchorPane prefHeight="214.0" prefWidth="1200.0" styleClass="mainPanel">

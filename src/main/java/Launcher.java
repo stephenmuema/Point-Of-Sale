@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import logging.LogClass;
+import securityandtime.AesCrypto;
 import securityandtime.CheckConn;
 
 import java.io.File;
@@ -27,8 +28,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 
-import static securityandtime.config.license;
-import static securityandtime.config.licensepath;
+import static securityandtime.config.*;
 
 /**
  * @author Steve muema
@@ -107,23 +107,21 @@ public class Launcher extends Application {
         if (exists) {
 //            GO TO SPLASHSCREEN
             FileInputStream fileInputStream = new FileInputStream(licensepath);
+
             byte[] fileContent = new byte[(int) file.length()];
 
             int i = fileInputStream.read(fileContent);
 //            System.out.println("bytes read are " + i);
+            StringBuilder builderEnc = new StringBuilder();
             StringBuilder builder = new StringBuilder();
 
             for (byte b : fileContent
             ) {
-                builder.append((char) b);
+                builderEnc.append((char) b);
 //                System.out.print((char) b);
             }
-
-
-
-            long time = CheckConn.timelogin().getTime() / 1000;//get current time
-//            //System.out.println(time + Long.parseLong(builder.toString().split(":::")[2]));
-            if (time > Long.parseLong(builder.toString().split(":::")[2])) {
+            String decrypt = AesCrypto.decrypt(encryptionkey, builderEnc.toString());
+            if (throwables.containsKey("invalidlicense")) {
                 Parent root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/licensingPanel.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
@@ -151,40 +149,75 @@ public class Launcher extends Application {
                 Launcher.stage = stage;
                 stage.show();
             } else {
-                license.put("name", builder.toString().split(":::")[0]);
-                license.put("email", builder.toString().split(":::")[1]);
-                license.put("time", builder.toString().split(":::")[2]);
+                System.out.println(decrypt);
+                builder.append(decrypt);
 
-                fileInputStream.close();
-                AnchorPane root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/SplashScreen.fxml"));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                Media hit = new Media(Objects.requireNonNull(getClass().getClassLoader().getResource("sounds/notification.wav")).toString());
-                MediaPlayer mediaPlayer = new MediaPlayer(hit);
-                mediaPlayer.play();
-                stage.initStyle(StageStyle.DECORATED);
-                stage.getIcons().add(new Image("images/logo.png"));
+
+                long time = CheckConn.timelogin().getTime() / 1000;//get current time
+//            //System.out.println(time + Long.parseLong(builder.toString().split(":::")[2]));
+                if (time > Long.parseLong(builder.toString().split(":::")[2])) {
+                    Parent root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/licensingPanel.fxml"));
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    Media hit = new Media(getClass().getClassLoader().getResource("sounds/notification.wav").toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(hit);
+                    mediaPlayer.play();
+                    System.out.println("Expired license");
+                    stage.initStyle(StageStyle.DECORATED);
+                    stage.getIcons().add(new Image("images/logo.png"));
+                    stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                        @Override
+                        public void handle(WindowEvent event) {
+                            Platform.exit();
+                            System.exit(123);
+                        }
+                    });
+
+//        APP TITLE
+                    stage.setTitle("Nanotech Softwares Point of Sale 2019  (v 1.1) Licensing");
+                    stage.setMaxWidth(1200.0);
+                    stage.setMaxHeight(700.0);
+                    stage.setMaximized(false);
+
+                    stage.setFullScreen(false);
+                    Launcher.stage = stage;
+                    stage.show();
+                } else {
+                    license.put("name", builder.toString().split(":::")[0]);
+                    license.put("email", builder.toString().split(":::")[1]);
+                    license.put("time", builder.toString().split(":::")[2]);
+
+                    fileInputStream.close();
+                    AnchorPane root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/SplashScreen.fxml"));
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    Media hit = new Media(Objects.requireNonNull(getClass().getClassLoader().getResource("sounds/notification.wav")).toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(hit);
+                    mediaPlayer.play();
+                    stage.initStyle(StageStyle.DECORATED);
+                    stage.getIcons().add(new Image("images/logo.png"));
 //        todo change title later
-                stage.setTitle("Nanotech Softwares Point of Sale 2019  (v 1.1)");
+                    stage.setTitle("Nanotech Softwares Point of Sale 2019  (v 1.1)");
 
 //        APP TITLE
 
-                stage.setWidth(1200.0);
-                stage.setHeight(700.0);
-                stage.setMaxWidth(1200.0);
-                stage.setMaxHeight(700.0);
-                stage.setMaximized(false);
+                    stage.setWidth(1200.0);
+                    stage.setHeight(700.0);
+                    stage.setMaxWidth(1200.0);
+                    stage.setMaxHeight(700.0);
+                    stage.setMaximized(false);
 
-                stage.setFullScreen(false);
-                stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                    @Override
-                    public void handle(WindowEvent event) {
-                        Platform.exit();
-                        System.exit(123);
-                    }
-                });
-                Launcher.stage = stage;
-                stage.show();
+                    stage.setFullScreen(false);
+                    stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                        @Override
+                        public void handle(WindowEvent event) {
+                            Platform.exit();
+                            System.exit(123);
+                        }
+                    });
+                    Launcher.stage = stage;
+                    stage.show();
+                }
             }
 //            todo distinguish admin account from cashier account
         } else {

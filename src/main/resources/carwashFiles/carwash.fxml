@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="parents" prefHeight="700.0" prefWidth="1200.0"
-            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Controllers.CarWashControllers.CarwashController">
+            xmlns="http://javafx.com/javafx/1" fx:controller="Controllers.CarWashControllers.CarwashController">
     <VBox>
         <children>
             <MenuBar>

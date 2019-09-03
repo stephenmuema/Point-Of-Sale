@@ -11,10 +11,10 @@ public interface config {//host,user,password,des,port
     HashMap<String, Boolean> login = new HashMap<>();
     HashMap<String, String> user = new HashMap<>();
     IdentityHashMap<String, String> key = new IdentityHashMap<>();
-    String localCartDb = "jdbc:sqlite:shoppingCartDb.db";
+    String localCartDb = "jdbc:sqlite:shoppingCartDb.dll";
     HashMap<String, String> cartid = new HashMap<String, String>();
     HashMap<String, Integer> pricegot = new HashMap<String, Integer>();
-    String licensepath = "D:\\license1.npos";
+    String licensepath = "license.dll";
     HashMap<String, Throwable> throwables = new HashMap<>();
     HashMap<String, String> license = new HashMap<>();
     String site = "https://nanotechsoftwares.co.ke";
@@ -22,5 +22,8 @@ public interface config {//host,user,password,des,port
     String sitedocs = "https://nanotechsoftwares.co.ke";
     String supplierSite = "http://activationsite/";
     HashMap<String, String> action = new HashMap<>();
+    String encryptionkey = "0123456789abcdef";
+    String initVector = "abcdef9876543210";
+
 
 }

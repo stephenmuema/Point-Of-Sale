@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="scanner" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/1"
             fx:controller="Controllers.ShopControllers.scannerController">
     <VBox>
         <children>

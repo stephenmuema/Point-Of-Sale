@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="parent" prefHeight="700.0" prefWidth="1200.0"
-            styleClass="form" xmlns="http://javafx.com/javafx/11.0.1"
+            styleClass="form" xmlns="http://javafx.com/javafx/1"
             fx:controller="Controllers.AuthenticationControllers.SignupController">
     <AnchorPane layoutX="67.0" layoutY="8.0" prefHeight="392.0" prefWidth="200.0"/>
     <AnchorPane layoutX="306.0" layoutY="57.0" prefHeight="492.0" prefWidth="667.0" styleClass="forminner">

@@ -12,6 +12,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import securityandtime.AesCipher;
+import securityandtime.AesCrypto;
 import securityandtime.BoardListener;
 
 import java.awt.*;
@@ -302,6 +303,7 @@ public class LicensingController extends UtilityClass implements Initializable {
         if (license.length() <= 50000) {
             showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "INVALID LICENSE FILE");
         } else {
+            AesCrypto aesCrypto = new AesCrypto();
             String key = "26kozQaKwRuNJ24t26kozQaKwRuNJ24t";
             setDecryptedString(AesCipher.decrypt(key, license.substring(0, license.length() - 50000)).getData());
             System.out.println("Key:" + key);
@@ -314,7 +316,7 @@ public class LicensingController extends UtilityClass implements Initializable {
                 }
                 try {
                     assert fileOutputStream != null;
-                    fileOutputStream.write(decryptedString.getBytes());
+                    fileOutputStream.write(AesCrypto.encrypt(encryptionkey, initVector, decryptedString).getBytes());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
