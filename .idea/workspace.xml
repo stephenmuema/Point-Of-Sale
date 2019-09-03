@@ -6,9 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -770,7 +768,7 @@
       <workItem from="1567436000363" duration="8046000" />
       <workItem from="1567490624848" duration="4991000" />
       <workItem from="1567496762777" duration="6534000" />
-      <workItem from="1567504308248" duration="6772000" />
+      <workItem from="1567504308248" duration="7483000" />
     </task>
     <task id="LOCAL-00001" summary="before shopping cart">
       <created>1552048112305</created>
@@ -940,11 +938,18 @@
       <option name="project" value="LOCAL" />
       <updated>1567510586690</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="fx errors fixed">
+      <created>1567512153982</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1567512153982</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="928559000" />
+    <option name="totallyTimeSpent" value="929270000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -957,9 +962,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8519794" visible="true" weight="0.22087745" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8519794" visible="true" weight="0.22087745" />
       <window_info id="Structure" order="1" sideWeight="0.14802065" side_tool="true" weight="0.19288956" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -969,13 +973,13 @@
       <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.49092284" weight="0.33333334" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.2962963" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.48789713" visible="true" weight="0.11272141" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.48789713" weight="0.11272141" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.19645733" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.57937807" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.049099836" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.25764894" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5121029" side_tool="true" weight="0.1884058" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.2979066" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
