@@ -71,7 +71,7 @@ public class Launcher extends Application {
             String heldTransactionsList = "CREATE TABLE IF NOT EXISTS heldTransactionList (" + "id INTEGER primary key autoincrement ,name TEXT ,transactionid text)";
             statement.executeUpdate(heldTransactionsList);
 
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS settings (" + "id INTEGER primary key autoincrement ,owner TEXT ,expirydate text,creationdate text)");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS settings (" + "id INTEGER primary key autoincrement ,owner TEXT ,expirydate text,creationdate text,type text)");
 
 
             Statement heldTransactionsDetails = connection.createStatement();
@@ -171,6 +171,8 @@ public class Launcher extends Application {
 
                 stage.setWidth(1200.0);
                 stage.setHeight(700.0);
+                stage.setMaxWidth(1200.0);
+                stage.setMaxHeight(700.0);
                 stage.setMaximized(false);
 
                 stage.setFullScreen(false);
@@ -187,7 +189,7 @@ public class Launcher extends Application {
 //            todo distinguish admin account from cashier account
         } else {
 //            GO TO LICENSING PANEL
-            Parent root = FXMLLoader.load(getClass().getResource("../resources/AuthenticationFiles/licensingPanel.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/licensingPanel.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             Media hit = new Media(Objects.requireNonNull(getClass().getClassLoader().getResource("sounds/notification.wav")).toString());
@@ -208,6 +210,8 @@ public class Launcher extends Application {
             stage.setTitle("Nanotech Softwares Point of Sale 2019  (v 1.1) Licensing");
             stage.setMaxWidth(1200.0);
             stage.setMaxHeight(700.0);
+            stage.setWidth(1200.0);
+            stage.setHeight(700.0);
             stage.setMaximized(false);
             stage.setFullScreen(false);
             Launcher.stage = stage;

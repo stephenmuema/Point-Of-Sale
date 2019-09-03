@@ -4,13 +4,18 @@ import Controllers.UtilityClass;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import securityandtime.AesCipher;
+import securityandtime.BoardListener;
 
 import java.awt.*;
+import java.awt.datatransfer.FlavorEvent;
+import java.awt.datatransfer.FlavorListener;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -21,8 +26,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static securityandtime.config.licensepath;
-import static securityandtime.config.throwables;
+import static securityandtime.config.*;
 
 public class LicensingController extends UtilityClass implements Initializable {
     public AnchorPane panel;
@@ -31,6 +35,7 @@ public class LicensingController extends UtilityClass implements Initializable {
     public Button confirm;
     public AnchorPane draggablepane;
     public Button otherproducts;
+    public Hyperlink link;
     private String decryptedString;
     private String initial;
     private Connection connectionDbLocal;
@@ -61,6 +66,7 @@ public class LicensingController extends UtilityClass implements Initializable {
         licensearea.setStyle("-fx-text-inner-color: #13ff97;");
         buttonListeners();
         utilities();
+
 //        radioGroupManager();
     }
 
@@ -84,21 +90,27 @@ public class LicensingController extends UtilityClass implements Initializable {
 
 
     private void utilities() {
+        link.setOnAction(event -> {
+            try {
+                Desktop.getDesktop().browse(new URL(siteLicensing).toURI());
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+            }
+        });
 
+        Toolkit.getDefaultToolkit().getSystemClipboard().addFlavorListener(new FlavorListener() {
+            @Override
+            public void flavorsChanged(FlavorEvent e) {
 
-//        Toolkit.getDefaultToolkit().getSystemClipboard().addFlavorListener(new FlavorListener() {
-//            @Override
-//            public void flavorsChanged(FlavorEvent e) {
-//
-//                System.out.println("ClipBoard UPDATED: " + e.getSource() + " " + e.toString());
-//                BoardListener boardListener = new BoardListener();
-//                boardListener.start();//latest changein the code
-//                initial = boardListener.getClipboardContents();
-//                licensearea.setText(initial);
+                System.out.println("ClipBoard UPDATED: " + e.getSource() + " " + e.toString());
+                BoardListener boardListener = new BoardListener();
+                boardListener.start();//latest changein the code
+                initial = boardListener.getClipboardContents();
+                licensearea.setText(initial);
 //                confirmed();
-//
-//            }
-//        });
+
+            }
+        });
 
 
         licensearea.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -271,9 +283,9 @@ public class LicensingController extends UtilityClass implements Initializable {
         this.initial = initial;
     }
 
-    public Connection getConnectionDbLocal() {
-        return connectionDbLocal;
-    }
+//    public Connection getConnectionDbLocal() {
+//        return connectionDbLocal;
+//    }
 
 
     public Statement getStatementLocal() {
@@ -307,15 +319,35 @@ public class LicensingController extends UtilityClass implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
+            showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS!!", "lICENSE ACTIVATION WAS SUCCESSFULL");
             if (decryptedString.split(":::")[0].equals("Trial license")) {
                 boolean check = statementLocal.execute("INSERT INTO settings(owner, expirydate,creationdate,type) VALUES ('" + decryptedString.split(":::")[0] + "###" + decryptedString.split(":::")[1] + "','" + Integer.parseInt(decryptedString.split(":::")[2]) + "','" + decryptedString.split(":::")[3] + "','Trial license')");
-
+                if (throwables.size() > 0) {
+//            showAlert(Alert.AlertType.ERROR,panel.getScene().getWindow(),"ERROR","PLEASE CHECK YOUR LICENSE");
+                    throwables.clear();
+                }
+                licensearea.clear();
+                //System.out.println(decryptedString.split(":::")[0]);
+                //System.out.println(decryptedString.split(":::")[1]);
+                //System.out.println(decryptedString.split(":::")[2]);//expiry
+                //System.out.println(decryptedString.split(":::")[3]);
+                Platform.exit();
+                System.exit(1);
 
             } else {
                 boolean check = statementLocal.execute("INSERT INTO settings(owner, expirydate,creationdate,type) VALUES ('" + decryptedString.split(":::")[0] + "###" + decryptedString.split(":::")[1] + "','" + Integer.parseInt(decryptedString.split(":::")[2]) + "','" + decryptedString.split(":::")[3] + "','Annual license')");
 
-
+                if (throwables.size() > 0) {
+//            showAlert(Alert.AlertType.ERROR,panel.getScene().getWindow(),"ERROR","PLEASE CHECK YOUR LICENSE");
+                    throwables.clear();
+                }
+                licensearea.clear();
+                //System.out.println(decryptedString.split(":::")[0]);
+                //System.out.println(decryptedString.split(":::")[1]);
+                //System.out.println(decryptedString.split(":::")[2]);//expiry
+                //System.out.println(decryptedString.split(":::")[3]);
+                Platform.exit();
+                System.exit(1);
             }
 
 //            todo check if a viable license has been created
@@ -332,19 +364,10 @@ public class LicensingController extends UtilityClass implements Initializable {
         } catch (SQLException e) {
 //            showAlert(Alert.AlertType.ERROR,panel.getScene().getWindow(),"ERROR","PLEASE CHECK YOUR LICENSE");
 
-            System.err.println("error creating table");
+            e.printStackTrace();
         }
-        if (throwables.size() > 0) {
-//            showAlert(Alert.AlertType.ERROR,panel.getScene().getWindow(),"ERROR","PLEASE CHECK YOUR LICENSE");
-            throwables.clear();
-        }
-        licensearea.clear();
-        //System.out.println(decryptedString.split(":::")[0]);
-        //System.out.println(decryptedString.split(":::")[1]);
-        //System.out.println(decryptedString.split(":::")[2]);//expiry
-        //System.out.println(decryptedString.split(":::")[3]);
-        Platform.exit();
-        System.exit(1);
+
+
     }
 
 

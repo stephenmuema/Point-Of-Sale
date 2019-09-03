@@ -14,10 +14,11 @@ public interface config {//host,user,password,des,port
     String localCartDb = "jdbc:sqlite:shoppingCartDb.db";
     HashMap<String, String> cartid = new HashMap<String, String>();
     HashMap<String, Integer> pricegot = new HashMap<String, Integer>();
-    String licensepath = "D:\\license.npos";
+    String licensepath = "D:\\license1.npos";
     HashMap<String, Throwable> throwables = new HashMap<>();
     HashMap<String, String> license = new HashMap<>();
     String site = "https://nanotechsoftwares.co.ke";
+    String siteLicensing = "https://nanotechsoftwares.co.ke";
     String sitedocs = "https://nanotechsoftwares.co.ke";
     String supplierSite = "http://activationsite/";
     HashMap<String, String> action = new HashMap<>();

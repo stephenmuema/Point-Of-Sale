@@ -456,6 +456,7 @@ public class AuditController extends UtilityClass implements Initializable {
                 tableemployeelist.refresh();
 
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
