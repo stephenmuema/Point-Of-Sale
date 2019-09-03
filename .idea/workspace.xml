@@ -7,27 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/securityandtime/AesCrypto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/licensingPanel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/licensingPanel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/signup.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/signup.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/employees.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/employees.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panelAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panelAdmin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/userDetails.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/userDetails.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/carwashFiles/carwash.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/carwashFiles/carwash.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/carwashFiles/carwashSales.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/carwashFiles/carwashSales.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/carwashFiles/carwashprice.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/carwashFiles/carwashprice.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/addshop.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/addshop.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/onlinepayments.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/onlinepayments.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/scanneradd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/scanneradd.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/shop.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/shop.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/showpriceexitcash.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/showpriceexitcash.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/stocks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/stocks.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -92,104 +72,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="68" selection-start-line="6" selection-start-column="68" selection-end-line="6" selection-end-column="68" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/onlinepayments.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/scanneradd.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="103" selection-start-line="8" selection-start-column="103" selection-end-line="8" selection-end-column="103" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/shop.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="80" selection-start-line="9" selection-start-column="80" selection-end-line="9" selection-end-column="80" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/showpriceexitcash.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="103" selection-start-line="8" selection-start-column="103" selection-end-line="8" selection-end-column="103" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/stocks.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/employees.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panel.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="81" selection-start-line="9" selection-start-column="81" selection-end-line="9" selection-end-column="81" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panelAdmin.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/userDetails.fxml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Launcher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="45" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
+            <state relative-caret-position="1679">
+              <caret line="184" column="23" selection-start-line="184" selection-start-column="23" selection-end-line="184" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
     </leaf>
@@ -449,14 +341,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="shopFiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="UserAccountManagementFiles" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -886,7 +770,7 @@
       <workItem from="1567436000363" duration="8046000" />
       <workItem from="1567490624848" duration="4991000" />
       <workItem from="1567496762777" duration="6534000" />
-      <workItem from="1567504308248" duration="5903000" />
+      <workItem from="1567504308248" duration="6772000" />
     </task>
     <task id="LOCAL-00001" summary="before shopping cart">
       <created>1552048112305</created>
@@ -1049,11 +933,18 @@
       <option name="project" value="LOCAL" />
       <updated>1567502785117</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="fx errors fixed">
+      <created>1567510586690</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1567510586690</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="927690000" />
+    <option name="totallyTimeSpent" value="928559000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1078,7 +969,7 @@
       <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.49092284" weight="0.33333334" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.2962963" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.48789713" visible="true" weight="0.048309177" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.48789713" visible="true" weight="0.11272141" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.19645733" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -1178,7 +1069,8 @@
     <MESSAGE value="MINOR ADDITION ON THE STATUS" />
     <MESSAGE value="typos fixed" />
     <MESSAGE value="licensing fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="licensing fixed" />
+    <MESSAGE value="fx errors fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="fx errors fixed" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1443,16 +1335,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Launcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="902">
-          <caret line="184" column="23" selection-start-line="184" selection-start-column="23" selection-end-line="184" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/AnimationGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1534,14 +1416,14 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
+        <state relative-caret-position="51">
           <caret line="6" column="68" selection-start-line="6" selection-start-column="68" selection-end-line="6" selection-end-column="68" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/onlinepayments.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
+        <state relative-caret-position="85">
           <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
         </state>
       </provider>
@@ -1549,7 +1431,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/scanneradd.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
+        <state relative-caret-position="68">
           <caret line="8" column="103" selection-start-line="8" selection-start-column="103" selection-end-line="8" selection-end-column="103" />
         </state>
       </provider>
@@ -1557,7 +1439,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/shop.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="68">
           <caret line="9" column="80" selection-start-line="9" selection-start-column="80" selection-end-line="9" selection-end-column="80" />
         </state>
       </provider>
@@ -1565,7 +1447,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/showpriceexitcash.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
+        <state relative-caret-position="68">
           <caret line="8" column="103" selection-start-line="8" selection-start-column="103" selection-end-line="8" selection-end-column="103" />
         </state>
       </provider>
@@ -1573,7 +1455,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/stocks.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="51">
           <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
         </state>
       </provider>
@@ -1581,7 +1463,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/employees.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="51">
           <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
         </state>
       </provider>
@@ -1589,27 +1471,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panel.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="51">
           <caret line="9" column="81" selection-start-line="9" selection-start-column="81" selection-end-line="9" selection-end-column="81" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panelAdmin.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/userDetails.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
+        <state relative-caret-position="51">
           <caret line="5" column="45" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panelAdmin.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Launcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1679">
+          <caret line="184" column="23" selection-start-line="184" selection-start-column="23" selection-end-line="184" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
