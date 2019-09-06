@@ -221,11 +221,13 @@ public class AesCipher {
         return getData();
     }
 //public static void main(String[] args){
-//    String secretKey = "26kozQaKwRuNJ24t26kozQaKwRuNJ24t";
+//    String secretKey = "0123456789abcdef0123456789abcdef";
 //    String text = "Some text";
-//
+//    System.out.println(secretKey.length());
 //    AesCipher encrypted = AesCipher.encrypt(secretKey, text);
+//    System.out.println(encrypted);
 //    AesCipher decrypted = AesCipher.decrypt(secretKey, encrypted.getData());
+//    System.out.println(decrypted);
 //}
 }
 

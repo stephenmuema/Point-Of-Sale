@@ -7,17 +7,14 @@ import java.io.IOException;
 import static java.awt.Toolkit.getDefaultToolkit;
 
 public class BoardListener extends Thread implements ClipboardOwner {
-    Clipboard sysClip = getDefaultToolkit().getSystemClipboard();
+    private Clipboard sysClip = getDefaultToolkit().getSystemClipboard();
 
-    public static void main(String[] args) {
-        BoardListener b = new BoardListener();
-        b.start();
-    }
+
 
     public void run() {
         Transferable trans = sysClip.getContents(this);
         regainOwnership(trans);
-        System.out.println("Listening to board...");
+//        System.out.println("Listening to board...");
 
     }
 
@@ -25,18 +22,18 @@ public class BoardListener extends Thread implements ClipboardOwner {
         try {
             sleep(100);
         } catch (Exception e) {
-            System.out.println("Exception: " + e);
+//            System.out.println("Exception: " + e);
         }
         Transferable contents = sysClip.getContents(this);
-        processContents(contents);
+//        processContents(contents);
         regainOwnership(contents);
     }
 
-    void processContents(Transferable t) {
-        System.out.println("Processing: " + t);
-    }
+//    private void processContents(Transferable t) {
+//        System.out.println("Processing: " + t);
+//    }
 
-    void regainOwnership(Transferable t) {
+    private void regainOwnership(Transferable t) {
         sysClip.setContents(t, this);
     }
 
@@ -51,9 +48,9 @@ public class BoardListener extends Thread implements ClipboardOwner {
         if (hasTransferableText) {
             try {
                 result = (String) contents.getTransferData(DataFlavor.stringFlavor);
-            } catch (UnsupportedFlavorException | IOException ex) {
+            } catch (UnsupportedFlavorException | IOException ignored) {
                 //System.out.println(ex);
-                ex.printStackTrace();
+//                ex.printStackTrace();
             }
         }
         return result;

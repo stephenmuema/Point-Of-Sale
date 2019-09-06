@@ -1,9 +1,9 @@
 package Controllers.AuthenticationControllers;
 
 import Controllers.UtilityClass;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -11,6 +11,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import securityandtime.AesCipher;
 import securityandtime.AesCrypto;
 import securityandtime.BoardListener;
@@ -289,7 +290,6 @@ public class LicensingController extends UtilityClass implements Initializable {
 //        return connectionDbLocal;
 //    }
 
-
     public Statement getStatementLocal() {
         return statementLocal;
     }
@@ -337,8 +337,10 @@ public class LicensingController extends UtilityClass implements Initializable {
                     //System.out.println(decryptedString.split(":::")[1]);
                     //System.out.println(decryptedString.split(":::")[2]);//expiry
                     //System.out.println(decryptedString.split(":::")[3]);
-                    Platform.exit();
-                    System.exit(1);
+//                    Platform.exit();
+//                    System.exit(1);
+                    loadLogin();
+
 
                 } else {
                     boolean check = statementLocal.execute("INSERT INTO settings(owner, expirydate,creationdate,type) VALUES ('" + decryptedString.split(":::")[0] + "###" + decryptedString.split(":::")[1] + "','" + Integer.parseInt(decryptedString.split(":::")[2]) + "','" + decryptedString.split(":::")[3] + "','Annual license')");
@@ -352,8 +354,9 @@ public class LicensingController extends UtilityClass implements Initializable {
                     //System.out.println(decryptedString.split(":::")[1]);
                     //System.out.println(decryptedString.split(":::")[2]);//expiry
                     //System.out.println(decryptedString.split(":::")[3]);
-                    Platform.exit();
-                    System.exit(1);
+//                    Platform.exit();
+//                    System.exit(1);\
+                    loadLogin();
                 }
 
 //            todo check if a viable license has been created
@@ -372,6 +375,17 @@ public class LicensingController extends UtilityClass implements Initializable {
 
                 e.printStackTrace();
             }
+        }
+
+    }
+
+    private void loadLogin() {
+        try {
+            Stage stage = (Stage) panel.getScene().getWindow();
+            stage.setTitle(company + year + version);
+            panel.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }

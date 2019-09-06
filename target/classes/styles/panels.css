@@ -1,0 +1,26 @@
+.mainPanel {
+    -fx-background-color: linear-gradient(to right, lightblue, blue, purple);
+
+}
+
+.buttonsg:hover {
+    -fx-background-color: purple;
+    -fx-text-fill: black;
+    -fx-border-color: #fff;
+    -fx-border-width: 3px;
+}
+
+.subPanel {
+    -fx-background-color: linear-gradient(to bottom, white, lightgrey);
+
+}
+
+.logoutButton {
+
+    /*-fx-graphic: ;*/
+    -fx-background-image: url("../images/power.jpg");
+    -fx-background-size: contain;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+
+}

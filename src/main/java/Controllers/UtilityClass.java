@@ -143,4 +143,20 @@ public class UtilityClass {
         alert.showAndWait();
     }
 
+    public static void shutdown() throws RuntimeException, IOException {
+        String shutdownCommand;
+        String operatingSystem = System.getProperty("os.name");
+        System.out.println(operatingSystem);
+        if (operatingSystem.startsWith("Linux") || operatingSystem.startsWith("Mac")) {
+            shutdownCommand = "shutdown -h now";
+        } else if (operatingSystem.startsWith("Windows")) {
+            shutdownCommand = "shutdown.exe -s -t 0";
+        } else {
+            throw new RuntimeException("Unsupported operating system.");
+        }
+
+        Runtime.getRuntime().exec(shutdownCommand);
+        System.exit(0);
+    }
 }
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="parent" prefHeight="600.0" prefWidth="1024.0" styleClass="parent"
+            stylesheets="@../styles/css.css" xmlns="http://javafx.com/javafx/1"
+            fx:controller="SplashScreenController">
+    <children>
+        <Label fx:id="owner" layoutX="25.0" layoutY="316.0" prefHeight="35.0" prefWidth="857.0" text="test"
+               textFill="RED">
+            <font>
+                <Font size="23.0"/>
+            </font>
+        </Label>
+        <Label fx:id="expiry" layoutX="207.0" layoutY="360.0" prefHeight="35.0" prefWidth="590.0" text="test"
+               textFill="RED">
+            <font>
+                <Font size="23.0"/>
+            </font>
+        </Label>
+        <Label fx:id="expiry1" layoutX="14.0" layoutY="360.0" prefHeight="35.0" prefWidth="193.0"
+               text="License expires on" textFill="RED">
+            <font>
+                <Font size="23.0"/>
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

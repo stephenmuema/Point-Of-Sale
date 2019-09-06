@@ -6,9 +6,33 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="" />
-    <ignored path="$PROJECT_DIR$/out/" />
-    <ignored path="$PROJECT_DIR$/target/" />
+    <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_scream3r_jssc_2_8_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Controllers/BarCodeScanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/798f5b01-197b-46e0-9fe7-d4a3d4a7b861.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POSnanotech-softwareshotelshotelsjavamultiplestores.iml" beforeDir="false" afterPath="$PROJECT_DIR$/POSnanotech-softwareshotelshotelsjavamultiplestores.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid10124.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/license.dll" beforeDir="false" afterPath="$PROJECT_DIR$/license.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/license1.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/POSnanotech_softwareshotelshotelsjavamultiplestores_jar/POSnanotech-softwareshotelshotelsjavamultiplestores.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/POSnanotech_softwareshotelshotelsjavamultiplestores_jar/POSnanotech-softwareshotelshotelsjavamultiplestores.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/replay_pid10124.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shoppingCartDb.dll" beforeDir="false" afterPath="$PROJECT_DIR$/shoppingCartDb.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/ShopController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/securityandtime/AesCipher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/securityandtime/AesCipher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/securityandtime/BoardListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/securityandtime/BoardListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/shop.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/shop.fxml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +62,25 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="nanotechsoftwarespos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="MySQL - nanotechsoftwarespos@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL - nanotechsoftwarespos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL - nanotechsoftwarespos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="nanotechsoftwarespos: schema" type="ebfa3cd1:MariaImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL - nanotechsoftwarespos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="nanotechsoftwarespos: schema" type="ebfa3cd1:MariaImplModel$Schema" />
+        <item name="stocks: table" type="dbc44a63:MariaImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -54,35 +96,12 @@
         <item name="shoppingCartDb.db" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="shoppingCartDb.db" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-        <item name="settings: table" type="3d80ac25:SqliteImplModel$Table" />
       </path>
     </expand>
     <select />
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Launcher.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1679">
-              <caret line="184" column="23" selection-start-line="184" selection-start-column="23" selection-end-line="184" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -93,40 +112,6 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>clock</find>
-      <find>statementLocal</find>
-      <find>connectionDbLocal</find>
-      <find>image</find>
-      <find>insert into</find>
-      <find>file</find>
-      <find>split</find>
-      <find>System.out</find>
-      <find>System</find>
-      <find>only</find>
-      <find>chat box</find>
-      <find>conne</find>
-      <find>Connection</find>
-      <find>logout</find>
-      <find>key</find>
-      <find>subscri</find>
-      <find>Alert</find>
-      <find>status</find>
-      <find>activated</find>
-      <find>suspend</find>
-      <find>suspendend</find>
-      <find>audi</find>
-      <find>setfu</find>
-      <find>setmaximized(true</find>
-      <find>done</find>
-      <find>setwidth</find>
-      <find>solditems</find>
-      <find>hold</find>
-      <find>encrypt</find>
-      <find>link</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="PUSH_TAGS">
@@ -136,61 +121,11 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/util/Collections.java" root0="SKIP_INSPECTION" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/securityandtime/config.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/SleepingController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SplashScreenController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/OnlinePayments/Mpesa/Hookah.java" />
-        <option value="$PROJECT_DIR$/src/main/java/OnlinePayments/Mpesa/Mpesa.java" />
-        <option value="$PROJECT_DIR$/src/main/java/securityandtime/BoardListener.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/scannerController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/AnimationGenerator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/CarWashControllers/CarwashCompleteController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/PanelController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MasterClasses/EmployeeMaster.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/Login.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LoginController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/SignupController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/CarWashControllers/CarwashController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/CarWashControllers/CarwashSalesController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/chats/ChatController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AddshopController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/StocksController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/EmployeesController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/IdleMonitor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/UserDetailsController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/SuperClass.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/PriceCashControllerExit.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MasterClasses/ReceiptMasterClass.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/ShopController.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/securityandtime/Aes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/securityandtime/AesCrypto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Launcher.java" />
-        <option value="$PROJECT_DIR$/src/main/java/securityandtime/config.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/licensingPanel.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/signup.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/carwashFiles/carwash.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/carwashFiles/carwashprice.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/carwashFiles/carwashSales.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/shopFiles/addshop.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/shopFiles/onlinepayments.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/shopFiles/scanneradd.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/shopFiles/shop.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/shopFiles/showpriceexitcash.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/shopFiles/stocks.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/employees.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panel.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panelAdmin.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/userDetails.fxml" />
-      </list>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="D:\PROJECTS\NanotechSoftwares\poswithcarwash\.idea" />
+      </set>
     </option>
   </component>
   <component name="MavenImportPreferences">
@@ -200,156 +135,16 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="MavenProjectNavigator">
-    <treeState>
-      <expand>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="POSnanotech-softwareshotelshotelsjavamultiplestores" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="POSnanotech-softwareshotelshotelsjavamultiplestores" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
-        </path>
-      </expand>
-      <select />
-    </treeState>
-  </component>
   <component name="PhpServers">
     <servers />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-13" />
-    <option name="width" value="340" />
-    <option name="height" value="48" />
-  </component>
+  <component name="ProjectId" id="1QMa0KiLLrFTVDCze8nZCpQV5Ma" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-              <item name="POSnanotech_softwareshotelshotelsjavamultiplestores_jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="AuthenticationControllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="securityandtime" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="AuthenticationFiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="carwashFiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="chatFiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="poswithcarwash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="poswithcarwash" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="shopFiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="CatdeaLogs" />
-      <pane id="PackagesPane" />
-    </panes>
-  </component>
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="mariadb&#10;sqlite&#10;oracle&#10;mysql" />
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mariadb&#10;oracle&#10;mysql&#10;sqlite" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
@@ -368,7 +163,7 @@
     <property name="database.console.LAST_STATE" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/chatbox/src" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/shoppingCartDb.db" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -382,11 +177,15 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="MasterClasses" />
-      <recent name="Controllers" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources" />
+      <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash\src" />
+      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\UserAccountManagementFiles" />
+      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\AuthenticationFiles" />
+      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\chatFiles" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="scanhandler" />
       <recent name="chatting" />
       <recent name="Controllers" />
       <recent name="MasterClasses" />
@@ -401,12 +200,9 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Controllers" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources" />
-      <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash\src" />
-      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\UserAccountManagementFiles" />
-      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\AuthenticationFiles" />
-      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\chatFiles" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="MasterClasses" />
+      <recent name="Controllers" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -438,6 +234,19 @@
     <configuration name="AesCrypto" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="AesCrypto" />
       <module name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BarCodeScanner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Controllers.BarCodeScanner" />
+      <module name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -475,36 +284,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReceiptMasterClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MasterClasses.ReceiptMasterClass" />
-      <module name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="MasterClasses.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.Launcher" />
-      <item itemvalue="Application.ReceiptMasterClass" />
       <item itemvalue="Application.AesCipher" />
       <item itemvalue="Application.Mpesa" />
       <item itemvalue="Application.BoardListener" />
       <item itemvalue="Application.AesCrypto" />
+      <item itemvalue="Application.BarCodeScanner" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.BarCodeScanner" />
+        <item itemvalue="Application.AesCipher" />
         <item itemvalue="Application.AesCrypto" />
         <item itemvalue="Application.BoardListener" />
         <item itemvalue="Application.Mpesa" />
-        <item itemvalue="Application.AesCipher" />
-        <item itemvalue="Application.ReceiptMasterClass" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@73be2ade" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@6c24feec" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
   </component>
   <component name="StructureViewFactory">
     <option name="AUTOSCROLL_FROM_SOURCE" value="true" />
@@ -768,7 +583,14 @@
       <workItem from="1567436000363" duration="8046000" />
       <workItem from="1567490624848" duration="4991000" />
       <workItem from="1567496762777" duration="6534000" />
-      <workItem from="1567504308248" duration="7483000" />
+      <workItem from="1567504308248" duration="8662000" />
+      <workItem from="1567519236757" duration="1258000" />
+      <workItem from="1567539444093" duration="4427000" />
+      <workItem from="1567576108120" duration="735000" />
+      <workItem from="1567579139947" duration="455000" />
+      <workItem from="1567582702051" duration="5678000" />
+      <workItem from="1567589581033" duration="11346000" />
+      <workItem from="1567749017358" duration="913000" />
     </task>
     <task id="LOCAL-00001" summary="before shopping cart">
       <created>1552048112305</created>
@@ -945,11 +767,29 @@
       <option name="project" value="LOCAL" />
       <updated>1567512153982</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="fx errors fixed">
+      <created>1567514727950</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1567514727951</updated>
+    </task>
+    <task id="LOCAL-00027" summary="fx errors fixed">
+      <created>1567514737050</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1567514737050</updated>
+    </task>
+    <task id="LOCAL-00028" summary="trial fixed">
+      <created>1567515000700</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1567515000700</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="929270000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -959,89 +799,6 @@
       <are-packages-shown value="true" />
       <is-autoscroll-to-source value="true" />
     </todo-panel>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8519794" visible="true" weight="0.22087745" />
-      <window_info id="Structure" order="1" sideWeight="0.14802065" side_tool="true" weight="0.19288956" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.49092284" weight="0.33333334" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.2962963" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.48789713" weight="0.11272141" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.19645733" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" weight="0.57937807" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.25764894" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5121029" side_tool="true" weight="0.1884058" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.2979066" />
-      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Console" order="13" weight="0.2405892" />
-      <window_info anchor="bottom" id="CGEdit" order="14" />
-      <window_info anchor="bottom" id="Duplicate detector" order="15" weight="0.48608837" />
-      <window_info active="true" anchor="bottom" id="Inspection Results" order="16" visible="true" weight="0.95090014" />
-      <window_info anchor="bottom" id="Analyze Dataflow from" order="17" weight="0.32850242" />
-      <window_info anchor="bottom" id="Analyze Dataflow to" order="18" weight="0.32850242" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.24962178" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info anchor="right" id="Database" order="7" sideWeight="0.497545" visible="true" weight="0.2065053" />
-      <window_info anchor="right" id="Maven Projects" order="8" />
-      <window_info anchor="right" id="Maven" order="9" weight="0.32980332" />
-      <window_info anchor="right" id="Coverage" order="10" sideWeight="0.502455" side_tool="true" visible="true" weight="0.19288956" />
-      <window_info anchor="right" id="Codota" order="11" weight="0.30786687" />
-    </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8519794" visible="true" weight="0.22087745" />
-      <window_info id="Structure" order="1" sideWeight="0.14802065" side_tool="true" weight="0.19288956" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.49092284" weight="0.33333334" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.2962963" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.48789713" visible="true" weight="0.34138486" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.19645733" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" weight="0.57937807" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.049099836" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5121029" side_tool="true" weight="0.1884058" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.2979066" />
-      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Console" order="13" weight="0.2405892" />
-      <window_info anchor="bottom" id="CGEdit" order="14" />
-      <window_info anchor="bottom" id="Duplicate detector" order="15" weight="0.48608837" />
-      <window_info active="true" anchor="bottom" id="Inspection Results" order="16" visible="true" weight="0.95090014" />
-      <window_info anchor="bottom" id="Analyze Dataflow from" order="17" weight="0.32850242" />
-      <window_info anchor="bottom" id="Analyze Dataflow to" order="18" weight="0.32850242" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.24962178" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info anchor="right" id="Database" order="7" sideWeight="0.497545" visible="true" weight="0.022692889" />
-      <window_info anchor="right" id="Maven Projects" order="8" />
-      <window_info anchor="right" id="Maven" order="9" weight="0.32980332" />
-      <window_info anchor="right" id="Coverage" order="10" sideWeight="0.502455" side_tool="true" visible="true" weight="0.19288956" />
-      <window_info anchor="right" id="Codota" order="11" weight="0.30786687" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1056,10 +813,24 @@
       </list>
     </option>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <ignored-roots>
       <path value="$PROJECT_DIR$/POSnanotech-softwaresjava" />
       <path value="$PROJECT_DIR$" />
@@ -1074,7 +845,8 @@
     <MESSAGE value="typos fixed" />
     <MESSAGE value="licensing fixed" />
     <MESSAGE value="fx errors fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="fx errors fixed" />
+    <MESSAGE value="trial fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="trial fixed" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1082,431 +854,6 @@
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="78" selection-start-line="78" selection-end-line="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/EmployeesController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="459" selection-start-line="459" selection-end-line="459" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/IdleMonitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="13" column="45" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/PanelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1258">
-          <caret line="106" column="47" selection-start-line="106" selection-start-column="47" selection-end-line="106" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/UserDetailsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="72" column="18" selection-start-line="72" selection-start-column="18" selection-end-line="72" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://821d1a9f-7ff8-414e-8a3b-6cae3515b243/schema/nanotechsoftwarespos/table/sales" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/SuperClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MasterClasses/ReceiptMasterClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="79" column="43" selection-start-line="79" selection-start-column="43" selection-end-line="79" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/PriceCashControllerExit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="221" column="16" selection-start-line="221" selection-start-column="16" selection-end-line="221" selection-end-column="16" />
-          <folding>
-            <element signature="e#7180#7290#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7089">
-          <caret line="458" column="11" selection-start-line="458" selection-start-column="11" selection-end-line="458" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/ShopController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="740" column="38" selection-start-line="740" selection-start-column="38" selection-end-line="740" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#16708#16785#0" />
-            <element signature="e#17409#17513#0" />
-            <element signature="e#28262#28354#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="3097" column="25" selection-start-line="3097" selection-start-column="25" selection-end-line="3097" selection-end-column="25" />
-          <folding>
-            <element signature="e#121727#121728#0" expanded="true" />
-            <element signature="e#121769#121770#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nanotechsoftwarespos.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1015">
-          <caret line="58" column="4" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/SignupController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1056">
-          <caret line="216" selection-start-line="216" selection-end-line="216" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-89">
-          <caret line="75" column="34" selection-start-line="75" selection-start-column="34" selection-end-line="75" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#time#0;class#UtilityClass#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SplashScreenController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="43" column="52" selection-start-line="43" selection-start-column="52" selection-end-line="43" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/styles/css.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="21" column="10" lean-forward="true" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/styles/ButtonStyle.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/styles/buttons.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/styles/panels.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-88" />
-      </provider>
-    </entry>
-    <entry file="uml://JAVA/Controllers.AuthenticationControllers.AnimationGenerator">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>Controllers.AuthenticationControllers.AnimationGenerator</OriginalElement>
-          <nodes>
-            <node x="" y="">Controllers.UtilityClass</node>
-            <node x="" y="">Controllers.AuthenticationControllers.AnimationGenerator</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="85.0" y="52.0" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://JAVA/Controllers.AuthenticationControllers.LoginController">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>Controllers.AuthenticationControllers.LoginController</OriginalElement>
-          <nodes>
-            <node x="0.0" y="0.0">javafx.fxml.Initializable</node>
-            <node x="155.0" y="0.0">Controllers.UtilityClass</node>
-            <node x="60.75" y="143.0">Controllers.AuthenticationControllers.LoginController</node>
-          </nodes>
-          <notes />
-          <edges>
-            <edge source="Controllers.AuthenticationControllers.LoginController" target="Controllers.UtilityClass">
-              <point x="37.25" y="-13.5" />
-              <point x="180.5" y="52.0" />
-              <point x="219.0" y="52.0" />
-              <point x="0.0" y="13.5" />
-            </edge>
-            <edge source="Controllers.AuthenticationControllers.LoginController" target="javafx.fxml.Initializable">
-              <point x="-37.25" y="-13.5" />
-              <point x="106.0" y="52.0" />
-              <point x="67.5" y="52.0" />
-              <point x="0.0" y="13.5" />
-            </edge>
-          </edges>
-          <settings layout="Hierarchic Group" zoom="1.0" x="-6.5" y="101.0" />
-          <SelectedNodes>
-            <node>Controllers.AuthenticationControllers.LoginController</node>
-          </SelectedNodes>
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/securityandtime/Security.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="50" column="12" selection-start-line="50" selection-start-column="12" selection-end-line="50" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="214" column="54" selection-start-line="214" selection-start-column="54" selection-end-line="214" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="318" column="85" selection-start-line="318" selection-start-column="85" selection-end-line="318" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/securityandtime/AesCipher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="78" column="19" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/securityandtime/AesCrypto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="90" column="42" selection-start-line="90" selection-start-column="28" selection-end-line="90" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://798f5b01-197b-46e0-9fe7-d4a3d4a7b861/schema/main/table/settings">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="17daa406-3e41-45a9-909c-b996a03c39a9">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/AnimationGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/securityandtime/config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="25" column="39" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/AuthenticationFiles/licensingPanel.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/AuthenticationFiles/signup.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="63" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/AuthenticationFiles/Login.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/AuthenticationFiles/SplashScreen.fxml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/carwashFiles/carwash.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/carwashFiles/carwashprice.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="63" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="63" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/chatFiles/ChatView.fxml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/carwashFiles/carwashSales.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/addshop.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="6" column="68" selection-start-line="6" selection-start-column="68" selection-end-line="6" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/onlinepayments.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/scanneradd.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="103" selection-start-line="8" selection-start-column="103" selection-end-line="8" selection-end-column="103" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/shop.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" column="80" selection-start-line="9" selection-start-column="80" selection-end-line="9" selection-end-column="80" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/showpriceexitcash.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="103" selection-start-line="8" selection-start-column="103" selection-end-line="8" selection-end-column="103" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/shopFiles/stocks.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/employees.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panel.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="9" column="81" selection-start-line="9" selection-start-column="81" selection-end-line="9" selection-end-column="81" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/userDetails.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="5" column="45" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panelAdmin.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Launcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1679">
-          <caret line="184" column="23" selection-start-line="184" selection-start-column="23" selection-end-line="184" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
   </component>
   <component name="masterDetails">
     <states>

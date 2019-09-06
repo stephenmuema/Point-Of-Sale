@@ -18,7 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -51,7 +50,7 @@ public class AuditController extends UtilityClass implements Initializable {
     //done
     //endof table
     //get search parameters
-    public TextField tf1period;
+//    public TextField tf1period;
     public Button querytf1;
     //end search
 //    table of sales for each selected employee
@@ -65,8 +64,7 @@ public class AuditController extends UtilityClass implements Initializable {
     //
 //done
 //    end of table of sales per employee
-    public Button showempperformancegraph;//show selected employee performance graphon new window
-    public Button exportfirstempreport;//export employee reportfselectedemployee
+
     public Tab tabsalesaudits;//tab of sales
     //creation date
 //    future plans tab// todo v1.2
@@ -86,7 +84,7 @@ public class AuditController extends UtilityClass implements Initializable {
     //search
 //    public TextField tf2period;//get period
 //    public Button querytf2;//search period todo v1.2
-    //    endof search
+//        endof search
 //    table for sales per category
 //    public TableView <CategorySalesMasterClass> categorysalestable;
 //    public TableColumn <CategorySalesMasterClass,String> categorysalesname;
@@ -95,7 +93,7 @@ public class AuditController extends UtilityClass implements Initializable {
 //    public TableColumn <CategorySalesMasterClass,String> categorysalessalesperday;
 //    private ObservableList<CategorySalesMasterClass> categorySalesMasterClassObservableList = FXCollections.observableArrayList();
 //todo use in v1.2
-    //tableofsales of specific items
+//    tableofsales of specific items
 //    public TableView <ItemStocksMaster>itemsalestable;
 //    public TableColumn <ItemStocksMaster,String> itemsalesid;
 //    public TableColumn <ItemStocksMaster,String> itemsalesname;
@@ -105,7 +103,7 @@ public class AuditController extends UtilityClass implements Initializable {
 //    private ObservableList<ItemStocksMaster> itemStocksMasterObservableList = FXCollections.observableArrayList();
 //todo use in v1.2
 // todo v1.2
-    //end of table for sales per category
+//    end of table for sales per category
 //    public Tab tabcapandcost;//tab of capital and costs incurred// todo v1.2
 //    public TabPane tapaneinnercapitalandcost;// todo v1.2
 //    public Tab pastcosts;//past costs// todo v1.2
@@ -116,7 +114,7 @@ public class AuditController extends UtilityClass implements Initializable {
 //    public TableColumn pastcoststabledateadded;// todo v1.2
 //    public TableColumn pastcoststableamount;// todo v1.2
 //    public TableColumn pastcoststableactiveinactivestatus;// todo v1.2
-    //end of past costs table
+//    end of past costs table
 //    new costs tab
 //    public Tab newcosts;// todo v1.2
 //    public Button newcostssubmit;// todo v1.2
@@ -684,13 +682,6 @@ public class AuditController extends UtilityClass implements Initializable {
         this.employeeMasterObservableList = employeeMasterObservableList;
     }
 
-    public TextField getTf1period() {
-        return tf1period;
-    }
-
-    public void setTf1period(TextField tf1period) {
-        this.tf1period = tf1period;
-    }
 
     public Button getQuerytf1() {
         return querytf1;
@@ -764,21 +755,7 @@ public class AuditController extends UtilityClass implements Initializable {
         this.salesMasterObservableList = salesMasterObservableList;
     }
 
-    public Button getShowempperformancegraph() {
-        return showempperformancegraph;
-    }
 
-    public void setShowempperformancegraph(Button showempperformancegraph) {
-        this.showempperformancegraph = showempperformancegraph;
-    }
-
-    public Button getExportfirstempreport() {
-        return exportfirstempreport;
-    }
-
-    public void setExportfirstempreport(Button exportfirstempreport) {
-        this.exportfirstempreport = exportfirstempreport;
-    }
 
     public Tab getTabsalesaudits() {
         return tabsalesaudits;

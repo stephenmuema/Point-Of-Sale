@@ -44,6 +44,7 @@ import java.sql.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static Controllers.UtilityClass.shutdown;
 import static securityandtime.config.*;
 
 public class ShopController extends CartIdGenerator implements Initializable {
@@ -70,7 +71,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
     public TableView<CartMaster> listViewHeldItems;
     public TableColumn<CartMaster, String> heldname, heldid;
     public Button loyaltiesB;
-    public TextField searchname;
+    //    public TextField searchname;
     public MenuItem logoutMenu;
     public MenuItem exitMenu;
     public MenuItem accountdetailsMenu;
@@ -78,6 +79,8 @@ public class ShopController extends CartIdGenerator implements Initializable {
     public MenuItem helpMenu;
     public MenuItem stores;
     public MenuItem stocks;
+    public Button endDay;
+    public Button clearheld;
     private ArrayList<CartMaster> arrayList = new ArrayList<CartMaster>();
     private ObservableList<CartMaster> data;
     private int counter = 0;
@@ -180,6 +183,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
                     }
                 }
             }
+
 
             private void restore() {
 //            todo check if cart is empty during restoration,if empty restore,otherwise save existing cart then restore
@@ -322,8 +326,8 @@ public class ShopController extends CartIdGenerator implements Initializable {
          *  else enter manually
          *
          * */
-        String zcode = null;
-        String itemname = null;
+        String zcode = "";
+        String itemname = "";
         BarcodeScanner barcodeScanner = new BarcodeScanner();
         StringBuffer stringBuffer = barcodeScanner.getBarcode();
         if (!stringBuffer.toString().equals("")) {
@@ -338,9 +342,9 @@ public class ShopController extends CartIdGenerator implements Initializable {
 //  todo to test later when with bar code scanner
         } else {
             zcode = barcodetext.getText();
-            itemname = searchname.getText();
+//            itemname = searchname.getText();
         }
-        searchname.clear();
+//        searchname.clear();
         barcodetext.clear();
         data = FXCollections.observableArrayList();
 
@@ -364,7 +368,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
 //                        String cartItems = "CREATE TABLE IF NOT EXISTS cartItems
 //                        (itemname text,itemprice text,
 //                        itemid text,code text,amount text,cumulativeprice text ,transactionid text)";
-            if (connection != null) {
+            if (!zcode.isEmpty() && itemname.isEmpty()) {
 
                 PreparedStatement statement = connection.prepareStatement("SELECT * FROM stocks where itemcode=?");
                 statement.setString(1, zcode);
@@ -441,6 +445,24 @@ public class ShopController extends CartIdGenerator implements Initializable {
 
                 totalprice.setText(String.valueOf(countTotalPrice()));
                 cart.setItems(data);
+            } else {
+
+                PreparedStatement statement = connection.prepareStatement("SELECT * FROM stocks where name like ?");
+                statement.setString(1, "%" + itemname + "%");
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+
+                    CartMaster cartmaster = new CartMaster();
+                    cartmaster.setItemId(resultSet.getInt("id"));
+                    cartmaster.setItemName(resultSet.getString("name"));
+                    cartmaster.setItemNumber("1");
+                    cartmaster.setItemPrice(resultSet.getString("price"));
+                    cartmaster.setItemBarCode(zcode);
+                    cartmaster.setItemCumulativeCost(Integer.parseInt(resultSet.getString("price")) * Integer.parseInt(cartmaster.getItemNumber()));
+
+
+                }
+                cart.setItems(data);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -458,15 +480,15 @@ public class ShopController extends CartIdGenerator implements Initializable {
         cart.refresh();
     }
 
-    private int countTotalPrice() throws SQLException {
-        int price = 0;
+    private String countTotalPrice() throws SQLException {
+        double price = 0.00;
         ResultSet rs = statementLocal.executeQuery("SELECT  * FROM cartItems");
         while (rs.next()) {
             price += Integer.parseInt(rs.getString("cumulativeprice"));
         }
         statementLocal.close();
 
-        return price;
+        return String.format("%.2f", price);
     }
 
     private void getLogo() {
@@ -547,6 +569,27 @@ public class ShopController extends CartIdGenerator implements Initializable {
     }
 
     private void buttonListeners() {
+        endDay.setOnAction(event -> {
+            try {
+                shutdown();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        clearheld.setOnAction(event -> {
+            try {
+                statementLocal.execute("DELETE FROM heldItems");
+                statementLocal.execute("DELETE FROM heldTransactionList");
+                try {
+                    shopPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/shop.fxml")))));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
         onlinepayments.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -993,14 +1036,14 @@ public class ShopController extends CartIdGenerator implements Initializable {
         return this;
     }
 
-    public TextField getSearchname() {
-        return searchname;
-    }
-
-    public ShopController setSearchname(TextField searchname) {
-        this.searchname = searchname;
-        return this;
-    }
+//    public TextField getSearchname() {
+//        return searchname;
+//    }
+//
+//    public ShopController setSearchname(TextField searchname) {
+//        this.searchname = searchname;
+//        return this;
+//    }
 
     public MenuItem getLogoutMenu() {
         return logoutMenu;

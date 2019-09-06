@@ -11,7 +11,7 @@ public interface config {//host,user,password,des,port
     HashMap<String, Boolean> login = new HashMap<>();
     HashMap<String, String> user = new HashMap<>();
     IdentityHashMap<String, String> key = new IdentityHashMap<>();
-    String localCartDb = "jdbc:sqlite:shoppingCartDb.dll";
+    String localCartDb = "jdbc:sqlite:shoppingCartDb.db";
     HashMap<String, String> cartid = new HashMap<String, String>();
     HashMap<String, Integer> pricegot = new HashMap<String, Integer>();
     String licensepath = "license.dll";
@@ -24,6 +24,9 @@ public interface config {//host,user,password,des,port
     HashMap<String, String> action = new HashMap<>();
     String encryptionkey = "0123456789abcdef";
     String initVector = "abcdef9876543210";
+    String company = "Nanotech Softwares Point of Sale ";
+    String year = " 2019 ";
+    String version = " (V 1.1) ";
 
 
 }

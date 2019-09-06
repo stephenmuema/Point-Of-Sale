@@ -6,8 +6,7 @@
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="shopPanel" prefHeight="700.0" prefWidth="1200.0"
-            styleClass="form"
-            stylesheets="@../styles/Login.css" xmlns="http://javafx.com/javafx/1"
+            styleClass="form" xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="Controllers.ShopControllers.ShopController">
     <VBox>
         <children>
@@ -42,12 +41,10 @@
                                prefWidth="1200.0">
                         <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="83.0" prefWidth="947.0"
-                                        styleClass="form"
-                                        stylesheets="@../styles/css.css">
+                                        styleClass="form" stylesheets="@../styles/css.css">
                                 <children>
                                     <Label fx:id="clock" alignment="CENTER" layoutX="14.0" layoutY="21.0"
-                                           prefHeight="42.0"
-                                           prefWidth="145.0" text="00:00:00" textAlignment="CENTER">
+                                           prefHeight="42.0" prefWidth="145.0" text="00:00:00" textAlignment="CENTER">
                                         <font>
                                             <Font size="25.0"/>
                                         </font>
@@ -77,24 +74,23 @@
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="900.0"
                                         styleClass="form" stylesheets="@../styles/panels.css">
                                 <children>
-                                    <TextField fx:id="barcodetext" layoutX="14.0" layoutY="14.0" prefHeight="42.0"
-                                               prefWidth="222.0" promptText="BAR CODE INPUT">
+                                    <TextField fx:id="barcodetext" alignment="CENTER" layoutX="14.0" layoutY="14.0"
+                                               prefHeight="42.0" prefWidth="380.0" promptText="BAR CODE INPUT"
+                                               styleClass="textfields">
                                         <font>
                                             <Font size="19.0"/>
                                         </font>
                                     </TextField>
-                                    <Button fx:id="searchb" layoutX="588.0" layoutY="16.0" mnemonicParsing="false"
-                                            prefHeight="42.0" prefWidth="82.0" styleClass="buttonorange"
+                                    <Button fx:id="searchb" layoutX="463.0" layoutY="14.0" mnemonicParsing="false"
+                                            prefHeight="42.0" prefWidth="153.0" styleClass="buttonorange"
                                             stylesheets="@../styles/buttons.css" text="SEARCH"/>
                                     <ScrollPane layoutX="14.0" layoutY="67.0" prefHeight="498.0" prefWidth="656.0">
                                         <content>
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="484.0"
-                                                        prefWidth="650.0"
-                                                        stylesheets="@../styles/buttons.css">
+                                                        prefWidth="650.0" stylesheets="@../styles/buttons.css">
                                                 <children>
                                                     <TableView fx:id="cart" layoutX="2.0" layoutY="3.0"
-                                                               prefHeight="399.0"
-                                                               prefWidth="646.0">
+                                                               prefHeight="399.0" prefWidth="646.0">
                                                         <placeholder>
                                                             <Label text=""/>
                                                         </placeholder>
@@ -119,8 +115,7 @@
                                                             styleClass="buttonred" text="CLEAR" textFill="#f5f3f3"/>
                                                     <Label fx:id="totalprice" alignment="CENTER" layoutX="437.0"
                                                            layoutY="414.0" prefHeight="42.0" prefWidth="190.0"
-                                                           text="00.00 "
-                                                           textAlignment="CENTER">
+                                                           text="00.00 " textAlignment="CENTER">
                                                         <font>
                                                             <Font size="21.0"/>
                                                         </font>
@@ -133,58 +128,53 @@
                                                orientation="VERTICAL" prefHeight="540.0" prefWidth="510.0">
                                         <items>
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0"
-                                                        prefWidth="160.0"
-                                                        styleClass="form">
+                                                        prefWidth="160.0" styleClass="form">
                                                 <children>
                                                     <ScrollPane layoutX="11.0" layoutY="36.0" prefHeight="237.0"
                                                                 prefWidth="487.0">
                                                         <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0"
-                                                                        prefHeight="228.0"
-                                                                        prefWidth="470.0">
+                                                                        prefHeight="228.0" prefWidth="470.0">
                                                                 <children>
                                                                     <TableView fx:id="listViewHeldItems"
-                                                                               prefHeight="227.0"
-                                                                               prefWidth="474.0">
+                                                                               prefHeight="227.0" prefWidth="474.0">
                                                                         <placeholder>
                                                                             <Label text=""/>
                                                                         </placeholder>
                                                                         <columns>
                                                                             <TableColumn fx:id="heldid"
-                                                                                         prefWidth="134.0"
-                                                                                         text="id"/>
+                                                                                         prefWidth="134.0" text="id"/>
                                                                             <TableColumn fx:id="heldname"
-                                                                                         prefWidth="334.0"
-                                                                                         text="name"/>
+                                                                                         prefWidth="334.0" text="name"/>
                                                                         </columns>
                                                                     </TableView>
                                                                 </children>
                                                             </AnchorPane>
                                                         </content>
                                                     </ScrollPane>
-                                                    <Label alignment="CENTER" layoutX="218.0" layoutY="14.0"
-                                                           prefHeight="17.0" prefWidth="82.0" text="HELD ITEMS"/>
+                                                    <Label alignment="CENTER" layoutX="218.0" layoutY="6.0"
+                                                           prefHeight="25.0" prefWidth="130.0" text="HELD ITEMS"
+                                                           textFill="WHITE"/>
                                                 </children>
                                             </AnchorPane>
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0"
-                                                        prefWidth="160.0"
-                                                        styleClass="form">
+                                                        prefWidth="160.0" styleClass="form">
                                                 <children>
-                                                    <Button fx:id="onlinepayments" layoutX="11.0" layoutY="22.0"
+                                                    <Button fx:id="onlinepayments" layoutX="14.0" layoutY="151.0"
                                                             mnemonicParsing="false" prefHeight="67.0" prefWidth="145.0"
                                                             styleClass="buttonred" text="ONLINE PAYMENT">
                                                         <font>
                                                             <Font size="15.0"/>
                                                         </font>
                                                     </Button>
-                                                    <Button fx:id="holduserdatab" layoutX="11.0" layoutY="144.0"
+                                                    <Button fx:id="holduserdatab" layoutX="189.0" layoutY="22.0"
                                                             mnemonicParsing="false" prefHeight="67.0" prefWidth="145.0"
                                                             styleClass="buttongreen" text="HOLD">
                                                         <font>
                                                             <Font size="15.0"/>
                                                         </font>
                                                     </Button>
-                                                    <Button fx:id="paycash" layoutX="181.0" layoutY="22.0"
+                                                    <Button fx:id="paycash" layoutX="189.0" layoutY="151.0"
                                                             mnemonicParsing="false" prefHeight="67.0" prefWidth="130.0"
                                                             styleClass="buttonorange" text="PAY CASH">
                                                         <font>
@@ -198,9 +188,16 @@
                                                             <Font size="15.0"/>
                                                         </font>
                                                     </Button>
-                                                    <Button layoutX="354.0" layoutY="144.0" mnemonicParsing="false"
-                                                            prefHeight="67.0" prefWidth="130.0" styleClass="buttonred"
-                                                            text="END DAY">
+                                                    <Button fx:id="endDay" layoutX="354.0" layoutY="144.0"
+                                                            mnemonicParsing="false" prefHeight="67.0" prefWidth="130.0"
+                                                            styleClass="buttonred" text="END DAY">
+                                                        <font>
+                                                            <Font size="15.0"/>
+                                                        </font>
+                                                    </Button>
+                                                    <Button fx:id="clearheld" layoutX="14.0" layoutY="22.0"
+                                                            mnemonicParsing="false" prefHeight="67.0" prefWidth="145.0"
+                                                            styleClass="buttonorange" text="CLEAR HELD ">
                                                         <font>
                                                             <Font size="15.0"/>
                                                         </font>
@@ -222,12 +219,11 @@
                                             </AnchorPane>
                                         </items>
                                     </SplitPane>
-                                    <TextField fx:id="searchname" layoutX="262.0" layoutY="14.0" prefHeight="42.0"
-                                               prefWidth="307.0" promptText="ITEM NAME">
-                                        <font>
-                                            <Font size="19.0"/>
-                                        </font>
-                                    </TextField>
+                                    <!--                                    <TextField fx:id="searchname" layoutX="262.0" layoutY="14.0" prefHeight="42.0" prefWidth="307.0" promptText="ITEM NAME">-->
+                                    <!--                                        <font>-->
+                                    <!--                                            <Font size="19.0" />-->
+                                    <!--                                        </font>-->
+                                    <!--                                    </TextField>-->
 
                                 </children>
                             </AnchorPane>
@@ -237,5 +233,9 @@
             </AnchorPane>
         </children>
     </VBox>
+    <stylesheets>
+        <URL value="@../styles/Login.css"/>
+        <URL value="@../styles/css.css"/>
+    </stylesheets>
 
 </AnchorPane>
