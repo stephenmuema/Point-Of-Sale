@@ -39,6 +39,8 @@ public class LicensingController extends UtilityClass implements Initializable {
     public AnchorPane draggablepane;
     public Button otherproducts;
     public Hyperlink link;
+    public Button useServer;
+    public Button getHelp;
     private String decryptedString;
     private String initial;
     private Connection connectionDbLocal;
@@ -72,25 +74,6 @@ public class LicensingController extends UtilityClass implements Initializable {
 
 //        radioGroupManager();
     }
-
-//    private void radioGroupManager(){
-//        ToggleGroup group=new ToggleGroup();
-//        radioactivate.setToggleGroup(group);
-//        radioactivate.setSelected(true);
-//        radiotrial.setToggleGroup(group);
-//        group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-//            @Override
-//            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-//                if (group.getSelectedToggle() != null) {
-//                    RadioButton button = (RadioButton) group.getSelectedToggle();
-//                    System.out.println("Button: " + button.getText());
-////                labelInfo.setText("You are " + button.getText());
-//                }
-//            }
-//        });
-//
-//    }
-
 
     private void utilities() {
         link.setOnAction(event -> {
@@ -135,53 +118,49 @@ public class LicensingController extends UtilityClass implements Initializable {
             }
         });
 
-        licensearea.setOnDragDropped(new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                /* data dropped */
-                /* if there is a string data on dragboard, read it and use it */
-                Dragboard db = event.getDragboard();
-                boolean success = false;
-                if (db.hasFiles()) {
-                    List<File> file = db.getFiles();
-                    File f = file.get(0);
+        licensearea.setOnDragDropped(event -> {
+            /* data dropped */
+            /* if there is a string data on dragboard, read it and use it */
+            Dragboard db = event.getDragboard();
+            boolean success = false;
+            if (db.hasFiles()) {
+                List<File> file = db.getFiles();
+                File f = file.get(0);
 
-                    InputStream is = null;
-                    try {
-                        is = new FileInputStream(f);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    BufferedReader buf = new BufferedReader(new InputStreamReader(Objects.requireNonNull(is)));
+                InputStream is = null;
+                try {
+                    is = new FileInputStream(f);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                BufferedReader buf = new BufferedReader(new InputStreamReader(Objects.requireNonNull(is)));
 
-                    String line = null;
+                String line = null;
+                try {
+                    line = buf.readLine();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                StringBuilder sb = new StringBuilder();
+
+                while (line != null) {
+                    sb.append(line).append("\n");
                     try {
                         line = buf.readLine();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    StringBuilder sb = new StringBuilder();
-
-                    while (line != null) {
-                        sb.append(line).append("\n");
-                        try {
-                            line = buf.readLine();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    String fileAsString = sb.toString();
-
-                    licensearea.setText(fileAsString);
-//                    confirmed();
-                    success = true;
                 }
-                /* let the source know whether the string was successfully
-                 * transferred and used */
-                event.setDropCompleted(success);
 
-                event.consume();
+                String fileAsString = sb.toString();
+
+                licensearea.setText(fileAsString);
+                success = true;
             }
+
+            event.setDropCompleted(success);
+
+            event.consume();
         });
     }
 
@@ -190,8 +169,7 @@ public class LicensingController extends UtilityClass implements Initializable {
 
         otherproducts.setOnMousePressed(event -> {
             try {
-//                    todo change when created website
-                Desktop.getDesktop().browse(new URL("http://localhost/licensing/").toURI());
+                Desktop.getDesktop().browse(new URL(site).toURI());
             } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
             }
@@ -200,8 +178,7 @@ public class LicensingController extends UtilityClass implements Initializable {
 
         getlicensebutton.setOnMousePressed(event -> {
             try {
-//                    todo change when created website
-                Desktop.getDesktop().browse(new URL("http://localhost/licensing/").toURI());
+                Desktop.getDesktop().browse(new URL(siteLicensing).toURI());
             } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
             }
@@ -217,74 +194,6 @@ public class LicensingController extends UtilityClass implements Initializable {
         });
     }
 
-    public AnchorPane getPanel() {
-        return panel;
-    }
-
-    public void setPanel(AnchorPane panel) {
-        this.panel = panel;
-    }
-
-    public Button getGetlicensebutton() {
-        return getlicensebutton;
-    }
-
-    public void setGetlicensebutton(Button getlicensebutton) {
-        this.getlicensebutton = getlicensebutton;
-    }
-
-    public TextArea getLicensearea() {
-        return licensearea;
-    }
-
-    public void setLicensearea(TextArea licensearea) {
-        this.licensearea = licensearea;
-    }
-
-    public Button getConfirm() {
-        return confirm;
-    }
-
-    public void setConfirm(Button confirm) {
-        this.confirm = confirm;
-    }
-
-    public AnchorPane getDraggablepane() {
-        return draggablepane;
-    }
-
-    public void setDraggablepane(AnchorPane draggablepane) {
-        this.draggablepane = draggablepane;
-    }
-
-    @Override
-    public LicensingController setConnectionDbLocal(Connection connectionDbLocal) {
-        this.connectionDbLocal = connectionDbLocal;
-        return this;
-    }
-    public Button getOtherproducts() {
-        return otherproducts;
-    }
-
-    public void setOtherproducts(Button otherproducts) {
-        this.otherproducts = otherproducts;
-    }
-
-    public String getDecryptedString() {
-        return decryptedString;
-    }
-
-    public void setDecryptedString(String decryptedString) {
-        this.decryptedString = decryptedString;
-    }
-
-    public String getInitial() {
-        return initial;
-    }
-
-    public void setInitial(String initial) {
-        this.initial = initial;
-    }
 
 //    public Connection getConnectionDbLocal() {
 //        return connectionDbLocal;
@@ -396,5 +305,74 @@ public class LicensingController extends UtilityClass implements Initializable {
     }
 
 
+    public AnchorPane getPanel() {
+        return panel;
+    }
+
+    public void setPanel(AnchorPane panel) {
+        this.panel = panel;
+    }
+
+    public Button getGetlicensebutton() {
+        return getlicensebutton;
+    }
+
+    public void setGetlicensebutton(Button getlicensebutton) {
+        this.getlicensebutton = getlicensebutton;
+    }
+
+    public TextArea getLicensearea() {
+        return licensearea;
+    }
+
+    public void setLicensearea(TextArea licensearea) {
+        this.licensearea = licensearea;
+    }
+
+    public Button getConfirm() {
+        return confirm;
+    }
+
+    public void setConfirm(Button confirm) {
+        this.confirm = confirm;
+    }
+
+    public AnchorPane getDraggablepane() {
+        return draggablepane;
+    }
+
+    public void setDraggablepane(AnchorPane draggablepane) {
+        this.draggablepane = draggablepane;
+    }
+
+    @Override
+    public LicensingController setConnectionDbLocal(Connection connectionDbLocal) {
+        this.connectionDbLocal = connectionDbLocal;
+        return this;
+    }
+
+    public Button getOtherproducts() {
+        return otherproducts;
+    }
+
+    public void setOtherproducts(Button otherproducts) {
+        this.otherproducts = otherproducts;
+    }
+
+    public String getDecryptedString() {
+        return decryptedString;
+    }
+
+    public void setDecryptedString(String decryptedString) {
+        this.decryptedString = decryptedString;
+    }
+
+    public String getInitial() {
+        return initial;
+    }
+
+    public void setInitial(String initial) {
+        this.initial = initial;
+    }
 
 }

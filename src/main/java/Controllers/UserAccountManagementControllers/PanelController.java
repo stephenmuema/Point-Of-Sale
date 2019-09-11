@@ -13,8 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -36,7 +34,6 @@ public class PanelController extends UtilityClass implements Initializable {
     public MenuItem logout;
     public Button carwash;
     public Button shop;
-    public ImageView logoimage;
     //    public Button chat; todo v1.4
     public Button accountb;
     public Hyperlink link;
@@ -54,7 +51,6 @@ public class PanelController extends UtilityClass implements Initializable {
         buttonHandlers();
         menuhandlers();
         time(clock);
-        getLogo();
         link.setOnMousePressed(event -> {
             try {
 //                    todo change when created website
@@ -76,14 +72,13 @@ public class PanelController extends UtilityClass implements Initializable {
                 }, true);
         idleMonitor.register(panel, Event.ANY);
     }
-
-    private void getLogo() {
-//        File file = new File("images/logo.png");
-        //            FileInputStream fileInputStream=new FileInputStream("images/logo.png");
-        Image image = new Image("images/logo.png");
-        logoimage.setImage(image);
-
-    }
+//
+//    private void getLogo() {
+////        File file = new File("images/logo.png");
+//        //            FileInputStream fileInputStream=new FileInputStream("images/logo.png");
+//        Image image = new Image("images/logo.png");
+//
+//    }
 
     private void buttonHandlers() {
 //        chat.setOnMouseClicked(event -> {
@@ -184,22 +179,6 @@ public class PanelController extends UtilityClass implements Initializable {
     public void setShop(Button shop) {
         this.shop = shop;
     }
-
-    public ImageView getLogoimage() {
-        return logoimage;
-    }
-
-    public void setLogoimage(ImageView logoimage) {
-        this.logoimage = logoimage;
-    }
-
-//    public Button getChat() {
-//        return chat;
-//    }
-//
-//    public void setChat(Button chat) {
-//        this.chat = chat;
-//    }
 
     public Button getAccountb() {
         return accountb;

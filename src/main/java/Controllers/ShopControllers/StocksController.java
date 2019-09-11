@@ -23,7 +23,6 @@ import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import logging.LogClass;
-import org.apache.commons.io.FileUtils;
 import securityandtime.config;
 
 import javax.imageio.ImageIO;
@@ -37,8 +36,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
-import static securityandtime.config.des;
-import static securityandtime.config.user;
+import static securityandtime.config.*;
 
 public class StocksController extends UtilityClass implements Initializable {
     public MenuItem logout;
@@ -137,7 +135,7 @@ public class StocksController extends UtilityClass implements Initializable {
 
             try {
                 assert connection != null;
-                preparedStatement = connection.prepareStatement("INSERT INTO stocks(name,itemcode,amount,category,price,image)VALUES(?,?,?,?,?,?)");
+                preparedStatement = connection.prepareStatement("INSERT INTO stocks(name,itemcode,amount,category,price,path)VALUES(?,?,?,?,?,?)");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -178,13 +176,11 @@ public class StocksController extends UtilityClass implements Initializable {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+//            System.getProperty("user.home")+"\\nanotechsoftwaresPOS\\"+
+            File f = new File(fileSavePath + System.currentTimeMillis() + file.getName());
             try {
                 if (preparedStatement != null) {
-                    try {
-                        preparedStatement.setBinaryStream(6, FileUtils.openInputStream(file), length);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    preparedStatement.setString(6, f.getAbsolutePath());
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -195,6 +191,7 @@ public class StocksController extends UtilityClass implements Initializable {
                     int rows = preparedStatement.executeUpdate();
                     if (rows > 0) {
                         //System.out.println(rows);
+
                         showAlert(Alert.AlertType.INFORMATION, parentsstocks.getScene().getWindow(), "SUCCESS ", "YOUR ITEM WAS ADDED SUCCESSFULLY");
                         itemcode.clear();
                         itemname.clear();

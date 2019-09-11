@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.*?>
-<?import java.lang.String?>
 <?import java.net.URL?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="700.0" prefWidth="1200.0"
-            stylesheets="@../styles/panels.css" xmlns="http://javafx.com/javafx/1"
+            stylesheets="@../styles/panels.css" xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="Controllers.UserAccountManagementControllers.PanelController">
-    <VBox>
+    <VBox prefHeight="700.0" prefWidth="1200.0">
         <MenuBar VBox.vgrow="NEVER">
             <Menu mnemonicParsing="false" text="ACCOUNT">
                 <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS"/>
@@ -32,83 +31,127 @@
                 <MenuItem mnemonicParsing="false" text="About MyHelloApp"/>
             </Menu>
         </MenuBar>
-        <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="642.0" prefWidth="1200.0"
-                   VBox.vgrow="ALWAYS">
-            <AnchorPane styleClass="subPanel">
-                <Label fx:id="clock" layoutX="52.0" layoutY="212.0" prefHeight="38.0" prefWidth="133.0" text="00:00:00">
-                    <font>
-                        <Font name="Gabriola" size="30.0"/>
-                    </font>
-                </Label>
-                <ImageView fx:id="logoimage" fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="27.0"
-                           pickOnBounds="true" preserveRatio="true"/>
-            </AnchorPane>
-            <AnchorPane id="Content" prefHeight="557.0" prefWidth="596.0" styleClass="mainPanel">
-                <Label alignment="CENTER" layoutX="342.0" layoutY="14.0" style="&#10;" text="CASHIER PANEL"
-                       textAlignment="CENTER" textFill="#fffdfd">
-                    <font>
-                        <Font name="FangSong" size="48.0"/>
-                    </font>
-                </Label>
-                <Button fx:id="carwash" layoutX="149.0" layoutY="90.0" mnemonicParsing="false" prefHeight="159.0"
-                        prefWidth="298.0" styleClass="buttonred" stylesheets="@../styles/buttons.css" text="CAR WASH">
-                    <font>
-                        <Font name="Gabriola" size="28.0"/>
-                    </font>
-                </Button>
-                <Button fx:id="logoutButton" layoutX="515.0" layoutY="334.0" mnemonicParsing="false" prefHeight="159.0"
-                        prefWidth="298.0" style="-fx-background-color: black;">
-                    <font>
-                        <Font name="Gabriola" size="28.0"/>
-                    </font>
-                    <styleClass>
-                        <String fx:value="buttonsg"/>
-                        <String fx:value="logoutButton"/>
-                    </styleClass>
-                </Button>
-                <Button fx:id="shop" layoutX="149.0" layoutY="334.0" mnemonicParsing="false" prefHeight="159.0"
-                        prefWidth="298.0" styleClass="buttonyellow" text="SHOP">
-                    <font>
-                        <Font name="Gabriola" size="28.0"/>
-                    </font>
-                </Button>
-                <!--            <Button fx:id="chat" layoutX="512.0" layoutY="90.0" mnemonicParsing="false" prefHeight="124.0"-->
-                <!--                    prefWidth="298.0" styleClass="buttonorange" text="CHAT BOX">-->
-                <!--                <font>-->
-                <!--                    <Font name="Gabriola" size="28.0"/>-->
-                <!--                </font>-->
-                <!--            </Button>-->
-                <Button fx:id="accountb" layoutX="506.0" layoutY="90.0" mnemonicParsing="false" prefHeight="159.0"
-                        prefWidth="298.0" styleClass="buttongreen" text="ACCOUNT">
-                    <font>
-                        <Font name="Gabriola" size="28.0"/>
-                    </font>
-                </Button>
-                <!--            <Button fx:id="chat11" layoutX="512.0" layoutY="421.0" mnemonicParsing="false" prefHeight="124.0"-->
-                <!--                    prefWidth="298.0" styleClass="buttonviolet" text="CONTACT ADMIN">-->
-                <!--                <font>-->
-                <!--                    <Font name="Gabriola" size="28.0"/>-->
-                <!--                </font>-->
-                <!--            </Button>-->
-                <Hyperlink fx:id="link" layoutX="485.0" layoutY="572.0" prefHeight="34.0" prefWidth="179.0"
-                           text="NanotechSoftwares" textFill="#f50707" underline="true">
-                    <font>
-                        <Font size="17.0"/>
-                    </font>
-                </Hyperlink>
-                <Label layoutX="393.0" layoutY="574.0" prefHeight="30.0" prefWidth="92.0" text="Powered by"
-                       textFill="#fff4f4">
-                    <font>
-                        <Font size="17.0"/>
-                    </font>
-                </Label>
-                <stylesheets>
-                    <URL value="@../styles/panels.css"/>
-                    <URL value="@../styles/css.css"/>
-                    <URL value="@../styles/buttons.css"/>
-                </stylesheets>
-            </AnchorPane>
-        </SplitPane>
+        <AnchorPane id="Content" prefHeight="675.0" prefWidth="1200.0" styleClass="mainPanel">
+            <Label alignment="CENTER" layoutX="465.0" layoutY="14.0" style="&#10;" text="CASHIER PANEL"
+                   textAlignment="CENTER" textFill="#fffdfd">
+                <font>
+                    <Font size="31.0"/>
+                </font>
+            </Label>
+            <Button fx:id="carwash" layoutX="149.0" layoutY="90.0" mnemonicParsing="false" prefHeight="101.0"
+                    prefWidth="298.0" stylesheets="@../styles/buttons.css" text="GO TO CAR WASH">
+                <font>
+                    <Font name="Gabriola" size="28.0"/>
+                </font>
+            </Button>
+            <Button fx:id="logoutButton" layoutX="506.0" layoutY="219.0" mnemonicParsing="false" prefHeight="101.0"
+                    prefWidth="298.0" text="LOG OUT">
+                <font>
+                    <Font name="Gabriola" size="28.0"/>
+                </font>
+            </Button>
+            <Button fx:id="shop" layoutX="149.0" layoutY="219.0" mnemonicParsing="false" prefHeight="101.0"
+                    prefWidth="298.0" text="GO TO SHOP">
+                <font>
+                    <Font name="Gabriola" size="28.0"/>
+                </font>
+            </Button>
+            <!--            <Button fx:id="chat" layoutX="512.0" layoutY="90.0" mnemonicParsing="false" prefHeight="124.0"-->
+            <!--                    prefWidth="298.0" styleClass="buttonorange" text="CHAT BOX">-->
+            <!--                <font>-->
+            <!--                    <Font name="Gabriola" size="28.0"/>-->
+            <!--                </font>-->
+            <!--            </Button>-->
+            <Button fx:id="accountb" layoutX="506.0" layoutY="90.0" mnemonicParsing="false" prefHeight="101.0"
+                    prefWidth="298.0" text="ACCOUNT INFORMATION">
+                <font>
+                    <Font name="Gabriola" size="28.0"/>
+                </font>
+            </Button>
+            <!--            <Button fx:id="chat11" layoutX="512.0" layoutY="421.0" mnemonicParsing="false" prefHeight="124.0"-->
+            <!--                    prefWidth="298.0" styleClass="buttonviolet" text="CONTACT ADMIN">-->
+            <!--                <font>-->
+            <!--                    <Font name="Gabriola" size="28.0"/>-->
+            <!--                </font>-->
+            <!--            </Button>-->
+            <Hyperlink fx:id="link" layoutX="549.0" layoutY="610.0" prefHeight="34.0" prefWidth="179.0"
+                       text="NanotechSoftwares" textFill="#f50707" underline="true">
+                <font>
+                    <Font size="17.0"/>
+                </font>
+            </Hyperlink>
+            <Label layoutX="457.0" layoutY="612.0" prefHeight="30.0" prefWidth="92.0" text="Powered by"
+                   textFill="#fff4f4">
+                <font>
+                    <Font size="17.0"/>
+                </font>
+            </Label>
+            <Button fx:id="carwash1" layoutX="149.0" layoutY="344.0" mnemonicParsing="false" prefHeight="101.0"
+                    prefWidth="298.0" stylesheets="@../styles/buttons.css" text="START SHIFT">
+                <font>
+                    <Font name="Gabriola" size="28.0"/>
+                </font>
+            </Button>
+            <Button fx:id="logoutButton1" layoutX="506.0" layoutY="473.0" mnemonicParsing="false" prefHeight="101.0"
+                    prefWidth="298.0" text="LOG OUT">
+                <font>
+                    <Font name="Gabriola" size="28.0"/>
+                </font>
+            </Button>
+            <Button fx:id="shop1" layoutX="149.0" layoutY="473.0" mnemonicParsing="false" prefHeight="101.0"
+                    prefWidth="298.0" text="TROUBLE SHOOT">
+                <font>
+                    <Font name="Gabriola" size="28.0"/>
+                </font>
+            </Button>
+            <Button fx:id="accountb1" layoutX="506.0" layoutY="344.0" mnemonicParsing="false" prefHeight="101.0"
+                    prefWidth="298.0" text="END SHIFT">
+                <font>
+                    <Font name="Gabriola" size="28.0"/>
+                </font>
+            </Button>
+            <Button fx:id="logoutButton2" layoutX="837.0" layoutY="219.0" mnemonicParsing="false" prefHeight="101.0"
+                    prefWidth="298.0" text="HELP">
+                <font>
+                    <Font name="Gabriola" size="28.0"/>
+                </font>
+            </Button>
+            <Button fx:id="accountb2" layoutX="837.0" layoutY="90.0" mnemonicParsing="false" prefHeight="101.0"
+                    prefWidth="298.0" text="REPORT ISSUE">
+                <font>
+                    <Font name="Gabriola" size="28.0"/>
+                </font>
+            </Button>
+            <Button fx:id="logoutButton11" layoutX="837.0" layoutY="473.0" mnemonicParsing="false" prefHeight="101.0"
+                    prefWidth="298.0" text="LOG OUT">
+                <font>
+                    <Font name="Gabriola" size="28.0"/>
+                </font>
+            </Button>
+            <Button fx:id="accountb11" layoutX="837.0" layoutY="344.0" mnemonicParsing="false" prefHeight="101.0"
+                    prefWidth="298.0" text="END SHIFT">
+                <font>
+                    <Font name="Gabriola" size="28.0"/>
+                </font>
+            </Button>
+            <Label fx:id="stationname" alignment="CENTER" layoutX="743.0" layoutY="18.0" prefHeight="46.0"
+                   prefWidth="434.0" style="&#10;" text="STATION NAME" textAlignment="CENTER" textFill="#fffdfd">
+                <font>
+                    <Font size="31.0"/>
+                </font>
+            </Label>
+            <Label fx:id="clock" alignment="CENTER" layoutX="137.0" layoutY="22.0" prefHeight="42.0" prefWidth="145.0"
+                   text="00:00:00" textAlignment="CENTER">
+                <font>
+                    <Font size="25.0"/>
+                </font>
+            </Label>
+            <stylesheets>
+                <URL value="@../styles/panels.css"/>
+                <URL value="@../styles/css.css"/>
+                <URL value="@../styles/buttons.css"/>
+            </stylesheets>
+        </AnchorPane>
     </VBox>
 
 </AnchorPane>

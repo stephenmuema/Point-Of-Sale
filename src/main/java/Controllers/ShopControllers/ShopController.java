@@ -1,5 +1,6 @@
 package Controllers.ShopControllers;
 
+import Controllers.SuperClass;
 import Controllers.UserAccountManagementControllers.IdleMonitor;
 import Controllers.UtilityClass;
 import MasterClasses.CartMaster;
@@ -23,7 +24,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
@@ -31,6 +31,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import scanhandler.BarcodeScanner;
 import securityandtime.CheckConn;
@@ -79,25 +80,23 @@ public class ShopController extends CartIdGenerator implements Initializable {
     public MenuItem helpMenu;
     public MenuItem stores;
     public MenuItem stocks;
-    public Button endDay;
     public Button clearheld;
-    private ArrayList<CartMaster> arrayList = new ArrayList<CartMaster>();
+    public Button endDay;
     private ObservableList<CartMaster> data;
     private int counter = 0;
+    ArrayList<CartMaster> arrayList = new ArrayList<CartMaster>();
     private String transID;
-    private UtilityClass utilityClass = new UtilityClass();
-    private Connection connection = utilityClass.getConnection();
+    private SuperClass superClass = new SuperClass();
 
-    private Connection connectionDbLocal = utilityClass.getConnectionDbLocal();
+    private Connection connectionDbLocal, connection;
+    private UtilityClass utilityClass = new UtilityClass();
+
     private Statement statementLocal = null;
 
-//    {
-//        try {
-//            connectionDbLocal = DriverManager.getConnection(localCartDb);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    {
+        connection = superClass.getConnection();
+        connectionDbLocal = superClass.getConnectionDbLocal();
+    }
 
     /**
      * Called to initialize a controller after its root element has been
@@ -110,15 +109,12 @@ public class ShopController extends CartIdGenerator implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            config.login.put("loggedout", true);
-                            shopPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(ShopController.this.getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                () -> {
+                    try {
+                        config.login.put("loggedout", true);
+                        shopPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 }, true);
         idleMonitor.register(panel, Event.ANY);
@@ -148,6 +144,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
 //            }
 //        });
     }
+
 
 
     private void setListViewHeldItems() {
@@ -183,7 +180,6 @@ public class ShopController extends CartIdGenerator implements Initializable {
                     }
                 }
             }
-
 
             private void restore() {
 //            todo check if cart is empty during restoration,if empty restore,otherwise save existing cart then restore
@@ -232,7 +228,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
                 }
 
                 setTransID();
-                //System.out.println(getTransID());
+                System.out.println(getTransID());
             }
         });
 
@@ -311,7 +307,6 @@ public class ShopController extends CartIdGenerator implements Initializable {
                 }
         );
     }
-
     private void tableLoad() {
 /*
        1 create a sqlite database
@@ -326,14 +321,14 @@ public class ShopController extends CartIdGenerator implements Initializable {
          *  else enter manually
          *
          * */
-        String zcode = "";
-        String itemname = "";
+        String zcode = null;
+        String itemname = null;
         BarcodeScanner barcodeScanner = new BarcodeScanner();
         StringBuffer stringBuffer = barcodeScanner.getBarcode();
         if (!stringBuffer.toString().equals("")) {
 //            if bar code reads
             if (stringBuffer.toString().length() < 8) {
-                utilityClass.showAlert(Alert.AlertType.ERROR, shopPanel.getScene().getWindow(), "ERROR", "ERROR READING CODE");
+                showAlert(Alert.AlertType.ERROR, shopPanel.getScene().getWindow(), "ERROR", "ERROR READING CODE");
             } else {
                 zcode = stringBuffer.toString();
                 barcodetext.setText(zcode);
@@ -347,6 +342,13 @@ public class ShopController extends CartIdGenerator implements Initializable {
 //        searchname.clear();
         barcodetext.clear();
         data = FXCollections.observableArrayList();
+        Connection connection = null;
+        try {
+            connection = DriverManager
+                    .getConnection(des[2], des[0], des[1]);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
         //            for local storage
@@ -368,7 +370,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
 //                        String cartItems = "CREATE TABLE IF NOT EXISTS cartItems
 //                        (itemname text,itemprice text,
 //                        itemid text,code text,amount text,cumulativeprice text ,transactionid text)";
-            if (!zcode.isEmpty() && itemname.isEmpty()) {
+            if (connection != null) {
 
                 PreparedStatement statement = connection.prepareStatement("SELECT * FROM stocks where itemcode=?");
                 statement.setString(1, zcode);
@@ -445,24 +447,6 @@ public class ShopController extends CartIdGenerator implements Initializable {
 
                 totalprice.setText(String.valueOf(countTotalPrice()));
                 cart.setItems(data);
-            } else {
-
-                PreparedStatement statement = connection.prepareStatement("SELECT * FROM stocks where name like ?");
-                statement.setString(1, "%" + itemname + "%");
-                ResultSet resultSet = statement.executeQuery();
-                while (resultSet.next()) {
-
-                    CartMaster cartmaster = new CartMaster();
-                    cartmaster.setItemId(resultSet.getInt("id"));
-                    cartmaster.setItemName(resultSet.getString("name"));
-                    cartmaster.setItemNumber("1");
-                    cartmaster.setItemPrice(resultSet.getString("price"));
-                    cartmaster.setItemBarCode(zcode);
-                    cartmaster.setItemCumulativeCost(Integer.parseInt(resultSet.getString("price")) * Integer.parseInt(cartmaster.getItemNumber()));
-
-
-                }
-                cart.setItems(data);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -480,20 +464,20 @@ public class ShopController extends CartIdGenerator implements Initializable {
         cart.refresh();
     }
 
-    private String countTotalPrice() throws SQLException {
-        double price = 0.00;
+    private int countTotalPrice() throws SQLException {
+        int price = 0;
         ResultSet rs = statementLocal.executeQuery("SELECT  * FROM cartItems");
         while (rs.next()) {
             price += Integer.parseInt(rs.getString("cumulativeprice"));
         }
         statementLocal.close();
 
-        return String.format("%.2f", price);
+        return price;
     }
 
     private void getLogo() {
-        Image image = new Image("images/logo.png");
-        logoimage.setImage(image);
+//        Image image = new Image("images/banner_hardware.png");
+//        logoimage.setImage(image);
     }
 
     private void setName() {
@@ -547,7 +531,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
     private void deletefromcart() {
         CartMaster store = cart.getSelectionModel().getSelectedItem();
         if (store == null) {
-            utilityClass.showAlert(Alert.AlertType.WARNING, shopPanel.getScene().getWindow(), "NO ITEM SELECTED", "SELECT ITEM TO REMOVE");
+            showAlert(Alert.AlertType.WARNING, shopPanel.getScene().getWindow(), "NO ITEM SELECTED", "SELECT ITEM TO REMOVE");
 
         } else {
             try {
@@ -559,23 +543,16 @@ public class ShopController extends CartIdGenerator implements Initializable {
                 if (updated > 0) {
                     tableLoad();
                 } else {
-                    utilityClass.showAlert(Alert.AlertType.WARNING, shopPanel.getScene().getWindow(), "ERROR", "EROR REMOVING ITEM");
+                    showAlert(Alert.AlertType.WARNING, shopPanel.getScene().getWindow(), "ERROR", "EROR REMOVING ITEM");
                 }
             } catch (Exception e) {
-                utilityClass.showAlert(Alert.AlertType.WARNING, shopPanel.getScene().getWindow(), "CONNECTION ERROR", "EROR REMOVING ITEM.CHECK YOUR CONNECTION TO THE SERVER");
+                showAlert(Alert.AlertType.WARNING, shopPanel.getScene().getWindow(), "CONNECTION ERROR", "EROR REMOVING ITEM.CHECK YOUR CONNECTION TO THE SERVER");
 
             }
         }
     }
 
     private void buttonListeners() {
-        endDay.setOnAction(event -> {
-            try {
-                shutdown();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
         clearheld.setOnAction(event -> {
             try {
                 statementLocal.execute("DELETE FROM heldItems");
@@ -587,6 +564,14 @@ public class ShopController extends CartIdGenerator implements Initializable {
                 }
 
             } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        endDay.setOnAction(event -> {
+            try {
+                shutdown();
+                endShift();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         });
@@ -634,12 +619,18 @@ public class ShopController extends CartIdGenerator implements Initializable {
 //        });
         clearb.setOnMouseClicked(event -> {
             clearCart();
-            utilityClass.showAlert(Alert.AlertType.INFORMATION, shopPanel.getScene().getWindow(), "CART CLEARED", "YOU HAVE CLEARED YOUR CART");
+            showAlert(Alert.AlertType.INFORMATION, shopPanel.getScene().getWindow(), "CART CLEARED", "YOU HAVE CLEARED YOUR CART");
         });
         logoutb.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                utilityClass.logout(shopPanel);
+                //logout button destroy session variables
+                config.login.put("loggedout", true);
+                try {
+                    shopPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         panel.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -669,6 +660,10 @@ public class ShopController extends CartIdGenerator implements Initializable {
         });
     }
 
+    private void endShift() {
+        //todo end shift
+    }
+
     private void holdUserData(String name) {
 
 
@@ -681,16 +676,16 @@ public class ShopController extends CartIdGenerator implements Initializable {
             checkCart();
             tableLoad();
 
-//                    //System.out.println(getTransID());
+//                    System.out.println(getTransID());
 //                    fixme find a better way of doing this(setting the transaction id)
             try {
                 shopPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/shop.fxml")))));
                 setTransID();
-                //System.out.println(getTransID());
+                System.out.println(getTransID());
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            utilityClass.showAlert(Alert.AlertType.INFORMATION, shopPanel.getScene().getWindow(), "SUCCESS", "HOLDING SUCCESSFULL");
+            showAlert(Alert.AlertType.INFORMATION, shopPanel.getScene().getWindow(), "SUCCESS", "HOLDING SUCCESSFULL");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -720,10 +715,10 @@ public class ShopController extends CartIdGenerator implements Initializable {
 //                cartmaster.setItemBarCode(resultSet.getString("code"));
 //                cartmaster.setItemCumulativeCost(Integer.parseInt(resultSet.getString("cumulativeprice")));
 ////move to new table
-//                //System.out.println(cartmaster.getItemBarCode()+" is the code");
+//                System.out.println(cartmaster.getItemBarCode()+" is the code");
 //
 ////                    remove from old table
-//                //System.out.println(counters+" done");
+//                System.out.println(counters+" done");
 //counters++;
 //            }
 
@@ -807,7 +802,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
         if (counter == 0) {
             try {
                 String uniqueid = CheckConn.timelogin().getTime() + user.get("user");
-                //System.out.println(uniqueid);
+                System.out.println(uniqueid);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -818,340 +813,14 @@ public class ShopController extends CartIdGenerator implements Initializable {
     }
 
     //method to show an alert
-
-
-    public AnchorPane getShopPanel() {
-        return shopPanel;
-    }
-
-    public ShopController setShopPanel(AnchorPane shopPanel) {
-        this.shopPanel = shopPanel;
-        return this;
-    }
-
-    public Label getClock() {
-        return clock;
-    }
-
-    public ShopController setClock(Label clock) {
-        this.clock = clock;
-        return this;
-    }
-
-    public Label getUsername() {
-        return username;
-    }
-
-    public ShopController setUsername(Label username) {
-        this.username = username;
-        return this;
-    }
-
-    public Button getLogoutb() {
-        return logoutb;
-    }
-
-    public ShopController setLogoutb(Button logoutb) {
-        this.logoutb = logoutb;
-        return this;
-    }
-
-    public ImageView getLogoimage() {
-        return logoimage;
-    }
-
-    public ShopController setLogoimage(ImageView logoimage) {
-        this.logoimage = logoimage;
-        return this;
-    }
-
-    public TextField getBarcodetext() {
-        return barcodetext;
-    }
-
-    public ShopController setBarcodetext(TextField barcodetext) {
-        this.barcodetext = barcodetext;
-        return this;
-    }
-
-    public Button getSearchb() {
-        return searchb;
-    }
-
-    public ShopController setSearchb(Button searchb) {
-        this.searchb = searchb;
-        return this;
-    }
-
-    public TableView<CartMaster> getCart() {
-        return cart;
-    }
-
-    public ShopController setCart(TableView<CartMaster> cart) {
-        this.cart = cart;
-        return this;
-    }
-
-    public TableColumn<CartMaster, String> getName() {
-        return name;
-    }
-
-    public ShopController setName(TableColumn<CartMaster, String> name) {
-        this.name = name;
-        return this;
-    }
-
-    public TableColumn<CartMaster, String> getCode() {
-        return code;
-    }
-
-    public ShopController setCode(TableColumn<CartMaster, String> code) {
-        this.code = code;
-        return this;
-    }
-
-    public TableColumn<CartMaster, String> getPrice() {
-        return price;
-    }
-
-    public ShopController setPrice(TableColumn<CartMaster, String> price) {
-        this.price = price;
-        return this;
-    }
-
-    public TableColumn<CartMaster, String> getAmount() {
-        return amount;
-    }
-
-    public ShopController setAmount(TableColumn<CartMaster, String> amount) {
-        this.amount = amount;
-        return this;
-    }
-
-    public TableColumn<CartMaster, Integer> getCumulativeprice() {
-        return cumulativeprice;
-    }
-
-    public ShopController setCumulativeprice(TableColumn<CartMaster, Integer> cumulativeprice) {
-        this.cumulativeprice = cumulativeprice;
-        return this;
-    }
-
-    public Button getDeletefromcartb() {
-        return deletefromcartb;
-    }
-
-    public ShopController setDeletefromcartb(Button deletefromcartb) {
-        this.deletefromcartb = deletefromcartb;
-        return this;
-    }
-
-    public Button getOnlinepayments() {
-        return onlinepayments;
-    }
-
-    public ShopController setOnlinepayments(Button onlinepayments) {
-        this.onlinepayments = onlinepayments;
-        return this;
-    }
-
-    public Button getPaycash() {
-        return paycash;
-    }
-
-    public ShopController setPaycash(Button paycash) {
-        this.paycash = paycash;
-        return this;
-    }
-
-    public Button getHolduserdatab() {
-        return holduserdatab;
-    }
-
-    public ShopController setHolduserdatab(Button holduserdatab) {
-        this.holduserdatab = holduserdatab;
-        return this;
-    }
-
-    public Button getPanel() {
-        return panel;
-    }
-
-    public ShopController setPanel(Button panel) {
-        this.panel = panel;
-        return this;
+    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.showAndWait();
     }
 
-    public Button getClearb() {
-        return clearb;
-    }
-
-    public ShopController setClearb(Button clearb) {
-        this.clearb = clearb;
-        return this;
-    }
-
-    public Label getTotalprice() {
-        return totalprice;
-    }
-
-    public ShopController setTotalprice(Label totalprice) {
-        this.totalprice = totalprice;
-        return this;
-    }
-
-    public TableView<CartMaster> getListViewHeldItems() {
-        return listViewHeldItems;
-    }
-
-    public ShopController setListViewHeldItems(TableView<CartMaster> listViewHeldItems) {
-        this.listViewHeldItems = listViewHeldItems;
-        return this;
-    }
-
-    public TableColumn<CartMaster, String> getHeldname() {
-        return heldname;
-    }
-
-    public ShopController setHeldname(TableColumn<CartMaster, String> heldname) {
-        this.heldname = heldname;
-        return this;
-    }
-
-    public TableColumn<CartMaster, String> getHeldid() {
-        return heldid;
-    }
-
-    public ShopController setHeldid(TableColumn<CartMaster, String> heldid) {
-        this.heldid = heldid;
-        return this;
-    }
-
-    public Button getLoyaltiesB() {
-        return loyaltiesB;
-    }
-
-    public ShopController setLoyaltiesB(Button loyaltiesB) {
-        this.loyaltiesB = loyaltiesB;
-        return this;
-    }
-
-//    public TextField getSearchname() {
-//        return searchname;
-//    }
-//
-//    public ShopController setSearchname(TextField searchname) {
-//        this.searchname = searchname;
-//        return this;
-//    }
-
-    public MenuItem getLogoutMenu() {
-        return logoutMenu;
-    }
-
-    public ShopController setLogoutMenu(MenuItem logoutMenu) {
-        this.logoutMenu = logoutMenu;
-        return this;
-    }
-
-    public MenuItem getExitMenu() {
-        return exitMenu;
-    }
-
-    public ShopController setExitMenu(MenuItem exitMenu) {
-        this.exitMenu = exitMenu;
-        return this;
-    }
-
-    public MenuItem getAccountdetailsMenu() {
-        return accountdetailsMenu;
-    }
-
-    public ShopController setAccountdetailsMenu(MenuItem accountdetailsMenu) {
-        this.accountdetailsMenu = accountdetailsMenu;
-        return this;
-    }
 
-    public MenuItem getCreatorsMenu() {
-        return CreatorsMenu;
-    }
-
-    public ShopController setCreatorsMenu(MenuItem creatorsMenu) {
-        CreatorsMenu = creatorsMenu;
-        return this;
-    }
-
-    public MenuItem getHelpMenu() {
-        return helpMenu;
-    }
-
-    public ShopController setHelpMenu(MenuItem helpMenu) {
-        this.helpMenu = helpMenu;
-        return this;
-    }
-
-    public MenuItem getStores() {
-        return stores;
-    }
-
-    public ShopController setStores(MenuItem stores) {
-        this.stores = stores;
-        return this;
-    }
-
-    public MenuItem getStocks() {
-        return stocks;
-    }
-
-    public ShopController setStocks(MenuItem stocks) {
-        this.stocks = stocks;
-        return this;
-    }
-
-    public ArrayList<CartMaster> getArrayList() {
-        return arrayList;
-    }
-
-    public ShopController setArrayList(ArrayList<CartMaster> arrayList) {
-        this.arrayList = arrayList;
-        return this;
-    }
-
-    public ObservableList<CartMaster> getData() {
-        return data;
-    }
-
-    public ShopController setData(ObservableList<CartMaster> data) {
-        this.data = data;
-        return this;
-    }
-
-    public int getCounter() {
-        return counter;
-    }
-
-    public ShopController setCounter(int counter) {
-        this.counter = counter;
-        return this;
-    }
-
-    public ShopController setTransID(String transID) {
-        this.transID = transID;
-        return this;
-    }
-
-
-    public ShopController setConnectionDbLocal(Connection connectionDbLocal) {
-        this.connectionDbLocal = connectionDbLocal;
-        return this;
-    }
-
-    public Statement getStatementLocal() {
-        return statementLocal;
-    }
-
-    public ShopController setStatementLocal(Statement statementLocal) {
-        this.statementLocal = statementLocal;
-        return this;
-    }
 }

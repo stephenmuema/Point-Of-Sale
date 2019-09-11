@@ -20,6 +20,9 @@ import securityandtime.CheckConn;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -100,6 +103,16 @@ public class Launcher extends Application {
     @Override
     public void start(@NotNull Stage stage) throws Exception {
         createSqliteDb();
+        Path path = Paths.get(fileSavePath);
+
+        if (!Files.exists(path)) {
+
+            Files.createDirectories(path);
+            Files.createDirectories(Paths.get(fileSavePath + "\\licenses"));
+            Files.createDirectories(Paths.get(fileSavePath + "\\dependencies"));
+            Files.createDirectories(Paths.get(fileSavePath + "\\images"));
+//            System.out.println("Directory created");
+        }  //            System.out.println("Directory already exists");
 
         File file = new File(licensepath);
         boolean exists = file.exists();

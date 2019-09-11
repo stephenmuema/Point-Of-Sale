@@ -6,7 +6,7 @@
 <?import java.net.URL?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0"
-            xmlns="http://javafx.com/javafx/1"
+            xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="Controllers.AuthenticationControllers.LicensingController">
     <children>
         <AnchorPane prefHeight="214.0" prefWidth="1200.0" styleClass="mainPanel">
@@ -18,13 +18,25 @@
                     </font>
                 </Label>
                 <Button fx:id="getlicensebutton" layoutX="45.0" layoutY="81.0" mnemonicParsing="false" prefHeight="42.0"
-                        prefWidth="157.0" styleClass="buttonorange" text="GET LICENSE">
+                        prefWidth="157.0" text="GET LICENSE">
                     <font>
                         <Font size="15.0"/>
                     </font>
                 </Button>
-                <Button fx:id="otherproducts" layoutX="362.0" layoutY="81.0" mnemonicParsing="false" prefHeight="42.0"
-                        prefWidth="157.0" styleClass="buttonred" text="OTHER PRODUCTS">
+                <Button fx:id="otherproducts" layoutX="45.0" layoutY="149.0" mnemonicParsing="false" prefHeight="42.0"
+                        prefWidth="157.0" text="OTHER PRODUCTS">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="useServer" layoutX="243.0" layoutY="81.0" mnemonicParsing="false" prefHeight="42.0"
+                        prefWidth="202.0" text="USE LICENSING SERVER">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="getHelp" layoutX="243.0" layoutY="149.0" mnemonicParsing="false" prefHeight="42.0"
+                        prefWidth="202.0" text="HELP">
                     <font>
                         <Font size="15.0"/>
                     </font>
@@ -33,26 +45,27 @@
         </AnchorPane>
         <AnchorPane fx:id="draggablepane" layoutY="207.0" prefHeight="489.0" prefWidth="1200.0">
             <children>
-                <TextArea fx:id="licensearea" layoutX="41.0" layoutY="22.0" prefHeight="278.0" prefWidth="1119.0"
+                <TextArea fx:id="licensearea" layoutX="41.0" layoutY="22.0" prefHeight="238.0" prefWidth="1119.0"
                           promptText="DRAG AND DROP YOUR LICENCE FILE HERE OR COPY ITS CONTENTS HERE...."
                           styleClass="licensetext" stylesheets="@../styles/licensing.css">
                     <font>
                         <Font size="15.0"/>
                     </font>
                 </TextArea>
-                <Button fx:id="confirm" layoutX="477.0" layoutY="316.0" mnemonicParsing="false" prefHeight="54.0"
+                <Button fx:id="confirm" layoutX="463.0" layoutY="360.0" mnemonicParsing="false" prefHeight="54.0"
                         prefWidth="246.0" styleClass="buttons" text="CONFIRM LICENSE"/>
-                <Hyperlink fx:id="link" layoutX="523.0" layoutY="387.0" prefHeight="34.0" prefWidth="179.0"
+                <Hyperlink fx:id="link" layoutX="516.0" layoutY="425.0" prefHeight="34.0" prefWidth="179.0"
                            text="NanotechSoftwares" textFill="#f50707" underline="true">
                     <font>
                         <Font size="17.0"/>
                     </font>
                 </Hyperlink>
-                <Label layoutX="424.0" layoutY="391.0" prefHeight="30.0" prefWidth="92.0" text="Powered by">
+                <Label layoutX="417.0" layoutY="429.0" prefHeight="30.0" prefWidth="92.0" text="Powered by">
                     <font>
                         <Font size="17.0"/>
                     </font>
                 </Label>
+                <CheckBox layoutX="134.0" layoutY="278.0" mnemonicParsing="false" text="FIRST TIME SETUP"/>
             </children>
         </AnchorPane>
     </children>

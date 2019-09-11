@@ -1,6 +1,7 @@
 package Controllers.UserAccountManagementControllers;
 
 import Controllers.UtilityClass;
+import com.smattme.MysqlExportService;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -17,17 +18,16 @@ import javafx.util.Duration;
 import securityandtime.config;
 
 import java.awt.*;
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
-import static securityandtime.config.dbdetails;
 import static securityandtime.config.supplierSite;
 
 public class AdminPanelController extends UtilityClass implements Initializable {
@@ -83,61 +83,39 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         backup.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String[] tables = {"audits", "carwash", "chats", "costs", "payments", "sales", "salespercategory", "solditems"
-                        , "stocks", "stores", "subscribers", "suppliers", "timers", "users"};
-                for (String tablename : tables) {
-                    try {
-                        System.out.println(" Table " + tablename + backup("127.0.0.1", dbdetails[5], dbdetails[1], dbdetails[2], dbdetails[4], tablename));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
+                System.out.println(backup());
             }
 
             //todo continue from backing up database
-            private String backup(String host, String port, String user, String password, String db, String table) {
+            private String backup() {
+                //required properties for exporting of db
+                Properties properties = new Properties();
+                properties.setProperty(MysqlExportService.DB_NAME, "nanotechsoftwarespos");
+                properties.setProperty(MysqlExportService.DB_USERNAME, "root");
+                properties.setProperty(MysqlExportService.DB_PASSWORD, "");
 
-                //an "C:/xampp/mysql/bin/mysqldump" ---- location ito han mysqldump
+//properties relating to email config
+                properties.setProperty(MysqlExportService.EMAIL_HOST, "smtp.gmail.com");
+                properties.setProperty(MysqlExportService.EMAIL_PORT, "587");
+                properties.setProperty(MysqlExportService.EMAIL_USERNAME, "muemasnyamai@gmail.com");
+                properties.setProperty(MysqlExportService.EMAIL_PASSWORD, "tpgkhylqyxiypqld");
+                properties.setProperty(MysqlExportService.EMAIL_FROM, "muemasnyamai@gmail.com");
+                properties.setProperty(MysqlExportService.EMAIL_TO, "muemasnyamai@gmail.com");
 
-                Process run = null;
-                try {
-                    run = Runtime.getRuntime().exec(
-                            "C:/xampp/mysql/bin/mysqldump --host=" + host + " --port=" + port +
-                                    " --user=" + user + " --password=" + password +
-                                    " --compact --databases --add-drop-table --complete-insert --extended-insert " +
-                                    "--skip-comments --skip-triggers " + db + " --tables " + table);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+//set the outputs temp dir
+                properties.setProperty(MysqlExportService.TEMP_DIR, new File("external").getPath());
+                properties.setProperty(MysqlExportService.PRESERVE_GENERATED_ZIP, "true");
+                MysqlExportService mysqlExportService = new MysqlExportService(properties);
+                File file = mysqlExportService.getGeneratedZipFile();
+                mysqlExportService.clearTempFiles(false);
 
-                InputStream in = run.getInputStream();
-                BufferedReader br = new BufferedReader(new InputStreamReader(in));
-                StringBuffer temp = new StringBuffer();
-                int count;
-                char[] cbuf = new char[40];
-
-                while (true) {
-                    try {
-                        if (!((count = br.read(cbuf, 0, 40)) != -1)) break;
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                temp.append(cbuf, 0, count);
 
                 try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    mysqlExportService.export();
+                } catch (IOException | ClassNotFoundException | SQLException e) {
+                    e.getMessage();
                 }
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                return temp.toString();
+                return mysqlExportService.getGeneratedSql();
             }
 
         });
