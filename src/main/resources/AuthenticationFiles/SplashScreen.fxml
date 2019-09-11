@@ -4,10 +4,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="parent" prefHeight="600.0" prefWidth="1024.0" styleClass="parent"
-            stylesheets="@../styles/css.css" xmlns="http://javafx.com/javafx/1"
+            stylesheets="@../styles/css.css" xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="SplashScreenController">
     <children>
-        <Label fx:id="owner" layoutX="25.0" layoutY="316.0" prefHeight="35.0" prefWidth="857.0" text="test"
+        <Label fx:id="owner" layoutX="39.0" layoutY="187.0" prefHeight="35.0" prefWidth="857.0" text="test"
                textFill="RED">
             <font>
                 <Font size="23.0"/>

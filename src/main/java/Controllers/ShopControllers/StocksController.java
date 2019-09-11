@@ -123,6 +123,14 @@ public class StocksController extends UtilityClass implements Initializable {
             }
 
         });
+        usescanner.setOnAction(event -> {
+            try {
+                parentsstocks.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/scanneradd.fxml")))));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
         addmanually.setOnMousePressed(event -> {
             //        todo add amount input
             String name, barcode, price, quantity, category;
@@ -133,84 +141,85 @@ public class StocksController extends UtilityClass implements Initializable {
             quantity = amount.getText().toUpperCase();
             PreparedStatement preparedStatement = null;
 
-            try {
-                assert connection != null;
-                preparedStatement = connection.prepareStatement("INSERT INTO stocks(name,itemcode,amount,category,price,path)VALUES(?,?,?,?,?,?)");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            if (!name.isEmpty() && !price.isEmpty() && !barcode.isEmpty() && !category.isEmpty() && !quantity.isEmpty()) {
+                try {
+                    assert connection != null;
+                    preparedStatement = connection.prepareStatement("INSERT INTO stocks(name,itemcode,amount,category,price,path)VALUES(?,?,?,?,?,?)");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.setString(1, name.toUpperCase());
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.setString(2, barcode.toUpperCase());
-                    //                System.out.println("user name=="+user);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.setString(3, quantity.toUpperCase());
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.setString(4, category.toUpperCase());
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.setString(5, price.toUpperCase());
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-//            System.getProperty("user.home")+"\\nanotechsoftwaresPOS\\"+
-            File f = new File(fileSavePath + System.currentTimeMillis() + file.getName());
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.setString(6, f.getAbsolutePath());
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                //executequery
-                if (preparedStatement != null) {
-                    int rows = preparedStatement.executeUpdate();
-                    if (rows > 0) {
-                        //System.out.println(rows);
-
-                        showAlert(Alert.AlertType.INFORMATION, parentsstocks.getScene().getWindow(), "SUCCESS ", "YOUR ITEM WAS ADDED SUCCESSFULLY");
-                        itemcode.clear();
-                        itemname.clear();
-                        itemprice.clear();
-                        itemcategory.clear();
-                        amount.clear();
-                    } else {
-                        showAlert(Alert.AlertType.WARNING, parentsstocks.getScene().getWindow(), "  FAILURE", "ERROR WHEN INSERTING ITEMS");
-
+                try {
+                    if (preparedStatement != null) {
+                        preparedStatement.setString(1, name.toUpperCase());
                     }
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
+                try {
+                    if (preparedStatement != null) {
+                        preparedStatement.setString(2, barcode.toUpperCase());
+                        //                System.out.println("user name=="+user);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    if (preparedStatement != null) {
+                        preparedStatement.setString(3, quantity.toUpperCase());
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    if (preparedStatement != null) {
+                        preparedStatement.setString(4, category.toUpperCase());
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    if (preparedStatement != null) {
+                        preparedStatement.setString(5, price.toUpperCase());
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+//            System.getProperty("user.home")+"\\nanotechsoftwaresPOS\\"+
+                File f = new File(fileSavePath + System.currentTimeMillis() + file.getName());
+                try {
+                    if (preparedStatement != null) {
+                        preparedStatement.setString(6, f.getAbsolutePath());
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    //executequery
+                    if (preparedStatement != null) {
+                        int rows = preparedStatement.executeUpdate();
+                        if (rows > 0) {
+                            //System.out.println(rows);
+
+                            showAlert(Alert.AlertType.INFORMATION, parentsstocks.getScene().getWindow(), "SUCCESS ", "YOUR ITEM WAS ADDED SUCCESSFULLY");
+                            itemcode.clear();
+                            itemname.clear();
+                            itemprice.clear();
+                            itemcategory.clear();
+                            amount.clear();
+                        } else {
+                            showAlert(Alert.AlertType.WARNING, parentsstocks.getScene().getWindow(), "  FAILURE", "ERROR WHEN INSERTING ITEMS");
+
+                        }
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                showAlert(Alert.AlertType.ERROR, parentsstocks.getScene().getWindow(), "ERROR", "ALL FIELDS SHOULD BE FILLED");
             }
         });
-        usescanner.setOnMousePressed(event -> {
 
-//todo using scanner
-        });
         employees.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

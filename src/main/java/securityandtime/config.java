@@ -11,7 +11,6 @@ public interface config {//host,user,password,des,port
     HashMap<String, Boolean> login = new HashMap<>();
     HashMap<String, String> user = new HashMap<>();
     IdentityHashMap<String, String> key = new IdentityHashMap<>();
-    String localCartDb = "jdbc:sqlite:shoppingCartDb.db";
     HashMap<String, String> cartid = new HashMap<String, String>();
     HashMap<String, Integer> pricegot = new HashMap<String, Integer>();
     HashMap<String, Throwable> throwables = new HashMap<>();
@@ -27,7 +26,9 @@ public interface config {//host,user,password,des,port
     String year = " 2019 ";
     String version = " (V 1.1) ";
     String fileSavePath = "D:\\NANOTECHSOFTWARES\\nanotechPOS\\";
-    String licensepath = fileSavePath + "licenses\\license.txt";
+    String licensepath = fileSavePath + "licenses\\license.dll";
+    String localCartDb = "jdbc:sqlite:" + fileSavePath + "files\\shoppingLocal.db";
+
 
 
 

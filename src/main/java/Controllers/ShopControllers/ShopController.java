@@ -135,14 +135,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
             }
         });
 
-//        link.setOnMousePressed(event -> {
-//            try {
-////                    todo change when created website
-//                Desktop.getDesktop().browse(new URL("https://nanotechsoftwares.co.ke").toURI());
-//            } catch (IOException | URISyntaxException e) {
-//                e.printStackTrace();
-//            }
-//        });
+
     }
 
 
@@ -413,33 +406,6 @@ public class ShopController extends CartIdGenerator implements Initializable {
                     cartMaster.setItemBarCode(rs.getString("code"));
                     cartMaster.setItemCumulativeCost(Integer.parseInt(rs.getString("cumulativeprice")));
                     cartMaster.setTransactionId(rs.getString("transactionid"));
-//                    cartMaster.itemCumulativeCostProperty().addListener(new ChangeListener<Number>() {
-//                        @Override
-//                        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-//                            try {
-//                                countTotalPrice();
-//                                totalprice.setText(String.valueOf(countTotalPrice()));
-//                            } catch (SQLException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    });
-//
-//                    cartMaster.itemNumberProperty().addListener(new ChangeListener<String>() {
-//                        @Override
-//                        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-//                            try {
-//                                countTotalPrice();
-//                            } catch (SQLException e) {
-//                                e.printStackTrace();
-//                            }
-//                            try {
-//                                totalprice.setText(String.valueOf(countTotalPrice()));
-//                            } catch (SQLException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    });
 
                     data.add(cartMaster);
                 }
@@ -676,8 +642,6 @@ public class ShopController extends CartIdGenerator implements Initializable {
             checkCart();
             tableLoad();
 
-//                    System.out.println(getTransID());
-//                    fixme find a better way of doing this(setting the transaction id)
             try {
                 shopPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/shop.fxml")))));
                 setTransID();
@@ -702,25 +666,6 @@ public class ShopController extends CartIdGenerator implements Initializable {
                 int i = statementLocal.executeUpdate(insert);
                 ResultSet rs = statementLocal.executeQuery("SELECT transactionid from " + from + "");
                 if (rs.isBeforeFirst()) id.set(rs.getString("transactionid"));
-//            ResultSet resultSet = statementLocal.executeQuery("SELECT  * FROM cartItems");
-//            while (resultSet.next()) {
-//
-//                CartMaster cartmaster = new CartMaster();
-//                id= Integer.parseInt(resultSet.getString("transactionid"));
-//                cartmaster.setTransactionId(resultSet.getString("transactionid"));
-//                cartmaster.setItemId(resultSet.getInt("itemid"));
-//                cartmaster.setItemName(resultSet.getString("itemname"));
-//                cartmaster.setItemNumber(resultSet.getString("amount"));
-//                cartmaster.setItemPrice(resultSet.getString("itemprice"));
-//                cartmaster.setItemBarCode(resultSet.getString("code"));
-//                cartmaster.setItemCumulativeCost(Integer.parseInt(resultSet.getString("cumulativeprice")));
-////move to new table
-//                System.out.println(cartmaster.getItemBarCode()+" is the code");
-//
-////                    remove from old table
-//                System.out.println(counters+" done");
-//counters++;
-//            }
 
             }
             statementLocal.close();

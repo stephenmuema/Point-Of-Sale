@@ -195,10 +195,6 @@ public class LicensingController extends UtilityClass implements Initializable {
     }
 
 
-//    public Connection getConnectionDbLocal() {
-//        return connectionDbLocal;
-//    }
-
     public Statement getStatementLocal() {
         return statementLocal;
     }
@@ -287,6 +283,7 @@ public class LicensingController extends UtilityClass implements Initializable {
         }
 
     }
+
 
     private void loadLogin() {
         try {

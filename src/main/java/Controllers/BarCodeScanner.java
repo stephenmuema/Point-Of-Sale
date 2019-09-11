@@ -10,6 +10,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
 public class BarCodeScanner extends Thread {
+    String barcode;
 
 
     private static SerialPort serialPort;
@@ -50,19 +51,21 @@ public class BarCodeScanner extends Thread {
         return code.get();
     }
 
-    public void launchScanner() {
+    public String launchScanner() {
         Runnable target;
         Thread thread = new Thread(() -> {
             while (true) {
-                System.out.println(scan());
+                barcode = scan();
+                System.out.println(barcode);
                 try {
-                    sleep(500);
+                    sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         });
         thread.start();
+        return barcode;
     }
 
     static class PortReader implements SerialPortEventListener {

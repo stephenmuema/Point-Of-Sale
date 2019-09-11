@@ -26,111 +26,111 @@
             </Menu>
             <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
                 <MenuItem mnemonicParsing="false" text="ABOUT THIS SOFTWARE" />
-            <MenuItem mnemonicParsing="false" text="TERMS AND CONDITIONS" />
-            <MenuItem mnemonicParsing="false" text="CHECK FOR UPDATES" />
-            <MenuItem mnemonicParsing="false" text="DOCUMENTATION" />
-            <MenuItem mnemonicParsing="false" text="REACH US" />
+                <MenuItem mnemonicParsing="false" text="TERMS AND CONDITIONS" />
+                <MenuItem mnemonicParsing="false" text="CHECK FOR UPDATES" />
+                <MenuItem mnemonicParsing="false" text="DOCUMENTATION" />
+                <MenuItem mnemonicParsing="false" text="REACH US" />
             </Menu>
         </MenuBar>
-         <AnchorPane id="Content" prefHeight="677.0" prefWidth="1165.0" styleClass="mainPanel" stylesheets="@../styles/buttons.css">
-             <Label alignment="CENTER" layoutX="495.0" layoutY="25.0" prefHeight="49.0" prefWidth="311.0" style="&#10;" text="ADMIN PANEL" textAlignment="CENTER" textFill="WHITE">
-                 <font>
-                     <Font size="31.0" />
-                 </font>
-             </Label>
-             <Button fx:id="employees" layoutX="89.0" layoutY="95.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="STAFF PANEL">
-                 <font>
-                     <Font name="Gabriola" size="28.0" />
-                 </font>
-             </Button>
-             <Button fx:id="carwashpanel" layoutX="500.0" layoutY="204.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="301.0" text="CAR WASH">
-                 <font>
-                     <Font name="Gabriola" size="28.0" />
-                 </font>
-             </Button>
-             <Button fx:id="audits" layoutX="86.0" layoutY="204.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="AUDITS PANEL">
-                 <font>
-                     <Font name="Gabriola" size="28.0" />
-                 </font>
-             </Button>
-             <Button fx:id="stockspanel" layoutX="501.0" layoutY="95.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="298.0" text="INVENTORY">
-                 <font>
-                     <Font name="Gabriola" size="28.0" />
-                 </font>
-             </Button>
+        <AnchorPane id="Content" prefHeight="677.0" prefWidth="1165.0" styleClass="mainPanel" stylesheets="@../styles/buttons.css">
+            <Label alignment="CENTER" layoutX="495.0" layoutY="25.0" prefHeight="49.0" prefWidth="311.0" style="&#10;" text="ADMIN PANEL" textAlignment="CENTER" textFill="WHITE">
+                <font>
+                    <Font size="31.0" />
+                </font>
+            </Label>
+            <Button fx:id="employees" layoutX="90.0" layoutY="74.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="STAFF PANEL">
+                <font>
+                    <Font name="Gabriola" size="28.0" />
+                </font>
+            </Button>
+            <Button fx:id="carwashpanel" layoutX="84.0" layoutY="432.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="301.0" text="CAR WASH">
+                <font>
+                    <Font name="Gabriola" size="28.0" />
+                </font>
+            </Button>
+            <Button fx:id="audits" layoutX="86.0" layoutY="206.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="AUDITS PANEL">
+                <font>
+                    <Font name="Gabriola" size="28.0" />
+                </font>
+            </Button>
+            <Button fx:id="stockspanel" layoutX="89.0" layoutY="318.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="298.0" text="INVENTORY">
+                <font>
+                    <Font name="Gabriola" size="28.0" />
+                </font>
+            </Button>
 
-             <!--            <Button fx:id="addshop" layoutX="86.0" layoutY="454.0" mnemonicParsing="false" prefHeight="124.0"-->
-             <!--                    prefWidth="297.0" text="STORES PANEL">-->
-             <!--                <styleClass>-->
-             <!--                    &lt;!&ndash;<String fx:value="stocksn"/>&ndash;&gt;-->
-             <!--                    <String fx:value="buttonred"/>-->
-             <!--                </styleClass>-->
-             <!--                <font>-->
-             <!--                    <Font name="Gabriola" size="28.0"/>-->
-             <!--                </font>-->
-             <!--            </Button>-->
+            <!--            <Button fx:id="addshop" layoutX="86.0" layoutY="454.0" mnemonicParsing="false" prefHeight="124.0"-->
+            <!--                    prefWidth="297.0" text="STORES PANEL">-->
+            <!--                <styleClass>-->
+            <!--                    &lt;!&ndash;<String fx:value="stocksn"/>&ndash;&gt;-->
+            <!--                    <String fx:value="buttonred"/>-->
+            <!--                </styleClass>-->
+            <!--                <font>-->
+            <!--                    <Font name="Gabriola" size="28.0"/>-->
+            <!--                </font>-->
+            <!--            </Button>-->
 
-             <Button fx:id="backup" layoutX="89.0" layoutY="316.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="BACK UP">
-                 <font>
-                     <Font name="Gabriola" size="28.0" />
-                 </font>
-             </Button>
-             <Button fx:id="visitSuppliers" layoutX="497.0" layoutY="316.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="308.0" text="SUPPLIERS">
-                 <font>
-                     <Font name="Gabriola" size="28.0" />
-                 </font>
-             </Button>
-         <Button fx:id="backup1" layoutX="89.0" layoutY="430.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="LICENSE MANAGER">
-            <font>
-               <Font name="Gabriola" size="28.0" />
-            </font>
-         </Button>
-         <Button fx:id="visitSuppliers1" layoutX="496.0" layoutY="430.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="308.0" text="DATABASE SYNC">
-            <font>
-               <Font name="Gabriola" size="28.0" />
-            </font>
-         </Button>
-         <Button fx:id="backup11" layoutX="90.0" layoutY="534.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="END DAY">
-            <font>
-               <Font name="Gabriola" size="28.0" />
-            </font>
-         </Button>
-         <Button fx:id="visitSuppliers11" layoutX="497.0" layoutY="534.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="308.0" text="START DAY">
-            <font>
-               <Font name="Gabriola" size="28.0" />
-            </font>
-         </Button>
-         <Button fx:id="carwashpanel1" layoutX="853.0" layoutY="206.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="311.0" text="RESTART SERVER">
-            <font>
-               <Font name="Gabriola" size="28.0" />
-            </font>
-         </Button>
-         <Button fx:id="stockspanel1" layoutX="854.0" layoutY="97.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="311.0" text="RESTART MODULES">
-            <font>
-               <Font name="Gabriola" size="28.0" />
-            </font>
-         </Button>
-         <Button fx:id="visitSuppliers2" layoutX="850.0" layoutY="318.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="311.0" text="TROUBLE SHOOT SYSTEM">
-            <font>
-               <Font name="Gabriola" size="28.0" />
-            </font>
-         </Button>
-         <Button fx:id="visitSuppliers12" layoutX="849.0" layoutY="432.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="311.0" text="SHIFT INFORMATION">
-            <font>
-               <Font name="Gabriola" size="28.0" />
-            </font>
-         </Button>
-         <Button fx:id="visitSuppliers111" layoutX="850.0" layoutY="536.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="311.0" text="LOG OUT">
-            <font>
-               <Font name="Gabriola" size="28.0" />
-            </font>
-         </Button>
-         <Label fx:id="clock" alignment="CENTER" layoutX="176.0" layoutY="32.0" prefHeight="42.0" prefWidth="145.0" text="00:00:00" textAlignment="CENTER">
-            <font>
-               <Font size="25.0" />
-            </font>
-         </Label>
-         </AnchorPane>
+            <Button fx:id="backup" layoutX="458.0" layoutY="432.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="BACK UP">
+                <font>
+                    <Font name="Gabriola" size="28.0" />
+                </font>
+            </Button>
+            <Button fx:id="visitSuppliers" layoutX="75.0" layoutY="536.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="308.0" text="SUPPLIERS">
+                <font>
+                    <Font name="Gabriola" size="28.0" />
+                </font>
+            </Button>
+            <Button fx:id="backup1" layoutX="849.0" layoutY="536.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="308.0" text="LICENSE MANAGER">
+                <font>
+                    <Font name="Gabriola" size="28.0" />
+                </font>
+            </Button>
+            <Button fx:id="visitSuppliers1" layoutX="452.0" layoutY="536.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="308.0" text="DATABASE SYNC">
+                <font>
+                    <Font name="Gabriola" size="28.0" />
+                </font>
+            </Button>
+            <Button fx:id="backup11" layoutX="458.0" layoutY="206.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="END DAY">
+                <font>
+                    <Font name="Gabriola" size="28.0" />
+                </font>
+            </Button>
+            <Button fx:id="visitSuppliers11" layoutX="452.0" layoutY="74.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="308.0" text="START DAY">
+                <font>
+                    <Font name="Gabriola" size="28.0" />
+                </font>
+            </Button>
+            <Button fx:id="carwashpanel1" layoutX="842.0" layoutY="200.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="311.0" text="RESTART SERVER">
+                <font>
+                    <Font name="Gabriola" size="28.0" />
+                </font>
+            </Button>
+            <Button fx:id="stockspanel1" layoutX="842.0" layoutY="74.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="311.0" text="REPORT ISSUES">
+                <font>
+                    <Font name="Gabriola" size="28.0" />
+                </font>
+            </Button>
+            <Button fx:id="visitSuppliers2" layoutX="850.0" layoutY="318.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="311.0" text="TROUBLE SHOOT SYSTEM">
+                <font>
+                    <Font name="Gabriola" size="28.0" />
+                </font>
+            </Button>
+            <Button fx:id="visitSuppliers12" layoutX="849.0" layoutY="432.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="311.0" text="SHIFT INFORMATION">
+                <font>
+                    <Font name="Gabriola" size="28.0" />
+                </font>
+            </Button>
+            <Button fx:id="visitSuppliers111" layoutX="451.0" layoutY="318.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="311.0" text="LOG OUT">
+                <font>
+                    <Font name="Gabriola" size="28.0" />
+                </font>
+            </Button>
+            <Label fx:id="clock" alignment="CENTER" layoutX="176.0" layoutY="32.0" prefHeight="42.0" prefWidth="145.0" text="00:00:00" textAlignment="CENTER">
+                <font>
+                    <Font size="25.0" />
+                </font>
+            </Label>
+        </AnchorPane>
         <stylesheets>
             <URL value="@../styles/css.css" />
             <URL value="@../styles/panels.css" />

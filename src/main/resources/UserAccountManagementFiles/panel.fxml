@@ -44,7 +44,7 @@
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="logoutButton" layoutX="506.0" layoutY="219.0" mnemonicParsing="false" prefHeight="101.0"
+            <Button fx:id="logoutButton" layoutX="506.0" layoutY="338.0" mnemonicParsing="false" prefHeight="101.0"
                     prefWidth="298.0" text="LOG OUT">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
@@ -62,7 +62,7 @@
             <!--                    <Font name="Gabriola" size="28.0"/>-->
             <!--                </font>-->
             <!--            </Button>-->
-            <Button fx:id="accountb" layoutX="506.0" layoutY="90.0" mnemonicParsing="false" prefHeight="101.0"
+            <Button fx:id="accountb" layoutX="149.0" layoutY="344.0" mnemonicParsing="false" prefHeight="101.0"
                     prefWidth="298.0" text="ACCOUNT INFORMATION">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
@@ -86,50 +86,50 @@
                     <Font size="17.0"/>
                 </font>
             </Label>
-            <Button fx:id="carwash1" layoutX="149.0" layoutY="344.0" mnemonicParsing="false" prefHeight="101.0"
+            <Button fx:id="carwash1" layoutX="506.0" layoutY="74.0" mnemonicParsing="false" prefHeight="101.0"
                     prefWidth="298.0" stylesheets="@../styles/buttons.css" text="START SHIFT">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
             <Button fx:id="logoutButton1" layoutX="506.0" layoutY="473.0" mnemonicParsing="false" prefHeight="101.0"
-                    prefWidth="298.0" text="LOG OUT">
+                    prefWidth="298.0" text="RESTART APPS">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="shop1" layoutX="149.0" layoutY="473.0" mnemonicParsing="false" prefHeight="101.0"
+            <Button fx:id="shop1" layoutX="871.0" layoutY="74.0" mnemonicParsing="false" prefHeight="101.0"
                     prefWidth="298.0" text="TROUBLE SHOOT">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="accountb1" layoutX="506.0" layoutY="344.0" mnemonicParsing="false" prefHeight="101.0"
+            <Button fx:id="accountb1" layoutX="506.0" layoutY="219.0" mnemonicParsing="false" prefHeight="101.0"
                     prefWidth="298.0" text="END SHIFT">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="logoutButton2" layoutX="837.0" layoutY="219.0" mnemonicParsing="false" prefHeight="101.0"
+            <Button fx:id="logoutButton2" layoutX="871.0" layoutY="219.0" mnemonicParsing="false" prefHeight="101.0"
                     prefWidth="298.0" text="HELP">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="accountb2" layoutX="837.0" layoutY="90.0" mnemonicParsing="false" prefHeight="101.0"
+            <Button fx:id="accountb2" layoutX="871.0" layoutY="473.0" mnemonicParsing="false" prefHeight="101.0"
                     prefWidth="298.0" text="REPORT ISSUE">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="logoutButton11" layoutX="837.0" layoutY="473.0" mnemonicParsing="false" prefHeight="101.0"
-                    prefWidth="298.0" text="LOG OUT">
+            <Button fx:id="logoutButton11" layoutX="149.0" layoutY="482.0" mnemonicParsing="false" prefHeight="101.0"
+                    prefWidth="298.0" text="CHATBOX">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="accountb11" layoutX="837.0" layoutY="344.0" mnemonicParsing="false" prefHeight="101.0"
-                    prefWidth="298.0" text="END SHIFT">
+            <Button fx:id="accountb11" layoutX="871.0" layoutY="344.0" mnemonicParsing="false" prefHeight="101.0"
+                    prefWidth="298.0" text="CALL ADMIN">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>

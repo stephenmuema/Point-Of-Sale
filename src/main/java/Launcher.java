@@ -20,6 +20,7 @@ import securityandtime.CheckConn;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -42,6 +43,23 @@ public class Launcher extends Application {
     private static UtilityClass utilityClass = new UtilityClass();
 
     public static void main(String[] args) {
+        Path path = Paths.get(fileSavePath);
+
+        if (!Files.exists(path)) {
+
+            try {
+                Files.createDirectories(path);
+                Files.createDirectories(Paths.get(fileSavePath + "\\licenses"));
+                Files.createDirectories(Paths.get(fileSavePath + "\\dependencies"));
+                Files.createDirectories(Paths.get(fileSavePath + "\\images"));
+                Files.createDirectories(Paths.get(fileSavePath + "\\files"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+//            System.out.println("Directory created");
+        }  //            System.out.println("Directory already exists");
+
         Launcher.CallerMethod();
 //the launcher main method
         launch(args);
@@ -102,17 +120,9 @@ public class Launcher extends Application {
 
     @Override
     public void start(@NotNull Stage stage) throws Exception {
+
         createSqliteDb();
-        Path path = Paths.get(fileSavePath);
 
-        if (!Files.exists(path)) {
-
-            Files.createDirectories(path);
-            Files.createDirectories(Paths.get(fileSavePath + "\\licenses"));
-            Files.createDirectories(Paths.get(fileSavePath + "\\dependencies"));
-            Files.createDirectories(Paths.get(fileSavePath + "\\images"));
-//            System.out.println("Directory created");
-        }  //            System.out.println("Directory already exists");
 
         File file = new File(licensepath);
         boolean exists = file.exists();
