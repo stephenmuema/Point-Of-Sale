@@ -40,7 +40,6 @@ import static securityandtime.config.*;
 public class Launcher extends Application {
 
     static Stage stage = null;
-    private static UtilityClass utilityClass = new UtilityClass();
 
     public static void main(String[] args) {
         Path path = Paths.get(fileSavePath);
@@ -53,6 +52,7 @@ public class Launcher extends Application {
                 Files.createDirectories(Paths.get(fileSavePath + "\\dependencies"));
                 Files.createDirectories(Paths.get(fileSavePath + "\\images"));
                 Files.createDirectories(Paths.get(fileSavePath + "\\files"));
+                new File(fileSavePath + "files\\shoppingLocal.db");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -83,6 +83,8 @@ public class Launcher extends Application {
 
     private static void createSqliteDb() {
         Connection connection = null;
+        UtilityClass utilityClass = new UtilityClass();
+
         try {
 //            create cartdb
 //            todo remember to change path to db
@@ -92,6 +94,8 @@ public class Launcher extends Application {
             String heldTransactionsList = "CREATE TABLE IF NOT EXISTS heldTransactionList (" + "id INTEGER primary key autoincrement ,name TEXT ,transactionid text)";
             statement.executeUpdate(heldTransactionsList);
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS settings (" + "id INTEGER primary key autoincrement ,owner TEXT ,expirydate text,creationdate text,type text)");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS system_settings (" + "id INTEGER primary key autoincrement ,name TEXT ,config text)");
+
 
 
             Statement heldTransactionsDetails = connection.createStatement();

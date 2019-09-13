@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="MySQL - nanotechsoftwarespos@localhost" uuid="fca4a0ca-f5f2-4e1a-bf42-1e93a28d42ac">
+    <data-source source="LOCAL" name="nanotechsoftwarespos@localhost" uuid="e722ae34-df00-41df-8ac9-945654c0e909">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
@@ -15,11 +15,11 @@
         <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="shoppingCartDb.db" uuid="5c421445-1f96-44cd-8b0b-512b02bf23a4">
+    <data-source source="LOCAL" name="shoppingLocal.db" uuid="4cd71b42-f765-4b9b-b746-894432f39cb7">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/shoppingCartDb.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:D:/NANOTECHSOFTWARES/nanotechPOS/files/shoppingLocal.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>

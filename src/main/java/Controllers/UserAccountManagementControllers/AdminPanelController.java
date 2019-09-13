@@ -8,12 +8,15 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import securityandtime.config;
 
@@ -22,23 +25,20 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.sql.SQLException;
+import java.net.URLConnection;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+import static securityandtime.config.fileSavePath;
 import static securityandtime.config.supplierSite;
 
 public class AdminPanelController extends UtilityClass implements Initializable {
     public MenuItem menulogout;
-    public Button addshop;
     public MenuItem details;
-    public Menu branches;
     public MenuItem license;
-    public MenuItem feedback;
     public Label clock;
-    public Font x1;
     public Button employees;
     public Button stockspanel;
     public Button carwashpanel;
@@ -69,7 +69,19 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     }
 
 
-    public void menuClick() {
+    private void menuClick() {
+        details.setOnAction(event -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/Settings.fxml"));
+            try {
+                Parent parent = fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         menulogout.setOnAction(event -> {
             logout(AdminPanel);
 
@@ -83,11 +95,24 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         backup.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println(backup());
+                try {
+                    URL url = new URL("https://www.google.com/");
+                    URLConnection connection = url.openConnection();
+                    connection.connect();
+                    System.out.println(backup());
+
+                    showAlert(Alert.AlertType.ERROR, AdminPanel.getScene().getWindow(), "ERROR", "YOU NEED AN ACTIVE INTERNET CONNECTION TO CARRY OUT A BACK UP");
+                } catch (IOException e) {
+                    showAlert(Alert.AlertType.ERROR, AdminPanel.getScene().getWindow(), "ERROR", "YOU NEED AN ACTIVE INTERNET CONNECTION TO CARRY OUT A BACK UP");
+                } catch (Exception ignored) {
+
+                }
+
+
             }
 
             //todo continue from backing up database
-            private String backup() {
+            private String backup() throws Exception {
                 //required properties for exporting of db
                 Properties properties = new Properties();
                 properties.setProperty(MysqlExportService.DB_NAME, "nanotechsoftwarespos");
@@ -103,18 +128,16 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                 properties.setProperty(MysqlExportService.EMAIL_TO, "muemasnyamai@gmail.com");
 
 //set the outputs temp dir
-                properties.setProperty(MysqlExportService.TEMP_DIR, new File("external").getPath());
+                File zip = new File(fileSavePath + "backups");
+                properties.setProperty(MysqlExportService.TEMP_DIR, zip.getPath());
                 properties.setProperty(MysqlExportService.PRESERVE_GENERATED_ZIP, "true");
                 MysqlExportService mysqlExportService = new MysqlExportService(properties);
                 File file = mysqlExportService.getGeneratedZipFile();
                 mysqlExportService.clearTempFiles(false);
+//                System.out.println(mysqlExportService.getGeneratedSql());
+                mysqlExportService.export();
 
-
-                try {
-                    mysqlExportService.export();
-                } catch (IOException | ClassNotFoundException | SQLException e) {
-                    e.getMessage();
-                }
+//add to db
                 return mysqlExportService.getGeneratedSql();
             }
 
@@ -187,13 +210,6 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         this.menulogout = menulogout;
     }
 
-    public Button getAddshop() {
-        return addshop;
-    }
-
-    public void setAddshop(Button addshop) {
-        this.addshop = addshop;
-    }
 
     public MenuItem getDetails() {
         return details;
@@ -203,13 +219,6 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         this.details = details;
     }
 
-    public Menu getBranches() {
-        return branches;
-    }
-
-    public void setBranches(Menu branches) {
-        this.branches = branches;
-    }
 
     public MenuItem getLicense() {
         return license;
@@ -219,13 +228,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         this.license = license;
     }
 
-    public MenuItem getFeedback() {
-        return feedback;
-    }
 
-    public void setFeedback(MenuItem feedback) {
-        this.feedback = feedback;
-    }
 
     public Label getClock() {
         return clock;
@@ -235,13 +238,6 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         this.clock = clock;
     }
 
-    public Font getX1() {
-        return x1;
-    }
-
-    public void setX1(Font x1) {
-        this.x1 = x1;
-    }
 
     public Button getEmployees() {
         return employees;

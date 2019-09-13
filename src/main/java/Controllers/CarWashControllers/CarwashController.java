@@ -51,27 +51,45 @@ import java.util.ResourceBundle;
 import static securityandtime.config.*;
 
 public class CarwashController extends UtilityClass implements Initializable {
+    @FXML
     public Label clock;
-    public MenuItem logout;
+    @FXML
     public Button delete;
+    @FXML
     public Button sendtomail;
+    @FXML
     public Button printoutaspdf;
 
     public Button home;
+    @FXML
     public Label cash;
+    @FXML
     public Tab pastclients;
+    @FXML
     public TableColumn<CarWashMaster, String> Name;
+    @FXML
     public TableColumn<CarWashMaster, String> reg;
+    @FXML
     public TableColumn<CarWashMaster, String> id;
+    @FXML
     public TableColumn<CarWashMaster, String> status;
+    @FXML
     public TableColumn<CarWashMaster, String> operator;
+    @FXML
     public TableColumn<CarWashMaster, String> payout;
+    @FXML
     public MenuItem stores;
+    @FXML
     public MenuItem stocks;
+    @FXML
     public MenuItem logoutMenu;
+    @FXML
     public MenuItem exitMenu;
+    @FXML
     public MenuItem accountdetailsMenu;
+    @FXML
     public MenuItem helpMenu;
+    @FXML
     public MenuItem CreatorsMenu;
     private int moneyPaid;
     @FXML
@@ -500,13 +518,7 @@ public class CarwashController extends UtilityClass implements Initializable {
                 e.printStackTrace();
             }
         });
-        stores.setOnAction(event -> {
-            try {
-                parents.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/addshop.fxml")))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+
 
         helpMenu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -615,14 +627,6 @@ public class CarwashController extends UtilityClass implements Initializable {
         return this;
     }
 
-    public MenuItem getLogout() {
-        return logout;
-    }
-
-    public CarwashController setLogout(MenuItem logout) {
-        this.logout = logout;
-        return this;
-    }
 
     public Button getDelete() {
         return delete;

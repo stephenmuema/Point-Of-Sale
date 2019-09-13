@@ -467,13 +467,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
                 e.printStackTrace();
             }
         });
-        stores.setOnAction(event -> {
-            try {
-                parents.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/addshop.fxml")))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+
         logout.setOnAction(event -> {
             config.login.put("loggedout", true);
 

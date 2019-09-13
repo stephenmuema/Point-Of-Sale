@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="POSnanotech-softwareshotelshotelsjavamultiplestores:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/POSnanotech_softwareshotelshotelsjavamultiplestores_jar</output-path>
+    <output-path>D:/executibles/pos</output-path>
     <root id="archive" name="POSnanotech-softwareshotelshotelsjavamultiplestores.jar">
       <element id="module-output" name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/squareup/okio/okio/2.2.2/okio-2.2.2.jar" path-in-jar="/" />

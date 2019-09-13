@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="MySQL - nanotechsoftwarespos@localhost" uuid="fca4a0ca-f5f2-4e1a-bf42-1e93a28d42ac">
+    <data-source name="nanotechsoftwarespos@localhost" uuid="e722ae34-df00-41df-8ac9-945654c0e909">
       <database-info product="MySQL" version="5.5.5-10.1.38-MariaDB" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.15 (Revision: 79a4336f140499bd22dd07f02b708e163844e3d5)" dbms="MARIADB" exact-version="10.1.38" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
@@ -15,7 +15,7 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
-    <data-source name="shoppingCartDb.db" uuid="5c421445-1f96-44cd-8b0b-512b02bf23a4">
+    <data-source name="shoppingLocal.db" uuid="4cd71b42-f765-4b9b-b746-894432f39cb7">
       <database-info product="SQLite" version="3.25.1" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.25.1" dbms="SQLITE" exact-version="3.25.1" exact-driver-version="3.25">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>

@@ -13,7 +13,7 @@
             <Menu mnemonicParsing="false" text="ACCOUNT">
                 <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS"/>
                 <MenuItem fx:id="logout" mnemonicParsing="false" text="LOGOUT"/>
-                <MenuItem mnemonicParsing="false" text="Quit"/>
+                <MenuItem mnemonicParsing="false" text="QUIT"/>
             </Menu>
             <Menu mnemonicParsing="false" text="Edit">
                 <MenuItem mnemonicParsing="false" text="Undo"/>
