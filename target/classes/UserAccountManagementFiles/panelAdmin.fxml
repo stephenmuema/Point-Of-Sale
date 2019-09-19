@@ -20,38 +20,37 @@
                 <MenuItem mnemonicParsing="false" text="QUIT" />
             </Menu>
             <Menu mnemonicParsing="false" text="DATABASE">
-                <MenuItem mnemonicParsing="false" text="BACKUP" />
+                <MenuItem mnemonicParsing="false" fx:id="backupMenu" text="BACKUP" />
                 <MenuItem mnemonicParsing="false" text="RETRIEVE BACKUP" />
                 <MenuItem mnemonicParsing="false" text="VIEW BACKUPS" />
             </Menu>
-         <Menu mnemonicParsing="false" text="SHIFTS">
-            <items>
-               <MenuItem mnemonicParsing="false" text="START DAY" />
-               <MenuItem mnemonicParsing="false" text="END DAY" />
-               <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION" />
-            </items>
-         </Menu>
-         <Menu mnemonicParsing="false" text="SYSTEM ">
-            <items>
-               <MenuItem mnemonicParsing="false" text="REPORT ISSUES" />
-               <MenuItem mnemonicParsing="false" text="RESTART SERVER" />
-               <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM" />
-            </items>
-         </Menu>
-         <Menu mnemonicParsing="false" text="INVENTORY">
-            <items>
-                  <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
-                      <MenuItem mnemonicParsing="false" text="ABOUT THIS SOFTWARE" />
-                      <MenuItem mnemonicParsing="false" text="TERMS AND CONDITIONS" />
-                      <MenuItem mnemonicParsing="false" text="CHECK FOR UPDATES" />
-                      <MenuItem mnemonicParsing="false" text="DOCUMENTATION" />
-                      <MenuItem mnemonicParsing="false" text="REACH US" />
-                  </Menu>
-               <MenuItem mnemonicParsing="false" text="PANEL" />
-               <MenuItem mnemonicParsing="false" text="GENERATE REPORTS" />
-               <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM" />
-            </items>
-         </Menu>
+            <Menu mnemonicParsing="false" text="SHIFTS">
+                <items>
+                    <MenuItem mnemonicParsing="false" fx:id="startDayMenu"  text="START DAY" />
+                    <MenuItem mnemonicParsing="false" fx:id="endDayMenu" text="END DAY" />
+                    <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="SYSTEM ">
+                <items>
+                    <MenuItem mnemonicParsing="false" fx:id="reportIssuesMenu" text="REPORT ISSUES" />
+                    <MenuItem mnemonicParsing="false" fx:id="restartServerMenu" text="RESTART SERVER" />
+                    <MenuItem mnemonicParsing="false" fx:id="troubleShootMenu" text="TROUBLESHOOT SYSTEM" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="INVENTORY">
+                <items>
+                    <Menu mnemonicParsing="false" fx:id="helpMenu" text="HELP AND SUPPORT">
+                        <MenuItem mnemonicParsing="false" fx:id="abtMenu" text="ABOUT THIS SOFTWARE" />
+                        <MenuItem mnemonicParsing="false" fx:id="termsMenu" text="TERMS AND CONDITIONS" />
+                        <MenuItem mnemonicParsing="false" fx:id="checkUpdatesMenu" text="CHECK FOR UPDATES" />
+                        <MenuItem mnemonicParsing="false" fx:id="documentationMenu" text="DOCUMENTATION" />
+                        <MenuItem mnemonicParsing="false" fx:id="reachUsMenu" text="REACH US" />
+                    </Menu>
+                    <MenuItem mnemonicParsing="false" fx:id="generateReportsMenu" text="GENERATE REPORTS" />
+                    <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM" />
+                </items>
+            </Menu>
         </MenuBar>
         <AnchorPane id="Content" prefHeight="677.0" prefWidth="1165.0" styleClass="mainPanel" stylesheets="@../styles/buttons.css">
             <Label alignment="CENTER" layoutX="495.0" layoutY="25.0" prefHeight="49.0" prefWidth="311.0" style="&#10;" text="ADMIN PANEL" textAlignment="CENTER" textFill="WHITE">
@@ -151,6 +150,11 @@
                     <Font size="25.0" />
                 </font>
             </Label>
+         <Button fx:id="refresh" layoutX="946.0" layoutY="14.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="145.0" text="REFRESH">
+            <font>
+               <Font name="Gabriola" size="28.0" />
+            </font>
+         </Button>
         </AnchorPane>
         <stylesheets>
             <URL value="@../styles/css.css" />

@@ -14,7 +14,7 @@
                     <Menu mnemonicParsing="false" text="ACCOUNT">
                         <items>
                             <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS"/>
-                            <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT"/>
+                            <MenuItem fx:id="logout" mnemonicParsing="false" text="LOGOUT"/>
                             <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER"/>
                             <MenuItem mnemonicParsing="false" text="QUIT"/>
                         </items>
@@ -58,7 +58,7 @@
                     </Menu>
                 </menus>
             </MenuBar>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="686.0" prefWidth="895.0"
+            <AnchorPane id="Content" prefHeight="686.0" prefWidth="895.0"
                         styleClass="form">
                 <children>
                     <Label alignment="CENTER" layoutX="593.0" layoutY="14.0" prefHeight="51.0" prefWidth="295.0"
@@ -161,10 +161,10 @@
                                             <Button fx:id="suspend" layoutX="168.0" layoutY="527.0"
                                                     mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0"
                                                     styleClass="buttonorange" text="SUSPEND/ACTIVATE"/>
-                                            <Button fx:id="suspend1" layoutX="322.0" layoutY="527.0"
+                                            <Button fx:id="showShifts" layoutX="322.0" layoutY="527.0"
                                                     mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0"
                                                     styleClass="buttonorange" text="SHOW SHIFTS"/>
-                                            <Button fx:id="suspend12" layoutX="482.0" layoutY="527.0"
+                                            <Button fx:id="showHistory" layoutX="482.0" layoutY="527.0"
                                                     mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0"
                                                     styleClass="buttonorange" text="SHOW HISTORY"/>
                                         </children>

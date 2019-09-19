@@ -77,6 +77,15 @@ public class UtilityClass {
     }
 
     public void logout(AnchorPane panel) {
+
+        config.pricegot.clear();
+        config.key.clear();
+        config.cartid.clear();
+        config.throwables.clear();
+        config.license.clear();
+        config.action.clear();
+        config.panel.clear();
+        config.networkConnectionMap.clear();
         config.login.put("loggedout", true);
         config.user.clear();
         try {

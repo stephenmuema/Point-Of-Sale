@@ -37,6 +37,7 @@ import java.util.logging.Level;
 
 import static securityandtime.config.site;
 
+//made by steve muema
 //end of imports
 public class SignupController extends UtilityClass implements Initializable {
     public Label clock;
@@ -169,7 +170,6 @@ public class SignupController extends UtilityClass implements Initializable {
         if (resultSetemail.isBeforeFirst()) {
             showAlert(Alert.AlertType.WARNING, parent.getScene().getWindow(),
                     "EMAIL IN USE", "EMAIL IS IN USE");
-//                System.out.println("resultSet lacks values");
             LogClass.getLogger().log(Level.SEVERE, " EMAIL IS IN USE");
 
         } else {
@@ -180,7 +180,6 @@ public class SignupController extends UtilityClass implements Initializable {
             if (resultSetname.isBeforeFirst()) {
                 showAlert(Alert.AlertType.WARNING, parent.getScene().getWindow(),
                         "NAME IN USE", "NAME IS IN USE");
-//                System.out.println("resultSet lacks values");
                 LogClass.getLogger().log(Level.SEVERE, " NAME IS IN USE");
 
             } else {

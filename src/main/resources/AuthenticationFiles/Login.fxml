@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="parent" prefHeight="700.0" prefWidth="1200.0"
-            styleClass="form" xmlns="http://javafx.com/javafx/1"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="parent" prefHeight="700.0" prefWidth="1200.0" styleClass="form"
+            xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="Controllers.AuthenticationControllers.LoginController">
     <Hyperlink fx:id="link" layoutX="629.0" layoutY="572.0" prefHeight="34.0" prefWidth="179.0" text="NanotechSoftwares"
                textFill="#f50707" underline="true">
@@ -34,13 +34,13 @@
                 </font>
             </Label>
             <TextField fx:id="email" alignment="CENTER" layoutX="177.0" layoutY="215.0" prefHeight="49.0"
-                       prefWidth="276.0" promptText="USER NAME/EMAIL" styleClass="textfields" text="test">
+                       prefWidth="276.0" promptText="USER NAME/EMAIL" styleClass="textfields" text="admin">
                 <font>
                     <Font name="Calibri Light" size="18.0"/>
                 </font>
             </TextField>
             <PasswordField fx:id="password" alignment="CENTER" layoutX="177.0" layoutY="296.0" prefHeight="49.0"
-                           prefWidth="276.0" promptText="PASSWORD" styleClass="textfields" text="test">
+                           prefWidth="276.0" promptText="PASSWORD" styleClass="textfields" text="admin">
                 <font>
                     <Font name="Calibri Light" size="17.0"/>
                 </font>

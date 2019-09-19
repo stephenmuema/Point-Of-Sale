@@ -54,8 +54,6 @@ public class EmployeesController extends UtilityClass implements Initializable {
     public TableColumn<EmployeeMaster, String> status;
 
     public Tab existingemptab;
-    public MenuItem stores;
-    public MenuItem stocks;
     public Button home;
     public Button suspend;
     @FXML
@@ -64,6 +62,15 @@ public class EmployeesController extends UtilityClass implements Initializable {
     private AnchorPane parents;
     private ObservableList<EmployeeMaster> data;
     private String time;
+    @FXML
+    private MenuItem details;
+    @FXML
+    private MenuItem license;
+
+    @FXML
+    private Button showShifts;
+    @FXML
+    private Button showHistory;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -461,14 +468,14 @@ public class EmployeesController extends UtilityClass implements Initializable {
 
 
     private void menuclick() {
-        stocks.setOnAction(event -> {
-            parents.getChildren().removeAll();
-            try {
-                parents.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/stocks.fxml")))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+//        stocks.setOnAction(event -> {
+//            parents.getChildren().removeAll();
+//            try {
+//                parents.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/stocks.fxml")))));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        });
 
         logout.setOnAction(event -> {
             config.login.put("loggedout", true);
@@ -572,21 +579,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
         this.existingemptab = existingemptab;
     }
 
-    public MenuItem getStores() {
-        return stores;
-    }
 
-    public void setStores(MenuItem stores) {
-        this.stores = stores;
-    }
-
-    public MenuItem getStocks() {
-        return stocks;
-    }
-
-    public void setStocks(MenuItem stocks) {
-        this.stocks = stocks;
-    }
 
     public Button getHome() {
         return home;

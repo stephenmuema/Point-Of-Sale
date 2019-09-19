@@ -15,6 +15,7 @@ public interface config {//host,user,password,des,port
     String[] des = {dbdetails[1], dbdetails[2], dbdetails[3] + dbdetails[0] + dbdetails[4]};
     String host = "localhost";
     String from = "muemasnyamai@gmail.com";
+    String backupmail = "muemasnyamai@gmail.com";
     HashMap<String, Boolean> login = new HashMap<>();
     HashMap<String, String> user = new HashMap<>();
     String mailPassword = "tpgkhylqyxiypqld";

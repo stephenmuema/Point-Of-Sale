@@ -10,14 +10,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import securityandtime.AesCrypto;
 import securityandtime.config;
 
 import java.awt.*;
@@ -26,13 +28,16 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import static securityandtime.config.fileSavePath;
-import static securityandtime.config.supplierSite;
+import static securityandtime.config.*;
 
 public class AdminPanelController extends UtilityClass implements Initializable {
     public MenuItem menulogout;
@@ -47,16 +52,43 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     public Button audits;
     @FXML
     private AnchorPane AdminPanel;
+    private UtilityClass utilityClass = new UtilityClass();
+    private Connection connection = utilityClass.getConnection();
+    @FXML
+    private MenuItem backupMenu;
+    @FXML
+    private MenuItem startDayMenu;
+    @FXML
+    private MenuItem endDayMenu;
+    @FXML
+    private MenuItem reportIssuesMenu;
+    @FXML
+    private MenuItem restartServerMenu;
+    @FXML
+    private MenuItem troubleShootMenu;
+    @FXML
+    private Menu helpMenu;
+    @FXML
+    private MenuItem abtMenu;
+    @FXML
+    private MenuItem termsMenu;
+    @FXML
+    private MenuItem checkUpdatesMenu;
+    @FXML
+    private MenuItem reachUsMenu;
+    @FXML
+    private MenuItem generateReportsMenu;
+    @FXML
+    private MenuItem documentationMenu;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        config.panel.put("panel", AdminPanel);
         menuClick();
         buttonClick();
         time(clock);
         config.panel.put("panel", AdminPanel);
-
-
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(900),
+        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
                 () -> {
                     try {
                         config.login.put("loggedout", true);
@@ -89,6 +121,23 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         });
     }
 
+    void refresh() throws SQLException {
+        ResultSet resultSet;
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE email=?");
+        statement.setString(1, config.user.get("user"));
+        resultSet = statement.executeQuery();
+        if (resultSet.isBeforeFirst()) {
+            while (resultSet.next()) {
+                config.login.put("loggedinasadmin", true);
+                config.user.put("userName", resultSet.getString("employeename"));
+
+                config.user.put("user", resultSet.getString("email"));
+                config.key.put("key", resultSet.getString("subscribername"));
+                config.user.put("backupemail", resultSet.getString("backupemail"));
+                config.user.put("backupemailpassword", AesCrypto.decrypt(encryptionkey, resultSet.getString("backupemailpassword")));
+            }
+        }
+    }
 
 
     private void buttonClick() {
@@ -97,19 +146,35 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    URL url = new URL("https://www.google.com/");
-                    URLConnection connection = url.openConnection();
-                    connection.connect();
-                    System.out.println(backup());
-
-                    showAlert(Alert.AlertType.ERROR, AdminPanel.getScene().getWindow(), "ERROR", "YOU NEED AN ACTIVE INTERNET CONNECTION TO CARRY OUT A BACK UP");
-                } catch (IOException e) {
-                    showAlert(Alert.AlertType.ERROR, AdminPanel.getScene().getWindow(), "ERROR", "YOU NEED AN ACTIVE INTERNET CONNECTION TO CARRY OUT A BACK UP");
-                } catch (Exception ignored) {
-
+                    refresh();
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
+                try {
+                    PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users where email=?");
+                    preparedStatement.setString(1, user.get("user"));
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    while (resultSet.next()) {
+                        if (resultSet.getString("backupemailPassword") == null || resultSet.getString("backupemail") == null) {
+                            showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "SET UP EMAIL FOR BACKUPS", "YOU NEED TO CREATE A BACK UP EMAIL AND A PASSWORD FOR THAT EMAIL FOR ONLINE BACKUPS TO TAKE PLACE IN ACCOUNT SECTION");
+                        } else {
+                            try {
+                                URL url = new URL("https://www.google.com/");
+                                URLConnection connection = url.openConnection();
+                                connection.connect();
+                                System.out.println(backup());
 
+                            } catch (IOException e) {
+                                showAlert(Alert.AlertType.ERROR, AdminPanel.getScene().getWindow(), "ERROR", "YOU NEED AN ACTIVE INTERNET CONNECTION TO CARRY OUT A BACK UP");
+                            } catch (Exception ignored) {
 
+                            }
+                        }
+                    }
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
 
             //todo continue from backing up database
@@ -123,27 +188,28 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 //properties relating to email config
                 properties.setProperty(MysqlExportService.EMAIL_HOST, "smtp.gmail.com");
                 properties.setProperty(MysqlExportService.EMAIL_PORT, "587");
-                properties.setProperty(MysqlExportService.EMAIL_USERNAME, "muemasnyamai@gmail.com");
-                properties.setProperty(MysqlExportService.EMAIL_PASSWORD, "tpgkhylqyxiypqld");
-                properties.setProperty(MysqlExportService.EMAIL_FROM, "muemasnyamai@gmail.com");
-                properties.setProperty(MysqlExportService.EMAIL_TO, "muemasnyamai@gmail.com");
-
-//set the outputs temp dir
+                properties.setProperty(MysqlExportService.EMAIL_USERNAME, user.get("backupemail"));
+                properties.setProperty(MysqlExportService.EMAIL_PASSWORD, user.get("backupemailpassword"));
+                properties.setProperty(MysqlExportService.EMAIL_FROM, user.get("backupemail"));
+                properties.setProperty(MysqlExportService.EMAIL_TO, backupmail);
                 File zip = new File(fileSavePath + "backups");
                 properties.setProperty(MysqlExportService.TEMP_DIR, zip.getPath());
                 properties.setProperty(MysqlExportService.PRESERVE_GENERATED_ZIP, "true");
                 MysqlExportService mysqlExportService = new MysqlExportService(properties);
                 File file = mysqlExportService.getGeneratedZipFile();
+                //add path to back up table
                 mysqlExportService.clearTempFiles(false);
-//                System.out.println(mysqlExportService.getGeneratedSql());
                 mysqlExportService.export();
-
-//add to db
                 return mysqlExportService.getGeneratedSql();
             }
 
         });
         audits.setOnMouseClicked(event -> {
+            try {
+                refresh();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             try {
                 AdminPanel.getChildren().removeAll();
                 AdminPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/audits.fxml")))));
@@ -154,6 +220,11 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         });
         visitSuppliers.setOnMouseClicked(event -> {
             try {
+                refresh();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
 //                    todo change when created website
                 Desktop.getDesktop().browse(new URL(supplierSite).toURI());
             } catch (IOException | URISyntaxException e) {
@@ -161,6 +232,11 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             }
         });
         carwashpanel.setOnAction(event -> {
+            try {
+                refresh();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             AdminPanel.getChildren().removeAll();
             try {
                 AdminPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("carwashFiles/carwash.fxml")))));
@@ -172,7 +248,11 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         });
 
         stockspanel.setOnMousePressed(event -> {
-
+            try {
+                refresh();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             try {
                 AdminPanel.getChildren().removeAll();
                 AdminPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/stocks.fxml")))));
@@ -185,6 +265,11 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 
         employees.setOnMousePressed(event -> {
             try {
+                refresh();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
                 AdminPanel.getChildren().removeAll();
                 AdminPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/employees.fxml")))));
             } catch (IOException e) {
@@ -192,14 +277,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             }
 //            showAlert(Alert.AlertType.INFORMATION, AdminPanel.getScene().getWindow(), "coming soon", "Feature not yet supported");
         });
-//        addshop.setOnMousePressed(event -> {
-//            try {
-//                AdminPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("addshop.fxml")))));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//        });
+
     }
 
 
@@ -296,4 +374,130 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         AdminPanel = adminPanel;
     }
 
+    private UtilityClass getUtilityClass() {
+        return utilityClass;
+    }
+
+    private AdminPanelController setUtilityClass(UtilityClass utilityClass) {
+        this.utilityClass = utilityClass;
+        return this;
+    }
+
+
+    private MenuItem getBackupMenu() {
+        return backupMenu;
+    }
+
+    private AdminPanelController setBackupMenu(MenuItem backupMenu) {
+        this.backupMenu = backupMenu;
+        return this;
+    }
+
+    private MenuItem getStartDayMenu() {
+        return startDayMenu;
+    }
+
+    private AdminPanelController setStartDayMenu(MenuItem startDayMenu) {
+        this.startDayMenu = startDayMenu;
+        return this;
+    }
+
+    private MenuItem getEndDayMenu() {
+        return endDayMenu;
+    }
+
+    private AdminPanelController setEndDayMenu(MenuItem endDayMenu) {
+        this.endDayMenu = endDayMenu;
+        return this;
+    }
+
+    private MenuItem getReportIssuesMenu() {
+        return reportIssuesMenu;
+    }
+
+    private AdminPanelController setReportIssuesMenu(MenuItem reportIssuesMenu) {
+        this.reportIssuesMenu = reportIssuesMenu;
+        return this;
+    }
+
+    private MenuItem getRestartServerMenu() {
+        return restartServerMenu;
+    }
+
+    private AdminPanelController setRestartServerMenu(MenuItem restartServerMenu) {
+        this.restartServerMenu = restartServerMenu;
+        return this;
+    }
+
+    private MenuItem getTroubleShootMenu() {
+        return troubleShootMenu;
+    }
+
+    private AdminPanelController setTroubleShootMenu(MenuItem troubleShootMenu) {
+        this.troubleShootMenu = troubleShootMenu;
+        return this;
+    }
+
+    private Menu getHelpMenu() {
+        return helpMenu;
+    }
+
+    private AdminPanelController setHelpMenu(Menu helpMenu) {
+        this.helpMenu = helpMenu;
+        return this;
+    }
+
+    private MenuItem getAbtMenu() {
+        return abtMenu;
+    }
+
+    private AdminPanelController setAbtMenu(MenuItem abtMenu) {
+        this.abtMenu = abtMenu;
+        return this;
+    }
+
+    private MenuItem getTermsMenu() {
+        return termsMenu;
+    }
+
+    private AdminPanelController setTermsMenu(MenuItem termsMenu) {
+        this.termsMenu = termsMenu;
+        return this;
+    }
+
+    private MenuItem getCheckUpdatesMenu() {
+        return checkUpdatesMenu;
+    }
+
+    private AdminPanelController setCheckUpdatesMenu(MenuItem checkUpdatesMenu) {
+        this.checkUpdatesMenu = checkUpdatesMenu;
+        return this;
+    }
+
+    private MenuItem getReachUsMenu() {
+        return reachUsMenu;
+    }
+
+    private AdminPanelController setReachUsMenu(MenuItem reachUsMenu) {
+        this.reachUsMenu = reachUsMenu;
+        return this;
+    }
+
+    private MenuItem getGenerateReportsMenu() {
+        return generateReportsMenu;
+    }
+
+    private AdminPanelController setGenerateReportsMenu(MenuItem generateReportsMenu) {
+        this.generateReportsMenu = generateReportsMenu;
+        return this;
+    }
+
+    private MenuItem getDocumentationMenu() {
+        return documentationMenu;
+    }
+
+    private AdminPanelController setDocumentationMenu(MenuItem documentationMenu) {
+        this.documentationMenu = documentationMenu;
+        return this;
+    }
 }

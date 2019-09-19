@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import logging.LogClass;
+import securityandtime.AesCrypto;
 import securityandtime.Security;
 import securityandtime.config;
 
@@ -25,10 +26,12 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
+import static securityandtime.config.encryptionkey;
 import static securityandtime.config.site;
 
 //end of imports
@@ -51,7 +54,8 @@ public class LoginController extends UtilityClass implements Initializable {
     private AnchorPane parent;
     @FXML
     private Label message;
-
+    private Connection connection = getConnection();
+    private ResultSet resultSet;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 //display different messages
@@ -134,11 +138,10 @@ public class LoginController extends UtilityClass implements Initializable {
         pass = password.getText();
         try {
 //            create a connection
-            Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE email=? OR employeename=?");
             statement.setString(1, emailSubmit);
             statement.setString(2, emailSubmit);
-            ResultSet resultSet = statement.executeQuery();
+            resultSet = statement.executeQuery();
             if (resultSet.isBeforeFirst()) {
                 while (resultSet.next()) {
                     if (!resultSet.getString("status").equalsIgnoreCase("active")) {
@@ -163,7 +166,8 @@ public class LoginController extends UtilityClass implements Initializable {
 
                                         config.user.put("user", resultSet.getString("email"));
                                         config.key.put("key", resultSet.getString("subscribername"));
-
+                                        config.user.put("backupemail", resultSet.getString("backupemail"));
+                                        config.user.put("backupemailpassword", AesCrypto.decrypt(encryptionkey, resultSet.getString("backupemailpassword")));
 
                                     } catch (IOException e) {
                                         e.printStackTrace();
@@ -213,6 +217,13 @@ public class LoginController extends UtilityClass implements Initializable {
             e.printStackTrace();
             message.setText("CHECK YOUR CONNECTION!!");
             message.setTextFill(Paint.valueOf("RED"));
+        }
+        try {
+            resultSet.close();
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

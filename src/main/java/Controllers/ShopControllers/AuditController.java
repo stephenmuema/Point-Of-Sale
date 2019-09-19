@@ -9,7 +9,6 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -17,7 +16,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -140,10 +138,6 @@ public class AuditController extends UtilityClass implements Initializable {
     public Button getcateegorygraph;
     public Button getemployeegraph;
     public Label clock;
-    public MenuItem logoutmenu;
-    public MenuItem importmenu;
-    public MenuItem quitmenu;
-    public MenuItem getdocumentation;
     public AnchorPane panel;
     public Button topanelbutton;
     public Button tocarwashbutton;
@@ -238,24 +232,15 @@ public class AuditController extends UtilityClass implements Initializable {
     }
 
     private void menuListeners() {
-        logoutmenu.setOnAction(event -> {
-            logout();
-        });
-        importmenu.setOnAction(event -> {
-//todo import data from file
-        });
-        quitmenu.setOnAction(event -> {
-            System.exit(1);
-            Platform.exit();
-        });
-        getdocumentation.setOnAction(event -> {
-            try {
-                //todo change link to documentation page
-                Desktop.getDesktop().browse(new URL(site).toURI());
-            } catch (IOException | URISyntaxException e) {
-                e.printStackTrace();
-            }
-        });
+
+//        getdocumentation.setOnAction(event -> {
+//            try {
+//                //todo change link to documentation page
+//                Desktop.getDesktop().browse(new URL(site).toURI());
+//            } catch (IOException | URISyntaxException e) {
+//                e.printStackTrace();
+//            }
+//        });
     }
 
     private void logout() {
@@ -878,37 +863,6 @@ public class AuditController extends UtilityClass implements Initializable {
         this.clock = clock;
     }
 
-    public MenuItem getLogoutmenu() {
-        return logoutmenu;
-    }
-
-    public void setLogoutmenu(MenuItem logoutmenu) {
-        this.logoutmenu = logoutmenu;
-    }
-
-    public MenuItem getImportmenu() {
-        return importmenu;
-    }
-
-    public void setImportmenu(MenuItem importmenu) {
-        this.importmenu = importmenu;
-    }
-
-    public MenuItem getQuitmenu() {
-        return quitmenu;
-    }
-
-    public void setQuitmenu(MenuItem quitmenu) {
-        this.quitmenu = quitmenu;
-    }
-
-    public MenuItem getGetdocumentation() {
-        return getdocumentation;
-    }
-
-    public void setGetdocumentation(MenuItem getdocumentation) {
-        this.getdocumentation = getdocumentation;
-    }
 
     public AnchorPane getPanel() {
         return panel;
