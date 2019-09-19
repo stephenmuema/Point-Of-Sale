@@ -80,7 +80,6 @@ public class UtilityClass {
         config.login.put("loggedout", true);
         config.user.clear();
         try {
-//                System.out.println("logging out");
             panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
         } catch (IOException e) {
             e.printStackTrace();
@@ -101,7 +100,6 @@ public class UtilityClass {
                 int hours = Integer.parseInt(String.valueOf(CheckConn.timelogin().getHours()));
 
                 if (hours >= 12) {
-//                    hrs= "0"+String.valueOf(hours-12);
                     pmam = "PM";
                 } else {
                     pmam = "AM";
@@ -123,6 +121,17 @@ public class UtilityClass {
                 e1.printStackTrace();
             }
             try {
+                if (networkConnectionMap.containsKey("server") || networkConnectionMap.containsKey("Internet")) {
+                    if (!networkConnectionMap.get("server")) {
+//                    no connection to server
+                        showAlert(Alert.AlertType.ERROR, panel.get("panel").getScene().getWindow(), "ERROR", "NETWORK CONNECTION LOST");
+                    } else {
+                        if (!networkConnectionMap.get("Internet")) {
+                            showToast();//about connection to the internet
+                        }
+                    }
+
+                }
                 clock.setText(CheckConn.timelogin().getHours() + ":" + (mins) + ":" + (secs) + " " + pmam);
             } catch (IOException e1) {
                 e1.printStackTrace();
@@ -134,21 +143,17 @@ public class UtilityClass {
         timeline.play();
     }
 
+    public void showToast() {
+
+    }
+
 
     protected void timeMain(Label clock) {
         Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            //                int minutes = Integer.parseInt(String.valueOf(CheckConn.timelogin().getMinutes()));
-//                int seconds = Integer.parseInt(String.valueOf(CheckConn.timelogin().getSeconds()));
-//                int hours = Integer.parseInt(String.valueOf(CheckConn.timelogin().getHours()));
-
-            //                    hrs= "0"+String.valueOf(hours-12);
-            //            display time
             clock.setText(new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss a").format(Calendar.getInstance().getTime()));
-            //                clock.setText(CheckConn.timelogin().getHours() + ":" + (mins) +":" + (secs)+ " " + pmam);
         }),
                 new KeyFrame(Duration.seconds(1))
         );
-//        refresh every one second
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }

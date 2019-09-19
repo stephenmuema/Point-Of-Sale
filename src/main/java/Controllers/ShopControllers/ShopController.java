@@ -117,6 +117,8 @@ public class ShopController extends CartIdGenerator implements Initializable {
                         e.printStackTrace();
                     }
                 }, true);
+        config.panel.put("panel", shopPanel);
+
         idleMonitor.register(panel, Event.ANY);
         getLogo();
         menuclick();
@@ -731,6 +733,17 @@ public class ShopController extends CartIdGenerator implements Initializable {
             }
 
             try {
+                if (networkConnectionMap.containsKey("server") || networkConnectionMap.containsKey("Internet")) {
+                    if (!networkConnectionMap.get("server")) {
+//                    no connection to server
+                        showAlert(Alert.AlertType.ERROR, config.panel.get("panel").getScene().getWindow(), "ERROR", "NETWORK CONNECTION LOST");
+                    } else {
+                        if (!networkConnectionMap.get("Internet")) {
+                            utilityClass.showToast();//about connection to the internet
+                        }
+                    }
+
+                }
                 clock.setText(String.format("%d:%s:%s %s", CheckConn.timelogin().getHours(), mins, secs, pmam));
             } catch (IOException e1) {
                 e1.printStackTrace();

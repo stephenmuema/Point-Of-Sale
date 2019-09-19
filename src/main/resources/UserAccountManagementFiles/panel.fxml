@@ -14,21 +14,21 @@
                 <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS"/>
                 <MenuItem fx:id="logout" mnemonicParsing="false" text="LOGOUT"/>
                 <MenuItem mnemonicParsing="false" text="QUIT"/>
+                <MenuItem mnemonicParsing="false" text="SHUT DOWN"/>
+                <MenuItem fx:id="details1" mnemonicParsing="false" text="START SHIFT"/>
+                <MenuItem fx:id="details11" mnemonicParsing="false" text="END SHIFT"/>
             </Menu>
-            <Menu mnemonicParsing="false" text="Edit">
-                <MenuItem mnemonicParsing="false" text="Undo"/>
-                <MenuItem mnemonicParsing="false" text="Redo"/>
+            <Menu mnemonicParsing="false" text="NAVIGATOR">
+                <MenuItem mnemonicParsing="false" text="CARWASH"/>
+                <MenuItem mnemonicParsing="false" text="SHOP"/>
                 <SeparatorMenuItem mnemonicParsing="false"/>
-                <MenuItem mnemonicParsing="false" text="Cut"/>
-                <MenuItem mnemonicParsing="false" text="Copy"/>
-                <MenuItem mnemonicParsing="false" text="Paste"/>
-                <MenuItem mnemonicParsing="false" text="Delete"/>
-                <SeparatorMenuItem mnemonicParsing="false"/>
-                <MenuItem mnemonicParsing="false" text="Select All"/>
-                <MenuItem mnemonicParsing="false" text="Unselect All"/>
+                <MenuItem mnemonicParsing="false" text="CHATBOX"/>
             </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-                <MenuItem mnemonicParsing="false" text="About MyHelloApp"/>
+            <Menu mnemonicParsing="false" text="HELP AND TROUBLESHOOTING">
+                <MenuItem mnemonicParsing="false" text="TROUBLE SHOOT"/>
+                <MenuItem mnemonicParsing="false" text="HELP"/>
+                <MenuItem mnemonicParsing="false" text="CALL ADMIN"/>
+                <MenuItem mnemonicParsing="false" text="REPORT ISSUE"/>
             </Menu>
         </MenuBar>
         <AnchorPane id="Content" prefHeight="675.0" prefWidth="1200.0" styleClass="mainPanel">
@@ -135,7 +135,8 @@
                 </font>
             </Button>
             <Label fx:id="stationname" alignment="CENTER" layoutX="743.0" layoutY="18.0" prefHeight="46.0"
-                   prefWidth="434.0" style="&#10;" text="STATION NAME" textAlignment="CENTER" textFill="#fffdfd">
+                   prefWidth="434.0" style="&#10;" text="STATION NAME" textAlignment="CENTER" textFill="#fffdfd"
+                   visible="false">
                 <font>
                     <Font size="31.0"/>
                 </font>

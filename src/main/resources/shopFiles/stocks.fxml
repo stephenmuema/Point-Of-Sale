@@ -11,80 +11,85 @@
         <children>
             <MenuBar>
                 <menus>
-                    <Menu mnemonicParsing="false" text="Account">
+                    <Menu mnemonicParsing="false" text="ACCOUNT">
                         <items>
-                            <MenuItem fx:id="logout" mnemonicParsing="false" text="Log out"/>
-                            <MenuItem fx:id="payments" mnemonicParsing="false" text="OnlinePayments"/>
-                            <MenuItem fx:id="accountdetails" mnemonicParsing="false" text="Account Details"/>
-                            <MenuItem fx:id="contactemployer" mnemonicParsing="false" text="Contact employer"/>
-                            <MenuItem fx:id="history" mnemonicParsing="false" text="History"/>
+                            <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS"/>
+                            <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT"/>
+                            <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER"/>
+                            <MenuItem mnemonicParsing="false" text="QUIT"/>
                         </items>
                     </Menu>
-                    <Menu mnemonicParsing="false" text="History">
+                    <Menu mnemonicParsing="false" text="DATABASE">
                         <items>
-                            <MenuItem fx:id="previoussales" mnemonicParsing="false" text="Previous sales"/>
-                            <MenuItem fx:id="timeline" mnemonicParsing="false" text="Your timeline at work"/>
+                            <MenuItem mnemonicParsing="false" text="BACKUP"/>
+                            <MenuItem mnemonicParsing="false" text="RETRIEVE BACKUP"/>
+                            <MenuItem mnemonicParsing="false" text="VIEW BACKUPS"/>
                         </items>
                     </Menu>
-                    <Menu mnemonicParsing="false" text="Help">
+                    <Menu mnemonicParsing="false" text="SHIFTS">
                         <items>
-                            <MenuItem fx:id="aboutsoftware" mnemonicParsing="false" text="About this Software"/>
-                            <MenuItem fx:id="creators" mnemonicParsing="false" text="Creator Page"/>
+                            <MenuItem mnemonicParsing="false" text="START DAY"/>
+                            <MenuItem mnemonicParsing="false" text="END DAY"/>
+                            <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION"/>
                         </items>
                     </Menu>
-                    <Menu mnemonicParsing="false" text="Panel">
+                    <Menu mnemonicParsing="false" text="SYSTEM ">
                         <items>
-                            <MenuItem fx:id="employees" mnemonicParsing="false" text="Stores"/>
-                            <MenuItem mnemonicParsing="false" text="Stock management"/>
-                            <MenuItem mnemonicParsing="false" text="Audits"/>
+                            <MenuItem mnemonicParsing="false" text="REPORT ISSUES"/>
+                            <MenuItem mnemonicParsing="false" text="RESTART SERVER"/>
+                            <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="INVENTORY">
+                        <items>
+                            <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" text="ABOUT THIS SOFTWARE"/>
+                                    <MenuItem mnemonicParsing="false" text="TERMS AND CONDITIONS"/>
+                                    <MenuItem mnemonicParsing="false" text="CHECK FOR UPDATES"/>
+                                    <MenuItem mnemonicParsing="false" text="DOCUMENTATION"/>
+                                    <MenuItem mnemonicParsing="false" text="REACH US"/>
+                                </items>
+                            </Menu>
+                            <MenuItem mnemonicParsing="false" text="PANEL"/>
+                            <MenuItem mnemonicParsing="false" text="GENERATE REPORTS"/>
+                            <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
                         </items>
                     </Menu>
                 </menus>
             </MenuBar>
-            <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="676.0"
-                       prefWidth="1200.0">
+            <SplitPane focusTraversable="true" prefHeight="676.0" prefWidth="1200.0">
                 <items>
-                    <AnchorPane styleClass="subPanel">
-                        <children>
-                            <Label fx:id="clock" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0"
-                                   layoutY="241.0" prefHeight="66.0" prefWidth="226.0">
-                                <font>
-                                    <Font name="Gabriola" size="44.0"/>
-                                </font>
-                            </Label>
-                            <Button fx:id="home" layoutX="31.0" layoutY="391.0" mnemonicParsing="false"
-                                    prefHeight="57.0" prefWidth="160.0" styleClass="buttongreen" text="HOME"/>
-                        </children>
-                    </AnchorPane>
                     <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="550.0" prefWidth="700.0"
                                 styleClass="mainPanel">
                         <children>
-                            <Label alignment="CENTER" layoutX="248.0" prefHeight="36.0" prefWidth="250.0" style="&#10;"
-                                   text="STOCKS PANEL" textAlignment="CENTER" textFill="#fcfcfc" wrapText="false">
+                            <Label alignment="CENTER" layoutX="639.0" layoutY="7.0" prefHeight="36.0" prefWidth="250.0"
+                                   style="&#10;" text="STOCKS PANEL" textAlignment="CENTER" textFill="#fcfcfc"
+                                   wrapText="false">
                                 <font>
                                     <Font size="32.0" fx:id="x1"/>
                                 </font>
                             </Label>
-                            <TabPane fx:id="tabpane" layoutX="4.0" layoutY="51.0" pickOnBounds="false"
-                                     prefHeight="589.0" prefWidth="885.0" tabClosingPolicy="UNAVAILABLE">
+                            <TabPane fx:id="tabpane" layoutX="286.0" layoutY="56.0" pickOnBounds="false"
+                                     prefHeight="614.0" prefWidth="909.0" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
                                     <Tab text="ADDING ITEMS">
                                         <content>
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="413.0"
                                                         prefWidth="482.0">
                                                 <children>
-                                                    <Button fx:id="addmanually" layoutX="150.0" layoutY="491.0"
+                                                    <Button fx:id="addmanually" layoutX="161.0" layoutY="470.0"
                                                             mnemonicParsing="false" prefHeight="66.0" prefWidth="243.0"
                                                             styleClass="buttonred" stylesheets="@../styles/css.css"
                                                             text="ADD STOCK ITEM MANUALLY"/>
-                                                    <Button fx:id="usescanner" layoutX="443.0" layoutY="491.0"
+                                                    <Button fx:id="usescanner" layoutX="443.0" layoutY="470.0"
                                                             mnemonicParsing="false" prefHeight="66.0" prefWidth="243.0"
                                                             styleClass="buttonorange" stylesheets="@../styles/css.css"
                                                             text="ADD STOCK ITEM BY SCANNING"/>
                                                     <ImageView fitHeight="293.0" fitWidth="297.0" layoutX="574.0"
                                                                layoutY="70.0" pickOnBounds="true" preserveRatio="true"/>
-                                                    <AnchorPane layoutX="137.0" prefHeight="452.0" prefWidth="612.0"
-                                                                styleClass="forminner">
+                                                    <AnchorPane layoutX="137.0" layoutY="16.0" prefHeight="436.0"
+                                                                prefWidth="612.0" styleClass="forminner">
                                                         <children>
                                                             <TextField fx:id="itemname" alignment="CENTER"
                                                                        layoutX="146.0" layoutY="23.0" prefHeight="54.0"
@@ -162,6 +167,14 @@
                                     </Tab>
                                 </tabs>
                             </TabPane>
+                            <Label fx:id="clock" alignment="CENTER" contentDisplay="CENTER" layoutX="19.0"
+                                   layoutY="204.0" prefHeight="66.0" prefWidth="226.0">
+                                <font>
+                                    <Font name="Gabriola" size="44.0"/>
+                                </font>
+                            </Label>
+                            <Button fx:id="home" layoutX="52.0" layoutY="382.0" mnemonicParsing="false"
+                                    prefHeight="57.0" prefWidth="160.0" styleClass="buttongreen" text="HOME"/>
                         </children>
                     </AnchorPane>
                 </items>

@@ -50,6 +50,8 @@ public class PanelController extends UtilityClass implements Initializable {
 
         buttonHandlers();
         menuhandlers();
+        config.panel.put("panel", panel);
+
         time(clock);
         link.setOnMousePressed(event -> {
             try {
@@ -72,28 +74,9 @@ public class PanelController extends UtilityClass implements Initializable {
                 }, true);
         idleMonitor.register(panel, Event.ANY);
     }
-//
-//    private void getLogo() {
-////        File file = new File("images/logo.png");
-//        //            FileInputStream fileInputStream=new FileInputStream("images/logo.png");
-//        Image image = new Image("images/logo.png");
-//
-//    }
+
 
     private void buttonHandlers() {
-//        chat.setOnMouseClicked(event -> {
-//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("ChatView.fxml"));
-//            try {
-//                Parent parent = (Parent) fxmlLoader.load();
-//                Stage stage = new Stage();
-//                stage.setScene(new Scene(parent));
-//                stage.initStyle(StageStyle.UTILITY);
-//                stage.show();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//        });
         accountb.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

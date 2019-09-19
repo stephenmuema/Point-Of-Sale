@@ -90,6 +90,8 @@ public class PriceCashControllerExit extends UtilityClass implements Initializab
                         e.printStackTrace();
                     }
                 }, true);
+        config.panel.put("panel", panel);
+
         idleMonitor.register(panel, Event.ANY);
         buttonListeners();
         load();

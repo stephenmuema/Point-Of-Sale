@@ -53,6 +53,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         menuClick();
         buttonClick();
         time(clock);
+        config.panel.put("panel", AdminPanel);
 
 
         IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(900),

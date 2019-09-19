@@ -13,7 +13,7 @@
             <Menu mnemonicParsing="false" text="ACCOUNT">
                 <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS"/>
                 <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT"/>
-                <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE"/>
+                <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER"/>
                 <MenuItem mnemonicParsing="false" text="QUIT"/>
             </Menu>
             <Menu mnemonicParsing="false" text="DATABASE">
@@ -21,12 +21,33 @@
                 <MenuItem mnemonicParsing="false" text="RETRIEVE BACKUP"/>
                 <MenuItem mnemonicParsing="false" text="VIEW BACKUPS"/>
             </Menu>
-            <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
-                <MenuItem mnemonicParsing="false" text="ABOUT THIS SOFTWARE"/>
-                <MenuItem mnemonicParsing="false" text="TERMS AND CONDITIONS"/>
-                <MenuItem mnemonicParsing="false" text="CHECK FOR UPDATES"/>
-                <MenuItem mnemonicParsing="false" text="DOCUMENTATION"/>
-                <MenuItem mnemonicParsing="false" text="REACH US"/>
+            <Menu mnemonicParsing="false" text="SHIFTS">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="START DAY"/>
+                    <MenuItem mnemonicParsing="false" text="END DAY"/>
+                    <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="SYSTEM ">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="REPORT ISSUES"/>
+                    <MenuItem mnemonicParsing="false" text="RESTART SERVER"/>
+                    <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="INVENTORY">
+                <items>
+                    <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
+                        <MenuItem mnemonicParsing="false" text="ABOUT THIS SOFTWARE"/>
+                        <MenuItem mnemonicParsing="false" text="TERMS AND CONDITIONS"/>
+                        <MenuItem mnemonicParsing="false" text="CHECK FOR UPDATES"/>
+                        <MenuItem mnemonicParsing="false" text="DOCUMENTATION"/>
+                        <MenuItem mnemonicParsing="false" text="REACH US"/>
+                    </Menu>
+                    <MenuItem mnemonicParsing="false" text="PANEL"/>
+                    <MenuItem mnemonicParsing="false" text="GENERATE REPORTS"/>
+                    <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
+                </items>
             </Menu>
         </MenuBar>
         <AnchorPane id="Content" prefHeight="677.0" prefWidth="1165.0" styleClass="mainPanel"
@@ -37,14 +58,14 @@
                     <Font size="31.0"/>
                 </font>
             </Label>
-            <Button fx:id="employees" layoutX="90.0" layoutY="74.0" mnemonicParsing="false" prefHeight="80.0"
+            <Button fx:id="employees" layoutX="81.0" layoutY="74.0" mnemonicParsing="false" prefHeight="80.0"
                     prefWidth="297.0" text="STAFF PANEL">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
             <Button fx:id="carwashpanel" layoutX="84.0" layoutY="432.0" mnemonicParsing="false" prefHeight="80.0"
-                    prefWidth="301.0" text="CAR WASH">
+                    prefWidth="297.0" text="CAR WASH">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
@@ -56,7 +77,7 @@
                 </font>
             </Button>
             <Button fx:id="stockspanel" layoutX="89.0" layoutY="318.0" mnemonicParsing="false" prefHeight="80.0"
-                    prefWidth="298.0" text="INVENTORY">
+                    prefWidth="297.0" text="INVENTORY">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
@@ -79,8 +100,8 @@
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="visitSuppliers" layoutX="75.0" layoutY="536.0" mnemonicParsing="false" prefHeight="80.0"
-                    prefWidth="308.0" text="SUPPLIERS">
+            <Button fx:id="visitSuppliers" layoutX="84.0" layoutY="536.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="297.0" text="SUPPLIERS">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
@@ -92,7 +113,7 @@
                 </font>
             </Button>
             <Button fx:id="visitSuppliers1" layoutX="452.0" layoutY="536.0" mnemonicParsing="false" prefHeight="80.0"
-                    prefWidth="308.0" text="DATABASE SYNC">
+                    prefWidth="297.0" text="DATABASE SYNC">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
@@ -104,7 +125,7 @@
                 </font>
             </Button>
             <Button fx:id="visitSuppliers11" layoutX="452.0" layoutY="74.0" mnemonicParsing="false" prefHeight="80.0"
-                    prefWidth="308.0" text="START DAY">
+                    prefWidth="297.0" text="START DAY">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
@@ -133,8 +154,8 @@
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="visitSuppliers111" layoutX="451.0" layoutY="318.0" mnemonicParsing="false" prefHeight="80.0"
-                    prefWidth="311.0" text="LOG OUT">
+            <Button fx:id="visitSuppliers111" layoutX="458.0" layoutY="318.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="297.0" text="LOG OUT">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>

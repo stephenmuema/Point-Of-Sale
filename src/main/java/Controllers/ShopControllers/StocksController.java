@@ -84,6 +84,8 @@ public class StocksController extends UtilityClass implements Initializable {
                         e.printStackTrace();
                     }
                 }, true);
+        config.panel.put("panel", parentsstocks);
+
         idleMonitor.register(parentsstocks, Event.ANY);
     }
 

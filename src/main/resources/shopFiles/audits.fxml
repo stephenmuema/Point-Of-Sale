@@ -2,24 +2,58 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 <?import java.net.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="700.0" prefWidth="1200.0"
             styleClass="mainPanel" xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="Controllers.ShopControllers.AuditController">
     <VBox>
         <children>
-            <MenuBar VBox.vgrow="NEVER">
+            <MenuBar>
                 <menus>
-                    <Menu mnemonicParsing="false" text="Actions">
+                    <Menu mnemonicParsing="false" text="ACCOUNT">
                         <items>
-                            <MenuItem fx:id="importmenu" mnemonicParsing="false" text="Import"/>
-                            <MenuItem fx:id="logoutmenu" mnemonicParsing="false" text="Log out"/>
-                            <MenuItem fx:id="quitmenu" mnemonicParsing="false" text="Quit"/>
+                            <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS"/>
+                            <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT"/>
+                            <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER"/>
+                            <MenuItem mnemonicParsing="false" text="QUIT"/>
                         </items>
                     </Menu>
-                    <Menu mnemonicParsing="false" text="Help">
+                    <Menu mnemonicParsing="false" text="DATABASE">
                         <items>
-                            <MenuItem fx:id="getdocumentation" mnemonicParsing="false" text="Get documentation"/>
+                            <MenuItem mnemonicParsing="false" text="BACKUP"/>
+                            <MenuItem mnemonicParsing="false" text="RETRIEVE BACKUP"/>
+                            <MenuItem mnemonicParsing="false" text="VIEW BACKUPS"/>
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="SHIFTS">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="START DAY"/>
+                            <MenuItem mnemonicParsing="false" text="END DAY"/>
+                            <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION"/>
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="SYSTEM ">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="REPORT ISSUES"/>
+                            <MenuItem mnemonicParsing="false" text="RESTART SERVER"/>
+                            <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="INVENTORY">
+                        <items>
+                            <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="ABOUT THIS SOFTWARE"/>
+                            <MenuItem mnemonicParsing="false" text="TERMS AND CONDITIONS"/>
+                            <MenuItem mnemonicParsing="false" text="CHECK FOR UPDATES"/>
+                            <MenuItem mnemonicParsing="false" text="DOCUMENTATION"/>
+                            <MenuItem mnemonicParsing="false" text="REACH US"/>
+                        </items>
+                            </Menu>
+                            <MenuItem mnemonicParsing="false" text="PANEL"/>
+                            <MenuItem mnemonicParsing="false" text="GENERATE REPORTS"/>
+                            <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
                         </items>
                     </Menu>
                 </menus>
@@ -142,6 +176,10 @@
                                             <DatePicker layoutX="241.0" layoutY="26.0" prefHeight="36.0"
                                                         prefWidth="206.0" promptText="END DATE"
                                                         styleClass="textfields"/>
+                                            <RadioButton layoutX="935.0" layoutY="99.0" mnemonicParsing="false"
+                                                         text="CSV FORMAT"/>
+                                            <RadioButton layoutX="1080.0" layoutY="99.0" mnemonicParsing="false"
+                                                         text="PDF FORMAT"/>
                                         </children>
                                     </AnchorPane>
                                 </content>
@@ -198,8 +236,8 @@
                                                                 <children>
                                                                     <ButtonBar layoutX="268.0" layoutY="283.0"
                                                                                prefHeight="40.0" prefWidth="200.0"/>
-                                                                    <AnchorPane layoutX="390.0" layoutY="36.0"
-                                                                                prefHeight="336.0" prefWidth="405.0"
+                                                                    <AnchorPane layoutX="365.0" layoutY="36.0"
+                                                                                prefHeight="360.0" prefWidth="430.0"
                                                                                 styleClass="forminner">
                                                                         <children>
                                                                             <DatePicker fx:id="newcostsdatecreated"
@@ -289,8 +327,8 @@
                                 <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                         <children>
-                                            <TableView fx:id="stockalerttable" layoutX="148.0" layoutY="25.0"
-                                                       prefHeight="507.0" prefWidth="907.0">
+                                            <TableView fx:id="stockalerttable" layoutX="1.0" layoutY="2.0"
+                                                       prefHeight="476.0" prefWidth="1072.0">
                                                 <columns>
                                                     <TableColumn fx:id="stockalerttableid" prefWidth="75.0" text="ID"/>
                                                     <TableColumn fx:id="stockalerttablename" prefWidth="244.0"
@@ -301,8 +339,16 @@
                                                                  text="AMOUNT REMAINING"/>
                                                     <TableColumn fx:id="stockalerttablemarkasread1" prefWidth="166.0"
                                                                  text="SALES PER HOUR"/>
+                                                    <TableColumn fx:id="stockalerttablemarkasread11" prefWidth="166.0"
+                                                                 text="CATEGORY"/>
                                                 </columns>
                                             </TableView>
+                                            <Button layoutX="315.0" layoutY="493.0" mnemonicParsing="false"
+                                                    prefHeight="64.0" prefWidth="235.0" text="MAKE AN ORDER">
+                                                <font>
+                                                    <Font size="22.0"/>
+                                                </font>
+                                            </Button>
                                         </children>
                                     </AnchorPane>
                                 </content>
@@ -357,6 +403,10 @@
                                                             layoutY="351.0" mnemonicParsing="false" prefHeight="41.0"
                                                             prefWidth="225.0" styleClass="buttongreen"
                                                             text="SHOW WORST SALES"/>
+                                                    <RadioButton layoutX="63.0" layoutY="14.0" mnemonicParsing="false"
+                                                                 text="CSV FORMAT"/>
+                                                    <RadioButton layoutX="255.0" layoutY="14.0" mnemonicParsing="false"
+                                                                 text="PDF FORMAT"/>
                                                 </children>
                                             </AnchorPane>
                                             <DatePicker layoutX="179.0" layoutY="31.0" prefHeight="36.0"
@@ -371,8 +421,8 @@
                             </Tab>
                         </tabs>
                     </TabPane>
-                    <Label fx:id="clock" layoutX="238.0" layoutY="22.0" prefHeight="36.0" prefWidth="181.0"
-                           text="TIME LABEL" textFill="#fffdfd"/>
+                    <Label fx:id="clock" alignment="CENTER" layoutX="238.0" layoutY="22.0" prefHeight="36.0"
+                           prefWidth="181.0" text="TIME LABEL" textFill="#fffdfd"/>
                     <Button fx:id="topanelbutton" layoutX="624.0" layoutY="22.0" mnemonicParsing="false"
                             prefHeight="36.0" prefWidth="134.0" styleClass="buttonyellow" text="BACK TO PANEL"/>
                     <Button fx:id="tocarwashbutton" layoutX="783.0" layoutY="22.0" mnemonicParsing="false"

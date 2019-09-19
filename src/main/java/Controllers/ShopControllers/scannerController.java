@@ -79,6 +79,8 @@ public class scannerController extends UtilityClass implements Initializable {
         time(clock);
         menuclick();
         buttonclick();
+        config.panel.put("panel", parentsstocks);
+
         IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(9000),
                 () -> {
                     try {

@@ -17,6 +17,7 @@ public class CarwashCompleteController extends UtilityClass implements Initializ
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+//        config.panel.put("panel",panel);
 
     }
 }

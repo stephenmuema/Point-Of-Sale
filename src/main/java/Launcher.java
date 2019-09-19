@@ -3,17 +3,12 @@ import Controllers.UtilityClass;
 import com.sun.istack.internal.NotNull;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 import logging.LogClass;
 import securityandtime.AesCrypto;
 import securityandtime.CheckConn;
@@ -27,7 +22,6 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
@@ -41,7 +35,16 @@ public class Launcher extends Application {
 
     static Stage stage = null;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        Runnable target;
+        Thread thread = new Thread(new NetworkCheck());
+        thread.join();
+        thread.start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Path path = Paths.get(fileSavePath);
 
         if (!Files.exists(path)) {
@@ -152,18 +155,15 @@ public class Launcher extends Application {
                 Parent root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/licensingPanel.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                Media hit = new Media(getClass().getClassLoader().getResource("sounds/notification.wav").toString());
-                MediaPlayer mediaPlayer = new MediaPlayer(hit);
-                mediaPlayer.play();
+//                Media hit = new Media(getClass().getClassLoader().getResource("sounds/notification.wav").toString());
+//                MediaPlayer mediaPlayer = new MediaPlayer(hit);
+//                mediaPlayer.play();
                 System.out.println("Expired license");
                 stage.initStyle(StageStyle.DECORATED);
-                stage.getIcons().add(new Image("images/logo.png"));
-                stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                    @Override
-                    public void handle(WindowEvent event) {
-                        Platform.exit();
-                        System.exit(123);
-                    }
+                stage.getIcons().add(image);
+                stage.setOnCloseRequest(event -> {
+                    Platform.exit();
+                    System.exit(123);
                 });
 
 //        APP TITLE
@@ -186,18 +186,13 @@ public class Launcher extends Application {
                     Parent root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/licensingPanel.fxml"));
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
-                    Media hit = new Media(getClass().getClassLoader().getResource("sounds/notification.wav").toString());
-                    MediaPlayer mediaPlayer = new MediaPlayer(hit);
-                    mediaPlayer.play();
+
                     System.out.println("Expired license");
                     stage.initStyle(StageStyle.DECORATED);
-                    stage.getIcons().add(new Image("images/logo.png"));
-                    stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                        @Override
-                        public void handle(WindowEvent event) {
-                            Platform.exit();
-                            System.exit(123);
-                        }
+                    stage.getIcons().add(image);
+                    stage.setOnCloseRequest(event -> {
+                        Platform.exit();
+                        System.exit(123);
                     });
 
 //        APP TITLE
@@ -218,11 +213,9 @@ public class Launcher extends Application {
                     AnchorPane root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/SplashScreen.fxml"));
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
-                    Media hit = new Media(Objects.requireNonNull(getClass().getClassLoader().getResource("sounds/notification.wav")).toString());
-                    MediaPlayer mediaPlayer = new MediaPlayer(hit);
-                    mediaPlayer.play();
+
                     stage.initStyle(StageStyle.DECORATED);
-                    stage.getIcons().add(new Image("images/logo.png"));
+                    stage.getIcons().add(image);
 //        todo change title later
                     stage.setTitle(company + year + version);
 
@@ -236,12 +229,9 @@ public class Launcher extends Application {
                     stage.setMaximized(false);
 
                     stage.setFullScreen(false);
-                    stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                        @Override
-                        public void handle(WindowEvent event) {
-                            Platform.exit();
-                            System.exit(123);
-                        }
+                    stage.setOnCloseRequest(event -> {
+                        Platform.exit();
+                        System.exit(123);
                     });
                     Launcher.stage = stage;
                     stage.show();
@@ -253,17 +243,11 @@ public class Launcher extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/licensingPanel.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            Media hit = new Media(Objects.requireNonNull(getClass().getClassLoader().getResource("sounds/notification.wav")).toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(hit);
-            mediaPlayer.play();
             stage.initStyle(StageStyle.DECORATED);
-            stage.getIcons().add(new Image("images/logo.png"));
-            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                    Platform.exit();
-                    System.exit(123);
-                }
+            stage.getIcons().add(image);
+            stage.setOnCloseRequest(event -> {
+                Platform.exit();
+                System.exit(123);
             });
 //            0700758591
 

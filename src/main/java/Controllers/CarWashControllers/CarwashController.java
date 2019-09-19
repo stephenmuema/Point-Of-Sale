@@ -109,6 +109,8 @@ public class CarwashController extends UtilityClass implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        config.panel.put("panel", parents);
+
         IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
                 () -> {
                     try {

@@ -5,10 +5,9 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
@@ -19,9 +18,9 @@ import org.apache.commons.io.FileUtils;
 import securityandtime.AesCipher;
 import securityandtime.AesCrypto;
 import securityandtime.BoardListener;
+import securityandtime.config;
 
 import javax.mail.*;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.awt.*;
@@ -63,6 +62,8 @@ public class LicensingController extends UtilityClass implements Initializable {
     private Button confirm;
     @FXML
     private Hyperlink link;
+    @FXML
+    private CheckBox firstTime;
 
     {
 
@@ -86,11 +87,11 @@ public class LicensingController extends UtilityClass implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //continue licensing from here
+        config.panel.put("panel", panel);
         licensearea.setStyle("-fx-text-inner-color: #0d1dff;");
         buttonListeners();
         utilities();
-
-//        radioGroupManager();
+        firstTime.setSelected(true);
     }
 
     private void utilities() {
@@ -109,6 +110,7 @@ public class LicensingController extends UtilityClass implements Initializable {
             boardListener.start();//latest changein the code
             initial = boardListener.getClipboardContents();
             licensearea.setText(initial);
+            boardListener.interrupt();
 //                confirmed();
 
         });
@@ -117,7 +119,11 @@ public class LicensingController extends UtilityClass implements Initializable {
         licensearea.setOnKeyPressed(event -> {
             KeyCode keyCode = event.getCode();
             if (keyCode.equals(KeyCode.ENTER)) {
-                confirmed();
+                try {
+                    confirmed();
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                }
             }
         });
         licensearea.setOnDragOver(event -> {
@@ -194,7 +200,13 @@ public class LicensingController extends UtilityClass implements Initializable {
         });
 
 
-        confirm.setOnMouseClicked(event -> confirmed());
+        confirm.setOnMouseClicked(event -> {
+            try {
+                confirmed();
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 
@@ -206,15 +218,26 @@ public class LicensingController extends UtilityClass implements Initializable {
         this.statementLocal = statementLocal;
     }
 
-    private void confirmed() {
+    private void confirmed() throws MessagingException {
+        boolean firstTimeInstallation = firstTime.isSelected();
+
         String license = licensearea.getText();
+
         if (license.length() <= 50000) {
             showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "INVALID LICENSE FILE");
         } else {
             AesCrypto aesCrypto = new AesCrypto();
-            String key = "26kozQaKwRuNJ24t26kozQaKwRuNJ24t";
-            setDecryptedString(AesCipher.decrypt(key, license.substring(0, license.length() - 50000)).getData());
-            System.out.println("Key:" + key);
+            setDecryptedString(AesCipher.decrypt(aesKey, license.substring(0, license.length() - 50000)).getData());
+//            System.out.println("Key:" + key);
+//            System.out.println(decryptedString.split(":::")[0]);
+//            System.out.println(decryptedString.split(":::")[1]);
+//            System.out.println(decryptedString);
+            //todo add verification of time from server
+//            System.out.println(decryptedString.split(":::")[2]);//expiry
+//            System.out.println(decryptedString.split(":::")[3]);//date of creation
+            if (firstTimeInstallation) {
+                mailSend("WELCOME", "WELCOME NEW USER", decryptedString.split(":::")[1], from, "text/plain");
+            }
             try {
                 FileOutputStream fileOutputStream = null;
                 File f = new File(licensepath);
@@ -244,29 +267,8 @@ public class LicensingController extends UtilityClass implements Initializable {
                     String ip = ipv.getHostAddress();
                     String mac = GetNetworkAddress.getMacAddress(ipv);
                     String name = System.getProperty("user.name");
-                    Properties props = new Properties();
+                    mailSend("CULPRIT IP : " + ip + "\n" + "CULPRIT MAC ADDRESS : " + mac + "\n" + "CULPRIT NAME : " + name + "\n .THE ABOVE USER TRIED TO USE THE TEST LICENSE", " USE OF DEVELOPMENT LICENSE ", "muemasnyamai@gmail.com,developers@nanotechsoftwares.co.ke,muemasn@outlook.com,muemasn@nanotechsoftwares.co.ke", from, "text/plain");
 
-                    props.put("mail.smtp.host", "smtp.gmail.com");
-                    props.put("mail.smtp.socketFactory.port", "465");
-                    props.put("mail.smtp.socketFactory.class",
-                            "javax.net.ssl.SSLSocketFactory");
-                    props.put("mail.smtp.auth", "true");
-                    props.put("mail.smtp.port", "587");
-                    Session session = Session.getDefaultInstance(props,
-                            new javax.mail.Authenticator() {
-                                protected PasswordAuthentication getPasswordAuthentication() {
-                                    return new PasswordAuthentication(from, mailPassword);
-                                }
-                            });
-                    session.setDebug(true);
-                    Message message = new MimeMessage(session);
-                    message.setFrom(new InternetAddress(from));
-                    String to = "muemasnyamai@gmail.com,developers@nanotechsoftwares.co.ke,muemasn@outlook.com,muemasn@nanotechsoftwares.co.ke";
-                    InternetAddress[] parse = InternetAddress.parse(to, true);
-                    message.setRecipients(javax.mail.Message.RecipientType.TO, parse);
-                    message.setSubject(" USE OF DEVELOPMENT LICENSE ");
-                    message.setText("CULPRIT IP : " + ip + "\n" + "CULPRIT MAC ADDRESS : " + mac + "\n" + "CULPRIT NAME : " + name + "\n .THE ABOVE USER TRIED TO USE THE TEST LICENSE");
-                    Transport.send(message);
                     FileUtils.forceDelete(new File(licensepath));
                     showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "TESTING LICENSE", "USE OF A TESTING LICENSE VIOLATES OUR TERMS AND CONDITIONS" + name + "!!RELEVANT AUTHORITIES HAVE BEEN NOTIFIED.PLEASE PURCHASE A LICENSE TO AVOID DATA CORRUPTION");
                     Platform.exit();
@@ -283,13 +285,7 @@ public class LicensingController extends UtilityClass implements Initializable {
                         throwables.clear();
                     }
                     getLicensearea().clear();
-                    System.out.println(decryptedString.split(":::")[0]);
-                    System.out.println(decryptedString.split(":::")[1]);
-                    System.out.println(decryptedString);
-                    System.out.println(decryptedString.split(":::")[2]);//expiry
-                    System.out.println(decryptedString.split(":::")[3]);
-//                    Platform.exit();
-//                    System.exit(1);
+
                     loadLogin();
 
 
@@ -301,36 +297,45 @@ public class LicensingController extends UtilityClass implements Initializable {
                         throwables.clear();
                     }
                     licensearea.clear();
-                    //System.out.println(decryptedString.split(":::")[0]);
-                    //System.out.println(decryptedString.split(":::")[1]);
-                    //System.out.println(decryptedString.split(":::")[2]);//expiry
-                    //System.out.println(decryptedString.split(":::")[3]);
-//                    Platform.exit();
-//                    System.exit(1);\
+
                     loadLogin();
                 }
 
 //            todo check if a viable license has been created
-                //if(check){
-//    showAlert(Alert.AlertType.INFORMATION,panel.getScene().getWindow(),"SUCCESS","LICENSE REGISTRATION WAS SUCCESSFULL.RESTART THE APPLICATION FOR IT TO TAKE EFFECT");
-//
-//
-//}
-//else {
-//    showAlert(Alert.AlertType.ERROR,panel.getScene().getWindow(),"ERROR","PLEASE CHECK YOUR LICENSE");
-//
-//}
 
-            } catch (SQLException | AddressException e) {
-//            showAlert(Alert.AlertType.ERROR,panel.getScene().getWindow(),"ERROR","PLEASE CHECK YOUR LICENSE");
 
-                e.printStackTrace();
-            } catch (MessagingException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (SQLException | MessagingException | IOException e) {
+
                 e.printStackTrace();
             }
         }
+
+    }
+
+    private void mailSend(String text, String subject, String to, String from, String type) throws MessagingException {
+        Properties props = new Properties();
+
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "587");
+        Session session = Session.getDefaultInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(from, mailPassword);
+                    }
+                });
+        session.setDebug(true);
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(from));
+
+        InternetAddress[] parse = InternetAddress.parse(to, true);
+        message.setRecipients(javax.mail.Message.RecipientType.TO, parse);
+        message.setSubject(subject);
+        message.setContent(text, type);
+        Transport.send(message);
 
     }
 

@@ -21,6 +21,7 @@ public class UserDetailsController extends Controllers.UtilityClass implements I
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fetchDetails();
+//        config.panel.put("panel",panel);
 
 
     }

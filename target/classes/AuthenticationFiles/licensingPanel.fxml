@@ -65,7 +65,7 @@
                         <Font size="17.0"/>
                     </font>
                 </Label>
-                <CheckBox layoutX="134.0" layoutY="278.0" mnemonicParsing="false" text="FIRST TIME SETUP"/>
+                <CheckBox  fx:id="firstTime" layoutX="134.0" layoutY="278.0" mnemonicParsing="false" text="FIRST TIME SETUP"/>
             </children>
         </AnchorPane>
     </children>

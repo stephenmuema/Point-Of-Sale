@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static securityandtime.config.image;
 import static securityandtime.config.license;
 
 public class SplashScreenController implements Initializable {
@@ -25,48 +27,42 @@ public class SplashScreenController implements Initializable {
     private double yOffset = 0;
     @FXML
     private AnchorPane parent;
+    @FXML
+    private ImageView logo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
             Date date = new Date();
 
-
+            logo.setImage(image);
             if (Objects.equals(license.get("name"), "Trial license")) {
                 date.setTime(Long.parseLong(license.get("time")) + System.currentTimeMillis());
 
                 date.setTime(Long.parseLong(license.get("time")) + System.currentTimeMillis());
 
-                String s2 = new SimpleDateFormat("yyyy/MM/dd").format(date);
+                String s2 = new SimpleDateFormat("dd/MM/yyyy").format(date);
 
                 owner.setText("Registered to " + license.get("name"));
                 expiry.setText(s2);
             } else {
                 date.setTime(Long.parseLong(license.get("time")) + System.currentTimeMillis());
 
-                String s2 = new SimpleDateFormat("yyyy/MM/dd").format(date);
+                String s2 = new SimpleDateFormat("dd/MM/yyyy").format(date);
 
                 owner.setText("Registered to " + license.get("name"));
                 expiry.setText(s2);
             }
-//            //System.out.println(license.get("time"));
 
-
-//
-//todo  set text later
-//            go to login page
             Parent fxml = FXMLLoader.load(getClass().getResource("AuthenticationFiles/Login.fxml"));
             makeStageDrageable();
             AnimationGenerator animationGenerator = new AnimationGenerator();
-//            animationGenerator.applyFadeAnimationOn01(parent, 4000, 1, 0.7, 1, new EventHandler<ActionEvent>() {
-//                @Override
-//                public void handle(ActionEvent e) {
+
             animationGenerator.applyFadeAnimationOn02(parent, 4000, 1, 1, 1, e2 -> {
                 parent.getChildren().removeAll();
                 parent.getChildren().setAll(fxml);
             });
-//                }
-//            });
+
         } catch (IOException ex) {
             Logger.getLogger(SplashScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }

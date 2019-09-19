@@ -177,6 +177,7 @@ public class AuditController extends UtilityClass implements Initializable {
                         e.printStackTrace();
                     }
                 }, true);
+        config.panel.put("panel", panel);
 
         menuListeners();
         buttonListeners();

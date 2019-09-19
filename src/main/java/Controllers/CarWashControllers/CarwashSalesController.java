@@ -95,7 +95,8 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         time(clock);
-//loadTab();
+        config.panel.put("panel", carWash);
+
         editable();
         buttonListeners();
         IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),

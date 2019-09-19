@@ -71,6 +71,8 @@ public class EmployeesController extends UtilityClass implements Initializable {
         menuclick();
         buttonclick();
         editable();
+        config.panel.put("panel", parents);
+
         IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
                 () -> {
                     try {

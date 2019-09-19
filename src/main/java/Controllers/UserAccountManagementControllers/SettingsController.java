@@ -71,6 +71,7 @@ public class SettingsController extends UtilityClass implements Initializable {
             e.printStackTrace();
         }
 
+        config.panel.put("panel", panel);
 
         buttonListeners();
         menuListeners();

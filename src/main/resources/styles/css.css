@@ -1,14 +1,10 @@
 .parent {
-    -fx-background-image: url(../images/logo.png);
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: 1024 600;
 }
 
-.backgroundchat {
-    -fx-background-image: url(../images/logo.png);
 
-}
 
 .textfields {
 

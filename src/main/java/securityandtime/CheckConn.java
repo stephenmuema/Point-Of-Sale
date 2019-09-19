@@ -6,9 +6,9 @@ import java.net.Socket;
 import java.util.Date;
 
 public class CheckConn {
-    String[] time;
-    int hour, min, sec;
-    String ampm;
+    private String[] time;
+    private int hour, min, sec;
+    private String ampm;
 
     public static boolean pingHost(String host, int port, int timeout) {
         try (Socket socket = new Socket()) {
@@ -20,28 +20,6 @@ public class CheckConn {
     }
 
     public static Date timelogin() throws IOException {
-//        if(CheckConn.pingHost("google.com", 80, 2000)){
-////            //System.out.println(CheckConn.pingHost(securityandtime.config.host, 80, 2000));
-//            String TIME_SERVER = "time-a.nist.gov";
-//            NTPUDPClient timeClient = new NTPUDPClient();
-//            InetAddress inetAddress = InetAddress.getByName(TIME_SERVER);
-//            TimeInfo timeInfo = timeClient.getTime(inetAddress);
-//            long returnTime = timeInfo.getReturnTime();
-//            Date time = new Date(returnTime);
-////            System.out.println("Time from " + TIME_SERVER + ": " + time);
-//            Date date = new Date();
-//            if (time!=date){
-//
-//// set system time
-//            }
-//            return time;
-//        }
-//        else {
-//            Date time = new Date();
-////            //System.out.println(time.toString());
-//            return time;
-//        }
-        //            //System.out.println(time.toString());
         return new Date();
     }
 

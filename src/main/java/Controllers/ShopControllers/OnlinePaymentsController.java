@@ -56,6 +56,8 @@ public class OnlinePaymentsController implements Initializable {
         idleMonitor.register(panel, Event.ANY);
         buttonListeners();
         utilities();
+        config.panel.put("panel", panel);
+
     }
 
     private void utilities() {

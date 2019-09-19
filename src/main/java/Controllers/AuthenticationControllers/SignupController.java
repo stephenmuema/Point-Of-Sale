@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import logging.LogClass;
 import securityandtime.Security;
+import securityandtime.config;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -54,6 +55,8 @@ public class SignupController extends UtilityClass implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 //
+        config.panel.put("panel", parent);
+
         timeMain(clock);
         link.setOnMousePressed(event -> {
             try {

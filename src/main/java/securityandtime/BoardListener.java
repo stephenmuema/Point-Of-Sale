@@ -9,12 +9,21 @@ import static java.awt.Toolkit.getDefaultToolkit;
 public class BoardListener extends Thread implements ClipboardOwner {
     private Clipboard sysClip = getDefaultToolkit().getSystemClipboard();
 
+    private volatile boolean flag = true;
 
+    //This method will set flag as false
 
+    public void stopRunning() {
+        flag = false;
+    }
+
+    @Override
     public void run() {
-        Transferable trans = sysClip.getContents(this);
-        regainOwnership(trans);
+        while (!Thread.interrupted()) {
+            Transferable trans = sysClip.getContents(this);
+            regainOwnership(trans);
 //        System.out.println("Listening to board...");
+        }
 
     }
 
