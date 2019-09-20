@@ -158,6 +158,7 @@ public class SettingsController extends UtilityClass implements Initializable {
             preparedStatement1.setString(3, "STARTUP BACKUP");
             preparedStatement1.executeUpdate();
 //        preparedStatement1.close();
+            initialiseRadioButtons();
         }
     }
 

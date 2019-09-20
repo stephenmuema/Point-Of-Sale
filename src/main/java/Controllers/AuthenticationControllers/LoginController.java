@@ -72,7 +72,6 @@ public class LoginController extends UtilityClass implements Initializable {
 //        go to nanotechsoftwares website
         link.setOnMousePressed(event -> {
             try {
-//                    todo change when created website
                 Desktop.getDesktop().browse(new URL(site).toURI());
             } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();

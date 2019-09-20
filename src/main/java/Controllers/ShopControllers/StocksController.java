@@ -54,7 +54,6 @@ public class StocksController extends UtilityClass implements Initializable {
     public TextField itemname;
     public TextField itemprice;
     public TextField itemcategory;
-    //todo continue from here by adding menu item functionality
     public TextField itemcode;
     public Button addmanually;
     public Button usescanner;

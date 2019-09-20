@@ -18,7 +18,7 @@
 
             </Menu>
             <Menu mnemonicParsing="false" text="DATABASE">
-                <MenuItem mnemonicParsing="false"  fx:id="backupMenu" text="BACKUP"/>
+                <MenuItem mnemonicParsing="false" fx:id="backupMenu" text="BACKUP"/>
                 <MenuItem mnemonicParsing="false" fx:id="retrieveBackupMenu" text="RETRIEVE BACKUP"/>
                 <MenuItem mnemonicParsing="false" fx:id="viewBackupsMenu" text="VIEW BACKUPS"/>
             </Menu>
@@ -36,7 +36,7 @@
                     <MenuItem mnemonicParsing="false" fx:id="troubleShootMenu" text="TROUBLESHOOT SYSTEM"/>
                 </items>
             </Menu>
-            <Menu mnemonicParsing="false"  text="HELP AND SUPPORT">
+            <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
                 <MenuItem mnemonicParsing="false" fx:id="abtMenu" text="ABOUT THIS SOFTWARE"/>
                 <MenuItem mnemonicParsing="false" fx:id="termsMenu" text="TERMS AND CONDITIONS"/>
                 <MenuItem mnemonicParsing="false" fx:id="checkUpdatesMenu" text="CHECK FOR UPDATES"/>
@@ -45,7 +45,7 @@
                 <MenuItem mnemonicParsing="false" fx:id="menuShutDown" text="SHUT DOWN"/>
                 <MenuItem mnemonicParsing="false" fx:id="menuRestart" text="RESTART SYSTEM"/>
             </Menu>
-            <Menu mnemonicParsing="false"  text="NAVIGATION">
+            <Menu mnemonicParsing="false" text="NAVIGATION">
                 <MenuItem mnemonicParsing="false" fx:id="staffMenu" text="STAFF"/>
                 <MenuItem mnemonicParsing="false" fx:id="carWashMenu" text="CAR WASH"/>
                 <MenuItem mnemonicParsing="false" fx:id="inventoryMenu" text="INVENTORY"/>
@@ -158,7 +158,8 @@
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="viewShiftInformation" layoutX="849.0" layoutY="432.0" mnemonicParsing="false" prefHeight="80.0"
+            <Button fx:id="viewShiftInformation" layoutX="849.0" layoutY="432.0" mnemonicParsing="false"
+                    prefHeight="80.0"
                     prefWidth="311.0" text="SHIFT INFORMATION">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
