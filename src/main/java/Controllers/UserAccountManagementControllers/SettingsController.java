@@ -6,10 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.DirectoryChooser;
 import securityandtime.AesCrypto;
 import securityandtime.Security;
 import securityandtime.config;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
@@ -22,8 +24,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static securityandtime.config.encryptionkey;
-import static securityandtime.config.initVector;
+import static securityandtime.config.*;
 
 public class SettingsController extends UtilityClass implements Initializable {
     public AnchorPane panel;
@@ -69,6 +70,7 @@ public class SettingsController extends UtilityClass implements Initializable {
     private Button backupEmailChangePassword;
 
     /**
+     * made by steve
      * Called to initialize a controller after its root element has been
      * completely processed.
      *
@@ -99,10 +101,24 @@ public class SettingsController extends UtilityClass implements Initializable {
                 String s = rb.getText();
 //change backup in mysql
                 try {
-                    preparedStatement = connection.prepareStatement("UPDATE systemsettings SET value=? WHERE name=?");
-                    preparedStatement.setString(1, s);
-                    preparedStatement.setString(2, "backup");
-                    preparedStatement.executeUpdate();
+                    PreparedStatement prep = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+                    prep.setString(1, "backup");
+                    ResultSet rs = prep.executeQuery();
+                    if (!rs.isBeforeFirst()) {
+////                      rs.close();
+////                      prep.close();
+                        prep = connection.prepareStatement("INSERT INTO systemsettings (name,type,value)VALUES (?,?,?)");
+                        prep.setString(1, "backup");
+                        prep.setString(2, "security");
+                        prep.setString(1, "STARTUP BACKUP");
+                        prep.executeUpdate();
+
+                    } else {
+                        preparedStatement = connection.prepareStatement("UPDATE systemsettings SET value=? WHERE name=?");
+                        preparedStatement.setString(1, s);
+                        preparedStatement.setString(2, "backup");
+                        preparedStatement.executeUpdate();
+                    }
 
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -131,9 +147,17 @@ public class SettingsController extends UtilityClass implements Initializable {
                 } else {
                     periodical.setSelected(true);
                 }
+////                rs.close();
+
             }
         } else {
-            System.out.println("errrrr");
+            PreparedStatement preparedStatement1;
+            preparedStatement1 = connection.prepareStatement("INSERT INTO systemsettings (name,type,value)VALUES (?,?,?)");
+            preparedStatement1.setString(1, "backup");
+            preparedStatement1.setString(2, "security");
+            preparedStatement1.setString(3, "STARTUP BACKUP");
+            preparedStatement1.executeUpdate();
+//        preparedStatement1.close();
         }
     }
 
@@ -161,6 +185,26 @@ public class SettingsController extends UtilityClass implements Initializable {
             periodical.setVisible(false);
 
         }
+
+//        currentBackUpLocation
+        PreparedStatement prep = null;
+        try {
+            prep = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+            prep.setString(1, "backupLocation");
+            ResultSet resultSet = prep.executeQuery();
+            if (resultSet.isBeforeFirst()) {
+                while (resultSet.next()) {
+                    currentBackUpLocation.setText(resultSet.getString("value"));
+
+                }
+            } else {
+                currentBackUpLocation.setText(fileSavePath + "backups");
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE email=? ");
         preparedStatement.setString(1, email);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -213,7 +257,7 @@ public class SettingsController extends UtilityClass implements Initializable {
                 userAccountEmailChange.setDisable(true);
             }
         }
-        resultSet.close();
+//        resultSet.close();
 
     }
 
@@ -243,6 +287,7 @@ public class SettingsController extends UtilityClass implements Initializable {
     }
 
     private void buttonListeners() {
+
         backupEmailChangePassword.setOnAction(event -> {
             try {
                 changeColumn("users", "backupemailPassword");
@@ -341,6 +386,47 @@ public class SettingsController extends UtilityClass implements Initializable {
         });
         changeBackUpLocation.setOnAction(event -> {
             //            update db change backup location
+            // get the file selected
+            DirectoryChooser dir_chooser = new DirectoryChooser();
+            File file = dir_chooser.showDialog(panel.getScene().getWindow());
+
+            if (file != null) {
+                PreparedStatement prep = null;
+                try {
+                    prep = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+                    prep.setString(1, "backupLocation");
+                    ResultSet resultSet = prep.executeQuery();
+                    if (resultSet.isBeforeFirst()) {
+//                       prep.close();
+                        prep = connection.prepareStatement("UPDATE systemsettings SET value=? WHERE name=?");
+                        prep.setString(1, file.getAbsolutePath());
+                        prep.setString(2, "backupLocation");
+                        prep.executeUpdate();
+//                        prep.close();
+
+                    } else {
+                        try {
+                            prep = connection.prepareStatement("INSERT INTO systemsettings (name,type,value)VALUES (?,?,?)");
+                            prep.setString(1, "backupLocation");
+                            prep.setString(2, "security");
+                            prep.setString(3, file.getAbsolutePath());
+                            prep.executeUpdate();
+//                            prep.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+////resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+
+            } else {
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "CANCELLATION", "THE OPERATION WAS CANCELLED");
+            }
+
+
             reload();
         });
     }

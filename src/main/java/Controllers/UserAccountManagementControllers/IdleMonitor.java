@@ -1,5 +1,5 @@
 package Controllers.UserAccountManagementControllers;
-
+//made by steve
 import Controllers.UtilityClass;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -48,13 +48,13 @@ public class IdleMonitor extends UtilityClass {
         node.removeEventFilter(eventType, userEventHandler);
     }
 
-    public void notIdle() {
+    private void notIdle() {
         if (idleTimeline.getStatus() == Animation.Status.RUNNING) {
             idleTimeline.playFromStart();
         }
     }
 
-    public void startMonitoring() {
+    private void startMonitoring() {
         idleTimeline.playFromStart();
     }
 

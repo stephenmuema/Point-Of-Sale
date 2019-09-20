@@ -35,6 +35,7 @@ import static securityandtime.config.encryptionkey;
 import static securityandtime.config.site;
 
 //end of imports
+//made by steve
 public class LoginController extends UtilityClass implements Initializable {
 
     public Label clock;
@@ -155,7 +156,7 @@ public class LoginController extends UtilityClass implements Initializable {
                                 if (resultSet.getBoolean("admin")) {
 //
 //if user account is admin
-                                    parent.getChildren().removeAll();
+//                                    parent.getChildren().removeAll();
                                     try {
 //                                    go to admin panel
                                         parent.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml"))));

@@ -60,16 +60,13 @@ public class Launcher extends Application {
                 e.printStackTrace();
             }
 
-//            System.out.println("Directory created");
-        }  //            System.out.println("Directory already exists");
+        }
 
         Launcher.CallerMethod();
-//the launcher main method
         launch(args);
     }
 
     private static void CallerMethod() {
-//        LogClass.getLogger().log(Level.INFO, "LAUNCH CLASS:::ONLY LOG NEGATIVE MESSAGES");
         new CheckConn();
         ExecutorService service = Executors.newCachedThreadPool();
         service.submit(() -> {
@@ -89,8 +86,6 @@ public class Launcher extends Application {
         UtilityClass utilityClass = new UtilityClass();
 
         try {
-//            create cartdb
-//            todo remember to change path to db
             connection = utilityClass.getConnectionDbLocal();
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30); // set timeout to 30 sec.
@@ -168,11 +163,10 @@ public class Launcher extends Application {
 
 //        APP TITLE
                 stage.setTitle("Nanotech Softwares Point of Sale 2019  (v 1.1) Licensing");
-                stage.setMaxWidth(1200.0);
-                stage.setMaxHeight(700.0);
-                stage.setMaximized(false);
 
-                stage.setFullScreen(false);
+                stage.setMaximized(true);
+
+                stage.setFullScreen(true);
                 Launcher.stage = stage;
                 stage.show();
             } else {
@@ -196,12 +190,10 @@ public class Launcher extends Application {
                     });
 
 //        APP TITLE
-                    stage.setTitle("Nanotech Softwares Point of Sale 2019  (v 1.1) Licensing");
-                    stage.setMaxWidth(1200.0);
-                    stage.setMaxHeight(700.0);
-                    stage.setMaximized(false);
+                    stage.setTitle(company + year + version + " Licensing");
 
-                    stage.setFullScreen(false);
+
+//                    stage.setFullScreen(true);
                     Launcher.stage = stage;
                     stage.show();
                 } else {
@@ -214,21 +206,9 @@ public class Launcher extends Application {
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
 
-                    stage.initStyle(StageStyle.DECORATED);
+                    stage.initStyle(StageStyle.UTILITY);
                     stage.getIcons().add(image);
-//        todo change title later
-                    stage.setTitle(company + year + version);
-
-
-//        APP TITLE
-
-                    stage.setWidth(1200.0);
-                    stage.setHeight(700.0);
-                    stage.setMaxWidth(1200.0);
-                    stage.setMaxHeight(700.0);
-                    stage.setMaximized(false);
-
-                    stage.setFullScreen(false);
+                    stage.setTitle(company + year + version);//TITLE
                     stage.setOnCloseRequest(event -> {
                         Platform.exit();
                         System.exit(123);
@@ -237,7 +217,6 @@ public class Launcher extends Application {
                     stage.show();
                 }
             }
-//            todo distinguish admin account from cashier account
         } else {
 //            GO TO LICENSING PANEL
             Parent root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/licensingPanel.fxml"));
@@ -253,12 +232,6 @@ public class Launcher extends Application {
 
 //        APP TITLE
             stage.setTitle(company + year + version + " Licensing");
-            stage.setMaxWidth(1200.0);
-            stage.setMaxHeight(700.0);
-            stage.setWidth(1200.0);
-            stage.setHeight(700.0);
-            stage.setMaximized(false);
-            stage.setFullScreen(false);
             Launcher.stage = stage;
             stage.show();
         }

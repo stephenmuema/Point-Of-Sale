@@ -72,6 +72,7 @@ public class PriceCashControllerExit extends UtilityClass implements Initializab
     }
 
     /**
+     * made by steve
      * Called to initialize a controller after its root element has been
      * completely processed.
      *

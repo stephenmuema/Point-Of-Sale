@@ -85,6 +85,7 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
     }
 
     /**
+     * made by steve
      * Called to initialize a controller after its root element has been
      * completely processed.
      *

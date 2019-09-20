@@ -20,6 +20,7 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+//made by steve
 public class ChatController extends UtilityClass implements Initializable {
     public ListView<MasterClasses.OnlineUsersMaster> userList;
     public Label onlineCountLabel;

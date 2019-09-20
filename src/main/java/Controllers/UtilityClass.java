@@ -130,17 +130,17 @@ public class UtilityClass {
                 e1.printStackTrace();
             }
             try {
-                if (networkConnectionMap.containsKey("server") || networkConnectionMap.containsKey("Internet")) {
-                    if (!networkConnectionMap.get("server")) {
-//                    no connection to server
-                        showAlert(Alert.AlertType.ERROR, panel.get("panel").getScene().getWindow(), "ERROR", "NETWORK CONNECTION LOST");
-                    } else {
-                        if (!networkConnectionMap.get("Internet")) {
-                            showToast();//about connection to the internet
-                        }
-                    }
-
-                }
+//                if (networkConnectionMap.containsKey("server") || networkConnectionMap.containsKey("Internet")) {
+//                    if (!networkConnectionMap.get("server")) {
+////                    no connection to server
+//                        showAlert(Alert.AlertType.ERROR, panel.get("panel").getScene().getWindow(), "ERROR", "NETWORK CONNECTION LOST");
+//                    } else {
+//                        if (!networkConnectionMap.get("Internet")) {
+//                            showToast();//about connection to the internet
+//                        }
+//                    }
+//
+//                }
                 clock.setText(CheckConn.timelogin().getHours() + ":" + (mins) + ":" + (secs) + " " + pmam);
             } catch (IOException e1) {
                 e1.printStackTrace();

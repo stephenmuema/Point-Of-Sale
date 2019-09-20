@@ -1,81 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
-<AnchorPane fx:id="AdminPanel" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserAccountManagementControllers.AdminPanelController">
+<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="AdminPanel" prefHeight="700.0" prefWidth="1200.0"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="Controllers.UserAccountManagementControllers.AdminPanelController">
     <VBox prefHeight="700.0" prefWidth="1200.0">
         <MenuBar>
             <Menu mnemonicParsing="false" text="ACCOUNT">
-                <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS" />
-                <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT" />
-                <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER" />
-                <MenuItem mnemonicParsing="false" text="QUIT" />
+                <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS"/>
+                <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT"/>
+                <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER"/>
+                <MenuItem mnemonicParsing="false" text="QUIT"/>
             </Menu>
             <Menu mnemonicParsing="false" text="DATABASE">
-                <MenuItem mnemonicParsing="false" fx:id="backupMenu" text="BACKUP" />
-                <MenuItem mnemonicParsing="false" text="RETRIEVE BACKUP" />
-                <MenuItem mnemonicParsing="false" text="VIEW BACKUPS" />
+                <MenuItem mnemonicParsing="false" fx:id="backupMenu" text="BACKUP"/>
+                <MenuItem mnemonicParsing="false" text="RETRIEVE BACKUP"/>
+                <MenuItem mnemonicParsing="false" text="VIEW BACKUPS"/>
             </Menu>
             <Menu mnemonicParsing="false" text="SHIFTS">
                 <items>
-                    <MenuItem mnemonicParsing="false" fx:id="startDayMenu"  text="START DAY" />
-                    <MenuItem mnemonicParsing="false" fx:id="endDayMenu" text="END DAY" />
-                    <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION" />
+                    <MenuItem mnemonicParsing="false" fx:id="startDayMenu" text="START DAY"/>
+                    <MenuItem mnemonicParsing="false" fx:id="endDayMenu" text="END DAY"/>
+                    <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION"/>
                 </items>
             </Menu>
             <Menu mnemonicParsing="false" text="SYSTEM ">
                 <items>
-                    <MenuItem mnemonicParsing="false" fx:id="reportIssuesMenu" text="REPORT ISSUES" />
-                    <MenuItem mnemonicParsing="false" fx:id="restartServerMenu" text="RESTART SERVER" />
-                    <MenuItem mnemonicParsing="false" fx:id="troubleShootMenu" text="TROUBLESHOOT SYSTEM" />
+                    <MenuItem mnemonicParsing="false" fx:id="reportIssuesMenu" text="REPORT ISSUES"/>
+                    <MenuItem mnemonicParsing="false" fx:id="restartServerMenu" text="RESTART SERVER"/>
+                    <MenuItem mnemonicParsing="false" fx:id="troubleShootMenu" text="TROUBLESHOOT SYSTEM"/>
                 </items>
             </Menu>
             <Menu mnemonicParsing="false" text="INVENTORY">
                 <items>
                     <Menu mnemonicParsing="false" fx:id="helpMenu" text="HELP AND SUPPORT">
-                        <MenuItem mnemonicParsing="false" fx:id="abtMenu" text="ABOUT THIS SOFTWARE" />
-                        <MenuItem mnemonicParsing="false" fx:id="termsMenu" text="TERMS AND CONDITIONS" />
-                        <MenuItem mnemonicParsing="false" fx:id="checkUpdatesMenu" text="CHECK FOR UPDATES" />
-                        <MenuItem mnemonicParsing="false" fx:id="documentationMenu" text="DOCUMENTATION" />
-                        <MenuItem mnemonicParsing="false" fx:id="reachUsMenu" text="REACH US" />
+                        <MenuItem mnemonicParsing="false" fx:id="abtMenu" text="ABOUT THIS SOFTWARE"/>
+                        <MenuItem mnemonicParsing="false" fx:id="termsMenu" text="TERMS AND CONDITIONS"/>
+                        <MenuItem mnemonicParsing="false" fx:id="checkUpdatesMenu" text="CHECK FOR UPDATES"/>
+                        <MenuItem mnemonicParsing="false" fx:id="documentationMenu" text="DOCUMENTATION"/>
+                        <MenuItem mnemonicParsing="false" fx:id="reachUsMenu" text="REACH US"/>
                     </Menu>
-                    <MenuItem mnemonicParsing="false" fx:id="generateReportsMenu" text="GENERATE REPORTS" />
-                    <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM" />
+                    <MenuItem mnemonicParsing="false" fx:id="generateReportsMenu" text="GENERATE REPORTS"/>
+                    <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
                 </items>
             </Menu>
         </MenuBar>
-        <AnchorPane id="Content" prefHeight="677.0" prefWidth="1165.0" styleClass="mainPanel" stylesheets="@../styles/buttons.css">
-            <Label alignment="CENTER" layoutX="495.0" layoutY="25.0" prefHeight="49.0" prefWidth="311.0" style="&#10;" text="ADMIN PANEL" textAlignment="CENTER" textFill="WHITE">
+        <AnchorPane id="Content" prefHeight="677.0" prefWidth="1165.0" styleClass="mainPanel"
+                    stylesheets="@../styles/buttons.css">
+            <Label alignment="CENTER" layoutX="495.0" layoutY="25.0" prefHeight="49.0" prefWidth="311.0" style="&#10;"
+                   text="ADMIN PANEL" textAlignment="CENTER" textFill="WHITE">
                 <font>
-                    <Font size="31.0" />
+                    <Font size="31.0"/>
                 </font>
             </Label>
-            <Button fx:id="employees" layoutX="81.0" layoutY="74.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="STAFF PANEL">
+            <Button fx:id="employees" layoutX="81.0" layoutY="74.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="297.0" text="STAFF PANEL">
                 <font>
-                    <Font name="Gabriola" size="28.0" />
+                    <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="carwashpanel" layoutX="84.0" layoutY="432.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="CAR WASH">
+            <Button fx:id="carwashpanel" layoutX="84.0" layoutY="432.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="297.0" text="CAR WASH">
                 <font>
-                    <Font name="Gabriola" size="28.0" />
+                    <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="audits" layoutX="86.0" layoutY="206.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="AUDITS PANEL">
+            <Button fx:id="audits" layoutX="86.0" layoutY="206.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="297.0" text="AUDITS PANEL">
                 <font>
-                    <Font name="Gabriola" size="28.0" />
+                    <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="stockspanel" layoutX="89.0" layoutY="318.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="INVENTORY">
+            <Button fx:id="stockspanel" layoutX="89.0" layoutY="318.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="297.0" text="INVENTORY">
                 <font>
-                    <Font name="Gabriola" size="28.0" />
+                    <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
 
@@ -90,75 +93,88 @@
             <!--                </font>-->
             <!--            </Button>-->
 
-            <Button fx:id="backup" layoutX="458.0" layoutY="432.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="BACK UP">
+            <Button fx:id="backup" layoutX="458.0" layoutY="432.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="297.0" text="BACK UP">
                 <font>
-                    <Font name="Gabriola" size="28.0" />
+                    <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="visitSuppliers" layoutX="84.0" layoutY="536.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="SUPPLIERS">
+            <Button fx:id="visitSuppliers" layoutX="84.0" layoutY="536.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="297.0" text="SUPPLIERS">
                 <font>
-                    <Font name="Gabriola" size="28.0" />
+                    <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="backup1" layoutX="849.0" layoutY="536.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="308.0" text="LICENSE MANAGER">
+            <Button fx:id="backup1" layoutX="849.0" layoutY="536.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="308.0" text="LICENSE MANAGER">
                 <font>
-                    <Font name="Gabriola" size="28.0" />
+                    <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="visitSuppliers1" layoutX="452.0" layoutY="536.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="DATABASE SYNC">
+            <Button fx:id="visitSuppliers1" layoutX="452.0" layoutY="536.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="297.0" text="DATABASE SYNC">
                 <font>
-                    <Font name="Gabriola" size="28.0" />
+                    <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="backup11" layoutX="458.0" layoutY="206.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="END DAY">
+            <Button fx:id="backup11" layoutX="458.0" layoutY="206.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="297.0" text="END DAY">
                 <font>
-                    <Font name="Gabriola" size="28.0" />
+                    <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="visitSuppliers11" layoutX="452.0" layoutY="74.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="START DAY">
+            <Button fx:id="visitSuppliers11" layoutX="452.0" layoutY="74.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="297.0" text="START DAY">
                 <font>
-                    <Font name="Gabriola" size="28.0" />
+                    <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="carwashpanel1" layoutX="842.0" layoutY="200.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="311.0" text="RESTART SERVER">
+            <Button fx:id="carwashpanel1" layoutX="842.0" layoutY="200.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="311.0" text="RESTART SERVER">
                 <font>
-                    <Font name="Gabriola" size="28.0" />
+                    <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="stockspanel1" layoutX="842.0" layoutY="74.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="311.0" text="REPORT ISSUES">
+            <Button fx:id="stockspanel1" layoutX="842.0" layoutY="74.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="311.0" text="REPORT ISSUES">
                 <font>
-                    <Font name="Gabriola" size="28.0" />
+                    <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="visitSuppliers2" layoutX="850.0" layoutY="318.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="311.0" text="TROUBLE SHOOT SYSTEM">
+            <Button fx:id="visitSuppliers2" layoutX="850.0" layoutY="318.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="311.0" text="TROUBLE SHOOT SYSTEM">
                 <font>
-                    <Font name="Gabriola" size="28.0" />
+                    <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="visitSuppliers12" layoutX="849.0" layoutY="432.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="311.0" text="SHIFT INFORMATION">
+            <Button fx:id="visitSuppliers12" layoutX="849.0" layoutY="432.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="311.0" text="SHIFT INFORMATION">
                 <font>
-                    <Font name="Gabriola" size="28.0" />
+                    <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="visitSuppliers111" layoutX="458.0" layoutY="318.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="LOG OUT">
+            <Button fx:id="visitSuppliers111" layoutX="458.0" layoutY="318.0" mnemonicParsing="false" prefHeight="80.0"
+                    prefWidth="297.0" text="LOG OUT">
                 <font>
-                    <Font name="Gabriola" size="28.0" />
+                    <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Label fx:id="clock" alignment="CENTER" layoutX="176.0" layoutY="32.0" prefHeight="42.0" prefWidth="145.0" text="00:00:00" textAlignment="CENTER">
+            <Label fx:id="clock" alignment="CENTER" layoutX="176.0" layoutY="32.0" prefHeight="42.0" prefWidth="145.0"
+                   text="00:00:00" textAlignment="CENTER">
                 <font>
-                    <Font size="25.0" />
+                    <Font size="25.0"/>
                 </font>
             </Label>
-         <Button fx:id="refresh" layoutX="946.0" layoutY="14.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="145.0" text="REFRESH">
-            <font>
-               <Font name="Gabriola" size="28.0" />
-            </font>
-         </Button>
+            <Button fx:id="refresh" layoutX="946.0" layoutY="14.0" mnemonicParsing="false" prefHeight="54.0"
+                    prefWidth="145.0" text="REFRESH">
+                <font>
+                    <Font name="Gabriola" size="28.0"/>
+                </font>
+            </Button>
         </AnchorPane>
         <stylesheets>
-            <URL value="@../styles/css.css" />
-            <URL value="@../styles/panels.css" />
+            <URL value="@../styles/css.css"/>
+            <URL value="@../styles/panels.css"/>
         </stylesheets>
     </VBox>
 

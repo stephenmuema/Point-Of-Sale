@@ -4,6 +4,7 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 
+//made by steve
 public class GetNetworkAddress {
 
     public static InetAddress GetIpAddress() {

@@ -6,34 +6,81 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+    <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="ADDED CHANGE SETTINGS">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nanotechsoftwarespos(2).sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nanotechsoftwarespos.sql" beforeDir="false" afterPath="$PROJECT_DIR$/nanotechsoftwarespos.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/AnimationGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/AnimationGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/GetNetworkAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/GetNetworkAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/SignupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/CarWashControllers/CarwashCompleteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/CarWashControllers/CarwashCompleteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/CarWashControllers/CarwashController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/CarWashControllers/CarwashController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/CarWashControllers/CarwashSalesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/CarWashControllers/CarwashSalesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/CartIdGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/CartIdGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/OnlinePaymentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/OnlinePaymentsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/PriceCashControllerExit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/PriceCashControllerExit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/ShopController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/StocksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/StocksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/scannerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/scannerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/EmployeesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/EmployeesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/IdleMonitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/IdleMonitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/UserDetailsController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/chats/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/chats/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Launcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/Settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/Settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/employees.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/employees.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panelAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panelAdmin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/styles/panels.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/panels.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/AuthenticationFiles/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AuthenticationFiles/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/AuthenticationFiles/SplashScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AuthenticationFiles/SplashScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/AuthenticationFiles/licensingPanel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AuthenticationFiles/licensingPanel.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LoginController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LoginController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/SignupController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/SignupController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/SignupController$SendMail$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/SignupController$SendMail$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/SignupController$SendMail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/SignupController$SendMail.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/SignupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/SignupController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/BarCodeScanner$PortReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/BarCodeScanner$PortReader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/BarCodeScanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/BarCodeScanner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$SendEmail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController$SendEmail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/CarWashControllers/CarwashSalesController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/AuditController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/AuditController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/AuditController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/AuditController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/AuditController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/AuditController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/AuditController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/AuditController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/AuditController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/AuditController$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/AuditController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/AuditController$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/AuditController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/AuditController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/OnlinePaymentsController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/OnlinePaymentsController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/OnlinePaymentsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/OnlinePaymentsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/PriceCashControllerExit$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/PriceCashControllerExit$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/PriceCashControllerExit.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/PriceCashControllerExit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/ShopController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/ShopController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController$1.class" afterDir="false" />
@@ -42,17 +89,15 @@
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController$SendEmail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController$SendEmail.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/IdleMonitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/IdleMonitor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/SettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/SettingsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/UserDetailsController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UtilityClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UtilityClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/NetworkCheck.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/NetworkCheck.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Launcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Launcher.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/Settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/Settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/employees.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/employees.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/panel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/panel.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/panelAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/panelAdmin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/securityandtime/BoardListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/securityandtime/BoardListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/securityandtime/config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/securityandtime/config.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/stocks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/stocks.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/styles/panels.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/styles/panels.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,6 +140,13 @@
         <item name="nanotechsoftwarespos@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="nanotechsoftwarespos: schema" type="ebfa3cd1:MariaImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="nanotechsoftwarespos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="nanotechsoftwarespos: schema" type="ebfa3cd1:MariaImplModel$Schema" />
+        <item name="systemsettings: table" type="dbc44a63:MariaImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -192,12 +244,15 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="MasterClasses" />
-      <recent name="Controllers" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources" />
+      <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash\src" />
+      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\UserAccountManagementFiles" />
+      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\AuthenticationFiles" />
+      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\chatFiles" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="scanhandler" />
@@ -215,12 +270,9 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Controllers" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources" />
-      <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash\src" />
-      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\UserAccountManagementFiles" />
-      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\AuthenticationFiles" />
-      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\chatFiles" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="MasterClasses" />
+      <recent name="Controllers" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -604,7 +656,8 @@
       <workItem from="1568703218477" duration="282000" />
       <workItem from="1568786777277" duration="639000" />
       <workItem from="1568804973793" duration="8049000" />
-      <workItem from="1568867373080" duration="25075000" />
+      <workItem from="1568867373080" duration="25722000" />
+      <workItem from="1568955702691" duration="18917000" />
     </task>
     <task id="LOCAL-00001" summary="before shopping cart">
       <created>1552048112305</created>
@@ -837,7 +890,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568872617449</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="ADDED CHANGE SETTINGS">
+      <created>1568895593021</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1568895593021</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TodoView">
@@ -899,7 +959,8 @@
     <MESSAGE value="ADDED SCANNER AT INVENTORY AND CREATED SCANNER VIEW" />
     <MESSAGE value="added license checking during creation" />
     <MESSAGE value="added network check" />
-    <option name="LAST_COMMIT_MESSAGE" value="added network check" />
+    <MESSAGE value="ADDED CHANGE SETTINGS" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADDED CHANGE SETTINGS" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

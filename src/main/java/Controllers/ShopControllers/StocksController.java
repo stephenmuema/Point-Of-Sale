@@ -7,7 +7,6 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -38,8 +37,8 @@ import java.util.logging.Level;
 
 import static securityandtime.config.*;
 
+//made by steve
 public class StocksController extends UtilityClass implements Initializable {
-    public MenuItem logout;
     public Label clock;
     public Font x1;
     public TabPane tabpane;
@@ -59,7 +58,7 @@ public class StocksController extends UtilityClass implements Initializable {
     public TextField itemcode;
     public Button addmanually;
     public Button usescanner;
-    public MenuItem employees;
+
     public TextField amount;
     public Button home;
     public Button image;
@@ -222,17 +221,17 @@ public class StocksController extends UtilityClass implements Initializable {
             }
         });
 
-        employees.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                parentsstocks.getChildren().removeAll();
-                try {
-                    parentsstocks.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/employees.fxml")))));
-                } catch (IOException e) {
-                    //System.out.println(Arrays.toString(e.getStackTrace()));
-                }
-            }
-        });
+//        employees.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                parentsstocks.getChildren().removeAll();
+//                try {
+//                    parentsstocks.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/employees.fxml")))));
+//                } catch (IOException e) {
+//                    //System.out.println(Arrays.toString(e.getStackTrace()));
+//                }
+//            }
+//        });
         delete.setOnAction(event -> {
             StockMaster store = table.getSelectionModel().getSelectedItem();
 
@@ -471,10 +470,10 @@ public class StocksController extends UtilityClass implements Initializable {
     }
 
     private void menuclick() {
-        logout.setOnAction(event -> {
-            logout(parentsstocks);
-
-        });
+//        logout.setOnAction(event -> {
+//            logout(parentsstocks);
+//
+//        });
     }
 
     @FXML
@@ -484,14 +483,7 @@ public class StocksController extends UtilityClass implements Initializable {
     }
 
 
-    public MenuItem getLogout() {
-        return logout;
-    }
 
-    public StocksController setLogout(MenuItem logout) {
-        this.logout = logout;
-        return this;
-    }
 
     public Label getClock() {
         return clock;
@@ -655,14 +647,6 @@ public class StocksController extends UtilityClass implements Initializable {
         return this;
     }
 
-    public MenuItem getEmployees() {
-        return employees;
-    }
-
-    public StocksController setEmployees(MenuItem employees) {
-        this.employees = employees;
-        return this;
-    }
 
     public TextField getAmount() {
         return amount;

@@ -1,5 +1,5 @@
 package Controllers.UserAccountManagementControllers;
-
+//made by steve
 import Controllers.UtilityClass;
 import MasterClasses.EmployeeMaster;
 import com.itextpdf.text.*;
@@ -62,15 +62,6 @@ public class EmployeesController extends UtilityClass implements Initializable {
     private AnchorPane parents;
     private ObservableList<EmployeeMaster> data;
     private String time;
-    @FXML
-    private MenuItem details;
-    @FXML
-    private MenuItem license;
-
-    @FXML
-    private Button showShifts;
-    @FXML
-    private Button showHistory;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

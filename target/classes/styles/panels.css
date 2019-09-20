@@ -18,7 +18,6 @@
 .logoutButton {
 
     /*-fx-graphic: ;*/
-    -fx-background-image: url("../images/power.jpg");
     -fx-background-size: contain;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
