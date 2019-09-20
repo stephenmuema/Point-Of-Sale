@@ -5,7 +5,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.Font?>
 <?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="carWash" prefHeight="700.0" prefWidth="1200.0"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="700.0" prefWidth="1200.0"
             xmlns="http://javafx.com/javafx/1"
             fx:controller="Controllers.CarWashControllers.CarwashSalesController">
     <VBox>

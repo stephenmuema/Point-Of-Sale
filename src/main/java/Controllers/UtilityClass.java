@@ -3,6 +3,7 @@ package Controllers;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -95,6 +96,22 @@ public class UtilityClass {
         }
     }
 
+    public static void shutdown() throws RuntimeException, IOException {
+        String shutdownCommand;
+        String operatingSystem = System.getProperty("os.name");
+        System.out.println(operatingSystem);
+        if (operatingSystem.startsWith("Linux") || operatingSystem.startsWith("Mac")) {
+            shutdownCommand = "shutdown -h now";
+        } else if (operatingSystem.startsWith("Windows")) {
+            shutdownCommand = "shutdown.exe -s -t 0";
+        } else {
+            throw new RuntimeException("Unsupported operating system.");
+        }
+
+        Runtime.getRuntime().exec(shutdownCommand);
+        System.exit(0);
+    }
+
     public UtilityClass setConnectionDbLocal(Connection connectionDbLocal) {
         this.connectionDbLocal = connectionDbLocal;
         return this;
@@ -176,14 +193,14 @@ public class UtilityClass {
         alert.showAndWait();
     }
 
-    public static void shutdown() throws RuntimeException, IOException {
+    public static void restart() throws RuntimeException, IOException {
         String shutdownCommand;
         String operatingSystem = System.getProperty("os.name");
         System.out.println(operatingSystem);
         if (operatingSystem.startsWith("Linux") || operatingSystem.startsWith("Mac")) {
-            shutdownCommand = "shutdown -h now";
+            shutdownCommand = "shutdown -r now";
         } else if (operatingSystem.startsWith("Windows")) {
-            shutdownCommand = "shutdown.exe -s -t 0";
+            shutdownCommand = "shutdown.exe -r -t 0";
         } else {
             throw new RuntimeException("Unsupported operating system.");
         }
@@ -192,6 +209,10 @@ public class UtilityClass {
         System.exit(0);
     }
 
+    public void exit() {
+        Platform.exit();
+        System.exit(111);
+    }
 
 }
 

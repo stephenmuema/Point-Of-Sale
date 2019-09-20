@@ -50,13 +50,13 @@ public class SignupController extends UtilityClass implements Initializable {
     @FXML
     private Button login, signup;
     @FXML
-    private AnchorPane parent;
+    private AnchorPane panel;
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 //
-        config.panel.put("panel", parent);
+        config.panel.put("panel", panel);
 
         timeMain(clock);
         link.setOnMousePressed(event -> {
@@ -73,9 +73,9 @@ public class SignupController extends UtilityClass implements Initializable {
         login.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                parent.getChildren().removeAll();
+                panel.getChildren().removeAll();
                 try {
-                    parent.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml"))));
+                    panel.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml"))));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -130,11 +130,11 @@ public class SignupController extends UtilityClass implements Initializable {
                 email.getText().isEmpty() || name.getText().isEmpty()
                 || IDNUMBER.getText().isEmpty() ||
                 key.getText().isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, parent.getScene().getWindow(),
+            showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(),
                     "Fill all the fields", "Please fill all the fields");
         } else {
             if (!password.getText().equals(passwordconfirmation.getText())) {
-                showAlert(Alert.AlertType.INFORMATION, parent.getScene().getWindow(),
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(),
                         "Your passwords don't match", "Please enter matching passwords");
             } else {
 //                Connection snm = connectiondb.getConnect();
@@ -148,7 +148,7 @@ public class SignupController extends UtilityClass implements Initializable {
 
                 } catch (SQLException e) {
                     LogClass.getLogger().log(Level.SEVERE, " Registration not successful");
-                    showAlert(Alert.AlertType.INFORMATION, parent.getScene().getWindow(),
+                    showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(),
                             "Transaction unsuccessfull!!", "Registration not successful");
                     e.printStackTrace();
                 }
@@ -168,7 +168,7 @@ public class SignupController extends UtilityClass implements Initializable {
         statementemail.setString(1, email.getText());
         ResultSet resultSetemail = statementemail.executeQuery();
         if (resultSetemail.isBeforeFirst()) {
-            showAlert(Alert.AlertType.WARNING, parent.getScene().getWindow(),
+            showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(),
                     "EMAIL IN USE", "EMAIL IS IN USE");
             LogClass.getLogger().log(Level.SEVERE, " EMAIL IS IN USE");
 
@@ -178,7 +178,7 @@ public class SignupController extends UtilityClass implements Initializable {
             statementname.setString(1, name.getText());
             ResultSet resultSetname = statementname.executeQuery();
             if (resultSetname.isBeforeFirst()) {
-                showAlert(Alert.AlertType.WARNING, parent.getScene().getWindow(),
+                showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(),
                         "NAME IN USE", "NAME IS IN USE");
                 LogClass.getLogger().log(Level.SEVERE, " NAME IS IN USE");
 
@@ -194,17 +194,17 @@ public class SignupController extends UtilityClass implements Initializable {
                 preparedStatement.setString(7, key.getText());
                 if (preparedStatement.executeUpdate() > 0) {
                     LogClass.getLogger().log(Level.CONFIG, " Registration successful");
-                    showAlert(Alert.AlertType.INFORMATION, parent.getScene().getWindow(),
+                    showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(),
                             "Transaction successfull!!", "Registration  successful");
-                    parent.getChildren().removeAll();
+                    panel.getChildren().removeAll();
                     try {
-                        parent.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml"))));
+                        panel.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml"))));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 } else {
                     LogClass.getLogger().log(Level.SEVERE, " Registration not successful");
-                    showAlert(Alert.AlertType.INFORMATION, parent.getScene().getWindow(),
+                    showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(),
                             "Transaction unsuccessfull!!", "Registration not successful");
                 }
 
@@ -305,7 +305,7 @@ public class SignupController extends UtilityClass implements Initializable {
     }
 
     public AnchorPane getParent() {
-        return parent;
+        return panel;
     }
 
     class SendMail {
@@ -354,7 +354,7 @@ public class SignupController extends UtilityClass implements Initializable {
     }
 
     public SignupController setParent(AnchorPane parent) {
-        this.parent = parent;
+        this.panel = parent;
         return this;
     }
 

@@ -52,7 +52,7 @@ public class LoginController extends UtilityClass implements Initializable {
     private
     ImageView imageView;
     @FXML
-    private AnchorPane parent;
+    private AnchorPane panel;
     @FXML
     private Label message;
     private Connection connection = getConnection();
@@ -106,9 +106,9 @@ public class LoginController extends UtilityClass implements Initializable {
             //            got to sign up page
             @Override
             public void handle(MouseEvent event) {
-                parent.getChildren().removeAll();
+                panel.getChildren().removeAll();
                 try {
-                    parent.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/signup.fxml"))));
+                    panel.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/signup.fxml"))));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -123,7 +123,7 @@ public class LoginController extends UtilityClass implements Initializable {
     private void loginValidation() {
         if (email.getText().isEmpty() || password.getText().isEmpty()) {
             LogClass.getLogger().log(Level.SEVERE, " PLEASE FILL ALL FIELDS");
-            showAlert(Alert.AlertType.INFORMATION, parent.getScene().getWindow(),
+            showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(),
                     "FILL ALL FIELDS", "PLEASE FILL ALL FIELDS");
 
         } else {
@@ -146,7 +146,7 @@ public class LoginController extends UtilityClass implements Initializable {
             if (resultSet.isBeforeFirst()) {
                 while (resultSet.next()) {
                     if (!resultSet.getString("status").equalsIgnoreCase("active")) {
-                        showAlert(Alert.AlertType.INFORMATION, parent.getScene().getWindow(),
+                        showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(),
                                 "YUR ACCOUNT IS SUSPENDED", "PLEASE INFORM the ADMINISTRATOR TO ACTIVATE YOUR ACCOUNT");
 
                     } else {
@@ -159,7 +159,7 @@ public class LoginController extends UtilityClass implements Initializable {
 //                                    parent.getChildren().removeAll();
                                     try {
 //                                    go to admin panel
-                                        parent.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml"))));
+                                        panel.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml"))));
                                         assert false;
 //                                    work as sessions and hold user session data
                                         config.login.put("loggedinasadmin", true);
@@ -175,9 +175,9 @@ public class LoginController extends UtilityClass implements Initializable {
                                     }
                                 } else {
 //                                user is not admin go to normal panel
-                                    parent.getChildren().removeAll();
+                                    panel.getChildren().removeAll();
                                     try {
-                                        parent.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panel.fxml"))));
+                                        panel.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panel.fxml"))));
                                         assert false;
                                         //                                    work as sessions and hold user session data
                                         config.user.put("userName", resultSet.getString("employeename"));
@@ -195,12 +195,12 @@ public class LoginController extends UtilityClass implements Initializable {
                             } else {
 //                            if passwords do not match
                                 LogClass.getLogger().log(Level.SEVERE, " passwords do not match");
-                                showAlert(Alert.AlertType.INFORMATION, parent.getScene().getWindow(),
+                                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(),
                                         "WRONG PASSWORD!!", "ENTER THE CORRECT PASSWORD");
 
                             }
                         } else {
-                            showAlert(Alert.AlertType.WARNING, parent.getScene().getWindow(),
+                            showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(),
                                     "Activate your license/account !!", "PLEASE ACTIVATE YOUR ACCOUNT OR INFORM THE EMPLOYER TO RENEW THE LICENSE");
 
                         }
@@ -208,7 +208,7 @@ public class LoginController extends UtilityClass implements Initializable {
                 }
 
             } else {
-                showAlert(Alert.AlertType.WARNING, parent.getScene().getWindow(),
+                showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(),
                         "WRONG NAME/EMAIL !!", "PLEASE RE-ENTER A VALID USER NAME OR EMAIL");
 //                LogClass.getLogger().log(Level.SEVERE, " LOGIN ERROR");
 //name or email does not exist
@@ -309,11 +309,11 @@ public class LoginController extends UtilityClass implements Initializable {
     }
 
     public AnchorPane getParent() {
-        return parent;
+        return panel;
     }
 
     public void setParent(AnchorPane parent) {
-        this.parent = parent;
+        this.panel = parent;
     }
 
     public Label getMessage() {

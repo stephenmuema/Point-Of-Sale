@@ -42,16 +42,16 @@ public class SplashScreenController implements Initializable {
                 date.setTime(Long.parseLong(license.get("time")) + System.currentTimeMillis());
 
                 String s2 = new SimpleDateFormat("dd/MM/yyyy").format(date);
-
-                owner.setText("Registered to " + license.get("name"));
-                expiry.setText(s2);
+                String t = "Registered to " + license.get("name");
+                owner.setText(t.toUpperCase());
+                expiry.setText(s2.toUpperCase());
             } else {
                 date.setTime(Long.parseLong(license.get("time")) + System.currentTimeMillis());
 
                 String s2 = new SimpleDateFormat("dd/MM/yyyy").format(date);
-
-                owner.setText("Registered to " + license.get("name"));
-                expiry.setText(s2);
+                String t = "Registered to " + license.get("name");
+                owner.setText(t.toUpperCase());
+                expiry.setText(s2.toUpperCase());
             }
 
             Parent fxml = FXMLLoader.load(getClass().getResource("AuthenticationFiles/Login.fxml"));

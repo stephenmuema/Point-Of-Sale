@@ -205,8 +205,8 @@ public class Launcher extends Application {
                     AnchorPane root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/SplashScreen.fxml"));
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
+                    stage.initStyle(StageStyle.TRANSPARENT);
 
-                    stage.initStyle(StageStyle.UTILITY);
                     stage.getIcons().add(image);
                     stage.setTitle(company + year + version);//TITLE
                     stage.setOnCloseRequest(event -> {

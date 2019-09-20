@@ -50,7 +50,7 @@ import static securityandtime.config.sitedocs;
 
 public class CarwashSalesController extends UtilityClass implements Initializable {
     public static int lastSelectedTabIndex = 0;
-    public AnchorPane carWash;
+    public AnchorPane panel;
     public Tab clients;
     public TableView<CarWashMaster> tab;
     public TableColumn<CarWashMaster, String> Name;
@@ -96,7 +96,7 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         time(clock);
-        config.panel.put("panel", carWash);
+        config.panel.put("panel", panel);
 
         editable();
         buttonListeners();
@@ -104,12 +104,12 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
                 () -> {
                     try {
                         config.login.put("loggedout", true);
-                        carWash.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }, true);
-        idleMonitor.register(carWash, Event.ANY);
+        idleMonitor.register(panel, Event.ANY);
         clients.setOnSelectionChanged(event -> {
             data = FXCollections.observableArrayList();
             if (clients.isSelected()) {
@@ -158,7 +158,7 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
 
             try {
 //                System.out.println("logging out");
-                carWash.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -212,7 +212,7 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
 //
 //
             if (ownername.isEmpty() || numberplate.isEmpty() || idnum.isEmpty() || contactnumber.isEmpty()) {
-                showAlert(Alert.AlertType.ERROR, carWash.getScene().getWindow(), "FILL ALL FIELDS", "ALL FIELDS SHOULD BE FILLED TO PROCEED");
+                showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "FILL ALL FIELDS", "ALL FIELDS SHOULD BE FILLED TO PROCEED");
             } else {
                 PreparedStatement preparedStatement = null;
 
@@ -265,13 +265,13 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
                         int rows = preparedStatement.executeUpdate();
                         if (rows > 0) {
                             //System.out.println(rows);
-                            showAlert(Alert.AlertType.INFORMATION, carWash.getScene().getWindow(), "SUCCESS ", "YOUR ITEM WAS ADDED SUCCESSFULLY");
+                            showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS ", "YOUR ITEM WAS ADDED SUCCESSFULLY");
                             name.clear();
                             registration.clear();
                             identification.clear();
                             contact.clear();
                         } else {
-                            showAlert(Alert.AlertType.WARNING, carWash.getScene().getWindow(), "  FAILURE", "ERROR WHEN INSERTING ITEMS");
+                            showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(), "  FAILURE", "ERROR WHEN INSERTING ITEMS");
 
                         }
                     }
@@ -285,7 +285,7 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    carWash.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panel.fxml")))));
+                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panel.fxml")))));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -530,11 +530,11 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
     }
 
     public AnchorPane getCarWash() {
-        return carWash;
+        return panel;
     }
 
     public CarwashSalesController setCarWash(AnchorPane carWash) {
-        this.carWash = carWash;
+        this.panel = carWash;
         return this;
     }
 

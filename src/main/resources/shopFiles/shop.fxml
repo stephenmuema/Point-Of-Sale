@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="shopPanel" prefHeight="700.0" prefWidth="1200.0"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="700.0" prefWidth="1200.0"
             styleClass="form" xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="Controllers.ShopControllers.ShopController">
     <VBox>
@@ -63,7 +63,7 @@
                                             <Font size="18.0"/>
                                         </font>
                                     </Button>
-                                    <Button fx:id="panel" layoutX="550.0" layoutY="21.0" mnemonicParsing="false"
+                                    <Button fx:id="toPanel" layoutX="550.0" layoutY="21.0" mnemonicParsing="false"
                                             prefHeight="42.0" prefWidth="116.0" styleClass="buttons" text="PANEL">
                                         <font>
                                             <Font size="18.0"/>

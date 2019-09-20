@@ -59,7 +59,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
     @FXML
     private TableView<EmployeeMaster> tab;
     @FXML
-    private AnchorPane parents;
+    private AnchorPane panel;
     private ObservableList<EmployeeMaster> data;
     private String time;
 
@@ -69,18 +69,18 @@ public class EmployeesController extends UtilityClass implements Initializable {
         menuclick();
         buttonclick();
         editable();
-        config.panel.put("panel", parents);
+        config.panel.put("panel", panel);
 
         IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
                 () -> {
                     try {
                         config.login.put("loggedout", true);
-                        parents.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }, true);
-        idleMonitor.register(parents, Event.ANY);
+        idleMonitor.register(panel, Event.ANY);
     }
 
     private void editable() {
@@ -141,7 +141,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
         Connection connection = getConnection();
         home.setOnMouseClicked(event -> {
             try {
-                parents.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml")))));
+                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml")))));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -199,7 +199,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
 
                     } else {
 //                                not updated
-                        showAlert(Alert.AlertType.WARNING, parents.getScene().getWindow(), "ITEM COULDN'T BE REMOVED SUCCESSFULLY", "THE ITEM HAS NOT BEEN REMOVED SUCCESSFULLY");
+                        showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(), "ITEM COULDN'T BE REMOVED SUCCESSFULLY", "THE ITEM HAS NOT BEEN REMOVED SUCCESSFULLY");
 
                     }
 
@@ -270,7 +270,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
 
                     } else {
 //                                not updated
-                        showAlert(Alert.AlertType.WARNING, parents.getScene().getWindow(), "ITEM COULDN'T BE REMOVED SUCCESSFULLY", "THE ITEM HAS NOT BEEN REMOVED SUCCESSFULLY");
+                        showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(), "ITEM COULDN'T BE REMOVED SUCCESSFULLY", "THE ITEM HAS NOT BEEN REMOVED SUCCESSFULLY");
 
                     }
 
@@ -334,7 +334,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
 
     private void generateAudit() {
         pdfGen();
-        showAlert(Alert.AlertType.INFORMATION, parents.getScene().getWindow(), "pdf created successfully", "your pdf was generated successfully");
+        showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "pdf created successfully", "your pdf was generated successfully");
     }
 
     private void pdfGen() {
@@ -472,7 +472,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
             config.login.put("loggedout", true);
 
             try {
-                parents.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -589,11 +589,11 @@ public class EmployeesController extends UtilityClass implements Initializable {
     }
 
     public AnchorPane getParents() {
-        return parents;
+        return panel;
     }
 
     public void setParents(AnchorPane parents) {
-        this.parents = parents;
+        this.panel = parents;
     }
 
     public ObservableList<EmployeeMaster> getData() {
@@ -659,7 +659,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
                 // Send message
                 Transport.send(message);
 //                System.out.println("Sent message successfully....");
-                showAlert(Alert.AlertType.INFORMATION, parents.getScene().getWindow(), "sent message successfully", "Sent message to your inbox successfully");
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "sent message successfully", "Sent message to your inbox successfully");
 
             } catch (MessagingException mex) {
                 mex.printStackTrace();

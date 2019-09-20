@@ -49,7 +49,9 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     public Button backup;
     public Button audits;
     @FXML
-    private AnchorPane AdminPanel;
+    private AnchorPane panel;
+    @FXML
+    private Button refresh;
     private UtilityClass utilityClass = new UtilityClass();
     private Connection connection = utilityClass.getConnection();
     @FXML
@@ -80,29 +82,82 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     private MenuItem documentationMenu;
     private String timePassedAccordingToDbVAlues;
     private String path = fileSavePath + "backups";
+    @FXML
+    private Button viewShiftInformation;
+    @FXML
+    private Button troubleShootSystem;
+    @FXML
+    private Button reportIssues;
+    @FXML
+    private Button restartServer;
+    @FXML
+    private Button startDay;
+    @FXML
+    private Button endDay;
+    @FXML
+    private Button syncDb;
+    @FXML
+    private Button licenseManager;
+    @FXML
+    private Button logoutButton;
+    @FXML
+    private MenuItem menuQuit;
+    @FXML
+    private MenuItem viewBackupsMenu;
+    @FXML
+    private MenuItem retrieveBackupMenu;
+    @FXML
+    private MenuItem staffMenu;
+    @FXML
+    private MenuItem carWashMenu;
+    @FXML
+    private MenuItem inventoryMenu;
+    @FXML
+    private MenuItem mrMenu;
+    @FXML
+    private MenuItem auditsMenu;
+    @FXML
+    private MenuItem menuShutDown;
+    @FXML
+    private MenuItem menuRestart;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        config.panel.put("panel", AdminPanel);
+        config.panel.put("panel", panel);
         menuClick();
         buttonClick();
         time(clock);
-        config.panel.put("panel", AdminPanel);
+        config.panel.put("panel", panel);
         IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
                 () -> {
                     try {
                         config.login.put("loggedout", true);
 
-                        AdminPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }, true);
-        idleMonitor.register(AdminPanel, Event.ANY);
+        idleMonitor.register(panel, Event.ANY);
     }
 
 
     private void menuClick() {
+        menuShutDown.setOnAction(event -> {
+            try {
+                shutdown();
+            } catch (IOException e) {
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "UNSUPPORTED OS", "YOUR OS IS UNSUPPORTED BY THIS ACTION");
+            }
+        });
+        menuRestart.setOnAction(event -> {
+            try {
+                restart();
+            } catch (IOException e) {
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "UNSUPPORTED OS", "YOUR OS IS UNSUPPORTED BY THIS ACTION");
+            }
+        });
+        menuQuit.setOnAction(event -> exit());
         details.setOnAction(event -> {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/Settings.fxml"));
             try {
@@ -115,13 +170,10 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                 e.printStackTrace();
             }
         });
-        menulogout.setOnAction(event -> {
-            logout(AdminPanel);
-
-        });
+        menulogout.setOnAction(event -> logout(panel));
     }
 
-    void refresh() throws SQLException {
+    private void refresh() throws SQLException {
         ResultSet resultSet;
         PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE email=?");
         statement.setString(1, config.user.get("user"));
@@ -141,7 +193,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 
 
     private void buttonClick() {
-
+        logoutButton.setOnAction(event -> logout(panel));
         backup.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -152,7 +204,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                 }
                 String timePassedAccordingToDbVAlues = null;
 
-                PreparedStatement prep = null;
+                PreparedStatement prep;
 
                 try {
                     prep = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
@@ -187,7 +239,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                                 String filepath = backup(path);
                                 showAlert(Alert.AlertType.INFORMATION, backup.getScene().getWindow(), "SUCCESS", "BACK UP HAS BEEN COMPLETED SUCCESSFULLY TO " + filepath);
                             } catch (IOException e) {
-                                showAlert(Alert.AlertType.ERROR, AdminPanel.getScene().getWindow(), "ERROR", "YOU NEED AN ACTIVE INTERNET CONNECTION TO CARRY OUT A BACK UP");
+                                showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "YOU NEED AN ACTIVE INTERNET CONNECTION TO CARRY OUT A BACK UP");
                             } catch (Exception ignored) {
 
                             }
@@ -218,7 +270,6 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                 properties.setProperty(MysqlExportService.EMAIL_SUBJECT, "BACK UP FOR POS");
                 File zip;
                 if (path == null) {
-                    path = fileSavePath + "backups";
                     zip = new File(fileSavePath + "backups");
 
                 } else {
@@ -247,8 +298,8 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                 e.printStackTrace();
             }
             try {
-                AdminPanel.getChildren().removeAll();
-                AdminPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/audits.fxml")))));
+                panel.getChildren().removeAll();
+                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/audits.fxml")))));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -272,9 +323,9 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            AdminPanel.getChildren().removeAll();
+            panel.getChildren().removeAll();
             try {
-                AdminPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("carwashFiles/carwash.fxml")))));
+                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("carwashFiles/carwash.fxml")))));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -289,8 +340,8 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                 e.printStackTrace();
             }
             try {
-                AdminPanel.getChildren().removeAll();
-                AdminPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/stocks.fxml")))));
+                panel.getChildren().removeAll();
+                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/stocks.fxml")))));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -305,8 +356,8 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                 e.printStackTrace();
             }
             try {
-                AdminPanel.getChildren().removeAll();
-                AdminPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/employees.fxml")))));
+                panel.getChildren().removeAll();
+                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/employees.fxml")))));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -442,11 +493,11 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     }
 
     public AnchorPane getAdminPanel() {
-        return AdminPanel;
+        return panel;
     }
 
     public void setAdminPanel(AnchorPane adminPanel) {
-        AdminPanel = adminPanel;
+        panel = adminPanel;
     }
 
     private UtilityClass getUtilityClass() {
@@ -569,6 +620,204 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 
     private MenuItem getDocumentationMenu() {
         return documentationMenu;
+    }
+
+    private Button getRefresh() {
+        return refresh;
+    }
+
+    private AdminPanelController setRefresh(Button refresh) {
+        this.refresh = refresh;
+        return this;
+    }
+
+    private String getTimePassedAccordingToDbVAlues() {
+        return timePassedAccordingToDbVAlues;
+    }
+
+    private AdminPanelController setTimePassedAccordingToDbVAlues(String timePassedAccordingToDbVAlues) {
+        this.timePassedAccordingToDbVAlues = timePassedAccordingToDbVAlues;
+        return this;
+    }
+
+    private String getPath() {
+        return path;
+    }
+
+    private AdminPanelController setPath(String path) {
+        this.path = path;
+        return this;
+    }
+
+    private Button getViewShiftInformation() {
+        return viewShiftInformation;
+    }
+
+    private AdminPanelController setViewShiftInformation(Button viewShiftInformation) {
+        this.viewShiftInformation = viewShiftInformation;
+        return this;
+    }
+
+    private Button getTroubleShootSystem() {
+        return troubleShootSystem;
+    }
+
+    private AdminPanelController setTroubleShootSystem(Button troubleShootSystem) {
+        this.troubleShootSystem = troubleShootSystem;
+        return this;
+    }
+
+    private Button getReportIssues() {
+        return reportIssues;
+    }
+
+    private AdminPanelController setReportIssues(Button reportIssues) {
+        this.reportIssues = reportIssues;
+        return this;
+    }
+
+    private Button getRestartServer() {
+        return restartServer;
+    }
+
+    private AdminPanelController setRestartServer(Button restartServer) {
+        this.restartServer = restartServer;
+        return this;
+    }
+
+    private Button getStartDay() {
+        return startDay;
+    }
+
+    private AdminPanelController setStartDay(Button startDay) {
+        this.startDay = startDay;
+        return this;
+    }
+
+    private Button getEndDay() {
+        return endDay;
+    }
+
+    private AdminPanelController setEndDay(Button endDay) {
+        this.endDay = endDay;
+        return this;
+    }
+
+    private Button getSyncDb() {
+        return syncDb;
+    }
+
+    private AdminPanelController setSyncDb(Button syncDb) {
+        this.syncDb = syncDb;
+        return this;
+    }
+
+    private Button getLicenseManager() {
+        return licenseManager;
+    }
+
+    private AdminPanelController setLicenseManager(Button licenseManager) {
+        this.licenseManager = licenseManager;
+        return this;
+    }
+
+    private Button getLogoutButton() {
+        return logoutButton;
+    }
+
+    private AdminPanelController setLogoutButton(Button logoutButton) {
+        this.logoutButton = logoutButton;
+        return this;
+    }
+
+    private MenuItem getMenuQuit() {
+        return menuQuit;
+    }
+
+    private AdminPanelController setMenuQuit(MenuItem menuQuit) {
+        this.menuQuit = menuQuit;
+        return this;
+    }
+
+    private MenuItem getViewBackupsMenu() {
+        return viewBackupsMenu;
+    }
+
+    private AdminPanelController setViewBackupsMenu(MenuItem viewBackupsMenu) {
+        this.viewBackupsMenu = viewBackupsMenu;
+        return this;
+    }
+
+    private MenuItem getRetrieveBackupMenu() {
+        return retrieveBackupMenu;
+    }
+
+    private AdminPanelController setRetrieveBackupMenu(MenuItem retrieveBackupMenu) {
+        this.retrieveBackupMenu = retrieveBackupMenu;
+        return this;
+    }
+
+    private MenuItem getStaffMenu() {
+        return staffMenu;
+    }
+
+    private AdminPanelController setStaffMenu(MenuItem staffMenu) {
+        this.staffMenu = staffMenu;
+        return this;
+    }
+
+    private MenuItem getCarWashMenu() {
+        return carWashMenu;
+    }
+
+    private AdminPanelController setCarWashMenu(MenuItem carWashMenu) {
+        this.carWashMenu = carWashMenu;
+        return this;
+    }
+
+    private MenuItem getInventoryMenu() {
+        return inventoryMenu;
+    }
+
+    private AdminPanelController setInventoryMenu(MenuItem inventoryMenu) {
+        this.inventoryMenu = inventoryMenu;
+        return this;
+    }
+
+    private MenuItem getMrMenu() {
+        return mrMenu;
+    }
+
+    private AdminPanelController setMrMenu(MenuItem mrMenu) {
+        this.mrMenu = mrMenu;
+        return this;
+    }
+
+    private MenuItem getAuditsMenu() {
+        return auditsMenu;
+    }
+
+    private AdminPanelController setAuditsMenu(MenuItem auditsMenu) {
+        this.auditsMenu = auditsMenu;
+        return this;
+    }
+
+    private MenuItem getMenuShutDown() {
+        return menuShutDown;
+    }
+
+    private AdminPanelController setMenuShutDown(MenuItem menuShutDown) {
+        this.menuShutDown = menuShutDown;
+        return this;
+    }
+
+    private MenuItem getMenuRestart() {
+        return menuRestart;
+    }
+
+    private AdminPanelController setMenuRestart(MenuItem menuRestart) {
+        this.menuRestart = menuRestart;
+        return this;
     }
 
     private AdminPanelController setDocumentationMenu(MenuItem documentationMenu) {

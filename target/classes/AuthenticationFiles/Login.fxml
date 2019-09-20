@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="parent" prefHeight="700.0" prefWidth="1200.0" styleClass="form"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="700.0" prefWidth="1200.0" styleClass="form"
             xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="Controllers.AuthenticationControllers.LoginController">
     <Hyperlink fx:id="link" layoutX="629.0" layoutY="572.0" prefHeight="34.0" prefWidth="179.0" text="NanotechSoftwares"

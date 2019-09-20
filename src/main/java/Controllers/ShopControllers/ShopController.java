@@ -50,7 +50,7 @@ import static securityandtime.config.*;
 
 //made by steve
 public class ShopController extends CartIdGenerator implements Initializable {
-    public AnchorPane shopPanel;
+    public AnchorPane panel;
     public Label clock;
     public Label username;
     public Button logoutb;
@@ -67,7 +67,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
     public Button onlinepayments;
     public Button paycash;
     public Button holduserdatab;
-    public Button panel;
+    public Button toPanel;
     public Button clearb;
     public Label totalprice;
     public TableView<CartMaster> listViewHeldItems;
@@ -113,12 +113,12 @@ public class ShopController extends CartIdGenerator implements Initializable {
                 () -> {
                     try {
                         config.login.put("loggedout", true);
-                        shopPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }, true);
-        config.panel.put("panel", shopPanel);
+        config.panel.put("panel", panel);
 
         idleMonitor.register(panel, Event.ANY);
         getLogo();
@@ -218,7 +218,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
 //            tableLoad();
 //            setListViewHeldItems();
                 try {
-                    shopPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/shop.fxml")))));
+                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/shop.fxml")))));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -324,7 +324,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
         if (!stringBuffer.toString().equals("")) {
 //            if bar code reads
             if (stringBuffer.toString().length() < 8) {
-                showAlert(Alert.AlertType.ERROR, shopPanel.getScene().getWindow(), "ERROR", "ERROR READING CODE");
+                showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "ERROR READING CODE");
             } else {
                 zcode = stringBuffer.toString();
                 barcodetext.setText(zcode);
@@ -490,7 +490,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
 
             try {
 //                System.out.println("logging out");
-                shopPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -500,7 +500,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
     private void deletefromcart() {
         CartMaster store = cart.getSelectionModel().getSelectedItem();
         if (store == null) {
-            showAlert(Alert.AlertType.WARNING, shopPanel.getScene().getWindow(), "NO ITEM SELECTED", "SELECT ITEM TO REMOVE");
+            showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(), "NO ITEM SELECTED", "SELECT ITEM TO REMOVE");
 
         } else {
             try {
@@ -512,10 +512,10 @@ public class ShopController extends CartIdGenerator implements Initializable {
                 if (updated > 0) {
                     tableLoad();
                 } else {
-                    showAlert(Alert.AlertType.WARNING, shopPanel.getScene().getWindow(), "ERROR", "EROR REMOVING ITEM");
+                    showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(), "ERROR", "EROR REMOVING ITEM");
                 }
             } catch (Exception e) {
-                showAlert(Alert.AlertType.WARNING, shopPanel.getScene().getWindow(), "CONNECTION ERROR", "EROR REMOVING ITEM.CHECK YOUR CONNECTION TO THE SERVER");
+                showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(), "CONNECTION ERROR", "EROR REMOVING ITEM.CHECK YOUR CONNECTION TO THE SERVER");
 
             }
         }
@@ -527,7 +527,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
                 statementLocal.execute("DELETE FROM heldItems");
                 statementLocal.execute("DELETE FROM heldTransactionList");
                 try {
-                    shopPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/shop.fxml")))));
+                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/shop.fxml")))));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -588,7 +588,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
 //        });
         clearb.setOnMouseClicked(event -> {
             clearCart();
-            showAlert(Alert.AlertType.INFORMATION, shopPanel.getScene().getWindow(), "CART CLEARED", "YOU HAVE CLEARED YOUR CART");
+            showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "CART CLEARED", "YOU HAVE CLEARED YOUR CART");
         });
         logoutb.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -596,18 +596,18 @@ public class ShopController extends CartIdGenerator implements Initializable {
                 //logout button destroy session variables
                 config.login.put("loggedout", true);
                 try {
-                    shopPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
-        panel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        toPanel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 try {
 //                    shopPanel.getChildren().removeAll();
-                    shopPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panel.fxml")))));
+                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panel.fxml")))));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -646,13 +646,13 @@ public class ShopController extends CartIdGenerator implements Initializable {
             tableLoad();
 
             try {
-                shopPanel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/shop.fxml")))));
+                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/shop.fxml")))));
                 setTransID();
                 System.out.println(getTransID());
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            showAlert(Alert.AlertType.INFORMATION, shopPanel.getScene().getWindow(), "SUCCESS", "HOLDING SUCCESSFULL");
+            showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS", "HOLDING SUCCESSFULL");
 
         } catch (SQLException e) {
             e.printStackTrace();

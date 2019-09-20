@@ -50,7 +50,7 @@ public class StocksController extends UtilityClass implements Initializable {
     public TableColumn<StockMaster, String> barcode;
     public TableColumn<StockMaster, String> quantity;
     public Button delete;
-    public AnchorPane parentsstocks;
+    public AnchorPane panel;
     public TextField itemname;
     public TextField itemprice;
     public TextField itemcategory;
@@ -77,15 +77,15 @@ public class StocksController extends UtilityClass implements Initializable {
                     try {
 
                         config.login.put("loggedout", true);
-                        parentsstocks.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
 
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }, true);
-        config.panel.put("panel", parentsstocks);
+        config.panel.put("panel", panel);
 
-        idleMonitor.register(parentsstocks, Event.ANY);
+        idleMonitor.register(panel, Event.ANY);
     }
 
 
@@ -111,14 +111,14 @@ public class StocksController extends UtilityClass implements Initializable {
 //                    storeimageselected.setImage(image);
             } catch (IOException ex) {
                 LogClass.getLogger().log(Level.SEVERE, "image input error");
-                showAlert(Alert.AlertType.WARNING, parentsstocks.getScene().getWindow(), "ERROR!!", "IMAGE INPUT ERROR");
+                showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(), "ERROR!!", "IMAGE INPUT ERROR");
             }
         });
         data = FXCollections.observableArrayList();
         Connection connection = getConnection();
         home.setOnAction(event -> {
             try {
-                parentsstocks.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml")))));
+                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml")))));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -126,7 +126,7 @@ public class StocksController extends UtilityClass implements Initializable {
         });
         usescanner.setOnAction(event -> {
             try {
-                parentsstocks.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/scanneradd.fxml")))));
+                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/scanneradd.fxml")))));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -202,14 +202,14 @@ public class StocksController extends UtilityClass implements Initializable {
                         if (rows > 0) {
                             //System.out.println(rows);
 
-                            showAlert(Alert.AlertType.INFORMATION, parentsstocks.getScene().getWindow(), "SUCCESS ", "YOUR ITEM WAS ADDED SUCCESSFULLY");
+                            showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS ", "YOUR ITEM WAS ADDED SUCCESSFULLY");
                             itemcode.clear();
                             itemname.clear();
                             itemprice.clear();
                             itemcategory.clear();
                             amount.clear();
                         } else {
-                            showAlert(Alert.AlertType.WARNING, parentsstocks.getScene().getWindow(), "  FAILURE", "ERROR WHEN INSERTING ITEMS");
+                            showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(), "  FAILURE", "ERROR WHEN INSERTING ITEMS");
 
                         }
                     }
@@ -217,7 +217,7 @@ public class StocksController extends UtilityClass implements Initializable {
                     e.printStackTrace();
                 }
             } else {
-                showAlert(Alert.AlertType.ERROR, parentsstocks.getScene().getWindow(), "ERROR", "ALL FIELDS SHOULD BE FILLED");
+                showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "ALL FIELDS SHOULD BE FILLED");
             }
         });
 
@@ -277,11 +277,11 @@ public class StocksController extends UtilityClass implements Initializable {
                     quantity.setCellValueFactory(new PropertyValueFactory<StockMaster, String>("Amount"));
                     fetchItems();
                     table.refresh();
-                    showAlert(Alert.AlertType.INFORMATION, parentsstocks.getScene().getWindow(), "ITEM REMOVED SUCCESSFULLY", "THE ITEM HAS BEEN REMOVED SUCCESSFULLY");
+                    showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "ITEM REMOVED SUCCESSFULLY", "THE ITEM HAS BEEN REMOVED SUCCESSFULLY");
 
                 } else {
 //                                not updated
-                    showAlert(Alert.AlertType.WARNING, parentsstocks.getScene().getWindow(), "ITEM COULDN'T BE REMOVED SUCCESSFULLY", "THE ITEM HAS NOT BEEN REMOVED SUCCESSFULLY");
+                    showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(), "ITEM COULDN'T BE REMOVED SUCCESSFULLY", "THE ITEM HAS NOT BEEN REMOVED SUCCESSFULLY");
 
                 }
 
@@ -585,11 +585,11 @@ public class StocksController extends UtilityClass implements Initializable {
     }
 
     public AnchorPane getParentsstocks() {
-        return parentsstocks;
+        return panel;
     }
 
     public StocksController setParentsstocks(AnchorPane parentsstocks) {
-        this.parentsstocks = parentsstocks;
+        this.panel = parentsstocks;
         return this;
     }
 
