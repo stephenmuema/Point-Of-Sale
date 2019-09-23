@@ -201,8 +201,10 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
 
 
     private void buttonListeners() {
-        Connection finalConnection = getConnection();
+
         submit.setOnMouseClicked(event -> {
+            UtilityClass utilityClass = new UtilityClass();
+            Connection connection = utilityClass.getConnection();
             String ownername = name.getText().toUpperCase();
             String numberplate = registration.getText().toUpperCase();
             String idnum = identification.getText().toUpperCase();
@@ -217,8 +219,8 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
                 PreparedStatement preparedStatement = null;
 
                 try {
-                    assert finalConnection != null;
-                    preparedStatement = finalConnection.prepareStatement("INSERT INTO carwash(`ownername`,registration,idnumber,contact,status)VALUES(?,?,?,?,?)");
+                    assert connection != null;
+                    preparedStatement = connection.prepareStatement("INSERT INTO carwash(`ownername`,registration,idnumber,contact,status)VALUES(?,?,?,?,?)");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -297,29 +299,9 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
 
     private void loadTab() {
         data = FXCollections.observableArrayList();
-        Connection connection = getConnection();
 
-
-//        for (Node n: tab.lookupAll("TableRow")) {
-//            if (n instanceof TableRow) {
-//                TableRow row = (TableRow) n;
-//                if (table.getItems().get(i).getWillPay()) {
-//                    row.getStyleClass().add("willPayRow");
-//                } else {
-//                    row.getStyleClass().add("wontPayRow");
-//                }
-//                i++;
-//                if (i == table.getItems().size())
-//                    break;
-//            }
-
-//
-//        try {
-//            connection = DriverManager
-//                    .getConnection(des[2], des[0], des[1]);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        UtilityClass utilityClass = new UtilityClass();
+        Connection connection = utilityClass.getConnection();
         try {
 //                        DISPLAYING CLIENTS
             if (connection != null) {
@@ -335,9 +317,7 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
                     carWashMaster1.status.set(resultSet.getString("status"));
                     carWashMaster1.operator.set(resultSet.getString("washedby"));
                     carWashMaster1.cash.set(resultSet.getString("cashpaid"));
-//                    int tempmoneyPaid = 0;
-//                    tempmoneyPaid += Integer.parseInt(resultSet.getString("cashpaid"));
-//                    moneyPaid = tempmoneyPaid;
+
                     data.add(carWashMaster1);
                 }
                 tab.setItems(data);
@@ -362,7 +342,8 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
 
     private void editable() {
         tab.setEditable(true);
-        Connection connection = getConnection();
+        UtilityClass utilityClass = new UtilityClass();
+        Connection connection = utilityClass.getConnection();
         Name.setCellFactory(TextFieldTableCell.forTableColumn());
         Name.setOnEditCommit(
                 t -> {
@@ -371,6 +352,7 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
                     String newval = t.getNewValue();
                     PreparedStatement preparedStatement = null;
                     try {
+
                         CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                         String id = carWashMaster.getId();
                         assert connection != null;
@@ -507,6 +489,8 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
 
 
     private void compete() {
+        UtilityClass utilityClass = new UtilityClass();
+        Connection connection = utilityClass.getConnection();
         tab.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

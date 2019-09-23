@@ -44,7 +44,7 @@ public class SignupController extends UtilityClass implements Initializable {
     @FXML
     private PasswordField password, passwordconfirmation;
     @FXML
-    private TextField email, name, IDNUMBER, key;
+    private TextField email, name, IDNUMBER;
     @FXML
     private Hyperlink link;
     @FXML
@@ -115,12 +115,7 @@ public class SignupController extends UtilityClass implements Initializable {
                 registerUser();
             }
         });
-        key.setOnKeyPressed(event -> {
-            KeyCode keyCode = event.getCode();
-            if (keyCode.equals(KeyCode.ENTER)) {
-                registerUser();
-            }
-        });
+
     }
 
     private void registerUser() {
@@ -128,8 +123,7 @@ public class SignupController extends UtilityClass implements Initializable {
         if (password.getText().isEmpty() ||
                 passwordconfirmation.getText().isEmpty() ||
                 email.getText().isEmpty() || name.getText().isEmpty()
-                || IDNUMBER.getText().isEmpty() ||
-                key.getText().isEmpty()) {
+                || IDNUMBER.getText().isEmpty()) {
             showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(),
                     "Fill all the fields", "Please fill all the fields");
         } else {
@@ -140,7 +134,7 @@ public class SignupController extends UtilityClass implements Initializable {
 //                Connection snm = connectiondb.getConnect();
                 try {
                     try {
-                        insertion(email, name, IDNUMBER, key, password, passwordconfirmation);
+                        insertion(email, name, IDNUMBER, password, passwordconfirmation);
                     } catch (NoSuchAlgorithmException e) {
                         e.printStackTrace();
                     }
@@ -157,13 +151,14 @@ public class SignupController extends UtilityClass implements Initializable {
         }
     }
 
-    private void insertion(TextField email, TextField name, TextField IDNUMBER, TextField key, PasswordField password, PasswordField passwordconfirmation) throws SQLException, NoSuchAlgorithmException {
+    private void insertion(TextField email, TextField name, TextField IDNUMBER, PasswordField password, PasswordField passwordconfirmation) throws SQLException, NoSuchAlgorithmException {
         String str = email.getText() + name.getText() + password.getText() + IDNUMBER.getText() + new java.util.Date().toString();
         MessageDigest messageDigest = MessageDigest.getInstance("MD5");
         messageDigest.update(str.getBytes(), 0, str.length());
         String hash = new BigInteger(1, messageDigest.digest()).toString(16);
         System.out.println("MD5: " + hash);
-        Connection connection = getConnection();
+        UtilityClass utilityClass = new UtilityClass();
+        Connection connection = utilityClass.getConnection();
         PreparedStatement statementemail = connection.prepareStatement("SELECT * FROM users WHERE email=? ");
         statementemail.setString(1, email.getText());
         ResultSet resultSetemail = statementemail.executeQuery();
@@ -183,7 +178,7 @@ public class SignupController extends UtilityClass implements Initializable {
                 LogClass.getLogger().log(Level.SEVERE, " NAME IS IN USE");
 
             } else {
-                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users(employeename,email,password, employeeid,activated,hash,subscriberkey)VALUES(?,?,?,?,?,?,?)");
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users(employeename,email,password, employeeid,activated,hash,admin,status)VALUES(?,?,?,?,?,?,?,?)");
 
                 preparedStatement.setString(1, name.getText());
                 preparedStatement.setString(2, email.getText());
@@ -191,7 +186,16 @@ public class SignupController extends UtilityClass implements Initializable {
                 preparedStatement.setString(4, IDNUMBER.getText());
                 preparedStatement.setBoolean(5, true);
                 preparedStatement.setString(6, hash);
-                preparedStatement.setString(7, key.getText());
+                if (name.getText().equalsIgnoreCase("admin")) {
+                    preparedStatement.setBoolean(7, true);
+                    preparedStatement.setString(8, "active");
+
+                } else {
+                    preparedStatement.setBoolean(7, false);
+                    preparedStatement.setString(8, "pending");
+
+
+                }
                 if (preparedStatement.executeUpdate() > 0) {
                     LogClass.getLogger().log(Level.CONFIG, " Registration successful");
                     showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(),
@@ -211,10 +215,6 @@ public class SignupController extends UtilityClass implements Initializable {
             }
         }
 
-    }
-
-    public TextField getKey() {
-        return key;
     }
 
 
@@ -272,10 +272,6 @@ public class SignupController extends UtilityClass implements Initializable {
         return this;
     }
 
-    public SignupController setKey(TextField key) {
-        this.key = key;
-        return this;
-    }
 
     public Button getLogin() {
         return login;

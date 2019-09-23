@@ -6,8 +6,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="700.0" prefWidth="1200.0"
-            styleClass="form" xmlns="http://javafx.com/javafx/1"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="700.0" prefWidth="1200.0" styleClass="form"
+            xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="Controllers.AuthenticationControllers.SignupController">
     <AnchorPane layoutX="67.0" layoutY="8.0" prefHeight="392.0" prefWidth="200.0"/>
     <AnchorPane layoutX="306.0" layoutY="57.0" prefHeight="492.0" prefWidth="667.0" styleClass="forminner">
@@ -49,16 +49,14 @@
                     <Font name="Calibri Light" size="14.0"/>
                 </font>
             </TextField>
-            <TextField fx:id="key" alignment="CENTER" layoutX="124.0" layoutY="364.0" prefHeight="42.0"
-                       prefWidth="388.0" promptText="SUBSCRIBER KEY" styleClass="textfields">
-                <font>
-                    <Font name="Calibri Light" size="14.0"/>
-                </font>
-            </TextField>
-            <Label layoutX="525.0" layoutY="391.0" prefHeight="42.0" prefWidth="142.0" text="GET FROM EMPLOYER"
-                   textFill="#ff0505"/>
-            <Button id="signup" fx:id="signup" layoutX="396.0" layoutY="433.0" mnemonicParsing="false"
-                    prefHeight="42.0" prefWidth="116.0" styleClass="buttons" text="SIGN UP"/>
+            <!--            <TextField fx:id="key" alignment="CENTER" layoutX="124.0" layoutY="364.0" prefHeight="42.0" prefWidth="388.0" promptText="SUBSCRIBER KEY" styleClass="textfields">-->
+            <!--                <font>-->
+            <!--                    <Font name="Calibri Light" size="14.0" />-->
+            <!--                </font>-->
+            <!--            </TextField>-->
+            <!--            <Label layoutX="525.0" layoutY="391.0" prefHeight="42.0" prefWidth="142.0" text="GET FROM EMPLOYER" textFill="#ff0505" />-->
+            <Button id="signup" fx:id="signup" layoutX="396.0" layoutY="433.0" mnemonicParsing="false" prefHeight="42.0"
+                    prefWidth="116.0" styleClass="buttons" text="SIGN UP"/>
             <Button id="login" fx:id="login" layoutX="152.0" layoutY="433.0" mnemonicParsing="false" prefHeight="42.0"
                     prefWidth="110.0" styleClass="buttons" text="LOGIN"/>
         </children>

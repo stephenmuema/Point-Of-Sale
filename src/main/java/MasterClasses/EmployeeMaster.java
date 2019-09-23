@@ -9,6 +9,7 @@ public class EmployeeMaster {
     public SimpleStringProperty email = new SimpleStringProperty();
     public SimpleStringProperty dateAdded = new SimpleStringProperty();
     public SimpleStringProperty number = new SimpleStringProperty();
+    public SimpleStringProperty activated = new SimpleStringProperty();
 
     public SimpleStringProperty status = new SimpleStringProperty();
 
@@ -74,6 +75,18 @@ public class EmployeeMaster {
 
     public String getName() {
         return Name.get();
+    }
+
+    public String getActivated() {
+        return activated.get();
+    }
+
+    public void setActivated(String activated) {
+        this.activated.set(activated);
+    }
+
+    public SimpleStringProperty activatedProperty() {
+        return activated;
     }
 
     public void setName(String name) {

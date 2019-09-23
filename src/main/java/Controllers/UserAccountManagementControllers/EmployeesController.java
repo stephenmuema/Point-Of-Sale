@@ -14,21 +14,17 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import securityandtime.config;
 
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -36,26 +32,83 @@ import java.net.URL;
 import java.sql.*;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
-import static securityandtime.config.host;
-import static securityandtime.config.user;
-
 public class EmployeesController extends UtilityClass implements Initializable {
-    public Label clock;
-    public MenuItem logout;
     public Button delete;
-    public Button sendtomail;
-    public Button printoutaspdf;
-    public TableColumn<EmployeeMaster, String> Name;
-    public TableColumn<EmployeeMaster, String> email;
-    public TableColumn<EmployeeMaster, String> id;
-    public TableColumn<EmployeeMaster, String> status;
+    @FXML
+    private Label clock;
+    @FXML
+    private MenuItem details;
+    @FXML
+    private MenuItem license;
+    @FXML
+    private MenuItem menulogout;
+    @FXML
+    private MenuItem backupMenu;
+    @FXML
+    private MenuItem startDayMenu;
+    @FXML
+    private MenuItem endDayMenu;
+    @FXML
+    private MenuItem reportIssuesMenu;
+    @FXML
+    private MenuItem restartServerMenu;
+    @FXML
+    private MenuItem troubleShootMenu;
+    @FXML
+    private Menu helpMenu;
+    @FXML
+    private MenuItem abtMenu;
+    @FXML
+    private MenuItem termsMenu;
+    @FXML
+    private MenuItem checkUpdatesMenu;
+    @FXML
+    private MenuItem reachUsMenu;
+    @FXML
+    private MenuItem generateReportsMenu;
+    @FXML
+    private MenuItem documentationMenu;
+    @FXML
+    private MenuItem menuQuit;
+    @FXML
+    private MenuItem viewBackupsMenu;
+    @FXML
+    private MenuItem retrieveBackupMenu;
+    @FXML
+    private MenuItem staffMenu;
+    @FXML
+    private MenuItem carWashMenu;
+    @FXML
+    private MenuItem inventoryMenu;
+    @FXML
+    private MenuItem mrMenu;
+    @FXML
+    private MenuItem auditsMenu;
+    @FXML
+    private MenuItem menuShutDown;
+    @FXML
+    private MenuItem menuRestart;
+    @FXML
+    private Button sendtomail;
+    @FXML
+    private Button printoutaspdf;
+    @FXML
+    private TableColumn<EmployeeMaster, String> Name;
+    @FXML
+    private TableColumn<EmployeeMaster, String> email;
+    @FXML
+    private TableColumn<EmployeeMaster, String> id;
+    @FXML
+    private TableColumn<EmployeeMaster, String> status;
 
-    public Tab existingemptab;
-    public Button home;
-    public Button suspend;
+    @FXML
+    private Tab existingemptab;
+    @FXML
+    private Button home;
+    @FXML
+    private Button suspend;
     @FXML
     private TableView<EmployeeMaster> tab;
     @FXML
@@ -323,8 +376,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
         sendtomail.setOnMousePressed(event -> {
 //         send audit to email
             generateAudit();
-            SendEmail sendEmail = new SendEmail(user.get("user"), "nanotechsoftwarespos@nanotechsoftwares.com", host, time);
-            //System.out.println(user.get("user"));
+
         });
         printoutaspdf.setOnMousePressed(event -> {
             generateAudit();
@@ -459,24 +511,34 @@ public class EmployeesController extends UtilityClass implements Initializable {
 
 
     private void menuclick() {
-//        stocks.setOnAction(event -> {
-//            parents.getChildren().removeAll();
-//            try {
-//                parents.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/stocks.fxml")))));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        });
-
-        logout.setOnAction(event -> {
-            config.login.put("loggedout", true);
-
+        menuShutDown.setOnAction(event -> {
             try {
-                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                shutdown();
+            } catch (IOException e) {
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "UNSUPPORTED OS", "YOUR OS IS UNSUPPORTED BY THIS ACTION");
+            }
+        });
+        menuRestart.setOnAction(event -> {
+            try {
+                restart();
+            } catch (IOException e) {
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "UNSUPPORTED OS", "YOUR OS IS UNSUPPORTED BY THIS ACTION");
+            }
+        });
+        menuQuit.setOnAction(event -> exit());
+        details.setOnAction(event -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/Settings.fxml"));
+            try {
+                Parent parent = fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
+        menulogout.setOnAction(event -> logout(panel));
     }
 
 
@@ -488,13 +550,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
         this.clock = clock;
     }
 
-    public MenuItem getLogout() {
-        return logout;
-    }
 
-    public void setLogout(MenuItem logout) {
-        this.logout = logout;
-    }
 
     public Button getDelete() {
         return delete;
@@ -610,61 +666,6 @@ public class EmployeesController extends UtilityClass implements Initializable {
 
     public void setTime(String time) {
         this.time = time;
-    }
-
-    class SendEmail {
-        SendEmail(String to, String from, String host, String file) {
-            Properties properties = System.getProperties();
-            properties.setProperty("mail.smtp.host", host);
-
-            // Get the default Session object.
-            Session session = Session.getDefaultInstance(properties);
-
-            try {
-                // Create a default MimeMessage object.
-                MimeMessage message = new MimeMessage(session);
-
-                // Set From: header field of the header.
-                message.setFrom(new InternetAddress(from));
-
-                // Set To: header field of the header.
-                message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-
-                // Set Subject: header field
-                message.setSubject("NANOTECH SOFTWARES POS SYSTEM EMPLOYEE REPORT");
-
-                // Now set the actual message
-                BodyPart messageBodyPart = new MimeBodyPart();
-
-                // Fill the message
-                messageBodyPart.setText("WE , AT NANOTECH SOFTWARES VALUE OUR CUSTOMERS");
-
-                // Create a multipar message
-                Multipart multipart = new MimeMultipart();
-
-                // Set text message part
-                multipart.addBodyPart(messageBodyPart);
-
-                // Part two is attachment
-                messageBodyPart = new MimeBodyPart();
-                DataSource source = new FileDataSource(file);
-                messageBodyPart.setDataHandler(new DataHandler(source));
-                messageBodyPart.setFileName(file);
-                multipart.addBodyPart(messageBodyPart);
-
-                // Send the complete message parts
-                message.setContent(multipart);
-
-
-                // Send message
-                Transport.send(message);
-//                System.out.println("Sent message successfully....");
-                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "sent message successfully", "Sent message to your inbox successfully");
-
-            } catch (MessagingException mex) {
-                mex.printStackTrace();
-            }
-        }
     }
 
 }

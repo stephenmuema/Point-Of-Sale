@@ -115,6 +115,8 @@ public class LoginController extends UtilityClass implements Initializable {
         });
         login.setOnMousePressed(event -> {
 //            login and check if fields are empty
+            UtilityClass utilityClass = new UtilityClass();
+            connection = utilityClass.getConnection();
             loginValidation();
         });
     }
@@ -215,6 +217,7 @@ public class LoginController extends UtilityClass implements Initializable {
 
         } catch (Exception e) {
             e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "CONNECTION ERROR", "CHECK YOUR CONNECTION TO THE SERVER");
             message.setText("CHECK YOUR CONNECTION!!");
             message.setTextFill(Paint.valueOf("RED"));
         }

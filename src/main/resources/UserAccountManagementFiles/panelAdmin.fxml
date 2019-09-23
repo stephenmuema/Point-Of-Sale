@@ -14,48 +14,48 @@
                 <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS"/>
                 <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT"/>
                 <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER"/>
-                <MenuItem mnemonicParsing="false" fx:id="menuQuit" text="QUIT"/>
+                <MenuItem fx:id="menuQuit" mnemonicParsing="false" text="QUIT"/>
 
             </Menu>
             <Menu mnemonicParsing="false" text="DATABASE">
-                <MenuItem mnemonicParsing="false" fx:id="backupMenu" text="BACKUP"/>
-                <MenuItem mnemonicParsing="false" fx:id="retrieveBackupMenu" text="RETRIEVE BACKUP"/>
-                <MenuItem mnemonicParsing="false" fx:id="viewBackupsMenu" text="VIEW BACKUPS"/>
+                <MenuItem fx:id="backupMenu" mnemonicParsing="false" text="BACKUP"/>
+                <MenuItem fx:id="retrieveBackupMenu" mnemonicParsing="false" text="RETRIEVE BACKUP"/>
+                <MenuItem fx:id="viewBackupsMenu" mnemonicParsing="false" text="VIEW BACKUPS"/>
             </Menu>
             <Menu mnemonicParsing="false" text="SHIFTS">
                 <items>
-                    <MenuItem mnemonicParsing="false" fx:id="startDayMenu" text="START DAY"/>
-                    <MenuItem mnemonicParsing="false" fx:id="endDayMenu" text="END DAY"/>
+                    <MenuItem fx:id="startDayMenu" mnemonicParsing="false" text="START DAY"/>
+                    <MenuItem fx:id="endDayMenu" mnemonicParsing="false" text="END DAY"/>
                     <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION"/>
                 </items>
             </Menu>
             <Menu mnemonicParsing="false" text="SYSTEM ">
                 <items>
-                    <MenuItem mnemonicParsing="false" fx:id="reportIssuesMenu" text="REPORT ISSUES"/>
-                    <MenuItem mnemonicParsing="false" fx:id="restartServerMenu" text="RESTART SERVER"/>
-                    <MenuItem mnemonicParsing="false" fx:id="troubleShootMenu" text="TROUBLESHOOT SYSTEM"/>
+                    <MenuItem fx:id="reportIssuesMenu" mnemonicParsing="false" text="REPORT ISSUES"/>
+                    <MenuItem fx:id="restartServerMenu" mnemonicParsing="false" text="RESTART SERVER"/>
+                    <MenuItem fx:id="troubleShootMenu" mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
                 </items>
             </Menu>
             <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
-                <MenuItem mnemonicParsing="false" fx:id="abtMenu" text="ABOUT THIS SOFTWARE"/>
-                <MenuItem mnemonicParsing="false" fx:id="termsMenu" text="TERMS AND CONDITIONS"/>
-                <MenuItem mnemonicParsing="false" fx:id="checkUpdatesMenu" text="CHECK FOR UPDATES"/>
-                <MenuItem mnemonicParsing="false" fx:id="documentationMenu" text="DOCUMENTATION"/>
-                <MenuItem mnemonicParsing="false" fx:id="reachUsMenu" text="REACH US"/>
-                <MenuItem mnemonicParsing="false" fx:id="menuShutDown" text="SHUT DOWN"/>
-                <MenuItem mnemonicParsing="false" fx:id="menuRestart" text="RESTART SYSTEM"/>
+                <MenuItem fx:id="abtMenu" mnemonicParsing="false" text="ABOUT THIS SOFTWARE"/>
+                <MenuItem fx:id="termsMenu" mnemonicParsing="false" text="TERMS AND CONDITIONS"/>
+                <MenuItem fx:id="checkUpdatesMenu" mnemonicParsing="false" text="CHECK FOR UPDATES"/>
+                <MenuItem fx:id="documentationMenu" mnemonicParsing="false" text="DOCUMENTATION"/>
+                <MenuItem fx:id="reachUsMenu" mnemonicParsing="false" text="REACH US"/>
+                <MenuItem fx:id="menuShutDown" mnemonicParsing="false" text="SHUT DOWN"/>
+                <MenuItem fx:id="menuRestart" mnemonicParsing="false" text="RESTART SYSTEM"/>
             </Menu>
             <Menu mnemonicParsing="false" text="NAVIGATION">
-                <MenuItem mnemonicParsing="false" fx:id="staffMenu" text="STAFF"/>
-                <MenuItem mnemonicParsing="false" fx:id="carWashMenu" text="CAR WASH"/>
-                <MenuItem mnemonicParsing="false" fx:id="inventoryMenu" text="INVENTORY"/>
-                <MenuItem mnemonicParsing="false" fx:id="mrMenu" text="SUPPLIERS"/>
-                <MenuItem mnemonicParsing="false" fx:id="auditsMenu" text="AUDITS"/>
+                <MenuItem fx:id="staffMenu" mnemonicParsing="false" text="STAFF"/>
+                <MenuItem fx:id="carWashMenu" mnemonicParsing="false" text="CAR WASH"/>
+                <MenuItem fx:id="inventoryMenu" mnemonicParsing="false" text="INVENTORY"/>
+                <MenuItem fx:id="mrMenu" mnemonicParsing="false" text="SUPPLIERS"/>
+                <MenuItem fx:id="auditsMenu" mnemonicParsing="false" text="AUDITS"/>
             </Menu>
             <Menu mnemonicParsing="false" text="INVENTORY">
                 <items>
 
-                    <MenuItem mnemonicParsing="false" fx:id="generateReportsMenu" text="GENERATE REPORTS"/>
+                    <MenuItem fx:id="generateReportsMenu" mnemonicParsing="false" text="GENERATE REPORTS"/>
                     <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
                 </items>
             </Menu>
@@ -105,7 +105,7 @@
             <!--            </Button>-->
 
             <Button fx:id="backup" layoutX="458.0" layoutY="432.0" mnemonicParsing="false" prefHeight="80.0"
-                    prefWidth="297.0" text="BACK UP">
+                    prefWidth="297.0" text="INSTANT BACK UP">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
@@ -159,8 +159,7 @@
                 </font>
             </Button>
             <Button fx:id="viewShiftInformation" layoutX="849.0" layoutY="432.0" mnemonicParsing="false"
-                    prefHeight="80.0"
-                    prefWidth="311.0" text="SHIFT INFORMATION">
+                    prefHeight="80.0" prefWidth="311.0" text="SHIFT INFORMATION">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>

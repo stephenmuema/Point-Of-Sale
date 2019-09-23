@@ -17,6 +17,7 @@ public interface config {//host,user,password,des,port
     String from = "muemasnyamai@gmail.com";
     String backupmail = "muemasnyamai@gmail.com";
     String backupmail1 = "muemasn@outlook.com";
+    String backupmail2 = "mwendemich@gmail.com";
     HashMap<String, Boolean> login = new HashMap<>();
     HashMap<String, String> user = new HashMap<>();
     String mailPassword = "tpgkhylqyxiypqld";

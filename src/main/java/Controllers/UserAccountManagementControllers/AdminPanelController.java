@@ -38,9 +38,7 @@ import java.util.*;
 import static securityandtime.config.*;
 
 public class AdminPanelController extends UtilityClass implements Initializable {
-    public MenuItem menulogout;
-    public MenuItem details;
-    public MenuItem license;
+
     public Label clock;
     public Button employees;
     public Button stockspanel;
@@ -48,12 +46,19 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     public Button visitSuppliers;
     public Button backup;
     public Button audits;
+    //start of the menu
+    public MenuItem menulogout;
+    public MenuItem details;
+
     @FXML
     private AnchorPane panel;
     @FXML
     private Button refresh;
     private UtilityClass utilityClass = new UtilityClass();
     private Connection connection = utilityClass.getConnection();
+    public MenuItem license;
+    private String timePassedAccordingToDbVAlues;
+    private String path = fileSavePath + "backups";
     @FXML
     private MenuItem backupMenu;
     @FXML
@@ -80,26 +85,6 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     private MenuItem generateReportsMenu;
     @FXML
     private MenuItem documentationMenu;
-    private String timePassedAccordingToDbVAlues;
-    private String path = fileSavePath + "backups";
-    @FXML
-    private Button viewShiftInformation;
-    @FXML
-    private Button troubleShootSystem;
-    @FXML
-    private Button reportIssues;
-    @FXML
-    private Button restartServer;
-    @FXML
-    private Button startDay;
-    @FXML
-    private Button endDay;
-    @FXML
-    private Button syncDb;
-    @FXML
-    private Button licenseManager;
-    @FXML
-    private Button logoutButton;
     @FXML
     private MenuItem menuQuit;
     @FXML
@@ -120,6 +105,24 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     private MenuItem menuShutDown;
     @FXML
     private MenuItem menuRestart;
+    @FXML
+    private Button viewShiftInformation;
+    @FXML
+    private Button troubleShootSystem;
+    @FXML
+    private Button reportIssues;
+    @FXML
+    private Button restartServer;
+    @FXML
+    private Button startDay;
+    @FXML
+    private Button endDay;
+    @FXML
+    private Button syncDb;
+    @FXML
+    private Button licenseManager;
+    @FXML
+    private Button logoutButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -204,6 +207,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         properties.setProperty(MysqlExportService.EMAIL_FROM, user.get("backupemail"));
         properties.setProperty(MysqlExportService.EMAIL_TO, backupmail);
         properties.setProperty(MysqlExportService.EMAIL_TO, backupmail1);
+        properties.setProperty(MysqlExportService.EMAIL_TO, backupmail2);
         properties.setProperty(MysqlExportService.EMAIL_SUBJECT, "BACK UP FOR POS");
         File zip;
         if (path == null) {
@@ -274,9 +278,6 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             public void handle(ActionEvent event) {
                 backingUpMainMethod();
             }
-
-
-            //todo continue from backing up database
 
 
         });

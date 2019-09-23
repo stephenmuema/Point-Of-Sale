@@ -131,8 +131,8 @@ public class CarwashController extends UtilityClass implements Initializable {
 
     private void editable() {
         tab.setEditable(true);
-        Connection connection = getConnection();
-
+        UtilityClass utilityClass = new UtilityClass();
+        Connection connection = utilityClass.getConnection();
 
         Name.setCellFactory(TextFieldTableCell.forTableColumn());
         Name.setOnEditCommit(
@@ -144,6 +144,8 @@ public class CarwashController extends UtilityClass implements Initializable {
                         String newval = t.getNewValue();
                         PreparedStatement preparedStatement = null;
                         try {
+                            UtilityClass utilityClass = new UtilityClass();
+                            Connection connection = utilityClass.getConnection();
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
                             preparedStatement = connection.prepareStatement("UPDATE carwash set `ownername`=? where id=?");
@@ -168,6 +170,8 @@ public class CarwashController extends UtilityClass implements Initializable {
                         String newval = t.getNewValue();
                         PreparedStatement preparedStatement = null;
                         try {
+                            UtilityClass utilityClass = new UtilityClass();
+                            Connection connection = utilityClass.getConnection();
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
                             preparedStatement = connection.prepareStatement("UPDATE carwash set registration=? where id=?");
@@ -192,6 +196,8 @@ public class CarwashController extends UtilityClass implements Initializable {
                         String newval = t.getNewValue();
                         PreparedStatement preparedStatement = null;
                         try {
+                            UtilityClass utilityClass = new UtilityClass();
+                            Connection connection = utilityClass.getConnection();
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
                             preparedStatement = connection.prepareStatement("UPDATE carwash set idnumber=? where id=?");
@@ -216,6 +222,8 @@ public class CarwashController extends UtilityClass implements Initializable {
                         String newval = t.getNewValue();
                         PreparedStatement preparedStatement = null;
                         try {
+                            UtilityClass utilityClass = new UtilityClass();
+                            Connection connection = utilityClass.getConnection();
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
                             assert connection != null;
@@ -241,6 +249,8 @@ public class CarwashController extends UtilityClass implements Initializable {
                         String newval = t.getNewValue();
                         PreparedStatement preparedStatement = null;
                         try {
+                            UtilityClass utilityClass = new UtilityClass();
+                            Connection connection = utilityClass.getConnection();
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
                             preparedStatement = connection.prepareStatement("UPDATE carwash set washedby=? where id=?");
@@ -266,6 +276,8 @@ public class CarwashController extends UtilityClass implements Initializable {
                         String newval = t.getNewValue();
                         PreparedStatement preparedStatement = null;
                         try {
+                            UtilityClass utilityClass = new UtilityClass();
+                            Connection connection = utilityClass.getConnection();
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
                             preparedStatement = connection.prepareStatement("UPDATE carwash set cashpaid=? where id=?");
@@ -386,8 +398,8 @@ public class CarwashController extends UtilityClass implements Initializable {
         t.addCell(c5);
 
 //        adding headers
-        Connection connection = getConnection();
-
+        UtilityClass utilityClass = new UtilityClass();
+        Connection connection = utilityClass.getConnection();
         PreparedStatement statement = null;
         try {
             assert connection != null;

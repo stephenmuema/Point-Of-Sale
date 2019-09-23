@@ -235,6 +235,7 @@ public class Launcher extends Application {
             Launcher.stage = stage;
             stage.show();
         }
+
     }
 }
 

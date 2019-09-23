@@ -4,15 +4,20 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
 import javafx.util.Duration;
 import securityandtime.CheckConn;
 import securityandtime.config;
 
+import javax.imageio.ImageIO;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,6 +28,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Objects;
 
 import static securityandtime.config.*;
@@ -192,21 +198,34 @@ public class UtilityClass {
         alert.initOwner(owner);
         alert.showAndWait();
     }
-
     public static void restart() throws RuntimeException, IOException {
-        String shutdownCommand;
+        String restartCommand;
         String operatingSystem = System.getProperty("os.name");
         System.out.println(operatingSystem);
         if (operatingSystem.startsWith("Linux") || operatingSystem.startsWith("Mac")) {
-            shutdownCommand = "shutdown -r now";
+            restartCommand = "shutdown -r now";
         } else if (operatingSystem.startsWith("Windows")) {
-            shutdownCommand = "shutdown.exe -r -t 0";
+            restartCommand = "shutdown.exe -r -t 0";
         } else {
             throw new RuntimeException("Unsupported operating system.");
         }
 
-        Runtime.getRuntime().exec(shutdownCommand);
+        Runtime.getRuntime().exec(restartCommand);
         System.exit(0);
+    }
+
+    private void takeSnapShot(Scene scene) {
+        WritableImage writableImage =
+                new WritableImage((int) scene.getWidth(), (int) scene.getHeight());
+        scene.snapshot(writableImage);
+
+        File file = new File(fileSavePath + "\\images\\" + new Date().toString() + ".png");
+        try {
+            ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
+            System.out.println("snapshot saved: " + file.getAbsolutePath());
+        } catch (IOException ignore) {
+//            Logger.getLogger(JavaFXSnapshot.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void exit() {

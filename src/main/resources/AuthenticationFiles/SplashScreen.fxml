@@ -24,7 +24,13 @@
                 <Font size="13.0"/>
             </font>
         </Label>
-        <ImageView fx:id="logo" fitHeight="617.0" fitWidth="779.0" layoutX="379.0" layoutY="43.0" pickOnBounds="true"
+        <ImageView fx:id="logo" fitHeight="541.0" fitWidth="745.0" layoutX="379.0" layoutY="96.0" pickOnBounds="true"
                    preserveRatio="false"/>
+        <Label layoutX="505.0" layoutY="29.0" prefHeight="28.0" prefWidth="313.0"
+               text="MEDICA HOSPITALS PHARMACY MODULE" textFill="#f8f8f8">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Label>
     </children>
 </AnchorPane>

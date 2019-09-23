@@ -1,124 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="700.0" prefWidth="1200.0"
-            xmlns="http://javafx.com/javafx/11.0.1"
-            fx:controller="Controllers.UserAccountManagementControllers.EmployeesController">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="panel" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserAccountManagementControllers.EmployeesController">
     <VBox prefHeight="711.0" prefWidth="1200.0">
         <children>
-            <MenuBar>
-                <menus>
-                    <Menu mnemonicParsing="false" text="ACCOUNT">
-                        <items>
-                            <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS"/>
-                            <MenuItem fx:id="logout" mnemonicParsing="false" text="LOGOUT"/>
-                            <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER"/>
-                            <MenuItem mnemonicParsing="false" text="QUIT"/>
-                        </items>
-                    </Menu>
-                    <Menu mnemonicParsing="false" text="DATABASE">
-                        <items>
-                            <MenuItem mnemonicParsing="false" text="BACKUP"/>
-                            <MenuItem mnemonicParsing="false" text="RETRIEVE BACKUP"/>
-                            <MenuItem mnemonicParsing="false" text="VIEW BACKUPS"/>
-                        </items>
-                    </Menu>
-                    <Menu mnemonicParsing="false" text="SHIFTS">
-                        <items>
-                            <MenuItem mnemonicParsing="false" text="START DAY"/>
-                            <MenuItem mnemonicParsing="false" text="END DAY"/>
-                            <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION"/>
-                        </items>
-                    </Menu>
-                    <Menu mnemonicParsing="false" text="SYSTEM ">
-                        <items>
-                            <MenuItem mnemonicParsing="false" text="REPORT ISSUES"/>
-                            <MenuItem mnemonicParsing="false" text="RESTART SERVER"/>
-                            <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
-                        </items>
-                    </Menu>
-                    <Menu mnemonicParsing="false" text="INVENTORY">
-                        <items>
-                            <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
-                        <items>
-                            <MenuItem mnemonicParsing="false" text="ABOUT THIS SOFTWARE"/>
-                            <MenuItem mnemonicParsing="false" text="TERMS AND CONDITIONS"/>
-                            <MenuItem mnemonicParsing="false" text="CHECK FOR UPDATES"/>
-                            <MenuItem mnemonicParsing="false" text="DOCUMENTATION"/>
-                            <MenuItem mnemonicParsing="false" text="REACH US"/>
-                        </items>
-                            </Menu>
-                            <MenuItem mnemonicParsing="false" text="PANEL"/>
-                            <MenuItem mnemonicParsing="false" text="GENERATE REPORTS"/>
-                            <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
-                        </items>
-                    </Menu>
-                </menus>
-            </MenuBar>
-            <AnchorPane id="Content" prefHeight="686.0" prefWidth="895.0"
-                        styleClass="form">
+         <MenuBar>
+            <menus>
+               <Menu mnemonicParsing="false" text="ACCOUNT">
+                  <items>
+                     <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS" />
+                     <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT" />
+                     <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER" />
+                     <MenuItem fx:id="menuQuit" mnemonicParsing="false" text="QUIT" />
+                  </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="DATABASE">
+                  <items>
+                     <MenuItem fx:id="backupMenu" mnemonicParsing="false" text="BACKUP" />
+                     <MenuItem fx:id="retrieveBackupMenu" mnemonicParsing="false" text="RETRIEVE BACKUP" />
+                     <MenuItem fx:id="viewBackupsMenu" mnemonicParsing="false" text="VIEW BACKUPS" />
+                  </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="SHIFTS">
+                  <items>
+                     <MenuItem fx:id="startDayMenu" mnemonicParsing="false" text="START DAY" />
+                     <MenuItem fx:id="endDayMenu" mnemonicParsing="false" text="END DAY" />
+                     <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION" />
+                  </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="SYSTEM ">
+                  <items>
+                     <MenuItem fx:id="reportIssuesMenu" mnemonicParsing="false" text="REPORT ISSUES" />
+                     <MenuItem fx:id="restartServerMenu" mnemonicParsing="false" text="RESTART SERVER" />
+                     <MenuItem fx:id="troubleShootMenu" mnemonicParsing="false" text="TROUBLESHOOT SYSTEM" />
+                  </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
+                  <items>
+                     <MenuItem fx:id="abtMenu" mnemonicParsing="false" text="ABOUT THIS SOFTWARE" />
+                     <MenuItem fx:id="termsMenu" mnemonicParsing="false" text="TERMS AND CONDITIONS" />
+                     <MenuItem fx:id="checkUpdatesMenu" mnemonicParsing="false" text="CHECK FOR UPDATES" />
+                     <MenuItem fx:id="documentationMenu" mnemonicParsing="false" text="DOCUMENTATION" />
+                     <MenuItem fx:id="reachUsMenu" mnemonicParsing="false" text="REACH US" />
+                     <MenuItem fx:id="menuShutDown" mnemonicParsing="false" text="SHUT DOWN" />
+                     <MenuItem fx:id="menuRestart" mnemonicParsing="false" text="RESTART SYSTEM" />
+                  </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="NAVIGATION">
+                  <items>
+                     <MenuItem fx:id="staffMenu" mnemonicParsing="false" text="STAFF" />
+                     <MenuItem fx:id="carWashMenu" mnemonicParsing="false" text="CAR WASH" />
+                     <MenuItem fx:id="inventoryMenu" mnemonicParsing="false" text="INVENTORY" />
+                     <MenuItem fx:id="mrMenu" mnemonicParsing="false" text="SUPPLIERS" />
+                     <MenuItem fx:id="auditsMenu" mnemonicParsing="false" text="AUDITS" />
+                  </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="INVENTORY">
+                  <items>
+                     <MenuItem fx:id="generateReportsMenu" mnemonicParsing="false" text="GENERATE REPORTS" />
+                     <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM" />
+                  </items>
+               </Menu>
+            </menus>
+         </MenuBar>
+            <AnchorPane id="Content" prefHeight="686.0" prefWidth="895.0" styleClass="form">
                 <children>
-                    <Label alignment="CENTER" layoutX="593.0" layoutY="14.0" prefHeight="51.0" prefWidth="295.0"
-                           style="&#10;" text="EMPLOYEE PANEL" textAlignment="CENTER" textFill="#0a0a0a"
-                           wrapText="false">
+                    <Label alignment="CENTER" layoutX="593.0" layoutY="14.0" prefHeight="51.0" prefWidth="295.0" style="&#10;" text="EMPLOYEE PANEL" textAlignment="CENTER" textFill="#0a0a0a" wrapText="false">
                         <font>
-                            <Font name="FangSong" size="37.0" fx:id="x1"/>
+                            <Font name="FangSong" size="37.0" fx:id="x1" />
                         </font>
                     </Label>
-                    <TabPane fx:id="tabpane" layoutX="252.0" layoutY="64.0" pickOnBounds="false" prefHeight="624.0"
-                             prefWidth="949.0" tabClosingPolicy="UNAVAILABLE">
+                    <TabPane fx:id="tabpane" layoutX="252.0" layoutY="64.0" pickOnBounds="false" prefHeight="624.0" prefWidth="949.0" tabClosingPolicy="UNAVAILABLE">
                         <tabs>
                             <Tab text="REPORTING VIEW">
                                 <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="537.0" prefWidth="850.0">
                                         <children>
-                                            <Button fx:id="sendtomail" layoutX="191.0" layoutY="364.0"
-                                                    mnemonicParsing="false" prefHeight="61.0" prefWidth="485.0"
-                                                    styleClass="buttongreen" text="SEND TO MY EMAIL" textFill="#fffbfb">
+                                            <Button fx:id="sendtomail" layoutX="191.0" layoutY="364.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="485.0" styleClass="buttongreen" text="SEND TO MY EMAIL" textFill="#fffbfb">
                                                 <font>
-                                                    <Font name="Gabriola" size="28.0"/>
+                                                    <Font name="Gabriola" size="28.0" />
                                                 </font>
                                             </Button>
-                                            <Button fx:id="printoutaspdf" layoutX="190.0" layoutY="273.0"
-                                                    mnemonicParsing="false" prefHeight="61.0" prefWidth="488.0"
-                                                    styleClass="buttongreen" text="EXPORT TO LOCAL DRIVE"
-                                                    textFill="#f8f8f8">
+                                            <Button fx:id="printoutaspdf" layoutX="190.0" layoutY="273.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="488.0" styleClass="buttongreen" text="EXPORT TO LOCAL DRIVE" textFill="#f8f8f8">
                                                 <font>
-                                                    <Font name="Gabriola" size="28.0"/>
+                                                    <Font name="Gabriola" size="28.0" />
                                                 </font>
                                             </Button>
-                                            <Label layoutX="249.0" layoutY="36.0"
-                                                   text="Get your employee list using the buttons below"
-                                                   textFill="#fc0909">
+                                            <Label layoutX="249.0" layoutY="36.0" text="Get your employee list using the buttons below" textFill="#fc0909">
                                                 <font>
-                                                    <Font size="18.0"/>
+                                                    <Font size="18.0" />
                                                 </font>
                                             </Label>
                                             <Label layoutX="36.0" layoutY="63.0" textFill="#fc0909">
                                                 <font>
-                                                    <Font size="18.0"/>
+                                                    <Font size="18.0" />
                                                 </font>
                                             </Label>
-                                            <RadioButton layoutX="98.0" layoutY="77.0" mnemonicParsing="false"
-                                                         text="CSV FORMAT"/>
-                                            <RadioButton layoutX="249.0" layoutY="77.0" mnemonicParsing="false"
-                                                         text="PDF FORMAT"/>
-                                            <Button fx:id="sendtomail1" layoutX="191.0" layoutY="449.0"
-                                                    mnemonicParsing="false" prefHeight="61.0" prefWidth="485.0"
-                                                    styleClass="buttongreen" text="SEND TO MY NANOTECH BUSINESS ACCOUNT"
-                                                    textFill="#fffbfb">
+                                            <RadioButton layoutX="98.0" layoutY="77.0" mnemonicParsing="false" text="CSV FORMAT" />
+                                            <RadioButton layoutX="249.0" layoutY="77.0" mnemonicParsing="false" text="PDF FORMAT" />
+                                            <Button fx:id="sendtomail1" layoutX="191.0" layoutY="449.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="485.0" styleClass="buttongreen" text="SEND TO MY NANOTECH BUSINESS ACCOUNT" textFill="#fffbfb">
                                                 <font>
-                                                    <Font name="Gabriola" size="28.0"/>
+                                                    <Font name="Gabriola" size="28.0" />
                                                 </font>
                                             </Button>
-                                            <Button fx:id="sendtomail11" layoutX="191.0" layoutY="177.0"
-                                                    mnemonicParsing="false" prefHeight="61.0" prefWidth="485.0"
-                                                    styleClass="buttongreen" text="VIEW" textFill="#fffbfb">
+                                            <Button fx:id="sendtomail11" layoutX="191.0" layoutY="177.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="485.0" styleClass="buttongreen" text="VIEW" textFill="#fffbfb">
                                                 <font>
-                                                    <Font name="Gabriola" size="28.0"/>
+                                                    <Font name="Gabriola" size="28.0" />
                                                 </font>
                                             </Button>
                                         </children>
@@ -129,44 +131,30 @@
                                 <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="589.0" prefWidth="949.0">
                                         <children>
-                                            <ScrollPane layoutX="11.0" layoutY="9.0" prefHeight="508.0"
-                                                        prefWidth="942.0">
+                                            <ScrollPane layoutX="11.0" layoutY="9.0" prefHeight="508.0" prefWidth="942.0">
                                                 <content>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="505.0"
-                                                                prefWidth="937.0">
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="505.0" prefWidth="937.0">
                                                         <children>
-                                                            <TableView fx:id="tab" layoutY="1.0" prefHeight="502.0"
-                                                                       prefWidth="934.0">
+                                                            <TableView fx:id="tab" layoutY="1.0" prefHeight="502.0" prefWidth="934.0">
                                                                 <placeholder>
-                                                                    <Label text=""/>
+                                                                    <Label text="" />
                                                                 </placeholder>
                                                                 <columns>
-                                                                    <TableColumn fx:id="Name" prefWidth="263.0"
-                                                                                 text="NAME"/>
-                                                                    <TableColumn fx:id="email" prefWidth="240.0"
-                                                                                 text="EMAIL"/>
-                                                                    <TableColumn fx:id="id" prefWidth="210.0"
-                                                                                 text="ID NUMBER"/>
-                                                                    <TableColumn fx:id="status" prefWidth="219.0"
-                                                                                 text="DURATION"/>
+                                                                    <TableColumn fx:id="Name" prefWidth="263.0" text="NAME" />
+                                                                    <TableColumn fx:id="email" prefWidth="224.0" text="EMAIL" />
+                                                                    <TableColumn fx:id="id" prefWidth="169.0" text="ID NUMBER" />
+                                                                    <TableColumn fx:id="status" prefWidth="176.0" resizable="false" text="DURATION" />
+                                                   <TableColumn fx:id="activate" prefWidth="100.0" resizable="false" text="STATUS" />
                                                                 </columns>
                                                             </TableView>
                                                         </children>
                                                     </AnchorPane>
                                                 </content>
                                             </ScrollPane>
-                                            <Button fx:id="delete" layoutX="14.0" layoutY="527.0"
-                                                    mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0"
-                                                    styleClass="buttonred" text="FIRE "/>
-                                            <Button fx:id="suspend" layoutX="168.0" layoutY="527.0"
-                                                    mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0"
-                                                    styleClass="buttonorange" text="SUSPEND/ACTIVATE"/>
-                                            <Button fx:id="showShifts" layoutX="322.0" layoutY="527.0"
-                                                    mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0"
-                                                    styleClass="buttonorange" text="SHOW SHIFTS"/>
-                                            <Button fx:id="showHistory" layoutX="482.0" layoutY="527.0"
-                                                    mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0"
-                                                    styleClass="buttonorange" text="SHOW HISTORY"/>
+                                            <Button fx:id="delete" layoutX="14.0" layoutY="527.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0" styleClass="buttonred" text="FIRE " />
+                                            <Button fx:id="suspend" layoutX="168.0" layoutY="527.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0" styleClass="buttonorange" text="SUSPEND/ACTIVATE" />
+                                            <Button fx:id="showShifts" layoutX="322.0" layoutY="527.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0" styleClass="buttonorange" text="SHOW SHIFTS" />
+                                            <Button fx:id="showHistory" layoutX="482.0" layoutY="527.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0" styleClass="buttonorange" text="SHOW HISTORY" />
                                         </children>
                                     </AnchorPane>
                                 </content>
@@ -175,62 +163,47 @@
                                 <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="589.0" prefWidth="949.0">
                                         <children>
-                                            <ScrollPane layoutX="11.0" layoutY="9.0" prefHeight="508.0"
-                                                        prefWidth="938.0">
+                                            <ScrollPane layoutX="11.0" layoutY="9.0" prefHeight="508.0" prefWidth="938.0">
                                                 <content>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="505.0"
-                                                                prefWidth="937.0">
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="505.0" prefWidth="937.0">
                                                         <children>
-                                                            <TableView fx:id="tab1" layoutY="1.0" prefHeight="489.0"
-                                                                       prefWidth="924.0">
+                                                            <TableView fx:id="tab1" layoutY="1.0" prefHeight="489.0" prefWidth="924.0">
                                                                 <placeholder>
-                                                                    <Label text=""/>
+                                                                    <Label text="" />
                                                                 </placeholder>
                                                                 <columns>
-                                                                    <TableColumn fx:id="Name1" prefWidth="263.0"
-                                                                                 text="NAME"/>
-                                                                    <TableColumn fx:id="email1" prefWidth="240.0"
-                                                                                 text="EMAIL"/>
-                                                                    <TableColumn fx:id="id1" prefWidth="210.0"
-                                                                                 text="ID NUMBER"/>
-                                                                    <TableColumn fx:id="status1" prefWidth="210.0"
-                                                                                 text="STATUS"/>
+                                                                    <TableColumn fx:id="Name1" prefWidth="263.0" text="NAME" />
+                                                                    <TableColumn fx:id="email1" prefWidth="240.0" text="EMAIL" />
+                                                                    <TableColumn fx:id="id1" prefWidth="210.0" text="ID NUMBER" />
+                                                                    <TableColumn fx:id="status1" prefWidth="210.0" text="STATUS" />
                                                                 </columns>
                                                             </TableView>
                                                         </children>
                                                     </AnchorPane>
                                                 </content>
                                             </ScrollPane>
-                                            <Button fx:id="delete1" layoutX="14.0" layoutY="527.0"
-                                                    mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0"
-                                                    styleClass="buttonred" text="FIRE "/>
-                                            <Button fx:id="suspend1" layoutX="168.0" layoutY="527.0"
-                                                    mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0"
-                                                    styleClass="buttonorange" text="SUSPEND/ACTIVATE"/>
-                                            <Button fx:id="suspend11" layoutX="322.0" layoutY="527.0"
-                                                    mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0"
-                                                    styleClass="buttonorange" text="SUSPEND/ACTIVATE"/>
+                                            <Button fx:id="delete1" layoutX="14.0" layoutY="527.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0" styleClass="buttonred" text="FIRE " />
+                                            <Button fx:id="suspend1" layoutX="168.0" layoutY="527.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0" styleClass="buttonorange" text="SUSPEND/ACTIVATE" />
+                                            <Button fx:id="suspend11" layoutX="322.0" layoutY="527.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="139.0" styleClass="buttonorange" text="SUSPEND/ACTIVATE" />
                                         </children>
                                     </AnchorPane>
                                 </content>
                             </Tab>
                         </tabs>
                     </TabPane>
-                    <Button fx:id="home" layoutX="26.0" layoutY="297.0" mnemonicParsing="false" prefHeight="66.0"
-                            prefWidth="176.0" styleClass="buttonorange" text="HOME"/>
-                    <Label fx:id="clock" alignment="CENTER" layoutX="42.0" layoutY="133.0" prefHeight="42.0"
-                           prefWidth="145.0" text="00:00:00" textAlignment="CENTER">
+                    <Button fx:id="home" layoutX="26.0" layoutY="297.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="176.0" styleClass="buttonorange" text="HOME" />
+                    <Label fx:id="clock" alignment="CENTER" layoutX="42.0" layoutY="133.0" prefHeight="42.0" prefWidth="145.0" text="00:00:00" textAlignment="CENTER">
                         <font>
-                            <Font size="25.0"/>
+                            <Font size="25.0" />
                         </font>
                     </Label>
                 </children>
             </AnchorPane>
         </children>
         <stylesheets>
-            <URL value="@../styles/buttons.css"/>
-            <URL value="@../styles/panels.css"/>
-            <URL value="@../styles/Login.css"/>
+            <URL value="@../styles/buttons.css" />
+            <URL value="@../styles/panels.css" />
+            <URL value="@../styles/Login.css" />
         </stylesheets>
     </VBox>
 
