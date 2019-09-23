@@ -1,59 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.*?>
 <?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="700.0" prefWidth="1200.0" styleClass="form"
-            xmlns="http://javafx.com/javafx/11.0.1"
-            fx:controller="Controllers.AuthenticationControllers.LoginController">
-    <Hyperlink fx:id="link" layoutX="629.0" layoutY="572.0" prefHeight="34.0" prefWidth="179.0" text="NanotechSoftwares"
-               textFill="#f50707" underline="true">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="panel" prefHeight="700.0" prefWidth="1200.0" styleClass="form" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AuthenticationControllers.LoginController">
+   <MenuBar layoutX="-1.0" layoutY="-3.0" prefHeight="30.0" prefWidth="1200.0">
+      <menus>
+         <Menu mnemonicParsing="false" text="ACCOUNT">
+            <items>
+               <MenuItem fx:id="menuQuit" mnemonicParsing="false" text="QUIT" />
+            </items>
+         </Menu>
+         <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
+            <items>
+               <MenuItem fx:id="abtMenu" mnemonicParsing="false" text="ABOUT THIS SOFTWARE" />
+               <MenuItem fx:id="termsMenu" mnemonicParsing="false" text="TERMS AND CONDITIONS" />
+               <MenuItem fx:id="checkUpdatesMenu" mnemonicParsing="false" text="CHECK FOR UPDATES" />
+               <MenuItem fx:id="documentationMenu" mnemonicParsing="false" text="DOCUMENTATION" />
+               <MenuItem fx:id="reachUsMenu" mnemonicParsing="false" text="REACH US" />
+               <MenuItem fx:id="menuShutDown" mnemonicParsing="false" text="SHUT DOWN" />
+               <MenuItem fx:id="menuRestart" mnemonicParsing="false" text="RESTART SYSTEM" />
+            </items>
+         </Menu>
+      </menus>
+   </MenuBar>
+    <Hyperlink fx:id="link" layoutX="631.0" layoutY="614.0" prefHeight="34.0" prefWidth="179.0" text="NanotechSoftwares" textFill="#f50707" underline="true">
         <font>
-            <Font size="17.0"/>
+            <Font size="17.0" />
         </font>
     </Hyperlink>
-    <Label layoutX="530.0" layoutY="576.0" prefHeight="30.0" prefWidth="92.0" text="Powered by" textFill="#fff4f4">
+    <Label layoutX="532.0" layoutY="618.0" prefHeight="30.0" prefWidth="92.0" text="Powered by" textFill="#fff4f4">
         <font>
-            <Font size="17.0"/>
+            <Font size="17.0" />
         </font>
     </Label>
-    <AnchorPane layoutX="284.0" layoutY="24.0" prefHeight="533.0" prefWidth="626.0" styleClass="forminner">
+    <AnchorPane layoutX="286.0" layoutY="66.0" prefHeight="533.0" prefWidth="626.0" styleClass="forminner">
         <children>
-            <Label fx:id="message" alignment="CENTER" layoutX="64.0" layoutY="61.0" prefHeight="49.0" prefWidth="502.0"
-                   text="testing" textAlignment="CENTER">
+            <Label fx:id="message" alignment="CENTER" layoutX="64.0" layoutY="61.0" prefHeight="49.0" prefWidth="502.0" text="testing" textAlignment="CENTER">
                 <font>
-                    <Font name="FangSong" size="33.0"/>
+                    <Font name="FangSong" size="33.0" />
                 </font>
             </Label>
-            <Label fx:id="clock" alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="120.0"
-                   prefHeight="69.0" prefWidth="613.0" stylesheets="@../styles/Login.css" text="testing2"
-                   textAlignment="CENTER">
+            <Label fx:id="clock" alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="120.0" prefHeight="69.0" prefWidth="613.0" stylesheets="@../styles/Login.css" text="testing2" textAlignment="CENTER">
                 <font>
-                    <Font name="Gabriola" size="57.0"/>
+                    <Font name="Gabriola" size="57.0" />
                 </font>
             </Label>
-            <TextField fx:id="email" alignment="CENTER" layoutX="177.0" layoutY="215.0" prefHeight="49.0"
-                       prefWidth="276.0" promptText="USER NAME/EMAIL" styleClass="textfields" text="admin">
+            <TextField fx:id="email" alignment="CENTER" layoutX="177.0" layoutY="215.0" prefHeight="49.0" prefWidth="276.0" promptText="USER NAME/EMAIL" styleClass="textfields" text="admin">
                 <font>
-                    <Font name="Calibri Light" size="18.0"/>
+                    <Font name="Calibri Light" size="18.0" />
                 </font>
             </TextField>
-            <PasswordField fx:id="password" alignment="CENTER" layoutX="177.0" layoutY="296.0" prefHeight="49.0"
-                           prefWidth="276.0" promptText="PASSWORD" styleClass="textfields" text="admin">
+            <PasswordField fx:id="password" alignment="CENTER" layoutX="177.0" layoutY="296.0" prefHeight="49.0" prefWidth="276.0" promptText="PASSWORD" styleClass="textfields" text="admin">
                 <font>
-                    <Font name="Calibri Light" size="17.0"/>
+                    <Font name="Calibri Light" size="17.0" />
                 </font>
             </PasswordField>
-            <Button fx:id="signup" layoutX="380.0" layoutY="396.0" mnemonicParsing="false" prefHeight="59.0"
-                    prefWidth="130.0" styleClass="buttons" text="SIGN UP"/>
-            <Button fx:id="login" layoutX="112.0" layoutY="396.0" mnemonicParsing="false" prefHeight="59.0"
-                    prefWidth="130.0" styleClass="buttons" text="LOGIN"/>
+            <Button fx:id="signup" layoutX="380.0" layoutY="396.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="130.0" styleClass="buttons" text="SIGN UP" />
+            <Button fx:id="login" layoutX="112.0" layoutY="396.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="130.0" styleClass="buttons" text="LOGIN" />
         </children>
     </AnchorPane>
+   <Button fx:id="exit" layoutX="50.0" layoutY="188.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="130.0" style="-fx-background-color: red;" text="EXIT" />
     <stylesheets>
-        <URL value="@../styles/css.css"/>
-        <URL value="@../styles/Login.css"/>
+        <URL value="@../styles/css.css" />
+        <URL value="@../styles/Login.css" />
     </stylesheets>
     <!--<FontAwesomeIcon fill="WHITE" iconName="CLOSE" layoutX="1004.0" layoutY="18.0" onMouseClicked="#close_app" size="1.5em" stroke="BLACK" />-->
 </AnchorPane>

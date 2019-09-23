@@ -1,12 +1,15 @@
 package Controllers.UserAccountManagementControllers;
 
+import Controllers.IdleMonitor;
 import Controllers.UtilityClass;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
+import javafx.util.Duration;
 import securityandtime.AesCrypto;
 import securityandtime.Security;
 import securityandtime.config;
@@ -107,11 +110,7 @@ public class SettingsController extends UtilityClass implements Initializable {
                     if (!rs.isBeforeFirst()) {
 ////                      rs.close();
 ////                      prep.close();
-                        prep = connection.prepareStatement("INSERT INTO systemsettings (name,type,value)VALUES (?,?,?)");
-                        prep.setString(1, "backup");
-                        prep.setString(2, "security");
-                        prep.setString(1, "STARTUP BACKUP");
-                        prep.executeUpdate();
+                        systemSettingsBackUp();
 
                     } else {
                         preparedStatement = connection.prepareStatement("UPDATE systemsettings SET value=? WHERE name=?");
@@ -131,6 +130,17 @@ public class SettingsController extends UtilityClass implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
+                () -> {
+                    try {
+                        config.login.put("loggedout", true);
+
+                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }, true);
+        idleMonitor.register(panel, Event.ANY);
     }
 
     private void initialiseRadioButtons() throws SQLException {
@@ -152,13 +162,7 @@ public class SettingsController extends UtilityClass implements Initializable {
 
             }
         } else {
-            PreparedStatement preparedStatement1;
-            preparedStatement1 = connection.prepareStatement("INSERT INTO systemsettings (name,type,value)VALUES (?,?,?)");
-            preparedStatement1.setString(1, "backup");
-            preparedStatement1.setString(2, "security");
-            preparedStatement1.setString(3, "STARTUP BACKUP");
-            preparedStatement1.executeUpdate();
-//        preparedStatement1.close();
+            systemSettingsBackUp();
             initialiseRadioButtons();
         }
     }
@@ -237,12 +241,42 @@ public class SettingsController extends UtilityClass implements Initializable {
                 }
 
 //                reload();
+            } else if (resultSet.getString("backupemail").isEmpty()) {
+
+                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+                alert1.setTitle("BACK UP EMAIL SETUP PROCEDURE");
+                alert1.setHeaderText(null);
+                alert1.setContentText("HI...YOU NEED TO SET UP THE BACK UP EMAIL FOR ONLINE BACKUPS");
+                alert1.initOwner(config.panel.get("panel").getScene().getWindow());
+                Optional<ButtonType> option = alert1.showAndWait();
+                if (option.isPresent() && option.get() == ButtonType.OK) {
+                    try {
+                        changeColumn("users", "backupemail");
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "DEFAULT EMAIL", "THIS OPERATION HAS MADE YOUR ACCOUNT YOUR BACK UP EMAIL");
+                    PreparedStatement insertDefaultBackupEmail = connection.prepareStatement("UPDATE users SET backupemail=? WHERE id=? ");
+                    insertDefaultBackupEmail.setString(1, email);
+                    insertDefaultBackupEmail.setInt(2, id);
+                    insertDefaultBackupEmail.execute();
+                    reload();
+                }
+
+//                reload();
             }
+
             if (resultSet.getString("backupemailPassword") == null) {
                 showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "SET PASSWORD FOR BACKUPS", "YOU NEED TO CREATE A BACK UP EMAIL PASSWORD FOR ONLINE BACKUPS TO TAKE PLACE.REMEMBER TO USE YOUR REAL GMAIL PASSWORD");
                 changeColumn("users", "backupemailPassword");
 
+            } else if (resultSet.getString("backupemailPassword").isEmpty()) {
+                showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "SET PASSWORD FOR BACKUPS", "YOU NEED TO CREATE A BACK UP EMAIL PASSWORD FOR ONLINE BACKUPS TO TAKE PLACE.REMEMBER TO USE YOUR REAL GMAIL PASSWORD");
+                changeColumn("users", "backupemailPassword");
+
             }
+
             if (resultSet.getString("passwordhint") == null) {
                 userAccountHintSet.setVisible(true);
             } else if (resultSet.getString("passwordhint").isEmpty()) {

@@ -1,6 +1,6 @@
 package Controllers.ShopControllers;
 
-import Controllers.UserAccountManagementControllers.IdleMonitor;
+import Controllers.IdleMonitor;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;

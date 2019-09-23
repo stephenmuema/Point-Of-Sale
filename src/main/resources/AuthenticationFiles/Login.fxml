@@ -7,18 +7,38 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="700.0" prefWidth="1200.0" styleClass="form"
             xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="Controllers.AuthenticationControllers.LoginController">
-    <Hyperlink fx:id="link" layoutX="629.0" layoutY="572.0" prefHeight="34.0" prefWidth="179.0" text="NanotechSoftwares"
+    <MenuBar layoutX="-1.0" layoutY="-3.0" prefHeight="30.0" prefWidth="1200.0">
+        <menus>
+            <Menu mnemonicParsing="false" text="ACCOUNT">
+                <items>
+                    <MenuItem fx:id="menuQuit" mnemonicParsing="false" text="QUIT"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
+                <items>
+                    <MenuItem fx:id="abtMenu" mnemonicParsing="false" text="ABOUT THIS SOFTWARE"/>
+                    <MenuItem fx:id="termsMenu" mnemonicParsing="false" text="TERMS AND CONDITIONS"/>
+                    <MenuItem fx:id="checkUpdatesMenu" mnemonicParsing="false" text="CHECK FOR UPDATES"/>
+                    <MenuItem fx:id="documentationMenu" mnemonicParsing="false" text="DOCUMENTATION"/>
+                    <MenuItem fx:id="reachUsMenu" mnemonicParsing="false" text="REACH US"/>
+                    <MenuItem fx:id="menuShutDown" mnemonicParsing="false" text="SHUT DOWN"/>
+                    <MenuItem fx:id="menuRestart" mnemonicParsing="false" text="RESTART SYSTEM"/>
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+    <Hyperlink fx:id="link" layoutX="631.0" layoutY="614.0" prefHeight="34.0" prefWidth="179.0" text="NanotechSoftwares"
                textFill="#f50707" underline="true">
         <font>
             <Font size="17.0"/>
         </font>
     </Hyperlink>
-    <Label layoutX="530.0" layoutY="576.0" prefHeight="30.0" prefWidth="92.0" text="Powered by" textFill="#fff4f4">
+    <Label layoutX="532.0" layoutY="618.0" prefHeight="30.0" prefWidth="92.0" text="Powered by" textFill="#fff4f4">
         <font>
             <Font size="17.0"/>
         </font>
     </Label>
-    <AnchorPane layoutX="284.0" layoutY="24.0" prefHeight="533.0" prefWidth="626.0" styleClass="forminner">
+    <AnchorPane layoutX="286.0" layoutY="66.0" prefHeight="533.0" prefWidth="626.0" styleClass="forminner">
         <children>
             <Label fx:id="message" alignment="CENTER" layoutX="64.0" layoutY="61.0" prefHeight="49.0" prefWidth="502.0"
                    text="testing" textAlignment="CENTER">
@@ -51,6 +71,8 @@
                     prefWidth="130.0" styleClass="buttons" text="LOGIN"/>
         </children>
     </AnchorPane>
+    <Button fx:id="exit" layoutX="50.0" layoutY="188.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="130.0"
+            style="-fx-background-color: red;" text="EXIT"/>
     <stylesheets>
         <URL value="@../styles/css.css"/>
         <URL value="@../styles/Login.css"/>

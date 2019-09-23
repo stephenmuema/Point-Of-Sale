@@ -1,7 +1,7 @@
 package Controllers.ShopControllers;
 //made by steve
 import Controllers.BarCodeScanner;
-import Controllers.UserAccountManagementControllers.IdleMonitor;
+import Controllers.IdleMonitor;
 import Controllers.UtilityClass;
 import MasterClasses.StockMaster;
 import javafx.application.Platform;

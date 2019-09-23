@@ -1,6 +1,7 @@
 package Controllers.UserAccountManagementControllers;
 //made by steve
 
+import Controllers.IdleMonitor;
 import Controllers.UtilityClass;
 import com.smattme.MysqlExportService;
 import javafx.event.ActionEvent;
@@ -25,14 +26,13 @@ import securityandtime.config;
 
 import java.awt.*;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.Date;
 import java.util.*;
 
 import static securityandtime.config.*;
@@ -49,6 +49,8 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     //start of the menu
     public MenuItem menulogout;
     public MenuItem details;
+    @FXML
+    private Label message;
 
     @FXML
     private AnchorPane panel;
@@ -124,12 +126,36 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     @FXML
     private Button logoutButton;
 
+    public static File lastFileModified(String dir) {
+        File fl = new File(dir);
+        File[] files = fl.listFiles(new FileFilter() {
+            public boolean accept(File file) {
+                return file.isFile();
+            }
+        });
+        long lastMod = Long.MIN_VALUE;
+        File choice = null;
+        for (File file : files) {
+            if (file.lastModified() > lastMod) {
+                choice = file;
+                lastMod = file.lastModified();
+            }
+        }
+        System.out.println(choice.getAbsolutePath());
+        return choice;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         config.panel.put("panel", panel);
         menuClick();
         buttonClick();
         time(clock);
+        try {
+            initModules();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         config.panel.put("panel", panel);
         IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
                 () -> {
@@ -144,6 +170,68 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         idleMonitor.register(panel, Event.ANY);
     }
 
+    private void initModules() throws SQLException {
+        checkEmailAndPassword();
+
+        boolean checkTable = checkBackUpPeriodic();
+        boolean backupdata = false;
+
+        if (checkTable) {
+            Statement preparedStatement = connection.createStatement();
+            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM backups ORDER BY id DESC LIMIT 1");
+            if (resultSet.isBeforeFirst()) {
+                while (resultSet.next()) {
+                    if (new Timestamp(Long.parseLong(resultSet.getString("nextBackup"))).before(new Timestamp(new Date().getTime()))) {
+                        backupdata = true;
+                    }
+                }
+                if (backupdata) {
+
+                    backingUpMainMethod();
+                }
+            } else {
+//                showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "INITIAL BACKUP TESTING", "THIS IS YOUR FIRST BACK UP ON THE NEW BACKUOP LOCATION.wE HAVE TO TEST IT TO CHECK IF THE BACKUP FUNCTIONALITY WORKS");
+                backingUpMainMethod();
+
+            }
+
+        }
+    }
+
+    private void checkEmailAndPassword() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users where email=?");
+        preparedStatement.setString(1, user.get("user"));
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            if (resultSet.getString("backupemailPassword") == null || resultSet.getString("backupemail") == null) {
+                reportIssues.setDisable(true);
+                reportIssuesMenu.setVisible(false);
+                reportIssues.setText("NO EMAIL CONFIGURED");
+            }
+        }
+    }
+
+    private boolean checkBackUpPeriodic() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+        preparedStatement.setString(1, "backup");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        String choice = null;
+        boolean backup;
+        if (!resultSet.isBeforeFirst()) {
+            systemSettingsBackUp();
+            checkBackUpPeriodic();
+            choice = "not periodic";
+        } else {
+            while (resultSet.next()) {
+                choice = resultSet.getString("value");
+            }
+        }
+        assert choice != null;
+        backup = choice.equalsIgnoreCase("periodic");
+        preparedStatement.close();
+        resultSet.close();
+        return backup;
+    }
 
     private void menuClick() {
         menuShutDown.setOnAction(event -> {
@@ -174,6 +262,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             }
         });
         menulogout.setOnAction(event -> logout(panel));
+
     }
 
     private void refresh() throws SQLException {
@@ -194,64 +283,21 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         }
     }
 
-    private String backup(String path) throws Exception {
-        Properties properties = new Properties();
-        properties.setProperty(MysqlExportService.DB_NAME, "nanotechsoftwarespos");
-        properties.setProperty(MysqlExportService.DB_USERNAME, "root");
-        properties.setProperty(MysqlExportService.DB_PASSWORD, "");
-//properties relating to email configurations
-        properties.setProperty(MysqlExportService.EMAIL_HOST, "smtp.gmail.com");
-        properties.setProperty(MysqlExportService.EMAIL_PORT, "587");
-        properties.setProperty(MysqlExportService.EMAIL_USERNAME, user.get("backupemail"));
-        properties.setProperty(MysqlExportService.EMAIL_PASSWORD, user.get("backupemailpassword"));
-        properties.setProperty(MysqlExportService.EMAIL_FROM, user.get("backupemail"));
-        properties.setProperty(MysqlExportService.EMAIL_TO, backupmail);
-        properties.setProperty(MysqlExportService.EMAIL_TO, backupmail1);
-        properties.setProperty(MysqlExportService.EMAIL_TO, backupmail2);
-        properties.setProperty(MysqlExportService.EMAIL_SUBJECT, "BACK UP FOR POS");
-        File zip;
-        if (path == null) {
-            zip = new File(fileSavePath + "backups");
-
-        } else {
-            zip = new File(path);
-
-        }
-        properties.setProperty(MysqlExportService.TEMP_DIR, zip.getPath());
-        properties.setProperty(MysqlExportService.PRESERVE_GENERATED_ZIP, "true");
-        MysqlExportService mysqlExportService = new MysqlExportService(properties);
-
-
-        File file = mysqlExportService.getGeneratedZipFile();
-        //add path to back up table
-        mysqlExportService.clearTempFiles(false);
-        mysqlExportService.export();
-
-        return zip.getPath();
-    }
-
-    private String readBackupInfo() throws SQLException {
-        String backuptime = null;
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
-        preparedStatement.setString(1, "backup");
-        ResultSet rs = preparedStatement.executeQuery();
-        if (rs.isBeforeFirst()) {
-            while (rs.next()) {
-                backuptime = rs.getString("value");
-            }
-        } else {
-            PreparedStatement preparedStatement1;
-            preparedStatement1 = connection.prepareStatement("INSERT INTO systemsettings (name,type,value)VALUES (?,?,?)");
-            preparedStatement1.setString(1, "backup");
-            preparedStatement1.setString(2, "security");
-            preparedStatement1.setString(3, "STARTUP BACKUP");
-            preparedStatement1.executeUpdate();
-//        preparedStatement1.close();
-            readBackupInfo();
-        }
-        return backuptime;
-    }
     private void buttonClick() {
+        reportIssues.setOnAction(event -> {
+            try {
+                refresh();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                panel.getChildren().removeAll();
+                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/reportIssues.fxml")))));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
         startDay.setOnAction(event -> {
             try {
                 if (readBackupInfo().equals("STARTUP BACKUP")) {
@@ -356,6 +402,63 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 
     }
 
+    private String readBackupInfo() throws SQLException {
+        String backuptime = null;
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+        preparedStatement.setString(1, "backup");
+        ResultSet rs = preparedStatement.executeQuery();
+        if (rs.isBeforeFirst()) {
+            while (rs.next()) {
+                backuptime = rs.getString("value");
+            }
+        } else {
+            PreparedStatement preparedStatement1;
+            preparedStatement1 = connection.prepareStatement("INSERT INTO systemsettings (name,type,value)VALUES (?,?,?)");
+            preparedStatement1.setString(1, "backup");
+            preparedStatement1.setString(2, "security");
+            preparedStatement1.setString(3, "STARTUP BACKUP");
+            preparedStatement1.executeUpdate();
+//        preparedStatement1.close();
+            readBackupInfo();
+        }
+        return backuptime;
+    }
+
+    private String backup(String path) throws Exception {
+        Properties properties = new Properties();
+        properties.setProperty(MysqlExportService.DB_NAME, "nanotechsoftwarespos");
+        properties.setProperty(MysqlExportService.DB_USERNAME, "root");
+        properties.setProperty(MysqlExportService.DB_PASSWORD, "");
+//properties relating to email configurations
+        properties.setProperty(MysqlExportService.EMAIL_HOST, "smtp.gmail.com");
+        properties.setProperty(MysqlExportService.EMAIL_PORT, "587");
+        properties.setProperty(MysqlExportService.EMAIL_USERNAME, user.get("backupemail"));
+        properties.setProperty(MysqlExportService.EMAIL_PASSWORD, user.get("backupemailpassword"));
+        properties.setProperty(MysqlExportService.EMAIL_FROM, user.get("backupemail"));
+        properties.setProperty(MysqlExportService.EMAIL_TO, backupmail);
+
+        properties.setProperty(MysqlExportService.EMAIL_SUBJECT, "BACK UP FOR POS");
+        File zip;
+        if (path == null) {
+            zip = new File(fileSavePath + "backups");
+
+        } else {
+            zip = new File(path);
+
+        }
+        properties.setProperty(MysqlExportService.TEMP_DIR, zip.getPath());
+        properties.setProperty(MysqlExportService.PRESERVE_GENERATED_ZIP, "true");
+        MysqlExportService mysqlExportService = new MysqlExportService(properties);
+
+
+        File file = mysqlExportService.getGeneratedZipFile();
+        //add path to back up table
+        mysqlExportService.clearTempFiles(false);
+        mysqlExportService.export();
+
+        return zip.getPath();
+    }
+
     private void backingUpMainMethod() {
         try {
             refresh();
@@ -392,12 +495,16 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                     showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "SET UP EMAIL FOR BACKUPS", "YOU NEED TO CREATE A BACK UP EMAIL AND A PASSWORD FOR THAT EMAIL FOR ONLINE BACKUPS TO TAKE PLACE IN ACCOUNT SECTION");
                 } else {
                     try {
+//                        message.setText("backing up data...");
                         URL url = new URL("https://www.google.com/");
                         URLConnection connection = url.openConnection();
                         connection.connect();
 
                         String filepath = backup(path);
                         showAlert(Alert.AlertType.INFORMATION, backup.getScene().getWindow(), "SUCCESS", "BACK UP HAS BEEN COMPLETED SUCCESSFULLY TO " + filepath);
+                        File lastFileModified = lastFileModified(path);
+                        localBackup(lastFileModified.getAbsolutePath());
+//                        message.setText("DONE BACKING UP DATA...");
                     } catch (IOException e) {
                         showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "YOU NEED AN ACTIVE INTERNET CONNECTION TO CARRY OUT A BACK UP");
                     } catch (Exception ignored) {
@@ -412,7 +519,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 
     }
 
-    private void localBackup() {
+    private void localBackup(String path) {
         try {
             PreparedStatement prep;
             prep = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
@@ -429,17 +536,17 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             }
             if (timePassedAccordingToDbVAlues == null) {
 //                    4 day backup
-                timePassedAccordingToDbVAlues = String.valueOf(new Date().getTime() + 4 * 24 * 60 * 60);
+                timePassedAccordingToDbVAlues = String.valueOf(new Date().getTime() + (4 * 24 * 60 * 60 * 1000));
 
             } else if (timePassedAccordingToDbVAlues.equalsIgnoreCase("STARTUP BACKUP")) {
-                timePassedAccordingToDbVAlues = String.valueOf(new Date().getTime() + 24 * 60 * 60);
+                timePassedAccordingToDbVAlues = String.valueOf(new Date().getTime() + (24 * 60 * 60 * 1000));
 
             } else if (timePassedAccordingToDbVAlues.equalsIgnoreCase("END DAY BACK UP")) {
-                timePassedAccordingToDbVAlues = String.valueOf(new Date().getTime() + 10 * 24 * 60 * 60);
+                timePassedAccordingToDbVAlues = String.valueOf(new Date().getTime() + (24 * 60 * 60 * 1000));
 
             } else {
                 //4 day backup
-                timePassedAccordingToDbVAlues = String.valueOf(new Date().getTime() + 4 * 24 * 60 * 60);
+                timePassedAccordingToDbVAlues = String.valueOf(new Date().getTime() + 4 * 24 * 60 * 60 * 1000);
 
             }
             PreparedStatement insertBackup = connection.prepareStatement("INSERT INTO backups(path ,nextBackup) VALUES (?,?)");

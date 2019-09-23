@@ -1,6 +1,6 @@
 package Controllers.ShopControllers;
 
-import Controllers.UserAccountManagementControllers.IdleMonitor;
+import Controllers.IdleMonitor;
 import Controllers.UtilityClass;
 import MasterClasses.EmployeeMaster;
 import MasterClasses.SalesMaster;

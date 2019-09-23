@@ -6,7 +6,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
-import static securityandtime.config.throwables;
+import static securityandtime.config.*;
 
 public class AesCrypto {
 
@@ -93,6 +93,10 @@ public class AesCrypto {
 
         }
         return new String(original);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(encrypt(encryptionkey, initVector, "almond@gmail.com::1567493118::156749311"));
     }
 
 

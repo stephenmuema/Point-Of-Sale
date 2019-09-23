@@ -1,5 +1,6 @@
 package Controllers.AuthenticationControllers;
 //made by steve
+
 import Controllers.UtilityClass;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -20,20 +21,21 @@ import securityandtime.AesCrypto;
 import securityandtime.BoardListener;
 import securityandtime.config;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.mail.MessagingException;
 import java.awt.*;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import java.util.Objects;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 import static securityandtime.config.*;
@@ -236,7 +238,7 @@ public class LicensingController extends UtilityClass implements Initializable {
 //            System.out.println(decryptedString.split(":::")[2]);//expiry
 //            System.out.println(decryptedString.split(":::")[3]);//date of creation
             if (firstTimeInstallation) {
-                mailSend("WELCOME", "WELCOME NEW USER", decryptedString.split(":::")[1], from, "text/plain");
+                mailSend("WELCOME", "WELCOME NEW USER", decryptedString.split(":::")[1], from, "text/plain", mailPassword);
             }
             try {
                 FileOutputStream fileOutputStream = null;
@@ -267,7 +269,7 @@ public class LicensingController extends UtilityClass implements Initializable {
                     String ip = ipv.getHostAddress();
                     String mac = GetNetworkAddress.getMacAddress(ipv);
                     String name = System.getProperty("user.name");
-                    mailSend("CULPRIT IP : " + ip + "\n" + "CULPRIT MAC ADDRESS : " + mac + "\n" + "CULPRIT NAME : " + name + "\n .THE ABOVE USER TRIED TO USE THE TEST LICENSE", " USE OF DEVELOPMENT LICENSE ", "muemasnyamai@gmail.com,developers@nanotechsoftwares.co.ke,muemasn@outlook.com,muemasn@nanotechsoftwares.co.ke", from, "text/plain");
+                    mailSend("CULPRIT IP : " + ip + "\n" + "CULPRIT MAC ADDRESS : " + mac + "\n" + "CULPRIT NAME : " + name + "\n .THE ABOVE USER TRIED TO USE THE TEST LICENSE", " USE OF DEVELOPMENT LICENSE ", "muemasnyamai@gmail.com,developers@nanotechsoftwares.co.ke,muemasn@outlook.com,muemasn@nanotechsoftwares.co.ke", from, "text/plain", mailPassword);
 
                     FileUtils.forceDelete(new File(licensepath));
                     showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "TESTING LICENSE", "USE OF A TESTING LICENSE VIOLATES OUR TERMS AND CONDITIONS" + name + "!!RELEVANT AUTHORITIES HAVE BEEN NOTIFIED.PLEASE PURCHASE A LICENSE TO AVOID DATA CORRUPTION");
@@ -300,6 +302,10 @@ public class LicensingController extends UtilityClass implements Initializable {
 
                     loadLogin();
                 }
+                Path path = Paths.get(fileSavePath + "licenses");
+
+                //set hidden attribute
+                Files.setAttribute(path, "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
 
 //            todo check if a viable license has been created
 
@@ -312,32 +318,6 @@ public class LicensingController extends UtilityClass implements Initializable {
 
     }
 
-    private void mailSend(String text, String subject, String to, String from, String type) throws MessagingException {
-        Properties props = new Properties();
-
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.socketFactory.class",
-                "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "587");
-        Session session = Session.getDefaultInstance(props,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(from, mailPassword);
-                    }
-                });
-        session.setDebug(true);
-        Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(from));
-
-        InternetAddress[] parse = InternetAddress.parse(to, true);
-        message.setRecipients(javax.mail.Message.RecipientType.TO, parse);
-        message.setSubject(subject);
-        message.setContent(text, type);
-        Transport.send(message);
-
-    }
 
 
     private void loadLogin() {

@@ -1,6 +1,6 @@
-package Controllers.UserAccountManagementControllers;
+package Controllers;
 //made by steve
-import Controllers.UtilityClass;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

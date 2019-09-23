@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -38,8 +39,25 @@ import static securityandtime.config.site;
 //made by steve
 public class LoginController extends UtilityClass implements Initializable {
 
-    public Label clock;
-    public String emailSubmit, pass;
+    @FXML
+    private Label clock;
+    private String emailSubmit, pass;
+    @FXML
+    private MenuItem menuQuit;
+    @FXML
+    private MenuItem abtMenu;
+    @FXML
+    private MenuItem termsMenu;
+    @FXML
+    private MenuItem checkUpdatesMenu;
+    @FXML
+    private MenuItem documentationMenu;
+    @FXML
+    private MenuItem reachUsMenu;
+    @FXML
+    private MenuItem menuShutDown;
+    @FXML
+    private MenuItem menuRestart;
     @FXML
     Hyperlink link;
     @FXML
@@ -52,6 +70,9 @@ public class LoginController extends UtilityClass implements Initializable {
     private
     ImageView imageView;
     @FXML
+    private
+    Button exit;
+    @FXML
     private AnchorPane panel;
     @FXML
     private Label message;
@@ -59,7 +80,7 @@ public class LoginController extends UtilityClass implements Initializable {
     private ResultSet resultSet;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//display different messages
+        menuclick();
         if (config.login.containsKey("loggedout")) {
             message.setText("YOU ARE LOGGED OUT ");
 //            destroy session variables
@@ -83,6 +104,10 @@ public class LoginController extends UtilityClass implements Initializable {
         enterpressed();
     }
 
+    private void menuclick() {
+
+    }
+
     private void enterpressed() {
         email.setOnKeyPressed(event -> {
             KeyCode keyCode = event.getCode();
@@ -98,9 +123,8 @@ public class LoginController extends UtilityClass implements Initializable {
         });
     }
 
-    //
-//method to handle button clicks
     private void buttonClick() {
+        exit.setOnAction(event -> exit());
         signup.setOnMousePressed(new EventHandler<MouseEvent>() {
             //            got to sign up page
             @Override

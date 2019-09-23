@@ -14,9 +14,11 @@ import securityandtime.AesCrypto;
 import securityandtime.CheckConn;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Connection;
@@ -130,7 +132,31 @@ public class Launcher extends Application {
         boolean exists = file.exists();
 
         if (exists) {
-//            GO TO SPLASHSCREEN
+            if (!file.isHidden()) {
+                Path path = Paths.get(fileSavePath + "licenses");
+
+                //set hidden attribute
+                Files.setAttribute(path, "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
+
+                File fl = new File(fileSavePath + "licenses");
+                File[] files = fl.listFiles(new FileFilter() {
+                    public boolean accept(File file) {
+                        return file.isFile();
+                    }
+                });
+                long lastMod = Long.MIN_VALUE;
+                File choice = null;
+                for (File f : files) {
+                    if (!f.isHidden()) {
+                        Path pathf = Paths.get(f.getAbsolutePath());
+
+                        Files.setAttribute(pathf, "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
+
+                    }
+                }
+
+
+            }
             FileInputStream fileInputStream = new FileInputStream(licensepath);
 
             byte[] fileContent = new byte[(int) file.length()];

@@ -1,6 +1,6 @@
 package Controllers.chats;
 
-import Controllers.UserAccountManagementControllers.IdleMonitor;
+import Controllers.IdleMonitor;
 import Controllers.UtilityClass;
 import MasterClasses.ChatMaster;
 import MasterClasses.OnlineUsersMaster;

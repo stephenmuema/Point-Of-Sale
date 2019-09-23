@@ -7,29 +7,64 @@
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="700.0" prefWidth="1200.0"
-            xmlns="http://javafx.com/javafx/1" fx:controller="Controllers.CarWashControllers.CarwashController">
+            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Controllers.CarWashControllers.CarwashController">
     <VBox>
         <children>
             <MenuBar>
                 <menus>
-                    <Menu mnemonicParsing="false" text="Account">
+                    <Menu mnemonicParsing="false" text="ACCOUNT">
                         <items>
-                            <MenuItem fx:id="logoutMenu" mnemonicParsing="false" text="Log out"/>
-                            <MenuItem fx:id="exitMenu" mnemonicParsing="false" text="Quit"/>
-                            <MenuItem fx:id="accountdetailsMenu" mnemonicParsing="false" text="Account Details"/>
+                            <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS"/>
+                            <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT"/>
+                            <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER"/>
+                            <MenuItem fx:id="menuQuit" mnemonicParsing="false" text="QUIT"/>
                         </items>
                     </Menu>
-                    <Menu mnemonicParsing="false" text="Short Cuts">
+                    <Menu mnemonicParsing="false" text="DATABASE">
                         <items>
-                            <MenuItem fx:id="CreatorsMenu" mnemonicParsing="false" text="Creators"/>
-                            <MenuItem fx:id="helpMenu" mnemonicParsing="false" text="Help"/>
+                            <MenuItem fx:id="backupMenu" mnemonicParsing="false" text="BACKUP"/>
+                            <MenuItem fx:id="retrieveBackupMenu" mnemonicParsing="false" text="RETRIEVE BACKUP"/>
+                            <MenuItem fx:id="viewBackupsMenu" mnemonicParsing="false" text="VIEW BACKUPS"/>
                         </items>
                     </Menu>
-                    <Menu mnemonicParsing="false" text="Panel">
+                    <Menu mnemonicParsing="false" text="SHIFTS">
                         <items>
-                            <MenuItem fx:id="stores" mnemonicParsing="false" text="Stores"/>
-                            <MenuItem fx:id="stocks" mnemonicParsing="false" text="Stock management"/>
-                            <MenuItem mnemonicParsing="false" text="Audits"/>
+                            <MenuItem fx:id="startDayMenu" mnemonicParsing="false" text="START DAY"/>
+                            <MenuItem fx:id="endDayMenu" mnemonicParsing="false" text="END DAY"/>
+                            <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION"/>
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="SYSTEM ">
+                        <items>
+                            <MenuItem fx:id="reportIssuesMenu" mnemonicParsing="false" text="REPORT ISSUES"/>
+                            <MenuItem fx:id="restartServerMenu" mnemonicParsing="false" text="RESTART SERVER"/>
+                            <MenuItem fx:id="troubleShootMenu" mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
+                        <items>
+                            <MenuItem fx:id="abtMenu" mnemonicParsing="false" text="ABOUT THIS SOFTWARE"/>
+                            <MenuItem fx:id="termsMenu" mnemonicParsing="false" text="TERMS AND CONDITIONS"/>
+                            <MenuItem fx:id="checkUpdatesMenu" mnemonicParsing="false" text="CHECK FOR UPDATES"/>
+                            <MenuItem fx:id="documentationMenu" mnemonicParsing="false" text="DOCUMENTATION"/>
+                            <MenuItem fx:id="reachUsMenu" mnemonicParsing="false" text="REACH US"/>
+                            <MenuItem fx:id="menuShutDown" mnemonicParsing="false" text="SHUT DOWN"/>
+                            <MenuItem fx:id="menuRestart" mnemonicParsing="false" text="RESTART SYSTEM"/>
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="NAVIGATION">
+                        <items>
+                            <MenuItem fx:id="staffMenu" mnemonicParsing="false" text="STAFF"/>
+                            <MenuItem fx:id="carWashMenu" mnemonicParsing="false" text="CAR WASH"/>
+                            <MenuItem fx:id="inventoryMenu" mnemonicParsing="false" text="INVENTORY"/>
+                            <MenuItem fx:id="mrMenu" mnemonicParsing="false" text="SUPPLIERS"/>
+                            <MenuItem fx:id="auditsMenu" mnemonicParsing="false" text="AUDITS"/>
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="INVENTORY">
+                        <items>
+                            <MenuItem fx:id="generateReportsMenu" mnemonicParsing="false" text="GENERATE REPORTS"/>
+                            <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
                         </items>
                     </Menu>
                 </menus>
@@ -40,8 +75,7 @@
                     <AnchorPane styleClass="subPanel">
                         <children>
                             <Label fx:id="clock" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0"
-                                   layoutY="241.0"
-                                   prefHeight="66.0" prefWidth="226.0" text="time">
+                                   layoutY="241.0" prefHeight="66.0" prefWidth="226.0" text="time">
                                 <font>
                                     <Font name="Gabriola" size="44.0"/>
                                 </font>
@@ -58,8 +92,7 @@
                                 </textFill>
                             </Label>
                             <Button fx:id="home" layoutX="23.0" layoutY="439.0" mnemonicParsing="false"
-                                    prefHeight="66.0"
-                                    prefWidth="206.0" styleClass="buttongreen" text="HOME"/>
+                                    prefHeight="66.0" prefWidth="206.0" styleClass="buttongreen" text="HOME"/>
                             <Label fx:id="cash" layoutX="97.0" layoutY="92.0" prefHeight="51.0" prefWidth="104.0"
                                    text="cash"/>
                         </children>
@@ -68,15 +101,13 @@
                                 styleClass="mainPanel">
                         <children>
                             <Label alignment="CENTER" layoutX="332.0" layoutY="-13.0" style="&#10;"
-                                   text="CAR WASH PANEL"
-                                   textAlignment="CENTER" textFill="WHITE" wrapText="false">
+                                   text="CAR WASH PANEL" textAlignment="CENTER" textFill="WHITE" wrapText="false">
                                 <font>
                                     <Font name="FangSong" size="37.0" fx:id="x1"/>
                                 </font>
                             </Label>
                             <TabPane fx:id="tabpane" layoutX="14.0" layoutY="30.0" pickOnBounds="false"
-                                     prefHeight="614.0"
-                                     prefWidth="878.0" tabClosingPolicy="UNAVAILABLE">
+                                     prefHeight="614.0" prefWidth="878.0" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
                                     <Tab text="DOWNLOAD LISTS">
                                         <content>
@@ -101,8 +132,7 @@
                                                     </Button>
                                                     <Label alignment="CENTER" layoutX="229.0" layoutY="36.0"
                                                            prefHeight="27.0" prefWidth="344.0"
-                                                           text="Export your operations"
-                                                           textFill="WHITE">
+                                                           text="Export your operations" textFill="WHITE">
                                                         <font>
                                                             <Font size="18.0"/>
                                                         </font>
@@ -120,12 +150,10 @@
                                                                 prefWidth="865.0">
                                                         <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0"
-                                                                        prefHeight="496.0"
-                                                                        prefWidth="862.0">
+                                                                        prefHeight="496.0" prefWidth="862.0">
                                                                 <children>
                                                                     <TableView fx:id="tab" layoutY="-1.0"
-                                                                               prefHeight="498.0"
-                                                                               prefWidth="861.0">
+                                                                               prefHeight="498.0" prefWidth="861.0">
                                                                         <placeholder>
                                                                             <Label text=""/>
                                                                         </placeholder>

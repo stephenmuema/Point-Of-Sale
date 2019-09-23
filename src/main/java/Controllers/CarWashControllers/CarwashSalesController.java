@@ -1,7 +1,7 @@
 package Controllers.CarWashControllers;
 //deals with cr wash cashiers
 
-import Controllers.UserAccountManagementControllers.IdleMonitor;
+import Controllers.IdleMonitor;
 import Controllers.UtilityClass;
 import MasterClasses.CarWashMaster;
 import javafx.application.Platform;

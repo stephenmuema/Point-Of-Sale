@@ -1,7 +1,7 @@
 package Controllers.ShopControllers;
 
+import Controllers.IdleMonitor;
 import Controllers.SuperClass;
-import Controllers.UserAccountManagementControllers.IdleMonitor;
 import Controllers.UtilityClass;
 import MasterClasses.CartMaster;
 import javafx.animation.Animation;

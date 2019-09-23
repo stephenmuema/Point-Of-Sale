@@ -17,6 +17,9 @@ import securityandtime.CheckConn;
 import securityandtime.config;
 
 import javax.imageio.ImageIO;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,12 +27,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 
 import static securityandtime.config.*;
 
@@ -123,6 +124,33 @@ public class UtilityClass {
         return this;
     }
 
+    public void mailSend(String text, String subject, String to, String from, String type, String password) throws MessagingException {
+        Properties props = new Properties();
+
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "587");
+        Session session = Session.getDefaultInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(from, password);
+                    }
+                });
+        session.setDebug(true);
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(from));
+
+        InternetAddress[] parse = InternetAddress.parse(to, true);
+        message.setRecipients(javax.mail.Message.RecipientType.TO, parse);
+        message.setSubject(subject);
+        message.setContent(text, type);
+        Transport.send(message);
+
+    }
+
     public void time(Label clock) {
         Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             String mins = null, hrs = null, secs = null, pmam = null;
@@ -197,6 +225,17 @@ public class UtilityClass {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.showAndWait();
+    }
+
+    public void systemSettingsBackUp() throws SQLException {
+        PreparedStatement preparedStatement1;
+        preparedStatement1 = connection.prepareStatement("INSERT INTO systemsettings (name,type,value)VALUES (?,?,?)");
+        preparedStatement1.setString(1, "backup");
+        preparedStatement1.setString(2, "security");
+        preparedStatement1.setString(3, "STARTUP BACKUP");
+        preparedStatement1.executeUpdate();
+//        preparedStatement1.close();
+
     }
     public static void restart() throws RuntimeException, IOException {
         String restartCommand;

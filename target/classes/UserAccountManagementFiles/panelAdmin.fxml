@@ -64,9 +64,9 @@
             </Menu>
         </MenuBar>
         <AnchorPane id="Content" prefHeight="677.0" prefWidth="1165.0" styleClass="mainPanel" stylesheets="@../styles/buttons.css">
-            <Label alignment="CENTER" layoutX="495.0" layoutY="25.0" prefHeight="49.0" prefWidth="311.0" style="&#10;" text="ADMIN PANEL" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="472.0" layoutY="37.0" prefHeight="25.0" prefWidth="311.0" style="&#10;" text="ADMIN PANEL" textAlignment="CENTER" textFill="WHITE">
                 <font>
-                    <Font size="31.0" />
+                    <Font size="22.0" />
                 </font>
             </Label>
             <Button fx:id="employees" layoutX="81.0" layoutY="74.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="STAFF PANEL">
@@ -166,6 +166,11 @@
                     <Font name="Gabriola" size="28.0" />
                 </font>
             </Button>
+         <Label fx:id="message" alignment="CENTER" layoutX="472.0" layoutY="5.0" prefHeight="36.0" prefWidth="415.0" style="&#10;" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font size="22.0" />
+            </font>
+         </Label>
         </AnchorPane>
         <stylesheets>
             <URL value="@../styles/css.css" />

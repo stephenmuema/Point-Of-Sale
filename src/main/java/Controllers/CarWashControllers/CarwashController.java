@@ -1,30 +1,28 @@
 package Controllers.CarWashControllers;
 
-import Controllers.UserAccountManagementControllers.IdleMonitor;
+import Controllers.IdleMonitor;
 import Controllers.UtilityClass;
 import MasterClasses.CarWashMaster;
-import com.itextpdf.text.Font;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import securityandtime.config;
 
@@ -36,11 +34,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.*;
 import java.util.Collections;
@@ -48,7 +44,8 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import static securityandtime.config.*;
+import static securityandtime.config.host;
+import static securityandtime.config.user;
 
 public class CarwashController extends UtilityClass implements Initializable {
     @FXML
@@ -77,20 +74,60 @@ public class CarwashController extends UtilityClass implements Initializable {
     public TableColumn<CarWashMaster, String> operator;
     @FXML
     public TableColumn<CarWashMaster, String> payout;
+
+
     @FXML
-    public MenuItem stores;
+    private MenuItem details;
     @FXML
-    public MenuItem stocks;
+    private MenuItem menulogout;
     @FXML
-    public MenuItem logoutMenu;
+    private MenuItem license;
     @FXML
-    public MenuItem exitMenu;
+    private MenuItem backupMenu;
     @FXML
-    public MenuItem accountdetailsMenu;
+    private MenuItem startDayMenu;
     @FXML
-    public MenuItem helpMenu;
+    private MenuItem endDayMenu;
     @FXML
-    public MenuItem CreatorsMenu;
+    private MenuItem reportIssuesMenu;
+    @FXML
+    private MenuItem restartServerMenu;
+    @FXML
+    private MenuItem troubleShootMenu;
+    @FXML
+    private Menu helpMenu;
+    @FXML
+    private MenuItem abtMenu;
+    @FXML
+    private MenuItem termsMenu;
+    @FXML
+    private MenuItem checkUpdatesMenu;
+    @FXML
+    private MenuItem reachUsMenu;
+    @FXML
+    private MenuItem generateReportsMenu;
+    @FXML
+    private MenuItem documentationMenu;
+    @FXML
+    private MenuItem menuQuit;
+    @FXML
+    private MenuItem viewBackupsMenu;
+    @FXML
+    private MenuItem retrieveBackupMenu;
+    @FXML
+    private MenuItem staffMenu;
+    @FXML
+    private MenuItem carWashMenu;
+    @FXML
+    private MenuItem inventoryMenu;
+    @FXML
+    private MenuItem mrMenu;
+    @FXML
+    private MenuItem auditsMenu;
+    @FXML
+    private MenuItem menuShutDown;
+    @FXML
+    private MenuItem menuRestart;
     private int moneyPaid;
     @FXML
     private TableView<CarWashMaster> tab;
@@ -524,58 +561,34 @@ public class CarwashController extends UtilityClass implements Initializable {
 
 
     private void menuclick() {
-
-        stocks.setOnAction(event -> {
-            panel.getChildren().removeAll();
+        menuShutDown.setOnAction(event -> {
             try {
-                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/stocks.fxml")))));
+                shutdown();
+            } catch (IOException e) {
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "UNSUPPORTED OS", "YOUR OS IS UNSUPPORTED BY THIS ACTION");
+            }
+        });
+        menuRestart.setOnAction(event -> {
+            try {
+                restart();
+            } catch (IOException e) {
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "UNSUPPORTED OS", "YOUR OS IS UNSUPPORTED BY THIS ACTION");
+            }
+        });
+        menuQuit.setOnAction(event -> exit());
+        details.setOnAction(event -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/Settings.fxml"));
+            try {
+                Parent parent = fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
-
-
-        helpMenu.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    Desktop.getDesktop().browse(new URL(sitedocs).toURI());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        CreatorsMenu.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    Desktop.getDesktop().browse(new URL(site).toURI());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        exitMenu.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Platform.exit();
-                System.exit(1);
-            }
-        });
-        logoutMenu.setOnAction(event -> {
-            config.login.put("loggedout", true);
-
-            try {
-                System.out.println("logging out");
-                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+        menulogout.setOnAction(event -> logout(panel));
     }
 
     public AnchorPane getParents() {
@@ -700,68 +713,12 @@ public class CarwashController extends UtilityClass implements Initializable {
         return this;
     }
 
-    public MenuItem getStores() {
-        return stores;
-    }
 
-    public CarwashController setStores(MenuItem stores) {
-        this.stores = stores;
-        return this;
-    }
-
-    public MenuItem getStocks() {
-        return stocks;
-    }
-
-    public CarwashController setStocks(MenuItem stocks) {
-        this.stocks = stocks;
-        return this;
-    }
-
-    public MenuItem getLogoutMenu() {
-        return logoutMenu;
-    }
-
-    public CarwashController setLogoutMenu(MenuItem logoutMenu) {
-        this.logoutMenu = logoutMenu;
-        return this;
-    }
-
-    public MenuItem getExitMenu() {
-        return exitMenu;
-    }
-
-    public CarwashController setExitMenu(MenuItem exitMenu) {
-        this.exitMenu = exitMenu;
-        return this;
-    }
-
-    public MenuItem getAccountdetailsMenu() {
-        return accountdetailsMenu;
-    }
-
-    public CarwashController setAccountdetailsMenu(MenuItem accountdetailsMenu) {
-        this.accountdetailsMenu = accountdetailsMenu;
-        return this;
-    }
 
     public MenuItem getHelpMenu() {
         return helpMenu;
     }
 
-    public CarwashController setHelpMenu(MenuItem helpMenu) {
-        this.helpMenu = helpMenu;
-        return this;
-    }
-
-    public MenuItem getCreatorsMenu() {
-        return CreatorsMenu;
-    }
-
-    public CarwashController setCreatorsMenu(MenuItem creatorsMenu) {
-        CreatorsMenu = creatorsMenu;
-        return this;
-    }
 
     public int getMoneyPaid() {
         return moneyPaid;
@@ -856,6 +813,245 @@ public class CarwashController extends UtilityClass implements Initializable {
 
     public CarwashController setTime(String time) {
         this.time = time;
+        return this;
+    }
+
+    public MenuItem getDetails() {
+        return details;
+    }
+
+    public CarwashController setDetails(MenuItem details) {
+        this.details = details;
+        return this;
+    }
+
+    public MenuItem getMenulogout() {
+        return menulogout;
+    }
+
+    public CarwashController setMenulogout(MenuItem menulogout) {
+        this.menulogout = menulogout;
+        return this;
+    }
+
+    public MenuItem getLicense() {
+        return license;
+    }
+
+    public CarwashController setLicense(MenuItem license) {
+        this.license = license;
+        return this;
+    }
+
+    public MenuItem getBackupMenu() {
+        return backupMenu;
+    }
+
+    public CarwashController setBackupMenu(MenuItem backupMenu) {
+        this.backupMenu = backupMenu;
+        return this;
+    }
+
+    public MenuItem getStartDayMenu() {
+        return startDayMenu;
+    }
+
+    public CarwashController setStartDayMenu(MenuItem startDayMenu) {
+        this.startDayMenu = startDayMenu;
+        return this;
+    }
+
+    public MenuItem getEndDayMenu() {
+        return endDayMenu;
+    }
+
+    public CarwashController setEndDayMenu(MenuItem endDayMenu) {
+        this.endDayMenu = endDayMenu;
+        return this;
+    }
+
+    public MenuItem getReportIssuesMenu() {
+        return reportIssuesMenu;
+    }
+
+    public CarwashController setReportIssuesMenu(MenuItem reportIssuesMenu) {
+        this.reportIssuesMenu = reportIssuesMenu;
+        return this;
+    }
+
+    public MenuItem getRestartServerMenu() {
+        return restartServerMenu;
+    }
+
+    public CarwashController setRestartServerMenu(MenuItem restartServerMenu) {
+        this.restartServerMenu = restartServerMenu;
+        return this;
+    }
+
+    public MenuItem getTroubleShootMenu() {
+        return troubleShootMenu;
+    }
+
+    public CarwashController setTroubleShootMenu(MenuItem troubleShootMenu) {
+        this.troubleShootMenu = troubleShootMenu;
+        return this;
+    }
+
+    public CarwashController setHelpMenu(Menu helpMenu) {
+        this.helpMenu = helpMenu;
+        return this;
+    }
+
+    public MenuItem getAbtMenu() {
+        return abtMenu;
+    }
+
+    public CarwashController setAbtMenu(MenuItem abtMenu) {
+        this.abtMenu = abtMenu;
+        return this;
+    }
+
+    public MenuItem getTermsMenu() {
+        return termsMenu;
+    }
+
+    public CarwashController setTermsMenu(MenuItem termsMenu) {
+        this.termsMenu = termsMenu;
+        return this;
+    }
+
+    public MenuItem getCheckUpdatesMenu() {
+        return checkUpdatesMenu;
+    }
+
+    public CarwashController setCheckUpdatesMenu(MenuItem checkUpdatesMenu) {
+        this.checkUpdatesMenu = checkUpdatesMenu;
+        return this;
+    }
+
+    public MenuItem getReachUsMenu() {
+        return reachUsMenu;
+    }
+
+    public CarwashController setReachUsMenu(MenuItem reachUsMenu) {
+        this.reachUsMenu = reachUsMenu;
+        return this;
+    }
+
+    public MenuItem getGenerateReportsMenu() {
+        return generateReportsMenu;
+    }
+
+    public CarwashController setGenerateReportsMenu(MenuItem generateReportsMenu) {
+        this.generateReportsMenu = generateReportsMenu;
+        return this;
+    }
+
+    public MenuItem getDocumentationMenu() {
+        return documentationMenu;
+    }
+
+    public CarwashController setDocumentationMenu(MenuItem documentationMenu) {
+        this.documentationMenu = documentationMenu;
+        return this;
+    }
+
+    public MenuItem getMenuQuit() {
+        return menuQuit;
+    }
+
+    public CarwashController setMenuQuit(MenuItem menuQuit) {
+        this.menuQuit = menuQuit;
+        return this;
+    }
+
+    public MenuItem getViewBackupsMenu() {
+        return viewBackupsMenu;
+    }
+
+    public CarwashController setViewBackupsMenu(MenuItem viewBackupsMenu) {
+        this.viewBackupsMenu = viewBackupsMenu;
+        return this;
+    }
+
+    public MenuItem getRetrieveBackupMenu() {
+        return retrieveBackupMenu;
+    }
+
+    public CarwashController setRetrieveBackupMenu(MenuItem retrieveBackupMenu) {
+        this.retrieveBackupMenu = retrieveBackupMenu;
+        return this;
+    }
+
+    public MenuItem getStaffMenu() {
+        return staffMenu;
+    }
+
+    public CarwashController setStaffMenu(MenuItem staffMenu) {
+        this.staffMenu = staffMenu;
+        return this;
+    }
+
+    public MenuItem getCarWashMenu() {
+        return carWashMenu;
+    }
+
+    public CarwashController setCarWashMenu(MenuItem carWashMenu) {
+        this.carWashMenu = carWashMenu;
+        return this;
+    }
+
+    public MenuItem getInventoryMenu() {
+        return inventoryMenu;
+    }
+
+    public CarwashController setInventoryMenu(MenuItem inventoryMenu) {
+        this.inventoryMenu = inventoryMenu;
+        return this;
+    }
+
+    public MenuItem getMrMenu() {
+        return mrMenu;
+    }
+
+    public CarwashController setMrMenu(MenuItem mrMenu) {
+        this.mrMenu = mrMenu;
+        return this;
+    }
+
+    public MenuItem getAuditsMenu() {
+        return auditsMenu;
+    }
+
+    public CarwashController setAuditsMenu(MenuItem auditsMenu) {
+        this.auditsMenu = auditsMenu;
+        return this;
+    }
+
+    public MenuItem getMenuShutDown() {
+        return menuShutDown;
+    }
+
+    public CarwashController setMenuShutDown(MenuItem menuShutDown) {
+        this.menuShutDown = menuShutDown;
+        return this;
+    }
+
+    public MenuItem getMenuRestart() {
+        return menuRestart;
+    }
+
+    public CarwashController setMenuRestart(MenuItem menuRestart) {
+        this.menuRestart = menuRestart;
+        return this;
+    }
+
+    public AnchorPane getPanel() {
+        return panel;
+    }
+
+    public CarwashController setPanel(AnchorPane panel) {
+        this.panel = panel;
         return this;
     }
 }
