@@ -121,7 +121,7 @@
                     <Font name="Gabriola" size="28.0" />
                 </font>
             </Button>
-            <Button fx:id="endDay" layoutX="458.0" layoutY="206.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="END DAY">
+            <Button fx:id="endDay" layoutX="452.0" layoutY="74.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="END DAY">
                 <font>
                     <Font name="Gabriola" size="28.0" />
                 </font>
@@ -166,11 +166,16 @@
                     <Font name="Gabriola" size="28.0" />
                 </font>
             </Button>
-         <Label fx:id="message" alignment="CENTER" layoutX="472.0" layoutY="5.0" prefHeight="36.0" prefWidth="415.0" style="&#10;" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="message" alignment="CENTER" layoutX="472.0" layoutY="5.0" prefHeight="36.0" prefWidth="415.0" style="&#10;" textAlignment="CENTER" textFill="WHITE">
+                <font>
+                    <Font size="22.0" />
+                </font>
+            </Label>
+         <Button fx:id="checkUpdates" layoutX="452.0" layoutY="206.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="297.0" text="CHECK FOR UPDATES">
             <font>
-               <Font size="22.0" />
+               <Font name="Gabriola" size="28.0" />
             </font>
-         </Label>
+         </Button>
         </AnchorPane>
         <stylesheets>
             <URL value="@../styles/css.css" />

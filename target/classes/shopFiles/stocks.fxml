@@ -21,65 +21,65 @@
 <AnchorPane fx:id="panel" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ShopControllers.StocksController">
     <VBox prefHeight="700.0" prefWidth="1200.0">
         <children>
-         <MenuBar>
-            <menus>
-               <Menu mnemonicParsing="false" text="ACCOUNT">
-                  <items>
-                     <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS" />
-                     <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT" />
-                     <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER" />
-                     <MenuItem fx:id="menuQuit" mnemonicParsing="false" text="QUIT" />
-                  </items>
-               </Menu>
-               <Menu mnemonicParsing="false" text="DATABASE">
-                  <items>
-                     <MenuItem fx:id="backupMenu" mnemonicParsing="false" text="BACKUP" />
-                     <MenuItem fx:id="retrieveBackupMenu" mnemonicParsing="false" text="RETRIEVE BACKUP" />
-                     <MenuItem fx:id="viewBackupsMenu" mnemonicParsing="false" text="VIEW BACKUPS" />
-                  </items>
-               </Menu>
-               <Menu mnemonicParsing="false" text="SHIFTS">
-                  <items>
-                     <MenuItem fx:id="startDayMenu" mnemonicParsing="false" text="START DAY" />
-                     <MenuItem fx:id="endDayMenu" mnemonicParsing="false" text="END DAY" />
-                     <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION" />
-                  </items>
-               </Menu>
-               <Menu mnemonicParsing="false" text="SYSTEM ">
-                  <items>
-                     <MenuItem fx:id="reportIssuesMenu" mnemonicParsing="false" text="REPORT ISSUES" />
-                     <MenuItem fx:id="restartServerMenu" mnemonicParsing="false" text="RESTART SERVER" />
-                     <MenuItem fx:id="troubleShootMenu" mnemonicParsing="false" text="TROUBLESHOOT SYSTEM" />
-                  </items>
-               </Menu>
-               <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
-                  <items>
-                     <MenuItem fx:id="abtMenu" mnemonicParsing="false" text="ABOUT THIS SOFTWARE" />
-                     <MenuItem fx:id="termsMenu" mnemonicParsing="false" text="TERMS AND CONDITIONS" />
-                     <MenuItem fx:id="checkUpdatesMenu" mnemonicParsing="false" text="CHECK FOR UPDATES" />
-                     <MenuItem fx:id="documentationMenu" mnemonicParsing="false" text="DOCUMENTATION" />
-                     <MenuItem fx:id="reachUsMenu" mnemonicParsing="false" text="REACH US" />
-                     <MenuItem fx:id="menuShutDown" mnemonicParsing="false" text="SHUT DOWN" />
-                     <MenuItem fx:id="menuRestart" mnemonicParsing="false" text="RESTART SYSTEM" />
-                  </items>
-               </Menu>
-               <Menu mnemonicParsing="false" text="NAVIGATION">
-                  <items>
-                     <MenuItem fx:id="staffMenu" mnemonicParsing="false" text="STAFF" />
-                     <MenuItem fx:id="carWashMenu" mnemonicParsing="false" text="CAR WASH" />
-                     <MenuItem fx:id="inventoryMenu" mnemonicParsing="false" text="INVENTORY" />
-                     <MenuItem fx:id="mrMenu" mnemonicParsing="false" text="SUPPLIERS" />
-                     <MenuItem fx:id="auditsMenu" mnemonicParsing="false" text="AUDITS" />
-                  </items>
-               </Menu>
-               <Menu mnemonicParsing="false" text="INVENTORY">
-                  <items>
-                     <MenuItem fx:id="generateReportsMenu" mnemonicParsing="false" text="GENERATE REPORTS" />
-                     <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM" />
-                  </items>
-               </Menu>
-            </menus>
-         </MenuBar>
+            <MenuBar>
+                <menus>
+                    <Menu mnemonicParsing="false" text="ACCOUNT">
+                        <items>
+                            <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS" />
+                            <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT" />
+                            <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER" />
+                            <MenuItem fx:id="menuQuit" mnemonicParsing="false" text="QUIT" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="DATABASE">
+                        <items>
+                            <MenuItem fx:id="backupMenu" mnemonicParsing="false" text="BACKUP" />
+                            <MenuItem fx:id="retrieveBackupMenu" mnemonicParsing="false" text="RETRIEVE BACKUP" />
+                            <MenuItem fx:id="viewBackupsMenu" mnemonicParsing="false" text="VIEW BACKUPS" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="SHIFTS">
+                        <items>
+                            <MenuItem fx:id="startDayMenu" mnemonicParsing="false" text="START DAY" />
+                            <MenuItem fx:id="endDayMenu" mnemonicParsing="false" text="END DAY" />
+                            <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="SYSTEM ">
+                        <items>
+                            <MenuItem fx:id="reportIssuesMenu" mnemonicParsing="false" text="REPORT ISSUES" />
+                            <MenuItem fx:id="restartServerMenu" mnemonicParsing="false" text="RESTART SERVER" />
+                            <MenuItem fx:id="troubleShootMenu" mnemonicParsing="false" text="TROUBLESHOOT SYSTEM" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
+                        <items>
+                            <MenuItem fx:id="abtMenu" mnemonicParsing="false" text="ABOUT THIS SOFTWARE" />
+                            <MenuItem fx:id="termsMenu" mnemonicParsing="false" text="TERMS AND CONDITIONS" />
+                            <MenuItem fx:id="checkUpdatesMenu" mnemonicParsing="false" text="CHECK FOR UPDATES" />
+                            <MenuItem fx:id="documentationMenu" mnemonicParsing="false" text="DOCUMENTATION" />
+                            <MenuItem fx:id="reachUsMenu" mnemonicParsing="false" text="REACH US" />
+                            <MenuItem fx:id="menuShutDown" mnemonicParsing="false" text="SHUT DOWN" />
+                            <MenuItem fx:id="menuRestart" mnemonicParsing="false" text="RESTART SYSTEM" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="NAVIGATION">
+                        <items>
+                            <MenuItem fx:id="staffMenu" mnemonicParsing="false" text="STAFF" />
+                            <MenuItem fx:id="carWashMenu" mnemonicParsing="false" text="CAR WASH" />
+                            <MenuItem fx:id="inventoryMenu" mnemonicParsing="false" text="INVENTORY" />
+                            <MenuItem fx:id="mrMenu" mnemonicParsing="false" text="SUPPLIERS" />
+                            <MenuItem fx:id="auditsMenu" mnemonicParsing="false" text="AUDITS" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="INVENTORY">
+                        <items>
+                            <MenuItem fx:id="generateReportsMenu" mnemonicParsing="false" text="GENERATE REPORTS" />
+                            <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM" />
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
             <SplitPane focusTraversable="true" prefHeight="676.0" prefWidth="1200.0">
                 <items>
                     <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="550.0" prefWidth="700.0" styleClass="mainPanel">
@@ -125,11 +125,11 @@
                                                                             <Label text="" />
                                                                         </placeholder>
                                                                         <columns>
-                                                                            <TableColumn fx:id="name" prefWidth="116.0" text="NAME" />
-                                                                            <TableColumn fx:id="price" prefWidth="133.0" text="PRICE" />
-                                                                            <TableColumn fx:id="category" prefWidth="174.0" text="CATEGORY" />
-                                                                            <TableColumn fx:id="quantity" prefWidth="204.0" text="QUANTITY" />
-                                                                            <TableColumn fx:id="barcode" prefWidth="231.0" text="BAR CODE" />
+                                                                            <TableColumn fx:id="name" prefWidth="116.0" resizable="false" text="NAME" />
+                                                                            <TableColumn fx:id="price" prefWidth="133.0" resizable="false" text="PRICE" />
+                                                                            <TableColumn fx:id="category" prefWidth="174.0" resizable="false" text="CATEGORY" />
+                                                                            <TableColumn fx:id="quantity" prefWidth="204.0" resizable="false" text="QUANTITY" />
+                                                                            <TableColumn fx:id="barcode" prefWidth="231.0" resizable="false" text="BAR CODE" />
                                                                         </columns>
                                                                     </TableView>
                                                                 </children>

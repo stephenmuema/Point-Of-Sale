@@ -13,10 +13,11 @@
             <Menu mnemonicParsing="false" text="ACCOUNT">
                 <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS"/>
                 <MenuItem fx:id="logout" mnemonicParsing="false" text="LOGOUT"/>
-                <MenuItem mnemonicParsing="false" text="QUIT"/>
-                <MenuItem mnemonicParsing="false" text="SHUT DOWN"/>
-                <MenuItem fx:id="details1" mnemonicParsing="false" text="START SHIFT"/>
-                <MenuItem fx:id="details11" mnemonicParsing="false" text="END SHIFT"/>
+                <MenuItem fx:id="quit" mnemonicParsing="false" text="QUIT"/>
+                <MenuItem fx:id="shutdown" mnemonicParsing="false" text="SHUT DOWN"/>
+                <MenuItem fx:id="restart" mnemonicParsing="false" text="RESTART"/>
+                <MenuItem fx:id="startShiftMenu" mnemonicParsing="false" text="START SHIFT"/>
+                <MenuItem fx:id="endShiftMenu" mnemonicParsing="false" text="END SHIFT"/>
             </Menu>
             <Menu mnemonicParsing="false" text="NAVIGATOR">
                 <MenuItem mnemonicParsing="false" text="CARWASH"/>
@@ -32,7 +33,7 @@
             </Menu>
         </MenuBar>
         <AnchorPane id="Content" prefHeight="675.0" prefWidth="1200.0" styleClass="mainPanel">
-            <Label alignment="CENTER" layoutX="465.0" layoutY="14.0" style="&#10;" text="CASHIER PANEL"
+            <Label alignment="CENTER" layoutX="227.0" layoutY="18.0" style="&#10;" text="CASHIER PANEL"
                    textAlignment="CENTER" textFill="#fffdfd">
                 <font>
                     <Font size="31.0"/>
@@ -86,65 +87,76 @@
                     <Font size="17.0"/>
                 </font>
             </Label>
-            <Button fx:id="carwash1" layoutX="506.0" layoutY="74.0" mnemonicParsing="false" prefHeight="101.0"
+            <Button fx:id="shiftStart" layoutX="506.0" layoutY="74.0" mnemonicParsing="false" prefHeight="101.0"
                     prefWidth="298.0" stylesheets="@../styles/buttons.css" text="START SHIFT">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="logoutButton1" layoutX="506.0" layoutY="473.0" mnemonicParsing="false" prefHeight="101.0"
+            <Button fx:id="restartApps" layoutX="506.0" layoutY="473.0" mnemonicParsing="false" prefHeight="101.0"
                     prefWidth="298.0" text="RESTART APPS">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="shop1" layoutX="871.0" layoutY="74.0" mnemonicParsing="false" prefHeight="101.0"
+            <Button fx:id="troubleshoot" layoutX="871.0" layoutY="74.0" mnemonicParsing="false" prefHeight="101.0"
                     prefWidth="298.0" text="TROUBLE SHOOT">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="accountb1" layoutX="506.0" layoutY="219.0" mnemonicParsing="false" prefHeight="101.0"
+            <Button fx:id="endShift" layoutX="506.0" layoutY="219.0" mnemonicParsing="false" prefHeight="101.0"
                     prefWidth="298.0" text="END SHIFT">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="logoutButton2" layoutX="871.0" layoutY="219.0" mnemonicParsing="false" prefHeight="101.0"
+            <Button fx:id="help" layoutX="871.0" layoutY="219.0" mnemonicParsing="false" prefHeight="101.0"
                     prefWidth="298.0" text="HELP">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="accountb2" layoutX="871.0" layoutY="473.0" mnemonicParsing="false" prefHeight="101.0"
+            <Button fx:id="reportIssue" layoutX="871.0" layoutY="473.0" mnemonicParsing="false" prefHeight="101.0"
                     prefWidth="298.0" text="REPORT ISSUE">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="logoutButton11" layoutX="149.0" layoutY="482.0" mnemonicParsing="false" prefHeight="101.0"
+            <Button fx:id="chatBox" layoutX="149.0" layoutY="482.0" mnemonicParsing="false" prefHeight="101.0"
                     prefWidth="298.0" text="CHATBOX">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Button fx:id="accountb11" layoutX="871.0" layoutY="344.0" mnemonicParsing="false" prefHeight="101.0"
+            <Button fx:id="callAdmin" layoutX="871.0" layoutY="344.0" mnemonicParsing="false" prefHeight="101.0"
                     prefWidth="298.0" text="CALL ADMIN">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
-            <Label fx:id="stationname" alignment="CENTER" layoutX="743.0" layoutY="18.0" prefHeight="46.0"
-                   prefWidth="434.0" style="&#10;" text="STATION NAME" textAlignment="CENTER" textFill="#fffdfd"
-                   visible="false">
+            <Label fx:id="stationname" layoutX="748.0" layoutY="18.0" prefHeight="46.0" prefWidth="203.0" style="&#10;"
+                   text="DEFAULT" textAlignment="CENTER" textFill="#fffdfd">
                 <font>
-                    <Font size="31.0"/>
+                    <Font size="21.0"/>
                 </font>
             </Label>
-            <Label fx:id="clock" alignment="CENTER" layoutX="137.0" layoutY="22.0" prefHeight="42.0" prefWidth="145.0"
+            <Label fx:id="clock" alignment="CENTER" layoutX="59.0" layoutY="20.0" prefHeight="42.0" prefWidth="145.0"
                    text="00:00:00" textAlignment="CENTER">
                 <font>
                     <Font size="25.0"/>
+                </font>
+            </Label>
+            <Button fx:id="refresh" layoutX="961.0" layoutY="10.0" mnemonicParsing="false" prefHeight="54.0"
+                    prefWidth="186.0" text="REFRESH">
+                <font>
+                    <Font name="Gabriola" size="28.0"/>
+                </font>
+            </Button>
+            <Label fx:id="stationname1" alignment="CENTER" layoutX="537.0" layoutY="18.0" prefHeight="46.0"
+                   prefWidth="203.0" style="&#10;" text="STATION NAME" textAlignment="CENTER" textFill="#fffdfd">
+                <font>
+                    <Font size="21.0"/>
                 </font>
             </Label>
             <stylesheets>

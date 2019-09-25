@@ -1,49 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="400.0" prefWidth="640.0"
-            xmlns="http://javafx.com/javafx/11.0.1"
-            fx:controller="Controllers.UserAccountManagementControllers.SettingsController">
+
+<AnchorPane fx:id="panel" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserAccountManagementControllers.SettingsController">
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
             <children>
-                <Label fx:id="userAccountNameLabel" layoutX="15.0" layoutY="32.0" prefHeight="17.0" prefWidth="98.0"
-                       text="USER NAME"/>
-                <Label fx:id="userAccountName" alignment="CENTER" layoutX="113.0" layoutY="32.0" prefHeight="17.0"
-                       prefWidth="270.0" text="USER NAME"/>
-                <Button fx:id="userAccountNameChange" layoutX="402.0" layoutY="32.0" mnemonicParsing="false"
-                        prefHeight="25.0" prefWidth="195.0" text="CHANGE NAME"/>
-                <Label fx:id="userAccountEmailLabel" layoutX="14.0" layoutY="64.0" prefHeight="17.0" prefWidth="98.0"
-                       text="USER EMAIL"/>
-                <Label fx:id="userAccountEmail" alignment="CENTER" layoutX="112.0" layoutY="64.0" prefHeight="17.0"
-                       prefWidth="270.0" text="USER EMAIL"/>
-                <Button fx:id="userAccountEmailChange" layoutX="402.0" layoutY="64.0" mnemonicParsing="false"
-                        prefHeight="25.0" prefWidth="195.0" text="CHANGE EMAIL"/>
-                <Button fx:id="userAccountPasswordChange" layoutX="15.0" layoutY="98.0" mnemonicParsing="false"
-                        prefHeight="25.0" prefWidth="144.0" text="CHANGE PASSWORD"/>
-                <Label fx:id="backupEmailLabel" layoutX="8.0" layoutY="156.0" prefHeight="17.0" prefWidth="98.0"
-                       text="BACK UP EMAIL"/>
-                <Label fx:id="backupEmail" alignment="CENTER" layoutX="106.0" layoutY="156.0" prefHeight="17.0"
-                       prefWidth="258.0" text="USER EMAIL"/>
-                <Button fx:id="backupEmailChangeButton" layoutX="382.0" layoutY="152.0" mnemonicParsing="false"
-                        prefHeight="25.0" prefWidth="186.0" text="CHANGE BACKUP EMAIL"/>
-                <Button fx:id="changeBackUpLocation" layoutX="19.0" layoutY="285.0" mnemonicParsing="false"
-                        prefHeight="44.0" prefWidth="186.0" text="CHANGE BACK UP LOCATION"/>
-                <Label fx:id="currentBackUpLocation" layoutX="231.0" layoutY="290.0" prefHeight="35.0" prefWidth="332.0"
-                       text="Label"/>
-                <Button fx:id="userAccountHintChange" layoutX="185.0" layoutY="98.0" mnemonicParsing="false"
-                        prefHeight="25.0" prefWidth="144.0" text="CHANGE HINT"/>
-                <Button fx:id="userAccountHintSet" layoutX="185.0" layoutY="98.0" mnemonicParsing="false"
-                        prefHeight="25.0" prefWidth="144.0" text="SET HINT"/>
-                <RadioButton fx:id="endDay" layoutX="14.0" layoutY="217.0" mnemonicParsing="false"
-                             text="END DAY BACK UP"/>
-                <RadioButton fx:id="periodical" layoutX="14.0" layoutY="245.0" mnemonicParsing="false" text="PERIODIC"/>
-                <RadioButton fx:id="startUp" layoutX="14.0" layoutY="192.0" mnemonicParsing="false"
-                             text="STARTUP BACKUP"/>
-                <Button fx:id="backupEmailChangePassword" layoutX="353.0" layoutY="180.0" mnemonicParsing="false"
-                        prefHeight="25.0" prefWidth="215.0" text="CHANGE BACKUP EMAIL PASSWORD"/>
+                <Label fx:id="userAccountNameLabel" layoutX="15.0" layoutY="32.0" prefHeight="17.0" prefWidth="98.0" text="USER NAME" />
+                <Label fx:id="userAccountName" alignment="CENTER" layoutX="113.0" layoutY="32.0" prefHeight="17.0" prefWidth="270.0" text="USER NAME" />
+                <Button fx:id="userAccountNameChange" layoutX="402.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="195.0" text="CHANGE NAME" />
+                <Label fx:id="userAccountEmailLabel" layoutX="14.0" layoutY="64.0" prefHeight="17.0" prefWidth="98.0" text="USER EMAIL" />
+                <Label fx:id="userAccountEmail" alignment="CENTER" layoutX="112.0" layoutY="64.0" prefHeight="17.0" prefWidth="270.0" text="USER EMAIL" />
+                <Button fx:id="userAccountEmailChange" layoutX="402.0" layoutY="64.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="195.0" text="CHANGE EMAIL" />
+                <Button fx:id="userAccountPasswordChange" layoutX="15.0" layoutY="98.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="144.0" text="CHANGE PASSWORD" />
+                <Label fx:id="backupEmailLabel" layoutX="8.0" layoutY="156.0" prefHeight="17.0" prefWidth="98.0" text="BACK UP EMAIL" />
+                <Label fx:id="backupEmail" alignment="CENTER" layoutX="106.0" layoutY="156.0" prefHeight="17.0" prefWidth="258.0" text="USER EMAIL" />
+                <Button fx:id="backupEmailChangeButton" layoutX="382.0" layoutY="152.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="186.0" text="CHANGE BACKUP EMAIL" />
+                <Button fx:id="changeBackUpLocation" layoutX="19.0" layoutY="285.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="186.0" text="CHANGE BACK UP LOCATION" />
+                <Label fx:id="currentBackUpLocation" layoutX="231.0" layoutY="290.0" prefHeight="35.0" prefWidth="332.0" text="Label" />
+                <Button fx:id="userAccountHintChange" layoutX="185.0" layoutY="98.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="144.0" text="CHANGE HINT" />
+                <Button fx:id="userAccountHintSet" layoutX="185.0" layoutY="98.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="144.0" text="SET HINT" />
+                <RadioButton fx:id="endDay" layoutX="14.0" layoutY="217.0" mnemonicParsing="false" text="END DAY BACK UP" />
+                <RadioButton fx:id="periodical" layoutX="14.0" layoutY="245.0" mnemonicParsing="false" text="PERIODIC" />
+                <RadioButton fx:id="startUp" layoutX="14.0" layoutY="192.0" mnemonicParsing="false" text="STARTUP BACKUP" />
+                <Button fx:id="backupEmailChangePassword" layoutX="353.0" layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="215.0" text="CHANGE BACKUP EMAIL PASSWORD" />
+            <Button fx:id="changeStationName" layoutX="8.0" layoutY="151.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="186.0" text="CHANGE STATION NAME" />
+            <Label fx:id="stationName" layoutX="220.0" layoutY="156.0" prefHeight="35.0" prefWidth="332.0" />
             </children>
         </AnchorPane>
     </children>

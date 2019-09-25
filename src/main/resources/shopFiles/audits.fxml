@@ -85,10 +85,12 @@
                                             <TableView fx:id="tableemployeelist" layoutX="22.0" layoutY="69.0"
                                                        prefHeight="429.0" prefWidth="495.0">
                                                 <columns>
-                                                    <TableColumn fx:id="employeeid" prefWidth="114.0" text="ID"/>
-                                                    <TableColumn fx:id="employeename" prefWidth="114.0" text="NAME"/>
+                                                    <TableColumn fx:id="employeeid" minWidth="0.0" prefWidth="0.0"
+                                                                 resizable="false" text="ID"/>
+                                                    <TableColumn fx:id="employeename" prefWidth="228.0"
+                                                                 resizable="false" text="NAME"/>
                                                     <TableColumn fx:id="employeeemail" minWidth="0.0" prefWidth="266.0"
-                                                                 text="EMAIL"/>
+                                                                 resizable="false" text="EMAIL"/>
                                                 </columns>
                                             </TableView>
                                             <Button fx:id="querytf1" layoutX="829.0" layoutY="5.0"
@@ -100,18 +102,18 @@
                                                     <TableView fx:id="tableemployeesales" prefHeight="417.0"
                                                                prefWidth="613.0">
                                                         <columns>
-                                                            <TableColumn fx:id="employeetransid" prefWidth="75.0"
-                                                                         text="ID"/>
-                                                            <TableColumn fx:id="transprice" prefWidth="114.0"
-                                                                         text="PRICE"/>
-                                                            <TableColumn fx:id="transpaid" prefWidth="117.0"
-                                                                         text="AMOUNT PAID"/>
-                                                            <TableColumn fx:id="transbalance" prefWidth="97.0"
-                                                                         text="BALANCE"/>
-                                                            <TableColumn fx:id="transmethod" prefWidth="102.0"
-                                                                         text=" METHOD"/>
-                                                            <TableColumn fx:id="transcompletion" prefWidth="107.0"
-                                                                         text="STATUS"/>
+                                                            <TableColumn fx:id="employeetransid" minWidth="0.0"
+                                                                         prefWidth="0.0" resizable="false" text="ID"/>
+                                                            <TableColumn fx:id="transprice" prefWidth="135.0"
+                                                                         resizable="false" text="PRICE"/>
+                                                            <TableColumn fx:id="transpaid" prefWidth="113.0"
+                                                                         resizable="false" text="AMOUNT PAID"/>
+                                                            <TableColumn fx:id="transbalance" prefWidth="119.0"
+                                                                         resizable="false" text="BALANCE"/>
+                                                            <TableColumn fx:id="transmethod" prefWidth="133.0"
+                                                                         resizable="false" text=" METHOD"/>
+                                                            <TableColumn fx:id="transcompletion" prefWidth="112.0"
+                                                                         resizable="false" text="STATUS"/>
                                                         </columns>
                                                     </TableView>
                                                 </content>
@@ -164,14 +166,15 @@
                                             <TableView fx:id="itemsalestable" layoutX="-2.0" layoutY="79.0"
                                                        prefHeight="490.0" prefWidth="897.0">
                                                 <columns>
-                                                    <TableColumn fx:id="itemsalesid" prefWidth="75.0" text="ID"/>
-                                                    <TableColumn fx:id="itemsalesname" prefWidth="333.0" text="NAME"/>
+                                                    <TableColumn fx:id="itemsalesid" minWidth="0.0" prefWidth="0.0"
+                                                                 resizable="false" text="ID"/>
+                                                    <TableColumn fx:id="itemsalesname" prefWidth="408.0" text="NAME"/>
                                                     <TableColumn fx:id="itemsalespayout" prefWidth="215.0"
-                                                                 text="PAY OUT"/>
+                                                                 resizable="false" text="PAY OUT"/>
                                                     <TableColumn fx:id="itemsalessalesperday" prefWidth="135.0"
-                                                                 text="SALES/DAY"/>
+                                                                 resizable="false" text="SALES/DAY"/>
                                                     <TableColumn fx:id="itemsalessalesremainingstock" prefWidth="135.0"
-                                                                 text="REMAINING AMOUNT"/>
+                                                                 resizable="false" text="REMAINING AMOUNT"/>
                                                 </columns>
                                             </TableView>
                                             <Button layoutX="935.0" layoutY="150.0" mnemonicParsing="false"
@@ -212,18 +215,22 @@
                                                                                prefWidth="993.0">
                                                                         <columns>
                                                                             <TableColumn fx:id="pastcoststableid"
-                                                                                         prefWidth="75.0" text="ID"/>
+                                                                                         minWidth="2.0" prefWidth="2.0"
+                                                                                         resizable="false" text="ID"/>
                                                                             <TableColumn fx:id="pastcoststablename"
-                                                                                         prefWidth="176.0" text="NAME"/>
+                                                                                         prefWidth="390.0"
+                                                                                         resizable="false" text="NAME"/>
                                                                             <TableColumn fx:id="pastcoststabledateadded"
-                                                                                         prefWidth="212.0"
+                                                                                         prefWidth="195.0"
+                                                                                         resizable="false"
                                                                                          text="DATE ADDED"/>
                                                                             <TableColumn fx:id="pastcoststableamount"
-                                                                                         prefWidth="185.0"
+                                                                                         prefWidth="162.0"
+                                                                                         resizable="false"
                                                                                          text="AMOUNT"/>
                                                                             <TableColumn
                                                                                     fx:id="pastcoststableactiveinactivestatus"
-                                                                                    prefWidth="188.0"
+                                                                                    prefWidth="243.0" resizable="false"
                                                                                     text="ACTIVE/INACTIVE"/>
                                                                         </columns>
                                                                     </TableView>
@@ -301,9 +308,10 @@
                                             <TableView layoutX="726.0" layoutY="20.0" prefHeight="376.0"
                                                        prefWidth="467.0">
                                                 <columns>
-                                                    <TableColumn prefWidth="75.0" text="NAME"/>
-                                                    <TableColumn prefWidth="75.0" text="DATE"/>
-                                                    <TableColumn prefWidth="316.0" text="DESCRIPTION"/>
+                                                    <TableColumn prefWidth="120.0" resizable="false" text="NAME"/>
+                                                    <TableColumn prefWidth="144.0" resizable="false" text="DATE"/>
+                                                    <TableColumn prefWidth="202.0" resizable="false"
+                                                                 text="DESCRIPTION"/>
                                                 </columns>
                                             </TableView>
                                             <AnchorPane layoutX="53.0" layoutY="20.0" prefHeight="413.0"
@@ -340,17 +348,18 @@
                                             <TableView fx:id="stockalerttable" layoutX="1.0" layoutY="2.0"
                                                        prefHeight="476.0" prefWidth="1072.0">
                                                 <columns>
-                                                    <TableColumn fx:id="stockalerttableid" prefWidth="75.0" text="ID"/>
-                                                    <TableColumn fx:id="stockalerttablename" prefWidth="244.0"
-                                                                 text="ITEM NAME"/>
+                                                    <TableColumn fx:id="stockalerttableid" minWidth="0.0"
+                                                                 prefWidth="0.0" resizable="false" text="ID"/>
+                                                    <TableColumn fx:id="stockalerttablename" prefWidth="319.0"
+                                                                 resizable="false" text="ITEM NAME"/>
                                                     <TableColumn fx:id="stockalerttabledate" prefWidth="252.0"
-                                                                 text="DATE"/>
+                                                                 resizable="false" text="DATE"/>
                                                     <TableColumn fx:id="stockalerttablemarkasread" prefWidth="166.0"
-                                                                 text="AMOUNT REMAINING"/>
+                                                                 resizable="false" text="AMOUNT REMAINING"/>
                                                     <TableColumn fx:id="stockalerttablemarkasread1" prefWidth="166.0"
-                                                                 text="SALES PER HOUR"/>
+                                                                 resizable="false" text="SALES PER HOUR"/>
                                                     <TableColumn fx:id="stockalerttablemarkasread11" prefWidth="166.0"
-                                                                 text="CATEGORY"/>
+                                                                 resizable="false" text="CATEGORY"/>
                                                 </columns>
                                             </TableView>
                                             <Button layoutX="315.0" layoutY="493.0" mnemonicParsing="false"

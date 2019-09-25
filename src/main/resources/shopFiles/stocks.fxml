@@ -149,17 +149,21 @@
                                                                         </placeholder>
                                                                         <columns>
                                                                             <TableColumn fx:id="name" prefWidth="116.0"
-                                                                                         text="NAME"/>
+                                                                                         resizable="false" text="NAME"/>
                                                                             <TableColumn fx:id="price" prefWidth="133.0"
+                                                                                         resizable="false"
                                                                                          text="PRICE"/>
                                                                             <TableColumn fx:id="category"
                                                                                          prefWidth="174.0"
+                                                                                         resizable="false"
                                                                                          text="CATEGORY"/>
                                                                             <TableColumn fx:id="quantity"
                                                                                          prefWidth="204.0"
+                                                                                         resizable="false"
                                                                                          text="QUANTITY"/>
                                                                             <TableColumn fx:id="barcode"
                                                                                          prefWidth="231.0"
+                                                                                         resizable="false"
                                                                                          text="BAR CODE"/>
                                                                         </columns>
                                                                     </TableView>

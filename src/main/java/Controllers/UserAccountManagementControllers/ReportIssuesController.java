@@ -132,6 +132,7 @@ public class ReportIssuesController extends UtilityClass implements Initializabl
                 }, true);
         idleMonitor.register(panel, Event.ANY);
         newFeature.setSelected(true);
+        subject = newFeature.getText();
         tg.selectedToggleProperty().addListener((ob, o, n) -> {
             RadioButton rb = (RadioButton) tg.getSelectedToggle();
 
@@ -178,7 +179,14 @@ public class ReportIssuesController extends UtilityClass implements Initializabl
 
 
         }
+        backtomainpanel.setOnAction(event -> {
+            try {
+                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml")))));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
+        });
         submit.setOnAction(event -> {
             String nameStr = name.getText();
             String desc = description.getText();
@@ -188,6 +196,8 @@ public class ReportIssuesController extends UtilityClass implements Initializabl
             } else {
                 try {
                     mailSend(desc, sub, adminEmail, fromEmail, "text/plain", AesCrypto.decrypt(encryptionkey, fromPassword));
+                    description.clear();
+                    name.clear();
                     showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS", "MESSAGE HAS BEEN SENT TO THE ADMIN");
                 } catch (MessagingException e) {
                     showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "INVALID EMAIL OR PASSWORD", "THE EMAIL YOU PROVIDED COULD NOT BE USED.CHECK IF IT HAS THE CORRECT PASSWORD OR IF IT EXISTS");

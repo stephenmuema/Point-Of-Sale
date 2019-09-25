@@ -32,14 +32,47 @@ import java.util.ResourceBundle;
 import static securityandtime.config.site;
 
 public class PanelController extends UtilityClass implements Initializable {
-    public MenuItem logout;
-    public Button carwash;
-    public Button shop;
-    //    public Button chat; todo v1.4
-    public Button accountb;
-    public Hyperlink link;
     @FXML
-    Button logoutButton;
+    private MenuItem logout;
+    @FXML
+    private Button carwash;
+    @FXML
+    private Button shop;
+    //    public Button chat; todo v1.4
+    @FXML
+    private Button accountb;
+    @FXML
+    private Hyperlink link;
+    @FXML
+    private Button refresh;
+    @FXML
+    private Button shiftStart;
+    @FXML
+    private Button restartApps;
+    @FXML
+    private Button troubleshoot;
+    @FXML
+    private Button endShift;
+    @FXML
+    private Button help;
+    @FXML
+    private Button reportIssue;
+    @FXML
+    private Button chatBox;
+    @FXML
+    private Button callAdmin;
+    @FXML
+    private Label stationname;
+    @FXML
+    private MenuItem endShiftMenu;
+    @FXML
+    private MenuItem startShiftMenu;
+    @FXML
+    private MenuItem quit;
+    @FXML
+    private MenuItem details;
+    @FXML
+    private Button logoutButton;
     @FXML
     private AnchorPane panel;
     @FXML
@@ -52,7 +85,7 @@ public class PanelController extends UtilityClass implements Initializable {
         buttonHandlers();
         menuhandlers();
         config.panel.put("panel", panel);
-
+        stationname.setText(getComputerName());
         time(clock);
         link.setOnMousePressed(event -> {
             try {
@@ -74,10 +107,20 @@ public class PanelController extends UtilityClass implements Initializable {
                     }
                 }, true);
         idleMonitor.register(panel, Event.ANY);
+
+
     }
 
 
     private void buttonHandlers() {
+        refresh.setOnAction(event -> {
+            try {
+                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panel.fxml")))));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
         accountb.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

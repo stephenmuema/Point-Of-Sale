@@ -151,13 +151,13 @@
                                                                 </placeholder>
                                                                 <columns>
                                                                     <TableColumn fx:id="Name" prefWidth="263.0"
-                                                                                 text="NAME"/>
+                                                                                 resizable="false" text="NAME"/>
                                                                     <TableColumn fx:id="email" prefWidth="224.0"
-                                                                                 text="EMAIL"/>
+                                                                                 resizable="false" text="EMAIL"/>
                                                                     <TableColumn fx:id="id" prefWidth="169.0"
-                                                                                 text="ID NUMBER"/>
+                                                                                 resizable="false" text="ID NUMBER"/>
                                                                     <TableColumn fx:id="status" prefWidth="176.0"
-                                                                                 resizable="false" text="DURATION"/>
+                                                                                 text="DURATION"/>
                                                                     <TableColumn fx:id="activate" prefWidth="100.0"
                                                                                  resizable="false" text="STATUS"/>
                                                                 </columns>
@@ -199,13 +199,13 @@
                                                                 </placeholder>
                                                                 <columns>
                                                                     <TableColumn fx:id="Name1" prefWidth="263.0"
-                                                                                 text="NAME"/>
+                                                                                 resizable="false" text="NAME"/>
                                                                     <TableColumn fx:id="email1" prefWidth="240.0"
-                                                                                 text="EMAIL"/>
+                                                                                 resizable="false" text="EMAIL"/>
                                                                     <TableColumn fx:id="id1" prefWidth="210.0"
-                                                                                 text="ID NUMBER"/>
+                                                                                 resizable="false" text="ID NUMBER"/>
                                                                     <TableColumn fx:id="status1" prefWidth="210.0"
-                                                                                 text="STATUS"/>
+                                                                                 resizable="false" text="STATUS"/>
                                                                 </columns>
                                                             </TableView>
                                                         </children>

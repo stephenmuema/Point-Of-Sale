@@ -24,65 +24,65 @@
 <AnchorPane fx:id="panel" prefHeight="700.0" prefWidth="1200.0" styleClass="mainPanel" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ShopControllers.AuditController">
     <VBox>
         <children>
-         <MenuBar>
-            <menus>
-               <Menu mnemonicParsing="false" text="ACCOUNT">
-                  <items>
-                     <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS" />
-                     <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT" />
-                     <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER" />
-                     <MenuItem fx:id="menuQuit" mnemonicParsing="false" text="QUIT" />
-                  </items>
-               </Menu>
-               <Menu mnemonicParsing="false" text="DATABASE">
-                  <items>
-                     <MenuItem fx:id="backupMenu" mnemonicParsing="false" text="BACKUP" />
-                     <MenuItem fx:id="retrieveBackupMenu" mnemonicParsing="false" text="RETRIEVE BACKUP" />
-                     <MenuItem fx:id="viewBackupsMenu" mnemonicParsing="false" text="VIEW BACKUPS" />
-                  </items>
-               </Menu>
-               <Menu mnemonicParsing="false" text="SHIFTS">
-                  <items>
-                     <MenuItem fx:id="startDayMenu" mnemonicParsing="false" text="START DAY" />
-                     <MenuItem fx:id="endDayMenu" mnemonicParsing="false" text="END DAY" />
-                     <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION" />
-                  </items>
-               </Menu>
-               <Menu mnemonicParsing="false" text="SYSTEM ">
-                  <items>
-                     <MenuItem fx:id="reportIssuesMenu" mnemonicParsing="false" text="REPORT ISSUES" />
-                     <MenuItem fx:id="restartServerMenu" mnemonicParsing="false" text="RESTART SERVER" />
-                     <MenuItem fx:id="troubleShootMenu" mnemonicParsing="false" text="TROUBLESHOOT SYSTEM" />
-                  </items>
-               </Menu>
-               <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
-                  <items>
-                     <MenuItem fx:id="abtMenu" mnemonicParsing="false" text="ABOUT THIS SOFTWARE" />
-                     <MenuItem fx:id="termsMenu" mnemonicParsing="false" text="TERMS AND CONDITIONS" />
-                     <MenuItem fx:id="checkUpdatesMenu" mnemonicParsing="false" text="CHECK FOR UPDATES" />
-                     <MenuItem fx:id="documentationMenu" mnemonicParsing="false" text="DOCUMENTATION" />
-                     <MenuItem fx:id="reachUsMenu" mnemonicParsing="false" text="REACH US" />
-                     <MenuItem fx:id="menuShutDown" mnemonicParsing="false" text="SHUT DOWN" />
-                     <MenuItem fx:id="menuRestart" mnemonicParsing="false" text="RESTART SYSTEM" />
-                  </items>
-               </Menu>
-               <Menu mnemonicParsing="false" text="NAVIGATION">
-                  <items>
-                     <MenuItem fx:id="staffMenu" mnemonicParsing="false" text="STAFF" />
-                     <MenuItem fx:id="carWashMenu" mnemonicParsing="false" text="CAR WASH" />
-                     <MenuItem fx:id="inventoryMenu" mnemonicParsing="false" text="INVENTORY" />
-                     <MenuItem fx:id="mrMenu" mnemonicParsing="false" text="SUPPLIERS" />
-                     <MenuItem fx:id="auditsMenu" mnemonicParsing="false" text="AUDITS" />
-                  </items>
-               </Menu>
-               <Menu mnemonicParsing="false" text="INVENTORY">
-                  <items>
-                     <MenuItem fx:id="generateReportsMenu" mnemonicParsing="false" text="GENERATE REPORTS" />
-                     <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM" />
-                  </items>
-               </Menu>
-            </menus>
-         </MenuBar>
+            <MenuBar>
+                <menus>
+                    <Menu mnemonicParsing="false" text="ACCOUNT">
+                        <items>
+                            <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS" />
+                            <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT" />
+                            <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER" />
+                            <MenuItem fx:id="menuQuit" mnemonicParsing="false" text="QUIT" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="DATABASE">
+                        <items>
+                            <MenuItem fx:id="backupMenu" mnemonicParsing="false" text="BACKUP" />
+                            <MenuItem fx:id="retrieveBackupMenu" mnemonicParsing="false" text="RETRIEVE BACKUP" />
+                            <MenuItem fx:id="viewBackupsMenu" mnemonicParsing="false" text="VIEW BACKUPS" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="SHIFTS">
+                        <items>
+                            <MenuItem fx:id="startDayMenu" mnemonicParsing="false" text="START DAY" />
+                            <MenuItem fx:id="endDayMenu" mnemonicParsing="false" text="END DAY" />
+                            <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="SYSTEM ">
+                        <items>
+                            <MenuItem fx:id="reportIssuesMenu" mnemonicParsing="false" text="REPORT ISSUES" />
+                            <MenuItem fx:id="restartServerMenu" mnemonicParsing="false" text="RESTART SERVER" />
+                            <MenuItem fx:id="troubleShootMenu" mnemonicParsing="false" text="TROUBLESHOOT SYSTEM" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
+                        <items>
+                            <MenuItem fx:id="abtMenu" mnemonicParsing="false" text="ABOUT THIS SOFTWARE" />
+                            <MenuItem fx:id="termsMenu" mnemonicParsing="false" text="TERMS AND CONDITIONS" />
+                            <MenuItem fx:id="checkUpdatesMenu" mnemonicParsing="false" text="CHECK FOR UPDATES" />
+                            <MenuItem fx:id="documentationMenu" mnemonicParsing="false" text="DOCUMENTATION" />
+                            <MenuItem fx:id="reachUsMenu" mnemonicParsing="false" text="REACH US" />
+                            <MenuItem fx:id="menuShutDown" mnemonicParsing="false" text="SHUT DOWN" />
+                            <MenuItem fx:id="menuRestart" mnemonicParsing="false" text="RESTART SYSTEM" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="NAVIGATION">
+                        <items>
+                            <MenuItem fx:id="staffMenu" mnemonicParsing="false" text="STAFF" />
+                            <MenuItem fx:id="carWashMenu" mnemonicParsing="false" text="CAR WASH" />
+                            <MenuItem fx:id="inventoryMenu" mnemonicParsing="false" text="INVENTORY" />
+                            <MenuItem fx:id="mrMenu" mnemonicParsing="false" text="SUPPLIERS" />
+                            <MenuItem fx:id="auditsMenu" mnemonicParsing="false" text="AUDITS" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="INVENTORY">
+                        <items>
+                            <MenuItem fx:id="generateReportsMenu" mnemonicParsing="false" text="GENERATE REPORTS" />
+                            <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM" />
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
             <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
                 <children>
                     <!--        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">-->
@@ -98,9 +98,9 @@
                                         <children>
                                             <TableView fx:id="tableemployeelist" layoutX="22.0" layoutY="69.0" prefHeight="429.0" prefWidth="495.0">
                                                 <columns>
-                                                    <TableColumn fx:id="employeeid" prefWidth="114.0" text="ID" />
-                                                    <TableColumn fx:id="employeename" prefWidth="114.0" text="NAME" />
-                                                    <TableColumn fx:id="employeeemail" minWidth="0.0" prefWidth="266.0" text="EMAIL" />
+                                                    <TableColumn fx:id="employeeid" minWidth="0.0" prefWidth="0.0" resizable="false" text="ID" />
+                                                    <TableColumn fx:id="employeename" prefWidth="228.0" resizable="false" text="NAME" />
+                                                    <TableColumn fx:id="employeeemail" minWidth="0.0" prefWidth="266.0" resizable="false" text="EMAIL" />
                                                 </columns>
                                             </TableView>
                                             <Button fx:id="querytf1" layoutX="829.0" layoutY="5.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="164.0" styleClass="buttonred" text="SUBMIT" />
@@ -108,12 +108,12 @@
                                                 <content>
                                                     <TableView fx:id="tableemployeesales" prefHeight="417.0" prefWidth="613.0">
                                                         <columns>
-                                                            <TableColumn fx:id="employeetransid" prefWidth="75.0" text="ID" />
-                                                            <TableColumn fx:id="transprice" prefWidth="114.0" text="PRICE" />
-                                                            <TableColumn fx:id="transpaid" prefWidth="117.0" text="AMOUNT PAID" />
-                                                            <TableColumn fx:id="transbalance" prefWidth="97.0" text="BALANCE" />
-                                                            <TableColumn fx:id="transmethod" prefWidth="102.0" text=" METHOD" />
-                                                            <TableColumn fx:id="transcompletion" prefWidth="107.0" text="STATUS" />
+                                                            <TableColumn fx:id="employeetransid" minWidth="0.0" prefWidth="0.0" resizable="false" text="ID" />
+                                                            <TableColumn fx:id="transprice" prefWidth="135.0" resizable="false" text="PRICE" />
+                                                            <TableColumn fx:id="transpaid" prefWidth="113.0" resizable="false" text="AMOUNT PAID" />
+                                                            <TableColumn fx:id="transbalance" prefWidth="119.0" resizable="false" text="BALANCE" />
+                                                            <TableColumn fx:id="transmethod" prefWidth="133.0" resizable="false" text=" METHOD" />
+                                                            <TableColumn fx:id="transcompletion" prefWidth="112.0" resizable="false" text="STATUS" />
                                                         </columns>
                                                     </TableView>
                                                 </content>
@@ -145,11 +145,11 @@
                                             <!--                               todo uncomment for categorical audits-->
                                             <TableView fx:id="itemsalestable" layoutX="-2.0" layoutY="79.0" prefHeight="490.0" prefWidth="897.0">
                                                 <columns>
-                                                    <TableColumn fx:id="itemsalesid" prefWidth="75.0" text="ID" />
-                                                    <TableColumn fx:id="itemsalesname" prefWidth="333.0" text="NAME" />
-                                                    <TableColumn fx:id="itemsalespayout" prefWidth="215.0" text="PAY OUT" />
-                                                    <TableColumn fx:id="itemsalessalesperday" prefWidth="135.0" text="SALES/DAY" />
-                                                    <TableColumn fx:id="itemsalessalesremainingstock" prefWidth="135.0" text="REMAINING AMOUNT" />
+                                                    <TableColumn fx:id="itemsalesid" minWidth="0.0" prefWidth="0.0" resizable="false" text="ID" />
+                                                    <TableColumn fx:id="itemsalesname" prefWidth="408.0" text="NAME" />
+                                                    <TableColumn fx:id="itemsalespayout" prefWidth="215.0" resizable="false" text="PAY OUT" />
+                                                    <TableColumn fx:id="itemsalessalesperday" prefWidth="135.0" resizable="false" text="SALES/DAY" />
+                                                    <TableColumn fx:id="itemsalessalesremainingstock" prefWidth="135.0" resizable="false" text="REMAINING AMOUNT" />
                                                 </columns>
                                             </TableView>
                                             <Button layoutX="935.0" layoutY="150.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="168.0" styleClass="buttonorange" text="EXPORT ITEM REPORT" />
@@ -174,11 +174,11 @@
                                                                 <children>
                                                                     <TableView fx:id="pastcoststable" layoutX="3.0" layoutY="5.0" prefHeight="518.0" prefWidth="993.0">
                                                                         <columns>
-                                                                            <TableColumn fx:id="pastcoststableid" prefWidth="75.0" text="ID" />
-                                                                            <TableColumn fx:id="pastcoststablename" prefWidth="176.0" text="NAME" />
-                                                                            <TableColumn fx:id="pastcoststabledateadded" prefWidth="212.0" text="DATE ADDED" />
-                                                                            <TableColumn fx:id="pastcoststableamount" prefWidth="185.0" text="AMOUNT" />
-                                                                            <TableColumn fx:id="pastcoststableactiveinactivestatus" prefWidth="188.0" text="ACTIVE/INACTIVE" />
+                                                                            <TableColumn fx:id="pastcoststableid" minWidth="2.0" prefWidth="2.0" resizable="false" text="ID" />
+                                                                            <TableColumn fx:id="pastcoststablename" prefWidth="390.0" resizable="false" text="NAME" />
+                                                                            <TableColumn fx:id="pastcoststabledateadded" prefWidth="195.0" resizable="false" text="DATE ADDED" />
+                                                                            <TableColumn fx:id="pastcoststableamount" prefWidth="162.0" resizable="false" text="AMOUNT" />
+                                                                            <TableColumn fx:id="pastcoststableactiveinactivestatus" prefWidth="243.0" resizable="false" text="ACTIVE/INACTIVE" />
                                                                         </columns>
                                                                     </TableView>
                                                                     <Button layoutX="1028.0" layoutY="137.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="148.0" styleClass="buttonyellow" text="EXPORT" />
@@ -219,9 +219,9 @@
                                             <!--                             table for future plans-->
                                             <TableView layoutX="726.0" layoutY="20.0" prefHeight="376.0" prefWidth="467.0">
                                                 <columns>
-                                                    <TableColumn prefWidth="75.0" text="NAME" />
-                                                    <TableColumn prefWidth="75.0" text="DATE" />
-                                                    <TableColumn prefWidth="316.0" text="DESCRIPTION" />
+                                                    <TableColumn prefWidth="120.0" resizable="false" text="NAME" />
+                                                    <TableColumn prefWidth="144.0" resizable="false" text="DATE" />
+                                                    <TableColumn prefWidth="202.0" resizable="false" text="DESCRIPTION" />
                                                 </columns>
                                             </TableView>
                                             <AnchorPane layoutX="53.0" layoutY="20.0" prefHeight="413.0" prefWidth="620.0" styleClass="forminner">
@@ -244,12 +244,12 @@
                                         <children>
                                             <TableView fx:id="stockalerttable" layoutX="1.0" layoutY="2.0" prefHeight="476.0" prefWidth="1072.0">
                                                 <columns>
-                                                    <TableColumn fx:id="stockalerttableid" prefWidth="75.0" text="ID" />
-                                                    <TableColumn fx:id="stockalerttablename" prefWidth="244.0" text="ITEM NAME" />
-                                                    <TableColumn fx:id="stockalerttabledate" prefWidth="252.0" text="DATE" />
-                                                    <TableColumn fx:id="stockalerttablemarkasread" prefWidth="166.0" text="AMOUNT REMAINING" />
-                                                    <TableColumn fx:id="stockalerttablemarkasread1" prefWidth="166.0" text="SALES PER HOUR" />
-                                                    <TableColumn fx:id="stockalerttablemarkasread11" prefWidth="166.0" text="CATEGORY" />
+                                                    <TableColumn fx:id="stockalerttableid" minWidth="0.0" prefWidth="0.0" resizable="false" text="ID" />
+                                                    <TableColumn fx:id="stockalerttablename" prefWidth="319.0" resizable="false" text="ITEM NAME" />
+                                                    <TableColumn fx:id="stockalerttabledate" prefWidth="252.0" resizable="false" text="DATE" />
+                                                    <TableColumn fx:id="stockalerttablemarkasread" prefWidth="166.0" resizable="false" text="AMOUNT REMAINING" />
+                                                    <TableColumn fx:id="stockalerttablemarkasread1" prefWidth="166.0" resizable="false" text="SALES PER HOUR" />
+                                                    <TableColumn fx:id="stockalerttablemarkasread11" prefWidth="166.0" resizable="false" text="CATEGORY" />
                                                 </columns>
                                             </TableView>
                                             <Button layoutX="315.0" layoutY="493.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="235.0" text="MAKE AN ORDER">

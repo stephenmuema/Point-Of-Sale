@@ -30,8 +30,14 @@ import java.util.ResourceBundle;
 import static securityandtime.config.*;
 
 public class SettingsController extends UtilityClass implements Initializable {
-    public AnchorPane panel;
-    public Label userAccountNameLabel;
+    @FXML
+    private AnchorPane panel;
+    @FXML
+    private Label userAccountNameLabel;
+    @FXML
+    private Label stationName;
+    @FXML
+    private Button changeStationName;
     @FXML
     private Button userAccountNameChange;
     @FXML
@@ -71,15 +77,6 @@ public class SettingsController extends UtilityClass implements Initializable {
     @FXML
     private Button backupEmailChangePassword;
 
-    /**
-     * made by steve
-     * Called to initialize a controller after its root element has been
-     * completely processed.
-     *
-     * @param location  The location used to resolve relative paths for the root object, or
-     *                  <tt>null</tt> if the location is not known.
-     * @param resources The resources used to localize the root object, or <tt>null</tt> if
-     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         userAccountHintChange.setVisible(false);
@@ -178,8 +175,11 @@ public class SettingsController extends UtilityClass implements Initializable {
     }
 
     private void initializer() throws SQLException, IOException {
-
+        changeStationName.setVisible(false);
+        stationName.setVisible(false);
         if (!config.login.containsKey("loggedinasadmin")) {
+            changeStationName.setVisible(true);
+            stationName.setVisible(true);
             backupEmailChangePassword.setVisible(false);
             backupEmailChangeButton.setVisible(false);
             backupEmail.setVisible(false);
@@ -191,10 +191,10 @@ public class SettingsController extends UtilityClass implements Initializable {
             periodical.setVisible(false);
 
         }
-
+        checkSetPcName(stationName);
         UtilityClass utilityClass = new UtilityClass();
         Connection connection = utilityClass.getConnection();
-        PreparedStatement prep = null;
+        PreparedStatement prep;
         try {
             prep = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
             prep.setString(1, "backupLocation");
@@ -217,7 +217,7 @@ public class SettingsController extends UtilityClass implements Initializable {
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
-            if (resultSet.getString("backupemail") == null) {
+            if (resultSet.getString("backupemail") == null && config.login.containsKey("loggedinasadmin")) {
 
                 Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
                 alert1.setTitle("BACK UP EMAIL SETUP PROCEDURE");
@@ -241,7 +241,7 @@ public class SettingsController extends UtilityClass implements Initializable {
                 }
 
 //                reload();
-            } else if (resultSet.getString("backupemail").isEmpty()) {
+            } else if ((resultSet.getString("backupemail") == null || resultSet.getString("backupemail").isEmpty()) && config.login.containsKey("loggedinasadmin")) {
 
                 Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
                 alert1.setTitle("BACK UP EMAIL SETUP PROCEDURE");
@@ -267,11 +267,11 @@ public class SettingsController extends UtilityClass implements Initializable {
 //                reload();
             }
 
-            if (resultSet.getString("backupemailPassword") == null) {
+            if (resultSet.getString("backupemailPassword") == null && config.login.containsKey("loggedinasadmin")) {
                 showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "SET PASSWORD FOR BACKUPS", "YOU NEED TO CREATE A BACK UP EMAIL PASSWORD FOR ONLINE BACKUPS TO TAKE PLACE.REMEMBER TO USE YOUR REAL GMAIL PASSWORD");
                 changeColumn("users", "backupemailPassword");
 
-            } else if (resultSet.getString("backupemailPassword").isEmpty()) {
+            } else if ((resultSet.getString("backupemailPassword") == null || resultSet.getString("backupemailPassword").isEmpty()) && config.login.containsKey("loggedinasadmin")) {
                 showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "SET PASSWORD FOR BACKUPS", "YOU NEED TO CREATE A BACK UP EMAIL PASSWORD FOR ONLINE BACKUPS TO TAKE PLACE.REMEMBER TO USE YOUR REAL GMAIL PASSWORD");
                 changeColumn("users", "backupemailPassword");
 
@@ -299,6 +299,7 @@ public class SettingsController extends UtilityClass implements Initializable {
 
     }
 
+
     private void menuListeners() {
 //        menu listeners
     }
@@ -325,7 +326,22 @@ public class SettingsController extends UtilityClass implements Initializable {
     }
 
     private void buttonListeners() {
-
+        changeStationName.setOnAction(event -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("STATION NAME CHANGING ");
+            alert.setHeaderText(null);
+            alert.setContentText("CHANGING THE STATION NAME IS IRREVERSIBLE.ARE YOU SURE YOU WANT TO CONTINUE?");
+            alert.initOwner(panel.getScene().getWindow());
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.isPresent() && option.get() == ButtonType.OK) {
+                try {
+                    changeColumnLocal("system_settings", "config");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            reload();
+        });
         backupEmailChangePassword.setOnAction(event -> {
             try {
                 changeColumn("users", "backupemailPassword");
@@ -530,6 +546,35 @@ public class SettingsController extends UtilityClass implements Initializable {
         }
 
 
+    }
+
+    private void changeColumnLocal(String table, String column) throws SQLException {
+
+        UtilityClass utilityClass = new UtilityClass();
+        Connection connection = utilityClass.getConnectionDbLocal();
+        PreparedStatement prep = connection.prepareStatement("SELECT * FROM system_settings WHERE name=?");
+        prep.setString(1, "pcname");
+        ResultSet rs = prep.executeQuery();
+        String columnValue = dialogBoxCredentials("PC NAME", " INPUT YOUR NEW PC NAME");
+
+        if (!rs.isBeforeFirst()) {
+            prep = connection.prepareStatement("INSERT INTO system_settings(name, config) VALUES (?,?)");
+            prep.setString(1, "pcname");
+            prep.setString(2, columnValue);
+            prep.executeUpdate();
+            connection.close();
+        } else {
+            prep = connection.prepareStatement("UPDATE  " + table + " SET  " + column + "=? WHERE name=?");
+            prep.setString(1, columnValue);
+            prep.setString(2, "pcname");
+            if (prep.executeUpdate() > 0) {
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS", "DATABASE HAS BEEN UPDATED SUCCESSFULLY");
+            } else {
+                showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "DATABASE HAS NOT BEEN UPDATED SUCCESSFULLY");
+
+            }
+            connection.close();
+        }
     }
 
     private String dialogBoxCredentials(String title, String text) throws SQLException {

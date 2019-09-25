@@ -31,7 +31,11 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.*;
 
@@ -49,6 +53,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     //start of the menu
     public MenuItem menulogout;
     public MenuItem details;
+    public Button checkUpdates;
     @FXML
     private Label message;
 
@@ -126,7 +131,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     @FXML
     private Button logoutButton;
 
-    public static File lastFileModified(String dir) {
+    private static File lastFileModified(String dir) {
         File fl = new File(dir);
         File[] files = fl.listFiles(new FileFilter() {
             public boolean accept(File file) {
@@ -135,12 +140,14 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         });
         long lastMod = Long.MIN_VALUE;
         File choice = null;
+        assert files != null;
         for (File file : files) {
             if (file.lastModified() > lastMod) {
                 choice = file;
                 lastMod = file.lastModified();
             }
         }
+        assert choice != null;
         System.out.println(choice.getAbsolutePath());
         return choice;
     }
@@ -172,6 +179,8 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 
     private void initModules() throws SQLException {
         checkEmailAndPassword();
+        checkIfPreviousDayEnded();
+
 
         boolean checkTable = checkBackUpPeriodic();
         boolean backupdata = false;
@@ -195,6 +204,17 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 
             }
 
+        }
+    }
+
+    private void checkIfPreviousDayEnded() throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT id FROM DAYS WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
+        if (resultSet.isBeforeFirst()) {
+            startDayMenu.setDisable(true);
+            startDay.setVisible(false);
+            endDay.setVisible(true);
+            endDayMenu.setDisable(false);
         }
     }
 
@@ -234,6 +254,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     }
 
     private void menuClick() {
+        backupMenu.setOnAction(event -> backingUpMainMethod());
         menuShutDown.setOnAction(event -> {
             try {
                 shutdown();
@@ -262,7 +283,28 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             }
         });
         menulogout.setOnAction(event -> logout(panel));
-
+        startDayMenu.setOnAction(event -> {
+            try {
+                if (readBackupInfo().equals("STARTUP BACKUP")) {
+                    backingUpMainMethod();//back up on start day
+                }
+                startDayMethod();
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "DAY STARTED", "DAY STARTED SUCCESSFULLY");
+                reload();
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+            }
+        });
+        endDayMenu.setOnAction(event -> {
+            try {
+                if (readBackupInfo().equals("END DAY BACK UP")) {
+                    backingUpMainMethod();//back up on end day
+                }
+                endDayMethod();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void refresh() throws SQLException {
@@ -303,7 +345,10 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                 if (readBackupInfo().equals("STARTUP BACKUP")) {
                     backingUpMainMethod();//back up on start day
                 }
-            } catch (SQLException e) {
+                startDayMethod();
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "DAY STARTED", "DAY STARTED SUCCESSFULLY");
+                reload();
+            } catch (SQLException | IOException e) {
                 e.printStackTrace();
             }
 
@@ -313,6 +358,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                 if (readBackupInfo().equals("END DAY BACK UP")) {
                     backingUpMainMethod();//back up on end day
                 }
+                endDayMethod();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -402,6 +448,58 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 
     }
 
+    private void reload() throws IOException {
+        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml")))));
+
+    }
+
+    private void endDayMethod() {
+        //send reports to manager
+        try {
+            LocalDate myObj = LocalDate.now(); // Create a date object
+            String time = String.valueOf(myObj);
+            String id = null;
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM DAYS WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
+            if (resultSet.isBeforeFirst()) {
+                while (resultSet.next()) {
+                    if (resultSet.getString("start_time").equalsIgnoreCase(myObj.toString())) {
+                        showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "ENDING DAY", "DAY HAS BEEN ENDED SUCCESSFULLY");
+                    }
+                    id = resultSet.getString("id");
+                }
+            }
+            resultSet.close();
+            statement.close();
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE days SET end_time=? , completed=? WHERE id=?");
+            preparedStatement.setString(1, time);
+            preparedStatement.setString(2, "complete");
+            preparedStatement.setString(3, id);
+            if (preparedStatement.executeUpdate() > 0) {
+                reload();
+                endDayMenu.setDisable(true);
+                endDay.setVisible(false);
+                startDayMenu.setDisable(false);
+                startDay.setVisible(true);
+            } else {
+                System.out.println("errrr");
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void startDayMethod() {
+        try {
+            LocalDate myObj = LocalDate.now(); // Create a date object
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO days(start_time)VALUES(?)");
+            preparedStatement.setString(1, myObj.toString());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private String readBackupInfo() throws SQLException {
         String backuptime = null;
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
@@ -443,6 +541,19 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             zip = new File(fileSavePath + "backups");
 
         } else {
+
+            Path DIRS = Paths.get(path);
+
+            if (!Files.exists(DIRS)) {
+
+                try {
+                    Files.createDirectories(DIRS);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
             zip = new File(path);
 
         }

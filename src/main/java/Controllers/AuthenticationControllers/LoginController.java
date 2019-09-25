@@ -1,5 +1,6 @@
 package Controllers.AuthenticationControllers;
 
+import Controllers.SuperClass;
 import Controllers.UtilityClass;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -24,10 +25,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -200,21 +198,33 @@ public class LoginController extends UtilityClass implements Initializable {
                                     }
                                 } else {
 //                                user is not admin go to normal panel
-                                    panel.getChildren().removeAll();
-                                    try {
-                                        panel.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panel.fxml"))));
-                                        assert false;
-                                        //                                    work as sessions and hold user session data
-                                        config.user.put("userName", resultSet.getString("employeename"));
 
-                                        config.user.put("user", resultSet.getString("email"));
-                                        config.login.put("loggedinasemployee", true);
+                                    Connection connection = new SuperClass().getConnection();
+                                    Statement statements = connection.createStatement();
+                                    ResultSet res = statements.executeQuery("SELECT * FROM DAYS WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
+                                    if (!res.isBeforeFirst()) {
+//make everything not clickable
+                                        showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "INACTIVE SYSTEM", "YOU HAVE AN INACTIVE SYSTEM!!THE ADMIN SHOULD START A DAY FOR ANY CASHIERS TO LOGIN");
+
+                                        res.close();
+                                        statements.close();
+                                    } else {
+                                        panel.getChildren().removeAll();
+                                        try {
+                                            panel.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panel.fxml"))));
+                                            assert false;
+                                            //                                    work as sessions and hold user session data
+                                            config.user.put("userName", resultSet.getString("employeename"));
+
+                                            config.user.put("user", resultSet.getString("email"));
+                                            config.login.put("loggedinasemployee", true);
 
 //                                    new ShopController().setTransID(String.valueOf(new Random().nextGaussian()));
-                                        //                                    create a new transaction id for local sqlite cart
+                                            //                                    create a new transaction id for local sqlite cart
 
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
                                     }
                                 }
                             } else {

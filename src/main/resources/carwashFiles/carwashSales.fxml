@@ -178,19 +178,24 @@
                                                                         </placeholder>
                                                                         <columns>
                                                                             <TableColumn fx:id="Name" prefWidth="104.0"
-                                                                                         text="NAME"/>
+                                                                                         resizable="false" text="NAME"/>
                                                                             <TableColumn fx:id="reg" prefWidth="129.0"
+                                                                                         resizable="false"
                                                                                          text="REGISTRATION"/>
                                                                             <TableColumn fx:id="id" prefWidth="156.0"
+                                                                                         resizable="false"
                                                                                          text="ID NUMBER"/>
                                                                             <TableColumn fx:id="status"
                                                                                          prefWidth="126.0"
+                                                                                         resizable="false"
                                                                                          text="STATUS"/>
                                                                             <TableColumn fx:id="operator"
                                                                                          prefWidth="215.0"
+                                                                                         resizable="false"
                                                                                          text="WASHER"/>
                                                                             <TableColumn fx:id="payout"
                                                                                          prefWidth="113.0"
+                                                                                         resizable="false"
                                                                                          text="CASH PAID"/>
                                                                         </columns>
                                                                     </TableView>

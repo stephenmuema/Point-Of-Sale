@@ -25,11 +25,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.*;
 
 import static securityandtime.config.*;
@@ -151,6 +149,49 @@ public class UtilityClass {
 
     }
 
+    protected void checkSetPcName(Label label) throws SQLException {
+        try (Connection connection = new UtilityClass().getConnectionDbLocal()) {
+            PreparedStatement prep = null;
+            prep = connection.prepareStatement("SELECT * FROM system_settings WHERE name=?");
+            prep.setString(1, "pcname");
+            ResultSet resultSet = prep.executeQuery();
+            if (resultSet.isBeforeFirst()) {
+                while (resultSet.next()) {
+                    label.setText(resultSet.getString("config"));
+
+                }
+            } else {
+
+                label.setText(getComputerName());
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getComputerName() {
+        String pcName = null;
+        try {
+            PreparedStatement prep = connectionDbLocal.prepareStatement("SELECT * FROM system_settings WHERE name=?");
+            prep.setString(1, "pcname");
+            ResultSet rs = prep.executeQuery();
+            if (rs.isBeforeFirst()) {
+                while (rs.next()) {
+                    pcName = rs.getString("config");
+                }
+            } else {
+                Map<String, String> env = System.getenv();
+                if (env.containsKey("COMPUTERNAME"))
+                    pcName = env.get("COMPUTERNAME");
+                else pcName = env.getOrDefault("HOSTNAME", "Unknown Computer");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pcName;
+    }
+
     public void time(Label clock) {
         Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             String mins = null, hrs = null, secs = null, pmam = null;
@@ -237,6 +278,7 @@ public class UtilityClass {
 //        preparedStatement1.close();
 
     }
+
     public static void restart() throws RuntimeException, IOException {
         String restartCommand;
         String operatingSystem = System.getProperty("os.name");
