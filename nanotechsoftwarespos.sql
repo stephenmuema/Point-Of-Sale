@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2019 at 02:17 PM
+-- Generation Time: Sep 25, 2019 at 11:00 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -51,9 +51,35 @@ CREATE TABLE `backups`
     `id`          int(11)   NOT NULL,
     `dateCreated` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `path`        text      NOT NULL,
-    `nextBackup`  datetime       DEFAULT NULL
+    `nextBackup`  text
 ) ENGINE = InnoDB
   DEFAULT CHARSET = latin1;
+
+--
+-- Dumping data for table `backups`
+--
+
+INSERT INTO `backups` (`id`, `dateCreated`, `path`, `nextBackup`)
+VALUES (10, '2019-09-23 11:00:26',
+        'D:\\NANOTECHSOFTWARES\\nanotechPOS\\backups\\23_9_2019_13_36_29_nanotechsoftwarespos_database_dump.zip',
+        '1569582026540'),
+       (11, '2019-09-23 11:00:37',
+        'D:\\NANOTECHSOFTWARES\\nanotechPOS\\backups\\23_9_2019_14_00_29_nanotechsoftwarespos_database_dump.zip',
+        '1569582037601'),
+       (12, '2019-09-23 11:01:54',
+        'D:\\NANOTECHSOFTWARES\\nanotechPOS\\backups\\23_9_2019_14_01_47_nanotechsoftwarespos_database_dump.zip',
+        '1569582114779'),
+       (13, '2019-09-23 11:03:24',
+        'D:\\NANOTECHSOFTWARES\\nanotechPOS\\backups\\23_9_2019_14_03_18_nanotechsoftwarespos_database_dump.zip',
+        '1569582204887'),
+       (14, '2019-09-23 11:05:40',
+        'D:\\NANOTECHSOFTWARES\\nanotechPOS\\backups\\23_9_2019_14_05_32_nanotechsoftwarespos_database_dump.zip',
+        '1569582340182'),
+       (15, '2019-09-23 11:06:57',
+        'D:\\NANOTECHSOFTWARES\\nanotechPOS\\backups\\23_9_2019_14_06_51_nanotechsoftwarespos_database_dump.zip',
+        '1569582417713'),
+       (16, '2019-09-25 09:28:24', 'D:\\NANOTECHSOFTWARES\\25_9_2019_12_20_39_nanotechsoftwarespos_database_dump.zip',
+        '1569749304143');
 
 -- --------------------------------------------------------
 
@@ -83,19 +109,7 @@ CREATE TABLE `carwash`
 
 INSERT INTO `carwash` (`id`, `ownername`, `registration`, `idnumber`, `status`, `washedby`, `cashpaid`, `contact`,
                        `additionalcharges`, `arrival time`, `date`)
-VALUES (1, 'STEVE', 'KCY205Y', '34556470', 'COMPLETED', NULL, '300', '0702653268', '', '2019-09-03 20:00:36',
-        '0000-00-00'),
-       (2, 'SNM', 'SNM', '34556470', '', NULL, NULL, 'SNM', NULL, '2019-03-30 08:34:53', '0000-00-00'),
-       (3, ',MZNCX.,', 'X,ZCM.', ',MC,.', NULL, NULL, NULL, 'MCN.ZX', NULL, '2019-03-30 07:22:00', '0000-00-00'),
-       (4, 'SNM', '121212', '121212', 'completed', 'washer 1', '300', '121', NULL, '2019-04-01 19:00:59', '0000-00-00'),
-       (5, 'STEVE', 'KCZ 108 N', '34556470', 'COMPLETED', 'MULINGE', '300', '0702653268', NULL, '2019-04-02 16:41:29',
-        '0000-00-00'),
-       (6, 'SNM', ',MCXZ', 'DASF,', 'complete', NULL, NULL, ',SDM', NULL, '2019-04-05 17:53:27', '0000-00-00'),
-       (7, '', '', '', 'complete', NULL, NULL, '', NULL, '2019-04-16 06:20:42', '0000-00-00'),
-       (8, 'STEVE', 'KCD 567 N', '34556470', 'PENDING', NULL, NULL, '0702653268', NULL, '2019-05-02 14:42:00',
-        '0000-00-00'),
-       (9, 'SNM', ' MBNMBM', 'VBNMBMN', 'complete', NULL, NULL, 'BVMBMB', NULL, '2019-05-03 13:24:05', '0000-00-00'),
-       (10, 'SNM', 'SMDNM', 'SMDNSMD', 'PENDING', NULL, NULL, 'SMNDMSD', NULL, '2019-08-23 14:27:10', '0000-00-00');
+VALUES (1, 'STEVE', 'KDA365S', '4345556', 'PENDING', NULL, '', '0702653268', NULL, '2019-09-21 05:01:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -114,6 +128,30 @@ CREATE TABLE `chats`
     `chattype`   text       NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `days`
+--
+
+CREATE TABLE `days`
+(
+    `id`         int(11) NOT NULL,
+    `start_time` text    NOT NULL,
+    `end_time`   text,
+    `completed`  varchar(20) DEFAULT 'incomplete'
+) ENGINE = InnoDB
+  DEFAULT CHARSET = latin1;
+
+--
+-- Dumping data for table `days`
+--
+
+INSERT INTO `days` (`id`, `start_time`, `end_time`, `completed`)
+VALUES (11, '2019-09-25', '2019-09-25', 'complete'),
+       (12, '2019-09-25', '2019-09-25', 'complete'),
+       (13, '2019-09-25', NULL, 'incomplete');
 
 -- --------------------------------------------------------
 
@@ -154,10 +192,7 @@ CREATE TABLE `sales`
 --
 
 INSERT INTO `sales` (`id`, `transactionid`, `cash`, `seller`, `balance`, `moneypaid`, `method`, `completed`)
-VALUES (1, '2019-08-20 19:02:15.649', 968168, 'muemasn@nanotechsoftwares.co.ke', '31832', '1000000', 'CASH', 1),
-       (2, '2019-09-02 19:24:56.543', 1223, 'muemasn@nanotechsoftwares.co.ke', '777', '2000', 'CASH', 1),
-       (3, '2019-09-02 19:24:56.543', 4444, 'muemasn@nanotechsoftwares.co.ke', '1111', '5555', 'CASH', 1),
-       (4, '2019-09-02 19:28:05.537', 8888, 'muemasn@nanotechsoftwares.co.ke', '1112', '10000', 'CASH', 1);
+VALUES (1, '2019-09-25 14:20:54.684', 21513, 'muemasn@nanotechsoftwares.co.ke', '487', '22000', 'CASH', 1);
 
 -- --------------------------------------------------------
 
@@ -225,13 +260,10 @@ CREATE TABLE `solditems`
 --
 
 INSERT INTO `solditems` (`id`, `name`, `price`, `quantitysold`, `transactionid`, `category`)
-VALUES (1, 'TOYOTA LANDCRUISER V8', '1223', '789', '2019-08-20 19:02:15.649', 'TOYOTA'),
-       (2, 'BENTLEY MULLSANE', '3221', '1', '2019-08-20 19:02:15.649', 'BENTLEY'),
-       (3, 'TOYOTA LANDCRUISER V8', '1223', '1', '2019-09-02 19:24:56.543', 'TOYOTA'),
-       (4, 'TOYOTA LANDCRUISER V8', '1223', '1', '2019-09-02 19:24:56.543', 'TOYOTA'),
-       (5, 'BENTLEY MULLSANE', '3221', '1', '2019-09-02 19:24:56.543', 'BENTLEY'),
-       (6, 'TOYOTA LANDCRUISER V8', '1223', '2', '2019-09-02 19:28:05.537', 'TOYOTA'),
-       (7, 'BENTLEY MULLSANE', '3221', '2', '2019-09-02 19:28:05.537', 'BENTLEY');
+VALUES (1, 'TOYOTA LANDCRUISER V8', '1223', '1', '2019-09-25 14:20:54.684', 'TOYOTA'),
+       (2, 'BENTLEY MULLSANE', '3221', '2', '2019-09-25 14:20:54.684', 'BENTLEY'),
+       (3, 'RANGE ROVER SENTINEL', '1212', '4', '2019-09-25 14:20:54.684', 'RANGE ROVER'),
+       (4, 'MERCEDES MAYBACH S CLASS', '3000', '3', '2019-09-25 14:20:54.684', 'MERCEDES');
 
 -- --------------------------------------------------------
 
@@ -257,11 +289,11 @@ CREATE TABLE `stocks`
 --
 
 INSERT INTO `stocks` (`id`, `name`, `itemcode`, `amount`, `category`, `price`, `supplier`, `path`)
-VALUES (1, 'TOYOTA LANDCRUISER V8', '1', '1157', 'TOYOTA', '1223', NULL, ''),
-       (2, 'BENTLEY MULLSANE', '2', '2996', 'BENTLEY', '3221', NULL, ''),
-       (3, 'RANGE ROVER SENTINEL', '3', '378873', 'RANGE ROVER', '1212', NULL,
+VALUES (1, 'TOYOTA LANDCRUISER V8', '1', '1156', 'TOYOTA', '1223', NULL, ''),
+       (2, 'BENTLEY MULLSANE', '2', '2994', 'BENTLEY', '3221', NULL, ''),
+       (3, 'RANGE ROVER SENTINEL', '3', '378869', 'RANGE ROVER', '1212', NULL,
         'D:\\PROJECTS\\NanotechSoftwares\\poswithcarwash\\1568189936673'),
-       (4, 'MERCEDES MAYBACH S CLASS', '4', '459', 'MERCEDES', '3000', NULL,
+       (4, 'MERCEDES MAYBACH S CLASS', '4', '456', 'MERCEDES', '3000', NULL,
         'D:\\PROJECTS\\NanotechSoftwares\\poswithcarwash\\156819058860601-mercedes-benz-vehicles-the-new-mercedes-maybach-pullman-vv-222-3400x1440.jpg');
 
 -- --------------------------------------------------------
@@ -331,7 +363,8 @@ CREATE TABLE `systemsettings`
 --
 
 INSERT INTO `systemsettings` (`id`, `name`, `type`, `value`)
-VALUES (1, 'backup', 'security', 'STARTUP BACKUP');
+VALUES (3, 'backup', 'security', 'PERIODIC'),
+       (4, 'backupLocation', 'security', 'D:\\NANOTECHSOFTWARES');
 
 -- --------------------------------------------------------
 
@@ -372,21 +405,21 @@ CREATE TABLE `timers`
 
 CREATE TABLE `users`
 (
-    `id`                  int(11)     NOT NULL,
+    `id`                  int(11)    NOT NULL,
     `employeename`        text,
     `subscribername`      text,
-    `rank`                tinyint(4)           DEFAULT NULL,
+    `rank`                tinyint(4)          DEFAULT NULL,
     `email`               text,
-    `admin`               tinyint(1)  NOT NULL DEFAULT '0',
+    `admin`               tinyint(1) NOT NULL DEFAULT '0',
     `password`            text,
-    `activated`           int(11)     NOT NULL DEFAULT '0',
-    `status`              varchar(80)          DEFAULT 'admin activation required',
+    `activated`           int(11)    NOT NULL DEFAULT '0',
+    `status`              varchar(80)         DEFAULT 'admin activation required',
     `employeeid`          text,
     `hash`                text,
     `subscriberkey`       text,
     `backupemail`         text,
     `backupemailPassword` text,
-    `passwordhint`        varchar(30) NOT NULL
+    `passwordhint`        varchar(30)         DEFAULT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = latin1;
 
@@ -397,22 +430,13 @@ CREATE TABLE `users`
 INSERT INTO `users` (`id`, `employeename`, `subscribername`, `rank`, `email`, `admin`, `password`, `activated`,
                      `status`, `employeeid`, `hash`, `subscriberkey`, `backupemail`, `backupemailPassword`,
                      `passwordhint`)
-VALUES (1, 'admin', NULL, NULL, 'snm@gmail.com', 1,
+VALUES (5, 'admin', NULL, NULL, 'muemasnyamai@gmail.com', 1,
         'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a3815f23f3eab1d8b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec',
-        1, 'active', '34556470', '641b276a48ca927a99446eeffb4a3af4', 'q', 'muemasnyamai@gmail.com',
-        '3ye3iknxLQ7UdHKk1Ex0XBI1cj7m2pkG2cH5hZp4j3s=:YWJjZGVmOTg3NjU0MzIxMA==', 'admin'),
-       (2, 'test', NULL, NULL, 'muemasn@nanotechsoftwares.co.ke', 0,
+        1, 'active', '34556470', 'e3af798efc7474f675a58d8e7f1ff39', NULL, 'muemasnyamai@gmail.com',
+        '3ye3iknxLQ7UdHKk1Ex0XBI1cj7m2pkG2cH5hZp4j3s=:YWJjZGVmOTg3NjU0MzIxMA==', NULL),
+       (6, 'test', NULL, NULL, 'muemasn@nanotechsoftwares.co.ke', 0,
         'ee26b0dd4af7e749aa1a8ee3c1ae9923f618980772e473f8819a5d494edb27ac185f8a0e1d5f84f88bc887fd67b143732c34cc5fa9ad8e6f57f5028a8ff',
-        1, 'active', 'test', '8fa59888c91207811c306769a4dab769', 'q', 'muemasn@nanotechsoftwares.co.ke', '', ''),
-       (3, 'mwende', NULL, NULL, 'mwendemich@gmail.com', 0,
-        '9b4352e074e93890a55d659e3eb6863dcfdcba430d86492ce254c3c75b4a809fd120bc5a11adea61dc5d3ad32b1a7718146f82af6ec1b8294889a0da71',
-        1, 'active', '34638088', '8e12cc3d25d84c9e85a070bb99b0be50', 'q', NULL, '', ''),
-       (4, 'qwerty', NULL, NULL, 'qwerty@gmail.com', 0,
-        'dd3e512642c97ca3f747f9a76e374fbda73f9292823c0313be9d78add7cdd8f72235af0c553dd26797e78e1854edee0ae02f8aba74b66dfce1af114e32f8',
-        1, 'active', '356456564', '49ff6f7849a5387afdbad4e82f9c1838', 'q', NULL, '', ''),
-       (5, 'asdf', NULL, NULL, 'asdf@gmail.com', 0,
-        '401b9eab3c013d4ca54922bb82bec8fd5318192ba75f21d8b37274298fb337591abd3e44453b954555b7a0812e1081c39b74293f765eae731f5a65ed1',
-        1, 'active', '121223232', '2a63335c6ddcef4dee9291c46c99a299', 'q', NULL, '', '');
+        1, 'active', '34556470', 'f9b3fbc62dbf46a7e6d3c95db2ce8aa', NULL, NULL, NULL, 'test');
 
 --
 -- Indexes for dumped tables
@@ -440,6 +464,12 @@ ALTER TABLE `carwash`
 -- Indexes for table `chats`
 --
 ALTER TABLE `chats`
+    ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `days`
+--
+ALTER TABLE `days`
     ADD PRIMARY KEY (`id`);
 
 --
@@ -545,20 +575,28 @@ ALTER TABLE `audits`
 -- AUTO_INCREMENT for table `backups`
 --
 ALTER TABLE `backups`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 17;
 
 --
 -- AUTO_INCREMENT for table `carwash`
 --
 ALTER TABLE `carwash`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
-    AUTO_INCREMENT = 11;
+    AUTO_INCREMENT = 2;
 
 --
 -- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `days`
+--
+ALTER TABLE `days`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 14;
 
 --
 -- AUTO_INCREMENT for table `errors`
@@ -571,7 +609,7 @@ ALTER TABLE `errors`
 --
 ALTER TABLE `sales`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
-    AUTO_INCREMENT = 5;
+    AUTO_INCREMENT = 2;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -596,7 +634,7 @@ ALTER TABLE `shifts`
 --
 ALTER TABLE `solditems`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
-    AUTO_INCREMENT = 8;
+    AUTO_INCREMENT = 5;
 
 --
 -- AUTO_INCREMENT for table `stocks`
@@ -622,7 +660,7 @@ ALTER TABLE `suppliers`
 --
 ALTER TABLE `systemsettings`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
-    AUTO_INCREMENT = 2;
+    AUTO_INCREMENT = 5;
 
 --
 -- AUTO_INCREMENT for table `system_errors_map`
@@ -641,7 +679,7 @@ ALTER TABLE `timers`
 --
 ALTER TABLE `users`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
-    AUTO_INCREMENT = 6;
+    AUTO_INCREMENT = 7;
 
 --
 -- Constraints for dumped tables

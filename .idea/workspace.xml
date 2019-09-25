@@ -7,54 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/POSnanotech-softwareshotelshotelsjavamultiplestores.iml" beforeDir="false" afterPath="$PROJECT_DIR$/POSnanotech-softwareshotelshotelsjavamultiplestores.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/PanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/PanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/ReportIssuesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/ReportIssuesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/SettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/Settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/Settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/employees.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/employees.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panelAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panelAdmin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/carwashFiles/carwash.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/carwashFiles/carwash.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/carwashFiles/carwashSales.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/carwashFiles/carwashSales.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/scanneradd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/scanneradd.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/stocks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/stocks.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/AuthenticationFiles/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AuthenticationFiles/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LoginController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LoginController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/EmployeesController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/PanelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/PanelController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/PanelController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/PanelController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/PanelController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/PanelController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/PanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/PanelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/SettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/SettingsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UtilityClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UtilityClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/POSnanotech-softwareshotelshotelsjavamultiplestores.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/Settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/Settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/employees.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/employees.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/panel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/panel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/panelAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/panelAdmin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/reportIssues.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/reportIssues.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/carwashFiles/carwash.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/carwashFiles/carwash.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/carwashFiles/carwashSales.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/carwashFiles/carwashSales.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/securityandtime/AesCrypto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/securityandtime/AesCrypto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/scanneradd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/scanneradd.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/stocks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/stocks.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nanotechsoftwarespos.sql" beforeDir="false" afterPath="$PROJECT_DIR$/nanotechsoftwarespos.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -184,7 +138,7 @@
     <property name="database.console.LAST_STATE" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/chatbox/src" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../emailSender" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -649,6 +603,8 @@
       <workItem from="1569327178420" duration="2079000" />
       <workItem from="1569345233767" duration="91000" />
       <workItem from="1569395169054" duration="18954000" />
+      <workItem from="1569436775511" duration="193000" />
+      <workItem from="1569445002745" duration="252000" />
     </task>
     <task id="LOCAL-00001" summary="before shopping cart">
       <created>1552048112305</created>
@@ -923,7 +879,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569243899504</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="ADDED CONTACT DEVELOPERS PAGE">
+      <created>1569436957127</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1569436957127</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
