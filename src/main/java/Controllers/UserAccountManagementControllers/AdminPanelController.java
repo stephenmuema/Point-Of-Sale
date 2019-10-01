@@ -4,6 +4,7 @@ package Controllers.UserAccountManagementControllers;
 import Controllers.IdleMonitor;
 import Controllers.UtilityClass;
 import com.smattme.MysqlExportService;
+import com.smattme.MysqlImportService;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -18,6 +19,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -254,6 +256,44 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     }
 
     private void menuClick() {
+        retrieveBackupMenu.setOnAction(event -> {
+
+            FileChooser fileChooser = new FileChooser();
+
+            //Set extension filter
+
+            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("SQL files (*.sql)", "*.sql");
+
+            fileChooser.getExtensionFilters().addAll(extFilterPNG);
+            fileChooser.setTitle("SELECT YOUR SQL BACKUP FILE");
+            //Show open file dialog
+            File file = fileChooser.showOpenDialog(null);
+            int length = (int) file.length();
+
+
+            String sql = null;
+            try {
+                sql = new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            boolean res = false;
+            try {
+                res = MysqlImportService.builder()
+                        .setDatabase(dbname)
+                        .setSqlString(sql)
+                        .setUsername(userDb)
+                        .setPassword(passwordDb)
+                        .setDeleteExisting(false)
+                        .setDropExisting(false)
+                        .importDatabase();
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+
+        });
         backupMenu.setOnAction(event -> backingUpMainMethod());
         menuShutDown.setOnAction(event -> {
             try {

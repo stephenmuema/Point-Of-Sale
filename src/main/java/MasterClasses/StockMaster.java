@@ -6,10 +6,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class StockMaster {
-    public ObjectProperty itemPic = new SimpleObjectProperty();
+    private ObjectProperty<Object> itemPic = new SimpleObjectProperty<>();
     public SimpleStringProperty amount = new SimpleStringProperty();
     private SimpleIntegerProperty Id = new SimpleIntegerProperty();
-    private ObjectProperty Pic = new SimpleObjectProperty();
+    private ObjectProperty<Object> Pic = new SimpleObjectProperty<>();
     private SimpleStringProperty Name = new SimpleStringProperty();
     private SimpleStringProperty barcode = new SimpleStringProperty();
     private SimpleStringProperty price = new SimpleStringProperty();
@@ -25,7 +25,7 @@ public class StockMaster {
         this.itemPic.set(itemPic);
     }
 
-    public ObjectProperty itemPicProperty() {
+    public ObjectProperty<Object> itemPicProperty() {
         return itemPic;
     }
 
@@ -73,7 +73,7 @@ public class StockMaster {
         this.Pic.set(pic);
     }
 
-    public ObjectProperty picProperty() {
+    public ObjectProperty<Object> picProperty() {
         return Pic;
     }
 

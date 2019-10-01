@@ -1,6 +1,5 @@
 package securityandtime;
 
-import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.Date;
@@ -19,7 +18,7 @@ public class CheckConn {
         }
     }
 
-    public static Date timelogin() throws IOException {
+    public static Date timelogin() {
         return new Date();
     }
 

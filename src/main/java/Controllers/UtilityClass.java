@@ -195,34 +195,29 @@ public class UtilityClass {
     public void time(Label clock) {
         Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             String mins = null, hrs = null, secs = null, pmam = null;
-            try {
-                int minutes = Integer.parseInt(String.valueOf(CheckConn.timelogin().getMinutes()));
-                int seconds = Integer.parseInt(String.valueOf(CheckConn.timelogin().getSeconds()));
-                int hours = Integer.parseInt(String.valueOf(CheckConn.timelogin().getHours()));
+            int minutes = Integer.parseInt(String.valueOf(CheckConn.timelogin().getMinutes()));
+            int seconds = Integer.parseInt(String.valueOf(CheckConn.timelogin().getSeconds()));
+            int hours = Integer.parseInt(String.valueOf(CheckConn.timelogin().getHours()));
 
-                if (hours >= 12) {
-                    pmam = "PM";
-                } else {
-                    pmam = "AM";
+            if (hours >= 12) {
+                pmam = "PM";
+            } else {
+                pmam = "AM";
 
-                }
-                if (minutes > 9) {
-                    mins = String.valueOf(minutes);
-                } else {
-                    mins = "0" + minutes;
-
-                }
-                if (seconds > 9) {
-                    secs = String.valueOf(seconds);
-                } else {
-                    secs = "0" + seconds;
-
-                }
-            } catch (IOException e1) {
-                e1.printStackTrace();
             }
-            try {
-//                if (networkConnectionMap.containsKey("server") || networkConnectionMap.containsKey("Internet")) {
+            if (minutes > 9) {
+                mins = String.valueOf(minutes);
+            } else {
+                mins = "0" + minutes;
+
+            }
+            if (seconds > 9) {
+                secs = String.valueOf(seconds);
+            } else {
+                secs = "0" + seconds;
+
+            }
+            //                if (networkConnectionMap.containsKey("server") || networkConnectionMap.containsKey("Internet")) {
 //                    if (!networkConnectionMap.get("server")) {
 ////                    no connection to server
 //                        showAlert(Alert.AlertType.ERROR, panel.get("panel").getScene().getWindow(), "ERROR", "NETWORK CONNECTION LOST");
@@ -233,10 +228,7 @@ public class UtilityClass {
 //                    }
 //
 //                }
-                clock.setText(CheckConn.timelogin().getHours() + ":" + (mins) + ":" + (secs) + " " + pmam);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+            clock.setText(CheckConn.timelogin().getHours() + ":" + (mins) + ":" + (secs) + " " + pmam);
         }),
                 new KeyFrame(Duration.seconds(1))
         );

@@ -14,7 +14,6 @@ import securityandtime.AesCrypto;
 import securityandtime.CheckConn;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -139,13 +138,10 @@ public class Launcher extends Application {
                 Files.setAttribute(path, "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
 
                 File fl = new File(fileSavePath + "licenses");
-                File[] files = fl.listFiles(new FileFilter() {
-                    public boolean accept(File file) {
-                        return file.isFile();
-                    }
-                });
+                File[] files = fl.listFiles(File::isFile);
                 long lastMod = Long.MIN_VALUE;
                 File choice = null;
+                assert files != null;
                 for (File f : files) {
                     if (!f.isHidden()) {
                         Path pathf = Paths.get(f.getAbsolutePath());
@@ -231,7 +227,7 @@ public class Launcher extends Application {
                     AnchorPane root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/SplashScreen.fxml"));
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
-                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.initStyle(StageStyle.DECORATED);
 
                     stage.getIcons().add(image);
                     stage.setTitle(company + year + version);//TITLE

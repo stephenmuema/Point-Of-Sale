@@ -9,12 +9,10 @@ import static java.awt.Toolkit.getDefaultToolkit;
 public class BoardListener extends Thread implements ClipboardOwner {
     private Clipboard sysClip = getDefaultToolkit().getSystemClipboard();
 
-    private volatile boolean flag = true;
-
     //This method will set flag as false
 
     public void stopRunning() {
-        flag = false;
+        boolean flag = false;
     }
 
     @Override

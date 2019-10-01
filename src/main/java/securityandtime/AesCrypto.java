@@ -6,7 +6,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
-import static securityandtime.config.*;
+import static securityandtime.config.throwables;
 
 public class AesCrypto {
 
@@ -48,9 +48,11 @@ public class AesCrypto {
         if (key.length() < AesCrypto.CIPHER_KEY_LEN) {
             int numPad = AesCrypto.CIPHER_KEY_LEN - key.length();
 
+            StringBuilder keyBuilder = new StringBuilder(key);
             for (int i = 0; i < numPad; i++) {
-                key += "0"; //0 pad to len 16 bytes
+                keyBuilder.append("0"); //0 pad to len 16 bytes
             }
+            key = keyBuilder.toString();
 
             return key;
 
@@ -95,9 +97,9 @@ public class AesCrypto {
         return new String(original);
     }
 
-    public static void main(String[] args) {
-        System.out.println(encrypt(encryptionkey, initVector, "almond@gmail.com::1567493118::156749311"));
-    }
+//    public static void main(String[] args) {
+////        System.out.println(encrypt(encryptionkey, initVector, "almond@gmail.com::1567493118::156749311"));
+//    }
 
 
 }

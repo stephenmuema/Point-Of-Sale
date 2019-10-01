@@ -3,13 +3,13 @@ package MasterClasses;
 import javafx.beans.property.SimpleStringProperty;
 
 public class EmployeeMaster {
-    public SimpleStringProperty Id = new SimpleStringProperty();
+    private SimpleStringProperty Id = new SimpleStringProperty();
     public SimpleStringProperty Name = new SimpleStringProperty();
-    public SimpleStringProperty storeLocation = new SimpleStringProperty();
+    private SimpleStringProperty storeLocation = new SimpleStringProperty();
     public SimpleStringProperty email = new SimpleStringProperty();
-    public SimpleStringProperty dateAdded = new SimpleStringProperty();
-    public SimpleStringProperty number = new SimpleStringProperty();
-    public SimpleStringProperty activated = new SimpleStringProperty();
+    private SimpleStringProperty dateAdded = new SimpleStringProperty();
+    private SimpleStringProperty number = new SimpleStringProperty();
+    private SimpleStringProperty activated = new SimpleStringProperty();
 
     public SimpleStringProperty status = new SimpleStringProperty();
 

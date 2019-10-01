@@ -3,12 +3,12 @@ package MasterClasses;
 import javafx.beans.property.SimpleStringProperty;
 
 public class SalesMaster {
-    protected SimpleStringProperty employeetransid = new SimpleStringProperty();
-    protected SimpleStringProperty transprice = new SimpleStringProperty();
-    protected SimpleStringProperty transpaid = new SimpleStringProperty();
-    protected SimpleStringProperty transmethod = new SimpleStringProperty();
-    protected SimpleStringProperty transbalance = new SimpleStringProperty();
-    protected SimpleStringProperty transcompletion = new SimpleStringProperty();
+    private SimpleStringProperty employeetransid = new SimpleStringProperty();
+    private SimpleStringProperty transprice = new SimpleStringProperty();
+    private SimpleStringProperty transpaid = new SimpleStringProperty();
+    private SimpleStringProperty transmethod = new SimpleStringProperty();
+    private SimpleStringProperty transbalance = new SimpleStringProperty();
+    private SimpleStringProperty transcompletion = new SimpleStringProperty();
 
     public String getEmployeetransid() {
         return employeetransid.get();

@@ -1,138 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
-
-<AnchorPane fx:id="panel" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CarWashControllers.CarwashController">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="700.0" prefWidth="1200.0"
+            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Controllers.CarWashControllers.CarwashController">
     <VBox>
         <children>
             <MenuBar>
                 <menus>
                     <Menu mnemonicParsing="false" text="ACCOUNT">
                         <items>
-                            <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS" />
-                            <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT" />
-                            <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER" />
-                            <MenuItem fx:id="menuQuit" mnemonicParsing="false" text="QUIT" />
+                            <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS"/>
+                            <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT"/>
+                            <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER"/>
+                            <MenuItem fx:id="menuQuit" mnemonicParsing="false" text="QUIT"/>
                         </items>
                     </Menu>
                     <Menu mnemonicParsing="false" text="DATABASE">
                         <items>
-                            <MenuItem fx:id="backupMenu" mnemonicParsing="false" text="BACKUP" />
-                            <MenuItem fx:id="retrieveBackupMenu" mnemonicParsing="false" text="RETRIEVE BACKUP" />
-                            <MenuItem fx:id="viewBackupsMenu" mnemonicParsing="false" text="VIEW BACKUPS" />
+                            <MenuItem fx:id="backupMenu" mnemonicParsing="false" text="BACKUP"/>
+                            <MenuItem fx:id="retrieveBackupMenu" mnemonicParsing="false" text="RETRIEVE BACKUP"/>
+                            <MenuItem fx:id="viewBackupsMenu" mnemonicParsing="false" text="VIEW BACKUPS"/>
                         </items>
                     </Menu>
                     <Menu mnemonicParsing="false" text="SHIFTS">
                         <items>
-                            <MenuItem fx:id="startDayMenu" mnemonicParsing="false" text="START DAY" />
-                            <MenuItem fx:id="endDayMenu" mnemonicParsing="false" text="END DAY" />
-                            <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION" />
+                            <MenuItem fx:id="startDayMenu" mnemonicParsing="false" text="START DAY"/>
+                            <MenuItem fx:id="endDayMenu" mnemonicParsing="false" text="END DAY"/>
+                            <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION"/>
                         </items>
                     </Menu>
                     <Menu mnemonicParsing="false" text="SYSTEM ">
                         <items>
-                            <MenuItem fx:id="reportIssuesMenu" mnemonicParsing="false" text="REPORT ISSUES" />
-                            <MenuItem fx:id="restartServerMenu" mnemonicParsing="false" text="RESTART SERVER" />
-                            <MenuItem fx:id="troubleShootMenu" mnemonicParsing="false" text="TROUBLESHOOT SYSTEM" />
+                            <MenuItem fx:id="reportIssuesMenu" mnemonicParsing="false" text="REPORT ISSUES"/>
+                            <MenuItem fx:id="restartServerMenu" mnemonicParsing="false" text="RESTART SERVER"/>
+                            <MenuItem fx:id="troubleShootMenu" mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
                         </items>
                     </Menu>
                     <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
                         <items>
-                            <MenuItem fx:id="abtMenu" mnemonicParsing="false" text="ABOUT THIS SOFTWARE" />
-                            <MenuItem fx:id="termsMenu" mnemonicParsing="false" text="TERMS AND CONDITIONS" />
-                            <MenuItem fx:id="checkUpdatesMenu" mnemonicParsing="false" text="CHECK FOR UPDATES" />
-                            <MenuItem fx:id="documentationMenu" mnemonicParsing="false" text="DOCUMENTATION" />
-                            <MenuItem fx:id="reachUsMenu" mnemonicParsing="false" text="REACH US" />
-                            <MenuItem fx:id="menuShutDown" mnemonicParsing="false" text="SHUT DOWN" />
-                            <MenuItem fx:id="menuRestart" mnemonicParsing="false" text="RESTART SYSTEM" />
+                            <MenuItem fx:id="abtMenu" mnemonicParsing="false" text="ABOUT THIS SOFTWARE"/>
+                            <MenuItem fx:id="termsMenu" mnemonicParsing="false" text="TERMS AND CONDITIONS"/>
+                            <MenuItem fx:id="checkUpdatesMenu" mnemonicParsing="false" text="CHECK FOR UPDATES"/>
+                            <MenuItem fx:id="documentationMenu" mnemonicParsing="false" text="DOCUMENTATION"/>
+                            <MenuItem fx:id="reachUsMenu" mnemonicParsing="false" text="REACH US"/>
+                            <MenuItem fx:id="menuShutDown" mnemonicParsing="false" text="SHUT DOWN"/>
+                            <MenuItem fx:id="menuRestart" mnemonicParsing="false" text="RESTART SYSTEM"/>
                         </items>
                     </Menu>
                     <Menu mnemonicParsing="false" text="NAVIGATION">
                         <items>
-                            <MenuItem fx:id="staffMenu" mnemonicParsing="false" text="STAFF" />
-                            <MenuItem fx:id="carWashMenu" mnemonicParsing="false" text="CAR WASH" />
-                            <MenuItem fx:id="inventoryMenu" mnemonicParsing="false" text="INVENTORY" />
-                            <MenuItem fx:id="mrMenu" mnemonicParsing="false" text="SUPPLIERS" />
-                            <MenuItem fx:id="auditsMenu" mnemonicParsing="false" text="AUDITS" />
+                            <MenuItem fx:id="staffMenu" mnemonicParsing="false" text="STAFF"/>
+                            <MenuItem fx:id="carWashMenu" mnemonicParsing="false" text="CAR WASH"/>
+                            <MenuItem fx:id="inventoryMenu" mnemonicParsing="false" text="INVENTORY"/>
+                            <MenuItem fx:id="mrMenu" mnemonicParsing="false" text="SUPPLIERS"/>
+                            <MenuItem fx:id="auditsMenu" mnemonicParsing="false" text="AUDITS"/>
                         </items>
                     </Menu>
                     <Menu mnemonicParsing="false" text="INVENTORY">
                         <items>
-                            <MenuItem fx:id="generateReportsMenu" mnemonicParsing="false" text="GENERATE REPORTS" />
-                            <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM" />
+                            <MenuItem fx:id="generateReportsMenu" mnemonicParsing="false" text="GENERATE REPORTS"/>
+                            <MenuItem mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
                         </items>
                     </Menu>
                 </menus>
             </MenuBar>
-            <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="652.0" prefWidth="1200.0">
+            <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="652.0"
+                       prefWidth="1200.0">
                 <items>
                     <AnchorPane styleClass="subPanel">
                         <children>
-                            <Label fx:id="clock" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="241.0" prefHeight="66.0" prefWidth="226.0" text="time">
+                            <Label fx:id="clock" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0"
+                                   layoutY="241.0" prefHeight="66.0" prefWidth="226.0" text="time">
                                 <font>
-                                    <Font name="Gabriola" size="44.0" />
+                                    <Font name="Gabriola" size="44.0"/>
                                 </font>
                                 <textFill>
                                     <LinearGradient endX="1.0" endY="0.19047619047619047">
                                         <stops>
-                                            <Stop color="#ff0842" />
-                                            <Stop color="#7d7c38" offset="0.14559386973180072" />
-                                            <Stop color="#ff3a38" offset="0.48659003831417624" />
-                                            <Stop color="#100fb8" offset="0.8467432950191567" />
-                                            <Stop color="#1a10e0" offset="1.0" />
+                                            <Stop color="#ff0842"/>
+                                            <Stop color="#7d7c38" offset="0.14559386973180072"/>
+                                            <Stop color="#ff3a38" offset="0.48659003831417624"/>
+                                            <Stop color="#100fb8" offset="0.8467432950191567"/>
+                                            <Stop color="#1a10e0" offset="1.0"/>
                                         </stops>
                                     </LinearGradient>
                                 </textFill>
                             </Label>
-                            <Button fx:id="home" layoutX="23.0" layoutY="439.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="206.0" styleClass="buttongreen" text="HOME" />
-                            <Label fx:id="cash" layoutX="97.0" layoutY="92.0" prefHeight="51.0" prefWidth="104.0" text="cash" />
+                            <Button fx:id="home" layoutX="23.0" layoutY="439.0" mnemonicParsing="false"
+                                    prefHeight="66.0" prefWidth="206.0" styleClass="buttongreen" text="HOME"/>
+                            <Label fx:id="cash" layoutX="97.0" layoutY="92.0" prefHeight="51.0" prefWidth="104.0"
+                                   text="cash"/>
                         </children>
                     </AnchorPane>
-                    <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="611.0" prefWidth="700.0" styleClass="mainPanel">
+                    <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="611.0" prefWidth="700.0"
+                                styleClass="mainPanel">
                         <children>
-                            <Label alignment="CENTER" layoutX="332.0" layoutY="-13.0" style="&#10;" text="CAR WASH PANEL" textAlignment="CENTER" textFill="WHITE" wrapText="false">
+                            <Label alignment="CENTER" layoutX="332.0" layoutY="-13.0" style="&#10;"
+                                   text="CAR WASH PANEL" textAlignment="CENTER" textFill="WHITE" wrapText="false">
                                 <font>
-                                    <Font name="FangSong" size="37.0" fx:id="x1" />
+                                    <Font name="FangSong" size="37.0" fx:id="x1"/>
                                 </font>
                             </Label>
-                            <TabPane fx:id="tabpane" layoutX="14.0" layoutY="30.0" pickOnBounds="false" prefHeight="614.0" prefWidth="878.0" tabClosingPolicy="UNAVAILABLE">
+                            <TabPane fx:id="tabpane" layoutX="14.0" layoutY="30.0" pickOnBounds="false"
+                                     prefHeight="614.0" prefWidth="878.0" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
                                     <Tab text="DOWNLOAD LISTS">
                                         <content>
-                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="413.0" prefWidth="482.0">
+                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="413.0"
+                                                        prefWidth="482.0">
                                                 <children>
-                                                    <Button fx:id="sendtomail" layoutX="254.0" layoutY="389.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="411.0" styleClass="buttongreen" text="SEND TO MY EMAIL AS SOFT COPY">
+                                                    <Button fx:id="sendtomail" layoutX="254.0" layoutY="389.0"
+                                                            mnemonicParsing="false" prefHeight="61.0" prefWidth="411.0"
+                                                            styleClass="buttongreen"
+                                                            text="SEND TO MY EMAIL AS SOFT COPY">
                                                         <font>
-                                                            <Font name="Gabriola" size="28.0" />
+                                                            <Font name="Gabriola" size="28.0"/>
                                                         </font>
                                                     </Button>
-                                                    <Button fx:id="printoutaspdf" layoutX="255.0" layoutY="201.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="409.0" styleClass="buttongreen" text="EXPORT AS PDF" textFill="#030303">
+                                                    <Button fx:id="printoutaspdf" layoutX="255.0" layoutY="201.0"
+                                                            mnemonicParsing="false" prefHeight="61.0" prefWidth="409.0"
+                                                            styleClass="buttongreen" text="EXPORT AS PDF"
+                                                            textFill="#030303">
                                                         <font>
-                                                            <Font name="Gabriola" size="28.0" />
+                                                            <Font name="Gabriola" size="28.0"/>
                                                         </font>
                                                     </Button>
-                                                    <Label alignment="CENTER" layoutX="229.0" layoutY="36.0" prefHeight="27.0" prefWidth="344.0" text="Export your operations" textFill="WHITE">
+                                                    <Label alignment="CENTER" layoutX="229.0" layoutY="36.0"
+                                                           prefHeight="27.0" prefWidth="344.0"
+                                                           text="Export your operations" textFill="WHITE">
                                                         <font>
-                                                            <Font size="18.0" />
+                                                            <Font size="18.0"/>
                                                         </font>
                                                     </Label>
                                                 </children>
@@ -141,30 +143,50 @@
                                     </Tab>
                                     <Tab fx:id="pastclients" text="PAST CLIENTS">
                                         <content>
-                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                                        prefWidth="200.0">
                                                 <children>
-                                                    <ScrollPane layoutX="11.0" layoutY="9.0" prefHeight="502.0" prefWidth="865.0">
+                                                    <ScrollPane layoutX="11.0" layoutY="9.0" prefHeight="502.0"
+                                                                prefWidth="865.0">
                                                         <content>
-                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="496.0" prefWidth="862.0">
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0"
+                                                                        prefHeight="496.0" prefWidth="862.0">
                                                                 <children>
-                                                                    <TableView fx:id="tab" layoutY="-1.0" prefHeight="498.0" prefWidth="861.0">
+                                                                    <TableView fx:id="tab" layoutY="-1.0"
+                                                                               prefHeight="498.0" prefWidth="861.0">
                                                                         <placeholder>
-                                                                            <Label text="" />
+                                                                            <Label text=""/>
                                                                         </placeholder>
                                                                         <columns>
-                                                                            <TableColumn fx:id="Name" prefWidth="104.0" resizable="false" text="NAME" />
-                                                                            <TableColumn fx:id="reg" prefWidth="129.0" resizable="false" text="REGISTRATION" />
-                                                                            <TableColumn fx:id="id" prefWidth="173.0" resizable="false" text="CONTACT" />
-                                                                            <TableColumn fx:id="status" prefWidth="129.0" resizable="false" text="STATUS" />
-                                                                            <TableColumn fx:id="operator" prefWidth="179.0" resizable="false" text="OPERATOR" />
-                                                                            <TableColumn fx:id="payout" prefWidth="146.0" resizable="false" text="CASH PAID" />
+                                                                            <TableColumn fx:id="Name" prefWidth="104.0"
+                                                                                         resizable="false" text="NAME"/>
+                                                                            <TableColumn fx:id="reg" prefWidth="129.0"
+                                                                                         resizable="false"
+                                                                                         text="REGISTRATION"/>
+                                                                            <TableColumn fx:id="id" prefWidth="173.0"
+                                                                                         resizable="false"
+                                                                                         text="CONTACT"/>
+                                                                            <TableColumn fx:id="status"
+                                                                                         prefWidth="129.0"
+                                                                                         resizable="false"
+                                                                                         text="STATUS"/>
+                                                                            <TableColumn fx:id="operator"
+                                                                                         prefWidth="179.0"
+                                                                                         resizable="false"
+                                                                                         text="OPERATOR"/>
+                                                                            <TableColumn fx:id="payout"
+                                                                                         prefWidth="146.0"
+                                                                                         resizable="false"
+                                                                                         text="CASH PAID"/>
                                                                         </columns>
                                                                     </TableView>
                                                                 </children>
                                                             </AnchorPane>
                                                         </content>
                                                     </ScrollPane>
-                                                    <Button fx:id="delete" layoutX="305.0" layoutY="523.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="204.0" styleClass="buttonred" text="DELETE SELECTED DETAILS" />
+                                                    <Button fx:id="delete" layoutX="305.0" layoutY="523.0"
+                                                            mnemonicParsing="false" prefHeight="54.0" prefWidth="204.0"
+                                                            styleClass="buttonred" text="DELETE SELECTED DETAILS"/>
                                                 </children>
                                             </AnchorPane>
                                         </content>
@@ -179,24 +201,25 @@
                 <children>
                     <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
                         <children>
-                            <Label layoutX="417.0" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="PRODUCT OF NANOTECHSOFTWARES" textFill="#f50808">
+                            <Label layoutX="417.0" maxHeight="1.7976931348623157E308" maxWidth="-1.0"
+                                   text="PRODUCT OF NANOTECHSOFTWARES" textFill="#f50808">
                                 <font>
-                                    <Font size="11.0" fx:id="x3" />
+                                    <Font size="11.0" fx:id="x3"/>
                                 </font>
                             </Label>
                         </children>
                     </Pane>
                 </children>
                 <padding>
-                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
                 </padding>
             </HBox>
         </children>
         <stylesheets>
-            <URL value="@../styles/buttons.css" />
-            <URL value="@../styles/css.css" />
-            <URL value="@../styles/Login.css" />
-            <URL value="@../styles/panels.css" />
+            <URL value="@../styles/buttons.css"/>
+            <URL value="@../styles/css.css"/>
+            <URL value="@../styles/Login.css"/>
+            <URL value="@../styles/panels.css"/>
         </stylesheets>
     </VBox>
 

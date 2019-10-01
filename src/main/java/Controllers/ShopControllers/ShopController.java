@@ -701,54 +701,46 @@ public class ShopController extends CartIdGenerator implements Initializable {
     public void time() {
         Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             String mins = null, hrs = null, secs = null, pmam = null;
-            try {
-                int minutes = Integer.parseInt(String.valueOf(CheckConn.timelogin().getMinutes()));
-                int seconds = Integer.parseInt(String.valueOf(CheckConn.timelogin().getSeconds()));
-                int hours = Integer.parseInt(String.valueOf(CheckConn.timelogin().getHours()));
+            int minutes = Integer.parseInt(String.valueOf(CheckConn.timelogin().getMinutes()));
+            int seconds = Integer.parseInt(String.valueOf(CheckConn.timelogin().getSeconds()));
+            int hours = Integer.parseInt(String.valueOf(CheckConn.timelogin().getHours()));
 
-                if (hours >= 12) {
+            if (hours >= 12) {
 //                    hrs= "0"+String.valueOf(hours-12);
-                    pmam = "PM";
-                } else {
-                    pmam = "AM";
+                pmam = "PM";
+            } else {
+                pmam = "AM";
 
-                }
-                if (minutes > 9) {
-                    mins = String.valueOf(minutes);
-                } else {
-                    mins = "0" + minutes;
+            }
+            if (minutes > 9) {
+                mins = String.valueOf(minutes);
+            } else {
+                mins = "0" + minutes;
 
-                }
-                if (seconds > 9) {
-                    secs = String.valueOf(seconds);
-                } else {
-                    secs = "0" + seconds;
+            }
+            if (seconds > 9) {
+                secs = String.valueOf(seconds);
+            } else {
+                secs = "0" + seconds;
 
-                }
-            } catch (IOException e1) {
-                e1.printStackTrace();
             }
             if (Objects.equals(action.get("shopcontroller"), "reload")) {
                 reload();
                 action.remove("shopcontroller", "reload");
             }
 
-            try {
-                if (networkConnectionMap.containsKey("server") || networkConnectionMap.containsKey("Internet")) {
-                    if (!networkConnectionMap.get("server")) {
+            if (networkConnectionMap.containsKey("server") || networkConnectionMap.containsKey("Internet")) {
+                if (!networkConnectionMap.get("server")) {
 //                    no connection to server
-                        showAlert(Alert.AlertType.ERROR, config.panel.get("panel").getScene().getWindow(), "ERROR", "NETWORK CONNECTION LOST");
-                    } else {
-                        if (!networkConnectionMap.get("Internet")) {
-                            utilityClass.showToast();//about connection to the internet
-                        }
+                    showAlert(Alert.AlertType.ERROR, config.panel.get("panel").getScene().getWindow(), "ERROR", "NETWORK CONNECTION LOST");
+                } else {
+                    if (!networkConnectionMap.get("Internet")) {
+                        utilityClass.showToast();//about connection to the internet
                     }
-
                 }
-                clock.setText(String.format("%d:%s:%s %s", CheckConn.timelogin().getHours(), mins, secs, pmam));
-            } catch (IOException e1) {
-                e1.printStackTrace();
+
             }
+            clock.setText(String.format("%d:%s:%s %s", CheckConn.timelogin().getHours(), mins, secs, pmam));
         }),
                 new KeyFrame(Duration.seconds(1))
         );
@@ -759,13 +751,9 @@ public class ShopController extends CartIdGenerator implements Initializable {
     private void searchButton() {
 
         if (counter == 0) {
-            try {
-                String uniqueid = CheckConn.timelogin().getTime() + user.get("user");
-                System.out.println(uniqueid);
+            String uniqueid = CheckConn.timelogin().getTime() + user.get("user");
+            System.out.println(uniqueid);
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             counter++;
         }
         tableLoad();

@@ -9,9 +9,14 @@ import java.util.IdentityHashMap;
 import java.util.Map;
 
 public interface config {//host,user,password,des,port
+    String dbname = "nanotechsoftwarespos";
+    String userDb = "root";
+    String passwordDb = "hotelplus";//""
+    String hostDb = "cadiff-151";//127.0.0.1
+
     String environment = "development";
     //    String environment = "production";
-    String[] dbdetails = {"127.0.0.1/", "root", "", "jdbc:mysql://", "nanotechsoftwarespos?zeroDateTimeBehavior=convertToNull", "3306"};
+    String[] dbdetails = {hostDb + "/", userDb, passwordDb, "jdbc:mysql://", dbname + "?useSSL=false", "3306"};
     String[] des = {dbdetails[1], dbdetails[2], dbdetails[3] + dbdetails[0] + dbdetails[4]};
     String host = "localhost";
     String from = "muemasnyamai@gmail.com";
@@ -21,8 +26,8 @@ public interface config {//host,user,password,des,port
     HashMap<String, String> user = new HashMap<>();
     String mailPassword = "tpgkhylqyxiypqld";
     IdentityHashMap<String, String> key = new IdentityHashMap<>();
-    HashMap<String, String> cartid = new HashMap<String, String>();
-    HashMap<String, Integer> pricegot = new HashMap<String, Integer>();
+    HashMap<String, String> cartid = new HashMap<>();
+    HashMap<String, Integer> pricegot = new HashMap<>();
     HashMap<String, Throwable> throwables = new HashMap<>();
     HashMap<String, String> license = new HashMap<>();
     String site = "https://nanotechsoftwares.co.ke";
@@ -44,7 +49,6 @@ public interface config {//host,user,password,des,port
     Map<String, Boolean> networkConnectionMap = new HashMap<>();
     File file = new File(fileSavePath + "\\images\\logo.png");
     Image image = new Image(file.toURI().toString());
-
 
 
 }
