@@ -291,7 +291,12 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+            if (res) {
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS", "YOUR IMPORT WAS SUCCCESSFULL");
+            } else {
+                showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR!!", "YOUR IMPORT FAILED.CONTACT THE ADMINISTRATOR");
 
+            }
 
         });
         backupMenu.setOnAction(event -> backingUpMainMethod());
