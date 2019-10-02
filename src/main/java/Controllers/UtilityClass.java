@@ -122,7 +122,7 @@ public class UtilityClass {
         return this;
     }
 
-    public void mailSend(String text, String subject, String to, String from, String type, String password) throws MessagingException {
+    protected void mailSend(String text, String subject, String to, String from, String type, String password) throws MessagingException {
         Properties props = new Properties();
 
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -170,7 +170,7 @@ public class UtilityClass {
         }
     }
 
-    public String getComputerName() {
+    protected String getComputerName() {
         String pcName = null;
         try {
             PreparedStatement prep = connectionDbLocal.prepareStatement("SELECT * FROM system_settings WHERE name=?");

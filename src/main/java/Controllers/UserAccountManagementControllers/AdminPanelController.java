@@ -2,12 +2,11 @@ package Controllers.UserAccountManagementControllers;
 //made by steve
 
 import Controllers.IdleMonitor;
+import Controllers.Reports;
 import Controllers.UtilityClass;
 import com.smattme.MysqlExportService;
 import com.smattme.MysqlImportService;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -45,17 +44,26 @@ import static securityandtime.config.*;
 
 public class AdminPanelController extends UtilityClass implements Initializable {
 
-    public Label clock;
-    public Button employees;
-    public Button stockspanel;
-    public Button carwashpanel;
-    public Button visitSuppliers;
-    public Button backup;
-    public Button audits;
+    Reports reports = new Reports();
+    @FXML
+    private Label clock;
+    @FXML
+    private Button employees;
+    @FXML
+    private Button stockspanel;
+    @FXML
+    private Button carwashpanel;
+    @FXML
+    private Button visitSuppliers;
+    @FXML
+    private Button backup;
+    @FXML
+    private Button audits;
     //start of the menu
-    public MenuItem menulogout;
-    public MenuItem details;
-    public Button checkUpdates;
+    @FXML
+    private MenuItem menulogout;
+    @FXML
+    private MenuItem details;
     @FXML
     private Label message;
 
@@ -65,7 +73,8 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     private Button refresh;
     private UtilityClass utilityClass = new UtilityClass();
     private Connection connection = utilityClass.getConnection();
-    public MenuItem license;
+    @FXML
+    private Button checkUpdates;
     private String timePassedAccordingToDbVAlues;
     private String path = fileSavePath + "backups";
     @FXML
@@ -132,6 +141,8 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     private Button licenseManager;
     @FXML
     private Button logoutButton;
+    @FXML
+    private MenuItem license;
 
     private static File lastFileModified(String dir) {
         File fl = new File(dir);
@@ -346,7 +357,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                     backingUpMainMethod();//back up on end day
                 }
                 endDayMethod();
-            } catch (SQLException e) {
+            } catch (SQLException | IOException e) {
                 e.printStackTrace();
             }
         });
@@ -404,17 +415,14 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                     backingUpMainMethod();//back up on end day
                 }
                 endDayMethod();
-            } catch (SQLException e) {
+            } catch (SQLException | IOException e) {
                 e.printStackTrace();
             }
 
         });
         logoutButton.setOnAction(event -> logout(panel));
-        backup.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                backingUpMainMethod();
-            }
+        backup.setOnAction(event -> {
+            backingUpMainMethod();
 
 
         });
@@ -498,7 +506,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 
     }
 
-    private void endDayMethod() {
+    private void endDayMethod() throws IOException {
         //send reports to manager
         try {
             LocalDate myObj = LocalDate.now(); // Create a date object
@@ -531,6 +539,39 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             }
         } catch (SQLException | IOException e) {
             e.printStackTrace();
+        }
+        generateReports();
+    }
+
+    private void generateReports() throws IOException {
+        reports.PatientReports();
+        reports.PharmacyAcquisitionReport();
+        reports.salesReport();
+        try {
+//                        message.setText("backing up data...");
+            URL url = new URL(googleUrl);
+            URLConnection connection = url.openConnection();
+            connection.connect();
+
+            String filepath = backup(path);
+            showAlert(Alert.AlertType.INFORMATION, backup.getScene().getWindow(), "SUCCESS", "BACK UP HAS BEEN COMPLETED SUCCESSFULLY TO " + filepath);
+            File lastFileModified = lastFileModified(path);
+            localBackup(lastFileModified.getAbsolutePath());
+//                        message.setText("DONE BACKING UP DATA...");
+            reports.sendReportsToMail("ADMIN REPORTS", user.get("backupemail"), backupmail, "text/html", mailPassword);
+
+        } catch (IOException e) {
+            Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+            alert1.setTitle("NOT CONNECTED");
+            alert1.setHeaderText(null);
+            alert1.setContentText("YOU ARE NOT CONNECTED FOR THE SYSTEM TO SEND REPORTS TO YOUR EMAIL.THE SYSTEM CAN HOWEVER CREATE A LOCAL COPY OF THE REPORTS.DO YOU WANT TO PROCEED?");
+            alert1.initOwner(config.panel.get("panel").getScene().getWindow());
+            Optional<ButtonType> option = alert1.showAndWait();
+            if (option.isPresent() && option.get() == ButtonType.OK) {
+                reports.saveReports();
+            }
+        } catch (Exception ignored) {
+
         }
     }
 
@@ -569,9 +610,9 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 
     private String backup(String path) throws Exception {
         Properties properties = new Properties();
-        properties.setProperty(MysqlExportService.DB_NAME, "nanotechsoftwarespos");
-        properties.setProperty(MysqlExportService.DB_USERNAME, "root");
-        properties.setProperty(MysqlExportService.DB_PASSWORD, "");
+        properties.setProperty(MysqlExportService.DB_NAME, dbname);
+        properties.setProperty(MysqlExportService.DB_USERNAME, userDb);
+        properties.setProperty(MysqlExportService.DB_PASSWORD, passwordDb);
 //properties relating to email configurations
         properties.setProperty(MysqlExportService.EMAIL_HOST, "smtp.gmail.com");
         properties.setProperty(MysqlExportService.EMAIL_PORT, "587");
@@ -652,7 +693,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                 } else {
                     try {
 //                        message.setText("backing up data...");
-                        URL url = new URL("https://www.google.com/");
+                        URL url = new URL(googleUrl);
                         URLConnection connection = url.openConnection();
                         connection.connect();
 
@@ -715,6 +756,39 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Button getCheckUpdates() {
+        return checkUpdates;
+    }
+
+    public void setCheckUpdates(Button checkUpdates) {
+        this.checkUpdates = checkUpdates;
+    }
+
+    public Label getMessage() {
+        return message;
+    }
+
+    public void setMessage(Label message) {
+        this.message = message;
+    }
+
+    public AnchorPane getPanel() {
+        return panel;
+    }
+
+    public void setPanel(AnchorPane panel) {
+        this.panel = panel;
+    }
+
+
+    public Reports getReports() {
+        return reports;
+    }
+
+    public void setReports(Reports reports) {
+        this.reports = reports;
     }
 
     public MenuItem getMenulogout() {

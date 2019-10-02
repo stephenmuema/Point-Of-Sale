@@ -36,13 +36,12 @@ public interface config {//host,user,password,des,port
     String supplierSite = "http://activationsite/";
     HashMap<String, String> action = new HashMap<>();
     HashMap<String, AnchorPane> panel = new HashMap<>();
-    String google = "http://www.google.com";
     String encryptionkey = "0123456789abcdef";
     String initVector = "abcdef9876543210";
     String company = "MEDICA PHARMACY SYSTEM";
     String year = " 2019 ";
     String version = " (V 1.1) ";
-    String fileSavePath = "D:\\NANOTECHSOFTWARES\\nanotechPOS\\";
+    String fileSavePath = "C:\\NANOTECHSOFTWARES\\nanotechPOS\\";
     String licensepath = fileSavePath + "licenses\\license.dll";
     String localCartDb = "jdbc:sqlite:" + fileSavePath + "files\\shoppingLocal.db";
     String aesKey = "26kozQaKwRuNJ24t26kozQaKwRuNJ24t";
@@ -51,4 +50,5 @@ public interface config {//host,user,password,des,port
     Image image = new Image(file.toURI().toString());
 
 
+    String googleUrl = "https://www.google.com/";
 }
