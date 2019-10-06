@@ -5,10 +5,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Storemaster {
-    private SimpleStringProperty storeId = new SimpleStringProperty();
-    private SimpleStringProperty storeName = new SimpleStringProperty();
-    private SimpleStringProperty storeLocation = new SimpleStringProperty();
-    private SimpleStringProperty employeeNumber = new SimpleStringProperty();
+    public SimpleStringProperty storeId = new SimpleStringProperty();
+    public SimpleStringProperty storeName = new SimpleStringProperty();
+    public SimpleStringProperty storeLocation = new SimpleStringProperty();
+    public SimpleStringProperty employeeNumber = new SimpleStringProperty();
     private ObjectProperty storePic = new SimpleObjectProperty();
     private SimpleStringProperty storeDescription = new SimpleStringProperty();
     private SimpleStringProperty dateAdded = new SimpleStringProperty();

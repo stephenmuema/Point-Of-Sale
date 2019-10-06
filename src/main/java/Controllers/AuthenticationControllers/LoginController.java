@@ -37,6 +37,8 @@ import static securityandtime.config.site;
 //made by steve
 public class LoginController extends UtilityClass implements Initializable {
 
+    public Button refresh;
+    public TextField shiftid;
     @FXML
     private Label clock;
     private String emailSubmit, pass;
@@ -76,9 +78,15 @@ public class LoginController extends UtilityClass implements Initializable {
     private Label message;
     private Connection connection = getConnection();
     private ResultSet resultSet;
+    private String shiftNbr;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        menuclick();
+        main();
+    }
+
+    private void main() {
+        menuClick();
         if (config.login.containsKey("loggedout")) {
             message.setText("YOU ARE LOGGED OUT ");
 //            destroy session variables
@@ -100,11 +108,50 @@ public class LoginController extends UtilityClass implements Initializable {
         buttonClick();
         timeMain(clock);
         enterpressed();
+        shiftSet();
     }
 
-    private void menuclick() {
+    private void shiftSet() {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM DAYS WHERE completed=?");
+            preparedStatement.setString(1, "incomplete");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.isBeforeFirst()) {
+                while (resultSet.next()) {
+                    shiftNbr = resultSet.getString("id");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (shiftNbr == null) {
+            shiftid.setText("null");
 
+        } else {
+            shiftid.setText(shiftNbr);
+        }
     }
+
+    private void menuClick() {
+
+
+        menuShutDown.setOnAction(event -> {
+            try {
+                shutdown();
+            } catch (IOException e) {
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "UNSUPPORTED OS", "YOUR OS IS UNSUPPORTED BY THIS ACTION");
+            }
+        });
+        menuRestart.setOnAction(event -> {
+            try {
+                restart();
+            } catch (IOException e) {
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "UNSUPPORTED OS", "YOUR OS IS UNSUPPORTED BY THIS ACTION");
+            }
+        });
+        menuQuit.setOnAction(event -> exit());
+    }
+
 
     private void enterpressed() {
         email.setOnKeyPressed(event -> {
@@ -122,6 +169,14 @@ public class LoginController extends UtilityClass implements Initializable {
     }
 
     private void buttonClick() {
+        refresh.setOnAction(__ -> {
+            panel.getChildren().removeAll();
+            try {
+                panel.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml"))));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         exit.setOnAction(event -> exit());
         signup.setOnMousePressed(new EventHandler<MouseEvent>() {
             //            got to sign up page
@@ -129,7 +184,7 @@ public class LoginController extends UtilityClass implements Initializable {
             public void handle(MouseEvent event) {
                 panel.getChildren().removeAll();
                 try {
-                    panel.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/signup.fxml"))));
+                    panel.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml"))));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -360,6 +415,4 @@ public class LoginController extends UtilityClass implements Initializable {
         this.message = message;
     }
 
-    //fetch time each second
-//    todo include network time from server  later
 }

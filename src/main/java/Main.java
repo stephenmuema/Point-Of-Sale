@@ -14,6 +14,7 @@ import securityandtime.AesCrypto;
 import securityandtime.CheckConn;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -32,7 +33,7 @@ import static securityandtime.config.*;
 /**
  * @author Steve muema
  */
-public class Launcher extends Application {
+public class Main extends Application {
 
     static Stage stage = null;
 
@@ -63,7 +64,7 @@ public class Launcher extends Application {
 
         }
 
-        Launcher.CallerMethod();
+        Main.CallerMethod();
         launch(args);
     }
 
@@ -138,10 +139,13 @@ public class Launcher extends Application {
                 Files.setAttribute(path, "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
 
                 File fl = new File(fileSavePath + "licenses");
-                File[] files = fl.listFiles(File::isFile);
+                File[] files = fl.listFiles(new FileFilter() {
+                    public boolean accept(File file) {
+                        return file.isFile();
+                    }
+                });
                 long lastMod = Long.MIN_VALUE;
                 File choice = null;
-                assert files != null;
                 for (File f : files) {
                     if (!f.isHidden()) {
                         Path pathf = Paths.get(f.getAbsolutePath());
@@ -189,7 +193,7 @@ public class Launcher extends Application {
                 stage.setMaximized(true);
 
                 stage.setFullScreen(true);
-                Launcher.stage = stage;
+                Main.stage = stage;
                 stage.show();
             } else {
                 System.out.println(decrypt);
@@ -216,7 +220,7 @@ public class Launcher extends Application {
 
 
 //                    stage.setFullScreen(true);
-                    Launcher.stage = stage;
+                    Main.stage = stage;
                     stage.show();
                 } else {
                     license.put("name", builder.toString().split(":::")[0]);
@@ -227,7 +231,7 @@ public class Launcher extends Application {
                     AnchorPane root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/SplashScreen.fxml"));
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
-                    stage.initStyle(StageStyle.DECORATED);
+                    stage.initStyle(StageStyle.TRANSPARENT);
 
                     stage.getIcons().add(image);
                     stage.setTitle(company + year + version);//TITLE
@@ -235,7 +239,7 @@ public class Launcher extends Application {
                         Platform.exit();
                         System.exit(123);
                     });
-                    Launcher.stage = stage;
+                    Main.stage = stage;
                     stage.show();
                 }
             }
@@ -254,7 +258,7 @@ public class Launcher extends Application {
 
 //        APP TITLE
             stage.setTitle(company + year + version + " Licensing");
-            Launcher.stage = stage;
+            Main.stage = stage;
             stage.show();
         }
 

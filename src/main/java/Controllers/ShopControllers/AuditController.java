@@ -512,7 +512,7 @@ public class AuditController extends UtilityClass implements Initializable {
 
                 FontFactory.getFont(FontFactory.HELVETICA,
 
-                        18, com.itextpdf.text.Font.BOLDITALIC));
+                        18, Font.BOLDITALIC));
         introtable.setAlignment(Element.ALIGN_CENTER);
         try {
             document.add(introtable);

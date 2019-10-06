@@ -17,7 +17,7 @@ import static securityandtime.config.throwables;
  * <p>Encode/Decode text by password using AES-128-CBC algorithm</p>
  */
 public class AesCipher {
-    private static final int INIT_VECTOR_LENGTH = 16;
+    public static final int INIT_VECTOR_LENGTH = 16;
     private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
     /**
      * Encoded/Decoded data
@@ -26,11 +26,11 @@ public class AesCipher {
     /**
      * Initialization vector value
      */
-    private String initVector;
+    protected String initVector;
     /**
      * Error message if operation failed
      */
-    private String errorMessage;
+    protected String errorMessage;
 
     public AesCipher() {
         super();
@@ -70,7 +70,7 @@ public class AesCipher {
         String initVector = null;
         try {
             // Check secret length
-            if (isKeyLengthValid(secretKey)) {
+            if (!isKeyLengthValid(secretKey)) {
                 throw new Exception("Secret key's length must be 128, 192 or 256 bits");
             }
 
@@ -116,7 +116,7 @@ public class AesCipher {
     public static AesCipher decrypt(String secretKey, String cipherText) {
         try {
             // Check secret length
-            if (isKeyLengthValid(secretKey)) {
+            if (!isKeyLengthValid(secretKey)) {
                 throw new Exception("Secret key's length must be 128, 192 or 256 bits");
             }
 
@@ -150,8 +150,8 @@ public class AesCipher {
      * @param key 16/24/32 -characters secret password
      * @return TRUE if valid, FALSE otherwise
      */
-    private static boolean isKeyLengthValid(String key) {
-        return key.length() != 16 && key.length() != 24 && key.length() != 32;
+    public static boolean isKeyLengthValid(String key) {
+        return key.length() == 16 || key.length() == 24 || key.length() == 32;
     }
 
     /**
@@ -160,7 +160,7 @@ public class AesCipher {
      * @param bytes Bytes array
      * @return String with bytes values
      */
-    private static String bytesToHex(byte[] bytes) {
+    public static String bytesToHex(byte[] bytes) {
         char[] hexChars = new char[bytes.length * 2];
         for (int j = 0; j < bytes.length; j++) {
             int v = bytes[j] & 0xFF;
