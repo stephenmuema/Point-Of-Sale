@@ -1,8 +1,9 @@
+import securityandtime.config;
+
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import static securityandtime.config.googleUrl;
 import static securityandtime.config.networkConnectionMap;
 
 /**
@@ -22,7 +23,7 @@ import static securityandtime.config.networkConnectionMap;
 public class NetworkCheck implements Runnable {
     private static void pingGoogle() {
         try {
-            URL url = new URL(googleUrl);
+            URL url = new URL(config.google);
             URLConnection connection = url.openConnection();
             connection.connect();
             networkConnectionMap.clear();

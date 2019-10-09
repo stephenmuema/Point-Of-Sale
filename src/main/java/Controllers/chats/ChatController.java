@@ -22,9 +22,9 @@ import java.util.ResourceBundle;
 
 //made by steve
 public class ChatController extends UtilityClass implements Initializable {
-    public ListView<MasterClasses.OnlineUsersMaster> userList;
+    public ListView<OnlineUsersMaster> userList;
     public Label onlineCountLabel;
-    public ListView<MasterClasses.ChatMaster> chatPane;
+    public ListView<ChatMaster> chatPane;
     public BorderPane borderPane;
     public TextArea messageBox;
     public Button buttonSend;

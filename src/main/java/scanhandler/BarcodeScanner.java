@@ -63,7 +63,7 @@ public class BarcodeScanner {
         this.lastEventTimeStamp = lastEventTimeStamp;
     }
 
-    private void fireBarcode(String barcode) {
+    protected void fireBarcode(String barcode) {
         for (BarcodeListener listener : listeners) {
             listener.onBarcodeRead(barcode);
         }

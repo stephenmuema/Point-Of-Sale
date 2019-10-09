@@ -10,13 +10,13 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Properties;
 
 import static securityandtime.config.fileSavePath;
+import static securityandtime.config.mailProp;
 
 public class Reports {
-    ArrayList<File> reports = new ArrayList<>();
-    String filesDest = fileSavePath + "files\\";
+    private ArrayList<File> reports = new ArrayList<>();
+    private String filesDest = fileSavePath + "files\\";
 
     public ArrayList<File> getReports() {
         return reports;
@@ -65,21 +65,20 @@ public class Reports {
     public void sendReportsToMail(String subject, String to, String from, String type, String password) throws MessagingException {
         LocalDate myObj = LocalDate.now();
         String time = String.valueOf(myObj);
-        Properties props = new Properties();
 
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.socketFactory.class",
-                "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "587");
+        mailProp.put("mail.smtp.auth", true);
+        mailProp.put("mail.smtp.starttls.enable", "true");
+        mailProp.put("mail.smtp.host", "smtp.gmail.com");
+        mailProp.put("mail.smtp.port", "587");
+        mailProp.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
 
         Authenticator auth = new Authenticator() {
             public PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(from, password);
             }
         };
-        Session session = Session.getInstance(props, auth);
+        Session session = Session.getInstance(mailProp, auth);
 
         // creates a new e-mail message
         Message message = new MimeMessage(session);

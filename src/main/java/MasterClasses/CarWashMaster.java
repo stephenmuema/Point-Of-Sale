@@ -7,7 +7,7 @@ public class CarWashMaster {
     public SimpleStringProperty idnum = new SimpleStringProperty();
     public SimpleStringProperty Name = new SimpleStringProperty();
     public SimpleStringProperty regno = new SimpleStringProperty();
-    private SimpleStringProperty contact = new SimpleStringProperty();
+    public SimpleStringProperty contact = new SimpleStringProperty();
     public SimpleStringProperty date = new SimpleStringProperty();
     public SimpleStringProperty status = new SimpleStringProperty();
     public SimpleStringProperty operator = new SimpleStringProperty();

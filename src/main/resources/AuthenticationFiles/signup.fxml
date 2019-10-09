@@ -18,32 +18,32 @@
                     <Font name="Gabriola" size="41.0"/>
                 </font>
             </Label>
-            <TextField fx:id="name" alignment="CENTER" layoutX="124.0" layoutY="76.0" prefHeight="42.0"
+            <TextField fx:id="name" alignment="CENTER" layoutX="247.0" layoutY="80.0" prefHeight="42.0"
                        prefWidth="388.0" promptText="NAME" styleClass="textfields">
                 <font>
                     <Font name="Calibri Light" size="14.0"/>
                 </font>
             </TextField>
-            <TextField fx:id="email" alignment="CENTER" layoutX="124.0" layoutY="131.0" prefHeight="42.0"
+            <TextField fx:id="email" alignment="CENTER" layoutX="247.0" layoutY="135.0" prefHeight="42.0"
                        prefWidth="388.0" promptText="EMAIL" styleClass="textfields">
                 <font>
                     <Font name="Calibri Light" size="14.0"/>
                 </font>
             </TextField>
-            <PasswordField fx:id="password" alignment="CENTER" layoutX="124.0" layoutY="189.0" prefHeight="42.0"
+            <PasswordField fx:id="password" alignment="CENTER" layoutX="247.0" layoutY="193.0" prefHeight="42.0"
                            prefWidth="388.0" promptText="PASSWORD" styleClass="textfields">
                 <font>
                     <Font name="Calibri Light" size="14.0"/>
                 </font>
             </PasswordField>
-            <PasswordField fx:id="passwordconfirmation" alignment="CENTER" layoutX="124.0" layoutY="248.0"
+            <PasswordField fx:id="passwordconfirmation" alignment="CENTER" layoutX="247.0" layoutY="252.0"
                            prefHeight="42.0" prefWidth="388.0" promptText="PASSWORD CONFIRMATION"
                            styleClass="textfields">
                 <font>
                     <Font name="Calibri Light" size="14.0"/>
                 </font>
             </PasswordField>
-            <TextField fx:id="IDNUMBER" alignment="CENTER" layoutX="124.0" layoutY="304.0" prefHeight="42.0"
+            <TextField fx:id="IDNUMBER" alignment="CENTER" layoutX="247.0" layoutY="308.0" prefHeight="42.0"
                        prefWidth="388.0" promptText="ID NUMBER" styleClass="textfields">
                 <font>
                     <Font name="Calibri Light" size="14.0"/>
@@ -59,6 +59,31 @@
                     prefWidth="116.0" styleClass="buttons" text="SIGN UP"/>
             <Button id="login" fx:id="login" layoutX="152.0" layoutY="433.0" mnemonicParsing="false" prefHeight="42.0"
                     prefWidth="110.0" styleClass="buttons" text="LOGIN"/>
+            <Label layoutX="17.0" layoutY="80.0" prefHeight="42.0" prefWidth="190.0" text="NAME">
+                <font>
+                    <Font name="System Bold" size="12.0"/>
+                </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="135.0" prefHeight="42.0" prefWidth="190.0" text="GMAIL">
+                <font>
+                    <Font name="System Bold" size="12.0"/>
+                </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="193.0" prefHeight="42.0" prefWidth="190.0" text="PASSWORD">
+                <font>
+                    <Font name="System Bold" size="12.0"/>
+                </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="252.0" prefHeight="42.0" prefWidth="190.0" text="PASSWORD CONF">
+                <font>
+                    <Font name="System Bold" size="12.0"/>
+                </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="308.0" prefHeight="42.0" prefWidth="190.0" text="ID NUMBER">
+                <font>
+                    <Font name="System Bold" size="12.0"/>
+                </font>
+            </Label>
         </children>
     </AnchorPane>
     <Label alignment="CENTER" layoutX="268.0" layoutY="8.0" prefHeight="49.0" prefWidth="665.0"

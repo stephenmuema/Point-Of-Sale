@@ -7,16 +7,19 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.Map;
+import java.util.Properties;
 
 public interface config {//host,user,password,des,port
-    String dbname = "nanotechsoftwarespos";
-    String userDb = "root";
-    String passwordDb = "hotelplus";//""
-    String hostDb = "cadiff-151";//127.0.0.1
-
     String environment = "development";
     //    String environment = "production";
-    String[] dbdetails = {hostDb + "/", userDb, passwordDb, "jdbc:mysql://", dbname + "?useSSL=false", "3306"};
+    Properties mailProp = new Properties();
+
+    String dbName = "nanotechsoftwarespos";
+    String dbPass = "GUp6sEWzV9OvI6K3";
+    String dbUser = "steve";
+    String dbPort = "3306";
+    String dbHost = "127.0.0.1";
+    String[] dbdetails = {dbHost + "/", dbUser, dbPass, "jdbc:mysql://", dbName + "?zeroDateTimeBehavior=convertToNull", dbPort};
     String[] des = {dbdetails[1], dbdetails[2], dbdetails[3] + dbdetails[0] + dbdetails[4]};
     String host = "localhost";
     String from = "muemasnyamai@gmail.com";
@@ -26,8 +29,8 @@ public interface config {//host,user,password,des,port
     HashMap<String, String> user = new HashMap<>();
     String mailPassword = "tpgkhylqyxiypqld";
     IdentityHashMap<String, String> key = new IdentityHashMap<>();
-    HashMap<String, String> cartid = new HashMap<>();
-    HashMap<String, Integer> pricegot = new HashMap<>();
+    HashMap<String, String> cartid = new HashMap<String, String>();
+    HashMap<String, Integer> pricegot = new HashMap<String, Integer>();
     HashMap<String, Throwable> throwables = new HashMap<>();
     HashMap<String, String> license = new HashMap<>();
     String site = "https://nanotechsoftwares.co.ke";
@@ -36,12 +39,13 @@ public interface config {//host,user,password,des,port
     String supplierSite = "http://activationsite/";
     HashMap<String, String> action = new HashMap<>();
     HashMap<String, AnchorPane> panel = new HashMap<>();
+    String google = "http://www.google.com";
     String encryptionkey = "0123456789abcdef";
     String initVector = "abcdef9876543210";
     String company = "MEDICA PHARMACY SYSTEM";
     String year = " 2019 ";
     String version = " (V 1.1) ";
-    String fileSavePath = "C:\\NANOTECHSOFTWARES\\nanotechPOS\\";
+    String fileSavePath = "D:\\NANOTECHSOFTWARES\\nanotechPOS\\";
     String licensepath = fileSavePath + "licenses\\license.dll";
     String localCartDb = "jdbc:sqlite:" + fileSavePath + "files\\shoppingLocal.db";
     String aesKey = "26kozQaKwRuNJ24t26kozQaKwRuNJ24t";
@@ -50,5 +54,4 @@ public interface config {//host,user,password,des,port
     Image image = new Image(file.toURI().toString());
 
 
-    String googleUrl = "https://www.google.com/";
 }

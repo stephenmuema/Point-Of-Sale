@@ -318,7 +318,7 @@ public class SignupController extends UtilityClass implements Initializable {
             props.put("mail.smtp.port", "587");
 
             Session session = Session.getInstance(props,
-                    new javax.mail.Authenticator() {
+                    new Authenticator() {
                         @Override
                         protected PasswordAuthentication getPasswordAuthentication() {
                             return new PasswordAuthentication(username, password);

@@ -17,7 +17,7 @@ public class CartMaster {
     private SimpleIntegerProperty itemCumulativeCost = new SimpleIntegerProperty();
     private SimpleStringProperty transactionId = new SimpleStringProperty();
     private SimpleIntegerProperty totalprice = new SimpleIntegerProperty();
-    private ObjectProperty<Object> storePic = new SimpleObjectProperty<>();
+    private ObjectProperty storePic = new SimpleObjectProperty();
 
     public int getTotalprice() {
         return totalprice.get();
@@ -71,7 +71,7 @@ public class CartMaster {
         this.storePic.set(storePic);
     }
 
-    public ObjectProperty<Object> storePicProperty() {
+    public ObjectProperty storePicProperty() {
         return storePic;
     }
 

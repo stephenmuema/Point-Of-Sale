@@ -2,11 +2,12 @@ package Controllers.UserAccountManagementControllers;
 //made by steve
 
 import Controllers.IdleMonitor;
-import Controllers.Reports;
 import Controllers.UtilityClass;
 import com.smattme.MysqlExportService;
 import com.smattme.MysqlImportService;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -44,26 +45,17 @@ import static securityandtime.config.*;
 
 public class AdminPanelController extends UtilityClass implements Initializable {
 
-    Reports reports = new Reports();
-    @FXML
-    private Label clock;
-    @FXML
-    private Button employees;
-    @FXML
-    private Button stockspanel;
-    @FXML
-    private Button carwashpanel;
-    @FXML
-    private Button visitSuppliers;
-    @FXML
-    private Button backup;
-    @FXML
-    private Button audits;
+    public Label clock;
+    public Button employees;
+    public Button stockspanel;
+    public Button carwashpanel;
+    public Button visitSuppliers;
+    public Button backup;
+    public Button audits;
     //start of the menu
-    @FXML
-    private MenuItem menulogout;
-    @FXML
-    private MenuItem details;
+    public MenuItem menulogout;
+    public MenuItem details;
+    public Button checkUpdates;
     @FXML
     private Label message;
 
@@ -73,8 +65,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     private Button refresh;
     private UtilityClass utilityClass = new UtilityClass();
     private Connection connection = utilityClass.getConnection();
-    @FXML
-    private Button checkUpdates;
+    public MenuItem license;
     private String timePassedAccordingToDbVAlues;
     private String path = fileSavePath + "backups";
     @FXML
@@ -141,8 +132,6 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     private Button licenseManager;
     @FXML
     private Button logoutButton;
-    @FXML
-    private MenuItem license;
 
     private static File lastFileModified(String dir) {
         File fl = new File(dir);
@@ -285,6 +274,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             String sql = null;
             try {
                 sql = new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())));
+//                System.out.println(sql);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -292,16 +282,17 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             boolean res = false;
             try {
                 res = MysqlImportService.builder()
-                        .setDatabase(dbname)
+                        .setDatabase(dbName)
                         .setSqlString(sql)
-                        .setUsername(userDb)
-                        .setPassword(passwordDb)
-                        .setDeleteExisting(false)
+                        .setUsername(dbUser)
+                        .setPassword(dbPass)
+                        .setDeleteExisting(true)
                         .setDropExisting(false)
                         .importDatabase();
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+
             if (res) {
                 showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS", "YOUR IMPORT WAS SUCCCESSFULL");
             } else {
@@ -310,6 +301,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             }
 
         });
+
         backupMenu.setOnAction(event -> backingUpMainMethod());
         menuShutDown.setOnAction(event -> {
             try {
@@ -353,15 +345,13 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         });
         endDayMenu.setOnAction(event -> {
             try {
-                if (readBackupInfo().equals("END DAY BACK UP")) {
-                    backingUpMainMethod();//back up on end day
-                }
                 endDayMethod();
-            } catch (SQLException | IOException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         });
     }
+
 
     private void refresh() throws SQLException {
         ResultSet resultSet;
@@ -411,18 +401,18 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         });
         endDay.setOnAction(event -> {
             try {
-                if (readBackupInfo().equals("END DAY BACK UP")) {
-                    backingUpMainMethod();//back up on end day
-                }
                 endDayMethod();
-            } catch (SQLException | IOException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
 
         });
         logoutButton.setOnAction(event -> logout(panel));
-        backup.setOnAction(event -> {
-            backingUpMainMethod();
+        backup.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                backingUpMainMethod();
+            }
 
 
         });
@@ -506,113 +496,33 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 
     }
 
-    private void endDayMethod() throws IOException {
+    private void endDayMethod() throws SQLException {
         //send reports to manager
-        try {
-            LocalDate myObj = LocalDate.now(); // Create a date object
-            String time = String.valueOf(myObj);
-            String id = null;
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM DAYS WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
-            if (resultSet.isBeforeFirst()) {
-                while (resultSet.next()) {
-                    if (resultSet.getString("start_time").equalsIgnoreCase(myObj.toString())) {
-                        showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "ENDING DAY", "DAY HAS BEEN ENDED SUCCESSFULLY");
-                    }
-                    id = resultSet.getString("id");
-                }
+
+
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setTitle("END DAY PROCEDURE");
+        alert1.setHeaderText(null);
+        alert1.setContentText("ENDING A DAY MAY AFFECT YOUR REPORTS NEGATIVELY IF IT IS DONE AT THE WRONG TIME BECAUSE IT IS IRREVERSIBLE.ARE YOU SURE YOU WANT TO END DAY?");
+        alert1.initOwner(config.panel.get("panel").getScene().getWindow());
+        Optional<ButtonType> option = alert1.showAndWait();
+        if (option.isPresent() && option.get() == ButtonType.OK) {
+            if (readBackupInfo().equals("END DAY BACK UP")) {
+                backingUpMainMethod();//back up on end day
             }
-            resultSet.close();
-            statement.close();
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE days SET end_time=? , completed=? WHERE id=?");
-            preparedStatement.setString(1, time);
-            preparedStatement.setString(2, "complete");
-            preparedStatement.setString(3, id);
-            if (preparedStatement.executeUpdate() > 0) {
-                reload();
-                endDayMenu.setDisable(true);
-                endDay.setVisible(false);
-                startDayMenu.setDisable(false);
-                startDay.setVisible(true);
-            } else {
-                System.out.println("errrr");
-            }
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
+            Thread backUpThread = new Thread(new BackUp());
+            backUpThread.start();
         }
-        generateReports();
-    }
 
-    private void generateReports() throws IOException {
-        reports.PatientReports();
-        reports.PharmacyAcquisitionReport();
-        reports.salesReport();
-        try {
-//                        message.setText("backing up data...");
-            URL url = new URL(googleUrl);
-            URLConnection connection = url.openConnection();
-            connection.connect();
 
-            String filepath = backup(path);
-            showAlert(Alert.AlertType.INFORMATION, backup.getScene().getWindow(), "SUCCESS", "BACK UP HAS BEEN COMPLETED SUCCESSFULLY TO " + filepath);
-            File lastFileModified = lastFileModified(path);
-            localBackup(lastFileModified.getAbsolutePath());
-//                        message.setText("DONE BACKING UP DATA...");
-            reports.sendReportsToMail("ADMIN REPORTS", user.get("backupemail"), backupmail, "text/html", mailPassword);
 
-        } catch (IOException e) {
-            Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-            alert1.setTitle("NOT CONNECTED");
-            alert1.setHeaderText(null);
-            alert1.setContentText("YOU ARE NOT CONNECTED FOR THE SYSTEM TO SEND REPORTS TO YOUR EMAIL.THE SYSTEM CAN HOWEVER CREATE A LOCAL COPY OF THE REPORTS.DO YOU WANT TO PROCEED?");
-            alert1.initOwner(config.panel.get("panel").getScene().getWindow());
-            Optional<ButtonType> option = alert1.showAndWait();
-            if (option.isPresent() && option.get() == ButtonType.OK) {
-                reports.saveReports();
-            }
-        } catch (Exception ignored) {
-
-        }
-    }
-
-    private void startDayMethod() {
-        try {
-            LocalDate myObj = LocalDate.now(); // Create a date object
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO days(start_time)VALUES(?)");
-            preparedStatement.setString(1, myObj.toString());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private String readBackupInfo() throws SQLException {
-        String backuptime = null;
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
-        preparedStatement.setString(1, "backup");
-        ResultSet rs = preparedStatement.executeQuery();
-        if (rs.isBeforeFirst()) {
-            while (rs.next()) {
-                backuptime = rs.getString("value");
-            }
-        } else {
-            PreparedStatement preparedStatement1;
-            preparedStatement1 = connection.prepareStatement("INSERT INTO systemsettings (name,type,value)VALUES (?,?,?)");
-            preparedStatement1.setString(1, "backup");
-            preparedStatement1.setString(2, "security");
-            preparedStatement1.setString(3, "STARTUP BACKUP");
-            preparedStatement1.executeUpdate();
-//        preparedStatement1.close();
-            readBackupInfo();
-        }
-        return backuptime;
     }
 
     private String backup(String path) throws Exception {
         Properties properties = new Properties();
-        properties.setProperty(MysqlExportService.DB_NAME, dbname);
-        properties.setProperty(MysqlExportService.DB_USERNAME, userDb);
-        properties.setProperty(MysqlExportService.DB_PASSWORD, passwordDb);
+        properties.setProperty(MysqlExportService.DB_NAME, dbName);
+        properties.setProperty(MysqlExportService.DB_USERNAME, dbUser);
+        properties.setProperty(MysqlExportService.DB_PASSWORD, dbPass);
 //properties relating to email configurations
         properties.setProperty(MysqlExportService.EMAIL_HOST, "smtp.gmail.com");
         properties.setProperty(MysqlExportService.EMAIL_PORT, "587");
@@ -656,6 +566,39 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         return zip.getPath();
     }
 
+    private void startDayMethod() {
+        try {
+            LocalDate myObj = LocalDate.now(); // Create a date object
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO days(start_time)VALUES(?)");
+            preparedStatement.setString(1, myObj.toString());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String readBackupInfo() throws SQLException {
+        String backuptime = null;
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+        preparedStatement.setString(1, "backup");
+        ResultSet rs = preparedStatement.executeQuery();
+        if (rs.isBeforeFirst()) {
+            while (rs.next()) {
+                backuptime = rs.getString("value");
+            }
+        } else {
+            PreparedStatement preparedStatement1;
+            preparedStatement1 = connection.prepareStatement("INSERT INTO systemsettings (name,type,value)VALUES (?,?,?)");
+            preparedStatement1.setString(1, "backup");
+            preparedStatement1.setString(2, "security");
+            preparedStatement1.setString(3, "STARTUP BACKUP");
+            preparedStatement1.executeUpdate();
+//        preparedStatement1.close();
+            readBackupInfo();
+        }
+        return backuptime;
+    }
+
     private void backingUpMainMethod() {
         try {
             refresh();
@@ -693,7 +636,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                 } else {
                     try {
 //                        message.setText("backing up data...");
-                        URL url = new URL(googleUrl);
+                        URL url = new URL("https://www.google.com/");
                         URLConnection connection = url.openConnection();
                         connection.connect();
 
@@ -714,6 +657,45 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             e.printStackTrace();
         }
 
+    }
+
+    class BackUp implements Runnable {
+
+        @Override
+        public void run() {
+            try {
+                LocalDate myObj = LocalDate.now(); // Create a date object
+                String time = String.valueOf(myObj);
+                String id = null;
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM DAYS WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
+                if (resultSet.isBeforeFirst()) {
+                    while (resultSet.next()) {
+                        if (resultSet.getString("start_time").equalsIgnoreCase(myObj.toString())) {
+                            showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "ENDING DAY", "DAY HAS BEEN ENDED SUCCESSFULLY");
+                        }
+                        id = resultSet.getString("id");
+                    }
+                }
+                resultSet.close();
+                statement.close();
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE days SET end_time=? , completed=? WHERE id=?");
+                preparedStatement.setString(1, time);
+                preparedStatement.setString(2, "complete");
+                preparedStatement.setString(3, id);
+                if (preparedStatement.executeUpdate() > 0) {
+                    reload();
+                    endDayMenu.setDisable(true);
+                    endDay.setVisible(false);
+                    startDayMenu.setDisable(false);
+                    startDay.setVisible(true);
+                } else {
+                    System.out.println("errrr");
+                }
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void localBackup(String path) {
@@ -756,39 +738,6 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public Button getCheckUpdates() {
-        return checkUpdates;
-    }
-
-    public void setCheckUpdates(Button checkUpdates) {
-        this.checkUpdates = checkUpdates;
-    }
-
-    public Label getMessage() {
-        return message;
-    }
-
-    public void setMessage(Label message) {
-        this.message = message;
-    }
-
-    public AnchorPane getPanel() {
-        return panel;
-    }
-
-    public void setPanel(AnchorPane panel) {
-        this.panel = panel;
-    }
-
-
-    public Reports getReports() {
-        return reports;
-    }
-
-    public void setReports(Reports reports) {
-        this.reports = reports;
     }
 
     public MenuItem getMenulogout() {

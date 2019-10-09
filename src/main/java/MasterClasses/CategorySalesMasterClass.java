@@ -3,11 +3,11 @@ package MasterClasses;
 import javafx.beans.property.SimpleStringProperty;
 
 public class CategorySalesMasterClass {
-    private SimpleStringProperty categorysalesid = new SimpleStringProperty();
-    private SimpleStringProperty categorysalespayout = new SimpleStringProperty();
-    private SimpleStringProperty categorysalessalesperday = new SimpleStringProperty();
+    SimpleStringProperty categorysalesid = new SimpleStringProperty();
+    SimpleStringProperty categorysalespayout = new SimpleStringProperty();
+    SimpleStringProperty categorysalessalesperday = new SimpleStringProperty();
 
-    private SimpleStringProperty categorysalesname = new SimpleStringProperty();
+    SimpleStringProperty categorysalesname = new SimpleStringProperty();
 
     public String getCategorysalesid() {
         return categorysalesid.get();

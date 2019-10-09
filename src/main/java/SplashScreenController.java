@@ -74,12 +74,12 @@ public class SplashScreenController implements Initializable {
             yOffset = event.getSceneY();
         });
         parent.setOnMouseDragged(event -> {
-            Launcher.stage.setX(event.getScreenX() - xOffset);
-            Launcher.stage.setY(event.getScreenY() - yOffset);
-            Launcher.stage.setOpacity(0.5f);
+            Main.stage.setX(event.getScreenX() - xOffset);
+            Main.stage.setY(event.getScreenY() - yOffset);
+            Main.stage.setOpacity(0.5f);
         });
-        parent.setOnDragDone((e) -> Launcher.stage.setOpacity(1.0f));
-        parent.setOnMouseReleased((e) -> Launcher.stage.setOpacity(1.0f));
+        parent.setOnDragDone((e) -> Main.stage.setOpacity(1.0f));
+        parent.setOnMouseReleased((e) -> Main.stage.setOpacity(1.0f));
     }
 
 }

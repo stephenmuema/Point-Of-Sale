@@ -123,16 +123,9 @@ public class UtilityClass {
     }
 
     protected void mailSend(String text, String subject, String to, String from, String type, String password) throws MessagingException {
-        Properties props = new Properties();
 
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.socketFactory.class",
-                "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "587");
-        Session session = Session.getDefaultInstance(props,
-                new javax.mail.Authenticator() {
+        Session session = Session.getDefaultInstance(mailProp,
+                new Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(from, password);
                     }
@@ -142,7 +135,7 @@ public class UtilityClass {
         message.setFrom(new InternetAddress(from));
 
         InternetAddress[] parse = InternetAddress.parse(to, true);
-        message.setRecipients(javax.mail.Message.RecipientType.TO, parse);
+        message.setRecipients(Message.RecipientType.TO, parse);
         message.setSubject(subject);
         message.setContent(text, type);
         Transport.send(message);
@@ -170,7 +163,7 @@ public class UtilityClass {
         }
     }
 
-    protected String getComputerName() {
+    public String getComputerName() {
         String pcName = null;
         try {
             PreparedStatement prep = connectionDbLocal.prepareStatement("SELECT * FROM system_settings WHERE name=?");
@@ -195,29 +188,34 @@ public class UtilityClass {
     public void time(Label clock) {
         Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             String mins = null, hrs = null, secs = null, pmam = null;
-            int minutes = Integer.parseInt(String.valueOf(CheckConn.timelogin().getMinutes()));
-            int seconds = Integer.parseInt(String.valueOf(CheckConn.timelogin().getSeconds()));
-            int hours = Integer.parseInt(String.valueOf(CheckConn.timelogin().getHours()));
+            try {
+                int minutes = Integer.parseInt(String.valueOf(CheckConn.timelogin().getMinutes()));
+                int seconds = Integer.parseInt(String.valueOf(CheckConn.timelogin().getSeconds()));
+                int hours = Integer.parseInt(String.valueOf(CheckConn.timelogin().getHours()));
 
-            if (hours >= 12) {
-                pmam = "PM";
-            } else {
-                pmam = "AM";
+                if (hours >= 12) {
+                    pmam = "PM";
+                } else {
+                    pmam = "AM";
 
+                }
+                if (minutes > 9) {
+                    mins = String.valueOf(minutes);
+                } else {
+                    mins = "0" + minutes;
+
+                }
+                if (seconds > 9) {
+                    secs = String.valueOf(seconds);
+                } else {
+                    secs = "0" + seconds;
+
+                }
+            } catch (IOException e1) {
+                e1.printStackTrace();
             }
-            if (minutes > 9) {
-                mins = String.valueOf(minutes);
-            } else {
-                mins = "0" + minutes;
-
-            }
-            if (seconds > 9) {
-                secs = String.valueOf(seconds);
-            } else {
-                secs = "0" + seconds;
-
-            }
-            //                if (networkConnectionMap.containsKey("server") || networkConnectionMap.containsKey("Internet")) {
+            try {
+//                if (networkConnectionMap.containsKey("server") || networkConnectionMap.containsKey("Internet")) {
 //                    if (!networkConnectionMap.get("server")) {
 ////                    no connection to server
 //                        showAlert(Alert.AlertType.ERROR, panel.get("panel").getScene().getWindow(), "ERROR", "NETWORK CONNECTION LOST");
@@ -228,7 +226,10 @@ public class UtilityClass {
 //                    }
 //
 //                }
-            clock.setText(CheckConn.timelogin().getHours() + ":" + (mins) + ":" + (secs) + " " + pmam);
+                clock.setText(CheckConn.timelogin().getHours() + ":" + (mins) + ":" + (secs) + " " + pmam);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }),
                 new KeyFrame(Duration.seconds(1))
         );

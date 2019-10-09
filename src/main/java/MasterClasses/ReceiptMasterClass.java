@@ -8,7 +8,7 @@ import static securityandtime.config.localCartDb;
 
 public class ReceiptMasterClass {
 
-    private ResultSet resultSet;
+    ResultSet resultSet;
     private Connection connectionDbLocal;
     private Statement statementLocal;
 
