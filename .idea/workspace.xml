@@ -7,24 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controllers/Reports.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/POSnanotech-softwareshotelshotelsjavamultiplestores.iml" beforeDir="false" afterPath="$PROJECT_DIR$/POSnanotech-softwareshotelshotelsjavamultiplestores.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/NetworkCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NetworkCheck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/StocksController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/scannerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/scannerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/SettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/SettingsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UtilityClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UtilityClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Launcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Launcher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MasterClasses/ReceiptMasterClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MasterClasses/ReceiptMasterClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/securityandtime/AesCrypto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/securityandtime/AesCrypto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/securityandtime/config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/securityandtime/config.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/GetNetworkAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/GetNetworkAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/securityandtime/AesCrypto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/securityandtime/AesCrypto.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -623,7 +608,12 @@
       <workItem from="1569918270021" duration="1120000" />
       <workItem from="1569923261839" duration="1705000" />
       <workItem from="1569925281630" duration="3091000" />
-      <workItem from="1570012696235" duration="7370000" />
+      <workItem from="1570012696235" duration="9651000" />
+      <workItem from="1570026032991" duration="227000" />
+      <workItem from="1570114781208" duration="4447000" />
+      <workItem from="1570142944473" duration="18000" />
+      <workItem from="1570599947795" duration="782000" />
+      <workItem from="1570617402509" duration="212000" />
     </task>
     <task id="LOCAL-00001" summary="before shopping cart">
       <created>1552048112305</created>
@@ -919,7 +909,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569928560475</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="SEND REPORTS AND SAVE REPORTS IMPLEMENTED">
+      <created>1570021054171</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1570021054171</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -979,7 +976,8 @@
     <MESSAGE value="ADDED MENU TO EMPLOYEES" />
     <MESSAGE value="ADDED CONTACT DEVELOPERS PAGE" />
     <MESSAGE value="ADDED DB IMPORT BUT NOT TESTED IT" />
-    <option name="LAST_COMMIT_MESSAGE" value="ADDED DB IMPORT BUT NOT TESTED IT" />
+    <MESSAGE value="SEND REPORTS AND SAVE REPORTS IMPLEMENTED" />
+    <option name="LAST_COMMIT_MESSAGE" value="SEND REPORTS AND SAVE REPORTS IMPLEMENTED" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

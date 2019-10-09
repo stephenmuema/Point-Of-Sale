@@ -5,9 +5,9 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 
 //made by steve
-public class GetNetworkAddress {
+class GetNetworkAddress {
 
-    public static InetAddress GetIpAddress() {
+    static InetAddress GetIpAddress() {
         InetAddress ip = null;
         try {
 
@@ -24,7 +24,7 @@ public class GetNetworkAddress {
         return ip;
     }
 
-    public static String getMacAddress(InetAddress ip) throws SocketException {
+    static String getMacAddress(InetAddress ip) throws SocketException {
         NetworkInterface network = NetworkInterface.getByInetAddress(ip);
 
         byte[] mac = network.getHardwareAddress();
