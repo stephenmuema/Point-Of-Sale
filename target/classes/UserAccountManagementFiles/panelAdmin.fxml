@@ -9,34 +9,34 @@
             xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="Controllers.UserAccountManagementControllers.AdminPanelController">
     <VBox prefHeight="700.0" prefWidth="1200.0">
-        <MenuBar>
-            <Menu mnemonicParsing="false" text="ACCOUNT">
+        <MenuBar >
+            <Menu mnemonicParsing="false" text="ACCOUNT" fx:id="acctMenu">
                 <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS"/>
                 <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT"/>
                 <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER"/>
                 <MenuItem fx:id="menuQuit" mnemonicParsing="false" text="QUIT"/>
 
             </Menu>
-            <Menu mnemonicParsing="false" text="DATABASE">
+            <Menu mnemonicParsing="false" text="DATABASE" fx:id="dbMenu">
                 <MenuItem fx:id="backupMenu" mnemonicParsing="false" text="BACKUP"/>
                 <MenuItem fx:id="retrieveBackupMenu" mnemonicParsing="false" text="RETRIEVE BACKUP"/>
                 <MenuItem fx:id="viewBackupsMenu" mnemonicParsing="false" text="VIEW BACKUPS"/>
             </Menu>
-            <Menu mnemonicParsing="false" text="SHIFTS">
+            <Menu mnemonicParsing="false" text="SHIFTS" fx:id="shiftsMenu">
                 <items>
                     <MenuItem fx:id="startDayMenu" mnemonicParsing="false" text="START DAY"/>
                     <MenuItem fx:id="endDayMenu" mnemonicParsing="false" text="END DAY"/>
                     <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION"/>
                 </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="SYSTEM ">
+            <Menu mnemonicParsing="false" text="SYSTEM " fx:id="systemMenu">
                 <items>
                     <MenuItem fx:id="reportIssuesMenu" mnemonicParsing="false" text="REPORT ISSUES"/>
                     <MenuItem fx:id="restartServerMenu" mnemonicParsing="false" text="RESTART SERVER"/>
                     <MenuItem fx:id="troubleShootMenu" mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
                 </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
+            <Menu mnemonicParsing="false" text="HELP AND SUPPORT" fx:id="helpAndSupport">
                 <MenuItem fx:id="abtMenu" mnemonicParsing="false" text="ABOUT THIS SOFTWARE"/>
                 <MenuItem fx:id="termsMenu" mnemonicParsing="false" text="TERMS AND CONDITIONS"/>
                 <MenuItem fx:id="checkUpdatesMenu" mnemonicParsing="false" text="CHECK FOR UPDATES"/>
@@ -45,14 +45,14 @@
                 <MenuItem fx:id="menuShutDown" mnemonicParsing="false" text="SHUT DOWN"/>
                 <MenuItem fx:id="menuRestart" mnemonicParsing="false" text="RESTART SYSTEM"/>
             </Menu>
-            <Menu mnemonicParsing="false" text="NAVIGATION">
+            <Menu mnemonicParsing="false" text="NAVIGATION" fx:id="navigation">
                 <MenuItem fx:id="staffMenu" mnemonicParsing="false" text="STAFF"/>
                 <MenuItem fx:id="carWashMenu" mnemonicParsing="false" text="CAR WASH"/>
                 <MenuItem fx:id="inventoryMenu" mnemonicParsing="false" text="INVENTORY"/>
                 <MenuItem fx:id="mrMenu" mnemonicParsing="false" text="SUPPLIERS"/>
                 <MenuItem fx:id="auditsMenu" mnemonicParsing="false" text="AUDITS"/>
             </Menu>
-            <Menu mnemonicParsing="false" text="INVENTORY">
+            <Menu mnemonicParsing="false" text="INVENTORY" fx:id="inventory">
                 <items>
 
                     <MenuItem fx:id="generateReportsMenu" mnemonicParsing="false" text="GENERATE REPORTS"/>

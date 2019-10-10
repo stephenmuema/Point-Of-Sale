@@ -21,7 +21,7 @@ public interface config {//host,user,password,des,port
     String dbHost = "127.0.0.1";
     String[] dbdetails = {dbHost + "/", dbUser, dbPass, "jdbc:mysql://", dbName + "?zeroDateTimeBehavior=convertToNull", dbPort};
     String[] des = {dbdetails[1], dbdetails[2], dbdetails[3] + dbdetails[0] + dbdetails[4]};
-    String host = "localhost";
+    String host = "smtp.gmail.com";
     String from = "muemasnyamai@gmail.com";
     String adminEmail = "muemasn@outlook.com";
     String backupmail = "muemasnyamai@gmail.com";

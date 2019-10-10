@@ -13,7 +13,9 @@ import logging.LogClass;
 import securityandtime.AesCrypto;
 import securityandtime.CheckConn;
 
+import java.awt.*;
 import java.io.*;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
@@ -34,9 +36,40 @@ public class Main extends Application {
     private String licenseId;
 
     public static void main(String[] args) throws InterruptedException {
+        Main mainMethod = new Main();
+        mainMethod.initializeApp();
+
+        launch(args);
+    }
+
+    private void setUpBackupLocIfNotSet() throws SQLException {
+        PreparedStatement prep = new UtilityClass().getConnection().prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+        prep.setString(1, "backupLocation");
+        ResultSet rs = prep.executeQuery();
+        if (rs.isBeforeFirst()) {
+            while (rs.next()) {
+                sysconfig.put("backUpLoc", rs.getString("value"));
+            }
+        } else {
+            PreparedStatement preparedStatement = new UtilityClass().getConnection().prepareStatement("INSERT INTO systemsettings(name,type,value)VALUES (?,?,?)");
+            preparedStatement.setString(1, "backupLocation");
+            preparedStatement.setString(2, "security");
+            preparedStatement.setString(3, new UtilityClass().path);
+            preparedStatement.executeUpdate();
+            setUpBackupLocIfNotSet();
+        }
+    }
+
+    private void initializeApp() {
+
+
         Runnable target;
         Thread thread = new Thread(new NetworkCheck());
-        thread.join();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         thread.start();
         try {
             Thread.sleep(1000);
@@ -60,11 +93,11 @@ public class Main extends Application {
 
         }
 
-        Main.CallerMethod();
-        launch(args);
-    }
-
-    private static void CallerMethod() {
+        try {
+            setUpBackupLocIfNotSet();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         new CheckConn();
         ExecutorService service = Executors.newCachedThreadPool();
         service.submit(() -> {
@@ -195,7 +228,54 @@ public class Main extends Application {
 
 //        APP TITLE
                 stage.setTitle(company + year + version + " Licensing" + "       CLIENT ID        " + licenseId);
+                Platform.setImplicitExit(false);
+                stage.setOnCloseRequest(event -> {
+                    // Your code here
+                    if (!SystemTray.isSupported()) {
+                        System.out.println("SystemTray is not supported");
+                        return;
+                    }
+                    final PopupMenu popup = new PopupMenu();
 
+                    URL url = System.class.getResource(fileSavePath + "\\images\\logo.png");
+                    Image image = Toolkit.getDefaultToolkit().getImage(url);
+
+                    final TrayIcon trayIcon = new TrayIcon(image);
+
+                    final SystemTray tray = SystemTray.getSystemTray();
+
+                    // Create a pop-up menu components
+                    MenuItem aboutItem = new MenuItem("About");
+                    CheckboxMenuItem cb1 = new CheckboxMenuItem("Set auto size");
+                    CheckboxMenuItem cb2 = new CheckboxMenuItem("Set tooltip");
+                    Menu displayMenu = new Menu("Display");
+                    MenuItem errorItem = new MenuItem("Error");
+                    MenuItem warningItem = new MenuItem("Warning");
+                    MenuItem infoItem = new MenuItem("Info");
+                    MenuItem noneItem = new MenuItem("None");
+                    MenuItem exitItem = new MenuItem("Exit");
+
+                    //Add components to pop-up menu
+                    popup.add(aboutItem);
+                    popup.addSeparator();
+                    popup.add(cb1);
+                    popup.add(cb2);
+                    popup.addSeparator();
+                    popup.add(displayMenu);
+                    displayMenu.add(errorItem);
+                    displayMenu.add(warningItem);
+                    displayMenu.add(infoItem);
+                    displayMenu.add(noneItem);
+                    popup.add(exitItem);
+
+                    trayIcon.setPopupMenu(popup);
+
+                    try {
+                        tray.add(trayIcon);
+                    } catch (AWTException e) {
+                        System.out.println("TrayIcon could not be added.");
+                    }
+                });
                 stage.setMaximized(true);
 
                 stage.setFullScreen(true);

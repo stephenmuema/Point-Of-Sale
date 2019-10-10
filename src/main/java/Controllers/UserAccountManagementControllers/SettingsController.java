@@ -202,12 +202,14 @@ public class SettingsController extends UtilityClass implements Initializable {
             if (resultSet.isBeforeFirst()) {
                 while (resultSet.next()) {
                     currentBackUpLocation.setText(resultSet.getString("value"));
+                    sysconfig.put("backUpLoc", resultSet.getString("value"));
 
                 }
-            } else {
-                currentBackUpLocation.setText(fileSavePath + "backups");
-
             }
+//            else {
+//                currentBackUpLocation.setText(fileSavePath + "backups");
+//
+//            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -217,7 +219,11 @@ public class SettingsController extends UtilityClass implements Initializable {
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
+
             if (resultSet.getString("backupemail") == null && config.login.containsKey("loggedinasadmin")) {
+                backupEmailChangeButton.setText("SET BACKUP EMAIL");
+
+/*
 
                 Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
                 alert1.setTitle("BACK UP EMAIL SETUP PROCEDURE");
@@ -239,10 +245,12 @@ public class SettingsController extends UtilityClass implements Initializable {
                     insertDefaultBackupEmail.execute();
                     reload();
                 }
+                reload();
+*/
 
-//                reload();
             } else if ((resultSet.getString("backupemail") == null || resultSet.getString("backupemail").isEmpty()) && config.login.containsKey("loggedinasadmin")) {
-
+                backupEmailChangeButton.setText("SET BACKUP EMAIL");
+/*
                 Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
                 alert1.setTitle("BACK UP EMAIL SETUP PROCEDURE");
                 alert1.setHeaderText(null);
@@ -263,17 +271,16 @@ public class SettingsController extends UtilityClass implements Initializable {
                     insertDefaultBackupEmail.execute();
                     reload();
                 }
+                reload();
+*/
 
-//                reload();
             }
 
-            if (resultSet.getString("backupemailPassword") == null && config.login.containsKey("loggedinasadmin")) {
-                showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "SET PASSWORD FOR BACKUPS", "YOU NEED TO CREATE A BACK UP EMAIL PASSWORD FOR ONLINE BACKUPS TO TAKE PLACE.REMEMBER TO USE YOUR REAL GMAIL PASSWORD");
-                changeColumn("users", "backupemailPassword");
 
+            if (resultSet.getString("backupemailPassword") == null && config.login.containsKey("loggedinasadmin")) {
+                backupEmailChangePassword.setText("SET BACKUP EMAIL PASSWORD");
             } else if ((resultSet.getString("backupemailPassword") == null || resultSet.getString("backupemailPassword").isEmpty()) && config.login.containsKey("loggedinasadmin")) {
-                showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "SET PASSWORD FOR BACKUPS", "YOU NEED TO CREATE A BACK UP EMAIL PASSWORD FOR ONLINE BACKUPS TO TAKE PLACE.REMEMBER TO USE YOUR REAL GMAIL PASSWORD");
-                changeColumn("users", "backupemailPassword");
+                backupEmailChangePassword.setText("SET BACKUP EMAIL PASSWORD");
 
             }
 
@@ -457,6 +464,8 @@ public class SettingsController extends UtilityClass implements Initializable {
                         prep = connection.prepareStatement("UPDATE systemsettings SET value=? WHERE name=?");
                         prep.setString(1, file.getAbsolutePath());
                         prep.setString(2, "backupLocation");
+                        sysconfig.put("backUpLoc", file.getAbsolutePath());
+
                         prep.executeUpdate();
 //                        prep.close();
 
