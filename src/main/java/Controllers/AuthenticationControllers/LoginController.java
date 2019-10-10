@@ -30,8 +30,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
-import static securityandtime.config.encryptionkey;
-import static securityandtime.config.site;
+import static securityandtime.config.*;
 
 //end of imports
 //made by steve
@@ -82,6 +81,10 @@ public class LoginController extends UtilityClass implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        if (throwables.containsKey("INVALID KEY")) {
+//            showAlert(Alert.AlertType.ERROR,);
+        }
         main();
     }
 

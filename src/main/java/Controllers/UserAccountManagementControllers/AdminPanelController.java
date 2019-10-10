@@ -43,7 +43,7 @@ import java.util.*;
 
 import static securityandtime.config.*;
 
-public class AdminPanelController extends UtilityClass implements Initializable {
+public class AdminPanelController extends UtilityClass implements Initializable, AdminInterface {
 
     public Label clock;
     public Button employees;
@@ -133,26 +133,6 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     @FXML
     private Button logoutButton;
 
-    private static File lastFileModified(String dir) {
-        File fl = new File(dir);
-        File[] files = fl.listFiles(new FileFilter() {
-            public boolean accept(File file) {
-                return file.isFile();
-            }
-        });
-        long lastMod = Long.MIN_VALUE;
-        File choice = null;
-        assert files != null;
-        for (File file : files) {
-            if (file.lastModified() > lastMod) {
-                choice = file;
-                lastMod = file.lastModified();
-            }
-        }
-        assert choice != null;
-        System.out.println(choice.getAbsolutePath());
-        return choice;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -179,83 +159,36 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         idleMonitor.register(panel, Event.ANY);
     }
 
-    private void initModules() throws SQLException {
-        checkEmailAndPassword();
-        checkIfPreviousDayEnded();
-
-
-        boolean checkTable = checkBackUpPeriodic();
-        boolean backupdata = false;
-
-        if (checkTable) {
-            Statement preparedStatement = connection.createStatement();
-            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM backups ORDER BY id DESC LIMIT 1");
-            if (resultSet.isBeforeFirst()) {
-                while (resultSet.next()) {
-                    if (new Timestamp(Long.parseLong(resultSet.getString("nextBackup"))).before(new Timestamp(new Date().getTime()))) {
-                        backupdata = true;
-                    }
-                }
-                if (backupdata) {
-
-                    backingUpMainMethod();
-                }
-            } else {
-//                showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "INITIAL BACKUP TESTING", "THIS IS YOUR FIRST BACK UP ON THE NEW BACKUOP LOCATION.wE HAVE TO TEST IT TO CHECK IF THE BACKUP FUNCTIONALITY WORKS");
-                backingUpMainMethod();
-
+    private static File lastFileModified(String dir) {
+        File fl = new File(dir);
+        File[] files = fl.listFiles(new FileFilter() {
+            public boolean accept(File file) {
+                return file.isFile();
             }
-
-        }
-    }
-
-    private void checkIfPreviousDayEnded() throws SQLException {
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT id FROM DAYS WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
-        if (resultSet.isBeforeFirst()) {
-            startDayMenu.setDisable(true);
-            startDay.setVisible(false);
-            endDay.setVisible(true);
-            endDayMenu.setDisable(false);
-        }
-    }
-
-    private void checkEmailAndPassword() throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users where email=?");
-        preparedStatement.setString(1, user.get("user"));
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            if (resultSet.getString("backupemailPassword") == null || resultSet.getString("backupemail") == null) {
-                reportIssues.setDisable(true);
-                reportIssuesMenu.setVisible(false);
-                reportIssues.setText("NO EMAIL CONFIGURED");
-            }
-        }
-    }
-
-    private boolean checkBackUpPeriodic() throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
-        preparedStatement.setString(1, "backup");
-        ResultSet resultSet = preparedStatement.executeQuery();
-        String choice = null;
-        boolean backup;
-        if (!resultSet.isBeforeFirst()) {
-            systemSettingsBackUp();
-            checkBackUpPeriodic();
-            choice = "not periodic";
-        } else {
-            while (resultSet.next()) {
-                choice = resultSet.getString("value");
+        });
+        long lastMod = Long.MIN_VALUE;
+        File choice = null;
+        assert files != null;
+        for (File file : files) {
+            if (file.lastModified() > lastMod) {
+                choice = file;
+                lastMod = file.lastModified();
             }
         }
         assert choice != null;
-        backup = choice.equalsIgnoreCase("periodic");
-        preparedStatement.close();
-        resultSet.close();
-        return backup;
+        System.out.println(choice.getAbsolutePath());
+        return choice;
     }
 
     private void menuClick() {
+        viewBackupsMenu.setOnAction(event -> {
+            try {
+                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/viewBackups.fxml")))));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
         retrieveBackupMenu.setOnAction(event -> {
 
             FileChooser fileChooser = new FileChooser();
@@ -300,6 +233,18 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 
             }
 
+        });
+        carWashMenu.setOnAction(event -> {
+            goToCarwash(panel);
+        });
+        auditsMenu.setOnAction(event -> {
+            gotoAudits(panel);
+        });
+        staffMenu.setOnAction(event -> {
+            goToStaff(panel);
+        });
+        inventoryMenu.setOnAction(event -> {
+            goToStocks(panel);
         });
 
         backupMenu.setOnAction(event -> backingUpMainMethod());
@@ -350,6 +295,100 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                 e.printStackTrace();
             }
         });
+    }
+
+    private void initModules() throws SQLException {
+        checkEmailAndPassword();
+        checkIfPreviousDayEnded();
+
+        setUpBackupLocIfNotSet();
+        boolean checkTable = checkBackUpPeriodic();
+        boolean backupdata = false;
+
+        if (checkTable) {
+            Statement preparedStatement = connection.createStatement();
+            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM backups ORDER BY id DESC LIMIT 1");
+            if (resultSet.isBeforeFirst()) {
+                while (resultSet.next()) {
+                    if (new Timestamp(Long.parseLong(resultSet.getString("nextBackup"))).before(new Timestamp(new Date().getTime()))) {
+                        backupdata = true;
+                    }
+                }
+                if (backupdata) {
+
+                    backingUpMainMethod();
+                }
+            } else {
+//                showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "INITIAL BACKUP TESTING", "THIS IS YOUR FIRST BACK UP ON THE NEW BACKUOP LOCATION.wE HAVE TO TEST IT TO CHECK IF THE BACKUP FUNCTIONALITY WORKS");
+                backingUpMainMethod();
+
+            }
+
+        }
+    }
+
+    private void setUpBackupLocIfNotSet() throws SQLException {
+        PreparedStatement prep = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+        prep.setString(1, "backupLocation");
+        ResultSet rs = prep.executeQuery();
+        if (rs.isBeforeFirst()) {
+            while (rs.next()) {
+                sysconfig.put("backUpLoc", rs.getString("value"));
+            }
+        } else {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO systemsettings(name,type,value)VALUES (?,?,?)");
+            preparedStatement.setString(1, "backupLocation");
+            preparedStatement.setString(2, "security");
+            preparedStatement.setString(3, path);
+            preparedStatement.executeUpdate();
+            setUpBackupLocIfNotSet();
+        }
+    }
+
+    private void checkIfPreviousDayEnded() throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT id FROM DAYS WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
+        if (resultSet.isBeforeFirst()) {
+            startDayMenu.setDisable(true);
+            startDay.setVisible(false);
+            endDay.setVisible(true);
+            endDayMenu.setDisable(false);
+        }
+    }
+
+    private void checkEmailAndPassword() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users where email=?");
+        preparedStatement.setString(1, user.get("user"));
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            if (resultSet.getString("backupemailPassword") == null || resultSet.getString("backupemail") == null) {
+                reportIssues.setDisable(true);
+                reportIssuesMenu.setVisible(false);
+                reportIssues.setText("NO EMAIL CONFIGURED");
+            }
+        }
+    }
+
+    private boolean checkBackUpPeriodic() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+        preparedStatement.setString(1, "backup");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        String choice = null;
+        boolean backup;
+        if (!resultSet.isBeforeFirst()) {
+            systemSettingsBackUp();
+            checkBackUpPeriodic();
+            choice = "not periodic";
+        } else {
+            while (resultSet.next()) {
+                choice = resultSet.getString("value");
+            }
+        }
+        assert choice != null;
+        backup = choice.equalsIgnoreCase("periodic");
+        preparedStatement.close();
+        resultSet.close();
+        return backup;
     }
 
 
@@ -417,89 +456,106 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 
         });
         audits.setOnMouseClicked(event -> {
-            try {
-                refresh();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                panel.getChildren().removeAll();
-                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/audits.fxml")))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            gotoAudits(panel);
 
         });
         visitSuppliers.setOnMouseClicked(event -> {
-            try {
-                refresh();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                Desktop.getDesktop().browse(new URL(supplierSite).toURI());
-            } catch (IOException | URISyntaxException e) {
-                e.printStackTrace();
-            }
+            goToSuppliers(panel);
         });
         carwashpanel.setOnAction(event -> {
-            try {
-                refresh();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            panel.getChildren().removeAll();
-            try {
-                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("carwashFiles/carwash.fxml")))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            goToCarwash(panel);
 
 
         });
 
         stockspanel.setOnMousePressed(event -> {
-            try {
-                refresh();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                panel.getChildren().removeAll();
-                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/stocks.fxml")))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            goToStocks(panel);
 
         });
 
 
         employees.setOnMousePressed(event -> {
-            try {
-                refresh();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                panel.getChildren().removeAll();
-                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/employees.fxml")))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            goToStaff(panel);
 //            showAlert(Alert.AlertType.INFORMATION, AdminPanel.getScene().getWindow(), "coming soon", "Feature not yet supported");
         });
 
     }
 
+    public void goToStaff(AnchorPane panel) {
+        try {
+            refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            panel.getChildren().removeAll();
+            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/employees.fxml")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void goToStocks(AnchorPane panel) {
+        try {
+            refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            panel.getChildren().removeAll();
+            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/stocks.fxml")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void goToCarwash(AnchorPane panel) {
+        try {
+            refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        panel.getChildren().removeAll();
+        try {
+            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("carwashFiles/carwash.fxml")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void goToSuppliers(AnchorPane panel) {
+        try {
+            refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            Desktop.getDesktop().browse(new URL(supplierSite).toURI());
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void gotoAudits(AnchorPane panel) {
+        try {
+            refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            panel.getChildren().removeAll();
+            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/audits.fxml")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void reload() throws IOException {
         panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml")))));
-
     }
 
     private void endDayMethod() throws SQLException {
         //send reports to manager
-
-
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         alert1.setTitle("END DAY PROCEDURE");
         alert1.setHeaderText(null);
@@ -513,9 +569,6 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             Thread backUpThread = new Thread(new BackUp());
             backUpThread.start();
         }
-
-
-
     }
 
     private String backup(String path) throws Exception {
@@ -523,7 +576,6 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         properties.setProperty(MysqlExportService.DB_NAME, dbName);
         properties.setProperty(MysqlExportService.DB_USERNAME, dbUser);
         properties.setProperty(MysqlExportService.DB_PASSWORD, dbPass);
-//properties relating to email configurations
         properties.setProperty(MysqlExportService.EMAIL_HOST, "smtp.gmail.com");
         properties.setProperty(MysqlExportService.EMAIL_PORT, "587");
         properties.setProperty(MysqlExportService.EMAIL_USERNAME, user.get("backupemail"));
@@ -535,15 +587,13 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         File zip;
         if (path == null) {
             zip = new File(fileSavePath + "backups");
-
         } else {
+            Path dirs = Paths.get(path);
 
-            Path DIRS = Paths.get(path);
-
-            if (!Files.exists(DIRS)) {
+            if (!Files.exists(dirs)) {
 
                 try {
-                    Files.createDirectories(DIRS);
+                    Files.createDirectories(dirs);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -641,6 +691,7 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                         connection.connect();
 
                         String filepath = backup(path);
+
                         showAlert(Alert.AlertType.INFORMATION, backup.getScene().getWindow(), "SUCCESS", "BACK UP HAS BEEN COMPLETED SUCCESSFULLY TO " + filepath);
                         File lastFileModified = lastFileModified(path);
                         localBackup(lastFileModified.getAbsolutePath());

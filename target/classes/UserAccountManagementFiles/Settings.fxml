@@ -7,7 +7,7 @@
             xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="Controllers.UserAccountManagementControllers.SettingsController">
     <children>
-        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+        <AnchorPane prefHeight="400.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
             <children>
                 <Label fx:id="userAccountNameLabel" layoutX="15.0" layoutY="32.0" prefHeight="17.0" prefWidth="98.0"
                        text="USER NAME"/>
