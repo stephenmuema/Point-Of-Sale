@@ -13,17 +13,12 @@ import logging.LogClass;
 import securityandtime.AesCrypto;
 import securityandtime.CheckConn;
 
-import java.io.File;
-import java.io.FileFilter;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
@@ -36,6 +31,7 @@ import static securityandtime.config.*;
 public class Main extends Application {
 
     static Stage stage = null;
+    private String licenseId;
 
     public static void main(String[] args) throws InterruptedException {
         Runnable target;
@@ -97,7 +93,6 @@ public class Main extends Application {
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS system_settings (" + "id INTEGER primary key autoincrement ,name TEXT ,config text)");
 
 
-
             Statement heldTransactionsDetails = connection.createStatement();
             String heldItems = "CREATE TABLE IF NOT EXISTS heldItems (id integer primary key autoincrement,itemname text,itemprice text,itemid text,code text,amount text,cumulativeprice text ,transactionid text)";
             heldTransactionsDetails.executeUpdate(heldItems);
@@ -146,6 +141,7 @@ public class Main extends Application {
                 });
                 long lastMod = Long.MIN_VALUE;
                 File choice = null;
+                assert files != null;
                 for (File f : files) {
                     if (!f.isHidden()) {
                         Path pathf = Paths.get(f.getAbsolutePath());
@@ -157,6 +153,17 @@ public class Main extends Application {
 
 
             }
+
+            PreparedStatement pre = new UtilityClass().getConnection().prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+            pre.setString(1, "licenseId");
+            ResultSet resultSet = pre.executeQuery();
+            if (resultSet.isBeforeFirst()) {
+                //exists
+                while (resultSet.next()) {
+                    licenseId = resultSet.getString("value");
+                }
+            }
+
             FileInputStream fileInputStream = new FileInputStream(licensepath);
 
             byte[] fileContent = new byte[(int) file.length()];
@@ -226,21 +233,43 @@ public class Main extends Application {
                     license.put("name", builder.toString().split(":::")[0]);
                     license.put("email", builder.toString().split(":::")[1]);
                     license.put("time", builder.toString().split(":::")[2]);
+                    license.put("id", builder.toString().split(":::")[4]);
+                    license.put("number", builder.toString().split(":::")[5]);
+                    license.put("pkg", builder.toString().split(":::")[6]);
+                    if (builder.toString().split(":::")[6].equalsIgnoreCase("pos") || builder.toString().split(":::")[6].equalsIgnoreCase("all") || builder.toString().split(":::")[6].contains("pos") || builder.toString().split(":::")[6].contains("POS")) {
+                        fileInputStream.close();
+                        AnchorPane root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/SplashScreen.fxml"));
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.initStyle(StageStyle.TRANSPARENT);
 
-                    fileInputStream.close();
-                    AnchorPane root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/SplashScreen.fxml"));
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.initStyle(StageStyle.TRANSPARENT);
+                        stage.getIcons().add(image);
+                        stage.setTitle(company + year + version);//TITLE
+                        stage.setOnCloseRequest(event -> {
+                            Platform.exit();
+                            System.exit(123);
+                        });
+                        Main.stage = stage;
+                        stage.show();
+                    } else {
+                        throwables.put("INVALID KEY", new InvalidObjectException("invalid license key generated"));
+                        new UtilityClass().mailSend("INVALID LICENSE FOR THE POS PACKAGE.CONTACT THE SYSTEM ADMINISTRATORS TO GET A NEW LICENSE", "ERROR REPORT", license.get("email"), from, "text/plain", mailPassword);
+                        fileInputStream.close();
+                        AnchorPane root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/SplashScreen.fxml"));
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.initStyle(StageStyle.TRANSPARENT);
 
-                    stage.getIcons().add(image);
-                    stage.setTitle(company + year + version);//TITLE
-                    stage.setOnCloseRequest(event -> {
-                        Platform.exit();
-                        System.exit(123);
-                    });
-                    Main.stage = stage;
-                    stage.show();
+                        stage.getIcons().add(image);
+                        stage.setTitle(company + year + version);//TITLE
+                        stage.setOnCloseRequest(event -> {
+                            Platform.exit();
+                            System.exit(123);
+                        });
+                        Main.stage = stage;
+                        stage.show();
+                    }
+
                 }
             }
         } else {

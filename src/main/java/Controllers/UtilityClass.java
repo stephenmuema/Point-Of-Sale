@@ -13,6 +13,8 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
 import javafx.util.Duration;
+import org.json.JSONException;
+import org.json.JSONObject;
 import securityandtime.CheckConn;
 import securityandtime.config;
 
@@ -20,8 +22,9 @@ import javax.imageio.ImageIO;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -122,7 +125,7 @@ public class UtilityClass {
         return this;
     }
 
-    protected void mailSend(String text, String subject, String to, String from, String type, String password) throws MessagingException {
+    public void mailSend(String text, String subject, String to, String from, String type, String password) throws MessagingException {
 
         Session session = Session.getDefaultInstance(mailProp,
                 new Authenticator() {
@@ -306,6 +309,28 @@ public class UtilityClass {
         Platform.exit();
         System.exit(111);
     }
+
+}
+
+class JsonReader {
+
+    private static String readAll(Reader rd) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        int cp;
+        while ((cp = rd.read()) != -1) {
+            sb.append((char) cp);
+        }
+        return sb.toString();
+    }
+
+    public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
+        try (InputStream is = new URL(url).openStream()) {
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+            String jsonText = readAll(rd);
+            return new JSONObject(jsonText);
+        }
+    }
+
 
 }
 

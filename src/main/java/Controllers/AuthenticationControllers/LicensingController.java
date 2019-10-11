@@ -32,6 +32,7 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -231,12 +232,16 @@ public class LicensingController extends UtilityClass implements Initializable {
             AesCrypto aesCrypto = new AesCrypto();
             setDecryptedString(AesCipher.decrypt(aesKey, license.substring(0, license.length() - 50000)).getData());
 //            System.out.println("Key:" + key);
-//            System.out.println(decryptedString.split(":::")[0]);
-//            System.out.println(decryptedString.split(":::")[1]);
-//            System.out.println(decryptedString);
-            //todo add verification of time from server
+//            System.out.println(decryptedString.split(":::")[0]);//name
+//            System.out.println(decryptedString.split(":::")[1]);//email
+            //todo eliminate : symbol in string generation to avoid false negatives
+            //todo add verification of license from server
 //            System.out.println(decryptedString.split(":::")[2]);//expiry
 //            System.out.println(decryptedString.split(":::")[3]);//date of creation
+//            System.out.println(decryptedString.split(":::")[4]);//todo add client id
+//            System.out.println(decryptedString.split(":::")[5]);//todo add number of devices
+//            System.out.println(decryptedString.split(":::")[6]);//todo add package type
+//            all,pos,medicasystem etc
             if (firstTimeInstallation) {
                 mailSend("WELCOME", "WELCOME NEW USER", decryptedString.split(":::")[1], from, "text/plain", mailPassword);
             }
@@ -276,8 +281,10 @@ public class LicensingController extends UtilityClass implements Initializable {
                     Platform.exit();
                     System.exit(999);
                 }
-
-
+                licenseUpdate("licenseNumber", "licensing", AesCrypto.encrypt(encryptionkey, initVector, decryptedString.split(":::")[5]));
+                licenseUpdate("licenseId", "licensing", decryptedString.split(":::")[4]);
+                licenseUpdate("licensePkg", "licensing", AesCrypto.encrypt(encryptionkey, initVector, decryptedString.split(":::")[6]));
+                licenseUpdate("licenseText", "licensing", decryptedString);
 
                 showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS!!", "lICENSE ACTIVATION WAS SUCCESSFULL");
                 if (getDecryptedString().split(":::")[0].equals("Trial license")) {
@@ -318,6 +325,24 @@ public class LicensingController extends UtilityClass implements Initializable {
 
     }
 
+    private void licenseUpdate(String name, String type, String value) throws SQLException {
+        Connection connection = getConnection();
+
+        PreparedStatement insertLicCode = null;
+        try {
+            insertLicCode = connection.prepareStatement("insert into systemsettings(name,type,value)values(?,?,?)");
+
+            insertLicCode.setString(1, name);
+            insertLicCode.setString(2, type);
+            insertLicCode.setString(3, value);
+            insertLicCode.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        insertLicCode.closeOnCompletion();
+        connection.close();
+        System.out.println(" the connection status is closed? " + connection.isClosed());
+    }
 
 
     private void loadLogin() {

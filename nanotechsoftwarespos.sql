@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `audits`
 --
 
-CREATE TABLE `audits`
+CREATE TABLE IF NOT EXISTS `audits`
 (
     `id`         int(11)    NOT NULL,
     `company`    text       NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE `audits`
 -- Table structure for table `backups`
 --
 
-CREATE TABLE `backups`
+CREATE TABLE IF NOT EXISTS `backups`
 (
     `id`          int(11)   NOT NULL,
     `dateCreated` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -87,7 +87,7 @@ VALUES (10, '2019-09-23 11:00:26',
 -- Table structure for table `carwash`
 --
 
-CREATE TABLE `carwash`
+CREATE TABLE IF NOT EXISTS `carwash`
 (
     `id`                int(11)   NOT NULL,
     `ownername`         text,
@@ -117,7 +117,7 @@ VALUES (1, 'STEVE', 'KDA365S', '4345556', 'PENDING', NULL, '', '0702653268', NUL
 -- Table structure for table `chats`
 --
 
-CREATE TABLE `chats`
+CREATE TABLE IF NOT EXISTS `chats`
 (
     `id`         int(11)    NOT NULL,
     `receiver`   text       NOT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE `chats`
 -- Table structure for table `days`
 --
 
-CREATE TABLE `days`
+CREATE TABLE IF NOT EXISTS `days`
 (
     `id`         int(11) NOT NULL,
     `start_time` text    NOT NULL,
@@ -159,7 +159,7 @@ VALUES (11, '2019-09-25', '2019-09-25', 'complete'),
 -- Table structure for table `errors`
 --
 
-CREATE TABLE `errors`
+CREATE TABLE IF NOT EXISTS `errors`
 (
     `id`       int(11)    NOT NULL,
     `systemid` int(11)    NOT NULL,
@@ -174,7 +174,7 @@ CREATE TABLE `errors`
 -- Table structure for table `sales`
 --
 
-CREATE TABLE `sales`
+CREATE TABLE IF NOT EXISTS `sales`
 (
     `id`            int(11) NOT NULL,
     `transactionid` text,
@@ -200,7 +200,7 @@ VALUES (1, '2019-09-25 14:20:54.684', 21513, 'muemasn@nanotechsoftwares.co.ke', 
 -- Table structure for table `settings`
 --
 
-CREATE TABLE `settings`
+CREATE TABLE IF NOT EXISTS `settings`
 (
     `id`            int(11)    NOT NULL,
     `hideicons`     varchar(3) NOT NULL DEFAULT 'YES',
@@ -215,7 +215,7 @@ CREATE TABLE `settings`
 -- Table structure for table `settings_user_map`
 --
 
-CREATE TABLE `settings_user_map`
+CREATE TABLE IF NOT EXISTS `settings_user_map`
 (
     `id`         int(11) NOT NULL,
     `userid`     int(11) NOT NULL,
@@ -229,7 +229,7 @@ CREATE TABLE `settings_user_map`
 -- Table structure for table `shifts`
 --
 
-CREATE TABLE `shifts`
+CREATE TABLE IF NOT EXISTS `shifts`
 (
     `id`     int(11)   NOT NULL,
     `userid` int(11)   NOT NULL,
@@ -244,7 +244,7 @@ CREATE TABLE `shifts`
 -- Table structure for table `solditems`
 --
 
-CREATE TABLE `solditems`
+CREATE TABLE IF NOT EXISTS `solditems`
 (
     `id`            int(11) NOT NULL,
     `name`          text,
@@ -271,7 +271,7 @@ VALUES (1, 'TOYOTA LANDCRUISER V8', '1223', '1', '2019-09-25 14:20:54.684', 'TOY
 -- Table structure for table `stocks`
 --
 
-CREATE TABLE `stocks`
+CREATE TABLE IF NOT EXISTS `stocks`
 (
     `id`       int(11) NOT NULL,
     `name`     text,
@@ -302,7 +302,7 @@ VALUES (1, 'TOYOTA LANDCRUISER V8', '1', '1156', 'TOYOTA', '1223', NULL, ''),
 -- Table structure for table `subscribers`
 --
 
-CREATE TABLE `subscribers`
+CREATE TABLE IF NOT EXISTS `subscribers`
 (
     `id`             int(11) NOT NULL,
     `companyname`    text    NOT NULL,
@@ -319,7 +319,7 @@ CREATE TABLE `subscribers`
 -- Table structure for table `suppliers`
 --
 
-CREATE TABLE `suppliers`
+CREATE TABLE IF NOT EXISTS `suppliers`
 (
     `id`          int(11) NOT NULL,
     `name`        text,
@@ -335,7 +335,7 @@ CREATE TABLE `suppliers`
 -- Table structure for table `systems`
 --
 
-CREATE TABLE `systems`
+CREATE TABLE IF NOT EXISTS `systems`
 (
     `id`      int(11) NOT NULL,
     `name`    text    NOT NULL,
@@ -349,7 +349,7 @@ CREATE TABLE `systems`
 -- Table structure for table `systemsettings`
 --
 
-CREATE TABLE `systemsettings`
+CREATE TABLE IF NOT EXISTS `systemsettings`
 (
     `id`    int(11) NOT NULL,
     `name`  text    NOT NULL,
@@ -372,7 +372,7 @@ VALUES (3, 'backup', 'security', 'PERIODIC'),
 -- Table structure for table `system_errors_map`
 --
 
-CREATE TABLE `system_errors_map`
+CREATE TABLE IF NOT EXISTS `system_errors_map`
 (
     `id`       int(11)    NOT NULL,
     `systemid` int(11)    NOT NULL,
@@ -387,7 +387,7 @@ CREATE TABLE `system_errors_map`
 -- Table structure for table `timers`
 --
 
-CREATE TABLE `timers`
+CREATE TABLE IF NOT EXISTS `timers`
 (
     `id`         int(11) NOT NULL,
     `employeeid` int(11) NOT NULL,
@@ -403,7 +403,7 @@ CREATE TABLE `timers`
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users`
+CREATE TABLE IF NOT EXISTS `users`
 (
     `id`                  int(11)    NOT NULL,
     `employeename`        text,
@@ -423,6 +423,17 @@ CREATE TABLE `users`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = latin1;
 
+
+
+CREATE TABLE IF NOT EXISTS `ADDEDSYSTEMS`
+(
+    `id`        int(11) NOT NULL,
+    `name`      text,
+    `license`   text,
+    `timeadded` tinyint(4) DEFAULT NULL
+
+) ENGINE = InnoDB
+  DEFAULT CHARSET = latin1;
 --
 -- Dumping data for table `users`
 --
@@ -561,6 +572,8 @@ ALTER TABLE `timers`
 ALTER TABLE `users`
     ADD PRIMARY KEY (`id`);
 
+ALTER TABLE `ADDEDSYSTEMS`
+    ADD PRIMARY KEY (`id`);
 --
 -- AUTO_INCREMENT for dumped tables
 --
@@ -678,6 +691,9 @@ ALTER TABLE `timers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 7;
+ALTER TABLE `ADDEDSYSTEMS`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 7;
 
