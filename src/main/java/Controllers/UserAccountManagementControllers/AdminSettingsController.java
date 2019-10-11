@@ -726,4 +726,300 @@ public class AdminSettingsController extends UtilityClass implements Initializab
 
         }
     }
+
+    public AnchorPane getPanel() {
+        return panel;
+    }
+
+    public void setPanel(AnchorPane panel) {
+        this.panel = panel;
+    }
+
+    public Label getUserAccountNameLabel() {
+        return userAccountNameLabel;
+    }
+
+    public void setUserAccountNameLabel(Label userAccountNameLabel) {
+        this.userAccountNameLabel = userAccountNameLabel;
+    }
+
+    public Label getStationName() {
+        return stationName;
+    }
+
+    public void setStationName(Label stationName) {
+        this.stationName = stationName;
+    }
+
+    public Button getChangeStationName() {
+        return changeStationName;
+    }
+
+    public void setChangeStationName(Button changeStationName) {
+        this.changeStationName = changeStationName;
+    }
+
+    public Button getUserAccountNameChange() {
+        return userAccountNameChange;
+    }
+
+    public void setUserAccountNameChange(Button userAccountNameChange) {
+        this.userAccountNameChange = userAccountNameChange;
+    }
+
+    public Label getUserAccountName() {
+        return userAccountName;
+    }
+
+    public void setUserAccountName(Label userAccountName) {
+        this.userAccountName = userAccountName;
+    }
+
+    public Label getUserAccountEmailLabel() {
+        return userAccountEmailLabel;
+    }
+
+    public void setUserAccountEmailLabel(Label userAccountEmailLabel) {
+        this.userAccountEmailLabel = userAccountEmailLabel;
+    }
+
+    public Label getUserAccountEmail() {
+        return userAccountEmail;
+    }
+
+    public void setUserAccountEmail(Label userAccountEmail) {
+        this.userAccountEmail = userAccountEmail;
+    }
+
+    public Button getUserAccountEmailChange() {
+        return userAccountEmailChange;
+    }
+
+    public void setUserAccountEmailChange(Button userAccountEmailChange) {
+        this.userAccountEmailChange = userAccountEmailChange;
+    }
+
+    public Button getUserAccountPasswordChange() {
+        return userAccountPasswordChange;
+    }
+
+    public void setUserAccountPasswordChange(Button userAccountPasswordChange) {
+        this.userAccountPasswordChange = userAccountPasswordChange;
+    }
+
+    public Label getBackupEmailLabel() {
+        return backupEmailLabel;
+    }
+
+    public void setBackupEmailLabel(Label backupEmailLabel) {
+        this.backupEmailLabel = backupEmailLabel;
+    }
+
+    public Label getBackupEmail() {
+        return backupEmail;
+    }
+
+    public void setBackupEmail(Label backupEmail) {
+        this.backupEmail = backupEmail;
+    }
+
+    public Button getBackupEmailChangeButton() {
+        return backupEmailChangeButton;
+    }
+
+    public void setBackupEmailChangeButton(Button backupEmailChangeButton) {
+        this.backupEmailChangeButton = backupEmailChangeButton;
+    }
+
+    public Label getCurrentBackUpLocation() {
+        return currentBackUpLocation;
+    }
+
+    public void setCurrentBackUpLocation(Label currentBackUpLocation) {
+        this.currentBackUpLocation = currentBackUpLocation;
+    }
+
+    public Button getChangeBackUpLocation() {
+        return changeBackUpLocation;
+    }
+
+    public void setChangeBackUpLocation(Button changeBackUpLocation) {
+        this.changeBackUpLocation = changeBackUpLocation;
+    }
+
+    public Button getUserAccountHintChange() {
+        return userAccountHintChange;
+    }
+
+    public void setUserAccountHintChange(Button userAccountHintChange) {
+        this.userAccountHintChange = userAccountHintChange;
+    }
+
+    public PreparedStatement getPreparedStatement() {
+        return preparedStatement;
+    }
+
+    public void setPreparedStatement(PreparedStatement preparedStatement) {
+        this.preparedStatement = preparedStatement;
+    }
+
+    public Button getUserAccountHintSet() {
+        return userAccountHintSet;
+    }
+
+    public void setUserAccountHintSet(Button userAccountHintSet) {
+        this.userAccountHintSet = userAccountHintSet;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public RadioButton getEndDay() {
+        return endDay;
+    }
+
+    public void setEndDay(RadioButton endDay) {
+        this.endDay = endDay;
+    }
+
+    public RadioButton getStartUp() {
+        return startUp;
+    }
+
+    public void setStartUp(RadioButton startUp) {
+        this.startUp = startUp;
+    }
+
+    public RadioButton getPeriodical() {
+        return periodical;
+    }
+
+    public void setPeriodical(RadioButton periodical) {
+        this.periodical = periodical;
+    }
+
+    public ToggleGroup getBackupTogglegroup() {
+        return backupTogglegroup;
+    }
+
+    public void setBackupTogglegroup(ToggleGroup backupTogglegroup) {
+        this.backupTogglegroup = backupTogglegroup;
+    }
+
+    public ToggleGroup getTg() {
+        return tg;
+    }
+
+    public void setTg(ToggleGroup tg) {
+        this.tg = tg;
+    }
+
+    public Button getBackupEmailChangePassword() {
+        return backupEmailChangePassword;
+    }
+
+    public void setBackupEmailChangePassword(Button backupEmailChangePassword) {
+        this.backupEmailChangePassword = backupEmailChangePassword;
+    }
+
+    public RadioButton getExportCsv() {
+        return exportCsv;
+    }
+
+    public void setExportCsv(RadioButton exportCsv) {
+        this.exportCsv = exportCsv;
+    }
+
+    public RadioButton getExportPdf() {
+        return exportPdf;
+    }
+
+    public void setExportPdf(RadioButton exportPdf) {
+        this.exportPdf = exportPdf;
+    }
+
+    public RadioButton getExportBoth() {
+        return exportBoth;
+    }
+
+    public void setExportBoth(RadioButton exportBoth) {
+        this.exportBoth = exportBoth;
+    }
+
+    public RadioButton getExportAsk() {
+        return exportAsk;
+    }
+
+    public void setExportAsk(RadioButton exportAsk) {
+        this.exportAsk = exportAsk;
+    }
+
+    public Label getPathToReports() {
+        return pathToReports;
+    }
+
+    public void setPathToReports(Label pathToReports) {
+        this.pathToReports = pathToReports;
+    }
+
+    public Button getChangeReportsLocation() {
+        return changeReportsLocation;
+    }
+
+    public void setChangeReportsLocation(Button changeReportsLocation) {
+        this.changeReportsLocation = changeReportsLocation;
+    }
+
+    public Tab getTabProfile() {
+        return tabProfile;
+    }
+
+    public void setTabProfile(Tab tabProfile) {
+        this.tabProfile = tabProfile;
+    }
+
+    public Tab getTabBackUp() {
+        return tabBackUp;
+    }
+
+    public void setTabBackUp(Tab tabBackUp) {
+        this.tabBackUp = tabBackUp;
+    }
+
+    public Tab getTabReports() {
+        return tabReports;
+    }
+
+    public void setTabReports(Tab tabReports) {
+        this.tabReports = tabReports;
+    }
+
+    public Tab getTabStations() {
+        return tabStations;
+    }
+
+    public void setTabStations(Tab tabStations) {
+        this.tabStations = tabStations;
+    }
+
+    public Tab getTabMirror() {
+        return tabMirror;
+    }
+
+    public void setTabMirror(Tab tabMirror) {
+        this.tabMirror = tabMirror;
+    }
+
+    public TabPane getMainTabPane() {
+        return mainTabPane;
+    }
+
+    public void setMainTabPane(TabPane mainTabPane) {
+        this.mainTabPane = mainTabPane;
+    }
 }
