@@ -8,7 +8,7 @@
     <children>
         <TabPane prefHeight="400.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
-                <Tab text="ACCOUNT SETTINGS">
+                <Tab text="PROFILE">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
@@ -48,7 +48,7 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="BACKUP SETTINGS">
+                <Tab text="BACKUP ">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
@@ -77,14 +77,150 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="REPORTS SETTINGS">
+                <Tab text="REPORTS ">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Label alignment="CENTER" layoutX="228.0" layoutY="14.0" prefHeight="33.0"
+                                       prefWidth="185.0" text="GLOBAL REPORT SETTINGS" underline="true"/>
+                                <Label layoutX="22.0" layoutY="58.0" prefHeight="28.0" prefWidth="161.0"
+                                       text="DEFAULT EXPORT FORMAT"/>
+                                <RadioButton layoutX="210.0" layoutY="58.0" mnemonicParsing="false" prefHeight="29.0"
+                                             prefWidth="87.0" text="CSV"/>
+                                <RadioButton layoutX="309.0" layoutY="58.0" mnemonicParsing="false" prefHeight="29.0"
+                                             prefWidth="86.0" text="PDF"/>
+                                <RadioButton layoutX="413.0" layoutY="58.0" mnemonicParsing="false" prefHeight="29.0"
+                                             prefWidth="65.0" text="BOTH"/>
+                                <RadioButton layoutX="497.0" layoutY="58.0" mnemonicParsing="false" prefHeight="29.0"
+                                             prefWidth="111.0" text="ASK EACH TIME"/>
+                                <Label layoutX="15.0" layoutY="87.0" prefHeight="31.0" prefWidth="150.0"
+                                       text="PATH TO REPORTS"/>
+                                <Label layoutX="213.0" layoutY="87.0" prefHeight="31.0" prefWidth="176.0"
+                                       text="LOCATION"/>
+                                <Button layoutX="419.0" layoutY="90.0" mnemonicParsing="false" prefHeight="25.0"
+                                        prefWidth="184.0" text="CHANGE REPORT LOCATION"/>
+                                <TabPane layoutX="9.0" layoutY="119.0" prefHeight="233.0" prefWidth="617.0"
+                                         tabClosingPolicy="UNAVAILABLE">
+                                    <tabs>
+                                        <Tab text="SET UP PRINTERS">
+                                            <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                                            prefWidth="200.0"/>
+                                            </content>
+                                        </Tab>
+                                        <Tab text="AVAILABLE PRINTERS">
+                                            <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                                            prefWidth="200.0">
+                                                    <children>
+                                                        <TableView layoutY="2.0" prefHeight="200.0" prefWidth="614.0">
+                                                            <columns>
+                                                                <TableColumn prefWidth="37.0" text="ID"/>
+                                                                <TableColumn prefWidth="137.0" text="NUMBER"/>
+                                                                <TableColumn prefWidth="156.0" text="NAME"/>
+                                                                <TableColumn prefWidth="147.0" text="IP"/>
+                                                                <TableColumn prefWidth="118.0" text="MAC"/>
+                                                            </columns>
+                                                        </TableView>
+                                                    </children>
+                                                </AnchorPane>
+                                            </content>
+                                        </Tab>
+                                    </tabs>
+                                </TabPane>
+                            </children>
+                        </AnchorPane>
                     </content>
                 </Tab>
                 <Tab text="STATIONS">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TabPane prefHeight="372.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE">
+                                    <tabs>
+                                        <Tab text="ADD DEVICES">
+                                            <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="292.0"
+                                                            prefWidth="640.0">
+                                                    <children>
+                                                        <Button layoutX="264.0" layoutY="304.0" mnemonicParsing="false"
+                                                                text="ADD NEW DEVICE"/>
+                                                        <TableView layoutX="19.0" layoutY="13.0" prefHeight="267.0"
+                                                                   prefWidth="613.0">
+                                                            <columns>
+                                                                <TableColumn prefWidth="178.0" text="IP ADDRESS"/>
+                                                                <TableColumn prefWidth="230.0" text="MAC ADDRESS"/>
+                                                                <TableColumn prefWidth="203.0" text="OS"/>
+                                                            </columns>
+                                                        </TableView>
+                                                    </children>
+                                                </AnchorPane>
+                                            </content>
+                                        </Tab>
+                                        <Tab text="VIEW EXISTING DEVICES">
+                                            <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="299.0"
+                                                            prefWidth="640.0">
+                                                    <children>
+                                                        <Button layoutX="277.0" layoutY="304.0" mnemonicParsing="false"
+                                                                text="REMOVE DEVICE"/>
+                                                        <TableView layoutX="4.0" layoutY="39.0" prefHeight="252.0"
+                                                                   prefWidth="632.0">
+                                                            <columns>
+                                                                <TableColumn prefWidth="75.0" text="ID"/>
+                                                                <TableColumn prefWidth="178.0" text="IP ADDRESS"/>
+                                                                <TableColumn prefWidth="190.0" text="MAC ADDRESS"/>
+                                                                <TableColumn prefWidth="188.0" text="OS"/>
+                                                            </columns>
+                                                        </TableView>
+                                                        <Label alignment="CENTER" layoutX="243.0" layoutY="7.0"
+                                                               prefHeight="24.0" prefWidth="172.0"
+                                                               text="EXISTING DEVICES" underline="true"/>
+                                                    </children>
+                                                </AnchorPane>
+                                            </content>
+                                        </Tab>
+                                    </tabs>
+                                </TabPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="MIRROR SERVER">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TableView layoutX="43.0" layoutY="70.0" prefHeight="200.0" prefWidth="521.0">
+                                    <columns>
+                                        <TableColumn prefWidth="75.0" text="NAME"/>
+                                        <TableColumn prefWidth="141.0" text="AVAILABLE SPACE"/>
+                                        <TableColumn prefWidth="136.0" text="DRIVES"/>
+                                        <TableColumn prefWidth="136.0" text="MIRROR VERSION"/>
+                                    </columns>
+                                </TableView>
+                                <Label layoutX="202.0" layoutY="53.0" text="DEVICES RUNNING CLONING SERVICE"/>
+                                <Button layoutX="27.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0"
+                                        prefWidth="162.0" text="CREATE NETWORK FOLDER"/>
+                                <Button layoutX="212.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0"
+                                        prefWidth="154.0" text="CLONE NANOTECH FILES"/>
+                                <Button layoutX="387.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0"
+                                        prefWidth="84.0" text="HISTORY"/>
+                                <Label layoutX="27.0" layoutY="14.0" text="MIRROR VERSION"/>
+                                <Label layoutX="141.0" layoutY="14.0" text="MIRROR VERSION"/>
+                                <Label layoutX="27.0" layoutY="31.0" text="DEVICE IP"/>
+                                <Label layoutX="141.0" layoutY="31.0" text="MY IP"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="SYSTEM ">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextField layoutX="198.0" layoutY="41.0" prefHeight="25.0" prefWidth="217.0"/>
+                                <Label layoutX="38.0" layoutY="34.0" prefHeight="28.0" prefWidth="63.0" text="Label"/>
+                            </children>
+                        </AnchorPane>
                     </content>
                 </Tab>
             </tabs>

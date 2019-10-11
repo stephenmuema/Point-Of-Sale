@@ -3,10 +3,6 @@ package Controllers.CarWashControllers;
 import Controllers.IdleMonitor;
 import Controllers.UtilityClass;
 import MasterClasses.CarWashMaster;
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -34,11 +30,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Properties;
@@ -374,142 +371,6 @@ public class CarwashController extends UtilityClass implements Initializable {
 
 
     private void pdfGen() {
-        Document document = new Document(PageSize.A4_LANDSCAPE, 20, 20, 20, 20);
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        time = timestamp.getTime() + "CARWASHREPORT.pdf";
-        //System.out.println(time);
-        try {
-            PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(time));
-        } catch (DocumentException | FileNotFoundException e) {
-            e.printStackTrace();
-        }
-//        cryptography
-//        writer.setEncryption("concretepage".getBytes(), "cp123".getBytes(), PdfWriter.ALLOW_COPY, PdfWriter.STANDARD_ENCRYPTION_40);
-//        writer.createXmpMetadata();
-        document.open();
-
-        Paragraph introtable = new Paragraph("CAR WASH TABLE",
-
-                FontFactory.getFont(FontFactory.HELVETICA,
-
-                        18, Font.BOLDITALIC));
-        introtable.setAlignment(Element.ALIGN_CENTER);
-        try {
-            document.add(introtable);
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
-        Paragraph welcome = new Paragraph("This is the table having all your previous clients");
-
-        try {
-            document.add(welcome);
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
-
-
-        PdfPTable t = new PdfPTable(5);
-
-        t.setSpacingBefore(25);
-
-        t.setSpacingAfter(25);
-
-        PdfPCell c1 = new PdfPCell(new Phrase("REGISTRATION"));
-
-        t.addCell(c1);
-
-        PdfPCell c2 = new PdfPCell(new Phrase("NAME"));
-
-        t.addCell(c2);
-
-        PdfPCell c3 = new PdfPCell(new Phrase("ID NUMBER"));
-
-        t.addCell(c3);
-
-        PdfPCell c4 = new PdfPCell(new Phrase("CONTACT"));
-
-        t.addCell(c4);
-
-        PdfPCell c5 = new PdfPCell(new Phrase("MONEY"));
-
-        t.addCell(c5);
-
-//        adding headers
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
-        PreparedStatement statement = null;
-        try {
-            assert connection != null;
-            statement = connection.prepareStatement("SELECT * FROM carwash where status=?");
-            statement.setString(1, "COMPLETE");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        ResultSet resultSet = null;
-        try {
-            resultSet = statement.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        while (true) {
-            try {
-                assert resultSet != null;
-                if (!resultSet.next()) break;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                t.addCell(resultSet.getString("registration"));
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                t.addCell(resultSet.getString("ownername"));
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                t.addCell(resultSet.getString("idnumber"));
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                t.addCell(resultSet.getString("contact"));
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                t.addCell(resultSet.getString("cashpaid"));
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            document.add(t);
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
-//        audits section
-        Paragraph employeeaudits = new Paragraph("CAR WASH TABLE",
-
-                FontFactory.getFont(FontFactory.HELVETICA,
-
-                        18, Font.BOLDITALIC));
-        employeeaudits.setAlignment(Element.ALIGN_CENTER);
-        try {
-            document.add(employeeaudits);
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
-//        todo add audits
-        Paragraph audits = new Paragraph("This is the table having all your car wash audits");
-        try {
-            document.add(audits);
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
-        document.close();
 
     }
 
