@@ -2,9 +2,11 @@ package Controllers.UserAccountManagementControllers;
 //made by steve
 
 import Controllers.IdleMonitor;
+import Controllers.SevenZ;
 import Controllers.UtilityClass;
 import com.smattme.MysqlExportService;
 import com.smattme.MysqlImportService;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -18,11 +20,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import org.apache.commons.io.FilenameUtils;
 import securityandtime.AesCrypto;
 import securityandtime.config;
 
@@ -43,19 +48,30 @@ import java.util.*;
 
 import static securityandtime.config.*;
 
-public class AdminPanelController extends UtilityClass implements Initializable {
+public class AdminPanelController extends UtilityClass implements Initializable, AdminInterface {
 
-    public Label clock;
-    public Button employees;
-    public Button stockspanel;
-    public Button carwashpanel;
-    public Button visitSuppliers;
-    public Button backup;
-    public Button audits;
+    @FXML
+    private Label clock;
+    @FXML
+    private Button employees;
+    @FXML
+    private Button stockspanel;
+    @FXML
+    private Button carwashpanel;
+    @FXML
+    private Button visitSuppliers;
+    @FXML
+    private Button backup;
+    @FXML
+    private Button audits;
     //start of the menu
-    public MenuItem menulogout;
-    public MenuItem details;
-    public Button checkUpdates;
+    @FXML
+    private MenuItem menulogout;
+    @FXML
+    private MenuItem details;
+    @FXML
+    private Button checkUpdates;
+
     @FXML
     private Label message;
 
@@ -67,7 +83,6 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     private Connection connection = utilityClass.getConnection();
     public MenuItem license;
     private String timePassedAccordingToDbVAlues;
-    private String path = fileSavePath + "backups";
     @FXML
     private MenuItem backupMenu;
     @FXML
@@ -133,6 +148,67 @@ public class AdminPanelController extends UtilityClass implements Initializable 
     @FXML
     private Button logoutButton;
 
+    @FXML
+    private Menu acctMenu;
+    @FXML
+    private Menu dbMenu;
+    @FXML
+    private Menu shiftsMenu;
+    @FXML
+    private Menu systemMenu;
+    @FXML
+    private Menu helpAndSupport;
+    @FXML
+    private Menu navigation;
+    @FXML
+    private Menu inventory;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        config.panel.put("panel", panel);
+        try {
+            checkEmailAndPassword();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            initModules();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ContextMenu cm = new ContextMenu();
+        cm.getItems().add(acctMenu);
+        cm.getItems().add(dbMenu);
+        cm.getItems().add(shiftsMenu);
+        cm.getItems().add(systemMenu);
+        cm.getItems().add(helpAndSupport);
+        cm.getItems().add(navigation);
+        cm.getItems().add(inventory);
+        panel.addEventHandler(MouseEvent.MOUSE_CLICKED, t -> {
+            if (t.getButton() == MouseButton.SECONDARY) {
+                cm.show(panel, t.getScreenX(), t.getScreenY());
+            }
+        });
+        menuClick();
+        buttonClick();
+        time(clock);
+
+        config.panel.put("panel", panel);
+        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
+                () -> {
+                    try {
+                        config.login.put("loggedout", true);
+
+                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }, true);
+        idleMonitor.register(panel, Event.ANY);
+
+    }
+
     private static File lastFileModified(String dir) {
         File fl = new File(dir);
         File[] files = fl.listFiles(new FileFilter() {
@@ -154,130 +230,61 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         return choice;
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        config.panel.put("panel", panel);
-        menuClick();
-        buttonClick();
-        time(clock);
-        try {
-            initModules();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        config.panel.put("panel", panel);
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                () -> {
-                    try {
-                        config.login.put("loggedout", true);
-
-                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }, true);
-        idleMonitor.register(panel, Event.ANY);
-    }
-
-    private void initModules() throws SQLException {
-        checkEmailAndPassword();
-        checkIfPreviousDayEnded();
-
-
-        boolean checkTable = checkBackUpPeriodic();
-        boolean backupdata = false;
-
-        if (checkTable) {
-            Statement preparedStatement = connection.createStatement();
-            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM backups ORDER BY id DESC LIMIT 1");
-            if (resultSet.isBeforeFirst()) {
-                while (resultSet.next()) {
-                    if (new Timestamp(Long.parseLong(resultSet.getString("nextBackup"))).before(new Timestamp(new Date().getTime()))) {
-                        backupdata = true;
-                    }
-                }
-                if (backupdata) {
-
-                    backingUpMainMethod();
-                }
-            } else {
-//                showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "INITIAL BACKUP TESTING", "THIS IS YOUR FIRST BACK UP ON THE NEW BACKUOP LOCATION.wE HAVE TO TEST IT TO CHECK IF THE BACKUP FUNCTIONALITY WORKS");
-                backingUpMainMethod();
-
-            }
-
-        }
-    }
-
-    private void checkIfPreviousDayEnded() throws SQLException {
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT id FROM DAYS WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
-        if (resultSet.isBeforeFirst()) {
-            startDayMenu.setDisable(true);
-            startDay.setVisible(false);
-            endDay.setVisible(true);
-            endDayMenu.setDisable(false);
-        }
-    }
-
-    private void checkEmailAndPassword() throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users where email=?");
-        preparedStatement.setString(1, user.get("user"));
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            if (resultSet.getString("backupemailPassword") == null || resultSet.getString("backupemail") == null) {
-                reportIssues.setDisable(true);
-                reportIssuesMenu.setVisible(false);
-                reportIssues.setText("NO EMAIL CONFIGURED");
-            }
-        }
-    }
-
-    private boolean checkBackUpPeriodic() throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
-        preparedStatement.setString(1, "backup");
-        ResultSet resultSet = preparedStatement.executeQuery();
-        String choice = null;
-        boolean backup;
-        if (!resultSet.isBeforeFirst()) {
-            systemSettingsBackUp();
-            checkBackUpPeriodic();
-            choice = "not periodic";
-        } else {
-            while (resultSet.next()) {
-                choice = resultSet.getString("value");
-            }
-        }
-        assert choice != null;
-        backup = choice.equalsIgnoreCase("periodic");
-        preparedStatement.close();
-        resultSet.close();
-        return backup;
-    }
-
     private void menuClick() {
+        viewBackupsMenu.setOnAction(event -> {
+            try {
+                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/viewBackups.fxml")))));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
         retrieveBackupMenu.setOnAction(event -> {
 
             FileChooser fileChooser = new FileChooser();
 
             //Set extension filter
 
-            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("SQL files (*.sql)", "*.sql");
+            FileChooser.ExtensionFilter extFilterSQL = new FileChooser.ExtensionFilter("SQL files (*.sql)", "*.sql");
+            FileChooser.ExtensionFilter extFilterZip = new FileChooser.ExtensionFilter("ZIP files (*.zip)", "*.zip");
+            FileChooser.ExtensionFilter both = new FileChooser.ExtensionFilter("ZIP files (*.zip) SQL files (*.sql)", "*.zip", "*.sql");
 
-            fileChooser.getExtensionFilters().addAll(extFilterPNG);
+            fileChooser.getExtensionFilters().addAll(extFilterSQL, extFilterZip);
             fileChooser.setTitle("SELECT YOUR SQL BACKUP FILE");
             //Show open file dialog
+            fileChooser.setInitialDirectory(new File((String) sysconfig.get("backUpLoc")));
             File file = fileChooser.showOpenDialog(null);
+
             int length = (int) file.length();
 
 
             String sql = null;
-            try {
-                sql = new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())));
+            if (FilenameUtils.getExtension(file.getAbsolutePath()).equalsIgnoreCase("sql")) {
+                try {
+                    sql = new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())));
 //                System.out.println(sql);
-            } catch (IOException e) {
-                e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (FilenameUtils.getExtension(file.getAbsolutePath()).equalsIgnoreCase("zip")) {
+                SevenZ sevenZ = new SevenZ();
+                String fname = file.getAbsolutePath();
+                sevenZ.unzipBak(fname, sysconfig.get("backUpLoc") + "\\unzippedFiles");
+                File directory = new File(sysconfig.get("backUpLoc") + "\\unzippedFiles");
+                File[] files = directory.listFiles(new FileFilter() {
+                    public boolean accept(File file) {
+                        return file.isFile();
+                    }
+                });
+                try {
+                    assert files != null;
+                    sql = new String(Files.readAllBytes(Paths.get(files[0].getAbsolutePath())));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
+
 
             boolean res = false;
             try {
@@ -289,10 +296,11 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                         .setDeleteExisting(true)
                         .setDropExisting(false)
                         .importDatabase();
-            } catch (SQLException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
 
+
+            } catch (SQLException | ClassNotFoundException e) {
+                showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR!!", "YOUR IMPORT FAILED.CONTACT THE ADMINISTRATOR");
+            }
             if (res) {
                 showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS", "YOUR IMPORT WAS SUCCCESSFULL");
             } else {
@@ -300,6 +308,18 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 
             }
 
+        });
+        carWashMenu.setOnAction(event -> {
+            goToCarwash(panel);
+        });
+        auditsMenu.setOnAction(event -> {
+            gotoAudits(panel);
+        });
+        staffMenu.setOnAction(event -> {
+            goToStaff(panel);
+        });
+        inventoryMenu.setOnAction(event -> {
+            goToStocks(panel);
         });
 
         backupMenu.setOnAction(event -> backingUpMainMethod());
@@ -350,6 +370,85 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                 e.printStackTrace();
             }
         });
+    }
+
+
+    private void initModules() throws SQLException {
+        try {
+            checkEmailAndPassword();
+        } catch (NullPointerException e) {
+//            reportIssues.setDisable(true);
+//            reportIssuesMenu.setVisible(false);
+//            reportIssues.setText("NO EMAIL CONFIGURED");
+//            startDay.setDisable(true);
+//            startDayMenu.setDisable(true);
+//            endDay.setDisable(true);
+//            endDayMenu.setDisable(true);
+//            backup.setDisable(true);
+//            backupMenu.setDisable(true);
+//            showAlert(Alert.AlertType.WARNING,panel.getScene().getWindow(),"EMAIL NOT CONFIGURED","YOUR BACK UP EMAIL IS NOT CONFIGURED");
+
+        }
+        checkIfPreviousDayEnded();
+
+        boolean checkTable = checkBackUpPeriodic();
+        boolean backupdata = false;
+
+        if (checkTable) {
+            Statement preparedStatement = connection.createStatement();
+            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM backups ORDER BY id DESC LIMIT 1");
+            if (resultSet.isBeforeFirst()) {
+                while (resultSet.next()) {
+                    if (new Timestamp(Long.parseLong(resultSet.getString("nextBackup"))).before(new Timestamp(new Date().getTime()))) {
+                        backupdata = true;
+                    }
+                }
+                if (backupdata) {
+
+                    backingUpMainMethod();
+                }
+            } else {
+//                showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "INITIAL BACKUP TESTING", "THIS IS YOUR FIRST BACK UP ON THE NEW BACKUOP LOCATION.wE HAVE TO TEST IT TO CHECK IF THE BACKUP FUNCTIONALITY WORKS");
+                backingUpMainMethod();
+
+            }
+
+        }
+    }
+
+
+    private void checkIfPreviousDayEnded() throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT id FROM DAYS WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
+        if (resultSet.isBeforeFirst()) {
+            startDayMenu.setDisable(true);
+            startDay.setVisible(false);
+            endDay.setVisible(true);
+            endDayMenu.setDisable(false);
+        }
+    }
+
+
+    private boolean checkBackUpPeriodic() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+        preparedStatement.setString(1, "backup");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        String choice = null;
+        boolean backup;
+        if (!resultSet.isBeforeFirst()) {
+            systemSettingsBackUp();
+            checkBackUpPeriodic();
+            choice = "not periodic";
+        } else {
+            while (resultSet.next()) {
+                choice = resultSet.getString("value");
+            }
+        }
+        assert choice != null;
+        backup = choice.equalsIgnoreCase("periodic");
+        preparedStatement.close();
+        resultSet.close();
+        return backup;
     }
 
 
@@ -417,89 +516,140 @@ public class AdminPanelController extends UtilityClass implements Initializable 
 
         });
         audits.setOnMouseClicked(event -> {
-            try {
-                refresh();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                panel.getChildren().removeAll();
-                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/audits.fxml")))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            gotoAudits(panel);
 
         });
         visitSuppliers.setOnMouseClicked(event -> {
-            try {
-                refresh();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                Desktop.getDesktop().browse(new URL(supplierSite).toURI());
-            } catch (IOException | URISyntaxException e) {
-                e.printStackTrace();
-            }
+            goToSuppliers(panel);
         });
         carwashpanel.setOnAction(event -> {
-            try {
-                refresh();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            panel.getChildren().removeAll();
-            try {
-                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("carwashFiles/carwash.fxml")))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            goToCarwash(panel);
 
 
         });
 
         stockspanel.setOnMousePressed(event -> {
-            try {
-                refresh();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                panel.getChildren().removeAll();
-                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/stocks.fxml")))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            goToStocks(panel);
 
         });
 
 
         employees.setOnMousePressed(event -> {
-            try {
-                refresh();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                panel.getChildren().removeAll();
-                panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/employees.fxml")))));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            goToStaff(panel);
 //            showAlert(Alert.AlertType.INFORMATION, AdminPanel.getScene().getWindow(), "coming soon", "Feature not yet supported");
         });
 
     }
 
-    private void reload() throws IOException {
-        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml")))));
+    public void goToStaff(AnchorPane panel) {
+        try {
+            refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    panel.getChildren().removeAll();
+                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/employees.fxml")))));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
+    public void goToStocks(AnchorPane panel) {
+        try {
+            refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    panel.getChildren().removeAll();
+                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/stocks.fxml")))));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void goToCarwash(AnchorPane panel) {
+        try {
+            refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        panel.getChildren().removeAll();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("carwashFiles/carwash.fxml")))));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void goToSuppliers(AnchorPane panel) {
+        try {
+            refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Desktop.getDesktop().browse(new URL(supplierSite).toURI());
+                } catch (IOException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void gotoAudits(AnchorPane panel) {
+        try {
+            refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    panel.getChildren().removeAll();
+                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/audits.fxml")))));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void reload() throws IOException {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml")))));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void endDayMethod() throws SQLException {
         //send reports to manager
-
-
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         alert1.setTitle("END DAY PROCEDURE");
         alert1.setHeaderText(null);
@@ -513,9 +663,6 @@ public class AdminPanelController extends UtilityClass implements Initializable 
             Thread backUpThread = new Thread(new BackUp());
             backUpThread.start();
         }
-
-
-
     }
 
     private String backup(String path) throws Exception {
@@ -523,7 +670,6 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         properties.setProperty(MysqlExportService.DB_NAME, dbName);
         properties.setProperty(MysqlExportService.DB_USERNAME, dbUser);
         properties.setProperty(MysqlExportService.DB_PASSWORD, dbPass);
-//properties relating to email configurations
         properties.setProperty(MysqlExportService.EMAIL_HOST, "smtp.gmail.com");
         properties.setProperty(MysqlExportService.EMAIL_PORT, "587");
         properties.setProperty(MysqlExportService.EMAIL_USERNAME, user.get("backupemail"));
@@ -535,15 +681,13 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         File zip;
         if (path == null) {
             zip = new File(fileSavePath + "backups");
-
         } else {
+            Path dirs = Paths.get(path);
 
-            Path DIRS = Paths.get(path);
-
-            if (!Files.exists(DIRS)) {
+            if (!Files.exists(dirs)) {
 
                 try {
-                    Files.createDirectories(DIRS);
+                    Files.createDirectories(dirs);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -636,11 +780,12 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                 } else {
                     try {
 //                        message.setText("backing up data...");
-                        URL url = new URL("https://www.google.com/");
+                        URL url = new URL(google);
                         URLConnection connection = url.openConnection();
                         connection.connect();
 
                         String filepath = backup(path);
+
                         showAlert(Alert.AlertType.INFORMATION, backup.getScene().getWindow(), "SUCCESS", "BACK UP HAS BEEN COMPLETED SUCCESSFULLY TO " + filepath);
                         File lastFileModified = lastFileModified(path);
                         localBackup(lastFileModified.getAbsolutePath());
@@ -672,7 +817,12 @@ public class AdminPanelController extends UtilityClass implements Initializable 
                 if (resultSet.isBeforeFirst()) {
                     while (resultSet.next()) {
                         if (resultSet.getString("start_time").equalsIgnoreCase(myObj.toString())) {
-                            showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "ENDING DAY", "DAY HAS BEEN ENDED SUCCESSFULLY");
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "ENDING DAY", "DAY HAS BEEN ENDED SUCCESSFULLY");
+                                }
+                            });
                         }
                         id = resultSet.getString("id");
                     }
@@ -976,10 +1126,6 @@ public class AdminPanelController extends UtilityClass implements Initializable 
         return path;
     }
 
-    private AdminPanelController setPath(String path) {
-        this.path = path;
-        return this;
-    }
 
     private Button getViewShiftInformation() {
         return viewShiftInformation;

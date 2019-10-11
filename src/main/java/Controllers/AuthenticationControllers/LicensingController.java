@@ -14,7 +14,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 import securityandtime.AesCipher;
 import securityandtime.AesCrypto;
@@ -236,6 +235,7 @@ public class LicensingController extends UtilityClass implements Initializable {
 //            System.out.println(decryptedString.split(":::")[1]);//email
             //todo eliminate : symbol in string generation to avoid false negatives
             //todo add verification of license from server
+            System.out.println(decryptedString);
 //            System.out.println(decryptedString.split(":::")[2]);//expiry
 //            System.out.println(decryptedString.split(":::")[3]);//date of creation
 //            System.out.println(decryptedString.split(":::")[4]);//todo add client id
@@ -340,15 +340,14 @@ public class LicensingController extends UtilityClass implements Initializable {
             e.printStackTrace();
         }
         insertLicCode.closeOnCompletion();
-        connection.close();
+
         System.out.println(" the connection status is closed? " + connection.isClosed());
     }
 
 
     private void loadLogin() {
         try {
-            Stage stage = (Stage) panel.getScene().getWindow();
-            stage.setTitle(company + year + version);
+
             panel.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml"))));
         } catch (IOException e) {
             e.printStackTrace();

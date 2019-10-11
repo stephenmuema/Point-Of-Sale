@@ -13,8 +13,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
 import javafx.util.Duration;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.apache.commons.io.FileUtils;
 import securityandtime.CheckConn;
 import securityandtime.config;
 
@@ -22,9 +21,8 @@ import javax.imageio.ImageIO;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.io.*;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -38,6 +36,7 @@ import static securityandtime.config.*;
 public class UtilityClass {
     private Connection connection;
     private Connection connectionDbLocal;
+    public String path = fileSavePath + "backups";
 
     public UtilityClass() {
         Path path = Paths.get(fileSavePath);
@@ -256,12 +255,52 @@ public class UtilityClass {
     }
 
     public void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.showAndWait();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Alert alert = new Alert(alertType);
+                alert.setTitle(title);
+                alert.setHeaderText(null);
+                alert.setContentText(message);
+                alert.initOwner(owner);
+                alert.showAndWait();
+            }
+        });
+
+    }
+
+    public void checkEmailAndPassword() throws SQLException, NullPointerException {
+
+        PreparedStatement preparedStatement = new UtilityClass().getConnection().prepareStatement("SELECT * FROM users where email=?");
+        preparedStatement.setString(1, user.get("user"));
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            if (resultSet.getString("backupemailPassword") == null || resultSet.getString("backupemail") == null) {
+//                    reportIssues.setDisable(true);
+//                    reportIssuesMenu.setVisible(false);
+//                    reportIssues.setText("NO EMAIL CONFIGURED");
+//                    startDay.setDisable(true);
+//                    startDayMenu.setDisable(true);
+//                    endDay.setDisable(true);
+//                    endDayMenu.setDisable(true);
+//                    backup.setDisable(true);
+//                    backupMenu.setDisable(true);
+                showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "SET UP EMAIL FOR BACKUPS", "YOU NEED TO CREATE A BACK UP EMAIL AND A PASSWORD FOR THAT EMAIL FOR ONLINE BACKUPS TO TAKE PLACE IN ACCOUNT SECTION");
+            } else {
+                if (resultSet.getString("backupemail").contains("gmail")) {
+                    mailProp.put("mail.smtp.auth", true);
+                    mailProp.put("mail.smtp.starttls.enable", "true");
+                    mailProp.put("mail.smtp.host", "smtp.gmail.com");
+                    mailProp.put("mail.smtp.port", "587");
+                    mailProp.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+                } else if (resultSet.getString("backupemail").contains("outlook")) {
+                    mailProp.put("mail.smtp.auth", "true");
+                    mailProp.put("mail.smtp.starttls.enable", "true");
+                    mailProp.put("mail.smtp.host", "smtp-mail.outlook.com");
+                    mailProp.put("mail.smtp.port", "587");
+                }
+            }
+        }
     }
 
     public void systemSettingsBackUp() throws SQLException {
@@ -305,6 +344,13 @@ public class UtilityClass {
         }
     }
 
+    public void clearDir() {
+        try {
+            FileUtils.cleanDirectory(new File(sysconfig.get("backUpLoc") + "\\unzippedFiles"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void exit() {
         Platform.exit();
         System.exit(111);
@@ -312,27 +358,6 @@ public class UtilityClass {
 
 }
 
-class JsonReader {
-
-    private static String readAll(Reader rd) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        int cp;
-        while ((cp = rd.read()) != -1) {
-            sb.append((char) cp);
-        }
-        return sb.toString();
-    }
-
-    public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
-        try (InputStream is = new URL(url).openStream()) {
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
-            String jsonText = readAll(rd);
-            return new JSONObject(jsonText);
-        }
-    }
-
-
-}
 
 
 

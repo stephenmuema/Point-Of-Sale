@@ -13,7 +13,9 @@ import logging.LogClass;
 import securityandtime.AesCrypto;
 import securityandtime.CheckConn;
 
+import java.awt.*;
 import java.io.*;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
@@ -34,9 +36,40 @@ public class Main extends Application {
     private String licenseId;
 
     public static void main(String[] args) throws InterruptedException {
+        Main mainMethod = new Main();
+        mainMethod.initializeApp();
+
+        launch(args);
+    }
+
+    private void setUpBackupLocIfNotSet() throws SQLException {
+        PreparedStatement prep = new UtilityClass().getConnection().prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+        prep.setString(1, "backupLocation");
+        ResultSet rs = prep.executeQuery();
+        if (rs.isBeforeFirst()) {
+            while (rs.next()) {
+                sysconfig.put("backUpLoc", rs.getString("value"));
+            }
+        } else {
+            PreparedStatement preparedStatement = new UtilityClass().getConnection().prepareStatement("INSERT INTO systemsettings(name,type,value)VALUES (?,?,?)");
+            preparedStatement.setString(1, "backupLocation");
+            preparedStatement.setString(2, "security");
+            preparedStatement.setString(3, new UtilityClass().path);
+            preparedStatement.executeUpdate();
+            setUpBackupLocIfNotSet();
+        }
+    }
+
+    private void initializeApp() {
+
+
         Runnable target;
         Thread thread = new Thread(new NetworkCheck());
-        thread.join();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         thread.start();
         try {
             Thread.sleep(1000);
@@ -60,11 +93,11 @@ public class Main extends Application {
 
         }
 
-        Main.CallerMethod();
-        launch(args);
-    }
-
-    private static void CallerMethod() {
+        try {
+            setUpBackupLocIfNotSet();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         new CheckConn();
         ExecutorService service = Executors.newCachedThreadPool();
         service.submit(() -> {
@@ -176,7 +209,6 @@ public class Main extends Application {
             for (byte b : fileContent
             ) {
                 builderEnc.append((char) b);
-//                System.out.print((char) b);
             }
             String decrypt = AesCrypto.decrypt(encryptionkey, builderEnc.toString());
             if (throwables.containsKey("invalidlicense")) {
@@ -195,8 +227,55 @@ public class Main extends Application {
                 });
 
 //        APP TITLE
-                stage.setTitle("Nanotech Softwares Point of Sale 2019  (v 1.1) Licensing");
+                stage.setTitle(company + year + version + " Licensing" + "       CLIENT ID        " + licenseId);
+                Platform.setImplicitExit(false);
+                stage.setOnCloseRequest(event -> {
+                    // Your code here
+                    if (!SystemTray.isSupported()) {
+                        System.out.println("SystemTray is not supported");
+                        return;
+                    }
+                    final PopupMenu popup = new PopupMenu();
 
+                    URL url = System.class.getResource(fileSavePath + "\\images\\logo.png");
+                    Image image = Toolkit.getDefaultToolkit().getImage(url);
+
+                    final TrayIcon trayIcon = new TrayIcon(image);
+
+                    final SystemTray tray = SystemTray.getSystemTray();
+
+                    // Create a pop-up menu components
+                    MenuItem aboutItem = new MenuItem("About");
+                    CheckboxMenuItem cb1 = new CheckboxMenuItem("Set auto size");
+                    CheckboxMenuItem cb2 = new CheckboxMenuItem("Set tooltip");
+                    Menu displayMenu = new Menu("Display");
+                    MenuItem errorItem = new MenuItem("Error");
+                    MenuItem warningItem = new MenuItem("Warning");
+                    MenuItem infoItem = new MenuItem("Info");
+                    MenuItem noneItem = new MenuItem("None");
+                    MenuItem exitItem = new MenuItem("Exit");
+
+                    //Add components to pop-up menu
+                    popup.add(aboutItem);
+                    popup.addSeparator();
+                    popup.add(cb1);
+                    popup.add(cb2);
+                    popup.addSeparator();
+                    popup.add(displayMenu);
+                    displayMenu.add(errorItem);
+                    displayMenu.add(warningItem);
+                    displayMenu.add(infoItem);
+                    displayMenu.add(noneItem);
+                    popup.add(exitItem);
+
+                    trayIcon.setPopupMenu(popup);
+
+                    try {
+                        tray.add(trayIcon);
+                    } catch (AWTException e) {
+                        System.out.println("TrayIcon could not be added.");
+                    }
+                });
                 stage.setMaximized(true);
 
                 stage.setFullScreen(true);
@@ -223,7 +302,7 @@ public class Main extends Application {
                     });
 
 //        APP TITLE
-                    stage.setTitle(company + year + version + " Licensing");
+                    stage.setTitle(company + year + version + " Licensing" + "       CLIENT ID       " + licenseId);
 
 
 //                    stage.setFullScreen(true);
@@ -236,15 +315,16 @@ public class Main extends Application {
                     license.put("id", builder.toString().split(":::")[4]);
                     license.put("number", builder.toString().split(":::")[5]);
                     license.put("pkg", builder.toString().split(":::")[6]);
+                    license.put("clientId", licenseId);
                     if (builder.toString().split(":::")[6].equalsIgnoreCase("pos") || builder.toString().split(":::")[6].equalsIgnoreCase("all") || builder.toString().split(":::")[6].contains("pos") || builder.toString().split(":::")[6].contains("POS")) {
                         fileInputStream.close();
                         AnchorPane root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/SplashScreen.fxml"));
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
-                        stage.initStyle(StageStyle.TRANSPARENT);
+                        stage.initStyle(StageStyle.DECORATED);
 
                         stage.getIcons().add(image);
-                        stage.setTitle(company + year + version);//TITLE
+                        stage.setTitle(company + year + version + "      CLIENT ID        " + licenseId);//TITLE
                         stage.setOnCloseRequest(event -> {
                             Platform.exit();
                             System.exit(123);
@@ -258,10 +338,10 @@ public class Main extends Application {
                         AnchorPane root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/SplashScreen.fxml"));
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
-                        stage.initStyle(StageStyle.TRANSPARENT);
+                        stage.initStyle(StageStyle.DECORATED);
 
                         stage.getIcons().add(image);
-                        stage.setTitle(company + year + version);//TITLE
+                        stage.setTitle(company + year + version + "     CLIENT ID       " + licenseId);//TITLE
                         stage.setOnCloseRequest(event -> {
                             Platform.exit();
                             System.exit(123);
@@ -283,10 +363,9 @@ public class Main extends Application {
                 Platform.exit();
                 System.exit(123);
             });
-//            0700758591
 
 //        APP TITLE
-            stage.setTitle(company + year + version + " Licensing");
+            stage.setTitle(company + year + version + " Licensing" + "       CLIENT ID       " + licenseId);
             Main.stage = stage;
             stage.show();
         }

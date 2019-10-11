@@ -66,11 +66,6 @@ public class Reports {
         LocalDate myObj = LocalDate.now();
         String time = String.valueOf(myObj);
 
-        mailProp.put("mail.smtp.auth", true);
-        mailProp.put("mail.smtp.starttls.enable", "true");
-        mailProp.put("mail.smtp.host", "smtp.gmail.com");
-        mailProp.put("mail.smtp.port", "587");
-        mailProp.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 
 
         Authenticator auth = new Authenticator() {

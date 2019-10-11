@@ -2,6 +2,7 @@ package Controllers.AuthenticationControllers;
 
 import Controllers.SuperClass;
 import Controllers.UtilityClass;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -185,12 +186,19 @@ public class LoginController extends UtilityClass implements Initializable {
             //            got to sign up page
             @Override
             public void handle(MouseEvent event) {
-                panel.getChildren().removeAll();
-                try {
-                    panel.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml"))));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Update UI here.
+                        panel.getChildren().removeAll();
+                        try {
+                            panel.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/signup.fxml"))));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
             }
         });
         login.setOnMousePressed(event -> {

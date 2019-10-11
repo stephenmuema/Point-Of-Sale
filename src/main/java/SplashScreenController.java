@@ -23,6 +23,7 @@ public class SplashScreenController implements Initializable {
 
     public Label owner;
     public Label expiry;
+    public Label clientId;
     private double xOffset = 0;
     private double yOffset = 0;
     @FXML
@@ -32,6 +33,7 @@ public class SplashScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        clientId.setText(license.get("clientId"));
         try {
             Date date = new Date();
 

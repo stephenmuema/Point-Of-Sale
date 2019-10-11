@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="700.0" prefWidth="1200.0"
+            styleClass="mainPanel" stylesheets="@../styles/panels.css" xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="Controllers.UserAccountManagementControllers.ViewBackUpsController">
+    <children>
+        <VBox prefHeight="700.0" prefWidth="1200.0">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu mnemonicParsing="false" text="ACCOUNT">
+                            <items>
+                                <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS"/>
+                                <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT"/>
+                                <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER"/>
+                                <MenuItem fx:id="menuQuit" mnemonicParsing="false" text="QUIT"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="HELP AND SUPPORT">
+                            <items>
+                                <MenuItem fx:id="abtMenu" mnemonicParsing="false" text="ABOUT THIS SOFTWARE"/>
+                                <MenuItem fx:id="termsMenu" mnemonicParsing="false" text="TERMS AND CONDITIONS"/>
+                                <MenuItem fx:id="checkUpdatesMenu" mnemonicParsing="false" text="CHECK FOR UPDATES"/>
+                                <MenuItem fx:id="documentationMenu" mnemonicParsing="false" text="DOCUMENTATION"/>
+                                <MenuItem fx:id="reachUsMenu" mnemonicParsing="false" text="REACH US"/>
+                                <MenuItem fx:id="menuShutDown" mnemonicParsing="false" text="SHUT DOWN"/>
+                                <MenuItem fx:id="menuRestart" mnemonicParsing="false" text="RESTART SYSTEM"/>
+                            </items>
+                        </Menu>
+                        <Menu fx:id="navigation" mnemonicParsing="false" text="NAVIGATION">
+                            <items>
+                                <MenuItem fx:id="staffMenu" mnemonicParsing="false" text="STAFF"/>
+                                <MenuItem fx:id="carWashMenu" mnemonicParsing="false" text="CAR WASH"/>
+                                <MenuItem fx:id="inventoryMenu" mnemonicParsing="false" text="INVENTORY"/>
+                                <MenuItem fx:id="mrMenu" mnemonicParsing="false" text="SUPPLIERS"/>
+                                <MenuItem fx:id="auditsMenu" mnemonicParsing="false" text="AUDITS"/>
+                                <MenuItem fx:id="panelMenu" mnemonicParsing="false" text="HOME"/>
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <AnchorPane prefHeight="700.0" prefWidth="1200.0">
+                    <children>
+                        <TableView fx:id="backupFiles" layoutX="14.0" layoutY="79.0" prefHeight="551.0"
+                                   prefWidth="1168.0">
+                            <columns>
+                                <TableColumn fx:id="fileName" resizable="false" prefWidth="705.0" text="FILE NAME"/>
+                                <TableColumn fx:id="fileCreated" resizable="false" prefWidth="248.0"
+                                             text="DATE CREATED"/>
+                                <TableColumn fx:id="fileSize" resizable="false" prefWidth="228.0" text="SIZE(MB)"/>
+                            </columns>
+                        </TableView>
+                        <Label alignment="CENTER" layoutX="487.0" layoutY="33.0" prefHeight="33.0" prefWidth="366.0"
+                               text="RECENT BACKUPS" underline="true"/>
+                        <Button fx:id="importDb" layoutX="116.0" layoutY="643.0" mnemonicParsing="false"
+                                prefHeight="42.0" prefWidth="118.0" text="IMPORT"/>
+                        <Button fx:id="mailSendBtn" layoutX="268.0" layoutY="643.0" mnemonicParsing="false"
+                                prefHeight="42.0" prefWidth="118.0" text="MAIL"/>
+                        <Button fx:id="delete" layoutX="419.0" layoutY="643.0" mnemonicParsing="false" prefHeight="42.0"
+                                prefWidth="118.0" text="DELETE"/>
+                        <Button fx:id="sendToReports" layoutX="576.0" layoutY="643.0" mnemonicParsing="false"
+                                prefHeight="42.0" prefWidth="118.0" text="SEND TO REPORTS"/>
+                        <Button fx:id="refreshB" layoutX="975.0" layoutY="14.0" mnemonicParsing="false"
+                                prefHeight="48.0" prefWidth="137.0" text="REFRESH"/>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
