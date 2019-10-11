@@ -34,6 +34,8 @@ import java.util.*;
 import static securityandtime.config.*;
 
 public class UtilityClass {
+    public static int prev = 0;
+    public static String prevString = "PROFILE";
     public String path = fileSavePath + "backups";
     private Connection connection;
     private Connection connectionDbLocal;
@@ -324,6 +326,17 @@ public class UtilityClass {
         preparedStatement1.setString(1, "backup");
         preparedStatement1.setString(2, "security");
         preparedStatement1.setString(3, "STARTUP BACKUP");
+        preparedStatement1.executeUpdate();
+//        preparedStatement1.close();
+
+    }
+
+    public void systemSettingsexportFormat() throws SQLException {
+        PreparedStatement preparedStatement1;
+        preparedStatement1 = connection.prepareStatement("INSERT INTO systemsettings (name,type,value)VALUES (?,?,?)");
+        preparedStatement1.setString(1, "exportFormat");
+        preparedStatement1.setString(2, "reporting");
+        preparedStatement1.setString(3, "PDF");
         preparedStatement1.executeUpdate();
 //        preparedStatement1.close();
 

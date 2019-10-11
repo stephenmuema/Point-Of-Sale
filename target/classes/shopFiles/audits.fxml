@@ -19,20 +19,8 @@
                             <MenuItem fx:id="menuQuit" mnemonicParsing="false" text="QUIT"/>
                         </items>
                     </Menu>
-                    <Menu mnemonicParsing="false" text="DATABASE">
-                        <items>
-                            <MenuItem fx:id="backupMenu" mnemonicParsing="false" text="BACKUP"/>
-                            <MenuItem fx:id="retrieveBackupMenu" mnemonicParsing="false" text="RETRIEVE BACKUP"/>
-                            <MenuItem fx:id="viewBackupsMenu" mnemonicParsing="false" text="VIEW BACKUPS"/>
-                        </items>
-                    </Menu>
-                    <Menu mnemonicParsing="false" text="SHIFTS">
-                        <items>
-                            <MenuItem fx:id="startDayMenu" mnemonicParsing="false" text="START DAY"/>
-                            <MenuItem fx:id="endDayMenu" mnemonicParsing="false" text="END DAY"/>
-                            <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION"/>
-                        </items>
-                    </Menu>
+
+
                     <Menu mnemonicParsing="false" text="SYSTEM ">
                         <items>
                             <MenuItem fx:id="reportIssuesMenu" mnemonicParsing="false" text="REPORT ISSUES"/>
@@ -124,7 +112,7 @@
                                             <Button fx:id="exportfirstempreport" layoutX="775.0" layoutY="498.0"
                                                     mnemonicParsing="false" styleClass="buttonorange"
                                                     text="EXPORT EMPLOYEE REPORT"/>
-                                            <Button fx:id="exportfirstempreport1" layoutX="959.0" layoutY="498.0"
+                                            <Button fx:id="showEmpReport" layoutX="959.0" layoutY="498.0"
                                                     mnemonicParsing="false" styleClass="buttonred"
                                                     text="SHOW EMPLOYEE REPORT"/>
                                             <DatePicker layoutX="23.0" layoutY="16.0" prefHeight="36.0"

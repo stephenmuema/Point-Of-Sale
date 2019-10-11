@@ -87,6 +87,7 @@ public class Main extends Application {
         if (rs.isBeforeFirst()) {
             while (rs.next()) {
                 sysconfig.put("backUpLoc", rs.getString("value"));
+//                reportLocation
             }
         } else {
             PreparedStatement preparedStatement = new UtilityClass().getConnection().prepareStatement("INSERT INTO systemsettings(name,type,value)VALUES (?,?,?)");
@@ -95,6 +96,26 @@ public class Main extends Application {
             preparedStatement.setString(3, new UtilityClass().path);
             preparedStatement.executeUpdate();
             setUpBackupLocIfNotSet();
+        }
+
+    }
+
+    private void setUpReportsLocIfNotSet() throws SQLException {
+        PreparedStatement prep = new UtilityClass().getConnection().prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+        prep.setString(1, "reportLocation");
+        ResultSet rs = prep.executeQuery();
+        if (rs.isBeforeFirst()) {
+            while (rs.next()) {
+                sysconfig.put("reportLocation", rs.getString("value"));
+//                reportLocation
+            }
+        } else {
+            PreparedStatement preparedStatement = new UtilityClass().getConnection().prepareStatement("INSERT INTO systemsettings(name,type,value)VALUES (?,?,?)");
+            preparedStatement.setString(1, "reportLocation");
+            preparedStatement.setString(2, "reporting");
+            preparedStatement.setString(3, fileSavePath + "\\files");
+            preparedStatement.executeUpdate();
+            setUpReportsLocIfNotSet();
         }
     }
 
@@ -132,6 +153,7 @@ public class Main extends Application {
         }
 
         try {
+            setUpReportsLocIfNotSet();
             setUpBackupLocIfNotSet();
         } catch (SQLException e) {
             e.printStackTrace();

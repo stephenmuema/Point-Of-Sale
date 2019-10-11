@@ -30,6 +30,8 @@ import java.util.ResourceBundle;
 import static securityandtime.config.*;
 
 public class AdminSettingsController extends UtilityClass implements Initializable {
+
+
     @FXML
     private AnchorPane panel;
     @FXML
@@ -73,9 +75,42 @@ public class AdminSettingsController extends UtilityClass implements Initializab
     private RadioButton startUp;
     @FXML
     private RadioButton periodical;
+    private ToggleGroup backupTogglegroup = new ToggleGroup();
     private ToggleGroup tg = new ToggleGroup();
     @FXML
     private Button backupEmailChangePassword;
+    //reports settings
+    @FXML
+    private RadioButton exportCsv;
+    @FXML
+    private RadioButton exportPdf;
+    @FXML
+    private RadioButton exportBoth;
+    @FXML
+    private RadioButton exportAsk;
+    @FXML
+    private Label pathToReports;
+    @FXML
+    private Button changeReportsLocation;
+
+
+    //
+    @FXML
+    private Tab tabProfile;
+    @FXML
+    private Tab tabBackUp;
+    @FXML
+    private Tab tabReports;
+    @FXML
+    private Tab tabStations;
+    @FXML
+    private Tab tabMirror;
+
+    @FXML
+    private TabPane mainTabPane;
+
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -83,19 +118,132 @@ public class AdminSettingsController extends UtilityClass implements Initializab
         userAccountHintSet.setVisible(false);
         try {
             initializer();
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        config.panel.put("panel", panel);
-        periodical.setToggleGroup(tg);
-        startUp.setToggleGroup(tg);
-        endDay.setToggleGroup(tg);
-        buttonListeners();
-        menuListeners();
+
+    }
+
+    private void initialiseRadioButtons() throws SQLException {
+        UtilityClass utilityClass = new UtilityClass();
+        Connection connection = utilityClass.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+        preparedStatement.setString(1, "backup");
+        ResultSet rs = preparedStatement.executeQuery();
+        if (rs.isBeforeFirst()) {
+            while (rs.next()) {
+                String buttonVal = rs.getString("value");
+                if (buttonVal.contains("STARTUP BACKUP")) {
+                    startUp.setSelected(true);
+                } else if (buttonVal.contains("END DAY BACK UP")) {
+                    endDay.setSelected(true);
+                } else {
+                    periodical.setSelected(true);
+                }
+
+            }
+        } else {
+            systemSettingsBackUp();
+            initialiseRadioButtons();
+        }
+
+        utilityClass = new UtilityClass();
+        connection = utilityClass.getConnection();
+        preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+        preparedStatement.setString(1, "exportFormat");
+        rs = preparedStatement.executeQuery();
+        if (rs.isBeforeFirst()) {
+            while (rs.next()) {
+                String buttonVal = rs.getString("value");
+                if (buttonVal.contains("PDF")) {
+                    exportPdf.setSelected(true);
+                } else if (buttonVal.contains("CSV")) {
+                    exportCsv.setSelected(true);
+                } else if (buttonVal.contains("BOTH")) {
+                    exportBoth.setSelected(true);
+                } else {
+                    exportAsk.setSelected(true);
+                }
+
+            }
+        } else {
+            systemSettingsBackUp();
+            systemSettingsexportFormat();
+            initialiseRadioButtons();
+        }
+
+    }
+
+
+    private void reload() {
+        try {
+            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/adminSettings.fxml")))));
+            System.out.println("selecting " + UtilityClass.prev);
+            mainTabPane.getSelectionModel().select(UtilityClass.prev);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void initializer() throws SQLException {
+
+        mainTabPane.getSelectionModel().selectedItemProperty().addListener(
+                (ov, t, t1) -> {
+                    System.out.println(prev);
+                    UtilityClass.prevString = mainTabPane.getSelectionModel().getSelectedItem().getText();
+                    UtilityClass.prev = mainTabPane.getSelectionModel().getSelectedIndex();
+                }
+        );
+
+
+        pathToReports.setText((String) sysconfig.get("reportLocation"));
+        exportAsk.setToggleGroup(tg);
+        exportBoth.setToggleGroup(tg);
+        exportCsv.setToggleGroup(tg);
+        exportPdf.setToggleGroup(tg);
         tg.selectedToggleProperty().addListener((ob, o, n) -> {
             UtilityClass utilityClass = new UtilityClass();
             Connection connection = utilityClass.getConnection();
             RadioButton rb = (RadioButton) tg.getSelectedToggle();
+
+            if (rb != null) {
+                String s = rb.getText();
+//change backup in mysql
+                try {
+                    PreparedStatement prep = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+                    prep.setString(1, "exportFormat");
+                    ResultSet rs = prep.executeQuery();
+                    if (!rs.isBeforeFirst()) {
+////                      rs.close();
+////                      prep.close();
+                        systemSettingsexportFormat();
+
+                    } else {
+                        preparedStatement = connection.prepareStatement("UPDATE systemsettings SET value=? WHERE name=?");
+                        preparedStatement.setString(1, s);
+                        preparedStatement.setString(2, "exportFormat");
+                        preparedStatement.executeUpdate();
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+        config.panel.put("panel", panel);
+        periodical.setToggleGroup(backupTogglegroup);
+        startUp.setToggleGroup(backupTogglegroup);
+        endDay.setToggleGroup(backupTogglegroup);
+        buttonListeners();
+        menuListeners();
+        backupTogglegroup.selectedToggleProperty().addListener((ob, o, n) -> {
+            UtilityClass utilityClass = new UtilityClass();
+            Connection connection = utilityClass.getConnection();
+            RadioButton rb = (RadioButton) backupTogglegroup.getSelectedToggle();
 
             if (rb != null) {
                 String s = rb.getText();
@@ -138,43 +286,6 @@ public class AdminSettingsController extends UtilityClass implements Initializab
                     }
                 }, true);
         idleMonitor.register(panel, Event.ANY);
-    }
-
-    private void initialiseRadioButtons() throws SQLException {
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
-        preparedStatement.setString(1, "backup");
-        ResultSet rs = preparedStatement.executeQuery();
-        if (rs.isBeforeFirst()) {
-            while (rs.next()) {
-                String buttonVal = rs.getString("value");
-                if (buttonVal.contains("STARTUP BACKUP")) {
-                    startUp.setSelected(true);
-                } else if (buttonVal.contains("END DAY BACK UP")) {
-                    endDay.setSelected(true);
-                } else {
-                    periodical.setSelected(true);
-                }
-
-            }
-        } else {
-            systemSettingsBackUp();
-            initialiseRadioButtons();
-        }
-    }
-
-
-    private void reload() {
-        try {
-            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/adminSettings.fxml")))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    private void initializer() throws SQLException, IOException {
         changeStationName.setVisible(false);
         stationName.setVisible(false);
         if (!config.login.containsKey("loggedinasadmin")) {
@@ -223,56 +334,9 @@ public class AdminSettingsController extends UtilityClass implements Initializab
             if (resultSet.getString("backupemail") == null && config.login.containsKey("loggedinasadmin")) {
                 backupEmailChangeButton.setText("SET BACKUP EMAIL");
 
-/*
-
-                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-                alert1.setTitle("BACK UP EMAIL SETUP PROCEDURE");
-                alert1.setHeaderText(null);
-                alert1.setContentText("HI...YOU NEED TO SET UP THE BACK UP EMAIL FOR ONLINE BACKUPS");
-                alert1.initOwner(config.panel.get("panel").getScene().getWindow());
-                Optional<ButtonType> option = alert1.showAndWait();
-                if (option.isPresent() && option.get() == ButtonType.OK) {
-                    try {
-                        changeColumn("users", "backupemail");
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "DEFAULT EMAIL", "THIS OPERATION HAS MADE YOUR ACCOUNT YOUR BACK UP EMAIL");
-                    PreparedStatement insertDefaultBackupEmail = connection.prepareStatement("UPDATE users SET backupemail=? WHERE id=? ");
-                    insertDefaultBackupEmail.setString(1, email);
-                    insertDefaultBackupEmail.setInt(2, id);
-                    insertDefaultBackupEmail.execute();
-                    reload();
-                }
-                reload();
-*/
 
             } else if ((resultSet.getString("backupemail") == null || resultSet.getString("backupemail").isEmpty()) && config.login.containsKey("loggedinasadmin")) {
                 backupEmailChangeButton.setText("SET BACKUP EMAIL");
-/*
-                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-                alert1.setTitle("BACK UP EMAIL SETUP PROCEDURE");
-                alert1.setHeaderText(null);
-                alert1.setContentText("HI...YOU NEED TO SET UP THE BACK UP EMAIL FOR ONLINE BACKUPS");
-                alert1.initOwner(config.panel.get("panel").getScene().getWindow());
-                Optional<ButtonType> option = alert1.showAndWait();
-                if (option.isPresent() && option.get() == ButtonType.OK) {
-                    try {
-                        changeColumn("users", "backupemail");
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "DEFAULT EMAIL", "THIS OPERATION HAS MADE YOUR ACCOUNT YOUR BACK UP EMAIL");
-                    PreparedStatement insertDefaultBackupEmail = connection.prepareStatement("UPDATE users SET backupemail=? WHERE id=? ");
-                    insertDefaultBackupEmail.setString(1, email);
-                    insertDefaultBackupEmail.setInt(2, id);
-                    insertDefaultBackupEmail.execute();
-                    reload();
-                }
-                reload();
-*/
 
             }
 
@@ -329,10 +393,60 @@ public class AdminSettingsController extends UtilityClass implements Initializab
             showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "NETWORK ERROR");
 
         }
-        reload();
+
     }
 
     private void buttonListeners() {
+        changeReportsLocation.setOnAction(event -> {
+            //            update db change backup location
+            // get the file selected
+            UtilityClass utilityClass = new UtilityClass();
+            Connection connection = utilityClass.getConnection();
+            DirectoryChooser dir_chooser = new DirectoryChooser();
+            File file = dir_chooser.showDialog(panel.getScene().getWindow());
+
+            if (file != null) {
+                PreparedStatement prep = null;
+                try {
+                    prep = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+                    prep.setString(1, "reportLocation");
+                    ResultSet resultSet = prep.executeQuery();
+                    if (resultSet.isBeforeFirst()) {
+//                       prep.close();
+                        prep = connection.prepareStatement("UPDATE systemsettings SET value=? WHERE name=?");
+                        prep.setString(1, file.getAbsolutePath());
+                        prep.setString(2, "reportLocation");
+                        sysconfig.put("reportLocation", file.getAbsolutePath());
+
+                        prep.executeUpdate();
+//                        prep.close();
+
+                    } else {
+                        try {
+                            prep = connection.prepareStatement("INSERT INTO systemsettings (name,type,value)VALUES (?,?,?)");
+                            prep.setString(1, "backupLocation");
+                            prep.setString(2, "security");
+                            prep.setString(3, file.getAbsolutePath());
+                            prep.executeUpdate();
+//                            prep.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+////resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+
+            } else {
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "CANCELLATION", "THE OPERATION WAS CANCELLED");
+            }
+
+
+            reload();
+
+        });
         changeStationName.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("STATION NAME CHANGING ");
