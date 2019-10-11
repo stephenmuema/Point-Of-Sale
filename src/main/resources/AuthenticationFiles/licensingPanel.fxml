@@ -5,14 +5,15 @@
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0"
+            minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0"
             xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="Controllers.AuthenticationControllers.LicensingController">
     <children>
         <AnchorPane prefHeight="214.0" prefWidth="1200.0" styleClass="mainPanel">
             <children>
                 <Label alignment="CENTER" layoutX="287.0" layoutY="14.0" prefHeight="34.0" prefWidth="464.0"
-                       text="WELCOME TO YOUR POS OF CHOICE" textFill="RED">
+                       text="WELCOME TO MEDICA SYSTEM POS" textFill="RED">
                     <font>
                         <Font name="Book Antiqua" size="25.0"/>
                     </font>

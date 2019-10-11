@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="400.0" prefWidth="640.0"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="Controllers.UserAccountManagementControllers.AdminSettingsController">
+    <children>
+        <TabPane prefHeight="400.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="ACCOUNT SETTINGS">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <AnchorPane prefHeight="400.0" prefWidth="640.0">
+                                    <children>
+                                        <Label fx:id="userAccountNameLabel" layoutX="15.0" layoutY="32.0"
+                                               prefHeight="17.0" prefWidth="98.0" text="USER NAME"/>
+                                        <Label fx:id="userAccountName" alignment="CENTER" layoutX="113.0" layoutY="32.0"
+                                               prefHeight="17.0" prefWidth="270.0" text="USER NAME"/>
+                                        <Button fx:id="userAccountNameChange" layoutX="402.0" layoutY="32.0"
+                                                mnemonicParsing="false" prefHeight="25.0" prefWidth="195.0"
+                                                text="CHANGE NAME"/>
+                                        <Label fx:id="userAccountEmailLabel" layoutX="14.0" layoutY="64.0"
+                                               prefHeight="17.0" prefWidth="98.0" text="USER EMAIL"/>
+                                        <Label fx:id="userAccountEmail" alignment="CENTER" layoutX="112.0"
+                                               layoutY="64.0" prefHeight="17.0" prefWidth="270.0" text="USER EMAIL"/>
+                                        <Button fx:id="userAccountEmailChange" layoutX="402.0" layoutY="64.0"
+                                                mnemonicParsing="false" prefHeight="25.0" prefWidth="195.0"
+                                                text="CHANGE EMAIL"/>
+                                        <Button fx:id="userAccountPasswordChange" layoutX="15.0" layoutY="98.0"
+                                                mnemonicParsing="false" prefHeight="25.0" prefWidth="144.0"
+                                                text="CHANGE PASSWORD"/>
+                                        <Button fx:id="userAccountHintChange" layoutX="185.0" layoutY="98.0"
+                                                mnemonicParsing="false" prefHeight="25.0" prefWidth="144.0"
+                                                text="CHANGE HINT"/>
+                                        <Button fx:id="userAccountHintSet" layoutX="185.0" layoutY="98.0"
+                                                mnemonicParsing="false" prefHeight="25.0" prefWidth="144.0"
+                                                text="SET HINT"/>
+                                        <Button fx:id="changeStationName" layoutX="8.0" layoutY="200.0"
+                                                mnemonicParsing="false" prefHeight="44.0" prefWidth="186.0"
+                                                text="CHANGE STATION NAME"/>
+                                        <Label fx:id="stationName" layoutX="210.0" layoutY="205.0" prefHeight="35.0"
+                                               prefWidth="332.0"/>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="BACKUP SETTINGS">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Button fx:id="changeBackUpLocation" layoutX="14.0" layoutY="128.0"
+                                        mnemonicParsing="false" prefHeight="44.0" prefWidth="186.0"
+                                        text="CHANGE BACK UP LOCATION"/>
+                                <Label fx:id="currentBackUpLocation" alignment="CENTER" layoutX="227.0" layoutY="133.0"
+                                       prefHeight="35.0" prefWidth="332.0" text="location"/>
+                                <RadioButton fx:id="endDay" layoutX="31.0" layoutY="250.0" mnemonicParsing="false"
+                                             text="END DAY BACK UP"/>
+                                <RadioButton fx:id="periodical" layoutX="33.0" layoutY="227.0" mnemonicParsing="false"
+                                             text="PERIODIC"/>
+                                <RadioButton fx:id="startUp" layoutX="33.0" layoutY="205.0" mnemonicParsing="false"
+                                             text="STARTUP BACKUP"/>
+                                <Label fx:id="backupEmailLabel" layoutX="14.0" layoutY="33.0" prefHeight="17.0"
+                                       prefWidth="98.0" text="BACK UP EMAIL"/>
+                                <Label fx:id="backupEmail" alignment="CENTER" layoutX="120.0" layoutY="33.0"
+                                       prefHeight="17.0" prefWidth="258.0"/>
+                                <Button fx:id="backupEmailChangeButton" layoutX="378.0" layoutY="29.0"
+                                        mnemonicParsing="false" prefHeight="25.0" prefWidth="212.0"
+                                        text="CHANGE BACKUP EMAIL"/>
+                                <Button fx:id="backupEmailChangePassword" layoutX="378.0" layoutY="76.0"
+                                        mnemonicParsing="false" prefHeight="25.0" prefWidth="215.0"
+                                        text="CHANGE BACKUP EMAIL PASSWORD"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="REPORTS SETTINGS">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                    </content>
+                </Tab>
+                <Tab text="STATIONS">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

@@ -10,11 +10,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
 public class BarCodeScanner extends Thread {
-    private String barcode;
-
-
     private static SerialPort serialPort;
-
+    private String barcode;
 
     private static String scan() {
         AtomicReference<String> code = new AtomicReference<>("");

@@ -26,10 +26,10 @@
         </Label>
         <ImageView fx:id="logo" fitHeight="541.0" fitWidth="745.0" layoutX="379.0" layoutY="96.0" pickOnBounds="true"
                    preserveRatio="false"/>
-        <Label layoutX="505.0" layoutY="29.0" prefHeight="28.0" prefWidth="313.0"
-               text="MEDICA HOSPITALS PHARMACY MODULE" textFill="#f8f8f8">
+        <Label layoutX="515.0" layoutY="64.0" prefHeight="32.0" prefWidth="474.0"
+               text="MEDICA HOSPITALS PHARMACY POS MODULE" textFill="#f8f8f8">
             <font>
-                <Font size="16.0"/>
+                <Font size="22.0"/>
             </font>
         </Label>
         <Label fx:id="clientId" layoutX="182.0" layoutY="395.0" prefHeight="35.0" prefWidth="206.0" text="CLIENT ID">

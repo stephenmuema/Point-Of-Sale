@@ -482,8 +482,6 @@ public class StocksController extends UtilityClass implements Initializable {
     }
 
 
-
-
     public Label getClock() {
         return clock;
     }

@@ -34,26 +34,9 @@ import java.util.*;
 import static securityandtime.config.*;
 
 public class UtilityClass {
+    public String path = fileSavePath + "backups";
     private Connection connection;
     private Connection connectionDbLocal;
-    public String path = fileSavePath + "backups";
-
-    public UtilityClass() {
-        Path path = Paths.get(fileSavePath);
-
-        if (!Files.exists(path)) {
-
-            try {
-                Files.createDirectories(path);
-                Files.createDirectories(Paths.get(fileSavePath + "\\licenses"));
-                Files.createDirectories(Paths.get(fileSavePath + "\\dependencies"));
-                Files.createDirectories(Paths.get(fileSavePath + "\\images"));
-                Files.createDirectories(Paths.get(fileSavePath + "\\files"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     {
         try {
@@ -71,35 +54,20 @@ public class UtilityClass {
         }
     }
 
-    public Connection getConnection() {
-        return connection;
-    }
+    public UtilityClass() {
+        Path path = Paths.get(fileSavePath);
 
-    public UtilityClass setConnection(Connection connection) {
-        this.connection = connection;
-        return this;
-    }
+        if (!Files.exists(path)) {
 
-    public Connection getConnectionDbLocal() {
-        return connectionDbLocal;
-    }
-
-    public void logout(AnchorPane panel) {
-
-        config.pricegot.clear();
-        config.key.clear();
-        config.cartid.clear();
-        config.throwables.clear();
-        config.license.clear();
-        config.action.clear();
-        config.panel.clear();
-        config.networkConnectionMap.clear();
-        config.login.put("loggedout", true);
-        config.user.clear();
-        try {
-            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-        } catch (IOException e) {
-            e.printStackTrace();
+            try {
+                Files.createDirectories(path);
+                Files.createDirectories(Paths.get(fileSavePath + "\\licenses"));
+                Files.createDirectories(Paths.get(fileSavePath + "\\dependencies"));
+                Files.createDirectories(Paths.get(fileSavePath + "\\images"));
+                Files.createDirectories(Paths.get(fileSavePath + "\\files"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -119,9 +87,57 @@ public class UtilityClass {
         System.exit(0);
     }
 
+    public static void restart() throws RuntimeException, IOException {
+        String restartCommand;
+        String operatingSystem = System.getProperty("os.name");
+        System.out.println(operatingSystem);
+        if (operatingSystem.startsWith("Linux") || operatingSystem.startsWith("Mac")) {
+            restartCommand = "shutdown -r now";
+        } else if (operatingSystem.startsWith("Windows")) {
+            restartCommand = "shutdown.exe -r -t 0";
+        } else {
+            throw new RuntimeException("Unsupported operating system.");
+        }
+
+        Runtime.getRuntime().exec(restartCommand);
+        System.exit(0);
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public UtilityClass setConnection(Connection connection) {
+        this.connection = connection;
+        return this;
+    }
+
+    public Connection getConnectionDbLocal() {
+        return connectionDbLocal;
+    }
+
     public UtilityClass setConnectionDbLocal(Connection connectionDbLocal) {
         this.connectionDbLocal = connectionDbLocal;
         return this;
+    }
+
+    public void logout(AnchorPane panel) {
+
+        config.pricegot.clear();
+        config.key.clear();
+        config.cartid.clear();
+        config.throwables.clear();
+        config.license.clear();
+        config.action.clear();
+        config.panel.clear();
+        config.networkConnectionMap.clear();
+        config.login.put("loggedout", true);
+        config.user.clear();
+        try {
+            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void mailSend(String text, String subject, String to, String from, String type, String password) throws MessagingException {
@@ -243,7 +259,6 @@ public class UtilityClass {
 
     }
 
-
     protected void timeMain(Label clock) {
         Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             clock.setText(new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss a").format(Calendar.getInstance().getTime()));
@@ -314,22 +329,6 @@ public class UtilityClass {
 
     }
 
-    public static void restart() throws RuntimeException, IOException {
-        String restartCommand;
-        String operatingSystem = System.getProperty("os.name");
-        System.out.println(operatingSystem);
-        if (operatingSystem.startsWith("Linux") || operatingSystem.startsWith("Mac")) {
-            restartCommand = "shutdown -r now";
-        } else if (operatingSystem.startsWith("Windows")) {
-            restartCommand = "shutdown.exe -r -t 0";
-        } else {
-            throw new RuntimeException("Unsupported operating system.");
-        }
-
-        Runtime.getRuntime().exec(restartCommand);
-        System.exit(0);
-    }
-
     private void takeSnapShot(Scene scene) {
         WritableImage writableImage =
                 new WritableImage((int) scene.getWidth(), (int) scene.getHeight());
@@ -351,6 +350,7 @@ public class UtilityClass {
             e.printStackTrace();
         }
     }
+
     public void exit() {
         Platform.exit();
         System.exit(111);

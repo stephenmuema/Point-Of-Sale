@@ -42,6 +42,44 @@ public class Main extends Application {
         launch(args);
     }
 
+    private static void createSqliteDb() {
+        Connection connection = null;
+        UtilityClass utilityClass = new UtilityClass();
+
+        try {
+            connection = utilityClass.getConnectionDbLocal();
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30); // set timeout to 30 sec.
+            String heldTransactionsList = "CREATE TABLE IF NOT EXISTS heldTransactionList (" + "id INTEGER primary key autoincrement ,name TEXT ,transactionid text)";
+            statement.executeUpdate(heldTransactionsList);
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS settings (" + "id INTEGER primary key autoincrement ,owner TEXT ,expirydate text,creationdate text,type text)");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS system_settings (" + "id INTEGER primary key autoincrement ,name TEXT ,config text)");
+
+
+            Statement heldTransactionsDetails = connection.createStatement();
+            String heldItems = "CREATE TABLE IF NOT EXISTS heldItems (id integer primary key autoincrement,itemname text,itemprice text,itemid text,code text,amount text,cumulativeprice text ,transactionid text)";
+            heldTransactionsDetails.executeUpdate(heldItems);
+            new ShopController().setTransID();
+
+            Statement Cart = connection.createStatement();
+            String cartItems = "CREATE TABLE IF NOT EXISTS cartItems (id integer primary key autoincrement,itemname text,itemprice text,itemid integer,code text,amount text,cumulativeprice text ,transactionid text,pic BLOB)";
+            heldTransactionsDetails.executeUpdate(cartItems);
+//            System.out.println("created");
+        } catch (SQLException e) {
+            // if the error message is "out of memory",
+            // it probably means no securityandtime file is found
+//            System.err.println(e.getMessage());
+        } finally {
+            try {
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException e) {
+                // connection close failed.
+                e.printStackTrace();
+            }
+        }
+    }
+
     private void setUpBackupLocIfNotSet() throws SQLException {
         PreparedStatement prep = new UtilityClass().getConnection().prepareStatement("SELECT * FROM systemsettings WHERE name=?");
         prep.setString(1, "backupLocation");
@@ -110,44 +148,6 @@ public class Main extends Application {
             }
         });
 
-    }
-
-    private static void createSqliteDb() {
-        Connection connection = null;
-        UtilityClass utilityClass = new UtilityClass();
-
-        try {
-            connection = utilityClass.getConnectionDbLocal();
-            Statement statement = connection.createStatement();
-            statement.setQueryTimeout(30); // set timeout to 30 sec.
-            String heldTransactionsList = "CREATE TABLE IF NOT EXISTS heldTransactionList (" + "id INTEGER primary key autoincrement ,name TEXT ,transactionid text)";
-            statement.executeUpdate(heldTransactionsList);
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS settings (" + "id INTEGER primary key autoincrement ,owner TEXT ,expirydate text,creationdate text,type text)");
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS system_settings (" + "id INTEGER primary key autoincrement ,name TEXT ,config text)");
-
-
-            Statement heldTransactionsDetails = connection.createStatement();
-            String heldItems = "CREATE TABLE IF NOT EXISTS heldItems (id integer primary key autoincrement,itemname text,itemprice text,itemid text,code text,amount text,cumulativeprice text ,transactionid text)";
-            heldTransactionsDetails.executeUpdate(heldItems);
-            new ShopController().setTransID();
-
-            Statement Cart = connection.createStatement();
-            String cartItems = "CREATE TABLE IF NOT EXISTS cartItems (id integer primary key autoincrement,itemname text,itemprice text,itemid integer,code text,amount text,cumulativeprice text ,transactionid text,pic BLOB)";
-            heldTransactionsDetails.executeUpdate(cartItems);
-//            System.out.println("created");
-        } catch (SQLException e) {
-            // if the error message is "out of memory",
-            // it probably means no securityandtime file is found
-//            System.err.println(e.getMessage());
-        } finally {
-            try {
-                if (connection != null)
-                    connection.close();
-            } catch (SQLException e) {
-                // connection close failed.
-                e.printStackTrace();
-            }
-        }
     }
 
     @Override

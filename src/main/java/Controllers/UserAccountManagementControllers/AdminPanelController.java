@@ -50,6 +50,7 @@ import static securityandtime.config.*;
 
 public class AdminPanelController extends UtilityClass implements Initializable, AdminInterface {
 
+    public MenuItem license;
     @FXML
     private Label clock;
     @FXML
@@ -71,17 +72,14 @@ public class AdminPanelController extends UtilityClass implements Initializable,
     private MenuItem details;
     @FXML
     private Button checkUpdates;
-
     @FXML
     private Label message;
-
     @FXML
     private AnchorPane panel;
     @FXML
     private Button refresh;
     private UtilityClass utilityClass = new UtilityClass();
     private Connection connection = utilityClass.getConnection();
-    public MenuItem license;
     private String timePassedAccordingToDbVAlues;
     @FXML
     private MenuItem backupMenu;
@@ -163,6 +161,27 @@ public class AdminPanelController extends UtilityClass implements Initializable,
     @FXML
     private Menu inventory;
 
+    private static File lastFileModified(String dir) {
+        File fl = new File(dir);
+        File[] files = fl.listFiles(new FileFilter() {
+            public boolean accept(File file) {
+                return file.isFile();
+            }
+        });
+        long lastMod = Long.MIN_VALUE;
+        File choice = null;
+        assert files != null;
+        for (File file : files) {
+            if (file.lastModified() > lastMod) {
+                choice = file;
+                lastMod = file.lastModified();
+            }
+        }
+        assert choice != null;
+        System.out.println(choice.getAbsolutePath());
+        return choice;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         config.panel.put("panel", panel);
@@ -207,27 +226,6 @@ public class AdminPanelController extends UtilityClass implements Initializable,
                 }, true);
         idleMonitor.register(panel, Event.ANY);
 
-    }
-
-    private static File lastFileModified(String dir) {
-        File fl = new File(dir);
-        File[] files = fl.listFiles(new FileFilter() {
-            public boolean accept(File file) {
-                return file.isFile();
-            }
-        });
-        long lastMod = Long.MIN_VALUE;
-        File choice = null;
-        assert files != null;
-        for (File file : files) {
-            if (file.lastModified() > lastMod) {
-                choice = file;
-                lastMod = file.lastModified();
-            }
-        }
-        assert choice != null;
-        System.out.println(choice.getAbsolutePath());
-        return choice;
     }
 
     private void menuClick() {
@@ -339,7 +337,7 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         });
         menuQuit.setOnAction(event -> exit());
         details.setOnAction(event -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/Settings.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/adminSettings.fxml"));
             try {
                 Parent parent = fxmlLoader.load();
                 Stage stage = new Stage();
@@ -804,50 +802,6 @@ public class AdminPanelController extends UtilityClass implements Initializable,
 
     }
 
-    class BackUp implements Runnable {
-
-        @Override
-        public void run() {
-            try {
-                LocalDate myObj = LocalDate.now(); // Create a date object
-                String time = String.valueOf(myObj);
-                String id = null;
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM DAYS WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
-                if (resultSet.isBeforeFirst()) {
-                    while (resultSet.next()) {
-                        if (resultSet.getString("start_time").equalsIgnoreCase(myObj.toString())) {
-                            Platform.runLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "ENDING DAY", "DAY HAS BEEN ENDED SUCCESSFULLY");
-                                }
-                            });
-                        }
-                        id = resultSet.getString("id");
-                    }
-                }
-                resultSet.close();
-                statement.close();
-                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE days SET end_time=? , completed=? WHERE id=?");
-                preparedStatement.setString(1, time);
-                preparedStatement.setString(2, "complete");
-                preparedStatement.setString(3, id);
-                if (preparedStatement.executeUpdate() > 0) {
-                    reload();
-                    endDayMenu.setDisable(true);
-                    endDay.setVisible(false);
-                    startDayMenu.setDisable(false);
-                    startDay.setVisible(true);
-                } else {
-                    System.out.println("errrr");
-                }
-            } catch (SQLException | IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     private void localBackup(String path) {
         try {
             PreparedStatement prep;
@@ -898,7 +852,6 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         this.menulogout = menulogout;
     }
 
-
     public MenuItem getDetails() {
         return details;
     }
@@ -906,7 +859,6 @@ public class AdminPanelController extends UtilityClass implements Initializable,
     public void setDetails(MenuItem details) {
         this.details = details;
     }
-
 
     public MenuItem getLicense() {
         return license;
@@ -916,7 +868,6 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         this.license = license;
     }
 
-
     public Label getClock() {
         return clock;
     }
@@ -924,7 +875,6 @@ public class AdminPanelController extends UtilityClass implements Initializable,
     public void setClock(Label clock) {
         this.clock = clock;
     }
-
 
     public Button getEmployees() {
         return employees;
@@ -990,7 +940,6 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         this.utilityClass = utilityClass;
         return this;
     }
-
 
     private MenuItem getBackupMenu() {
         return backupMenu;
@@ -1102,6 +1051,11 @@ public class AdminPanelController extends UtilityClass implements Initializable,
 
     private MenuItem getDocumentationMenu() {
         return documentationMenu;
+    }
+
+    private AdminPanelController setDocumentationMenu(MenuItem documentationMenu) {
+        this.documentationMenu = documentationMenu;
+        return this;
     }
 
     private Button getRefresh() {
@@ -1298,8 +1252,47 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         return this;
     }
 
-    private AdminPanelController setDocumentationMenu(MenuItem documentationMenu) {
-        this.documentationMenu = documentationMenu;
-        return this;
+    class BackUp implements Runnable {
+
+        @Override
+        public void run() {
+            try {
+                LocalDate myObj = LocalDate.now(); // Create a date object
+                String time = String.valueOf(myObj);
+                String id = null;
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM DAYS WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
+                if (resultSet.isBeforeFirst()) {
+                    while (resultSet.next()) {
+                        if (resultSet.getString("start_time").equalsIgnoreCase(myObj.toString())) {
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "ENDING DAY", "DAY HAS BEEN ENDED SUCCESSFULLY");
+                                }
+                            });
+                        }
+                        id = resultSet.getString("id");
+                    }
+                }
+                resultSet.close();
+                statement.close();
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE days SET end_time=? , completed=? WHERE id=?");
+                preparedStatement.setString(1, time);
+                preparedStatement.setString(2, "complete");
+                preparedStatement.setString(3, id);
+                if (preparedStatement.executeUpdate() > 0) {
+                    reload();
+                    endDayMenu.setDisable(true);
+                    endDay.setVisible(false);
+                    startDayMenu.setDisable(false);
+                    startDay.setVisible(true);
+                } else {
+                    System.out.println("errrr");
+                }
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -529,7 +529,7 @@ public class EmployeesController extends UtilityClass implements Initializable {
         });
         menuQuit.setOnAction(event -> exit());
         details.setOnAction(event -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/Settings.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/adminSettings.fxml"));
             try {
                 Parent parent = fxmlLoader.load();
                 Stage stage = new Stage();
@@ -551,7 +551,6 @@ public class EmployeesController extends UtilityClass implements Initializable {
     public void setClock(Label clock) {
         this.clock = clock;
     }
-
 
 
     public Button getDelete() {
@@ -590,6 +589,10 @@ public class EmployeesController extends UtilityClass implements Initializable {
         return email;
     }
 
+    public void setEmail(TableColumn<EmployeeMaster, String> email) {
+        this.email = email;
+    }
+
     public TableColumn<EmployeeMaster, String> getStatus() {
         return status;
     }
@@ -608,10 +611,6 @@ public class EmployeesController extends UtilityClass implements Initializable {
         return this;
     }
 
-    public void setEmail(TableColumn<EmployeeMaster, String> email) {
-        this.email = email;
-    }
-
     public TableColumn<EmployeeMaster, String> getId() {
         return id;
     }
@@ -627,7 +626,6 @@ public class EmployeesController extends UtilityClass implements Initializable {
     public void setExistingemptab(Tab existingemptab) {
         this.existingemptab = existingemptab;
     }
-
 
 
     public Button getHome() {

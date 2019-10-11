@@ -151,7 +151,6 @@ public class AuditController extends UtilityClass implements Initializable {
     private ObservableList<SalesMaster> salesMasterObservableList = FXCollections.observableArrayList();
 
 
-
     /**
      * Called to initialize a controller after its root element has been
      * completely processed.
@@ -259,7 +258,6 @@ public class AuditController extends UtilityClass implements Initializable {
 //        loadCategoricalSalesTable();// todo v1.2
 //        costsTableAndInput();// todo v1.2
     }
-
 
 
     // todo v1.2
@@ -741,7 +739,6 @@ public class AuditController extends UtilityClass implements Initializable {
     public void setSalesMasterObservableList(ObservableList<SalesMaster> salesMasterObservableList) {
         this.salesMasterObservableList = salesMasterObservableList;
     }
-
 
 
     public Tab getTabsalesaudits() {

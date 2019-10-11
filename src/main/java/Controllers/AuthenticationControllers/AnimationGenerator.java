@@ -1,5 +1,6 @@
 package Controllers.AuthenticationControllers;
 //made by steve
+
 import Controllers.UtilityClass;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;

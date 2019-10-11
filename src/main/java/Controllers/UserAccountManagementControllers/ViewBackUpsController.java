@@ -388,7 +388,7 @@ public class ViewBackUpsController extends UtilityClass implements Initializable
 
         });
         details.setOnAction(event -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/Settings.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/adminSettings.fxml"));
             try {
                 Parent parent = fxmlLoader.load();
                 Stage stage = new Stage();

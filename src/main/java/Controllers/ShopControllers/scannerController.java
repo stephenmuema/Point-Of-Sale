@@ -1,5 +1,6 @@
 package Controllers.ShopControllers;
 //made by steve
+
 import Controllers.BarCodeScanner;
 import Controllers.IdleMonitor;
 import Controllers.UtilityClass;

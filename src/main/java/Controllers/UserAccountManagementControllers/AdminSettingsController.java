@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
 
 import static securityandtime.config.*;
 
-public class SettingsController extends UtilityClass implements Initializable {
+public class AdminSettingsController extends UtilityClass implements Initializable {
     @FXML
     private AnchorPane panel;
     @FXML
@@ -613,4 +613,3 @@ public class SettingsController extends UtilityClass implements Initializable {
         }
     }
 }
-

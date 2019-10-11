@@ -40,6 +40,14 @@ public class LoginController extends UtilityClass implements Initializable {
     public Button refresh;
     public TextField shiftid;
     @FXML
+    Hyperlink link;
+    @FXML
+    Button login, signup;
+    @FXML
+    PasswordField password;
+    @FXML
+    TextField email;
+    @FXML
     private Label clock;
     private String emailSubmit, pass;
     @FXML
@@ -58,14 +66,6 @@ public class LoginController extends UtilityClass implements Initializable {
     private MenuItem menuShutDown;
     @FXML
     private MenuItem menuRestart;
-    @FXML
-    Hyperlink link;
-    @FXML
-    Button login, signup;
-    @FXML
-    PasswordField password;
-    @FXML
-    TextField email;
     @FXML
     private
     ImageView imageView;

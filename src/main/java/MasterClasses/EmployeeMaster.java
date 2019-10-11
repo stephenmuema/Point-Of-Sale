@@ -3,15 +3,14 @@ package MasterClasses;
 import javafx.beans.property.SimpleStringProperty;
 
 public class EmployeeMaster {
-    private SimpleStringProperty Id = new SimpleStringProperty();
     public SimpleStringProperty Name = new SimpleStringProperty();
-    private SimpleStringProperty storeLocation = new SimpleStringProperty();
     public SimpleStringProperty email = new SimpleStringProperty();
-    private SimpleStringProperty dateAdded = new SimpleStringProperty();
     public SimpleStringProperty number = new SimpleStringProperty();
-    private SimpleStringProperty activated = new SimpleStringProperty();
-
     public SimpleStringProperty status = new SimpleStringProperty();
+    private SimpleStringProperty Id = new SimpleStringProperty();
+    private SimpleStringProperty storeLocation = new SimpleStringProperty();
+    private SimpleStringProperty dateAdded = new SimpleStringProperty();
+    private SimpleStringProperty activated = new SimpleStringProperty();
 
     public SimpleStringProperty idProperty() {
         return Id;
@@ -77,6 +76,10 @@ public class EmployeeMaster {
         return Name.get();
     }
 
+    public void setName(String name) {
+        this.Name.set(name);
+    }
+
     public String getActivated() {
         return activated.get();
     }
@@ -87,10 +90,6 @@ public class EmployeeMaster {
 
     public SimpleStringProperty activatedProperty() {
         return activated;
-    }
-
-    public void setName(String name) {
-        this.Name.set(name);
     }
 
     public String getStoreLocation() {

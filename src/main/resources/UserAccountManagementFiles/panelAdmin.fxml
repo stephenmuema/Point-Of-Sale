@@ -24,8 +24,8 @@
             </Menu>
             <Menu mnemonicParsing="false" text="SHIFTS" fx:id="shiftsMenu">
                 <items>
-                    <MenuItem fx:id="startDayMenu" mnemonicParsing="false" text="START DAY"/>
-                    <MenuItem fx:id="endDayMenu" mnemonicParsing="false" text="END DAY"/>
+                    <MenuItem fx:id="startDayMenu" mnemonicParsing="false" text="START SHIFT"/>
+                    <MenuItem fx:id="endDayMenu" mnemonicParsing="false" text="END SHIFT"/>
                     <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION"/>
                 </items>
             </Menu>
@@ -93,16 +93,6 @@
                 </font>
             </Button>
 
-            <!--            <Button fx:id="addshop" layoutX="86.0" layoutY="454.0" mnemonicParsing="false" prefHeight="124.0"-->
-            <!--                    prefWidth="297.0" text="STORES PANEL">-->
-            <!--                <styleClass>-->
-            <!--                    &lt;!&ndash;<String fx:value="stocksn"/>&ndash;&gt;-->
-            <!--                    <String fx:value="buttonred"/>-->
-            <!--                </styleClass>-->
-            <!--                <font>-->
-            <!--                    <Font name="Gabriola" size="28.0"/>-->
-            <!--                </font>-->
-            <!--            </Button>-->
 
             <Button fx:id="backup" layoutX="458.0" layoutY="432.0" mnemonicParsing="false" prefHeight="80.0"
                     prefWidth="297.0" text="INSTANT BACK UP">
@@ -129,13 +119,13 @@
                 </font>
             </Button>
             <Button fx:id="endDay" layoutX="452.0" layoutY="74.0" mnemonicParsing="false" prefHeight="80.0"
-                    prefWidth="297.0" text="END DAY">
+                    prefWidth="297.0" text="END SHIFT">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
             <Button fx:id="startDay" layoutX="452.0" layoutY="74.0" mnemonicParsing="false" prefHeight="80.0"
-                    prefWidth="297.0" text="START DAY">
+                    prefWidth="297.0" text="START SHIFT">
                 <font>
                     <Font name="Gabriola" size="28.0"/>
                 </font>

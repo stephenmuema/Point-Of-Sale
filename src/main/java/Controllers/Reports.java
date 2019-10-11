@@ -67,7 +67,6 @@ public class Reports {
         String time = String.valueOf(myObj);
 
 
-
         Authenticator auth = new Authenticator() {
             public PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(from, password);

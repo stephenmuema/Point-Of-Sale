@@ -225,7 +225,7 @@ public class ReportIssuesController extends UtilityClass implements Initializabl
         });
         menuQuit.setOnAction(event -> exit());
         details.setOnAction(event -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/Settings.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/adminSettings.fxml"));
             try {
                 Parent parent = fxmlLoader.load();
                 Stage stage = new Stage();

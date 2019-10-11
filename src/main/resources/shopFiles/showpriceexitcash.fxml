@@ -6,7 +6,8 @@
 <?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/1"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+            stylesheets="@../styles/panels.css" xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="Controllers.ShopControllers.PriceCashControllerExit">
     <VBox>
         <children>
@@ -30,19 +31,17 @@
                             <Font size="37.0"/>
                         </font>
                     </Button>
-                    <AnchorPane prefHeight="138.0" prefWidth="600.0" style="-fx-background-color: black;">
+                    <AnchorPane prefHeight="138.0" prefWidth="600.0" styleClass="mainPanel">
                         <children>
                             <Label fx:id="price" alignment="CENTER" contentDisplay="CENTER" layoutX="97.0"
-                                   layoutY="49.0"
-                                   prefHeight="70.0" prefWidth="185.0" text="0.00" textAlignment="CENTER"
+                                   layoutY="49.0" prefHeight="70.0" prefWidth="185.0" text="0.00" textAlignment="CENTER"
                                    textFill="#f20606">
                                 <font>
                                     <Font name="Clarendon BT Roman" size="43.0"/>
                                 </font>
                             </Label>
                             <Label fx:id="balance" alignment="CENTER" contentDisplay="CENTER" layoutX="415.0"
-                                   layoutY="49.0"
-                                   prefHeight="70.0" prefWidth="165.0" text="0.00" textAlignment="CENTER"
+                                   layoutY="49.0" prefHeight="70.0" prefWidth="165.0" text="0.00" textAlignment="CENTER"
                                    textFill="#f20606">
                                 <font>
                                     <Font name="Clarendon BT Roman" size="43.0"/>

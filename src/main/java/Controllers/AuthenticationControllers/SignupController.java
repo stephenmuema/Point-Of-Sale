@@ -277,17 +277,17 @@ public class SignupController extends UtilityClass implements Initializable {
         return login;
     }
 
+    public SignupController setLogin(Button login) {
+        this.login = login;
+        return this;
+    }
+
     public Hyperlink getLink() {
         return link;
     }
 
     public SignupController setLink(Hyperlink link) {
         this.link = link;
-        return this;
-    }
-
-    public SignupController setLogin(Button login) {
-        this.login = login;
         return this;
     }
 
@@ -302,6 +302,16 @@ public class SignupController extends UtilityClass implements Initializable {
 
     public AnchorPane getParent() {
         return panel;
+    }
+
+    public SignupController setParent(AnchorPane parent) {
+        this.panel = parent;
+        return this;
+    }
+
+    @FXML
+    private void close_app(MouseEvent event) {
+        System.exit(0);
     }
 
     class SendMail {
@@ -347,16 +357,6 @@ public class SignupController extends UtilityClass implements Initializable {
             }
         }
 
-    }
-
-    public SignupController setParent(AnchorPane parent) {
-        this.panel = parent;
-        return this;
-    }
-
-    @FXML
-    private void close_app(MouseEvent event) {
-        System.exit(0);
     }
 
 

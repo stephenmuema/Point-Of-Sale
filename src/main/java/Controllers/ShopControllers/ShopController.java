@@ -83,9 +83,9 @@ public class ShopController extends CartIdGenerator implements Initializable {
     public MenuItem stocks;
     public Button clearheld;
     public Button endDay;
+    ArrayList<CartMaster> arrayList = new ArrayList<CartMaster>();
     private ObservableList<CartMaster> data;
     private int counter = 0;
-    ArrayList<CartMaster> arrayList = new ArrayList<CartMaster>();
     private String transID;
     private SuperClass superClass = new SuperClass();
 
@@ -140,7 +140,6 @@ public class ShopController extends CartIdGenerator implements Initializable {
 
 
     }
-
 
 
     private void setListViewHeldItems() {
@@ -303,6 +302,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
                 }
         );
     }
+
     private void tableLoad() {
 /*
        1 create a sqlite database

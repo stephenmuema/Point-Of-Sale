@@ -577,7 +577,7 @@ public class CarwashController extends UtilityClass implements Initializable {
         });
         menuQuit.setOnAction(event -> exit());
         details.setOnAction(event -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/Settings.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/adminSettings.fxml"));
             try {
                 Parent parent = fxmlLoader.load();
                 Stage stage = new Stage();
@@ -595,6 +595,11 @@ public class CarwashController extends UtilityClass implements Initializable {
         return panel;
     }
 
+    public CarwashController setParents(AnchorPane parents) {
+        this.panel = parents;
+        return this;
+    }
+
     public Label getClock() {
         return clock;
     }
@@ -603,7 +608,6 @@ public class CarwashController extends UtilityClass implements Initializable {
         this.clock = clock;
         return this;
     }
-
 
     public Button getDelete() {
         return delete;
@@ -713,12 +717,14 @@ public class CarwashController extends UtilityClass implements Initializable {
         return this;
     }
 
-
-
     public MenuItem getHelpMenu() {
         return helpMenu;
     }
 
+    public CarwashController setHelpMenu(Menu helpMenu) {
+        this.helpMenu = helpMenu;
+        return this;
+    }
 
     public int getMoneyPaid() {
         return moneyPaid;
@@ -736,66 +742,6 @@ public class CarwashController extends UtilityClass implements Initializable {
     public CarwashController setTab(TableView<CarWashMaster> tab) {
         this.tab = tab;
         return this;
-    }
-
-    public CarwashController setParents(AnchorPane parents) {
-        this.panel = parents;
-        return this;
-    }
-
-    class SendEmail {
-        SendEmail(String to, String from, String host, String file) {
-            Properties properties = System.getProperties();
-            properties.setProperty("mail.smtp.host", host);
-
-            // Get the default Session object.
-            Session session = Session.getDefaultInstance(properties);
-
-            try {
-                // Create a default MimeMessage object.
-                MimeMessage message = new MimeMessage(session);
-
-                // Set From: header field of the header.
-                message.setFrom(new InternetAddress(from));
-
-                // Set To: header field of the header.
-                message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-
-                // Set Subject: header field
-                message.setSubject("NANOTECH SOFTWARES POS SYSTEM EMPLOYEE REPORT");
-
-                // Now set the actual message
-                BodyPart messageBodyPart = new MimeBodyPart();
-
-                // Fill the message
-                messageBodyPart.setText("WE AT NANOTECH SOFTWARES VALUE OUR CUSTOMERS");
-
-                // Create a multipar message
-                Multipart multipart = new MimeMultipart();
-
-                // Set text message part
-                multipart.addBodyPart(messageBodyPart);
-
-                // Part two is attachment
-                messageBodyPart = new MimeBodyPart();
-                DataSource source = new FileDataSource(file);
-                messageBodyPart.setDataHandler(new DataHandler(source));
-                messageBodyPart.setFileName(file);
-                multipart.addBodyPart(messageBodyPart);
-
-                // Send the complete message parts
-                message.setContent(multipart);
-
-
-                // Send message
-                Transport.send(message);
-//                System.out.println("Sent message successfully....");
-                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "sent message successfully", "Sent message to your inbox successfully");
-
-            } catch (MessagingException mex) {
-                mex.printStackTrace();
-            }
-        }
     }
 
     public ObservableList<CarWashMaster> getData() {
@@ -894,11 +840,6 @@ public class CarwashController extends UtilityClass implements Initializable {
 
     public CarwashController setTroubleShootMenu(MenuItem troubleShootMenu) {
         this.troubleShootMenu = troubleShootMenu;
-        return this;
-    }
-
-    public CarwashController setHelpMenu(Menu helpMenu) {
-        this.helpMenu = helpMenu;
         return this;
     }
 
@@ -1053,5 +994,60 @@ public class CarwashController extends UtilityClass implements Initializable {
     public CarwashController setPanel(AnchorPane panel) {
         this.panel = panel;
         return this;
+    }
+
+    class SendEmail {
+        SendEmail(String to, String from, String host, String file) {
+            Properties properties = System.getProperties();
+            properties.setProperty("mail.smtp.host", host);
+
+            // Get the default Session object.
+            Session session = Session.getDefaultInstance(properties);
+
+            try {
+                // Create a default MimeMessage object.
+                MimeMessage message = new MimeMessage(session);
+
+                // Set From: header field of the header.
+                message.setFrom(new InternetAddress(from));
+
+                // Set To: header field of the header.
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+                // Set Subject: header field
+                message.setSubject("NANOTECH SOFTWARES POS SYSTEM EMPLOYEE REPORT");
+
+                // Now set the actual message
+                BodyPart messageBodyPart = new MimeBodyPart();
+
+                // Fill the message
+                messageBodyPart.setText("WE AT NANOTECH SOFTWARES VALUE OUR CUSTOMERS");
+
+                // Create a multipar message
+                Multipart multipart = new MimeMultipart();
+
+                // Set text message part
+                multipart.addBodyPart(messageBodyPart);
+
+                // Part two is attachment
+                messageBodyPart = new MimeBodyPart();
+                DataSource source = new FileDataSource(file);
+                messageBodyPart.setDataHandler(new DataHandler(source));
+                messageBodyPart.setFileName(file);
+                multipart.addBodyPart(messageBodyPart);
+
+                // Send the complete message parts
+                message.setContent(multipart);
+
+
+                // Send message
+                Transport.send(message);
+//                System.out.println("Sent message successfully....");
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "sent message successfully", "Sent message to your inbox successfully");
+
+            } catch (MessagingException mex) {
+                mex.printStackTrace();
+            }
+        }
     }
 }
