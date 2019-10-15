@@ -81,7 +81,7 @@
                                                                  resizable="false" text="EMAIL"/>
                                                 </columns>
                                             </TableView>
-                                            <Button fx:id="querytf1" layoutX="829.0" layoutY="5.0"
+                                            <Button fx:id="queryEmpTimeReport" layoutX="829.0" layoutY="5.0"
                                                     mnemonicParsing="false" prefHeight="51.0" prefWidth="164.0"
                                                     styleClass="buttonred" text="SUBMIT"/>
                                             <ScrollPane layoutX="538.0" layoutY="69.0" prefHeight="425.0"
@@ -96,12 +96,12 @@
                                                                          resizable="false" text="PRICE"/>
                                                             <TableColumn fx:id="transpaid" prefWidth="113.0"
                                                                          resizable="false" text="AMOUNT PAID"/>
-                                                            <TableColumn fx:id="transbalance" prefWidth="119.0"
+                                                            <TableColumn fx:id="transbalance" prefWidth="93.0"
                                                                          resizable="false" text="BALANCE"/>
-                                                            <TableColumn fx:id="transmethod" prefWidth="133.0"
+                                                            <TableColumn fx:id="transmethod" prefWidth="66.0"
                                                                          resizable="false" text=" METHOD"/>
-                                                            <TableColumn fx:id="transcompletion" prefWidth="112.0"
-                                                                         resizable="false" text="STATUS"/>
+                                                            <TableColumn fx:id="transcompletion" prefWidth="205.0"
+                                                                         resizable="false" text="DATE"/>
                                                         </columns>
                                                     </TableView>
                                                 </content>
@@ -117,16 +117,16 @@
                                                     text="SHOW EMPLOYEE REPORT"/>
                                             <DatePicker layoutX="23.0" layoutY="16.0" prefHeight="36.0"
                                                         prefWidth="206.0" promptText="START DATE"
-                                                        styleClass="textfields"/>
+                                                        styleClass="textfields" fx:id="startDateEmployeeSales"/>
                                             <DatePicker layoutX="247.0" layoutY="16.0" prefHeight="36.0"
                                                         prefWidth="206.0" promptText="END DATE"
-                                                        styleClass="textfields"/>
+                                                        styleClass="textfields" fx:id="endDateEmployeeSales"/>
                                             <CheckBox layoutX="481.0" layoutY="15.0" mnemonicParsing="false"
                                                       prefHeight="36.0" prefWidth="163.0" text="SHOW CARWASH SALES"
-                                                      textFill="WHITE"/>
+                                                      textFill="WHITE" visible="false"/>
                                             <CheckBox layoutX="644.0" layoutY="16.0" mnemonicParsing="false"
                                                       prefHeight="36.0" prefWidth="163.0" text="SHOW PRODUCT SALES"
-                                                      textFill="#fff8f8"/>
+                                                      textFill="#fff8f8" visible="false"/>
                                         </children>
                                     </AnchorPane>
                                 </content>

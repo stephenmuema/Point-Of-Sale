@@ -190,33 +190,35 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="MIRROR SERVER" fx:id="tabMirror">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <TableView layoutX="43.0" layoutY="70.0" prefHeight="200.0" prefWidth="521.0">
-                                    <columns>
-                                        <TableColumn prefWidth="75.0" text="NAME"/>
-                                        <TableColumn prefWidth="141.0" text="AVAILABLE SPACE"/>
-                                        <TableColumn prefWidth="136.0" text="DRIVES"/>
-                                        <TableColumn prefWidth="136.0" text="MIRROR VERSION"/>
-                                    </columns>
-                                </TableView>
-                                <Label layoutX="202.0" layoutY="53.0" text="DEVICES RUNNING CLONING SERVICE"/>
-                                <Button layoutX="27.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0"
-                                        prefWidth="162.0" text="CREATE NETWORK FOLDER"/>
-                                <Button layoutX="212.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0"
-                                        prefWidth="154.0" text="CLONE NANOTECH FILES"/>
-                                <Button layoutX="387.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0"
-                                        prefWidth="84.0" text="HISTORY"/>
-                                <Label layoutX="27.0" layoutY="14.0" text="MIRROR VERSION"/>
-                                <Label layoutX="141.0" layoutY="14.0" text="MIRROR VERSION"/>
-                                <Label layoutX="27.0" layoutY="31.0" text="DEVICE IP"/>
-                                <Label layoutX="141.0" layoutY="31.0" text="MY IP"/>
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
+
+                <!--                <Tab text="MIRROR SERVER" fx:id="tabMirror">-->
+                <!--                    <content>-->
+                <!--                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
+                <!--                            <children>-->
+                <!--                                <TableView layoutX="43.0" layoutY="70.0" prefHeight="200.0" prefWidth="521.0">-->
+                <!--                                    <columns>-->
+                <!--                                        <TableColumn prefWidth="75.0" text="NAME"/>-->
+                <!--                                        <TableColumn prefWidth="141.0" text="AVAILABLE SPACE"/>-->
+                <!--                                        <TableColumn prefWidth="136.0" text="DRIVES"/>-->
+                <!--                                        <TableColumn prefWidth="136.0" text="MIRROR VERSION"/>-->
+                <!--                                    </columns>-->
+                <!--                                </TableView>-->
+                <!--                                <Label layoutX="202.0" layoutY="53.0" text="DEVICES RUNNING CLONING SERVICE"/>-->
+                <!--                                <Button layoutX="27.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0"-->
+                <!--                                        prefWidth="162.0" text="CREATE NETWORK FOLDER"/>-->
+                <!--                                <Button layoutX="212.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0"-->
+                <!--                                        prefWidth="154.0" text="CLONE NANOTECH FILES"/>-->
+                <!--                                <Button layoutX="387.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0"-->
+                <!--                                        prefWidth="84.0" text="HISTORY"/>-->
+                <!--                                <Label layoutX="27.0" layoutY="14.0" text="MIRROR VERSION"/>-->
+                <!--                                <Label layoutX="141.0" layoutY="14.0" text="MIRROR VERSION"/>-->
+                <!--                                <Label layoutX="27.0" layoutY="31.0" text="DEVICE IP"/>-->
+                <!--                                <Label layoutX="141.0" layoutY="31.0" text="MY IP"/>-->
+                <!--                            </children>-->
+                <!--                        </AnchorPane>-->
+                <!--                    </content>-->
+                <!--                </Tab>-->
+
                 <Tab text="SYSTEM ">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">

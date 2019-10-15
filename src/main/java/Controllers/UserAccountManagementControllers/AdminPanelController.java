@@ -15,10 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -28,14 +24,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.apache.commons.io.FilenameUtils;
-import securityandtime.AesCrypto;
 import securityandtime.config;
 
-import java.awt.*;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
@@ -450,24 +443,6 @@ public class AdminPanelController extends UtilityClass implements Initializable,
     }
 
 
-    private void refresh() throws SQLException {
-        ResultSet resultSet;
-        PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE email=?");
-        statement.setString(1, config.user.get("user"));
-        resultSet = statement.executeQuery();
-        if (resultSet.isBeforeFirst()) {
-            while (resultSet.next()) {
-                config.login.put("loggedinasadmin", true);
-                config.user.put("userName", resultSet.getString("employeename"));
-
-                config.user.put("user", resultSet.getString("email"));
-                config.key.put("key", resultSet.getString("subscribername"));
-                config.user.put("backupemail", resultSet.getString("backupemail"));
-                config.user.put("backupemailpassword", AesCrypto.decrypt(encryptionkey, resultSet.getString("backupemailpassword")));
-            }
-        }
-    }
-
     private void buttonClick() {
         reportIssues.setOnAction(event -> {
             try {
@@ -539,99 +514,6 @@ public class AdminPanelController extends UtilityClass implements Initializable,
 
     }
 
-    public void goToStaff(AnchorPane panel) {
-        try {
-            refresh();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    panel.getChildren().removeAll();
-                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/employees.fxml")))));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    public void goToStocks(AnchorPane panel) {
-        try {
-            refresh();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    panel.getChildren().removeAll();
-                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/stocks.fxml")))));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    public void goToCarwash(AnchorPane panel) {
-        try {
-            refresh();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        panel.getChildren().removeAll();
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("carwashFiles/carwash.fxml")))));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    public void goToSuppliers(AnchorPane panel) {
-        try {
-            refresh();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Desktop.getDesktop().browse(new URL(supplierSite).toURI());
-                } catch (IOException | URISyntaxException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    public void gotoAudits(AnchorPane panel) {
-        try {
-            refresh();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    panel.getChildren().removeAll();
-                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/audits.fxml")))));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
     private void reload() throws IOException {
         Platform.runLater(new Runnable() {

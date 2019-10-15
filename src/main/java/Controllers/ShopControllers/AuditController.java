@@ -7,14 +7,20 @@ import MasterClasses.SalesMaster;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import securityandtime.config;
 
@@ -34,61 +40,144 @@ import static securityandtime.config.site;
 
 //made by steve
 public class AuditController extends UtilityClass implements Initializable {
-    public TabPane maintabpane;//maintabpane
-    public Tab tabemployeeaudits;//employee audits tab
+    @FXML
+    private MenuItem details;
+    @FXML
+    private MenuItem menulogout;
+    @FXML
+    private TabPane maintabpane;//maintabpane
+    @FXML
+    private Tab tabemployeeaudits;//employee audits tab
 
     //table of employees
-    public TableView<EmployeeMaster> tableemployeelist;
-    public TableColumn<EmployeeMaster, String> employeeid;
-    public TableColumn<EmployeeMaster, String> employeename;
-    public TableColumn<EmployeeMaster, String> employeeemail;
-    //done
-    //endof table
-    //get search parameters
-//    public TextField tf1period;
-    public Button querytf1;
-    //end search
+    @FXML
+    private TableView<EmployeeMaster> tableemployeelist;
+    @FXML
+    private TableColumn<EmployeeMaster, String> employeeid;
+    @FXML
+    private TableColumn<EmployeeMaster, String> employeename;
+    @FXML
+    private TableColumn<EmployeeMaster, String> employeeemail;
+
 //    table of sales for each selected employee
-    public TableView<SalesMaster> tableemployeesales;
-    public TableColumn<SalesMaster, String> employeetransid;
-    public TableColumn<SalesMaster, String> transprice;
-    public TableColumn<SalesMaster, String> transpaid;
-    public TableColumn<SalesMaster, String> transmethod;
-    public TableColumn<SalesMaster, String> transbalance;
-    public TableColumn<SalesMaster, String> transcompletion;
+@FXML
+private TableView<SalesMaster> tableemployeesales;
+    @FXML
+    private TableColumn<SalesMaster, String> employeetransid;
+    @FXML
+    private TableColumn<SalesMaster, String> transprice;
+    @FXML
+    private TableColumn<SalesMaster, String> transpaid;
+    @FXML
+    private TableColumn<SalesMaster, String> transmethod;
+    @FXML
+    private TableColumn<SalesMaster, String> transbalance;
+    @FXML
+    private TableColumn<SalesMaster, String> transcompletion;
     //
 //done
 //    end of table of sales per employee
 
-    public Tab tabsalesaudits;//tab of sales
+    @FXML
+    private Tab tabsalesaudits;//tab of sales
 
-    public Tab tabstockalerts;
+    @FXML
+    private Tab tabstockalerts;
     //tab of alerts
-    public TableView stockalerttable;
+    @FXML
+    private TableView stockalerttable;
 
 
-    public TableColumn stockalerttableid;
-    public TableColumn stockalerttablename;
-    public TableColumn stockalerttabledate;
-    public TableColumn stockalerttablemarkasread;
-    public Tab taballaudits;
+    @FXML
+    private TableColumn stockalerttableid;
+    @FXML
+    private TableColumn stockalerttablename;
+    @FXML
+    private TableColumn stockalerttabledate;
+    @FXML
+    private TableColumn stockalerttablemarkasread;
+    @FXML
+    private Tab taballaudits;
     //tab of all audits for exports or graphical viewing
-    public Button exportfullreport;
-    public Button exportcategoryreport;
-    public Button exportemployeereport;
-    public Button getdetailedgraph;
-    public Button getcateegorygraph;
-    public Button getemployeegraph;
-    public Label clock;
-    public AnchorPane panel;
-    public Button topanelbutton;
-    public Button tocarwashbutton;
-    public Button toemployeesbutton;
-    public Button logoutbutton;
-    public Button tosupplierbutton;
-    public Button showempperformancegraph;
-    public Button exportfirstempreport;
-    public Button showEmpReport;
+    @FXML
+    private Button exportfullreport;
+    @FXML
+    private Button exportcategoryreport;
+    @FXML
+    private Button exportemployeereport;
+    @FXML
+    private Button getdetailedgraph;
+    @FXML
+    private Button getcateegorygraph;
+    @FXML
+    private Button getemployeegraph;
+    @FXML
+    private Label clock;
+    @FXML
+    private AnchorPane panel;
+    @FXML
+    private Button topanelbutton;
+    @FXML
+    private Button tocarwashbutton;
+    @FXML
+    private Button toemployeesbutton;
+    @FXML
+    private Button logoutbutton;
+    @FXML
+    private Button tosupplierbutton;
+    @FXML
+    private Button showempperformancegraph;
+    @FXML
+    private Button exportfirstempreport;
+    @FXML
+    private Button showEmpReport;
+
+    @FXML
+    private MenuItem endDayMenu;
+    @FXML
+    private MenuItem reportIssuesMenu;
+    @FXML
+    private MenuItem restartServerMenu;
+    @FXML
+    private MenuItem troubleShootMenu;
+
+    @FXML
+    private MenuItem abtMenu;
+    @FXML
+    private MenuItem termsMenu;
+    @FXML
+    private MenuItem checkUpdatesMenu;
+    @FXML
+    private MenuItem reachUsMenu;
+    @FXML
+    private MenuItem generateReportsMenu;
+    @FXML
+    private MenuItem documentationMenu;
+    @FXML
+    private MenuItem menuQuit;
+
+    @FXML
+    private MenuItem staffMenu;
+    @FXML
+    private MenuItem carWashMenu;
+    @FXML
+    private MenuItem inventoryMenu;
+    @FXML
+    private MenuItem mrMenu;
+    @FXML
+    private MenuItem auditsMenu;
+    @FXML
+    private MenuItem menuShutDown;
+    @FXML
+    private MenuItem menuRestart;
+
+    //query report of one employee
+    @FXML
+    private DatePicker startDateEmployeeSales;
+    @FXML
+    private DatePicker endDateEmployeeSales;
+    @FXML
+    private Button queryEmpTimeReport;
     //db connection
     private Connection connection = getConnection();
     private ObservableList<EmployeeMaster> employeeMasterObservableList = FXCollections.observableArrayList();
@@ -156,27 +245,60 @@ public class AuditController extends UtilityClass implements Initializable {
                 }
             }
         });
-        logoutbutton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                logout();
-            }
-        });
-        tosupplierbutton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                try {
-                    //todo change link to supplier site
-                    Desktop.getDesktop().browse(new URL(site).toURI());
-                } catch (IOException | URISyntaxException e) {
-                    e.printStackTrace();
-                }
+        logoutbutton.setOnMouseClicked(event -> logout());
+        tosupplierbutton.setOnMouseClicked(event -> {
+            try {
+                //todo change link to supplier site
+                Desktop.getDesktop().browse(new URL(site).toURI());
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
             }
         });
     }
 
     private void menuListeners() {
 
+        carWashMenu.setOnAction(event -> {
+            goToCarwash(panel);
+        });
+        auditsMenu.setOnAction(event -> {
+            gotoAudits(panel);
+        });
+        staffMenu.setOnAction(event -> {
+            goToStaff(panel);
+        });
+        inventoryMenu.setOnAction(event -> {
+            goToStocks(panel);
+        });
+
+        menuShutDown.setOnAction(event -> {
+            try {
+                shutdown();
+            } catch (IOException e) {
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "UNSUPPORTED OS", "YOUR OS IS UNSUPPORTED BY THIS ACTION");
+            }
+        });
+        menuRestart.setOnAction(event -> {
+            try {
+                restart();
+            } catch (IOException e) {
+                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "UNSUPPORTED OS", "YOUR OS IS UNSUPPORTED BY THIS ACTION");
+            }
+        });
+        menuQuit.setOnAction(event -> exit());
+        details.setOnAction(event -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/adminSettings.fxml"));
+            try {
+                Parent parent = fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        menulogout.setOnAction(event -> logout(panel));
 
     }
 
@@ -185,8 +307,20 @@ public class AuditController extends UtilityClass implements Initializable {
     }
 
     private void buttonListeners() {
+        queryEmpTimeReport.setOnAction(event -> {
+//      public DatePicker startDateEmployeeSales;
+//    public DatePicker endDateEmployeeSales;
+//    public Button queryEmpTimeReport;
 
+            if (startDateEmployeeSales.getValue().toString().isEmpty() && endDateEmployeeSales.getValue().toString().isEmpty()) {
+                loadCashierSalesTable();
+            } else if (startDateEmployeeSales.getValue().toString().isEmpty() && !endDateEmployeeSales.getValue().toString().isEmpty()) {
+//loadCashierSalesTableEnd();
+
+            }
+        });
     }
+
 
     private void loadTables() {
         loadCashiersTable();
@@ -233,44 +367,171 @@ public class AuditController extends UtilityClass implements Initializable {
         }
     }
 
-    private void loadCashierSalesTable() {
-        tableemployeelist.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                salesMasterObservableList.clear();
-                EmployeeMaster selectedEmployee = tableemployeelist.getSelectionModel().getSelectedItem();
-                try {
-                    PreparedStatement preparedStatement = connection.prepareStatement("SELECT  * FROM sales WHERE seller=?");
-                    preparedStatement.setString(1, selectedEmployee.getEmail());
-                    ResultSet salesResultSet = preparedStatement.executeQuery();
-                    while (salesResultSet.next()) {
+    private void loadCashierSalesTableEnd(String end) {
+        tableemployeelist.setOnMouseClicked(event -> {
+            salesMasterObservableList.clear();
+            EmployeeMaster selectedEmployee = tableemployeelist.getSelectionModel().getSelectedItem();
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT  * FROM sales WHERE seller=? AND timeDone<?");
+                preparedStatement.setString(1, selectedEmployee.getEmail());
+                preparedStatement.setString(2, end);
+                ResultSet salesResultSet = preparedStatement.executeQuery();
+                while (salesResultSet.next()) {
 
 
-                        SalesMaster salesMaster = new SalesMaster();
-                        salesMaster.setEmployeetransid(salesResultSet.getString("transactionid"));
-                        salesMaster.setTransbalance(salesResultSet.getString("balance"));
-                        salesMaster.setTranscompletion(salesResultSet.getString("completed"));
-                        salesMaster.setTransmethod(salesResultSet.getString("method"));
-                        salesMaster.setTranspaid(salesResultSet.getString("moneypaid"));
-                        salesMaster.setTransprice(salesResultSet.getString("cash"));
-                        salesMasterObservableList.add(salesMaster);
-                    }
-                    tableemployeesales.setItems(salesMasterObservableList);
-
-                    assert tableemployeesales != null : "fx:id=\"tableemployeesales\" was not injected: check your FXML ";
-                    transprice.setCellValueFactory(
-                            new PropertyValueFactory<>("transprice"));
-                    employeetransid.setCellValueFactory(
-                            new PropertyValueFactory<>("employeetransid"));
-                    transpaid.setCellValueFactory(new PropertyValueFactory<>("transpaid"));
-                    transmethod.setCellValueFactory(new PropertyValueFactory<>("transmethod"));
-                    transbalance.setCellValueFactory(new PropertyValueFactory<>("transbalance"));
-                    transcompletion.setCellValueFactory(new PropertyValueFactory<>("transcompletion"));
-                    tableemployeelist.refresh();
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                    SalesMaster salesMaster = new SalesMaster();
+                    salesMaster.setEmployeetransid(salesResultSet.getString("transactionid"));
+                    salesMaster.setTransbalance(salesResultSet.getString("balance"));
+                    salesMaster.setTranscompletion(salesResultSet.getString("completed"));
+                    salesMaster.setDateCompleted(salesResultSet.getString("transactionid"));
+                    salesMaster.setTransmethod(salesResultSet.getString("method"));
+                    salesMaster.setTranspaid(salesResultSet.getString("moneypaid"));
+                    salesMaster.setTransprice(salesResultSet.getString("cash"));
+                    salesMasterObservableList.add(salesMaster);
                 }
+                tableemployeesales.setItems(salesMasterObservableList);
 
+                assert tableemployeesales != null : "fx:id=\"tableemployeesales\" was not injected: check your FXML ";
+                transprice.setCellValueFactory(
+                        new PropertyValueFactory<>("transprice"));
+                employeetransid.setCellValueFactory(
+                        new PropertyValueFactory<>("employeetransid"));
+                transpaid.setCellValueFactory(new PropertyValueFactory<>("transpaid"));
+                transmethod.setCellValueFactory(new PropertyValueFactory<>("transmethod"));
+                transbalance.setCellValueFactory(new PropertyValueFactory<>("transbalance"));
+                transcompletion.setCellValueFactory(new PropertyValueFactory<>("dateCompleted"));
+                tableemployeelist.refresh();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        });
+
+
+    }
+
+    private void loadCashierSalesTableStart(String start) {
+        tableemployeelist.setOnMouseClicked(event -> {
+            salesMasterObservableList.clear();
+            EmployeeMaster selectedEmployee = tableemployeelist.getSelectionModel().getSelectedItem();
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT  * FROM sales WHERE seller=? AND timeDone>?");
+                preparedStatement.setString(1, selectedEmployee.getEmail());
+                preparedStatement.setString(2, start);
+                ResultSet salesResultSet = preparedStatement.executeQuery();
+                while (salesResultSet.next()) {
+
+
+                    SalesMaster salesMaster = new SalesMaster();
+                    salesMaster.setEmployeetransid(salesResultSet.getString("transactionid"));
+                    salesMaster.setTransbalance(salesResultSet.getString("balance"));
+                    salesMaster.setTranscompletion(salesResultSet.getString("completed"));
+                    salesMaster.setDateCompleted(salesResultSet.getString("transactionid"));
+                    salesMaster.setTransmethod(salesResultSet.getString("method"));
+                    salesMaster.setTranspaid(salesResultSet.getString("moneypaid"));
+                    salesMaster.setTransprice(salesResultSet.getString("cash"));
+                    salesMasterObservableList.add(salesMaster);
+                }
+                tableemployeesales.setItems(salesMasterObservableList);
+
+                assert tableemployeesales != null : "fx:id=\"tableemployeesales\" was not injected: check your FXML ";
+                transprice.setCellValueFactory(
+                        new PropertyValueFactory<>("transprice"));
+                employeetransid.setCellValueFactory(
+                        new PropertyValueFactory<>("employeetransid"));
+                transpaid.setCellValueFactory(new PropertyValueFactory<>("transpaid"));
+                transmethod.setCellValueFactory(new PropertyValueFactory<>("transmethod"));
+                transbalance.setCellValueFactory(new PropertyValueFactory<>("transbalance"));
+                transcompletion.setCellValueFactory(new PropertyValueFactory<>("dateCompleted"));
+                tableemployeelist.refresh();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        });
+
+
+    }
+
+    private void loadCashierSalesTable(String start, String end) {
+        tableemployeelist.setOnMouseClicked(event -> {
+            salesMasterObservableList.clear();
+            EmployeeMaster selectedEmployee = tableemployeelist.getSelectionModel().getSelectedItem();
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT  * FROM sales WHERE seller=? AND transactionid BETWEEN ? AND ?");
+                preparedStatement.setString(1, selectedEmployee.getEmail());
+                preparedStatement.setString(2, start);
+                preparedStatement.setString(3, end);
+                ResultSet salesResultSet = preparedStatement.executeQuery();
+                while (salesResultSet.next()) {
+
+
+                    SalesMaster salesMaster = new SalesMaster();
+                    salesMaster.setEmployeetransid(salesResultSet.getString("transactionid"));
+                    salesMaster.setTransbalance(salesResultSet.getString("balance"));
+                    salesMaster.setTranscompletion(salesResultSet.getString("completed"));
+                    salesMaster.setDateCompleted(salesResultSet.getString("transactionid"));
+                    salesMaster.setTransmethod(salesResultSet.getString("method"));
+                    salesMaster.setTranspaid(salesResultSet.getString("moneypaid"));
+                    salesMaster.setTransprice(salesResultSet.getString("cash"));
+                    salesMasterObservableList.add(salesMaster);
+                }
+                tableemployeesales.setItems(salesMasterObservableList);
+
+                assert tableemployeesales != null : "fx:id=\"tableemployeesales\" was not injected: check your FXML ";
+                transprice.setCellValueFactory(
+                        new PropertyValueFactory<>("transprice"));
+                employeetransid.setCellValueFactory(
+                        new PropertyValueFactory<>("employeetransid"));
+                transpaid.setCellValueFactory(new PropertyValueFactory<>("transpaid"));
+                transmethod.setCellValueFactory(new PropertyValueFactory<>("transmethod"));
+                transbalance.setCellValueFactory(new PropertyValueFactory<>("transbalance"));
+                transcompletion.setCellValueFactory(new PropertyValueFactory<>("dateCompleted"));
+                tableemployeelist.refresh();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        });
+
+
+    }
+
+    private void loadCashierSalesTable() {
+        tableemployeelist.setOnMouseClicked(event -> {
+            salesMasterObservableList.clear();
+            EmployeeMaster selectedEmployee = tableemployeelist.getSelectionModel().getSelectedItem();
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT  * FROM sales WHERE seller=?");
+                preparedStatement.setString(1, selectedEmployee.getEmail());
+                ResultSet salesResultSet = preparedStatement.executeQuery();
+                while (salesResultSet.next()) {
+
+
+                    SalesMaster salesMaster = new SalesMaster();
+                    salesMaster.setEmployeetransid(salesResultSet.getString("transactionid"));
+                    salesMaster.setTransbalance(salesResultSet.getString("balance"));
+                    salesMaster.setTranscompletion(salesResultSet.getString("completed"));
+                    salesMaster.setDateCompleted(salesResultSet.getString("transactionid"));
+                    salesMaster.setTransmethod(salesResultSet.getString("method"));
+                    salesMaster.setTranspaid(salesResultSet.getString("moneypaid"));
+                    salesMaster.setTransprice(salesResultSet.getString("cash"));
+                    salesMasterObservableList.add(salesMaster);
+                }
+                tableemployeesales.setItems(salesMasterObservableList);
+
+                assert tableemployeesales != null : "fx:id=\"tableemployeesales\" was not injected: check your FXML ";
+                transprice.setCellValueFactory(
+                        new PropertyValueFactory<>("transprice"));
+                employeetransid.setCellValueFactory(
+                        new PropertyValueFactory<>("employeetransid"));
+                transpaid.setCellValueFactory(new PropertyValueFactory<>("transpaid"));
+                transmethod.setCellValueFactory(new PropertyValueFactory<>("transmethod"));
+                transbalance.setCellValueFactory(new PropertyValueFactory<>("transbalance"));
+                transcompletion.setCellValueFactory(new PropertyValueFactory<>("dateCompleted"));
+                tableemployeelist.refresh();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
 
         });
@@ -338,13 +599,6 @@ public class AuditController extends UtilityClass implements Initializable {
     }
 
 
-    public Button getQuerytf1() {
-        return querytf1;
-    }
-
-    public void setQuerytf1(Button querytf1) {
-        this.querytf1 = querytf1;
-    }
 
     public TableView<SalesMaster> getTableemployeesales() {
         return tableemployeesales;

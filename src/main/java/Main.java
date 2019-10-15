@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import logging.LogClass;
 import securityandtime.AesCrypto;
 import securityandtime.CheckConn;
 
@@ -21,9 +20,6 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.logging.Level;
 
 import static securityandtime.config.*;
 
@@ -159,16 +155,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
         new CheckConn();
-        ExecutorService service = Executors.newCachedThreadPool();
-        service.submit(() -> {
-            if (CheckConn.pingHost(securityandtime.config.host, 443, 2000)) {
-                LogClass.getLogger().log(Level.INFO, "CONNECTED");
 
-            } else {
-                LogClass.getLogger().log(Level.WARNING, "NOT CONNECTED");
-
-            }
-        });
 
     }
 
