@@ -4,9 +4,10 @@ package Controllers.UserAccountManagementControllers;
 import Controllers.IdleMonitor;
 import Controllers.SevenZ;
 import Controllers.UtilityClass;
+import com.google.api.client.http.FileContent;
 import com.smattme.MysqlExportService;
 import com.smattme.MysqlImportService;
-import gdrive.DriveMain;
+import gdrive.DriveSuperClass;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -25,6 +26,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.apache.commons.io.FilenameUtils;
+import securityandtime.AesCrypto;
 import securityandtime.config;
 
 import java.io.File;
@@ -155,6 +157,8 @@ public class AdminPanelController extends UtilityClass implements Initializable,
     @FXML
     private Menu inventory;
 
+
+    String companyName;
     private static File lastFileModified(String dir) {
         File fl = new File(dir);
         File[] files = fl.listFiles(new FileFilter() {
@@ -366,6 +370,24 @@ public class AdminPanelController extends UtilityClass implements Initializable,
 
 
     private void initModules() throws SQLException {
+
+        Connection connection = new UtilityClass().getConnection();
+        try {
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement("SELECT * FROM drivesettings ORDER BY id DESC LIMIT 1");
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.isBeforeFirst()) {
+                //admin has set company name
+                while (rs.next()) {
+                    companyName = AesCrypto.decrypt(encryptionkey, rs.getString("companyname"));
+
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         try {
             checkEmailAndPassword();
         } catch (NullPointerException e) {
@@ -584,10 +606,10 @@ public class AdminPanelController extends UtilityClass implements Initializable,
 
 
         File file = mysqlExportService.getGeneratedZipFile();
+
         //add path to back up table
         mysqlExportService.clearTempFiles(false);
         mysqlExportService.export();
-        DriveMain.driveBackupMain(zip.getName(), zip.getAbsolutePath());
 
         return zip.getPath();
     }
@@ -668,8 +690,21 @@ public class AdminPanelController extends UtilityClass implements Initializable,
 
                         String filepath = backup(path);
 
+
                         showAlert(Alert.AlertType.INFORMATION, backup.getScene().getWindow(), "SUCCESS", "BACK UP HAS BEEN COMPLETED SUCCESSFULLY TO " + filepath);
                         File lastFileModified = lastFileModified(path);
+                        if (!companyName.isEmpty() && companyName != null) {
+//    DriveMain.driveBackupMain(companyName+lastFileModified.getName(), lastFileModified.getAbsolutePath());
+                            com.google.api.services.drive.model.File fileMetadata = new com.google.api.services.drive.model.File();
+                            fileMetadata.setName(companyName + " __ file__" + lastFileModified.getName());
+                            java.io.File filePath = new java.io.File(lastFileModified.getAbsolutePath());
+                            FileContent mediaContent = new FileContent("multipart/x-zip", filePath);
+                            com.google.api.services.drive.model.File file = new DriveSuperClass().getService().files().create(fileMetadata, mediaContent)
+                                    .setFields("id")
+                                    .execute();
+                            System.out.println("File ID: " + file.getId());
+
+                        }
                         localBackup(lastFileModified.getAbsolutePath());
 //                        message.setText("DONE BACKING UP DATA...");
                     } catch (IOException e) {

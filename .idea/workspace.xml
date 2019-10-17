@@ -8,21 +8,14 @@
   <component name="ChangeListManager">
     <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/GetNetworkAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/GetNetworkAddress.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminSettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/ViewBackUpsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/ViewBackUpsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gdrive/DriveMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdrive/DriveMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gdrive/DriveSuperClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdrive/DriveSuperClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/adminSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/adminSettings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/GetNetworkAddress.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/GetNetworkAddress.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SplashScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SplashScreenController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/POSnanotech-softwareshotelshotelsjavamultiplestores.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/adminSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/adminSettings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/securityandtime/config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/securityandtime/config.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -249,7 +242,12 @@
     <option name="allServicesViewState">
       <serviceView>
         <treeState>
-          <expand />
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@8a3dc25b" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
           <select />
         </treeState>
       </serviceView>
@@ -582,7 +580,7 @@
       <workItem from="1571126423710" duration="4809000" />
       <workItem from="1571294592051" duration="1250000" />
       <workItem from="1571302277049" duration="590000" />
-      <workItem from="1571316024941" duration="19448000" />
+      <workItem from="1571316024941" duration="22433000" />
     </task>
     <task id="LOCAL-00001" summary="before shopping cart">
       <created>1552048112305</created>
@@ -913,7 +911,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571319904383</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="CREATED CODE FOR GOOGLE DRIVE OPERATIONS WITH ALL VALUES BUT ITS NOT FULLY TESTED">
+      <created>1571339358474</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1571339358474</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -950,7 +955,6 @@
       <path value="$PROJECT_DIR$/POSnanotech-softwaresjava" />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="chat box gui" />
     <MESSAGE value="changed entire project to use maven" />
     <MESSAGE value="Connections created in one file" />
     <MESSAGE value="Email sender created" />
@@ -975,7 +979,8 @@
     <MESSAGE value="editing reports location in settings done" />
     <MESSAGE value="admin settings getters and setters done" />
     <MESSAGE value="CREATED CODE FOR GOOGLE DRIVE OPERATIONS BUT I'VE NOT SET SOME VALUES LIKE FOLDER ID AND COMPANY NAME" />
-    <option name="LAST_COMMIT_MESSAGE" value="CREATED CODE FOR GOOGLE DRIVE OPERATIONS BUT I'VE NOT SET SOME VALUES LIKE FOLDER ID AND COMPANY NAME" />
+    <MESSAGE value="CREATED CODE FOR GOOGLE DRIVE OPERATIONS WITH ALL VALUES BUT ITS NOT FULLY TESTED" />
+    <option name="LAST_COMMIT_MESSAGE" value="CREATED CODE FOR GOOGLE DRIVE OPERATIONS WITH ALL VALUES BUT ITS NOT FULLY TESTED" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

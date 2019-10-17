@@ -37,7 +37,7 @@ public class DriveSuperClass extends UtilityClass {
     private NetHttpTransport HTTP_TRANSPORT = new NetHttpTransport();
     private Credential credential = null;
 
-    DriveSuperClass() {
+    public DriveSuperClass() {
         // 2: Build a new authorized API client service.
         try {
             HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();

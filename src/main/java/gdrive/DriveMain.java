@@ -1,11 +1,10 @@
 package gdrive;
 
-import com.google.api.services.drive.model.File;
-
 import java.io.IOException;
-import java.util.List;
+import java.security.GeneralSecurityException;
 
-import static securityandtime.config.*;
+import static securityandtime.config.CLIENT_SECRET_FILE_NAME;
+import static securityandtime.config.CREDENTIALS_FOLDER;
 
 public class DriveMain {
 
@@ -23,18 +22,23 @@ public class DriveMain {
 
             System.out.println("Created Folder: " + CREDENTIALS_FOLDER.getAbsolutePath());
             System.out.println("Copy file " + CLIENT_SECRET_FILE_NAME + " into folder above.. and rerun this class!!");
-            return;
+            driveBackupMain(driveFname, pathToFile);
         }
 
 
-        List<File> files = DriveSuperClass.getGoogleSubFolders(backUpFolderId);
-        if (files.isEmpty()) {
-            System.out.println("No files found.");
-        } else {
-            DriveSuperClass.driveBackup(driveFname, pathToFile);
+//        List<File> files = DriveSuperClass.getGoogleSubFolders(backUpFolderId);
+//        if (files.isEmpty()) {
+//            System.out.println("No files found.");
+//        } else {
+//            DriveSuperClass.driveBackup(driveFname, pathToFile);
+//
+//        }
 
+        try {
+            DriveSuperClass.createGoogleFile(null, "multipart/x-zip", driveFname, new java.io.File(pathToFile));
+        } catch (GeneralSecurityException e) {
+            e.printStackTrace();
         }
-
 
     }
 }

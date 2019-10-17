@@ -475,7 +475,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
                     }
                     preparedStatement = connection.prepareStatement("UPDATE drivesettings SET message=?,companyname=?,address=?,phone=?,email=?,logo=? WHERE id=?");
                     preparedStatement.setString(1, messageText);
-                    preparedStatement.setString(2, nameText);
+                    preparedStatement.setString(2, AesCrypto.encrypt(encryptionkey, initVector, nameText));
                     preparedStatement.setString(3, addressText);
                     preparedStatement.setString(4, phoneText);
                     preparedStatement.setString(5, emailText);

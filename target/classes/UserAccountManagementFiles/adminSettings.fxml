@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane fx:id="panel" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserAccountManagementControllers.AdminSettingsController">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="panel" prefHeight="400.0" prefWidth="640.0"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="Controllers.UserAccountManagementControllers.AdminSettingsController">
     <children>
         <TabPane fx:id="mainTabPane" prefHeight="400.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -20,17 +14,34 @@
                             <children>
                                 <AnchorPane prefHeight="400.0" prefWidth="640.0">
                                     <children>
-                                        <Label fx:id="userAccountNameLabel" layoutX="15.0" layoutY="32.0" prefHeight="17.0" prefWidth="98.0" text="USER NAME" />
-                                        <Label fx:id="userAccountName" alignment="CENTER" layoutX="113.0" layoutY="32.0" prefHeight="17.0" prefWidth="270.0" text="USER NAME" />
-                                        <Button fx:id="userAccountNameChange" layoutX="402.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="195.0" text="CHANGE NAME" />
-                                        <Label fx:id="userAccountEmailLabel" layoutX="14.0" layoutY="64.0" prefHeight="17.0" prefWidth="98.0" text="USER EMAIL" />
-                                        <Label fx:id="userAccountEmail" alignment="CENTER" layoutX="112.0" layoutY="64.0" prefHeight="17.0" prefWidth="270.0" text="USER EMAIL" />
-                                        <Button fx:id="userAccountEmailChange" layoutX="402.0" layoutY="64.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="195.0" text="CHANGE EMAIL" />
-                                        <Button fx:id="userAccountPasswordChange" layoutX="15.0" layoutY="98.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="144.0" text="CHANGE PASSWORD" />
-                                        <Button fx:id="userAccountHintChange" layoutX="185.0" layoutY="98.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="144.0" text="CHANGE HINT" />
-                                        <Button fx:id="userAccountHintSet" layoutX="185.0" layoutY="98.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="144.0" text="SET HINT" />
-                                        <Button fx:id="changeStationName" layoutX="8.0" layoutY="200.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="186.0" text="CHANGE STATION NAME" />
-                                        <Label fx:id="stationName" layoutX="210.0" layoutY="205.0" prefHeight="35.0" prefWidth="332.0" />
+                                        <Label fx:id="userAccountNameLabel" layoutX="15.0" layoutY="32.0"
+                                               prefHeight="17.0" prefWidth="98.0" text="USER NAME"/>
+                                        <Label fx:id="userAccountName" alignment="CENTER" layoutX="113.0" layoutY="32.0"
+                                               prefHeight="17.0" prefWidth="270.0" text="USER NAME"/>
+                                        <Button fx:id="userAccountNameChange" layoutX="402.0" layoutY="32.0"
+                                                mnemonicParsing="false" prefHeight="25.0" prefWidth="195.0"
+                                                text="CHANGE NAME"/>
+                                        <Label fx:id="userAccountEmailLabel" layoutX="14.0" layoutY="64.0"
+                                               prefHeight="17.0" prefWidth="98.0" text="USER EMAIL"/>
+                                        <Label fx:id="userAccountEmail" alignment="CENTER" layoutX="112.0"
+                                               layoutY="64.0" prefHeight="17.0" prefWidth="270.0" text="USER EMAIL"/>
+                                        <Button fx:id="userAccountEmailChange" layoutX="402.0" layoutY="64.0"
+                                                mnemonicParsing="false" prefHeight="25.0" prefWidth="195.0"
+                                                text="CHANGE EMAIL"/>
+                                        <Button fx:id="userAccountPasswordChange" layoutX="15.0" layoutY="98.0"
+                                                mnemonicParsing="false" prefHeight="25.0" prefWidth="144.0"
+                                                text="CHANGE PASSWORD"/>
+                                        <Button fx:id="userAccountHintChange" layoutX="185.0" layoutY="98.0"
+                                                mnemonicParsing="false" prefHeight="25.0" prefWidth="144.0"
+                                                text="CHANGE HINT"/>
+                                        <Button fx:id="userAccountHintSet" layoutX="185.0" layoutY="98.0"
+                                                mnemonicParsing="false" prefHeight="25.0" prefWidth="144.0"
+                                                text="SET HINT"/>
+                                        <Button fx:id="changeStationName" layoutX="8.0" layoutY="200.0"
+                                                mnemonicParsing="false" prefHeight="44.0" prefWidth="186.0"
+                                                text="CHANGE STATION NAME"/>
+                                        <Label fx:id="stationName" layoutX="210.0" layoutY="205.0" prefHeight="35.0"
+                                               prefWidth="332.0"/>
                                     </children>
                                 </AnchorPane>
                             </children>
@@ -41,15 +52,27 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <Button fx:id="changeBackUpLocation" layoutX="14.0" layoutY="128.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="186.0" text="CHANGE BACK UP LOCATION" />
-                                <Label fx:id="currentBackUpLocation" alignment="CENTER" layoutX="227.0" layoutY="133.0" prefHeight="35.0" prefWidth="332.0" text="location" />
-                                <RadioButton fx:id="endDay" layoutX="31.0" layoutY="250.0" mnemonicParsing="false" text="END DAY BACK UP" />
-                                <RadioButton fx:id="periodical" layoutX="33.0" layoutY="227.0" mnemonicParsing="false" text="PERIODIC" />
-                                <RadioButton fx:id="startUp" layoutX="33.0" layoutY="205.0" mnemonicParsing="false" text="STARTUP BACKUP" />
-                                <Label fx:id="backupEmailLabel" layoutX="14.0" layoutY="33.0" prefHeight="17.0" prefWidth="98.0" text="BACK UP EMAIL" />
-                                <Label fx:id="backupEmail" alignment="CENTER" layoutX="120.0" layoutY="33.0" prefHeight="17.0" prefWidth="258.0" />
-                                <Button fx:id="backupEmailChangeButton" layoutX="378.0" layoutY="29.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="212.0" text="CHANGE BACKUP EMAIL" />
-                                <Button fx:id="backupEmailChangePassword" layoutX="378.0" layoutY="76.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="215.0" text="CHANGE BACKUP EMAIL PASSWORD" />
+                                <Button fx:id="changeBackUpLocation" layoutX="14.0" layoutY="128.0"
+                                        mnemonicParsing="false" prefHeight="44.0" prefWidth="186.0"
+                                        text="CHANGE BACK UP LOCATION"/>
+                                <Label fx:id="currentBackUpLocation" alignment="CENTER" layoutX="227.0" layoutY="133.0"
+                                       prefHeight="35.0" prefWidth="332.0" text="location"/>
+                                <RadioButton fx:id="endDay" layoutX="31.0" layoutY="250.0" mnemonicParsing="false"
+                                             text="END DAY BACK UP"/>
+                                <RadioButton fx:id="periodical" layoutX="33.0" layoutY="227.0" mnemonicParsing="false"
+                                             text="PERIODIC"/>
+                                <RadioButton fx:id="startUp" layoutX="33.0" layoutY="205.0" mnemonicParsing="false"
+                                             text="STARTUP BACKUP"/>
+                                <Label fx:id="backupEmailLabel" layoutX="14.0" layoutY="33.0" prefHeight="17.0"
+                                       prefWidth="98.0" text="BACK UP EMAIL"/>
+                                <Label fx:id="backupEmail" alignment="CENTER" layoutX="120.0" layoutY="33.0"
+                                       prefHeight="17.0" prefWidth="258.0"/>
+                                <Button fx:id="backupEmailChangeButton" layoutX="378.0" layoutY="29.0"
+                                        mnemonicParsing="false" prefHeight="25.0" prefWidth="212.0"
+                                        text="CHANGE BACKUP EMAIL"/>
+                                <Button fx:id="backupEmailChangePassword" layoutX="378.0" layoutY="76.0"
+                                        mnemonicParsing="false" prefHeight="25.0" prefWidth="215.0"
+                                        text="CHANGE BACKUP EMAIL PASSWORD"/>
                             </children>
                         </AnchorPane>
                     </content>
@@ -58,33 +81,46 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <Label alignment="CENTER" layoutX="228.0" layoutY="14.0" prefHeight="33.0" prefWidth="185.0" text="GLOBAL REPORT SETTINGS" underline="true" />
-                                <Label layoutX="22.0" layoutY="58.0" prefHeight="28.0" prefWidth="161.0" text="DEFAULT EXPORT FORMAT" />
-                                <RadioButton fx:id="exportCsv" layoutX="210.0" layoutY="58.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="87.0" text="CSV" />
-                                <RadioButton fx:id="exportPdf" layoutX="309.0" layoutY="58.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="86.0" text="PDF" />
-                                <RadioButton fx:id="exportBoth" layoutX="413.0" layoutY="58.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="65.0" text="BOTH" />
-                                <RadioButton fx:id="exportAsk" layoutX="497.0" layoutY="58.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="111.0" text="ASK EACH TIME" />
-                                <Label layoutX="15.0" layoutY="87.0" prefHeight="31.0" prefWidth="150.0" text="PATH TO REPORTS" />
-                                <Label fx:id="pathToReports" layoutX="213.0" layoutY="87.0" prefHeight="31.0" prefWidth="176.0" text="LOCATION" />
-                                <Button fx:id="changeReportsLocation" layoutX="419.0" layoutY="90.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="184.0" text="CHANGE REPORT LOCATION" />
-                                <TabPane layoutX="9.0" layoutY="119.0" prefHeight="233.0" prefWidth="617.0" tabClosingPolicy="UNAVAILABLE">
+                                <Label alignment="CENTER" layoutX="228.0" layoutY="14.0" prefHeight="33.0"
+                                       prefWidth="185.0" text="GLOBAL REPORT SETTINGS" underline="true"/>
+                                <Label layoutX="22.0" layoutY="58.0" prefHeight="28.0" prefWidth="161.0"
+                                       text="DEFAULT EXPORT FORMAT"/>
+                                <RadioButton fx:id="exportCsv" layoutX="210.0" layoutY="58.0" mnemonicParsing="false"
+                                             prefHeight="29.0" prefWidth="87.0" text="CSV"/>
+                                <RadioButton fx:id="exportPdf" layoutX="309.0" layoutY="58.0" mnemonicParsing="false"
+                                             prefHeight="29.0" prefWidth="86.0" text="PDF"/>
+                                <RadioButton fx:id="exportBoth" layoutX="413.0" layoutY="58.0" mnemonicParsing="false"
+                                             prefHeight="29.0" prefWidth="65.0" text="BOTH"/>
+                                <RadioButton fx:id="exportAsk" layoutX="497.0" layoutY="58.0" mnemonicParsing="false"
+                                             prefHeight="29.0" prefWidth="111.0" text="ASK EACH TIME"/>
+                                <Label layoutX="15.0" layoutY="87.0" prefHeight="31.0" prefWidth="150.0"
+                                       text="PATH TO REPORTS"/>
+                                <Label fx:id="pathToReports" layoutX="213.0" layoutY="87.0" prefHeight="31.0"
+                                       prefWidth="176.0" text="LOCATION"/>
+                                <Button fx:id="changeReportsLocation" layoutX="419.0" layoutY="90.0"
+                                        mnemonicParsing="false" prefHeight="25.0" prefWidth="184.0"
+                                        text="CHANGE REPORT LOCATION"/>
+                                <TabPane layoutX="9.0" layoutY="119.0" prefHeight="233.0" prefWidth="617.0"
+                                         tabClosingPolicy="UNAVAILABLE">
                                     <tabs>
                                         <Tab text="SET UP PRINTERS">
                                             <content>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                                            prefWidth="200.0"/>
                                             </content>
                                         </Tab>
                                         <Tab text="AVAILABLE PRINTERS">
                                             <content>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                                            prefWidth="200.0">
                                                     <children>
                                                         <TableView layoutY="2.0" prefHeight="200.0" prefWidth="614.0">
                                                             <columns>
-                                                                <TableColumn prefWidth="37.0" text="ID" />
-                                                                <TableColumn prefWidth="137.0" text="NUMBER" />
-                                                                <TableColumn prefWidth="156.0" text="NAME" />
-                                                                <TableColumn prefWidth="147.0" text="IP" />
-                                                                <TableColumn prefWidth="118.0" text="MAC" />
+                                                                <TableColumn prefWidth="37.0" text="ID"/>
+                                                                <TableColumn prefWidth="137.0" text="NUMBER"/>
+                                                                <TableColumn prefWidth="156.0" text="NAME"/>
+                                                                <TableColumn prefWidth="147.0" text="IP"/>
+                                                                <TableColumn prefWidth="118.0" text="MAC"/>
                                                             </columns>
                                                         </TableView>
                                                     </children>
@@ -105,14 +141,17 @@
                                     <tabs>
                                         <Tab text="ADD DEVICES">
                                             <content>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="292.0" prefWidth="640.0">
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="292.0"
+                                                            prefWidth="640.0">
                                                     <children>
-                                                        <Button layoutX="264.0" layoutY="304.0" mnemonicParsing="false" text="ADD NEW DEVICE" />
-                                                        <TableView layoutX="19.0" layoutY="13.0" prefHeight="267.0" prefWidth="613.0">
+                                                        <Button layoutX="264.0" layoutY="304.0" mnemonicParsing="false"
+                                                                text="ADD NEW DEVICE"/>
+                                                        <TableView layoutX="19.0" layoutY="13.0" prefHeight="267.0"
+                                                                   prefWidth="613.0">
                                                             <columns>
-                                                                <TableColumn prefWidth="178.0" text="IP ADDRESS" />
-                                                                <TableColumn prefWidth="230.0" text="MAC ADDRESS" />
-                                                                <TableColumn prefWidth="203.0" text="OS" />
+                                                                <TableColumn prefWidth="178.0" text="IP ADDRESS"/>
+                                                                <TableColumn prefWidth="230.0" text="MAC ADDRESS"/>
+                                                                <TableColumn prefWidth="203.0" text="OS"/>
                                                             </columns>
                                                         </TableView>
                                                     </children>
@@ -121,18 +160,23 @@
                                         </Tab>
                                         <Tab text="VIEW EXISTING DEVICES">
                                             <content>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="299.0" prefWidth="640.0">
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="299.0"
+                                                            prefWidth="640.0">
                                                     <children>
-                                                        <Button layoutX="277.0" layoutY="304.0" mnemonicParsing="false" text="REMOVE DEVICE" />
-                                                        <TableView layoutX="4.0" layoutY="39.0" prefHeight="252.0" prefWidth="632.0">
+                                                        <Button layoutX="277.0" layoutY="304.0" mnemonicParsing="false"
+                                                                text="REMOVE DEVICE"/>
+                                                        <TableView layoutX="4.0" layoutY="39.0" prefHeight="252.0"
+                                                                   prefWidth="632.0">
                                                             <columns>
-                                                                <TableColumn prefWidth="75.0" text="ID" />
-                                                                <TableColumn prefWidth="178.0" text="IP ADDRESS" />
-                                                                <TableColumn prefWidth="190.0" text="MAC ADDRESS" />
-                                                                <TableColumn prefWidth="188.0" text="OS" />
+                                                                <TableColumn prefWidth="75.0" text="ID"/>
+                                                                <TableColumn prefWidth="178.0" text="IP ADDRESS"/>
+                                                                <TableColumn prefWidth="190.0" text="MAC ADDRESS"/>
+                                                                <TableColumn prefWidth="188.0" text="OS"/>
                                                             </columns>
                                                         </TableView>
-                                                        <Label alignment="CENTER" layoutX="243.0" layoutY="7.0" prefHeight="24.0" prefWidth="172.0" text="EXISTING DEVICES" underline="true" />
+                                                        <Label alignment="CENTER" layoutX="243.0" layoutY="7.0"
+                                                               prefHeight="24.0" prefWidth="172.0"
+                                                               text="EXISTING DEVICES" underline="true"/>
                                                     </children>
                                                 </AnchorPane>
                                             </content>
@@ -176,22 +220,35 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <TextField fx:id="companyName" layoutX="247.0" layoutY="96.0" prefHeight="25.0" prefWidth="217.0" promptText="COMPANY NAME" />
-                                <Label layoutX="87.0" layoutY="89.0" prefHeight="28.0" prefWidth="63.0" text="NAME" />
-                        <TextField layoutX="247.0" layoutY="128.0" prefHeight="25.0" prefWidth="217.0" promptText="ADDRESS" fx:id="companyAddress" />
-                        <Label layoutX="87.0" layoutY="121.0" prefHeight="28.0" prefWidth="63.0" text="ADDRESS" />
-                        <TextField  layoutX="247.0" layoutY="160.0" prefHeight="25.0" prefWidth="217.0" fx:id="companyPhone" promptText="PHONE NUMBER" />
-                        <Label layoutX="87.0" layoutY="153.0" prefHeight="28.0" prefWidth="63.0" text="PHONE " />
-                        <TextField  layoutX="247.0" layoutY="192.0" prefHeight="25.0" prefWidth="217.0" fx:id="companyEmail"  promptText="EMAIL" />
-                        <Label layoutX="87.0" layoutY="185.0" prefHeight="28.0" prefWidth="63.0" text="EMAIL" />
-                        <TextField  fx:id="companyMessage" layoutX="247.0" layoutY="224.0" prefHeight="25.0" prefWidth="217.0" promptText="MESSAGE" />
-                        <Label layoutX="87.0" layoutY="217.0" prefHeight="28.0" prefWidth="63.0" text="MESSAGE" />
-<!--                                 -->
-                        <Label alignment="CENTER" layoutX="75.0" layoutY="33.0" prefHeight="28.0" prefWidth="408.0" text="**** THESE DETAILS WILL BE ON THE RECEIPT ***" textFill="#fc0000" />
-                        <Button fx:id="changeLogoBtn" layoutX="87.0" layoutY="257.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="113.0" text="CHANGE LOGO" />
-                        <Label fx:id="companyImageName" alignment="CENTER" layoutX="248.0" layoutY="260.0" prefHeight="28.0" prefWidth="214.0" text="NO IMAGE SELECTED" />
-                        <Button fx:id="updateCompanyDetailsBtn" layoutX="94.0" layoutY="311.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="113.0" text="UPDATE " />
-                        <Button fx:id="clearCompanyDetailsBtn" layoutX="248.0" layoutY="311.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="113.0" text="CLEAR" />
+                                <TextField fx:id="companyName" layoutX="247.0" layoutY="96.0" prefHeight="25.0"
+                                           prefWidth="217.0" promptText="COMPANY NAME"/>
+                                <Label layoutX="87.0" layoutY="89.0" prefHeight="28.0" prefWidth="63.0" text="NAME"/>
+                                <TextField layoutX="247.0" layoutY="128.0" prefHeight="25.0" prefWidth="217.0"
+                                           promptText="ADDRESS" fx:id="companyAddress"/>
+                                <Label layoutX="87.0" layoutY="121.0" prefHeight="28.0" prefWidth="63.0"
+                                       text="ADDRESS"/>
+                                <TextField layoutX="247.0" layoutY="160.0" prefHeight="25.0" prefWidth="217.0"
+                                           fx:id="companyPhone" promptText="PHONE NUMBER"/>
+                                <Label layoutX="87.0" layoutY="153.0" prefHeight="28.0" prefWidth="63.0" text="PHONE "/>
+                                <TextField layoutX="247.0" layoutY="192.0" prefHeight="25.0" prefWidth="217.0"
+                                           fx:id="companyEmail" promptText="EMAIL"/>
+                                <Label layoutX="87.0" layoutY="185.0" prefHeight="28.0" prefWidth="63.0" text="EMAIL"/>
+                                <TextField fx:id="companyMessage" layoutX="247.0" layoutY="224.0" prefHeight="25.0"
+                                           prefWidth="217.0" promptText="MESSAGE"/>
+                                <Label layoutX="87.0" layoutY="217.0" prefHeight="28.0" prefWidth="63.0"
+                                       text="MESSAGE"/>
+                                <!--                                 -->
+                                <Label alignment="CENTER" layoutX="75.0" layoutY="33.0" prefHeight="28.0"
+                                       prefWidth="408.0" text="**** THESE DETAILS WILL BE ON THE RECEIPT ***"
+                                       textFill="#fc0000"/>
+                                <Button fx:id="changeLogoBtn" layoutX="87.0" layoutY="257.0" mnemonicParsing="false"
+                                        prefHeight="34.0" prefWidth="113.0" text="CHANGE LOGO"/>
+                                <Label fx:id="companyImageName" alignment="CENTER" layoutX="248.0" layoutY="260.0"
+                                       prefHeight="28.0" prefWidth="214.0" text="NO IMAGE SELECTED"/>
+                                <Button fx:id="updateCompanyDetailsBtn" layoutX="94.0" layoutY="311.0"
+                                        mnemonicParsing="false" prefHeight="34.0" prefWidth="113.0" text="UPDATE "/>
+                                <Button fx:id="clearCompanyDetailsBtn" layoutX="248.0" layoutY="311.0"
+                                        mnemonicParsing="false" prefHeight="34.0" prefWidth="113.0" text="CLEAR"/>
                             </children>
                         </AnchorPane>
                     </content>
