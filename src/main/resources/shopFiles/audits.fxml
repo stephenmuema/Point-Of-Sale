@@ -115,18 +115,12 @@
                                             <Button fx:id="showEmpReport" layoutX="959.0" layoutY="498.0"
                                                     mnemonicParsing="false" styleClass="buttonred"
                                                     text="SHOW EMPLOYEE REPORT"/>
-                                            <DatePicker layoutX="23.0" layoutY="16.0" prefHeight="36.0"
-                                                        prefWidth="206.0" promptText="START DATE"
+                                            <DatePicker fx:id="startDate" layoutX="23.0" layoutY="16.0"
+                                                        prefHeight="36.0" prefWidth="206.0" promptText="START DATE"
                                                         styleClass="textfields"/>
-                                            <DatePicker layoutX="247.0" layoutY="16.0" prefHeight="36.0"
+                                            <DatePicker fx:id="endDate" layoutX="247.0" layoutY="16.0" prefHeight="36.0"
                                                         prefWidth="206.0" promptText="END DATE"
                                                         styleClass="textfields"/>
-                                            <CheckBox layoutX="481.0" layoutY="15.0" mnemonicParsing="false"
-                                                      prefHeight="36.0" prefWidth="163.0" text="SHOW CARWASH SALES"
-                                                      textFill="WHITE"/>
-                                            <CheckBox layoutX="644.0" layoutY="16.0" mnemonicParsing="false"
-                                                      prefHeight="36.0" prefWidth="163.0" text="SHOW PRODUCT SALES"
-                                                      textFill="#fff8f8"/>
                                         </children>
                                     </AnchorPane>
                                 </content>
@@ -135,7 +129,7 @@
                                 <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                         <children>
-                                            <Button fx:id="querytf2" layoutX="539.0" layoutY="26.0"
+                                            <Button fx:id="querytf2" layoutX="647.0" layoutY="28.0"
                                                     mnemonicParsing="false" prefHeight="36.0" prefWidth="88.0"
                                                     styleClass="buttonred" text="GET SALES"/>
                                             <TableView fx:id="categorysalestable" layoutX="3.0" layoutY="79.0"
@@ -181,6 +175,10 @@
                                                          text="CSV FORMAT"/>
                                             <RadioButton layoutX="1080.0" layoutY="99.0" mnemonicParsing="false"
                                                          text="PDF FORMAT"/>
+                                            <RadioButton layoutX="479.0" layoutY="23.0" mnemonicParsing="false"
+                                                         text="CATEGORICAL SALES"/>
+                                            <RadioButton layoutX="479.0" layoutY="51.0" mnemonicParsing="false"
+                                                         text="SALES PER ITEM"/>
                                         </children>
                                     </AnchorPane>
                                 </content>

@@ -237,9 +237,6 @@ public class Main extends Application {
                 Parent root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/licensingPanel.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-//                Media hit = new Media(getClass().getClassLoader().getResource("sounds/notification.wav").toString());
-//                MediaPlayer mediaPlayer = new MediaPlayer(hit);
-//                mediaPlayer.play();
                 System.out.println("Expired license");
                 stage.initStyle(StageStyle.DECORATED);
                 stage.getIcons().add(image);

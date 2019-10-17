@@ -41,7 +41,6 @@ import java.util.logging.Level;
 import static securityandtime.config.*;
 
 public class scannerController extends UtilityClass implements Initializable {
-    public MenuItem logout;
     public Label clock;
     public Font x1;
     public TabPane tabpane;
@@ -486,10 +485,7 @@ public class scannerController extends UtilityClass implements Initializable {
     }
 
     private void menuclick() {
-        logout.setOnAction(event -> {
-            logout(panel);
 
-        });
     }
 
     @FXML
@@ -498,14 +494,6 @@ public class scannerController extends UtilityClass implements Initializable {
         Platform.exit();
     }
 
-    public MenuItem getLogout() {
-        return logout;
-    }
-
-    public scannerController setLogout(MenuItem logout) {
-        this.logout = logout;
-        return this;
-    }
 
     public Label getClock() {
         return clock;

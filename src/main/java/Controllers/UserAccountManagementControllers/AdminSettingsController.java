@@ -286,8 +286,8 @@ public class AdminSettingsController extends UtilityClass implements Initializab
                     }
                 }, true);
         idleMonitor.register(panel, Event.ANY);
-        changeStationName.setVisible(false);
         stationName.setVisible(false);
+        changeStationName.setVisible(false);
         if (!config.login.containsKey("loggedinasadmin")) {
             changeStationName.setVisible(true);
             stationName.setVisible(true);

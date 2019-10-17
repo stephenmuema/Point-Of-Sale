@@ -89,7 +89,6 @@ public class AuditController extends UtilityClass implements Initializable {
     public Button showempperformancegraph;
     public Button exportfirstempreport;
     public Button showEmpReport;
-    //db connection
     private Connection connection = getConnection();
     private ObservableList<EmployeeMaster> employeeMasterObservableList = FXCollections.observableArrayList();
     private ObservableList<SalesMaster> salesMasterObservableList = FXCollections.observableArrayList();
