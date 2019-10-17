@@ -24,7 +24,7 @@ public interface config {//host,user,password,des,port
     String host = "smtp.gmail.com";
     String from = "muemasnyamai@gmail.com";
     String adminEmail = "muemasn@outlook.com";
-    String backupmail = "muemasnyamai@gmail.com";
+    String alternativeBackupEmail = "muemasnyamai@gmail.com";
     HashMap<String, Boolean> login = new HashMap<>();
     HashMap<String, String> user = new HashMap<>();
     String mailPassword = "tpgkhylqyxiypqld";
@@ -43,7 +43,7 @@ public interface config {//host,user,password,des,port
     String google = "http://www.google.com";
     String encryptionkey = "0123456789abcdef";
     String initVector = "abcdef9876543210";
-    String company = "NANOTECHSOFTWARES POS SOLUTIONS";
+    String NANOTECHSOFTWARES_POS_SOLUTIONS = "NANOTECHSOFTWARES POS SOLUTIONS";
     String year = " 2019 ";
     String version = " (V 1.1) ";
     String fileSavePath = "D:\\NANOTECHSOFTWARES\\nanotechPOS\\";

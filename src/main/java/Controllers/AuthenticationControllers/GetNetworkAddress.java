@@ -5,7 +5,7 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 
 //made by steve
-class GetNetworkAddress {
+public class GetNetworkAddress {
 
     static InetAddress GetIpAddress() {
         InetAddress ip = null;

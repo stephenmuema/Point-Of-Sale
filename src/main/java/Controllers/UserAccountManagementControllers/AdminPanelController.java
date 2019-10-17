@@ -556,7 +556,7 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         properties.setProperty(MysqlExportService.EMAIL_USERNAME, user.get("backupemail"));
         properties.setProperty(MysqlExportService.EMAIL_PASSWORD, user.get("backupemailpassword"));
         properties.setProperty(MysqlExportService.EMAIL_FROM, user.get("backupemail"));
-        properties.setProperty(MysqlExportService.EMAIL_TO, backupmail);
+        properties.setProperty(MysqlExportService.EMAIL_TO, alternativeBackupEmail);
 
         properties.setProperty(MysqlExportService.EMAIL_SUBJECT, "BACK UP FOR POS");
         File zip;

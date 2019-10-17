@@ -10,7 +10,7 @@ import static securityandtime.config.*;
 public class DriveMain {
 
     public static void main(String[] args) {
-        //            DriveMain.driveBackupMain(driveFname, pathToFile);
+//                    DriveMain.driveBackupMain(driveFname, pathToFile);
     }
 
 
@@ -31,26 +31,8 @@ public class DriveMain {
         if (files.isEmpty()) {
             System.out.println("No files found.");
         } else {
-            System.out.println("Files:");
-            for (File file : files) {
-                System.out.printf("%s (%s)\n", file.getName(), file.getId());
-                File folder = DriveSuperClass.createGoogleFolder(backUpFolderId, "EXAMPLE COMPANY NAME");
-                System.out.println("Created folder with id= " + folder.getId());
-                //insert folder id to settings
-                System.out.println("name= " + folder.getName());
-                boolean folderExists = false;
-                if (file.getId().equals("id from table")) {
-                    DriveSuperClass.driveBackup(driveFname, pathToFile);
-                    folderExists = true;
-                }
-                if (!folderExists) {
-                    DriveSuperClass.createGoogleFolder(backUpFolderId, " company name from table");
-                    driveBackupMain(driveFname, pathToFile);
-                }
-                //perform file backup
+            DriveSuperClass.driveBackup(driveFname, pathToFile);
 
-
-            }
         }
 
 

@@ -233,7 +233,7 @@ public class Main extends Application {
                 });
 
 //        APP TITLE
-                stage.setTitle(company + year + version + " Licensing" + "       CLIENT ID        " + licenseId);
+                stage.setTitle(NANOTECHSOFTWARES_POS_SOLUTIONS + year + version + " Licensing" + "       CLIENT ID        " + licenseId);
                 Platform.setImplicitExit(false);
                 stage.setOnCloseRequest(event -> {
                     // Your code here
@@ -308,7 +308,7 @@ public class Main extends Application {
                     });
 
 //        APP TITLE
-                    stage.setTitle(company + year + version + " Licensing" + "       CLIENT ID       " + licenseId);
+                    stage.setTitle(NANOTECHSOFTWARES_POS_SOLUTIONS + year + version + " Licensing" + "       CLIENT ID       " + licenseId);
 
 
 //                    stage.setFullScreen(true);
@@ -330,7 +330,7 @@ public class Main extends Application {
                         stage.initStyle(StageStyle.DECORATED);
 
                         stage.getIcons().add(logoImageObj);
-                        stage.setTitle(company + year + version + "      CLIENT ID        " + licenseId);//TITLE
+                        stage.setTitle(NANOTECHSOFTWARES_POS_SOLUTIONS + year + version + "      CLIENT ID        " + licenseId);//TITLE
                         stage.setOnCloseRequest(event -> {
                             Platform.exit();
                             System.exit(123);
@@ -347,7 +347,7 @@ public class Main extends Application {
                         stage.initStyle(StageStyle.DECORATED);
 
                         stage.getIcons().add(logoImageObj);
-                        stage.setTitle(company + year + version + "     CLIENT ID       " + licenseId);//TITLE
+                        stage.setTitle(NANOTECHSOFTWARES_POS_SOLUTIONS + year + version + "     CLIENT ID       " + licenseId);//TITLE
                         stage.setOnCloseRequest(event -> {
                             Platform.exit();
                             System.exit(123);
@@ -371,7 +371,7 @@ public class Main extends Application {
             });
 
 //        APP TITLE
-            stage.setTitle(company + year + version + " Licensing" + "       CLIENT ID       " + licenseId);
+            stage.setTitle(NANOTECHSOFTWARES_POS_SOLUTIONS + year + version + " Licensing" + "       CLIENT ID       " + licenseId);
             Main.stage = stage;
             stage.show();
         }

@@ -272,7 +272,7 @@ public class ViewBackUpsController extends Controllers.UtilityClass implements I
 
     private void sendBackup() {
         try {
-            mailBackupSend(user.get("backupemail"), backupmail, mailPassword);
+            mailBackupSend(user.get("backupemail"), alternativeBackupEmail, mailPassword);
         } catch (MessagingException e) {
             e.printStackTrace();
         }

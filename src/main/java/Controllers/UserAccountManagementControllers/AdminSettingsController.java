@@ -33,6 +33,27 @@ public class AdminSettingsController extends UtilityClass implements Initializab
 
 
     @FXML
+    private TextField companyName;
+    @FXML
+    private TextField companyAddress;
+    @FXML
+    private TextField companyPhone;
+    @FXML
+    private TextField companyEmail;
+    @FXML
+    private TextField companyMessage;
+    @FXML
+    private Button changeLogoBtn;
+    @FXML
+    private Label companyImageName;
+    @FXML
+    private Button updateCompanyDetailsBtn;
+    @FXML
+    private Button clearCompanyDetailsBtn;
+
+
+
+    @FXML
     private AnchorPane panel;
     @FXML
     private Label userAccountNameLabel;
@@ -108,12 +129,14 @@ public class AdminSettingsController extends UtilityClass implements Initializab
     @FXML
     private TabPane mainTabPane;
 
+//preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+//            preparedStatement.setString(1, "companyName");
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        userAccountHintChange.setVisible(false);
-        userAccountHintSet.setVisible(false);
+
         try {
             initializer();
         } catch (SQLException e) {
@@ -175,17 +198,17 @@ public class AdminSettingsController extends UtilityClass implements Initializab
 
     private void reload() {
         try {
-            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/adminSettings.fxml")))));
-            System.out.println("selecting " + UtilityClass.prev);
-            mainTabPane.getSelectionModel().select(UtilityClass.prev);
-
-        } catch (IOException e) {
+            initializer();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
 
     private void initializer() throws SQLException {
+        setAccountDetailsGUI();
+        userAccountHintChange.setVisible(false);
+        userAccountHintSet.setVisible(false);
 
         mainTabPane.getSelectionModel().selectedItemProperty().addListener(
                 (ov, t, t1) -> {
@@ -368,6 +391,41 @@ public class AdminSettingsController extends UtilityClass implements Initializab
 
     }
 
+    private void setAccountDetailsGUI() {
+
+
+        Connection connection = new UtilityClass().getConnection();
+        try {
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement("SELECT * FROM drivesettings ORDER BY id DESC LIMIT 1");
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.isBeforeFirst()) {
+                //admin has set company name
+                while (rs.next()) {
+                    companyName.setText(AesCrypto.decrypt(encryptionkey, rs.getString("companyname")));
+                    if (!companyName.getText().isEmpty() && companyName.getText() != null) {
+                        companyName.setDisable(true);
+                    }
+                    companyImageName.setText(rs.getString("logo"));
+                    companyAddress.setText(rs.getString("address"));
+                    companyPhone.setText(rs.getString("phone"));
+                    companyMessage.setText(rs.getString("message"));
+                    companyEmail.setText(rs.getString("email"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 
     private void menuListeners() {
 //        menu listeners
@@ -395,6 +453,65 @@ public class AdminSettingsController extends UtilityClass implements Initializab
     }
 
     private void buttonListeners() {
+
+        updateCompanyDetailsBtn.setOnAction(event -> {
+            String id = null;
+            String phoneText = companyPhone.getText();
+            String addressText = companyAddress.getText();
+            String emailText = companyEmail.getText();
+            String messageText = companyMessage.getText();
+            String nameText = companyName.getText();
+            Connection connection = new UtilityClass().getConnection();
+            PreparedStatement preparedStatement = null;
+            try {
+                preparedStatement = connection.prepareStatement("SELECT * FROM drivesettings ORDER BY id DESC LIMIT 1");
+
+                ResultSet rs = preparedStatement.executeQuery();
+
+                if (rs.isBeforeFirst()) {
+                    //admin has set company name
+                    while (rs.next()) {
+                        id = rs.getString("id");
+                    }
+                    preparedStatement = connection.prepareStatement("UPDATE drivesettings SET message=?,companyname=?,address=?,phone=?,email=?,logo=? WHERE id=?");
+                    preparedStatement.setString(1, messageText);
+                    preparedStatement.setString(2, nameText);
+                    preparedStatement.setString(3, addressText);
+                    preparedStatement.setString(4, phoneText);
+                    preparedStatement.setString(5, emailText);
+                    preparedStatement.setString(6, companyImageName.getText());
+                    preparedStatement.setString(7, id);
+                    preparedStatement.executeUpdate();
+                } else {
+                    preparedStatement = connection.prepareStatement("INSERT INTO drivesettings  (message,companyname,address,phone,email,logo) VALUES (?,?,?,?,?,?)");
+                    preparedStatement.setString(1, messageText);
+                    preparedStatement.setString(2, nameText);
+                    preparedStatement.setString(3, addressText);
+                    preparedStatement.setString(4, phoneText);
+                    preparedStatement.setString(5, emailText);
+                    preparedStatement.setString(6, companyImageName.getText());
+                    preparedStatement.executeUpdate();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            setAccountDetailsGUI();
+        });
+
+        clearCompanyDetailsBtn.setOnAction(event -> {
+
+            companyPhone.clear();
+            companyAddress.clear();
+            companyEmail.clear();
+            companyMessage.clear();
+            reload();
+        });
+
         changeReportsLocation.setOnAction(event -> {
             //            update db change backup location
             // get the file selected

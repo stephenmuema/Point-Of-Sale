@@ -1,5 +1,6 @@
 package gdrive;
 
+import Controllers.UtilityClass;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -15,17 +16,23 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
+import javafx.scene.control.Alert;
+import securityandtime.AesCrypto;
 import securityandtime.config;
 
 import java.io.*;
 import java.security.GeneralSecurityException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static securityandtime.config.*;
 
-public class DriveSuperClass {
+public class DriveSuperClass extends UtilityClass {
     Drive service;
     private NetHttpTransport HTTP_TRANSPORT = new NetHttpTransport();
     private Credential credential = null;
@@ -197,20 +204,84 @@ public class DriveSuperClass {
         return getGoogleSubFolders(null);
     }
 
-    public static void driveBackup(String driveFileName, String filePathName) throws IOException {
-        List<File> googlefolders = getGoogleSubFolders(config.backUpFolderId);
-        for (File folder : googlefolders) {
-            System.out.println("Folder ID: " + folder.getId() + " --- Name: " + folder.getName());
-            String folderId = "";
-            if (folder.getId().equals(folderId)/*id from db*/) {
-                //make backup in this folder
-                try {
-                    createGoogleFile(folderId, "multipart/x-zip", driveFileName, new java.io.File(filePathName));
-                } catch (GeneralSecurityException e) {
-                    e.printStackTrace();
+    public static boolean driveBackup(String driveFileName, String filePathName) throws IOException {
+        boolean success = true;
+        String company = "";
+
+        String companyFolderId = "";//folder id for the company
+        Connection connection = new UtilityClass().getConnection();
+        try {
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement("SELECT * FROM drivesettings ORDER BY id DESC LIMIT 1");
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.isBeforeFirst()) {
+                //admin has set company name
+                while (rs.next()) {
+                    if (rs.getString("companyname").length() > 0 && rs.getString("companyname") != null) {
+                        company = AesCrypto.decrypt(encryptionkey, rs.getString("companyname"));
+
+
+                    }
+                    if (rs.getString("backupfolderid").length() > 0 && rs.getString("backupfolderid") != null) {
+                        companyFolderId = AesCrypto.decrypt(encryptionkey, rs.getString("backupfolderid"));
+
+
+                    }
+
+                    if (!company.isEmpty() && companyFolderId.isEmpty()) {
+                        //create drive folder for company
+                        File f = createGoogleFolder(null, company);
+                        preparedStatement = connection.prepareStatement("INSERT INTO drivesettings(driveBackupFolderId,backupFolderName)VALUES(?,?)");
+
+                        preparedStatement.setString(1, AesCrypto.encrypt(encryptionkey, initVector, f.getId()));
+                        preparedStatement.setString(2, AesCrypto.encrypt(encryptionkey, initVector, f.getName()));
+                        preparedStatement.executeUpdate();
+                        success = false;
+
+                        System.out.println("backup to google drive failed because you dont have a company");
+
+                    }
+
+                    if (!companyFolderId.isEmpty() && !driveFileName.isEmpty() && !company.isEmpty()) {
+                        List<File> googlefolders = getGoogleSubFolders(backUpFolderId);
+                        for (File folder : googlefolders) {
+                            System.out.println("Folder ID: " + folder.getId() + " --- Name: " + folder.getName());
+                            if (folder.getId().equals(companyFolderId)/*id from db*/) {
+                                //make backup in this folder
+                                try {
+                                    createGoogleFile(companyFolderId, "multipart/x-zip", driveFileName, new java.io.File(filePathName));
+                                } catch (GeneralSecurityException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    } else {
+                        System.out.println("backup to google drive failed because a parameter was empty");
+                    }
+
                 }
+            } else {
+                new UtilityClass().showAlert(Alert.AlertType.INFORMATION, panel.get("panel").getScene().getWindow(), "INFORMATION", "SET UP THE COMPANY NAME IN SETTINGS IN ORDER TO SEND BACKUP TO OUR DRIVE");
+
+
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
+
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (!success) {
+            driveBackup(driveFileName, filePathName);
+        }
+        return success;
     }
 
     public NetHttpTransport getHTTP_TRANSPORT() {
