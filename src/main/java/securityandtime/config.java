@@ -1,13 +1,13 @@
 package securityandtime;
 
+import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.services.drive.DriveScopes;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.IdentityHashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 public interface config {//host,user,password,des,port
     String environment = "development";
@@ -51,8 +51,26 @@ public interface config {//host,user,password,des,port
     String localCartDb = "jdbc:sqlite:" + fileSavePath + "files\\shoppingLocal.db";
     String aesKey = "26kozQaKwRuNJ24t26kozQaKwRuNJ24t";
     Map<String, Boolean> networkConnectionMap = new HashMap<>();
-    File file = new File(fileSavePath + "\\images\\logo.png");
-    Image image = new Image(file.toURI().toString());
+    File defLogoFile = new File(fileSavePath + "\\images\\logo.png");
+    Image logoImageObj = new Image(defLogoFile.toURI().toString());
 
+
+    //drive settings
+    String backUpFolderId = "1KeAMwOXSQiZvWVwFs5DmtcwKgWGZNeEX";
+    String APPLICATION_NAME = "Google Drive API Java Quickstart";
+
+    JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+
+    // Directory to store user credentials for this application.
+    java.io.File CREDENTIALS_FOLDER = new java.io.File(System.getProperty("user.home"), "credentials");
+
+    String CLIENT_SECRET_FILE_NAME = "client_secret.json";
+
+    //
+    // Global instance of the scopes required by this quickstart. If modifying these
+    // scopes, delete your previously saved credentials/ folder.
+    //
+    List<String> SCOPES = Collections.singletonList(DriveScopes.DRIVE);
+    String credentialFile = CREDENTIALS_FOLDER + "\\StoredCredential";
 
 }

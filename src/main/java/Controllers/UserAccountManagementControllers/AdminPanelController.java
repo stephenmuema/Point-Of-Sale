@@ -6,6 +6,7 @@ import Controllers.SevenZ;
 import Controllers.UtilityClass;
 import com.smattme.MysqlExportService;
 import com.smattme.MysqlImportService;
+import gdrive.DriveMain;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -586,6 +587,7 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         //add path to back up table
         mysqlExportService.clearTempFiles(false);
         mysqlExportService.export();
+        DriveMain.driveBackupMain(zip.getName(), zip.getAbsolutePath());
 
         return zip.getPath();
     }

@@ -16,8 +16,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static securityandtime.config.image;
 import static securityandtime.config.license;
+import static securityandtime.config.logoImageObj;
 
 public class SplashScreenController implements Initializable {
 
@@ -37,7 +37,7 @@ public class SplashScreenController implements Initializable {
         try {
             Date date = new Date();
 
-            logo.setImage(image);
+            logo.setImage(logoImageObj);
             if (Objects.equals(license.get("name"), "Trial license")) {
                 date.setTime(Long.parseLong(license.get("time")) + System.currentTimeMillis());
 

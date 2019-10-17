@@ -7,47 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gdrive/DriveMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gdrive/DriveSuperClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shoppingCartDb.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminSettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/PanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/PanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/SettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/ViewBackUpsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/ViewBackUpsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MasterClasses/SalesMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MasterClasses/SalesMaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/SplashScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/SplashScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/licensingPanel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/licensingPanel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/signup.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/signup.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/adminSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/adminSettings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/employees.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/employees.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panelAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panelAdmin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/reportIssues.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/reportIssues.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/viewBackups.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/viewBackups.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/carwashFiles/carwash.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/carwashFiles/carwash.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/carwashFiles/carwashSales.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/carwashFiles/carwashSales.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/carwashFiles/carwashprice.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/carwashFiles/carwashprice.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/chatFiles/ChatView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/chatFiles/ChatView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/chatFiles/TrayNotification.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/chatFiles/TrayNotification.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/onlinepayments.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/onlinepayments.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/scanneradd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/scanneradd.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/shop.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/shop.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/showpriceexitcash.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/showpriceexitcash.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/stocks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/stocks.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/SettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/SettingsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UtilityClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UtilityClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/adminSettings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/adminSettings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SplashScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SplashScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -183,7 +150,7 @@
     <property name="database.console.LAST_STATE" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/chatbox/src" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../emailerapp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -242,7 +209,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.DriveMain">
     <configuration name="AesCrypto (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="securityandtime.AesCrypto" />
       <module name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
@@ -256,12 +223,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BarCodeScanner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Controllers.BarCodeScanner" />
+    <configuration name="DriveMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gdrive.DriveMain" />
       <module name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Controllers.*" />
+          <option name="PATTERN" value="gdrive.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -299,19 +266,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Launcher" />
-      <item itemvalue="Application.BarCodeScanner" />
       <item itemvalue="Application.testing" />
       <item itemvalue="Application.JsonReader" />
       <item itemvalue="Application.AesCrypto (1)" />
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.DriveMain" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DriveMain" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.AesCrypto (1)" />
         <item itemvalue="Application.JsonReader" />
         <item itemvalue="Application.testing" />
-        <item itemvalue="Application.BarCodeScanner" />
       </list>
     </recent_temporary>
   </component>
@@ -650,6 +617,9 @@
       <workItem from="1571038683037" duration="2690000" />
       <workItem from="1571121897350" duration="2583000" />
       <workItem from="1571126423710" duration="4809000" />
+      <workItem from="1571294592051" duration="1250000" />
+      <workItem from="1571302277049" duration="590000" />
+      <workItem from="1571316024941" duration="3427000" />
     </task>
     <task id="LOCAL-00001" summary="before shopping cart">
       <created>1552048112305</created>
