@@ -103,17 +103,15 @@ public class AdminSettingsController extends UtilityClass implements Initializab
     private Tab tabReports;
     @FXML
     private Tab tabStations;
-    @FXML
-    private Tab tabMirror;
-
+    //    @FXML
+//    private Tab tabMirror;
     @FXML
     private TabPane mainTabPane;
 
 
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         userAccountHintChange.setVisible(false);
         userAccountHintSet.setVisible(false);
         try {
@@ -406,7 +404,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
             File file = dir_chooser.showDialog(panel.getScene().getWindow());
 
             if (file != null) {
-                PreparedStatement prep = null;
+                PreparedStatement prep;
                 try {
                     prep = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
                     prep.setString(1, "reportLocation");
@@ -465,7 +463,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
         });
         backupEmailChangePassword.setOnAction(event -> {
             try {
-                changeColumn("users", "backupemailPassword");
+                changeColumn("backupemailPassword");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -481,7 +479,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
             Optional<ButtonType> option = alert.showAndWait();
             if (option.isPresent() && option.get() == ButtonType.OK) {
                 try {
-                    changeColumn("users", "email");
+                    changeColumn("email");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -498,7 +496,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
             Optional<ButtonType> option = alert.showAndWait();
             if (option.isPresent() && option.get() == ButtonType.OK) {
                 try {
-                    changeColumn("users", "employeename");
+                    changeColumn("employeename");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -550,7 +548,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
                 Optional<ButtonType> option = alert.showAndWait();
                 if (option.isPresent() && option.get() == ButtonType.OK) {
                     try {
-                        changeColumn("users", "backupemail");
+                        changeColumn("backupemail");
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
@@ -568,7 +566,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
             File file = dir_chooser.showDialog(panel.getScene().getWindow());
 
             if (file != null) {
-                PreparedStatement prep = null;
+                PreparedStatement prep;
                 try {
                     prep = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
                     prep.setString(1, "backupLocation");
@@ -610,7 +608,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
         });
     }
 
-    private void changeColumn(String table, String column) throws SQLException {
+    private void changeColumn(String column) throws SQLException {
         UtilityClass utilityClass = new UtilityClass();
         Connection connection = utilityClass.getConnection();
         if (column.equals("backupemail")) {
@@ -623,7 +621,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
                 insertDefaultBackupEmail.execute();
                 showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "DEFAULT", "SELECTING NULL VALUE WILL RESULT IN A DEFAULT EMAIL BEING USED AS A BACKUP EMAIL");
             } else {
-                preparedStatement = connection.prepareStatement("UPDATE  " + table + " SET  " + column + "=? WHERE email=?");
+                preparedStatement = connection.prepareStatement("UPDATE  " + "users" + " SET  " + column + "=? WHERE email=?");
                 preparedStatement.setString(1, columnValue);
                 preparedStatement.setString(2, email);
                 if (preparedStatement.executeUpdate() > 0) {
@@ -639,7 +637,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
                 showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "PASSWORD CANNOT BE NULL");
 
             } else {
-                preparedStatement = connection.prepareStatement("UPDATE  " + table + " SET  " + column + "=? WHERE email=?");
+                preparedStatement = connection.prepareStatement("UPDATE  " + "users" + " SET  " + column + "=? WHERE email=?");
                 preparedStatement.setString(1, AesCrypto.encrypt(encryptionkey, initVector, columnValue));
                 preparedStatement.setString(2, email);
                 if (preparedStatement.executeUpdate() > 0) {
@@ -651,7 +649,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
             }
         } else {
             String columnValue = dialogBoxCredentials(" CHANGE DATABASE INFORMATION", "INPUT YOUR NEW VALUES");
-            preparedStatement = connection.prepareStatement("UPDATE  " + table + " SET  " + column + "=? WHERE email=?");
+            preparedStatement = connection.prepareStatement("UPDATE  " + "users" + " SET  " + column + "=? WHERE email=?");
             preparedStatement.setString(1, columnValue);
             preparedStatement.setString(2, email);
             if (preparedStatement.executeUpdate() > 0) {
@@ -1007,13 +1005,6 @@ public class AdminSettingsController extends UtilityClass implements Initializab
         this.tabStations = tabStations;
     }
 
-    public Tab getTabMirror() {
-        return tabMirror;
-    }
-
-    public void setTabMirror(Tab tabMirror) {
-        this.tabMirror = tabMirror;
-    }
 
     public TabPane getMainTabPane() {
         return mainTabPane;

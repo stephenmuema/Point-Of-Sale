@@ -124,7 +124,7 @@ public class PanelController extends UtilityClass implements Initializable {
         accountb.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/adminSettings.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/settings.fxml"));
                 try {
                     Parent parent = fxmlLoader.load();
                     Stage stage = new Stage();

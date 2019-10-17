@@ -83,7 +83,7 @@ public class SettingsController extends UtilityClass implements Initializable {
         userAccountHintSet.setVisible(false);
         try {
             initializer();
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         config.panel.put("panel", panel);
@@ -174,7 +174,7 @@ public class SettingsController extends UtilityClass implements Initializable {
 
     }
 
-    private void initializer() throws SQLException, IOException {
+    private void initializer() throws SQLException {
         changeStationName.setVisible(false);
         stationName.setVisible(false);
         if (!config.login.containsKey("loggedinasadmin")) {
@@ -206,10 +206,6 @@ public class SettingsController extends UtilityClass implements Initializable {
 
                 }
             }
-//            else {
-//                currentBackUpLocation.setText(fileSavePath + "backups");
-//
-//            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -223,56 +219,9 @@ public class SettingsController extends UtilityClass implements Initializable {
             if (resultSet.getString("backupemail") == null && config.login.containsKey("loggedinasadmin")) {
                 backupEmailChangeButton.setText("SET BACKUP EMAIL");
 
-/*
-
-                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-                alert1.setTitle("BACK UP EMAIL SETUP PROCEDURE");
-                alert1.setHeaderText(null);
-                alert1.setContentText("HI...YOU NEED TO SET UP THE BACK UP EMAIL FOR ONLINE BACKUPS");
-                alert1.initOwner(config.panel.get("panel").getScene().getWindow());
-                Optional<ButtonType> option = alert1.showAndWait();
-                if (option.isPresent() && option.get() == ButtonType.OK) {
-                    try {
-                        changeColumn("users", "backupemail");
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "DEFAULT EMAIL", "THIS OPERATION HAS MADE YOUR ACCOUNT YOUR BACK UP EMAIL");
-                    PreparedStatement insertDefaultBackupEmail = connection.prepareStatement("UPDATE users SET backupemail=? WHERE id=? ");
-                    insertDefaultBackupEmail.setString(1, email);
-                    insertDefaultBackupEmail.setInt(2, id);
-                    insertDefaultBackupEmail.execute();
-                    reload();
-                }
-                reload();
-*/
 
             } else if ((resultSet.getString("backupemail") == null || resultSet.getString("backupemail").isEmpty()) && config.login.containsKey("loggedinasadmin")) {
                 backupEmailChangeButton.setText("SET BACKUP EMAIL");
-/*
-                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-                alert1.setTitle("BACK UP EMAIL SETUP PROCEDURE");
-                alert1.setHeaderText(null);
-                alert1.setContentText("HI...YOU NEED TO SET UP THE BACK UP EMAIL FOR ONLINE BACKUPS");
-                alert1.initOwner(config.panel.get("panel").getScene().getWindow());
-                Optional<ButtonType> option = alert1.showAndWait();
-                if (option.isPresent() && option.get() == ButtonType.OK) {
-                    try {
-                        changeColumn("users", "backupemail");
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "DEFAULT EMAIL", "THIS OPERATION HAS MADE YOUR ACCOUNT YOUR BACK UP EMAIL");
-                    PreparedStatement insertDefaultBackupEmail = connection.prepareStatement("UPDATE users SET backupemail=? WHERE id=? ");
-                    insertDefaultBackupEmail.setString(1, email);
-                    insertDefaultBackupEmail.setInt(2, id);
-                    insertDefaultBackupEmail.execute();
-                    reload();
-                }
-                reload();
-*/
 
             }
 

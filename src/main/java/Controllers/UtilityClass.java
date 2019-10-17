@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
 import javafx.util.Duration;
 import org.apache.commons.io.FileUtils;
+import securityandtime.AesCrypto;
 import securityandtime.CheckConn;
 import securityandtime.config;
 
@@ -21,8 +22,11 @@ import javax.imageio.ImageIO;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -103,6 +107,118 @@ public class UtilityClass {
 
         Runtime.getRuntime().exec(restartCommand);
         System.exit(0);
+    }
+
+    public void goToStaff(AnchorPane panel) {
+        try {
+            refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    panel.getChildren().removeAll();
+                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/employees.fxml")))));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void goToStocks(AnchorPane panel) {
+        try {
+            refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    panel.getChildren().removeAll();
+                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/stocks.fxml")))));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void goToCarwash(AnchorPane panel) {
+        try {
+            refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        panel.getChildren().removeAll();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("carwashFiles/carwash.fxml")))));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void goToSuppliers(AnchorPane panel) {
+        try {
+            refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Desktop.getDesktop().browse(new URL(supplierSite).toURI());
+                } catch (IOException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void gotoAudits(AnchorPane panel) {
+        try {
+            refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    panel.getChildren().removeAll();
+                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/audits.fxml")))));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void refresh() throws SQLException {
+        ResultSet resultSet;
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE email=?");
+        statement.setString(1, config.user.get("user"));
+        resultSet = statement.executeQuery();
+        if (resultSet.isBeforeFirst()) {
+            while (resultSet.next()) {
+                config.login.put("loggedinasadmin", true);
+                config.user.put("userName", resultSet.getString("employeename"));
+
+                config.user.put("user", resultSet.getString("email"));
+                config.key.put("key", resultSet.getString("subscribername"));
+                config.user.put("backupemail", resultSet.getString("backupemail"));
+                config.user.put("backupemailpassword", AesCrypto.decrypt(encryptionkey, resultSet.getString("backupemailpassword")));
+            }
+        }
     }
 
     public Connection getConnection() {

@@ -1,7 +1,6 @@
 package Controllers.UserAccountManagementControllers;
 
 import Controllers.SevenZ;
-import Controllers.UtilityClass;
 import MasterClasses.BackUpFilesMaster;
 import com.smattme.MysqlImportService;
 import javafx.application.Platform;
@@ -12,9 +11,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
@@ -24,7 +20,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import securityandtime.AesCrypto;
 import securityandtime.config;
 
 import javax.activation.DataHandler;
@@ -32,18 +27,14 @@ import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.*;
-import java.awt.*;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -55,7 +46,7 @@ import java.util.ResourceBundle;
 import static securityandtime.config.*;
 
 
-public class ViewBackUpsController extends UtilityClass implements Initializable {
+public class ViewBackUpsController extends Controllers.UtilityClass implements Initializable {
 
     public Menu navigation;
     public MenuItem details;
@@ -245,36 +236,6 @@ public class ViewBackUpsController extends UtilityClass implements Initializable
         });
     }
 
-    private void refresh() throws SQLException {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                panel.getChildren().removeAll();
-                try {
-
-                    panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/viewBackups.fxml")))));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        ResultSet resultSet;
-        PreparedStatement statement = new UtilityClass().getConnection().prepareStatement("SELECT * FROM users WHERE email=?");
-        statement.setString(1, config.user.get("user"));
-        resultSet = statement.executeQuery();
-        if (resultSet.isBeforeFirst()) {
-            while (resultSet.next()) {
-                config.login.put("loggedinasadmin", true);
-                config.user.put("userName", resultSet.getString("employeename"));
-
-                config.user.put("user", resultSet.getString("email"));
-                config.key.put("key", resultSet.getString("subscribername"));
-                config.user.put("backupemail", resultSet.getString("backupemail"));
-                config.user.put("backupemailpassword", AesCrypto.decrypt(encryptionkey, resultSet.getString("backupemailpassword")));
-            }
-        }
-
-    }
 
     private void buttonPressed() {
         delete.setOnAction(event -> {
@@ -473,54 +434,6 @@ public class ViewBackUpsController extends UtilityClass implements Initializable
 
     }
 
-    public void goToStaff(AnchorPane panel) {
-
-        try {
-            panel.getChildren().removeAll();
-            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/employees.fxml")))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void goToStocks(AnchorPane panel) {
-
-        try {
-            panel.getChildren().removeAll();
-            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/stocks.fxml")))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void goToCarwash(AnchorPane panel) {
-
-        panel.getChildren().removeAll();
-        try {
-            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("carwashFiles/carwash.fxml")))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void goToSuppliers(AnchorPane panel) {
-
-        try {
-            Desktop.getDesktop().browse(new URL(supplierSite).toURI());
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void gotoAudits(AnchorPane panel) {
-
-        try {
-            panel.getChildren().removeAll();
-            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("shopFiles/audits.fxml")))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public Button getImportDb() {
         return importDb;
