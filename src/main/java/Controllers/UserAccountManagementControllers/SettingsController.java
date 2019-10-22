@@ -77,6 +77,9 @@ public class SettingsController extends UtilityClass implements Initializable {
     @FXML
     private Button backupEmailChangePassword;
 
+    public SettingsController() throws IOException {
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         userAccountHintChange.setVisible(false);
@@ -93,8 +96,13 @@ public class SettingsController extends UtilityClass implements Initializable {
         buttonListeners();
         menuListeners();
         tg.selectedToggleProperty().addListener((ob, o, n) -> {
-            UtilityClass utilityClass = new UtilityClass();
-            Connection connection = utilityClass.getConnection();
+//            UtilityClass utilityClass = ;
+            Connection connection = null;
+            try {
+                connection = new UtilityClass().getConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             RadioButton rb = (RadioButton) tg.getSelectedToggle();
 
             if (rb != null) {
@@ -127,22 +135,32 @@ public class SettingsController extends UtilityClass implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                () -> {
-                    try {
-                        config.login.put("loggedout", true);
+        IdleMonitor idleMonitor = null;
+        try {
+            idleMonitor = new IdleMonitor(Duration.seconds(3600),
+                    () -> {
+                        try {
+                            config.login.put("loggedout", true);
 
-                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }, true);
+                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         idleMonitor.register(panel, Event.ANY);
     }
 
     private void initialiseRadioButtons() throws SQLException {
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
+//        UtilityClass utilityClass = new UtilityClass();
+        Connection connection = null;
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
         preparedStatement.setString(1, "backup");
         ResultSet rs = preparedStatement.executeQuery();
@@ -192,8 +210,13 @@ public class SettingsController extends UtilityClass implements Initializable {
 
         }
         checkSetPcName(stationName);
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
+//        UtilityClass utilityClass = new ();
+        Connection connection = null;
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         PreparedStatement prep;
         try {
             prep = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
@@ -265,8 +288,13 @@ public class SettingsController extends UtilityClass implements Initializable {
         dialog.setTitle("SET HINT");
         dialog.setHeaderText(null);
         dialog.setContentText(text);
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
+//        UtilityClass utilityClass = new UtilityClass();
+        Connection connection = null;
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Optional<String> result = dialog.showAndWait();
         preparedStatement = connection.prepareStatement("UPDATE users SET passwordhint=? WHERE email=?");
         String value = result.orElse(null);
@@ -397,8 +425,13 @@ public class SettingsController extends UtilityClass implements Initializable {
         changeBackUpLocation.setOnAction(event -> {
             //            update db change backup location
             // get the file selected
-            UtilityClass utilityClass = new UtilityClass();
-            Connection connection = utilityClass.getConnection();
+//            UtilityClass utilityClass = new UtilityClass();
+            Connection connection = null;
+            try {
+                connection = new UtilityClass().getConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             DirectoryChooser dir_chooser = new DirectoryChooser();
             File file = dir_chooser.showDialog(panel.getScene().getWindow());
 
@@ -446,18 +479,45 @@ public class SettingsController extends UtilityClass implements Initializable {
     }
 
     private void changeColumn(String table, String column) throws SQLException {
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
-        if (column.equals("backupemail")) {
+        try (Connection connection = new UtilityClass().getConnection()) {
+            if (column.equals("backupemail")) {
 
-            String columnValue = dialogBoxCredentials(" CHANGE DATABASE BACK UP EMAIL", "INPUT YOUR NEW BACK UP EMAIL");
-            if (columnValue == null) {
-                PreparedStatement insertDefaultBackupEmail = connection.prepareStatement("UPDATE users SET backupemail=? WHERE email=? ");
-                insertDefaultBackupEmail.setString(1, email);
-                insertDefaultBackupEmail.setString(2, email);
-                insertDefaultBackupEmail.execute();
-                showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "DEFAULT", "SELECTING NULL VALUE WILL RESULT IN A DEFAULT EMAIL BEING USED AS A BACKUP EMAIL");
+                String columnValue = dialogBoxCredentials(" CHANGE DATABASE BACK UP EMAIL", "INPUT YOUR NEW BACK UP EMAIL");
+                if (columnValue == null) {
+                    PreparedStatement insertDefaultBackupEmail = connection.prepareStatement("UPDATE users SET backupemail=? WHERE email=? ");
+                    insertDefaultBackupEmail.setString(1, email);
+                    insertDefaultBackupEmail.setString(2, email);
+                    insertDefaultBackupEmail.execute();
+                    showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "DEFAULT", "SELECTING NULL VALUE WILL RESULT IN A DEFAULT EMAIL BEING USED AS A BACKUP EMAIL");
+                } else {
+                    preparedStatement = connection.prepareStatement("UPDATE  " + table + " SET  " + column + "=? WHERE email=?");
+                    preparedStatement.setString(1, columnValue);
+                    preparedStatement.setString(2, email);
+                    if (preparedStatement.executeUpdate() > 0) {
+                        showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS", "DATABASE HAS BEEN UPDATED SUCCESSFULLY");
+                    } else {
+                        showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "DATABASE HAS NOT BEEN UPDATED SUCCESSFULLY");
+
+                    }
+                }
+            } else if (column.equals("backupemailPassword")) {
+                String columnValue = dialogBoxCredentials(" CHANGE BACK UP EMAIL PASSWORD INFORMATION", "INPUT YOUR NEW VALUES");
+                if (columnValue == null) {
+                    showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "PASSWORD CANNOT BE NULL");
+
+                } else {
+                    preparedStatement = connection.prepareStatement("UPDATE  " + table + " SET  " + column + "=? WHERE email=?");
+                    preparedStatement.setString(1, AesCrypto.encrypt(encryptionkey, initVector, columnValue));
+                    preparedStatement.setString(2, email);
+                    if (preparedStatement.executeUpdate() > 0) {
+                        showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS", "DATABASE HAS BEEN UPDATED SUCCESSFULLY.PASSWORD HAS BEEN ENCRYPTED TO " + AesCrypto.encrypt(encryptionkey, initVector, columnValue));
+                    } else {
+                        showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "DATABASE HAS NOT BEEN UPDATED SUCCESSFULLY");
+
+                    }
+                }
             } else {
+                String columnValue = dialogBoxCredentials(" CHANGE DATABASE INFORMATION", "INPUT YOUR NEW VALUES");
                 preparedStatement = connection.prepareStatement("UPDATE  " + table + " SET  " + column + "=? WHERE email=?");
                 preparedStatement.setString(1, columnValue);
                 preparedStatement.setString(2, email);
@@ -467,40 +527,15 @@ public class SettingsController extends UtilityClass implements Initializable {
                     showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "DATABASE HAS NOT BEEN UPDATED SUCCESSFULLY");
 
                 }
-            }
-        } else if (column.equals("backupemailPassword")) {
-            String columnValue = dialogBoxCredentials(" CHANGE BACK UP EMAIL PASSWORD INFORMATION", "INPUT YOUR NEW VALUES");
-            if (columnValue == null) {
-                showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "PASSWORD CANNOT BE NULL");
-
-            } else {
-                preparedStatement = connection.prepareStatement("UPDATE  " + table + " SET  " + column + "=? WHERE email=?");
-                preparedStatement.setString(1, AesCrypto.encrypt(encryptionkey, initVector, columnValue));
-                preparedStatement.setString(2, email);
-                if (preparedStatement.executeUpdate() > 0) {
-                    showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS", "DATABASE HAS BEEN UPDATED SUCCESSFULLY.PASSWORD HAS BEEN ENCRYPTED TO " + AesCrypto.encrypt(encryptionkey, initVector, columnValue));
-                } else {
-                    showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "DATABASE HAS NOT BEEN UPDATED SUCCESSFULLY");
-
+                if (column.equals("email")) {
+                    config.user.put("user", columnValue);
+                }
+                if (column.equals("employeename")) {
+                    config.user.put("userName", columnValue);
                 }
             }
-        } else {
-            String columnValue = dialogBoxCredentials(" CHANGE DATABASE INFORMATION", "INPUT YOUR NEW VALUES");
-            preparedStatement = connection.prepareStatement("UPDATE  " + table + " SET  " + column + "=? WHERE email=?");
-            preparedStatement.setString(1, columnValue);
-            preparedStatement.setString(2, email);
-            if (preparedStatement.executeUpdate() > 0) {
-                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS", "DATABASE HAS BEEN UPDATED SUCCESSFULLY");
-            } else {
-                showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "DATABASE HAS NOT BEEN UPDATED SUCCESSFULLY");
-
-            }
-            if (column.equals("email")) {
-                config.user.put("user", columnValue);
-            }
-            if (column.equals("employeename")) {
-                config.user.put("userName", columnValue);
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
 
@@ -508,8 +543,12 @@ public class SettingsController extends UtilityClass implements Initializable {
 
     private void changeColumnLocal(String table, String column) throws SQLException {
 
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnectionDbLocal();
+        Connection connection = null;
+        try {
+            connection = new UtilityClass().getConnectionDbLocal();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         PreparedStatement prep = connection.prepareStatement("SELECT * FROM system_settings WHERE name=?");
         prep.setString(1, "pcname");
         ResultSet rs = prep.executeQuery();
@@ -547,8 +586,12 @@ public class SettingsController extends UtilityClass implements Initializable {
     }
 
     private void changePassword() throws SQLException, NoSuchAlgorithmException {
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
+        Connection connection = null;
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         String password = dialogBoxCredentials("PASSWORD CHANGE", "INPUT YOUR NEW PASSWORD");
         preparedStatement = connection.prepareStatement("UPDATE  users SET password=? WHERE email=?");
         System.out.println(password);

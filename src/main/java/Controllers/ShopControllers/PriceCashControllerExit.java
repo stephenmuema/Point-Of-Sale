@@ -39,7 +39,7 @@ public class PriceCashControllerExit extends UtilityClass implements Initializab
     public Button back;
     public AnchorPane panel;
     public TextField cash;
-    Connection connection = getConnection();
+    Connection connection;
     private int pricevalue;
     private boolean completedPayment;
     private Connection connectionDbLocal = getConnectionDbLocal();
@@ -71,6 +71,9 @@ public class PriceCashControllerExit extends UtilityClass implements Initializab
         }
     }
 
+    public PriceCashControllerExit() throws IOException {
+    }
+
     /**
      * made by steve
      * Called to initialize a controller after its root element has been
@@ -82,15 +85,20 @@ public class PriceCashControllerExit extends UtilityClass implements Initializab
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                () -> {
-                    try {
-                        config.login.put("loggedout", true);
-                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }, true);
+        IdleMonitor idleMonitor = null;
+        try {
+            idleMonitor = new IdleMonitor(Duration.seconds(3600),
+                    () -> {
+                        try {
+                            config.login.put("loggedout", true);
+                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         config.panel.put("panel", panel);
 
         idleMonitor.register(panel, Event.ANY);
@@ -134,7 +142,12 @@ public class PriceCashControllerExit extends UtilityClass implements Initializab
     }
 
     private void completetransaction() {
-        SuperClass superClass = new SuperClass();
+        SuperClass superClass = null;
+        try {
+            superClass = new SuperClass();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         superClass.completetransaction();
 
 
@@ -142,6 +155,7 @@ public class PriceCashControllerExit extends UtilityClass implements Initializab
 
 
     private void buttonListeners() {
+
         complete.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -157,6 +171,12 @@ public class PriceCashControllerExit extends UtilityClass implements Initializab
                 // complete the transaction by first removing from db
 
                 try {
+                    try {
+                        connection = new UtilityClass().getConnection();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                     ResultSet resultset = statementLocal.executeQuery("SELECT * FROM cartItems");
                     String transid = "";
                     while (resultset.next()) {
@@ -182,29 +202,14 @@ public class PriceCashControllerExit extends UtilityClass implements Initializab
                                 insertIntoSales.setString(4, resultset.getString("transactionid"));
                                 insertIntoSales.setString(5, resultSetStocks.getString("category"));
                                 insertIntoSales.executeUpdate();
-//                                    check if category exists,if exists update its records,elseinsert records
-//                                todo categorical audits v1.2
-//                                PreparedStatement checkIfExists=connection.prepareStatement("SELECT * FROM salespercategory where category=?");
-//                                checkIfExists.setString(1,resultSetStocks.getString("category"));
-//                                ResultSet rs=checkIfExists.executeQuery();
-//                                if(rs.isBeforeFirst()){
-//                                    //exists
-//                                    PreparedStatement updateCategories=connection.prepareStatement("UPDATE salespercategory set price=?, sales=? where category=?");
-//
-//                                }else{
-//                                    //does not exist
-//                                    PreparedStatement insertCategories=connection.prepareStatement("INSERT INTO salespercategory(category,price,sales)VALUES (?,?,?)");
-//                                    insertCategories.setString(1,resultSetStocks.getString("category"));
-//                                    insertCategories.setString(2,);
-//                                        insertCategories.setString(3,amount);
-////
-//                                }
 
 
                             }
                         }
 
                     }
+
+
                     PreparedStatement statement = connection.prepareStatement("insert into sales(transactionid,balance,seller,cash,moneypaid,method,completed)values (?,?,?,?,?,?,?)");
                     statement.setString(1, transid);
                     statement.setInt(2, Integer.parseInt(balance.getText()));

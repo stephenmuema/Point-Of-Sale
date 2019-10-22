@@ -40,7 +40,12 @@ public class Main extends Application {
 
     private static void createSqliteDb() {
         Connection connection = null;
-        UtilityClass utilityClass = new UtilityClass();
+        UtilityClass utilityClass = null;
+        try {
+            utilityClass = new UtilityClass();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try {
             connection = utilityClass.getConnectionDbLocal();
@@ -55,7 +60,11 @@ public class Main extends Application {
             Statement heldTransactionsDetails = connection.createStatement();
             String heldItems = "CREATE TABLE IF NOT EXISTS heldItems (id integer primary key autoincrement,itemname text,itemprice text,itemid text,code text,amount text,cumulativeprice text ,transactionid text)";
             heldTransactionsDetails.executeUpdate(heldItems);
-            new ShopController().setTransID();
+            try {
+                new ShopController().setTransID();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             Statement Cart = connection.createStatement();
             String cartItems = "CREATE TABLE IF NOT EXISTS cartItems (id integer primary key autoincrement,itemname text,itemprice text,itemid integer,code text,amount text,cumulativeprice text ,transactionid text,pic BLOB)";
@@ -77,7 +86,12 @@ public class Main extends Application {
     }
 
     private void setUpBackupLocIfNotSet() throws SQLException {
-        PreparedStatement prep = new UtilityClass().getConnection().prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+        PreparedStatement prep = null;
+        try {
+            prep = new UtilityClass().getConnection().prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         prep.setString(1, "backupLocation");
         ResultSet rs = prep.executeQuery();
         if (rs.isBeforeFirst()) {
@@ -86,10 +100,19 @@ public class Main extends Application {
 //                reportLocation
             }
         } else {
-            PreparedStatement preparedStatement = new UtilityClass().getConnection().prepareStatement("INSERT INTO systemsettings(name,type,value)VALUES (?,?,?)");
+            PreparedStatement preparedStatement = null;
+            try {
+                preparedStatement = new UtilityClass().getConnection().prepareStatement("INSERT INTO systemsettings(name,type,value)VALUES (?,?,?)");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             preparedStatement.setString(1, "backupLocation");
             preparedStatement.setString(2, "security");
-            preparedStatement.setString(3, new UtilityClass().path);
+            try {
+                preparedStatement.setString(3, new UtilityClass().path);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             preparedStatement.executeUpdate();
             setUpBackupLocIfNotSet();
         }
@@ -97,7 +120,12 @@ public class Main extends Application {
     }
 
     private void setUpReportsLocIfNotSet() throws SQLException {
-        PreparedStatement prep = new UtilityClass().getConnection().prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+        PreparedStatement prep = null;
+        try {
+            prep = new UtilityClass().getConnection().prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         prep.setString(1, "reportLocation");
         ResultSet rs = prep.executeQuery();
         if (rs.isBeforeFirst()) {
@@ -106,7 +134,12 @@ public class Main extends Application {
 //                reportLocation
             }
         } else {
-            PreparedStatement preparedStatement = new UtilityClass().getConnection().prepareStatement("INSERT INTO systemsettings(name,type,value)VALUES (?,?,?)");
+            PreparedStatement preparedStatement = null;
+            try {
+                preparedStatement = new UtilityClass().getConnection().prepareStatement("INSERT INTO systemsettings(name,type,value)VALUES (?,?,?)");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             preparedStatement.setString(1, "reportLocation");
             preparedStatement.setString(2, "reporting");
             preparedStatement.setString(3, fileSavePath + "\\files");

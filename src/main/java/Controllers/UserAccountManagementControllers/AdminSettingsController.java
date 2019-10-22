@@ -129,6 +129,9 @@ public class AdminSettingsController extends UtilityClass implements Initializab
     @FXML
     private TabPane mainTabPane;
 
+    public AdminSettingsController() throws IOException {
+    }
+
 //preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
 //            preparedStatement.setString(1, "companyName");
 
@@ -146,8 +149,12 @@ public class AdminSettingsController extends UtilityClass implements Initializab
     }
 
     private void initialiseRadioButtons() throws SQLException {
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
+        Connection connection = null;
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
         preparedStatement.setString(1, "backup");
         ResultSet rs = preparedStatement.executeQuery();
@@ -168,8 +175,12 @@ public class AdminSettingsController extends UtilityClass implements Initializab
             initialiseRadioButtons();
         }
 
-        utilityClass = new UtilityClass();
-        connection = utilityClass.getConnection();
+//        utilityClass = new ();
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         preparedStatement = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
         preparedStatement.setString(1, "exportFormat");
         rs = preparedStatement.executeQuery();
@@ -225,8 +236,13 @@ public class AdminSettingsController extends UtilityClass implements Initializab
         exportCsv.setToggleGroup(tg);
         exportPdf.setToggleGroup(tg);
         tg.selectedToggleProperty().addListener((ob, o, n) -> {
-            UtilityClass utilityClass = new UtilityClass();
-            Connection connection = utilityClass.getConnection();
+//            UtilityClass utilityClass = new UtilityClass();
+            Connection connection = null;
+            try {
+                connection = new UtilityClass().getConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             RadioButton rb = (RadioButton) tg.getSelectedToggle();
 
             if (rb != null) {
@@ -262,8 +278,13 @@ public class AdminSettingsController extends UtilityClass implements Initializab
         buttonListeners();
         menuListeners();
         backupTogglegroup.selectedToggleProperty().addListener((ob, o, n) -> {
-            UtilityClass utilityClass = new UtilityClass();
-            Connection connection = utilityClass.getConnection();
+//            UtilityClass utilityClass = new UtilityClass();
+            Connection connection = null;
+            try {
+                connection = new UtilityClass().getConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             RadioButton rb = (RadioButton) backupTogglegroup.getSelectedToggle();
 
             if (rb != null) {
@@ -296,16 +317,21 @@ public class AdminSettingsController extends UtilityClass implements Initializab
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                () -> {
-                    try {
-                        config.login.put("loggedout", true);
+        IdleMonitor idleMonitor = null;
+        try {
+            idleMonitor = new IdleMonitor(Duration.seconds(3600),
+                    () -> {
+                        try {
+                            config.login.put("loggedout", true);
 
-                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }, true);
+                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         idleMonitor.register(panel, Event.ANY);
         stationName.setVisible(false);
         changeStationName.setVisible(false);
@@ -324,8 +350,12 @@ public class AdminSettingsController extends UtilityClass implements Initializab
 
         }
         checkSetPcName(stationName);
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
+        Connection connection = null;
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         PreparedStatement prep;
         try {
             prep = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
@@ -394,7 +424,12 @@ public class AdminSettingsController extends UtilityClass implements Initializab
     private void setAccountDetailsGUI() {
 
 
-        Connection connection = new UtilityClass().getConnection();
+        Connection connection = null;
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try {
             PreparedStatement preparedStatement;
             preparedStatement = connection.prepareStatement("SELECT * FROM drivesettings ORDER BY id DESC LIMIT 1");
@@ -436,8 +471,12 @@ public class AdminSettingsController extends UtilityClass implements Initializab
         dialog.setTitle("SET HINT");
         dialog.setHeaderText(null);
         dialog.setContentText(text);
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
+        Connection connection = null;
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Optional<String> result = dialog.showAndWait();
         preparedStatement = connection.prepareStatement("UPDATE users SET passwordhint=? WHERE email=?");
         String value = result.orElse(null);
@@ -461,7 +500,12 @@ public class AdminSettingsController extends UtilityClass implements Initializab
             String emailText = companyEmail.getText();
             String messageText = companyMessage.getText();
             String nameText = companyName.getText();
-            Connection connection = new UtilityClass().getConnection();
+            Connection connection = null;
+            try {
+                connection = new UtilityClass().getConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             PreparedStatement preparedStatement = null;
             try {
                 preparedStatement = connection.prepareStatement("SELECT * FROM drivesettings ORDER BY id DESC LIMIT 1");
@@ -515,8 +559,13 @@ public class AdminSettingsController extends UtilityClass implements Initializab
         changeReportsLocation.setOnAction(event -> {
             //            update db change backup location
             // get the file selected
-            UtilityClass utilityClass = new UtilityClass();
-            Connection connection = utilityClass.getConnection();
+//            UtilityClass utilityClass = new UtilityClass();
+            Connection connection = null;
+            try {
+                connection = new UtilityClass().getConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             DirectoryChooser dir_chooser = new DirectoryChooser();
             File file = dir_chooser.showDialog(panel.getScene().getWindow());
 
@@ -677,8 +726,13 @@ public class AdminSettingsController extends UtilityClass implements Initializab
         changeBackUpLocation.setOnAction(event -> {
             //            update db change backup location
             // get the file selected
-            UtilityClass utilityClass = new UtilityClass();
-            Connection connection = utilityClass.getConnection();
+//            UtilityClass utilityClass = new UtilityClass();
+            Connection connection = null;
+            try {
+                connection = new UtilityClass().getConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             DirectoryChooser dir_chooser = new DirectoryChooser();
             File file = dir_chooser.showDialog(panel.getScene().getWindow());
 
@@ -726,8 +780,13 @@ public class AdminSettingsController extends UtilityClass implements Initializab
     }
 
     private void changeColumn(String column) throws SQLException {
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
+//        UtilityClass utilityClass = new UtilityClass();
+        Connection connection = null;
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if (column.equals("backupemail")) {
 
             String columnValue = dialogBoxCredentials(" CHANGE DATABASE BACK UP EMAIL", "INPUT YOUR NEW BACK UP EMAIL");
@@ -788,8 +847,13 @@ public class AdminSettingsController extends UtilityClass implements Initializab
 
     private void changeColumnLocal(String table, String column) throws SQLException {
 
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnectionDbLocal();
+//        UtilityClass utilityClass = new UtilityClass();
+        Connection connection = null;
+        try {
+            connection = new UtilityClass().getConnectionDbLocal();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         PreparedStatement prep = connection.prepareStatement("SELECT * FROM system_settings WHERE name=?");
         prep.setString(1, "pcname");
         ResultSet rs = prep.executeQuery();
@@ -827,8 +891,13 @@ public class AdminSettingsController extends UtilityClass implements Initializab
     }
 
     private void changePassword() throws SQLException, NoSuchAlgorithmException {
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
+//        UtilityClass utilityClass = new UtilityClass();
+        Connection connection = null;
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         String password = dialogBoxCredentials("PASSWORD CHANGE", "INPUT YOUR NEW PASSWORD");
         preparedStatement = connection.prepareStatement("UPDATE  users SET password=? WHERE email=?");
         System.out.println(password);

@@ -15,7 +15,7 @@ import static securityandtime.config.sysconfig;
 public class SevenZ {
     UtilityClass utilityClass = new UtilityClass();
 
-    public SevenZ() {
+    public SevenZ() throws IOException {
 
     }
 

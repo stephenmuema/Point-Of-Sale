@@ -32,13 +32,17 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
-import static securityandtime.config.*;
+import static securityandtime.config.fileSavePath;
+import static securityandtime.config.user;
 
 public class scannerController extends UtilityClass implements Initializable {
     public Label clock;
@@ -73,6 +77,10 @@ public class scannerController extends UtilityClass implements Initializable {
     private int length;
     private BufferedImage bufferedImage;
     private ObservableList<StockMaster> data;
+    private Connection connection = new UtilityClass().getConnection();
+
+    public scannerController() throws IOException {
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -81,17 +89,22 @@ public class scannerController extends UtilityClass implements Initializable {
         buttonclick();
         config.panel.put("panel", panel);
 
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(9000),
-                () -> {
-                    try {
+        IdleMonitor idleMonitor = null;
+        try {
+            idleMonitor = new IdleMonitor(Duration.seconds(9000),
+                    () -> {
+                        try {
 
-                        config.login.put("loggedout", true);
-                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                            config.login.put("loggedout", true);
+                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }, true);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         idleMonitor.register(panel, Event.ANY);
     }
 
@@ -122,7 +135,12 @@ public class scannerController extends UtilityClass implements Initializable {
             }
         });
         data = FXCollections.observableArrayList();
-        Connection connection = getConnection();
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         home.setOnAction(event -> {
             try {
                 panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml")))));
@@ -156,7 +174,11 @@ public class scannerController extends UtilityClass implements Initializable {
 
             if (!name.isEmpty() && !price.isEmpty() && !barcode.isEmpty() && !category.isEmpty() && !quantity.isEmpty()) {
                 try {
-                    assert connection != null;
+                    try {
+                        connection = new UtilityClass().getConnection();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     preparedStatement = connection.prepareStatement("INSERT INTO stocks(name,itemcode,amount,category,price,path)VALUES(?,?,?,?,?,?)");
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -249,6 +271,11 @@ public class scannerController extends UtilityClass implements Initializable {
         });
         delete.setOnAction(event -> {
             StockMaster store = table.getSelectionModel().getSelectedItem();
+            try {
+                connection = new UtilityClass().getConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             try {
                 assert connection != null;
@@ -306,12 +333,7 @@ public class scannerController extends UtilityClass implements Initializable {
 
 
         });
-        existingstockdtab.setOnSelectionChanged(new EventHandler<Event>() {
-            @Override
-            public void handle(Event event) {
-                fetchItems();
-            }
-        });
+        existingstockdtab.setOnSelectionChanged(event -> fetchItems());
         fetchItems();
 
     }
@@ -319,15 +341,17 @@ public class scannerController extends UtilityClass implements Initializable {
     private void fetchItems() {
 
         data = FXCollections.observableArrayList();
-        Connection connection = getConnection();
-        Connection finalConnection = connection;
-        connection = null;
         try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         try {
             if (connection != null) {
                 PreparedStatement statement = connection.prepareStatement("SELECT * FROM stocks order by id ASC ");
@@ -361,125 +385,108 @@ public class scannerController extends UtilityClass implements Initializable {
         table.setEditable(true);
         name.setCellFactory(TextFieldTableCell.forTableColumn());
         name.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<StockMaster, String>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<StockMaster, String> t) {
-                        t.getTableView().getItems().get(
-                                t.getTablePosition().getRow()).setName(t.getNewValue());
-                        String newval = t.getNewValue().toUpperCase();
-                        PreparedStatement preparedStatement = null;
-                        try {
-                            StockMaster store = table.getSelectionModel().getSelectedItem();
-                            String id = store.getId().toString();
-                            preparedStatement = finalConnection.prepareStatement("UPDATE stocks set name=? where id=?");
-                            preparedStatement.setString(1, newval.toUpperCase());
-                            preparedStatement.setString(2, id);
-                            preparedStatement.executeUpdate();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
+                t -> {
+                    t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).setName(t.getNewValue());
+                    String newval = t.getNewValue().toUpperCase();
+                    PreparedStatement preparedStatement = null;
+                    try {
+                        StockMaster store = table.getSelectionModel().getSelectedItem();
+                        String id = store.getId().toString();
+                        preparedStatement = connection.prepareStatement("UPDATE stocks set name=? where id=?");
+                        preparedStatement.setString(1, newval.toUpperCase());
+                        preparedStatement.setString(2, id);
+                        preparedStatement.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
 
 //                        preparedStatement.setString(1, name.getText());
-                    }
                 }
         );
         price.setCellFactory(TextFieldTableCell.forTableColumn());
         price.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<StockMaster, String>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<StockMaster, String> t) {
-                        t.getTableView().getItems().get(
-                                t.getTablePosition().getRow()).setName(t.getNewValue());
-                        String newval = t.getNewValue();
-                        PreparedStatement preparedStatement = null;
-                        try {
-                            StockMaster store = table.getSelectionModel().getSelectedItem();
-                            String id = store.getId().toString();
-                            assert finalConnection != null;
-                            preparedStatement = finalConnection.prepareStatement("UPDATE stocks set price=? where id=?");
-                            preparedStatement.setString(1, newval.toUpperCase());
-                            preparedStatement.setString(2, id);
-                            preparedStatement.executeUpdate();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
+                t -> {
+                    t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).setName(t.getNewValue());
+                    String newval = t.getNewValue();
+                    PreparedStatement preparedStatement = null;
+                    try {
+                        StockMaster store = table.getSelectionModel().getSelectedItem();
+                        String id = store.getId().toString();
+
+                        preparedStatement = connection.prepareStatement("UPDATE stocks set price=? where id=?");
+                        preparedStatement.setString(1, newval.toUpperCase());
+                        preparedStatement.setString(2, id);
+                        preparedStatement.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
 
 //                        preparedStatement.setString(1, name.getText());
-                    }
                 }
         );
         barcode.setCellFactory(TextFieldTableCell.forTableColumn());
         barcode.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<StockMaster, String>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<StockMaster, String> t) {
-                        t.getTableView().getItems().get(
-                                t.getTablePosition().getRow()).setName(t.getNewValue());
-                        String newval = t.getNewValue();
-                        PreparedStatement preparedStatement = null;
-                        try {
-                            StockMaster store = table.getSelectionModel().getSelectedItem();
-                            String id = store.getId().toString();
-                            preparedStatement = finalConnection.prepareStatement("UPDATE stocks set itemcode=? where id=?");
-                            preparedStatement.setString(1, newval.toUpperCase());
-                            preparedStatement.setString(2, id);
-                            preparedStatement.executeUpdate();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
+                t -> {
+                    t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).setName(t.getNewValue());
+                    String newval = t.getNewValue();
+                    PreparedStatement preparedStatement = null;
+                    try {
+                        StockMaster store = table.getSelectionModel().getSelectedItem();
+                        String id = store.getId().toString();
+                        preparedStatement = connection.prepareStatement("UPDATE stocks set itemcode=? where id=?");
+                        preparedStatement.setString(1, newval.toUpperCase());
+                        preparedStatement.setString(2, id);
+                        preparedStatement.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
 
 //                        preparedStatement.setString(1, name.getText());
-                    }
                 }
         );
         quantity.setCellFactory(TextFieldTableCell.forTableColumn());
         quantity.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<StockMaster, String>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<StockMaster, String> t) {
-                        t.getTableView().getItems().get(
-                                t.getTablePosition().getRow()).setName(t.getNewValue());
-                        String newval = t.getNewValue();
-                        PreparedStatement preparedStatement = null;
-                        try {
-                            StockMaster store = table.getSelectionModel().getSelectedItem();
-                            String id = store.getId().toString();
-                            assert finalConnection != null;
-                            preparedStatement = finalConnection.prepareStatement("UPDATE stocks set amount=? where id=?");
-                            preparedStatement.setString(1, newval.toUpperCase());
-                            preparedStatement.setString(2, id);
-                            preparedStatement.executeUpdate();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
+                t -> {
+                    t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).setName(t.getNewValue());
+                    String newval = t.getNewValue();
+                    PreparedStatement preparedStatement = null;
+                    try {
+                        StockMaster store = table.getSelectionModel().getSelectedItem();
+                        String id = store.getId().toString();
+                        preparedStatement = connection.prepareStatement("UPDATE stocks set amount=? where id=?");
+                        preparedStatement.setString(1, newval.toUpperCase());
+                        preparedStatement.setString(2, id);
+                        preparedStatement.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
 
 //                        preparedStatement.setString(1, name.getText());
-                    }
                 }
         );
         category.setCellFactory(TextFieldTableCell.forTableColumn());
         category.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<StockMaster, String>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<StockMaster, String> t) {
-                        t.getTableView().getItems().get(
-                                t.getTablePosition().getRow()).setName(t.getNewValue());
-                        String newval = t.getNewValue();
-                        PreparedStatement preparedStatement = null;
-                        try {
-                            StockMaster store = table.getSelectionModel().getSelectedItem();
-                            String id = store.getId().toString();
-                            assert finalConnection != null;
-                            preparedStatement = finalConnection.prepareStatement("UPDATE stocks set category=? where id=?");
-                            preparedStatement.setString(1, newval.toUpperCase());
-                            preparedStatement.setString(2, id);
-                            preparedStatement.executeUpdate();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
+                t -> {
+                    t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).setName(t.getNewValue());
+                    String newval = t.getNewValue();
+                    PreparedStatement preparedStatement = null;
+                    try {
+                        StockMaster store = table.getSelectionModel().getSelectedItem();
+                        String id = store.getId().toString();
+                        preparedStatement = connection.prepareStatement("UPDATE stocks set category=? where id=?");
+                        preparedStatement.setString(1, newval.toUpperCase());
+                        preparedStatement.setString(2, id);
+                        preparedStatement.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
 
 //                        preparedStatement.setString(1, name.getText());
-                    }
                 }
         );
     }

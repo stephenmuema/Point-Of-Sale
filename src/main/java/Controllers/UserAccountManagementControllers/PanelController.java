@@ -79,6 +79,9 @@ public class PanelController extends UtilityClass implements Initializable {
 
     private Label clock;
 
+    public PanelController() throws IOException {
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -97,15 +100,20 @@ public class PanelController extends UtilityClass implements Initializable {
         });
 
 
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                () -> {
-                    try {
-                        config.login.put("loggedout", true);
-                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }, true);
+        IdleMonitor idleMonitor = null;
+        try {
+            idleMonitor = new IdleMonitor(Duration.seconds(3600),
+                    () -> {
+                        try {
+                            config.login.put("loggedout", true);
+                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         idleMonitor.register(panel, Event.ANY);
 
 

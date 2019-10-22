@@ -179,9 +179,12 @@ private TableView<SalesMaster> tableemployeesales;
     @FXML
     private Button queryEmpTimeReport;
     //db connection
-    private Connection connection = getConnection();
+    private Connection connection;
     private ObservableList<EmployeeMaster> employeeMasterObservableList = FXCollections.observableArrayList();
     private ObservableList<SalesMaster> salesMasterObservableList = FXCollections.observableArrayList();
+
+    public AuditController() throws IOException {
+    }
 
 
     /**
@@ -194,16 +197,20 @@ private TableView<SalesMaster> tableemployeesales;
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(900),
-                () -> {
-                    try {
-                        config.login.put("loggedout", true);
+        try {
+            IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(900),
+                    () -> {
+                        try {
+                            config.login.put("loggedout", true);
 
-                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }, true);
+                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         config.panel.put("panel", panel);
 
         menuListeners();
@@ -333,6 +340,11 @@ private TableView<SalesMaster> tableemployeesales;
 
     private void loadCashiersTable() {
         try {
+            try {
+                connection = new UtilityClass().getConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 //                        DISPLAYING EMPLOYEES
             if (connection != null) {
                 PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE admin=? and status=? and activated=?");
@@ -368,6 +380,12 @@ private TableView<SalesMaster> tableemployeesales;
     }
 
     private void loadCashierSalesTableEnd(String end) {
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         tableemployeelist.setOnMouseClicked(event -> {
             salesMasterObservableList.clear();
             EmployeeMaster selectedEmployee = tableemployeelist.getSelectionModel().getSelectedItem();
@@ -411,6 +429,12 @@ private TableView<SalesMaster> tableemployeesales;
     }
 
     private void loadCashierSalesTableStart(String start) {
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         tableemployeelist.setOnMouseClicked(event -> {
             salesMasterObservableList.clear();
             EmployeeMaster selectedEmployee = tableemployeelist.getSelectionModel().getSelectedItem();
@@ -454,6 +478,12 @@ private TableView<SalesMaster> tableemployeesales;
     }
 
     private void loadCashierSalesTable(String start, String end) {
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         tableemployeelist.setOnMouseClicked(event -> {
             salesMasterObservableList.clear();
             EmployeeMaster selectedEmployee = tableemployeelist.getSelectionModel().getSelectedItem();
@@ -498,6 +528,12 @@ private TableView<SalesMaster> tableemployeesales;
     }
 
     private void loadCashierSalesTable() {
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         tableemployeelist.setOnMouseClicked(event -> {
             salesMasterObservableList.clear();
             EmployeeMaster selectedEmployee = tableemployeelist.getSelectionModel().getSelectedItem();

@@ -52,6 +52,9 @@ public class SignupController extends UtilityClass implements Initializable {
     @FXML
     private AnchorPane panel;
 
+    public SignupController() throws IOException {
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -157,8 +160,13 @@ public class SignupController extends UtilityClass implements Initializable {
         messageDigest.update(str.getBytes(), 0, str.length());
         String hash = new BigInteger(1, messageDigest.digest()).toString(16);
         System.out.println("MD5: " + hash);
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
+
+        Connection connection = null;
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         PreparedStatement statementemail = connection.prepareStatement("SELECT * FROM users WHERE email=? ");
         statementemail.setString(1, email.getText());
         ResultSet resultSetemail = statementemail.executeQuery();

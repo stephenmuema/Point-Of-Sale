@@ -76,9 +76,12 @@ public class LoginController extends UtilityClass implements Initializable {
     private AnchorPane panel;
     @FXML
     private Label message;
-    private Connection connection = getConnection();
+    private Connection connection;
     private ResultSet resultSet;
     private String shiftNbr;
+
+    public LoginController() throws IOException {
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -116,6 +119,11 @@ public class LoginController extends UtilityClass implements Initializable {
     }
 
     private void shiftSet() {
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM DAYS WHERE completed=?");
             preparedStatement.setString(1, "incomplete");
@@ -203,8 +211,11 @@ public class LoginController extends UtilityClass implements Initializable {
         });
         login.setOnMousePressed(event -> {
 //            login and check if fields are empty
-            UtilityClass utilityClass = new UtilityClass();
-            connection = utilityClass.getConnection();
+            try {
+                connection = new UtilityClass().getConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             loginValidation();
         });
     }

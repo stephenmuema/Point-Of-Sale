@@ -107,6 +107,9 @@ public class ReportIssuesController extends UtilityClass implements Initializabl
     private String subject;
     private String fromEmail, fromPassword;
 
+    public ReportIssuesController() throws IOException {
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -120,16 +123,21 @@ public class ReportIssuesController extends UtilityClass implements Initializabl
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                () -> {
-                    try {
-                        config.login.put("loggedout", true);
+        IdleMonitor idleMonitor = null;
+        try {
+            idleMonitor = new IdleMonitor(Duration.seconds(3600),
+                    () -> {
+                        try {
+                            config.login.put("loggedout", true);
 
-                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }, true);
+                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         idleMonitor.register(panel, Event.ANY);
         newFeature.setSelected(true);
         subject = newFeature.getText();

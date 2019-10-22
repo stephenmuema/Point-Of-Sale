@@ -14,13 +14,7 @@ public interface config {//host,user,password,des,port
     //    String environment = "production";
     Properties mailProp = new Properties();
 
-    String dbName = "nanotechsoftwarespos";
-    String dbPass = "GUp6sEWzV9OvI6K3";
-    String dbUser = "steve";
-    String dbPort = "3306";
-    String dbHost = "127.0.0.1";
-    String[] dbdetails = {dbHost + "/", dbUser, dbPass, "jdbc:mysql://", dbName + "?zeroDateTimeBehavior=convertToNull", dbPort};
-    String[] des = {dbdetails[1], dbdetails[2], dbdetails[3] + dbdetails[0] + dbdetails[4]};
+
     String host = "smtp.gmail.com";
     String from = "muemasnyamai@gmail.com";
     String adminEmail = "muemasn@outlook.com";
@@ -48,6 +42,8 @@ public interface config {//host,user,password,des,port
     String version = " (V 1.1) ";
     String fileSavePath = "D:\\NANOTECHSOFTWARES\\nanotechPOS\\";
     String licensepath = fileSavePath + "licenses\\license.dll";
+    String dbConnFile = "nanotechDb.dll";
+    String supportFile = "nanotechSupportGroup.dll";
     String localCartDb = "jdbc:sqlite:" + fileSavePath + "files\\shoppingLocal.db";
     String aesKey = "26kozQaKwRuNJ24t26kozQaKwRuNJ24t";
     Map<String, Boolean> networkConnectionMap = new HashMap<>();

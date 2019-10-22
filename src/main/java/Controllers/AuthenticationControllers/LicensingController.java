@@ -78,6 +78,9 @@ public class LicensingController extends UtilityClass implements Initializable {
         }
     }
 
+    public LicensingController() throws IOException {
+    }
+
     /**
      * Called to initialize a controller after its root element has been
      * completely processed.
@@ -326,7 +329,12 @@ public class LicensingController extends UtilityClass implements Initializable {
     }
 
     private void licenseUpdate(String name, String type, String value) throws SQLException {
-        Connection connection = getConnection();
+        Connection connection = null;
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         PreparedStatement insertLicCode = null;
         try {

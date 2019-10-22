@@ -3,8 +3,7 @@ package gdrive;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
-import static securityandtime.config.CLIENT_SECRET_FILE_NAME;
-import static securityandtime.config.CREDENTIALS_FOLDER;
+import static securityandtime.config.*;
 
 public class DriveMain {
 
@@ -35,10 +34,11 @@ public class DriveMain {
 //        }
 
         try {
-            DriveSuperClass.createGoogleFile(null, "multipart/x-zip", driveFname, new java.io.File(pathToFile));
+            DriveSuperClass.createGoogleFile(backUpFolderId, "multipart/x-zip", driveFname, new java.io.File(pathToFile));
         } catch (GeneralSecurityException e) {
             e.printStackTrace();
         }
-
+        System.out.println("back up made.Files available are:");
+        DriveSuperClass.getGoogleSubFolders(backUpFolderId);
     }
 }

@@ -95,6 +95,30 @@ public class AesCrypto {
         return new String(original);
     }
 
+    public static String decrypt(String key, String data, String op) {
+
+        byte[] original = new byte[0];
+        try {
+            String[] parts = data.split(":");
+
+            IvParameterSpec iv = new IvParameterSpec(Base64.getDecoder().decode(parts[1]));
+            SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
+
+            Cipher cipher = Cipher.getInstance(AesCrypto.CIPHER_NAME);
+            cipher.init(Cipher.DECRYPT_MODE, secretKey, iv);
+
+            byte[] decodedEncryptedData = Base64.getDecoder().decode(parts[0]);
+
+            original = cipher.doFinal(decodedEncryptedData);
+
+
+        } catch (Exception ex) {
+            throwables.put("invalidlicense", ex);
+
+        }
+        return new String(original);
+    }
+
 //    public static void main(String[] args) {
 //        System.out.println(encrypt(encryptionkey, initVector, "almond@gmail.com::1567493118::156749311"));
 //    }

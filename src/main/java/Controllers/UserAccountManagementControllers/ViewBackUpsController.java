@@ -1,6 +1,8 @@
 package Controllers.UserAccountManagementControllers;
 
+import Controllers.FetchDbDetails;
 import Controllers.SevenZ;
+import Controllers.UtilityClass;
 import MasterClasses.BackUpFilesMaster;
 import com.smattme.MysqlImportService;
 import javafx.application.Platform;
@@ -46,7 +48,7 @@ import java.util.ResourceBundle;
 import static securityandtime.config.*;
 
 
-public class ViewBackUpsController extends Controllers.UtilityClass implements Initializable {
+public class ViewBackUpsController extends UtilityClass implements Initializable {
 
     public Menu navigation;
     public MenuItem details;
@@ -101,6 +103,9 @@ public class ViewBackUpsController extends Controllers.UtilityClass implements I
     private MenuItem menuRestart;
 
     private ObservableList<BackUpFilesMaster> data;
+
+    public ViewBackUpsController() throws IOException {
+    }
 
     private static String getFileSizeMegaBytes(File file) {
         DecimalFormat df2 = new DecimalFormat("#.####");
@@ -283,7 +288,12 @@ public class ViewBackUpsController extends Controllers.UtilityClass implements I
         if (backUpFilesMaster != null) {
             String fname = backUpFilesMaster.getPath();
             if (FilenameUtils.getExtension(fname).equalsIgnoreCase("zip")) {
-                SevenZ sevenZ = new SevenZ();
+                SevenZ sevenZ = null;
+                try {
+                    sevenZ = new SevenZ();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 sevenZ.unzipBak(fname, sysconfig.get("backUpLoc") + "\\unzippedFiles");
 
                 File directory = new File(sysconfig.get("backUpLoc") + "\\unzippedFiles");
@@ -310,10 +320,10 @@ public class ViewBackUpsController extends Controllers.UtilityClass implements I
             boolean res = false;
             try {
                 res = MysqlImportService.builder()
-                        .setDatabase(dbName)
+                        .setDatabase(FetchDbDetails.getDbName())
                         .setSqlString(sql)
-                        .setUsername(dbUser)
-                        .setPassword(dbPass)
+                        .setUsername(FetchDbDetails.getDbUser())
+                        .setPassword(FetchDbDetails.getDbPass())
                         .setDeleteExisting(true)
                         .setDropExisting(false)
                         .importDatabase();

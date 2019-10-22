@@ -9,7 +9,12 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
+import java.io.IOException;
+
 public class AnimationGenerator extends UtilityClass {
+    public AnimationGenerator() throws IOException {
+    }
+
     public void applyTranslateAnimationOn(Node node, int duration, double from, double to) {
         TranslateTransition translateTransition
                 = new TranslateTransition(Duration.millis(duration), node);

@@ -117,6 +117,10 @@ public class EmployeesController extends UtilityClass implements Initializable {
     private AnchorPane panel;
     private ObservableList<EmployeeMaster> data;
     private String time;
+    Connection connection = new UtilityClass().getConnection();
+
+    public EmployeesController() throws IOException {
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -126,15 +130,20 @@ public class EmployeesController extends UtilityClass implements Initializable {
         editable();
         config.panel.put("panel", panel);
 
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                () -> {
-                    try {
-                        config.login.put("loggedout", true);
-                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }, true);
+        IdleMonitor idleMonitor = null;
+        try {
+            idleMonitor = new IdleMonitor(Duration.seconds(3600),
+                    () -> {
+                        try {
+                            config.login.put("loggedout", true);
+                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         idleMonitor.register(panel, Event.ANY);
     }
 
@@ -193,7 +202,6 @@ public class EmployeesController extends UtilityClass implements Initializable {
 
     private void buttonclick() {
         data = FXCollections.observableArrayList();
-        Connection connection = getConnection();
         home.setOnMouseClicked(event -> {
             try {
                 panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml")))));
@@ -271,66 +279,68 @@ public class EmployeesController extends UtilityClass implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 EmployeeMaster selectedEmployee = tab.getSelectionModel().getSelectedItem();
-                String newStatus;
-                if (selectedEmployee.getStatus().equalsIgnoreCase("active")) {
-                    newStatus = "suspended";
-                } else {
-                    newStatus = "active";
-
-                }
-                try {
-
-                    PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET status=? WHERE id=?");
-
-                    preparedStatement.setString(1, newStatus);
-                    preparedStatement.setString(2, selectedEmployee.getId());
-                    int updated = preparedStatement.executeUpdate();
-                    if (updated > 0) {
-//                                updated
-                        data = FXCollections.observableArrayList();
-                        if (existingemptab.isSelected()) {
-                            data = FXCollections.observableArrayList();
-                            Connection connection1 = getConnection();
-                            try {
-//                        DISPLAYING EMPLOYEES
-                                if (connection1 != null) {
-                                    PreparedStatement statement = connection1.prepareStatement("SELECT * FROM users where admin=?");
-                                    statement.setBoolean(1, false);
-                                    ResultSet resultSet = statement.executeQuery();
-                                    while (resultSet.next()) {
-                                        EmployeeMaster employeeMaster = new EmployeeMaster();
-                                        employeeMaster.setName(resultSet.getString("employeename"));
-                                        employeeMaster.setEmail(resultSet.getString("email"));
-                                        employeeMaster.setId(resultSet.getString("id"));
-                                        employeeMaster.setStatus(resultSet.getString("status"));
-
-                                        data.add(employeeMaster);
-                                    }
-                                    tab.setItems(data);
-                                }
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
-
-                            assert tab != null : "fx:id=\"tab\" was not injected: check your FXML ";
-                            Name.setCellValueFactory(
-                                    new PropertyValueFactory<>("Name"));
-                            id.setCellValueFactory(
-                                    new PropertyValueFactory<>("Id"));
-                            status.setCellValueFactory(
-                                    new PropertyValueFactory<>("status"));
-                            email.setCellValueFactory(new PropertyValueFactory<>("email"));
-                            tab.refresh();
-                        }
-
+                if (selectedEmployee != null) {
+                    String newStatus;
+                    if (selectedEmployee.getStatus().equalsIgnoreCase("active")) {
+                        newStatus = "suspended";
                     } else {
-//                                not updated
-                        showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(), "ITEM COULDN'T BE REMOVED SUCCESSFULLY", "THE ITEM HAS NOT BEEN REMOVED SUCCESSFULLY");
+                        newStatus = "active";
 
                     }
+                    try {
 
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET status=? WHERE id=?");
+
+                        preparedStatement.setString(1, newStatus);
+                        preparedStatement.setString(2, selectedEmployee.getId());
+                        int updated = preparedStatement.executeUpdate();
+                        if (updated > 0) {
+//                                updated
+                            data = FXCollections.observableArrayList();
+                            if (existingemptab.isSelected()) {
+                                data = FXCollections.observableArrayList();
+
+                                try {
+//                        DISPLAYING EMPLOYEES
+                                    if (connection != null) {
+                                        PreparedStatement statement = connection.prepareStatement("SELECT * FROM users where admin=?");
+                                        statement.setBoolean(1, false);
+                                        ResultSet resultSet = statement.executeQuery();
+                                        while (resultSet.next()) {
+                                            EmployeeMaster employeeMaster = new EmployeeMaster();
+                                            employeeMaster.setName(resultSet.getString("employeename"));
+                                            employeeMaster.setEmail(resultSet.getString("email"));
+                                            employeeMaster.setId(resultSet.getString("id"));
+                                            employeeMaster.setStatus(resultSet.getString("status"));
+
+                                            data.add(employeeMaster);
+                                        }
+                                        tab.setItems(data);
+                                    }
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                }
+
+                                assert tab != null : "fx:id=\"tab\" was not injected: check your FXML ";
+                                Name.setCellValueFactory(
+                                        new PropertyValueFactory<>("Name"));
+                                id.setCellValueFactory(
+                                        new PropertyValueFactory<>("Id"));
+                                status.setCellValueFactory(
+                                        new PropertyValueFactory<>("status"));
+                                email.setCellValueFactory(new PropertyValueFactory<>("email"));
+                                tab.refresh();
+                            }
+
+                        } else {
+//                                not updated
+                            showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(), "ITEM COULDN'T BE REMOVED SUCCESSFULLY", "THE ITEM HAS NOT BEEN REMOVED SUCCESSFULLY");
+
+                        }
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

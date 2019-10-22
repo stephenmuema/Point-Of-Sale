@@ -132,6 +132,10 @@ public class CarwashController extends UtilityClass implements Initializable {
     private AnchorPane panel;
     private ObservableList<CarWashMaster> data;
     private String time;
+    Connection connection;
+
+    public CarwashController() throws IOException {
+    }
 
     /**
      * made by steve
@@ -146,27 +150,35 @@ public class CarwashController extends UtilityClass implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         config.panel.put("panel", panel);
 
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                () -> {
-                    try {
-                        config.login.put("loggedout", true);
-                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }, true);
+        IdleMonitor idleMonitor = null;
+        try {
+            idleMonitor = new IdleMonitor(Duration.seconds(3600),
+                    () -> {
+                        try {
+                            config.login.put("loggedout", true);
+                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         idleMonitor.register(panel, Event.ANY);
         time(clock);
         menuclick();
         buttonclick();
-        editable();
+        try {
+            editable();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         cash.setText(String.valueOf(moneyPaid));
     }
 
-    private void editable() {
+    private void editable() throws IOException {
         tab.setEditable(true);
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
+        connection = new UtilityClass().getConnection();
 
         Name.setCellFactory(TextFieldTableCell.forTableColumn());
         Name.setOnEditCommit(
@@ -178,8 +190,11 @@ public class CarwashController extends UtilityClass implements Initializable {
                         String newval = t.getNewValue();
                         PreparedStatement preparedStatement = null;
                         try {
-                            UtilityClass utilityClass = new UtilityClass();
-                            Connection connection = utilityClass.getConnection();
+                            try {
+                                connection = new UtilityClass().getConnection();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
                             preparedStatement = connection.prepareStatement("UPDATE carwash set `ownername`=? where id=?");
@@ -196,28 +211,28 @@ public class CarwashController extends UtilityClass implements Initializable {
         );
         reg.setCellFactory(TextFieldTableCell.forTableColumn());
         reg.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<CarWashMaster, String>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<CarWashMaster, String> t) {
-                        t.getTableView().getItems().get(
-                                t.getTablePosition().getRow()).setName(t.getNewValue());
-                        String newval = t.getNewValue();
-                        PreparedStatement preparedStatement = null;
+                t -> {
+                    t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).setName(t.getNewValue());
+                    String newval = t.getNewValue();
+                    PreparedStatement preparedStatement = null;
+                    try {
                         try {
-                            UtilityClass utilityClass = new UtilityClass();
-                            Connection connection = utilityClass.getConnection();
-                            CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
-                            String id = carWashMaster.getId();
-                            preparedStatement = connection.prepareStatement("UPDATE carwash set registration=? where id=?");
-                            preparedStatement.setString(1, newval.toUpperCase());
-                            preparedStatement.setString(2, id);
-                            preparedStatement.executeUpdate();
-                        } catch (SQLException e) {
+                            connection = new UtilityClass().getConnection();
+                        } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
+                        String id = carWashMaster.getId();
+                        preparedStatement = connection.prepareStatement("UPDATE carwash set registration=? where id=?");
+                        preparedStatement.setString(1, newval.toUpperCase());
+                        preparedStatement.setString(2, id);
+                        preparedStatement.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
 
 //                        preparedStatement.setString(1, name.getText());
-                    }
                 }
         );
         id.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -230,8 +245,11 @@ public class CarwashController extends UtilityClass implements Initializable {
                         String newval = t.getNewValue();
                         PreparedStatement preparedStatement = null;
                         try {
-                            UtilityClass utilityClass = new UtilityClass();
-                            Connection connection = utilityClass.getConnection();
+                            try {
+                                connection = new UtilityClass().getConnection();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
                             preparedStatement = connection.prepareStatement("UPDATE carwash set idnumber=? where id=?");
@@ -256,8 +274,11 @@ public class CarwashController extends UtilityClass implements Initializable {
                         String newval = t.getNewValue();
                         PreparedStatement preparedStatement = null;
                         try {
-                            UtilityClass utilityClass = new UtilityClass();
-                            Connection connection = utilityClass.getConnection();
+                            try {
+                                connection = new UtilityClass().getConnection();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
                             assert connection != null;
@@ -283,8 +304,11 @@ public class CarwashController extends UtilityClass implements Initializable {
                         String newval = t.getNewValue();
                         PreparedStatement preparedStatement = null;
                         try {
-                            UtilityClass utilityClass = new UtilityClass();
-                            Connection connection = utilityClass.getConnection();
+                            try {
+                                connection = new UtilityClass().getConnection();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
                             preparedStatement = connection.prepareStatement("UPDATE carwash set washedby=? where id=?");
@@ -310,8 +334,11 @@ public class CarwashController extends UtilityClass implements Initializable {
                         String newval = t.getNewValue();
                         PreparedStatement preparedStatement = null;
                         try {
-                            UtilityClass utilityClass = new UtilityClass();
-                            Connection connection = utilityClass.getConnection();
+                            try {
+                                connection = new UtilityClass().getConnection();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             CarWashMaster carWashMaster = tab.getSelectionModel().getSelectedItem();
                             String id = carWashMaster.getId();
                             preparedStatement = connection.prepareStatement("UPDATE carwash set cashpaid=? where id=?");

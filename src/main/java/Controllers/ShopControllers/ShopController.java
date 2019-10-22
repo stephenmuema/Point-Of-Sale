@@ -90,13 +90,15 @@ public class ShopController extends CartIdGenerator implements Initializable {
     private SuperClass superClass = new SuperClass();
 
     private Connection connectionDbLocal, connection;
-    private UtilityClass utilityClass = new UtilityClass();
 
     private Statement statementLocal = null;
 
     {
         connection = superClass.getConnection();
         connectionDbLocal = superClass.getConnectionDbLocal();
+    }
+
+    public ShopController() throws IOException {
     }
 
     /**
@@ -109,15 +111,20 @@ public class ShopController extends CartIdGenerator implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                () -> {
-                    try {
-                        config.login.put("loggedout", true);
-                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }, true);
+        IdleMonitor idleMonitor = null;
+        try {
+            idleMonitor = new IdleMonitor(Duration.seconds(3600),
+                    () -> {
+                        try {
+                            config.login.put("loggedout", true);
+                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         config.panel.put("panel", panel);
 
         idleMonitor.register(panel, Event.ANY);
@@ -340,9 +347,8 @@ public class ShopController extends CartIdGenerator implements Initializable {
         data = FXCollections.observableArrayList();
         Connection connection = null;
         try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -740,7 +746,7 @@ public class ShopController extends CartIdGenerator implements Initializable {
                         showAlert(Alert.AlertType.ERROR, config.panel.get("panel").getScene().getWindow(), "ERROR", "NETWORK CONNECTION LOST");
                     } else {
                         if (!networkConnectionMap.get("Internet")) {
-                            utilityClass.showToast();//about connection to the internet
+                            new UtilityClass().showToast();//about connection to the internet
                         }
                     }
 

@@ -29,13 +29,17 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
-import static securityandtime.config.*;
+import static securityandtime.config.fileSavePath;
+import static securityandtime.config.user;
 
 //made by steve
 public class StocksController extends UtilityClass implements Initializable {
@@ -66,29 +70,41 @@ public class StocksController extends UtilityClass implements Initializable {
     private BufferedImage bufferedImage;
     private ObservableList<StockMaster> data;
 
+    public StocksController() throws IOException {
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         time(clock);
         menuclick();
-        buttonclick();
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(9000),
-                () -> {
-                    try {
+        try {
+            buttonclick();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        IdleMonitor idleMonitor = null;
+        try {
+            idleMonitor = new IdleMonitor(Duration.seconds(9000),
+                    () -> {
+                        try {
 
-                        config.login.put("loggedout", true);
-                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                            config.login.put("loggedout", true);
+                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }, true);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         config.panel.put("panel", panel);
 
         idleMonitor.register(panel, Event.ANY);
     }
 
 
-    private void buttonclick() {
+    private void buttonclick() throws IOException {
         image.setOnMouseClicked(event -> {
             FileChooser fileChooser = new FileChooser();
 
@@ -114,7 +130,7 @@ public class StocksController extends UtilityClass implements Initializable {
             }
         });
         data = FXCollections.observableArrayList();
-        Connection connection = getConnection();
+        Connection connection = new UtilityClass().getConnection();
         home.setOnAction(event -> {
             try {
                 panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UserAccountManagementFiles/panelAdmin.fxml")))));
@@ -307,9 +323,8 @@ public class StocksController extends UtilityClass implements Initializable {
         Connection finalConnection = connection;
         connection = null;
         try {
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         try {

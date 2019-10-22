@@ -75,6 +75,10 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
     public MenuItem helpMenu;
     private double tabWidth = 415.0;
     private ObservableList<CarWashMaster> data;
+    Connection connection = null;
+
+    public CarwashSalesController() throws IOException {
+    }
 
     public static int getLastSelectedTabIndex() {
         return lastSelectedTabIndex;
@@ -100,15 +104,20 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
 
         editable();
         buttonListeners();
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                () -> {
-                    try {
-                        config.login.put("loggedout", true);
-                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }, true);
+        IdleMonitor idleMonitor = null;
+        try {
+            idleMonitor = new IdleMonitor(Duration.seconds(3600),
+                    () -> {
+                        try {
+                            config.login.put("loggedout", true);
+                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         idleMonitor.register(panel, Event.ANY);
         clients.setOnSelectionChanged(event -> {
             data = FXCollections.observableArrayList();
@@ -203,8 +212,11 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
     private void buttonListeners() {
 
         submit.setOnMouseClicked(event -> {
-            UtilityClass utilityClass = new UtilityClass();
-            Connection connection = utilityClass.getConnection();
+            try {
+                connection = new UtilityClass().getConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             String ownername = name.getText().toUpperCase();
             String numberplate = registration.getText().toUpperCase();
             String idnum = identification.getText().toUpperCase();
@@ -300,8 +312,11 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
     private void loadTab() {
         data = FXCollections.observableArrayList();
 
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try {
 //                        DISPLAYING CLIENTS
             if (connection != null) {
@@ -342,8 +357,11 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
 
     private void editable() {
         tab.setEditable(true);
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Name.setCellFactory(TextFieldTableCell.forTableColumn());
         Name.setOnEditCommit(
                 t -> {
@@ -489,8 +507,11 @@ public class CarwashSalesController extends UtilityClass implements Initializabl
 
 
     private void compete() {
-        UtilityClass utilityClass = new UtilityClass();
-        Connection connection = utilityClass.getConnection();
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         tab.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

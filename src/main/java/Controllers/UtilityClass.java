@@ -37,30 +37,36 @@ import java.util.*;
 
 import static securityandtime.config.*;
 
-public class UtilityClass {
+
+public class UtilityClass extends FetchDbDetails {
+
+
     public static int prev = 0;
     public static String prevString = "PROFILE";
     public String path = fileSavePath + "backups";
     private Connection connection;
     private Connection connectionDbLocal;
 
-    {
-        try {
-            connectionDbLocal = DriverManager.getConnection(localCartDb);
 
+    public UtilityClass() throws IOException {
+        super();
+
+        {
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-            } catch (ClassNotFoundException e) {
+                connectionDbLocal = DriverManager.getConnection(localCartDb);
+
+                try {
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                connection = DriverManager
+                        .getConnection(FetchDbDetails.getDes()[2], FetchDbDetails.getDes()[0], FetchDbDetails.getDes()[1]);
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
-            connection = DriverManager
-                    .getConnection(des[2], des[0], des[1]);
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-    }
 
-    public UtilityClass() {
         Path path = Paths.get(fileSavePath);
 
         if (!Files.exists(path)) {
@@ -294,7 +300,7 @@ public class UtilityClass {
                 label.setText(getComputerName());
 
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -404,7 +410,12 @@ public class UtilityClass {
 
     public void checkEmailAndPassword() throws SQLException, NullPointerException {
 
-        PreparedStatement preparedStatement = new UtilityClass().getConnection().prepareStatement("SELECT * FROM users where email=?");
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = new UtilityClass().getConnection().prepareStatement("SELECT * FROM users where email=?");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         preparedStatement.setString(1, user.get("user"));
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {

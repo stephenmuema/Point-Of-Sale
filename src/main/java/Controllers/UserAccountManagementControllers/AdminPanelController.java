@@ -1,13 +1,13 @@
 package Controllers.UserAccountManagementControllers;
 //made by steve
 
+import Controllers.FetchDbDetails;
 import Controllers.IdleMonitor;
 import Controllers.SevenZ;
 import Controllers.UtilityClass;
-import com.google.api.client.http.FileContent;
 import com.smattme.MysqlExportService;
 import com.smattme.MysqlImportService;
-import gdrive.DriveSuperClass;
+import gdrive.DriveMain;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -159,6 +159,10 @@ public class AdminPanelController extends UtilityClass implements Initializable,
 
 
     String companyName;
+
+    public AdminPanelController() throws IOException {
+    }
+
     private static File lastFileModified(String dir) {
         File fl = new File(dir);
         File[] files = fl.listFiles(new FileFilter() {
@@ -212,16 +216,21 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         time(clock);
 
         config.panel.put("panel", panel);
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                () -> {
-                    try {
-                        config.login.put("loggedout", true);
+        IdleMonitor idleMonitor = null;
+        try {
+            idleMonitor = new IdleMonitor(Duration.seconds(3600),
+                    () -> {
+                        try {
+                            config.login.put("loggedout", true);
 
-                        panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }, true);
+                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         idleMonitor.register(panel, Event.ANY);
 
     }
@@ -263,7 +272,12 @@ public class AdminPanelController extends UtilityClass implements Initializable,
                     e.printStackTrace();
                 }
             } else if (FilenameUtils.getExtension(file.getAbsolutePath()).equalsIgnoreCase("zip")) {
-                SevenZ sevenZ = new SevenZ();
+                SevenZ sevenZ = null;
+                try {
+                    sevenZ = new SevenZ();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 String fname = file.getAbsolutePath();
                 sevenZ.unzipBak(fname, sysconfig.get("backUpLoc") + "\\unzippedFiles");
                 File directory = new File(sysconfig.get("backUpLoc") + "\\unzippedFiles");
@@ -285,10 +299,10 @@ public class AdminPanelController extends UtilityClass implements Initializable,
             boolean res = false;
             try {
                 res = MysqlImportService.builder()
-                        .setDatabase(dbName)
+                        .setDatabase(FetchDbDetails.getDbName())
                         .setSqlString(sql)
-                        .setUsername(dbUser)
-                        .setPassword(dbPass)
+                        .setUsername(FetchDbDetails.getDbUser())
+                        .setPassword(FetchDbDetails.getDbPass())
                         .setDeleteExisting(true)
                         .setDropExisting(false)
                         .importDatabase();
@@ -371,7 +385,12 @@ public class AdminPanelController extends UtilityClass implements Initializable,
 
     private void initModules() throws SQLException {
 
-        Connection connection = new UtilityClass().getConnection();
+        Connection connection = null;
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try {
             PreparedStatement preparedStatement;
             preparedStatement = connection.prepareStatement("SELECT * FROM drivesettings ORDER BY id DESC LIMIT 1");
@@ -570,10 +589,10 @@ public class AdminPanelController extends UtilityClass implements Initializable,
 
     private String backup(String path) throws Exception {
         Properties properties = new Properties();
-        properties.setProperty(MysqlExportService.DB_NAME, dbName);
-        properties.setProperty(MysqlExportService.DB_USERNAME, dbUser);
-        properties.setProperty(MysqlExportService.DB_PASSWORD, dbPass);
-        properties.setProperty(MysqlExportService.EMAIL_HOST, "smtp.gmail.com");
+        properties.setProperty(MysqlExportService.DB_NAME, FetchDbDetails.getDbName());
+        properties.setProperty(MysqlExportService.DB_USERNAME, FetchDbDetails.getDbUser());
+        properties.setProperty(MysqlExportService.DB_PASSWORD, FetchDbDetails.getDbPass());
+        properties.setProperty(MysqlExportService.EMAIL_HOST, host);
         properties.setProperty(MysqlExportService.EMAIL_PORT, "587");
         properties.setProperty(MysqlExportService.EMAIL_USERNAME, user.get("backupemail"));
         properties.setProperty(MysqlExportService.EMAIL_PASSWORD, user.get("backupemailpassword"));
@@ -694,15 +713,15 @@ public class AdminPanelController extends UtilityClass implements Initializable,
                         showAlert(Alert.AlertType.INFORMATION, backup.getScene().getWindow(), "SUCCESS", "BACK UP HAS BEEN COMPLETED SUCCESSFULLY TO " + filepath);
                         File lastFileModified = lastFileModified(path);
                         if (!companyName.isEmpty() && companyName != null) {
-//    DriveMain.driveBackupMain(companyName+lastFileModified.getName(), lastFileModified.getAbsolutePath());
-                            com.google.api.services.drive.model.File fileMetadata = new com.google.api.services.drive.model.File();
-                            fileMetadata.setName(companyName + " __ file__" + lastFileModified.getName());
-                            java.io.File filePath = new java.io.File(lastFileModified.getAbsolutePath());
-                            FileContent mediaContent = new FileContent("multipart/x-zip", filePath);
-                            com.google.api.services.drive.model.File file = new DriveSuperClass().getService().files().create(fileMetadata, mediaContent)
-                                    .setFields("id")
-                                    .execute();
-                            System.out.println("File ID: " + file.getId());
+                            DriveMain.driveBackupMain(companyName + "__file__" + lastFileModified.getName(), lastFileModified.getAbsolutePath());
+//                            com.google.api.services.drive.model.File fileMetadata = new com.google.api.services.drive.model.File();
+//                            fileMetadata.setName(companyName + " __ file__" + lastFileModified.getName());
+//                            java.io.File filePath = new java.io.File(lastFileModified.getAbsolutePath());
+//                            FileContent mediaContent = new FileContent("multipart/x-zip", filePath);
+//                            com.google.api.services.drive.model.File file = new DriveSuperClass().getService().files().create(fileMetadata, mediaContent)
+//                                    .setFields("id")
+//                                    .execute();
+//                            System.out.println("File ID: " + file.getId());
 
                         }
                         localBackup(lastFileModified.getAbsolutePath());

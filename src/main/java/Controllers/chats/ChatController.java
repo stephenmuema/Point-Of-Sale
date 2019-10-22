@@ -33,6 +33,9 @@ public class ChatController extends UtilityClass implements Initializable {
     public ScrollPane scrollpane;
     public VBox scrollchat;
 
+    public ChatController() throws IOException {
+    }
+
     public ListView<OnlineUsersMaster> getUserList() {
         return userList;
     }
@@ -116,15 +119,20 @@ public class ChatController extends UtilityClass implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                () -> {
-                    try {
-                        config.login.put("loggedout", true);
-                        borderPane.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("login.fxml")))));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }, true);
+        IdleMonitor idleMonitor = null;
+        try {
+            idleMonitor = new IdleMonitor(Duration.seconds(3600),
+                    () -> {
+                        try {
+                            config.login.put("loggedout", true);
+                            borderPane.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("login.fxml")))));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         idleMonitor.register(borderPane, Event.ANY);
     }
 
