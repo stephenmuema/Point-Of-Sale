@@ -13,5 +13,7 @@ public class Testing {
         while (rs.next()) {
             System.out.println("TABLE_CAT = " + rs.getString("TABLE_CAT"));
         }
+
+
     }
 }

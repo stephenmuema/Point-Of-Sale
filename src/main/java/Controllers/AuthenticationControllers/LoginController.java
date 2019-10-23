@@ -3,6 +3,8 @@ package Controllers.AuthenticationControllers;
 import Controllers.SuperClass;
 import Controllers.UtilityClass;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,6 +41,7 @@ public class LoginController extends UtilityClass implements Initializable {
 
     public Button refresh;
     public TextField shiftid;
+    public Label company;
     @FXML
     Hyperlink link;
     @FXML
@@ -46,7 +49,7 @@ public class LoginController extends UtilityClass implements Initializable {
     @FXML
     PasswordField password;
     @FXML
-    TextField email;
+    ComboBox<String> email;
     @FXML
     private Label clock;
     private String emailSubmit, pass;
@@ -93,6 +96,32 @@ public class LoginController extends UtilityClass implements Initializable {
     }
 
     private void main() {
+
+        ObservableList<String> userNames = FXCollections.observableArrayList();
+        try {
+            connection = new UtilityClass().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users");
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.isBeforeFirst()) {
+                while (rs.next()) {
+                    userNames.add(rs.getString("employeename"));
+                }
+            }
+            preparedStatement = connection.prepareStatement("SELECT * FROM company");
+            rs = preparedStatement.executeQuery();
+            if (rs.isBeforeFirst()) {
+                while (rs.next()) {
+                    company.setText(AesCrypto.decrypt(encryptionkey, rs.getString("companyname")));
+                }
+            } else {
+                company.setText("MEDICA POS SYSTEM");
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+
+        email.setItems(userNames);
+        email.setEditable(true);
         menuClick();
         if (config.login.containsKey("loggedout")) {
             message.setText("YOU ARE LOGGED OUT ");
@@ -221,7 +250,7 @@ public class LoginController extends UtilityClass implements Initializable {
     }
 
     private void loginValidation() {
-        if (email.getText().isEmpty() || password.getText().isEmpty()) {
+        if (email.getValue().isEmpty() || password.getText().isEmpty()) {
             LogClass.getLogger().log(Level.SEVERE, " PLEASE FILL ALL FIELDS");
             showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(),
                     "FILL ALL FIELDS", "PLEASE FILL ALL FIELDS");
@@ -235,7 +264,7 @@ public class LoginController extends UtilityClass implements Initializable {
     //login method
     private void login() {
 //        get input text
-        emailSubmit = email.getText();
+        emailSubmit = email.getValue();
         pass = password.getText();
         try {
 //            create a connection
@@ -405,13 +434,7 @@ public class LoginController extends UtilityClass implements Initializable {
         this.password = password;
     }
 
-    public TextField getEmail() {
-        return email;
-    }
 
-    public void setEmail(TextField email) {
-        this.email = email;
-    }
 
     public ImageView getImageView() {
         return imageView;

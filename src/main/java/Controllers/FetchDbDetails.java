@@ -12,7 +12,7 @@ import static securityandtime.config.dbConnFile;
 import static securityandtime.config.encryptionkey;
 
 public class FetchDbDetails {
-    static String dbName = "nanotechsoftwarespos";
+    static String dbName = "nanotech_pos";
     static String dbPass = "nanotech";
     static String dbUser = "root";
     static String dbPort = "3306";

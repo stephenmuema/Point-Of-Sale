@@ -393,7 +393,7 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         }
         try {
             PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement("SELECT * FROM drivesettings ORDER BY id DESC LIMIT 1");
+            preparedStatement = connection.prepareStatement("SELECT * FROM company ORDER BY id DESC LIMIT 1");
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.isBeforeFirst()) {
@@ -437,11 +437,12 @@ public class AdminPanelController extends UtilityClass implements Initializable,
                     }
                 }
                 if (backupdata) {
+                    showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "AUTOMATIC BACKUP", "BACK UP RUNNING");
 
                     backingUpMainMethod();
                 }
             } else {
-//                showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "INITIAL BACKUP TESTING", "THIS IS YOUR FIRST BACK UP ON THE NEW BACKUOP LOCATION.wE HAVE TO TEST IT TO CHECK IF THE BACKUP FUNCTIONALITY WORKS");
+                showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "INITIAL BACKUP TESTING", "THIS IS YOUR FIRST BACK UP ON THE NEW BACKUOP LOCATION.wE HAVE TO TEST IT TO CHECK IF THE BACKUP FUNCTIONALITY WORKS");
                 backingUpMainMethod();
 
             }
@@ -486,6 +487,7 @@ public class AdminPanelController extends UtilityClass implements Initializable,
 
 
     private void buttonClick() {
+
         reportIssues.setOnAction(event -> {
             try {
                 refresh();

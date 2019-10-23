@@ -38,27 +38,21 @@
             <Font size="17.0"/>
         </font>
     </Label>
-    <AnchorPane layoutX="286.0" layoutY="66.0" prefHeight="533.0" prefWidth="626.0" styleClass="forminner">
+    <AnchorPane layoutX="279.0" layoutY="84.0" prefHeight="533.0" prefWidth="626.0" styleClass="forminner">
         <children>
             <Label fx:id="message" alignment="CENTER" layoutX="64.0" layoutY="30.0" prefHeight="49.0" prefWidth="502.0"
-                   text="testing" textAlignment="CENTER">
+                   text="MESSAGE" textAlignment="CENTER">
                 <font>
                     <Font name="FangSong" size="33.0"/>
                 </font>
             </Label>
             <Label fx:id="clock" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="87.0"
-                   prefHeight="49.0" prefWidth="613.0" stylesheets="@../styles/Login.css" text="testing2"
+                   prefHeight="49.0" prefWidth="613.0" stylesheets="@../styles/Login.css" text="TIME"
                    textAlignment="CENTER">
                 <font>
-                    <Font name="Gabriola" size="57.0"/>
+                    <Font size="37.0"/>
                 </font>
             </Label>
-            <TextField fx:id="email" alignment="CENTER" layoutX="290.0" layoutY="179.0" prefHeight="34.0"
-                       prefWidth="276.0" promptText="USER NAME/EMAIL" styleClass="textfields" text="admin">
-                <font>
-                    <Font name="Calibri Light" size="18.0"/>
-                </font>
-            </TextField>
             <PasswordField fx:id="password" alignment="CENTER" layoutX="289.0" layoutY="232.0" prefHeight="34.0"
                            prefWidth="276.0" promptText="PASSWORD" styleClass="textfields" text="admin">
                 <font>
@@ -75,8 +69,7 @@
                     <Font name="Calibri Light" size="18.0"/>
                 </font>
             </TextField>
-            <Label alignment="CENTER" layoutX="63.0" layoutY="179.0" prefHeight="34.0" prefWidth="179.0"
-                   text="NAME/GMAIL">
+            <Label alignment="CENTER" layoutX="63.0" layoutY="179.0" prefHeight="34.0" prefWidth="179.0" text="NAME">
                 <font>
                     <Font name="System Bold" size="12.0"/>
                 </font>
@@ -93,12 +86,20 @@
                     <Font name="System Bold" size="12.0"/>
                 </font>
             </Label>
+            <ComboBox fx:id="email" layoutX="289.0" layoutY="179.0" prefHeight="34.0" prefWidth="276.0"
+                      styleClass="textfields"/>
         </children>
     </AnchorPane>
     <Button fx:id="exit" layoutX="50.0" layoutY="188.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="130.0"
             style="-fx-background-color: red;" text="EXIT"/>
     <Button fx:id="refresh" layoutX="50.0" layoutY="104.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="130.0"
             text="REFRESH"/>
+    <Label fx:id="company" alignment="CENTER" layoutX="348.0" layoutY="35.0" prefHeight="39.0" prefWidth="502.0"
+           textAlignment="CENTER" textFill="WHITE">
+        <font>
+            <Font size="27.0"/>
+        </font>
+    </Label>
     <stylesheets>
         <URL value="@../styles/css.css"/>
         <URL value="@../styles/Login.css"/>

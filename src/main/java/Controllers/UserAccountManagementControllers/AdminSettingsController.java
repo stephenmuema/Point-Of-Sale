@@ -432,7 +432,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
         }
         try {
             PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement("SELECT * FROM drivesettings ORDER BY id DESC LIMIT 1");
+            preparedStatement = connection.prepareStatement("SELECT * FROM company ORDER BY id DESC LIMIT 1");
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.isBeforeFirst()) {
@@ -508,7 +508,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
             }
             PreparedStatement preparedStatement = null;
             try {
-                preparedStatement = connection.prepareStatement("SELECT * FROM drivesettings ORDER BY id DESC LIMIT 1");
+                preparedStatement = connection.prepareStatement("SELECT * FROM company ORDER BY id DESC LIMIT 1");
 
                 ResultSet rs = preparedStatement.executeQuery();
 
@@ -517,7 +517,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
                     while (rs.next()) {
                         id = rs.getString("id");
                     }
-                    preparedStatement = connection.prepareStatement("UPDATE drivesettings SET message=?,companyname=?,address=?,phone=?,email=?,logo=? WHERE id=?");
+                    preparedStatement = connection.prepareStatement("UPDATE company SET message=?,companyname=?,address=?,phone=?,email=?,logo=? WHERE id=?");
                     preparedStatement.setString(1, messageText);
                     preparedStatement.setString(2, AesCrypto.encrypt(encryptionkey, initVector, nameText));
                     preparedStatement.setString(3, addressText);
@@ -527,7 +527,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
                     preparedStatement.setString(7, id);
                     preparedStatement.executeUpdate();
                 } else {
-                    preparedStatement = connection.prepareStatement("INSERT INTO drivesettings  (message,companyname,address,phone,email,logo) VALUES (?,?,?,?,?,?)");
+                    preparedStatement = connection.prepareStatement("INSERT INTO company  (message,companyname,address,phone,email,logo) VALUES (?,?,?,?,?,?)");
                     preparedStatement.setString(1, messageText);
                     preparedStatement.setString(2, nameText);
                     preparedStatement.setString(3, addressText);
