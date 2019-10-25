@@ -2,14 +2,15 @@ package Controllers;
 
 import securityandtime.AesCrypto;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import java.io.*;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import static securityandtime.config.dbConnFile;
-import static securityandtime.config.encryptionkey;
 
 public class FetchDbDetails {
     static String dbName = "nanotech_pos";
@@ -21,27 +22,89 @@ public class FetchDbDetails {
     static String[] dbdetails = {dbHost + "/", dbUser, dbPass, "jdbc:mysql://", dbName + "?zeroDateTimeBehavior=convertToNull", dbPort};
     static String[] des = {dbdetails[1], dbdetails[2], dbdetails[3] + dbdetails[0] + dbdetails[4]};
 
-
     FetchDbDetails() throws IOException {
-        File file = new File(dbConnFile);
-        boolean exists = file.exists();
-        if (file.exists()) {
+        System.out.println(readFile());
+        InputStream is = new FileInputStream(securityandtime.config.pathToDbSettings);
+        BufferedReader buf = new BufferedReader(new InputStreamReader(is));
+        String str = "";
+        String line = buf.readLine();
+        StringBuilder sb = new StringBuilder();
 
-            FileInputStream fileInputStream = new FileInputStream(file);
-
-            byte[] fileContent = new byte[(int) file.length()];
-
-            int i = fileInputStream.read(fileContent);
-//            System.out.println("bytes read are " + i);
-            StringBuilder builderEnc = new StringBuilder();
-            StringBuilder builder = new StringBuilder();
-
-            for (byte b : fileContent
-            ) {
-                builderEnc.append((char) b);
-            }
-            String decrypt = AesCrypto.decrypt(encryptionkey, builderEnc.toString());
+        while (line != null) {
+            sb.append(line).append("\n");
+            line = buf.readLine();
         }
+
+        String fileAsString = sb.toString();
+
+        try {
+            str = new AesCrypto().decrypt(fileAsString);
+        } catch (InvalidAlgorithmParameterException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        setDbUser(str.split("::")[2]);
+        System.out.println(getDbUser());
+        setDbPass(str.split("::")[1]);
+        System.out.println(getDbPass());
+        setDbPort(str.split("::")[3]);
+        System.out.println(getDbPort());
+        setDbHost(str.split("::")[0]);
+        System.out.println(getDbHost());
+        setDbName(readDbFile());
+        System.out.println(getDbName());
+
+    }
+
+    private String readDbFile() throws IOException {
+        InputStream is = new FileInputStream(securityandtime.config.pathToPOSSettings);
+        BufferedReader buf = new BufferedReader(new InputStreamReader(is));
+        String str = "";
+        String line = buf.readLine();
+        StringBuilder sb = new StringBuilder();
+
+        while (line != null) {
+            sb.append(line).append("\n");
+            line = buf.readLine();
+        }
+
+        String fileAsString = sb.toString();
+
+
+        return fileAsString;
+    }
+
+    private String readFile() throws IOException {
+        InputStream is = new FileInputStream(securityandtime.config.pathToDbSettings);
+        BufferedReader buf = new BufferedReader(new InputStreamReader(is));
+        String str = "";
+        String line = buf.readLine();
+        StringBuilder sb = new StringBuilder();
+
+        while (line != null) {
+            sb.append(line).append("\n");
+            line = buf.readLine();
+        }
+
+        String fileAsString = sb.toString();
+
+        try {
+            str = new AesCrypto().decrypt(fileAsString);
+        } catch (InvalidAlgorithmParameterException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        setDbUser(str.split("::")[2]);
+        System.out.println(getDbUser());
+        setDbPass(str.split("::")[1]);
+        System.out.println(getDbPass());
+        setDbPort(str.split("::")[3]);
+        System.out.println(getDbPort());
+        setDbHost(str.split("::")[0]);
+        System.out.println(getDbHost());
+        setDbName(readDbFile());
+        System.out.println(getDbName());
+        return str;
     }
 
     public static String getDbName() {

@@ -20,6 +20,7 @@ import securityandtime.AesCrypto;
 import securityandtime.BoardListener;
 import securityandtime.config;
 
+import javax.crypto.NoSuchPaddingException;
 import javax.mail.MessagingException;
 import java.awt.*;
 import java.io.*;
@@ -30,6 +31,7 @@ import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -231,7 +233,15 @@ public class LicensingController extends UtilityClass implements Initializable {
         if (license.length() <= 50000) {
             showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "INVALID LICENSE FILE");
         } else {
-            AesCrypto aesCrypto = new AesCrypto();
+            try {
+                AesCrypto aesCrypto = new AesCrypto();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (NoSuchPaddingException e) {
+                e.printStackTrace();
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
             setDecryptedString(AesCipher.decrypt(aesKey, license.substring(0, license.length() - 50000)).getData());
 //            System.out.println("Key:" + key);
 //            System.out.println(decryptedString.split(":::")[0]);//name

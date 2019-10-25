@@ -210,7 +210,7 @@ public class LoginController extends UtilityClass implements Initializable {
     }
 
     private void buttonClick() {
-        refresh.setOnAction(__ -> {
+        refresh.setOnAction(event -> {
             panel.getChildren().removeAll();
             try {
                 panel.getChildren().add(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml"))));

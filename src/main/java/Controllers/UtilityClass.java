@@ -60,8 +60,12 @@ public class UtilityClass extends FetchDbDetails {
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
+                FetchDbDetails fetchDbDetails = new FetchDbDetails();
                 connection = DriverManager
-                        .getConnection(FetchDbDetails.getDes()[2], FetchDbDetails.getDes()[0], FetchDbDetails.getDes()[1]);
+                        .getConnection(getDes()[2], getDes()[0], getDes()[1]);
+                System.out.println(getDes()[2] + " is the des");
+                System.out.println(getDes()[0] + " is the user");
+                System.out.println(getDes()[1] + " is the password");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -77,6 +81,8 @@ public class UtilityClass extends FetchDbDetails {
                 Files.createDirectories(Paths.get(fileSavePath + "\\dependencies"));
                 Files.createDirectories(Paths.get(fileSavePath + "\\images"));
                 Files.createDirectories(Paths.get(fileSavePath + "\\files"));
+                Files.createDirectories(Paths.get(fileSavePath + "\\files"));
+                Files.createDirectories(Paths.get(NANOTECHSOFTWARES_SETTINGS));
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -7,21 +7,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/snm.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/FetchDbDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/FetchDbDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminSettingsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Testing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/securityandtime/AesCrypto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/securityandtime/AesCrypto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/AuthenticationFiles/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AuthenticationFiles/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LoginController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LoginController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LoginController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UtilityClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UtilityClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/securityandtime/AesCrypto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/securityandtime/AesCrypto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/securityandtime/config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/securityandtime/config.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -206,7 +207,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Testing">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="DriveMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gdrive.DriveMain" />
       <module name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
@@ -241,8 +242,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Testing" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Testing" />
         <item itemvalue="Application.DriveMain" />
       </list>
     </recent_temporary>
@@ -596,13 +597,10 @@
       <workItem from="1571847542713" duration="5820000" />
       <workItem from="1571853786442" duration="3079000" />
       <workItem from="1571856951243" duration="4451000" />
-    </task>
-    <task id="LOCAL-00003" summary="before shopping cart">
-      <created>1552049120658</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1552049120658</updated>
+      <workItem from="1571863641187" duration="352000" />
+      <workItem from="1571932452872" duration="6375000" />
+      <workItem from="1571949836434" duration="148000" />
+      <workItem from="1571952512676" duration="5193000" />
     </task>
     <task id="LOCAL-00004" summary="after cart operations before details">
       <created>1554281198173</created>
@@ -940,7 +938,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571850665640</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="CODE FOR GDRIVE FOLDER NOT WORKING BUT CODE FOR GDRIVE HOME IS OPERATIONAL">
+      <created>1571863719216</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1571863719216</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

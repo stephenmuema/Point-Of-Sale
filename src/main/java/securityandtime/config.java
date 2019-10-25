@@ -58,7 +58,7 @@ public interface config {//host,user,password,des,port
     JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
     // Directory to store user credentials for this application.
-    java.io.File CREDENTIALS_FOLDER = new java.io.File(System.getProperty("user.home"), "credentials");
+    java.io.File CREDENTIALS_FOLDER = new File(fileSavePath + "credentials");
 
     String CLIENT_SECRET_FILE_NAME = "client_secret.json";
 
@@ -68,5 +68,9 @@ public interface config {//host,user,password,des,port
     //
     List<String> SCOPES = Collections.singletonList(DriveScopes.DRIVE);
     String credentialFile = CREDENTIALS_FOLDER + "\\StoredCredential";
+    String NANOTECHSOFTWARES_SETTINGS = "D:\\NANOTECHSOFTWARES\\settings\\";
+    String pathToDbSettings = NANOTECHSOFTWARES_SETTINGS + "DbConf.dll";
+    String pathToPOSSettings = NANOTECHSOFTWARES_SETTINGS + "POSConf.dll";
+    String pathToMEDICASettings = NANOTECHSOFTWARES_SETTINGS + "MEDICAConf.dll";
 
 }
