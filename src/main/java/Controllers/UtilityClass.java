@@ -63,9 +63,9 @@ public class UtilityClass extends FetchDbDetails {
                 FetchDbDetails fetchDbDetails = new FetchDbDetails();
                 connection = DriverManager
                         .getConnection(getDes()[2], getDes()[0], getDes()[1]);
-                System.out.println(getDes()[2] + " is the des");
-                System.out.println(getDes()[0] + " is the user");
-                System.out.println(getDes()[1] + " is the password");
+//                System.out.println(getDes()[2] + " is the des");
+//                System.out.println(getDes()[0] + " is the user");
+//                System.out.println(getDes()[1] + " is the password");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -92,7 +92,7 @@ public class UtilityClass extends FetchDbDetails {
     public static void shutdown() throws RuntimeException, IOException {
         String shutdownCommand;
         String operatingSystem = System.getProperty("os.name");
-        System.out.println(operatingSystem);
+//        System.out.println(operatingSystem);
         if (operatingSystem.startsWith("Linux") || operatingSystem.startsWith("Mac")) {
             shutdownCommand = "shutdown -h now";
         } else if (operatingSystem.startsWith("Windows")) {
@@ -108,7 +108,7 @@ public class UtilityClass extends FetchDbDetails {
     public static void restart() throws RuntimeException, IOException {
         String restartCommand;
         String operatingSystem = System.getProperty("os.name");
-        System.out.println(operatingSystem);
+//        System.out.println(operatingSystem);
         if (operatingSystem.startsWith("Linux") || operatingSystem.startsWith("Mac")) {
             restartCommand = "shutdown -r now";
         } else if (operatingSystem.startsWith("Windows")) {
@@ -483,7 +483,7 @@ public class UtilityClass extends FetchDbDetails {
         File file = new File(fileSavePath + "\\images\\" + new Date().toString() + ".png");
         try {
             ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
-            System.out.println("snapshot saved: " + file.getAbsolutePath());
+//            System.out.println("snapshot saved: " + file.getAbsolutePath());
         } catch (IOException ignore) {
 //            Logger.getLogger(JavaFXSnapshot.class.getName()).log(Level.SEVERE, null, ex);
         }

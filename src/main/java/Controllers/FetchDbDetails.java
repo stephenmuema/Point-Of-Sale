@@ -13,17 +13,16 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class FetchDbDetails {
-    private static String dbName = "nanotech_pos";
-    private static String dbPass = "nanotech";
-    private static String dbUser = "root";
-    private static String dbPort = "3306";
-    private static String dbHost = "127.0.0.1";
+    private static String dbName = "";
+    private static String dbPass = "";
+    private static String dbUser = "";
+    private static String dbPort = "";
+    private static String dbHost = "";
     private static Map<String, String> connectionMap = new LinkedHashMap<>();
-    private static String[] dbdetails = {dbHost + "/", dbUser, dbPass, "jdbc:mysql://", dbName + "?zeroDateTimeBehavior=convertToNull", dbPort};
-    private static String[] des = {dbdetails[1], dbdetails[2], dbdetails[3] + dbdetails[0] + dbdetails[4]};
-
+    private static String[] dbdetails;
+    private static String[] des;
     FetchDbDetails() throws IOException {
-//        System.out.println(readFile());
+////        System.out.println(readFile());
         InputStream is = new FileInputStream(securityandtime.config.pathToDbSettings);
         BufferedReader buf = new BufferedReader(new InputStreamReader(is));
         String str = "";
@@ -43,17 +42,20 @@ public class FetchDbDetails {
         }
 
         setDbUser(str.split("::")[2]);
-        System.out.println(getDbUser());
+//        System.out.println(getDbUser());
         setDbPass(str.split("::")[1]);
-        System.out.println(getDbPass());
+//        System.out.println(getDbPass());
         setDbPort(str.split("::")[3]);
-        System.out.println(getDbPort());
+//        System.out.println(getDbPort());
         setDbHost(str.split("::")[0]);
-        System.out.println(getDbHost());
+//        System.out.println(getDbHost());
         setDbName(readDbFile());
-        System.out.println(getDbName());
+//        System.out.println(getDbName());
+        dbdetails = new String[]{dbHost + "/", dbUser, dbPass, "jdbc:mysql://", dbName + "?zeroDateTimeBehavior=convertToNull", dbPort};
+        des = new String[]{dbdetails[1], dbdetails[2], dbdetails[3] + dbdetails[0] + dbdetails[4]};
 
     }
+
 
     private String readDbFile() throws IOException {
         InputStream is = new FileInputStream(securityandtime.config.pathToPOSSettings);
@@ -63,7 +65,7 @@ public class FetchDbDetails {
         StringBuilder sb = new StringBuilder();
 
         while (line != null) {
-            sb.append(line).append("\n");
+            sb.append(line);
             line = buf.readLine();
         }
 
@@ -94,15 +96,15 @@ public class FetchDbDetails {
         }
 
         setDbUser(str.split("::")[2]);
-        System.out.println(getDbUser());
+//        System.out.println(getDbUser());
         setDbPass(str.split("::")[1]);
-        System.out.println(getDbPass());
+//        System.out.println(getDbPass());
         setDbPort(str.split("::")[3]);
-        System.out.println(getDbPort());
+//        System.out.println(getDbPort());
         setDbHost(str.split("::")[0]);
-        System.out.println(getDbHost());
+//        System.out.println(getDbHost());
         setDbName(readDbFile());
-        System.out.println(getDbName());
+//        System.out.println(getDbName());
         return str;
     }
 

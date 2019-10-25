@@ -150,7 +150,7 @@ public class Main extends Application {
 
     private void initializeApp() {
 
-
+        System.out.println(logoImageNanotechPos.getHeight());
         Runnable target;
         Thread thread = new Thread(new NetworkCheck());
         try {
@@ -259,7 +259,7 @@ public class Main extends Application {
                 stage.setScene(scene);
                 System.out.println("Expired license");
                 stage.initStyle(StageStyle.DECORATED);
-                stage.getIcons().add(logoImageObj);
+                stage.getIcons().add(logoImageNanotechPos);
                 stage.setOnCloseRequest(event -> {
                     Platform.exit();
                     System.exit(123);
@@ -334,7 +334,7 @@ public class Main extends Application {
 
                     System.out.println("Expired license");
                     stage.initStyle(StageStyle.DECORATED);
-                    stage.getIcons().add(logoImageObj);
+                    stage.getIcons().add(logoImageNanotechPos);
                     stage.setOnCloseRequest(event -> {
                         Platform.exit();
                         System.exit(123);
@@ -362,7 +362,7 @@ public class Main extends Application {
                         stage.setScene(scene);
                         stage.initStyle(StageStyle.DECORATED);
 
-                        stage.getIcons().add(logoImageObj);
+                        stage.getIcons().add(logoImageNanotechPos);
                         stage.setTitle(NANOTECHSOFTWARES_POS_SOLUTIONS + year + version + "      CLIENT ID        " + licenseId);//TITLE
                         stage.setOnCloseRequest(event -> {
                             Platform.exit();
@@ -379,7 +379,7 @@ public class Main extends Application {
                         stage.setScene(scene);
                         stage.initStyle(StageStyle.DECORATED);
 
-                        stage.getIcons().add(logoImageObj);
+                        stage.getIcons().add(logoImageNanotechPos);
                         stage.setTitle(NANOTECHSOFTWARES_POS_SOLUTIONS + year + version + "     CLIENT ID       " + licenseId);//TITLE
                         stage.setOnCloseRequest(event -> {
                             Platform.exit();
@@ -397,7 +397,7 @@ public class Main extends Application {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.initStyle(StageStyle.DECORATED);
-            stage.getIcons().add(logoImageObj);
+            stage.getIcons().add(logoImageNanotechPos);
             stage.setOnCloseRequest(event -> {
                 Platform.exit();
                 System.exit(123);

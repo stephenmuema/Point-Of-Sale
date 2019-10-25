@@ -47,9 +47,10 @@ public interface config {//host,user,password,des,port
     String localCartDb = "jdbc:sqlite:" + fileSavePath + "files\\shoppingLocal.db";
     String aesKey = "26kozQaKwRuNJ24t26kozQaKwRuNJ24t";
     Map<String, Boolean> networkConnectionMap = new HashMap<>();
-    File defLogoFile = new File(fileSavePath + "\\images\\logo.png");
-    Image logoImageObj = new Image(defLogoFile.toURI().toString());
+    //    File nanotechLogoPos = ;
+    Image logoImageNanotechPos = new Image("images/logo.png");
 
+    Image companyLogoImageObj = new Image(new File(fileSavePath + "\\images\\logo.png").toURI().toString());
 
     //drive settings
     String backUpFolderId = "1KeAMwOXSQiZvWVwFs5DmtcwKgWGZNeEX";
