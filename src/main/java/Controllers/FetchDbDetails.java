@@ -13,23 +13,22 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class FetchDbDetails {
-    static String dbName = "nanotech_pos";
-    static String dbPass = "nanotech";
-    static String dbUser = "root";
-    static String dbPort = "3306";
-    static String dbHost = "127.0.0.1";
-    static Map<String, String> connectionMap = new LinkedHashMap<>();
-    static String[] dbdetails = {dbHost + "/", dbUser, dbPass, "jdbc:mysql://", dbName + "?zeroDateTimeBehavior=convertToNull", dbPort};
-    static String[] des = {dbdetails[1], dbdetails[2], dbdetails[3] + dbdetails[0] + dbdetails[4]};
+    private static String dbName = "nanotech_pos";
+    private static String dbPass = "nanotech";
+    private static String dbUser = "root";
+    private static String dbPort = "3306";
+    private static String dbHost = "127.0.0.1";
+    private static Map<String, String> connectionMap = new LinkedHashMap<>();
+    private static String[] dbdetails = {dbHost + "/", dbUser, dbPass, "jdbc:mysql://", dbName + "?zeroDateTimeBehavior=convertToNull", dbPort};
+    private static String[] des = {dbdetails[1], dbdetails[2], dbdetails[3] + dbdetails[0] + dbdetails[4]};
 
     FetchDbDetails() throws IOException {
-        System.out.println(readFile());
+//        System.out.println(readFile());
         InputStream is = new FileInputStream(securityandtime.config.pathToDbSettings);
         BufferedReader buf = new BufferedReader(new InputStreamReader(is));
         String str = "";
         String line = buf.readLine();
         StringBuilder sb = new StringBuilder();
-
         while (line != null) {
             sb.append(line).append("\n");
             line = buf.readLine();
