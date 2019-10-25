@@ -1,5 +1,8 @@
 package gdrive;
 
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
@@ -21,6 +24,14 @@ public class DriveMain {
 
             System.out.println("Created Folder: " + CREDENTIALS_FOLDER.getAbsolutePath());
             System.out.println("Copy file " + CLIENT_SECRET_FILE_NAME + " into folder above.. and rerun this class!!");
+
+            File source = new File("client_secret.json");
+            File dest = new File(CREDENTIALS_FOLDER.getAbsolutePath());
+            try {
+                FileUtils.copyDirectory(source, dest);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             driveBackupMain(driveFname, pathToFile);
         }
 

@@ -42,12 +42,9 @@ public interface config {//host,user,password,des,port
     String version = " (V 1.1) ";
     String fileSavePath = "D:\\NANOTECHSOFTWARES\\nanotechPOS\\";
     String licensepath = fileSavePath + "licenses\\license.dll";
-    String dbConnFile = "nanotechDb.dll";
-    String supportFile = "nanotechSupportGroup.dll";
     String localCartDb = "jdbc:sqlite:" + fileSavePath + "files\\shoppingLocal.db";
     String aesKey = "26kozQaKwRuNJ24t26kozQaKwRuNJ24t";
     Map<String, Boolean> networkConnectionMap = new HashMap<>();
-    //    File nanotechLogoPos = ;
     Image logoImageNanotechPos = new Image("images/logo.png");
 
     Image companyLogoImageObj = new Image(new File(fileSavePath + "\\images\\logo.png").toURI().toString());
@@ -69,7 +66,7 @@ public interface config {//host,user,password,des,port
     //
     List<String> SCOPES = Collections.singletonList(DriveScopes.DRIVE);
     String credentialFile = CREDENTIALS_FOLDER + "\\StoredCredential";
-    String NANOTECHSOFTWARES_SETTINGS = "D:\\NANOTECHSOFTWARES\\settings\\";
+    String NANOTECHSOFTWARES_SETTINGS = "C:\\NANOTECHSOFTWARES\\settings\\";
     String pathToDbSettings = NANOTECHSOFTWARES_SETTINGS + "DbConf.dll";
     String pathToPOSSettings = NANOTECHSOFTWARES_SETTINGS + "POSConf.dll";
     String pathToMEDICASettings = NANOTECHSOFTWARES_SETTINGS + "MEDICAConf.dll";
