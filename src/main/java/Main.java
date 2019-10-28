@@ -26,6 +26,7 @@ import static securityandtime.config.*;
 /**
  * @author Steve muema
  */
+
 public class Main extends Application {
 
     static Stage stage = null;

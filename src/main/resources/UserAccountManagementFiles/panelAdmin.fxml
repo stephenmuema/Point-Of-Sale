@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.*?>
@@ -10,33 +11,33 @@
             fx:controller="Controllers.UserAccountManagementControllers.AdminPanelController">
     <VBox prefHeight="700.0" prefWidth="1200.0">
         <MenuBar>
-            <Menu mnemonicParsing="false" text="ACCOUNT" fx:id="acctMenu">
+            <Menu fx:id="acctMenu" mnemonicParsing="false" text="ACCOUNT">
                 <MenuItem fx:id="details" mnemonicParsing="false" text="DETAILS"/>
                 <MenuItem fx:id="menulogout" mnemonicParsing="false" text="LOGOUT"/>
                 <MenuItem fx:id="license" mnemonicParsing="false" text="LICENSE MANAGER"/>
                 <MenuItem fx:id="menuQuit" mnemonicParsing="false" text="QUIT"/>
 
             </Menu>
-            <Menu mnemonicParsing="false" text="DATABASE" fx:id="dbMenu">
+            <Menu fx:id="dbMenu" mnemonicParsing="false" text="DATABASE">
                 <MenuItem fx:id="backupMenu" mnemonicParsing="false" text="BACKUP"/>
                 <MenuItem fx:id="retrieveBackupMenu" mnemonicParsing="false" text="RETRIEVE BACKUP"/>
                 <MenuItem fx:id="viewBackupsMenu" mnemonicParsing="false" text="VIEW BACKUPS"/>
             </Menu>
-            <Menu mnemonicParsing="false" text="SHIFTS" fx:id="shiftsMenu">
+            <Menu fx:id="shiftsMenu" mnemonicParsing="false" text="SHIFTS">
                 <items>
                     <MenuItem fx:id="startDayMenu" mnemonicParsing="false" text="START SHIFT"/>
                     <MenuItem fx:id="endDayMenu" mnemonicParsing="false" text="END SHIFT"/>
                     <MenuItem mnemonicParsing="false" text="VIEW SHIFT INFORMATION"/>
                 </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="SYSTEM " fx:id="systemMenu">
+            <Menu fx:id="systemMenu" mnemonicParsing="false" text="SYSTEM ">
                 <items>
                     <MenuItem fx:id="reportIssuesMenu" mnemonicParsing="false" text="REPORT ISSUES"/>
                     <MenuItem fx:id="restartServerMenu" mnemonicParsing="false" text="RESTART SERVER"/>
                     <MenuItem fx:id="troubleShootMenu" mnemonicParsing="false" text="TROUBLESHOOT SYSTEM"/>
                 </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="HELP AND SUPPORT" fx:id="helpAndSupport">
+            <Menu fx:id="helpAndSupport" mnemonicParsing="false" text="HELP AND SUPPORT">
                 <MenuItem fx:id="abtMenu" mnemonicParsing="false" text="ABOUT THIS SOFTWARE"/>
                 <MenuItem fx:id="termsMenu" mnemonicParsing="false" text="TERMS AND CONDITIONS"/>
                 <MenuItem fx:id="checkUpdatesMenu" mnemonicParsing="false" text="CHECK FOR UPDATES"/>
@@ -45,14 +46,14 @@
                 <MenuItem fx:id="menuShutDown" mnemonicParsing="false" text="SHUT DOWN"/>
                 <MenuItem fx:id="menuRestart" mnemonicParsing="false" text="RESTART SYSTEM"/>
             </Menu>
-            <Menu mnemonicParsing="false" text="NAVIGATION" fx:id="navigation">
+            <Menu fx:id="navigation" mnemonicParsing="false" text="NAVIGATION">
                 <MenuItem fx:id="staffMenu" mnemonicParsing="false" text="STAFF"/>
                 <MenuItem fx:id="carWashMenu" mnemonicParsing="false" text="CAR WASH"/>
                 <MenuItem fx:id="inventoryMenu" mnemonicParsing="false" text="INVENTORY"/>
                 <MenuItem fx:id="mrMenu" mnemonicParsing="false" text="SUPPLIERS"/>
                 <MenuItem fx:id="auditsMenu" mnemonicParsing="false" text="AUDITS"/>
             </Menu>
-            <Menu mnemonicParsing="false" text="INVENTORY" fx:id="inventory">
+            <Menu fx:id="inventory" mnemonicParsing="false" text="INVENTORY">
                 <items>
 
                     <MenuItem fx:id="generateReportsMenu" mnemonicParsing="false" text="GENERATE REPORTS"/>
@@ -184,6 +185,8 @@
                     <Font name="Gabriola" size="28.0"/>
                 </font>
             </Button>
+            <ImageView fx:id="logoImage" fitHeight="550.0" fitWidth="862.0" layoutX="218.0" layoutY="83.0"
+                       pickOnBounds="true" preserveRatio="true"/>
         </AnchorPane>
         <stylesheets>
             <URL value="@../styles/css.css"/>

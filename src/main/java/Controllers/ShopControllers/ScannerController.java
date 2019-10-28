@@ -44,7 +44,7 @@ import java.util.logging.Level;
 import static securityandtime.config.fileSavePath;
 import static securityandtime.config.user;
 
-public class scannerController extends UtilityClass implements Initializable {
+public class ScannerController extends UtilityClass implements Initializable {
     public Label clock;
     public Font x1;
     public TabPane tabpane;
@@ -79,7 +79,7 @@ public class scannerController extends UtilityClass implements Initializable {
     private ObservableList<StockMaster> data;
     private Connection connection = new UtilityClass().getConnection();
 
-    public scannerController() throws IOException {
+    public ScannerController() throws IOException {
     }
 
     @Override
@@ -506,7 +506,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return clock;
     }
 
-    public scannerController setClock(Label clock) {
+    public ScannerController setClock(Label clock) {
         this.clock = clock;
         return this;
     }
@@ -515,7 +515,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return x1;
     }
 
-    public scannerController setX1(Font x1) {
+    public ScannerController setX1(Font x1) {
         this.x1 = x1;
         return this;
     }
@@ -524,7 +524,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return tabpane;
     }
 
-    public scannerController setTabpane(TabPane tabpane) {
+    public ScannerController setTabpane(TabPane tabpane) {
         this.tabpane = tabpane;
         return this;
     }
@@ -533,7 +533,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return existingstockdtab;
     }
 
-    public scannerController setExistingstockdtab(Tab existingstockdtab) {
+    public ScannerController setExistingstockdtab(Tab existingstockdtab) {
         this.existingstockdtab = existingstockdtab;
         return this;
     }
@@ -542,7 +542,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return table;
     }
 
-    public scannerController setTable(TableView<StockMaster> table) {
+    public ScannerController setTable(TableView<StockMaster> table) {
         this.table = table;
         return this;
     }
@@ -551,7 +551,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return name;
     }
 
-    public scannerController setName(TableColumn<StockMaster, String> name) {
+    public ScannerController setName(TableColumn<StockMaster, String> name) {
         this.name = name;
         return this;
     }
@@ -560,7 +560,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return price;
     }
 
-    public scannerController setPrice(TableColumn<StockMaster, String> price) {
+    public ScannerController setPrice(TableColumn<StockMaster, String> price) {
         this.price = price;
         return this;
     }
@@ -569,7 +569,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return category;
     }
 
-    public scannerController setCategory(TableColumn<StockMaster, String> category) {
+    public ScannerController setCategory(TableColumn<StockMaster, String> category) {
         this.category = category;
         return this;
     }
@@ -578,7 +578,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return barcode;
     }
 
-    public scannerController setBarcode(TableColumn<StockMaster, String> barcode) {
+    public ScannerController setBarcode(TableColumn<StockMaster, String> barcode) {
         this.barcode = barcode;
         return this;
     }
@@ -587,7 +587,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return quantity;
     }
 
-    public scannerController setQuantity(TableColumn<StockMaster, String> quantity) {
+    public ScannerController setQuantity(TableColumn<StockMaster, String> quantity) {
         this.quantity = quantity;
         return this;
     }
@@ -596,7 +596,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return delete;
     }
 
-    public scannerController setDelete(Button delete) {
+    public ScannerController setDelete(Button delete) {
         this.delete = delete;
         return this;
     }
@@ -605,7 +605,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return panel;
     }
 
-    public scannerController setParentsstocks(AnchorPane parentsstocks) {
+    public ScannerController setParentsstocks(AnchorPane parentsstocks) {
         this.panel = parentsstocks;
         return this;
     }
@@ -614,7 +614,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return itemname;
     }
 
-    public scannerController setItemname(TextField itemname) {
+    public ScannerController setItemname(TextField itemname) {
         this.itemname = itemname;
         return this;
     }
@@ -623,7 +623,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return itemprice;
     }
 
-    public scannerController setItemprice(TextField itemprice) {
+    public ScannerController setItemprice(TextField itemprice) {
         this.itemprice = itemprice;
         return this;
     }
@@ -632,7 +632,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return itemcategory;
     }
 
-    public scannerController setItemcategory(TextField itemcategory) {
+    public ScannerController setItemcategory(TextField itemcategory) {
         this.itemcategory = itemcategory;
         return this;
     }
@@ -641,7 +641,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return itemcode;
     }
 
-    public scannerController setItemcode(TextField itemcode) {
+    public ScannerController setItemcode(TextField itemcode) {
         this.itemcode = itemcode;
         return this;
     }
@@ -650,7 +650,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return addmanually;
     }
 
-    public scannerController setAddmanually(Button addmanually) {
+    public ScannerController setAddmanually(Button addmanually) {
         this.addmanually = addmanually;
         return this;
     }
@@ -659,7 +659,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return usescanner;
     }
 
-    public scannerController setUsescanner(Button usescanner) {
+    public ScannerController setUsescanner(Button usescanner) {
         this.usescanner = usescanner;
         return this;
     }
@@ -668,7 +668,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return employees;
     }
 
-    public scannerController setEmployees(MenuItem employees) {
+    public ScannerController setEmployees(MenuItem employees) {
         this.employees = employees;
         return this;
     }
@@ -677,7 +677,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return amount;
     }
 
-    public scannerController setAmount(TextField amount) {
+    public ScannerController setAmount(TextField amount) {
         this.amount = amount;
         return this;
     }
@@ -686,7 +686,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return home;
     }
 
-    public scannerController setHome(Button home) {
+    public ScannerController setHome(Button home) {
         this.home = home;
         return this;
     }
@@ -695,7 +695,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return image;
     }
 
-    public scannerController setImage(Button image) {
+    public ScannerController setImage(Button image) {
         this.image = image;
         return this;
     }
@@ -704,7 +704,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return file;
     }
 
-    public scannerController setFile(File file) {
+    public ScannerController setFile(File file) {
         this.file = file;
         return this;
     }
@@ -713,7 +713,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return length;
     }
 
-    public scannerController setLength(int length) {
+    public ScannerController setLength(int length) {
         this.length = length;
         return this;
     }
@@ -722,7 +722,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return bufferedImage;
     }
 
-    public scannerController setBufferedImage(BufferedImage bufferedImage) {
+    public ScannerController setBufferedImage(BufferedImage bufferedImage) {
         this.bufferedImage = bufferedImage;
         return this;
     }
@@ -731,7 +731,7 @@ public class scannerController extends UtilityClass implements Initializable {
         return data;
     }
 
-    public scannerController setData(ObservableList<StockMaster> data) {
+    public ScannerController setData(ObservableList<StockMaster> data) {
         this.data = data;
         return this;
     }

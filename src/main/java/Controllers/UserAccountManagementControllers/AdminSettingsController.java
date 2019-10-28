@@ -9,7 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
+import org.apache.commons.io.FileUtils;
 import securityandtime.AesCrypto;
 import securityandtime.Security;
 import securityandtime.config;
@@ -128,6 +130,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
 //    private Tab tabMirror;
     @FXML
     private TabPane mainTabPane;
+    private String logoPath;
 
     public AdminSettingsController() throws IOException {
     }
@@ -216,11 +219,16 @@ public class AdminSettingsController extends UtilityClass implements Initializab
 
     }
 
+    public static void copyFileUsingApache(File from, File to) throws IOException {
+        FileUtils.copyFile(from, to);
+    }
+
     private void initializer() throws SQLException {
         setAccountDetailsGUI();
+
         userAccountHintChange.setVisible(false);
         userAccountHintSet.setVisible(false);
-
+        companyImageName.setText(fileSavePath + "\\images\\logo.png");
         mainTabPane.getSelectionModel().selectedItemProperty().addListener(
                 (ov, t, t1) -> {
                     System.out.println(prev);
@@ -421,46 +429,6 @@ public class AdminSettingsController extends UtilityClass implements Initializab
 
     }
 
-    private void setAccountDetailsGUI() {
-
-
-        Connection connection = null;
-        try {
-            connection = new UtilityClass().getConnection();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            PreparedStatement preparedStatement;
-            preparedStatement = connection.prepareStatement("SELECT * FROM company ORDER BY id DESC LIMIT 1");
-            ResultSet rs = preparedStatement.executeQuery();
-
-            if (rs.isBeforeFirst()) {
-                //admin has set company name
-                while (rs.next()) {
-                    companyName.setText(AesCrypto.decrypt(encryptionkey, rs.getString("companyname")));
-                    if (!companyName.getText().isEmpty() && companyName.getText() != null) {
-                        companyName.setDisable(true);
-                    }
-                    companyImageName.setText(rs.getString("logo"));
-                    companyAddress.setText(rs.getString("address"));
-                    companyPhone.setText(rs.getString("phone"));
-                    companyMessage.setText(rs.getString("message"));
-                    companyEmail.setText(rs.getString("email"));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
 
     private void menuListeners() {
 //        menu listeners
@@ -491,8 +459,77 @@ public class AdminSettingsController extends UtilityClass implements Initializab
 
     }
 
-    private void buttonListeners() {
+    private void setAccountDetailsGUI() {
 
+        companyImageName.setVisible(false);//make logo location invisible
+        Connection connection = null;
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement("SELECT * FROM company ORDER BY id DESC LIMIT 1");
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.isBeforeFirst()) {
+                //admin has set company name
+                while (rs.next()) {
+                    companyName.setText(AesCrypto.decrypt(encryptionkey, rs.getString("companyname")));
+                    if (!companyName.getText().isEmpty() && companyName.getText() != null) {
+                        companyName.setDisable(true);
+                    }
+//                    companyImageName.setText(rs.getString("logo"));
+                    companyAddress.setText(rs.getString("address"));
+                    companyPhone.setText(rs.getString("phone"));
+                    companyMessage.setText(rs.getString("message"));
+                    companyEmail.setText(rs.getString("email"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    private void buttonListeners() {
+        changeLogoBtn.setOnAction(event -> {
+            File file;
+            int length;
+            FileChooser fileChooser = new FileChooser();
+
+            //Set extension filter
+
+            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+
+            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+            FileChooser.ExtensionFilter extFilterJPEG = new FileChooser.ExtensionFilter("JPEG files (*.jpeg)", "*.JPEG");
+            fileChooser.getExtensionFilters().addAll(extFilterPNG, extFilterJPG, extFilterJPEG);
+            fileChooser.setTitle("SELECT LOGO IMAGE");
+            //Show open file dialog
+            file = fileChooser.showOpenDialog(null);
+            logoPath = file.getAbsolutePath();
+            if (new File(logoPath).isFile()) {
+                companyImageName.setText(fileSavePath + "\\images\\logo.png");
+
+            }
+            File source = new File(logoPath);
+            File dest = new File(fileSavePath + "\\images\\logo.png");
+
+            try {
+                copyFileUsingApache(source, dest);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
         updateCompanyDetailsBtn.setOnAction(event -> {
             String id = null;
             String phoneText = companyPhone.getText();
@@ -778,7 +815,6 @@ public class AdminSettingsController extends UtilityClass implements Initializab
             reload();
         });
     }
-
     private void changeColumn(String column) throws SQLException {
 //        UtilityClass utilityClass = new UtilityClass();
         Connection connection = null;

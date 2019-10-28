@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -47,6 +48,7 @@ import static securityandtime.config.*;
 public class AdminPanelController extends UtilityClass implements Initializable, AdminInterface {
 
     public MenuItem license;
+    public ImageView logoImage;
     @FXML
     private Label clock;
     @FXML
@@ -158,7 +160,7 @@ public class AdminPanelController extends UtilityClass implements Initializable,
     private Menu inventory;
 
 
-    String companyName;
+    private String companyName;
 
     public AdminPanelController() throws IOException {
     }
@@ -186,6 +188,8 @@ public class AdminPanelController extends UtilityClass implements Initializable,
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
         config.panel.put("panel", panel);
         try {
             checkEmailAndPassword();
@@ -233,6 +237,28 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         }
         idleMonitor.register(panel, Event.ANY);
 
+        if (environment != "development") {
+            viewShiftInformation.setVisible(false);
+            troubleShootSystem.setVisible(false);
+            reportIssues.setVisible(false);
+            restartServer.setVisible(false);
+            startDay.setVisible(false);
+            endDay.setVisible(false);
+            syncDb.setVisible(false);
+            licenseManager.setVisible(false);
+            logoutButton.setVisible(false);
+            employees.setVisible(false);
+            stockspanel.setVisible(false);
+            carwashpanel.setVisible(false);
+            visitSuppliers.setVisible(false);
+            backup.setVisible(false);
+            audits.setVisible(false);
+            checkUpdates.setVisible(false);
+            logoImage.setImage(companyLogoImageObj);
+
+        } else {
+            logoImage.setVisible(false);
+        }
     }
 
     private void menuClick() {
@@ -382,7 +408,6 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         });
     }
 
-
     private void initModules() throws SQLException {
 
         Connection connection = null;
@@ -437,9 +462,11 @@ public class AdminPanelController extends UtilityClass implements Initializable,
                     }
                 }
                 if (backupdata) {
-                    showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "AUTOMATIC BACKUP", "BACK UP RUNNING");
+                    Platform.runLater(() -> {
+                        showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "AUTOMATIC BACKUP", "BACK UP RUNNING");
 
-                    backingUpMainMethod();
+                        backingUpMainMethod();
+                    });
                 }
             } else {
                 showAlert(Alert.AlertType.INFORMATION, config.panel.get("panel").getScene().getWindow(), "INITIAL BACKUP TESTING", "THIS IS YOUR FIRST BACK UP ON THE NEW BACKUOP LOCATION.wE HAVE TO TEST IT TO CHECK IF THE BACKUP FUNCTIONALITY WORKS");
@@ -487,7 +514,13 @@ public class AdminPanelController extends UtilityClass implements Initializable,
 
 
     private void buttonClick() {
-
+        refresh.setOnAction(event -> {
+            try {
+                refresh();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
         reportIssues.setOnAction(event -> {
             try {
                 refresh();
