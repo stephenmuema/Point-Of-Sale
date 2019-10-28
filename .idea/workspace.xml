@@ -7,30 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client_secret.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1569003231272employeesreport.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/POSnanotech-softwareshotelshotelsjavamultiplestores.iml" beforeDir="false" afterPath="$PROJECT_DIR$/POSnanotech-softwareshotelshotelsjavamultiplestores.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/license.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nanotechsoftwarespos.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/scannerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/ScannerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminSettingsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Testing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gdrive/DriveMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdrive/DriveMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panelAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserAccountManagementFiles/panelAdmin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client_secret.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/scanneradd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/scanneradd.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/snm.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/test.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UtilityClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UtilityClass.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/panelAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/panelAdmin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/client_secret.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/scanneradd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/scanneradd.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/snm.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/test.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/securityandtime/config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/securityandtime/config.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -162,7 +149,7 @@
     <property name="database.console.LAST_STATE" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/chatbox/src" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -171,7 +158,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.40804598" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -180,12 +167,10 @@
     <property name="sql.rename.search.for.storage.occurrences" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\java\jars" />
-      <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources" />
-      <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources" />
-      <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash\src" />
-      <recent name="D:\PROJECTS\ENGINEERING\DESKTOP\POSnanotech-softwaresjava with car wash section\src\resourcefiles\UserAccountManagementFiles" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Controllers.UserAccountManagementControllers" />
+      <recent name="MasterClasses" />
+      <recent name="Controllers" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="Controllers" />
@@ -194,20 +179,22 @@
       <recent name="MasterClasses" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources" />
       <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src" />
       <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\java\jars" />
       <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources\images" />
-      <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources" />
       <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="securityandtime" />
       <recent name="Controllers" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="Controllers.UserAccountManagementControllers" />
-      <recent name="MasterClasses" />
-      <recent name="Controllers" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash" />
+      <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\java\jars" />
+      <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources" />
+      <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources" />
+      <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash\src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -620,14 +607,7 @@
       <workItem from="1572005485076" duration="1036000" />
       <workItem from="1572007637179" duration="3698000" />
       <workItem from="1572082016083" duration="1251000" />
-      <workItem from="1572265456327" duration="5402000" />
-    </task>
-    <task id="LOCAL-00008" summary="chat box gui">
-      <created>1558908837509</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1558908837509</updated>
+      <workItem from="1572265456327" duration="9676000" />
     </task>
     <task id="LOCAL-00009" summary="chat box gui">
       <created>1558910395264</created>
@@ -965,7 +945,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572010134296</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="ADDED MORE ADMIN PANEL SETTINGS FOR DIFFERENT ENVIRONMENTS AND ADDED CODE FOR CHANGING LOGO">
+      <created>1572270961520</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1572270961520</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1002,7 +989,6 @@
       <path value="$PROJECT_DIR$/POSnanotech-softwaresjava" />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="MINOR ADDITION ON THE STATUS" />
     <MESSAGE value="typos fixed" />
     <MESSAGE value="licensing fixed" />
     <MESSAGE value="fx errors fixed" />
@@ -1027,7 +1013,8 @@
     <MESSAGE value="CODE FOR GDRIVE FOLDER NOT WORKING BUT CODE FOR GDRIVE HOME IS OPERATIONAL" />
     <MESSAGE value="LOAD DB FROM FILE CODE ADDED BUT ITS NOT WORKING COMPLETELY" />
     <MESSAGE value="LOAD DB AND DETAILS FROM FILE DONE" />
-    <option name="LAST_COMMIT_MESSAGE" value="LOAD DB AND DETAILS FROM FILE DONE" />
+    <MESSAGE value="ADDED MORE ADMIN PANEL SETTINGS FOR DIFFERENT ENVIRONMENTS AND ADDED CODE FOR CHANGING LOGO" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADDED MORE ADMIN PANEL SETTINGS FOR DIFFERENT ENVIRONMENTS AND ADDED CODE FOR CHANGING LOGO" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

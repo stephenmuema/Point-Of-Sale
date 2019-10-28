@@ -11,7 +11,7 @@ import java.util.*;
 
 public interface config {//host,user,password,des,port
     String environment = "development";
-    //        String environment = "production";
+    //            String environment = "production";
     Properties mailProp = new Properties();
 
 
@@ -40,7 +40,7 @@ public interface config {//host,user,password,des,port
     String NANOTECHSOFTWARES_POS_SOLUTIONS = "NANOTECHSOFTWARES POS SOLUTIONS";
     String year = " 2019 ";
     String version = " (V 1.1) ";
-    String fileSavePath = "D:\\NANOTECHSOFTWARES\\nanotechPOS\\";
+    String fileSavePath = "C:\\NANOTECHSOFTWARES\\nanotechPOS\\";
     String licensepath = fileSavePath + "licenses\\license.dll";
     String localCartDb = "jdbc:sqlite:" + fileSavePath + "files\\shoppingLocal.db";
     String aesKey = "26kozQaKwRuNJ24t26kozQaKwRuNJ24t";
@@ -59,11 +59,8 @@ public interface config {//host,user,password,des,port
     java.io.File CREDENTIALS_FOLDER = new File(fileSavePath + "credentials");
 
     String CLIENT_SECRET_FILE_NAME = "client_secret.json";
+    String CREDENTIALS_FULL_PATH = CREDENTIALS_FOLDER.getAbsolutePath() + "\\" + CLIENT_SECRET_FILE_NAME;
 
-    //
-    // Global instance of the scopes required by this quickstart. If modifying these
-    // scopes, delete your previously saved credentials/ folder.
-    //
     List<String> SCOPES = Collections.singletonList(DriveScopes.DRIVE);
     String credentialFile = CREDENTIALS_FOLDER + "\\StoredCredential";
     String NANOTECHSOFTWARES_SETTINGS = "C:\\NANOTECHSOFTWARES\\settings\\";

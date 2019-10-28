@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.commons.io.FileUtils;
 import securityandtime.AesCrypto;
 import securityandtime.CheckConn;
 
@@ -165,11 +166,25 @@ public class Main extends Application {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+
+        File dest = new File(CREDENTIALS_FULL_PATH);
+        if (!dest.exists()) {
+            try {
+                dest.getParentFile().mkdirs();
+                dest.createNewFile();
+                FileUtils.copyFile(new File(CLIENT_SECRET_FILE_NAME), new File(CREDENTIALS_FULL_PATH));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         Path path = Paths.get(fileSavePath);
 
         if (!Files.exists(path)) {
 
             try {
+
                 Files.createDirectories(path);
                 Files.createDirectories(Paths.get(fileSavePath + "\\licenses"));
                 Files.createDirectories(Paths.get(fileSavePath + "\\dependencies"));
