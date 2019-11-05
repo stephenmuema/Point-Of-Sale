@@ -7,14 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/SalesMasterClassCatOrIndividual.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Testing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,6 +65,13 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="medica_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="sales: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="medica_pos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="medica_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="stocks: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -189,6 +194,7 @@
       <recent name="Controllers" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="Controllers.ShopControllers" />
       <recent name="Controllers.UserAccountManagementControllers" />
       <recent name="MasterClasses" />
       <recent name="Controllers" />
@@ -259,7 +265,7 @@
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
               <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@6e091032" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@2d68d011" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@2e737519" type="9fbbdea:ServiceModel$ServiceNode" />
             </path>
           </expand>
           <select />
@@ -615,14 +621,7 @@
       <workItem from="1572007637179" duration="3698000" />
       <workItem from="1572082016083" duration="1251000" />
       <workItem from="1572265456327" duration="9676000" />
-      <workItem from="1572946724897" duration="10167000" />
-    </task>
-    <task id="LOCAL-00009" summary="chat box gui">
-      <created>1558910395264</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1558910395264</updated>
+      <workItem from="1572946724897" duration="13804000" />
     </task>
     <task id="LOCAL-00010" summary="chat box gui">
       <created>1562910589594</created>
@@ -960,7 +959,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572270961520</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="ADDED TIME IN SALES PER EMPLOYEE">
+      <created>1572957525244</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1572957525245</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -997,7 +1003,6 @@
       <path value="$PROJECT_DIR$/POSnanotech-softwaresjava" />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="typos fixed" />
     <MESSAGE value="licensing fixed" />
     <MESSAGE value="fx errors fixed" />
     <MESSAGE value="trial fixed" />
@@ -1022,7 +1027,8 @@
     <MESSAGE value="LOAD DB FROM FILE CODE ADDED BUT ITS NOT WORKING COMPLETELY" />
     <MESSAGE value="LOAD DB AND DETAILS FROM FILE DONE" />
     <MESSAGE value="ADDED MORE ADMIN PANEL SETTINGS FOR DIFFERENT ENVIRONMENTS AND ADDED CODE FOR CHANGING LOGO" />
-    <option name="LAST_COMMIT_MESSAGE" value="ADDED MORE ADMIN PANEL SETTINGS FOR DIFFERENT ENVIRONMENTS AND ADDED CODE FOR CHANGING LOGO" />
+    <MESSAGE value="ADDED TIME IN SALES PER EMPLOYEE" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADDED TIME IN SALES PER EMPLOYEE" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

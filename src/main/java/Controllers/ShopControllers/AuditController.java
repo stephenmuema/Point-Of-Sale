@@ -41,6 +41,22 @@ import static securityandtime.config.site;
 
 //made by steve
 public class AuditController extends UtilityClass implements Initializable {
+    public TableView<SalesMasterClassCatOrIndividual> categorysalestable;
+    public TableColumn<SalesMasterClassCatOrIndividual, String> categorysalesid;
+    public TableColumn<SalesMasterClassCatOrIndividual, String> categorysalesname;
+    public TableColumn<SalesMasterClassCatOrIndividual, String> categorysalespayout;
+    public TableColumn<SalesMasterClassCatOrIndividual, String> categorysalessalesperday;
+    public TableView<SalesMasterClassCatOrIndividual> itemsalestable;
+    public TableColumn<SalesMasterClassCatOrIndividual, String> itemsalesid;
+    public TableColumn<SalesMasterClassCatOrIndividual, String> itemsalesname;
+    public TableColumn<SalesMasterClassCatOrIndividual, String> itemsalespayout;
+    public TableColumn<SalesMasterClassCatOrIndividual, String> itemsalessalesperday;
+    public TableColumn<SalesMasterClassCatOrIndividual, String> itemsalessalesremainingstock;
+    public RadioButton indSalesRad;
+    public RadioButton catSalesRad;
+    public Button getSales;
+    String radSelected;
+    ////////////////////new tab
     @FXML
     private MenuItem details;
     @FXML
@@ -205,6 +221,27 @@ private TableView<SalesMaster> tableemployeesales;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        ToggleGroup toggleGroup = new ToggleGroup();
+        catSalesRad.setToggleGroup(toggleGroup);
+        indSalesRad.setToggleGroup(toggleGroup);
+        indSalesRad.setSelected(true);
+        radSelected = indSalesRad.getText();
+        toggleGroup.selectedToggleProperty().addListener((ob, o, n) -> {
+//            UtilityClass utilityClass = new UtilityClass();
+            Connection connection = null;
+            try {
+                connection = new UtilityClass().getConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            RadioButton rb = (RadioButton) toggleGroup.getSelectedToggle();
+
+            if (rb != null) {
+                radSelected = rb.getText();
+                loadCategoricalOrIndividualSalesTable();// changes in the radio button selected
+            }
+        });
+        loadCategoricalOrIndividualSalesTable();//no changes in the radio button selected
         config.panel.put("panel", panel);
         startDateEmployeeSales.setDayCellFactory(picker -> new DateCell() {
             public void updateItem(LocalDate date, boolean empty) {
@@ -227,6 +264,18 @@ private TableView<SalesMaster> tableemployeesales;
         navigatoryButtonListeners();
         loadTables();
         time(clock);
+    }
+
+    private void loadCategoricalOrIndividualSalesTable() {
+        if (radSelected.contains("individual") || radSelected.contains("INDIVIDUAL")) {
+            //SHOW INDIVIDUAL SALES
+            categorysalestable.setVisible(false);
+            itemsalestable.setVisible(true);
+        } else {
+//    SHOW CATEGORICAL SALES
+            categorysalestable.setVisible(true);
+            itemsalestable.setVisible(false);
+        }
     }
 
     private void navigatoryButtonListeners() {
