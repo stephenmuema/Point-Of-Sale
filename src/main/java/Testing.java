@@ -1,14 +1,29 @@
-public class Testing {
-//    public static void main(String[] args) throws SQLException {
-//// change user and password as you need it
-//        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "nanotech");
-//
-//        ResultSet rs = con.getMetaData().getCatalogs();
-//
-//        while (rs.next()) {
-//            System.out.println("TABLE_CAT = " + rs.getString("TABLE_CAT"));
-//        }
-//
-//
-//    }
+import javafx.application.Application;
+import javafx.scene.Cursor;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+public class Testing extends Application {
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) {
+        stage.initStyle(StageStyle.UNDECORATED);
+        Text text = new Text("Transparent!");
+        text.setFont(new Font(40));
+        VBox box = new VBox();
+        box.getChildren().add(text);
+        final Scene scene = new Scene(box, 300, 250);
+        scene.setFill(null);
+        stage.setScene(scene);
+        stage.show();
+        scene.setCursor(Cursor.WAIT);
+    }
+
 }

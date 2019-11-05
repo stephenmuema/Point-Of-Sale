@@ -7,14 +7,12 @@ import Controllers.SevenZ;
 import Controllers.UtilityClass;
 import com.smattme.MysqlExportService;
 import com.smattme.MysqlImportService;
-import gdrive.DriveMain;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -305,6 +303,7 @@ public class AdminPanelController extends UtilityClass implements Initializable,
                     e.printStackTrace();
                 }
                 String fname = file.getAbsolutePath();
+                assert sevenZ != null;
                 sevenZ.unzipBak(fname, sysconfig.get("backUpLoc") + "\\unzippedFiles");
                 File directory = new File(sysconfig.get("backUpLoc") + "\\unzippedFiles");
                 File[] files = directory.listFiles(new FileFilter() {
@@ -345,18 +344,10 @@ public class AdminPanelController extends UtilityClass implements Initializable,
             }
 
         });
-        carWashMenu.setOnAction(event -> {
-            goToCarwash(panel);
-        });
-        auditsMenu.setOnAction(event -> {
-            gotoAudits(panel);
-        });
-        staffMenu.setOnAction(event -> {
-            goToStaff(panel);
-        });
-        inventoryMenu.setOnAction(event -> {
-            goToStocks(panel);
-        });
+        carWashMenu.setOnAction(event -> goToCarwash(panel));
+        auditsMenu.setOnAction(event -> gotoAudits(panel));
+        staffMenu.setOnAction(event -> goToStaff(panel));
+        inventoryMenu.setOnAction(event -> goToStocks(panel));
 
         backupMenu.setOnAction(event -> backingUpMainMethod());
         menuShutDown.setOnAction(event -> {
@@ -557,31 +548,14 @@ public class AdminPanelController extends UtilityClass implements Initializable,
 
         });
         logoutButton.setOnAction(event -> logout(panel));
-        backup.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                backingUpMainMethod();
-            }
-
-
+        backup.setOnAction(event -> {
+            backingUpMainMethod();
         });
-        audits.setOnMouseClicked(event -> {
-            gotoAudits(panel);
+        audits.setOnMouseClicked(event -> gotoAudits(panel));
+        visitSuppliers.setOnMouseClicked(event -> goToSuppliers(panel));
+        carwashpanel.setOnAction(event -> goToCarwash(panel));
 
-        });
-        visitSuppliers.setOnMouseClicked(event -> {
-            goToSuppliers(panel);
-        });
-        carwashpanel.setOnAction(event -> {
-            goToCarwash(panel);
-
-
-        });
-
-        stockspanel.setOnMousePressed(event -> {
-            goToStocks(panel);
-
-        });
+        stockspanel.setOnMousePressed(event -> goToStocks(panel));
 
 
         employees.setOnMousePressed(event -> {
@@ -664,7 +638,7 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         //add path to back up table
         mysqlExportService.clearTempFiles(false);
         mysqlExportService.export();
-
+        System.out.println("backing up");
         return zip.getPath();
     }
 
@@ -702,6 +676,9 @@ public class AdminPanelController extends UtilityClass implements Initializable,
     }
 
     private void backingUpMainMethod() {
+        panel.getScene().setCursor(Cursor.WAIT);
+
+
         try {
             refresh();
         } catch (SQLException e) {
@@ -712,19 +689,19 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         PreparedStatement prep;
 
         try {
-            prep = connection.prepareStatement("SELECT * FROM systemsettings WHERE name=?");
+            prep = new UtilityClass().getConnection().prepareStatement("SELECT * FROM systemsettings WHERE name=?");
             prep.setString(1, "backupLocation");
             ResultSet resultSet = prep.executeQuery();
             if (resultSet.isBeforeFirst()) {
                 while (resultSet.next()) {
                     path = resultSet.getString("value");
-
+                    System.out.println(path + " is the backup location");
                 }
             }
             resultSet.close();
             prep.close();
 
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
 
@@ -747,18 +724,18 @@ public class AdminPanelController extends UtilityClass implements Initializable,
 
                         showAlert(Alert.AlertType.INFORMATION, backup.getScene().getWindow(), "SUCCESS", "BACK UP HAS BEEN COMPLETED SUCCESSFULLY TO " + filepath);
                         File lastFileModified = lastFileModified(path);
-                        if (!companyName.isEmpty() && companyName != null) {
-                            DriveMain.driveBackupMain(companyName + "__file__" + lastFileModified.getName(), lastFileModified.getAbsolutePath());
-//                            com.google.api.services.drive.model.File fileMetadata = new com.google.api.services.drive.model.File();
-//                            fileMetadata.setName(companyName + " __ file__" + lastFileModified.getName());
-//                            java.io.File filePath = new java.io.File(lastFileModified.getAbsolutePath());
-//                            FileContent mediaContent = new FileContent("multipart/x-zip", filePath);
-//                            com.google.api.services.drive.model.File file = new DriveSuperClass().getService().files().create(fileMetadata, mediaContent)
-//                                    .setFields("id")
-//                                    .execute();
-//                            System.out.println("File ID: " + file.getId());
-
-                        }
+//                        if (!companyName.isEmpty() && companyName != null) {
+//                            DriveMain.driveBackupMain(companyName + "__file__" + lastFileModified.getName(), lastFileModified.getAbsolutePath());
+////                            com.google.api.services.drive.model.File fileMetadata = new com.google.api.services.drive.model.File();
+////                            fileMetadata.setName(companyName + " __ file__" + lastFileModified.getName());
+////                            java.io.File filePath = new java.io.File(lastFileModified.getAbsolutePath());
+////                            FileContent mediaContent = new FileContent("multipart/x-zip", filePath);
+////                            com.google.api.services.drive.model.File file = new DriveSuperClass().getService().files().create(fileMetadata, mediaContent)
+////                                    .setFields("id")
+////                                    .execute();
+////                            System.out.println("File ID: " + file.getId());
+//
+//                        }
                         localBackup(lastFileModified.getAbsolutePath());
 //                        message.setText("DONE BACKING UP DATA...");
                     } catch (IOException e) {
@@ -772,6 +749,7 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        panel.getScene().setCursor(Cursor.DEFAULT);
 
     }
 
@@ -817,6 +795,49 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         }
     }
 
+    class BackUp implements Runnable {
+
+        @Override
+        public void run() {
+            try {
+                LocalDate myObj = LocalDate.now(); // Create a date object
+                String time = String.valueOf(myObj);
+                String id = null;
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM DAYS WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
+                if (resultSet.isBeforeFirst()) {
+                    while (resultSet.next()) {
+                        if (resultSet.getString("start_time").equalsIgnoreCase(myObj.toString())) {
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "ENDING DAY", "DAY HAS BEEN ENDED SUCCESSFULLY");
+                                }
+                            });
+                        }
+                        id = resultSet.getString("id");
+                    }
+                }
+                resultSet.close();
+                statement.close();
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE days SET end_time=? , completed=? WHERE id=?");
+                preparedStatement.setString(1, time);
+                preparedStatement.setString(2, "complete");
+                preparedStatement.setString(3, id);
+                if (preparedStatement.executeUpdate() > 0) {
+                    reload();
+                    endDayMenu.setDisable(true);
+                    endDay.setVisible(false);
+                    startDayMenu.setDisable(false);
+                    startDay.setVisible(true);
+                } else {
+                    System.out.println("errrr");
+                }
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     public MenuItem getMenulogout() {
         return menulogout;
     }
@@ -1225,47 +1246,5 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         return this;
     }
 
-    class BackUp implements Runnable {
 
-        @Override
-        public void run() {
-            try {
-                LocalDate myObj = LocalDate.now(); // Create a date object
-                String time = String.valueOf(myObj);
-                String id = null;
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM DAYS WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
-                if (resultSet.isBeforeFirst()) {
-                    while (resultSet.next()) {
-                        if (resultSet.getString("start_time").equalsIgnoreCase(myObj.toString())) {
-                            Platform.runLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "ENDING DAY", "DAY HAS BEEN ENDED SUCCESSFULLY");
-                                }
-                            });
-                        }
-                        id = resultSet.getString("id");
-                    }
-                }
-                resultSet.close();
-                statement.close();
-                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE days SET end_time=? , completed=? WHERE id=?");
-                preparedStatement.setString(1, time);
-                preparedStatement.setString(2, "complete");
-                preparedStatement.setString(3, id);
-                if (preparedStatement.executeUpdate() > 0) {
-                    reload();
-                    endDayMenu.setDisable(true);
-                    endDay.setVisible(false);
-                    startDayMenu.setDisable(false);
-                    startDay.setVisible(true);
-                } else {
-                    System.out.println("errrr");
-                }
-            } catch (SQLException | IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }

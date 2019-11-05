@@ -32,6 +32,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -182,19 +183,12 @@ private TableView<SalesMaster> tableemployeesales;
     private Connection connection;
     private ObservableList<EmployeeMaster> employeeMasterObservableList = FXCollections.observableArrayList();
     private ObservableList<SalesMaster> salesMasterObservableList = FXCollections.observableArrayList();
+    private String sellerEmail;
 
     public AuditController() throws IOException {
     }
 
 
-    /**
-     * Called to initialize a controller after its root element has been
-     * completely processed.
-     *
-     * @param location  The location used to resolve relative paths for the root object, or
-     *                  <tt>null</tt> if the location is not known.
-     * @param resources The resources used to localize the root object, or <tt>null</tt> if
-     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -212,7 +206,22 @@ private TableView<SalesMaster> tableemployeesales;
             e.printStackTrace();
         }
         config.panel.put("panel", panel);
+        startDateEmployeeSales.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
 
+                setDisable(empty || date.compareTo(today) > 0);
+            }
+        });
+        endDateEmployeeSales.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+
+                setDisable(empty || date.compareTo(today) > 0);
+            }
+        });
         menuListeners();
         buttonListeners();
         navigatoryButtonListeners();
@@ -318,16 +327,85 @@ private TableView<SalesMaster> tableemployeesales;
 //      public DatePicker startDateEmployeeSales;
 //    public DatePicker endDateEmployeeSales;
 //    public Button queryEmpTimeReport;
-
-            if (startDateEmployeeSales.getValue().toString().isEmpty() && endDateEmployeeSales.getValue().toString().isEmpty()) {
-                loadCashierSalesTable();
-            } else if (startDateEmployeeSales.getValue().toString().isEmpty() && !endDateEmployeeSales.getValue().toString().isEmpty()) {
-//loadCashierSalesTableEnd();
-
+            String start = null;
+            try {
+                start = startDateEmployeeSales.getValue().toString();
+            } catch (NullPointerException e) {
+//    start=null;
             }
+            String end = null;
+
+            try {
+                end = endDateEmployeeSales.getValue().toString();
+            } catch (NullPointerException e) {
+//    end=null;
+            }
+            if (start == null && end == null) {
+                loadCashierSalesTable();
+            } else if (start == null && end != null) {
+                loadCashierSalesTableEnd(endDateEmployeeSales.getValue().toString());
+
+            } else if (start != null && end == null) {
+                loadCashierSalesTableStart(startDateEmployeeSales.getValue().toString());
+
+            } else if (start != null && end != null) {
+                loadCashierSalesTableStartEnd(startDateEmployeeSales.getValue().toString(), endDateEmployeeSales.getValue().toString());
+            } else {
+                loadCashierSalesTable();
+            }
+
         });
     }
 
+    private void loadCashierSalesTableStartEnd(String start, String end) {
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        tableemployeelist.setOnMouseClicked(event -> {
+            salesMasterObservableList.clear();
+            EmployeeMaster selectedEmployee = tableemployeelist.getSelectionModel().getSelectedItem();
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT  * FROM sales WHERE seller=? AND time between ? and ?");
+                preparedStatement.setString(1, selectedEmployee.getEmail());
+                preparedStatement.setString(2, start);
+                preparedStatement.setString(3, end);
+                ResultSet salesResultSet = preparedStatement.executeQuery();
+                while (salesResultSet.next()) {
+
+
+                    SalesMaster salesMaster = new SalesMaster();
+                    salesMaster.setEmployeetransid(salesResultSet.getString("transactionid"));
+                    salesMaster.setTransbalance(salesResultSet.getString("balance"));
+                    salesMaster.setTranscompletion(salesResultSet.getString("completed"));
+                    salesMaster.setDateCompleted(salesResultSet.getString("time"));
+                    salesMaster.setTransmethod(salesResultSet.getString("method"));
+                    salesMaster.setTranspaid(salesResultSet.getString("moneypaid"));
+                    salesMaster.setTransprice(salesResultSet.getString("cash"));
+                    salesMasterObservableList.add(salesMaster);
+                }
+                tableemployeesales.setItems(salesMasterObservableList);
+
+                assert tableemployeesales != null : "fx:id=\"tableemployeesales\" was not injected: check your FXML ";
+                transprice.setCellValueFactory(
+                        new PropertyValueFactory<>("transprice"));
+                employeetransid.setCellValueFactory(
+                        new PropertyValueFactory<>("employeetransid"));
+                transpaid.setCellValueFactory(new PropertyValueFactory<>("transpaid"));
+                transmethod.setCellValueFactory(new PropertyValueFactory<>("transmethod"));
+                transbalance.setCellValueFactory(new PropertyValueFactory<>("transbalance"));
+                transcompletion.setCellValueFactory(new PropertyValueFactory<>("dateCompleted"));
+                tableemployeelist.refresh();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        });
+
+
+    }
 
     private void loadTables() {
         loadCashiersTable();
@@ -390,7 +468,7 @@ private TableView<SalesMaster> tableemployeesales;
             salesMasterObservableList.clear();
             EmployeeMaster selectedEmployee = tableemployeelist.getSelectionModel().getSelectedItem();
             try {
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT  * FROM sales WHERE seller=? AND timeDone<?");
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT  * FROM sales WHERE seller=? AND time<?");
                 preparedStatement.setString(1, selectedEmployee.getEmail());
                 preparedStatement.setString(2, end);
                 ResultSet salesResultSet = preparedStatement.executeQuery();
@@ -401,7 +479,7 @@ private TableView<SalesMaster> tableemployeesales;
                     salesMaster.setEmployeetransid(salesResultSet.getString("transactionid"));
                     salesMaster.setTransbalance(salesResultSet.getString("balance"));
                     salesMaster.setTranscompletion(salesResultSet.getString("completed"));
-                    salesMaster.setDateCompleted(salesResultSet.getString("transactionid"));
+                    salesMaster.setDateCompleted(salesResultSet.getString("time"));
                     salesMaster.setTransmethod(salesResultSet.getString("method"));
                     salesMaster.setTranspaid(salesResultSet.getString("moneypaid"));
                     salesMaster.setTransprice(salesResultSet.getString("cash"));
@@ -439,7 +517,7 @@ private TableView<SalesMaster> tableemployeesales;
             salesMasterObservableList.clear();
             EmployeeMaster selectedEmployee = tableemployeelist.getSelectionModel().getSelectedItem();
             try {
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT  * FROM sales WHERE seller=? AND timeDone>?");
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT  * FROM sales WHERE seller=? AND time>?");
                 preparedStatement.setString(1, selectedEmployee.getEmail());
                 preparedStatement.setString(2, start);
                 ResultSet salesResultSet = preparedStatement.executeQuery();
@@ -450,7 +528,7 @@ private TableView<SalesMaster> tableemployeesales;
                     salesMaster.setEmployeetransid(salesResultSet.getString("transactionid"));
                     salesMaster.setTransbalance(salesResultSet.getString("balance"));
                     salesMaster.setTranscompletion(salesResultSet.getString("completed"));
-                    salesMaster.setDateCompleted(salesResultSet.getString("transactionid"));
+                    salesMaster.setDateCompleted(salesResultSet.getString("time"));
                     salesMaster.setTransmethod(salesResultSet.getString("method"));
                     salesMaster.setTranspaid(salesResultSet.getString("moneypaid"));
                     salesMaster.setTransprice(salesResultSet.getString("cash"));
@@ -500,7 +578,7 @@ private TableView<SalesMaster> tableemployeesales;
                     salesMaster.setEmployeetransid(salesResultSet.getString("transactionid"));
                     salesMaster.setTransbalance(salesResultSet.getString("balance"));
                     salesMaster.setTranscompletion(salesResultSet.getString("completed"));
-                    salesMaster.setDateCompleted(salesResultSet.getString("transactionid"));
+                    salesMaster.setDateCompleted(salesResultSet.getString("time"));
                     salesMaster.setTransmethod(salesResultSet.getString("method"));
                     salesMaster.setTranspaid(salesResultSet.getString("moneypaid"));
                     salesMaster.setTransprice(salesResultSet.getString("cash"));
@@ -548,7 +626,7 @@ private TableView<SalesMaster> tableemployeesales;
                     salesMaster.setEmployeetransid(salesResultSet.getString("transactionid"));
                     salesMaster.setTransbalance(salesResultSet.getString("balance"));
                     salesMaster.setTranscompletion(salesResultSet.getString("completed"));
-                    salesMaster.setDateCompleted(salesResultSet.getString("transactionid"));
+                    salesMaster.setDateCompleted(salesResultSet.getString("time"));
                     salesMaster.setTransmethod(salesResultSet.getString("method"));
                     salesMaster.setTranspaid(salesResultSet.getString("moneypaid"));
                     salesMaster.setTransprice(salesResultSet.getString("cash"));

@@ -7,17 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client_secret.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdrive/DriveMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdrive/DriveMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Testing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UtilityClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UtilityClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/panelAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/panelAdmin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/securityandtime/config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/securityandtime/config.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,25 +48,25 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - nanotech_pos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="medica_pos@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - nanotech_pos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="medica_pos@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - nanotech_pos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="medica_pos@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="nanotech_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="medica_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - nanotech_pos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="medica_pos@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="nanotech_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="company: table" type="285a2a93:MysqlImplModel$Table" />
+        <item name="medica_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="sales: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -167,10 +164,12 @@
     <property name="sql.rename.search.for.storage.occurrences" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="Controllers.UserAccountManagementControllers" />
-      <recent name="MasterClasses" />
-      <recent name="Controllers" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash" />
+      <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\java\jars" />
+      <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources" />
+      <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources" />
+      <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash\src" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="Controllers" />
@@ -189,12 +188,10 @@
       <recent name="securityandtime" />
       <recent name="Controllers" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash" />
-      <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\java\jars" />
-      <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources" />
-      <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources" />
-      <recent name="D:\PROJECTS\NanotechSoftwares\poswithcarwash\src" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Controllers.UserAccountManagementControllers" />
+      <recent name="MasterClasses" />
+      <recent name="Controllers" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -254,7 +251,17 @@
     <option name="allServicesViewState">
       <serviceView>
         <treeState>
-          <expand />
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@6e091032" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@6e091032" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@2d68d011" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+          </expand>
           <select />
         </treeState>
       </serviceView>
@@ -608,6 +615,7 @@
       <workItem from="1572007637179" duration="3698000" />
       <workItem from="1572082016083" duration="1251000" />
       <workItem from="1572265456327" duration="9676000" />
+      <workItem from="1572946724897" duration="10167000" />
     </task>
     <task id="LOCAL-00009" summary="chat box gui">
       <created>1558910395264</created>
@@ -1018,17 +1026,5 @@
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java</url>
-          <line>49</line>
-          <properties field="license" class="Controllers.UserAccountManagementControllers.AdminPanelController" />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
