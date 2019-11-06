@@ -6,11 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
+    <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="ADDED TIME SEARCH FOR CATEGORICAL SALES AND INDIVIDUAL SALES">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/POSnanotech-softwareshotelshotelsjavamultiplestores.iml" beforeDir="false" afterPath="$PROJECT_DIR$/POSnanotech-softwareshotelshotelsjavamultiplestores.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminSettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/POSnanotech-softwareshotelshotelsjavamultiplestores.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -64,6 +63,13 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="medica_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="sales: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="medica_pos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="medica_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="solditems: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -259,12 +265,7 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@6e091032" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@6e091032" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@2e737519" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@b734cd67" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
           </expand>
           <select />
@@ -620,24 +621,9 @@
       <workItem from="1572007637179" duration="3698000" />
       <workItem from="1572082016083" duration="1251000" />
       <workItem from="1572265456327" duration="9676000" />
-      <workItem from="1572946724897" duration="13804000" />
-      <workItem from="1572971215539" duration="1871000" />
-      <workItem from="1572979391215" duration="635000" />
-      <workItem from="1573054849611" duration="317000" />
-    </task>
-    <task id="LOCAL-00010" summary="chat box gui">
-      <created>1562910589594</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1562910589594</updated>
-    </task>
-    <task id="LOCAL-00011" summary="chat box gui">
-      <created>1564153929510</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1564153929510</updated>
+      <workItem from="1572946724897" duration="14150000" />
+      <workItem from="1573024575437" duration="580000" />
+      <workItem from="1573026878753" duration="11873000" />
     </task>
     <task id="LOCAL-00012" summary="chat box gui">
       <created>1565196900471</created>
@@ -968,7 +954,21 @@
       <option name="project" value="LOCAL" />
       <updated>1572957525245</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="toggle for individual or categorical sales choices">
+      <created>1572961674339</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1572961674339</updated>
+    </task>
+    <task id="LOCAL-00060" summary="CATEGORICAL SALES AND INDIVIDUAL SALES TABLE DONE">
+      <created>1573034444436</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1573034444437</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1005,8 +1005,6 @@
       <path value="$PROJECT_DIR$/POSnanotech-softwaresjava" />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="licensing fixed" />
-    <MESSAGE value="fx errors fixed" />
     <MESSAGE value="trial fixed" />
     <MESSAGE value="scanner 2 added" />
     <MESSAGE value="BACKUP FUNCTIONALITY ADDED" />
@@ -1030,7 +1028,9 @@
     <MESSAGE value="LOAD DB AND DETAILS FROM FILE DONE" />
     <MESSAGE value="ADDED MORE ADMIN PANEL SETTINGS FOR DIFFERENT ENVIRONMENTS AND ADDED CODE FOR CHANGING LOGO" />
     <MESSAGE value="ADDED TIME IN SALES PER EMPLOYEE" />
-    <option name="LAST_COMMIT_MESSAGE" value="ADDED TIME IN SALES PER EMPLOYEE" />
+    <MESSAGE value="toggle for individual or categorical sales choices" />
+    <MESSAGE value="CATEGORICAL SALES AND INDIVIDUAL SALES TABLE DONE" />
+    <option name="LAST_COMMIT_MESSAGE" value="CATEGORICAL SALES AND INDIVIDUAL SALES TABLE DONE" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
