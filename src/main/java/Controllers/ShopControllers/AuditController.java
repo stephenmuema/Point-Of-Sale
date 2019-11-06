@@ -1304,9 +1304,4 @@ private TableView<SalesMaster> tableemployeesales;
     }
 
 
-    @Override
-    public AuditController setConnection(Connection connection) {
-        this.connection = connection;
-        return this;
-    }
 }
