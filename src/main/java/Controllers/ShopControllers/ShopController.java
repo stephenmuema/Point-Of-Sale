@@ -779,12 +779,17 @@ public class ShopController extends CartIdGenerator implements Initializable {
 
     //method to show an alert
     private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.showAndWait();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Alert alert = new Alert(alertType);
+                alert.setTitle(title);
+                alert.setHeaderText(null);
+                alert.setContentText(message);
+                alert.initOwner(owner);
+                alert.showAndWait();
+            }
+        });
     }
 
 

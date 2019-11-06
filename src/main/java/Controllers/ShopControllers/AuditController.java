@@ -56,7 +56,7 @@ public class AuditController extends UtilityClass implements Initializable {
     public DatePicker startDateCatOrIndSales;
     public DatePicker endDateCatOrIndSales;
     public Label tblLblMsg;
-    String radSelected;
+    ArrayList<DatePicker> showPastDatesArrayList = new ArrayList<>();
     ////////////////////new tab
     @FXML
     private MenuItem details;
@@ -202,10 +202,9 @@ private TableView<SalesMaster> tableemployeesales;
     private ObservableList<SalesMaster> salesMasterObservableList = FXCollections.observableArrayList();
     private ObservableList<SalesMasterClassCatOrIndividual> salesMasterClassCatOrIndividuals = FXCollections.observableArrayList();
     private String sellerEmail;
-
+    private String radSelected;
     public AuditController() throws IOException {
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -245,27 +244,35 @@ private TableView<SalesMaster> tableemployeesales;
         });
         loadCategoricalOrIndividualSalesTable();//no changes in the radio button selected
         config.panel.put("panel", panel);
-        startDateEmployeeSales.setDayCellFactory(picker -> new DateCell() {
-            public void updateItem(LocalDate date, boolean empty) {
-                super.updateItem(date, empty);
-                LocalDate today = LocalDate.now();
-
-                setDisable(empty || date.compareTo(today) > 0);
-            }
-        });
-        endDateEmployeeSales.setDayCellFactory(picker -> new DateCell() {
-            public void updateItem(LocalDate date, boolean empty) {
-                super.updateItem(date, empty);
-                LocalDate today = LocalDate.now();
-
-                setDisable(empty || date.compareTo(today) > 0);
-            }
-        });
+        initDatePickers();
         menuListeners();
         buttonListeners();
         navigatoryButtonListeners();
         loadTables();
         time(clock);
+    }
+
+    private void initDatePickers() {
+        showPastDatesArrayList.add(endDateCatOrIndSales);
+        showPastDatesArrayList.add(startDateCatOrIndSales);
+        showPastDatesArrayList.add(endDateEmployeeSales);
+        showPastDatesArrayList.add(startDateEmployeeSales);
+        datePickerShowPastOnly(showPastDatesArrayList);
+    }
+
+    private void datePickerShowPastOnly(ArrayList<DatePicker> datePickerArrayList) {
+        for (DatePicker datepicker :
+                datePickerArrayList) {
+            datepicker.setDayCellFactory(picker -> new DateCell() {
+                public void updateItem(LocalDate date, boolean empty) {
+                    super.updateItem(date, empty);
+                    LocalDate today = LocalDate.now();
+
+                    setDisable(empty || date.compareTo(today) > 0);
+                }
+            });
+        }
+
     }
 
     //done with this method
