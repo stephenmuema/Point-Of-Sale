@@ -477,9 +477,9 @@ public class AdminSettingsController extends UtilityClass implements Initializab
                 //admin has set company name
                 while (rs.next()) {
                     companyName.setText(AesCrypto.decrypt(encryptionkey, rs.getString("companyname")));
-                    if (!companyName.getText().isEmpty() && companyName.getText() != null) {
-                        companyName.setDisable(true);
-                    }
+//                    if (!companyName.getText().isEmpty() && companyName.getText() != null) {
+//                        companyName.setDisable(true);
+//                    }//disable company name to prevent editing
 //                    companyImageName.setText(rs.getString("logo"));
                     companyAddress.setText(rs.getString("address"));
                     companyPhone.setText(rs.getString("phone"));
