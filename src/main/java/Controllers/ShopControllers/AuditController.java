@@ -53,6 +53,9 @@ public class AuditController extends UtilityClass implements Initializable {
     public RadioButton indSalesRad;
     public RadioButton catSalesRad;
     public Button getSales;
+    public DatePicker startDateCatOrIndSales;
+    public DatePicker endDateCatOrIndSales;
+    public Label tblLblMsg;
     String radSelected;
     ////////////////////new tab
     @FXML
@@ -226,7 +229,7 @@ private TableView<SalesMaster> tableemployeesales;
         indSalesRad.setSelected(true);
         radSelected = indSalesRad.getText();
         toggleGroup.selectedToggleProperty().addListener((ob, o, n) -> {
-//            UtilityClass utilityClass = new UtilityClass();
+            tblLblMsg.setText(null);
             Connection connection = null;
             try {
                 connection = new UtilityClass().getConnection();
@@ -265,7 +268,10 @@ private TableView<SalesMaster> tableemployeesales;
         time(clock);
     }
 
+    //done with this method
     private void loadCategoricalOrIndividualSalesTable() {
+        tblLblMsg.setText("****ALL SALES EVER DONE****");
+        itemsalessalesperday.setText("TOTAL SALES");
         Set<String> names = new LinkedHashSet<>();
         Set<String> categoryNames = new LinkedHashSet<>();
 
@@ -345,9 +351,9 @@ private TableView<SalesMaster> tableemployeesales;
         } else {
             salesMasterClassCatOrIndividuals.clear();
 
-            //SHOW INDIVIDUAL SALES
-            categorysalestable.setVisible(false);
-            itemsalestable.setVisible(true);
+            //SHOW CATEGORICAL SALES
+            categorysalestable.setVisible(true);
+            itemsalestable.setVisible(false);
             //select item sales by name and display the total price sold in the specified time
             //show the number of items remaining in the db adn show the rate of sales per day
             try {
@@ -395,6 +401,161 @@ private TableView<SalesMaster> tableemployeesales;
                         new PropertyValueFactory<>("payout"));
                 categorysalessalesperday.setCellValueFactory(new PropertyValueFactory<>("rateOfSales"));
                 itemsalestable.refresh();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+    }
+
+    private void loadCategoricalOrIndividualSalesTableWithTime(String start, String end) {
+        tblLblMsg.setText("***SALES DONE BETWEEN " + start + " and " + end + "***");
+        Set<String> names = new LinkedHashSet<>();
+        Set<String> categoryNames = new LinkedHashSet<>();
+
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (radSelected.contains("individual") || radSelected.contains("INDIVIDUAL")) {
+            //SHOW INDIVIDUAL SALES
+            salesMasterClassCatOrIndividuals.clear();
+
+            categorysalestable.setVisible(false);
+            itemsalestable.setVisible(true);
+            //select item sales by name and display the total price sold in the specified time
+            //show the number of items remaining in the db adn show the rate of sales per day
+            try {
+                PreparedStatement preparedStatementFetchItemNames = connection.prepareStatement("SELECT * FROM solditems where timeSold BETWEEN ? and ?");
+                preparedStatementFetchItemNames.setString(1, start);
+                preparedStatementFetchItemNames.setString(2, end);
+                ResultSet resultSetFetchItemNames = preparedStatementFetchItemNames.executeQuery();
+                if (resultSetFetchItemNames.isBeforeFirst()) {
+                    while (resultSetFetchItemNames.next()) {
+//                        System.out.println(resultSetFetchItemNames.getString("name"));
+                        names.add(resultSetFetchItemNames.getString("name"));
+                    }
+                }//fetch items from sold items whose name=current value in set
+
+                //loop through set
+                for (String name : names
+                ) {
+                    SalesMasterClassCatOrIndividual classIndividual = new SalesMasterClassCatOrIndividual();
+                    int totalprice = 0, totalsold = 0;
+//                    System.out.println(name);
+                    PreparedStatement fetchSoldItems = connection.prepareStatement("SELECT * FROM solditems where name =? and timeSold BETWEEN ? and ?");
+                    fetchSoldItems.setString(1, name);
+                    fetchSoldItems.setString(2, start);
+                    fetchSoldItems.setString(3, end);
+                    ResultSet resultSet = fetchSoldItems.executeQuery();
+                    if (resultSet.isBeforeFirst()) {
+                        while (resultSet.next()) {
+                            //loop through all sales with current name,,,
+                            // add the price and quantity sold to divide by time
+//                        get quantity remaining from database of items
+                            totalprice += Integer.parseInt(resultSet.getString("price")) * Integer.parseInt(resultSet.getString("quantitysold"));
+                            totalsold += Integer.parseInt(resultSet.getString("quantitysold"));
+                        }
+                    }
+                    classIndividual.setId(classIndividual.getId() + 1);
+                    classIndividual.setName(name);
+                    classIndividual.setPayout(String.valueOf(totalprice));
+                    classIndividual.setRateOfSales(String.valueOf(totalsold));
+                    preparedStatementFetchItemNames = connection.prepareStatement("SELECT * FROM stocks WHERE name=?");
+                    preparedStatementFetchItemNames.setString(1, name);
+                    resultSet = preparedStatementFetchItemNames.executeQuery();
+                    if (resultSet.isBeforeFirst()) {
+                        while (resultSet.next()) {
+                            classIndividual.setRemaining(resultSet.getString("amount"));
+                        }
+                    }
+                    salesMasterClassCatOrIndividuals.add(classIndividual);
+                }
+                itemsalestable.setItems(salesMasterClassCatOrIndividuals);
+
+                assert itemsalestable != null : "fx:id=\"tableemployeesales\" was not injected: check your FXML ";
+                itemsalesname.setCellValueFactory(
+                        new PropertyValueFactory<>("name"));
+                itemsalesid.setCellValueFactory(
+                        new PropertyValueFactory<>("id"));
+                itemsalespayout.setCellValueFactory(
+                        new PropertyValueFactory<>("payout"));
+                itemsalessalesperday.setCellValueFactory(new PropertyValueFactory<>("rateOfSales"));
+                itemsalessalesremainingstock.setCellValueFactory(new PropertyValueFactory<>("remaining"));
+                itemsalestable.refresh();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+
+        } else {
+            salesMasterClassCatOrIndividuals.clear();
+
+            //SHOW CATEGORICAL SALES
+            categorysalestable.setVisible(true);
+            itemsalestable.setVisible(false);
+            //select item sales by name and display the total price sold in the specified time
+            //show the number of items remaining in the db adn show the rate of sales per day
+            try {
+                PreparedStatement preparedStatementFetchItemNames = connection.prepareStatement("SELECT * FROM solditems ");
+                ResultSet resultSetFetchItemNames = preparedStatementFetchItemNames.executeQuery();
+                if (resultSetFetchItemNames.isBeforeFirst()) {
+                    while (resultSetFetchItemNames.next()) {
+//                        System.out.println(resultSetFetchItemNames.getString("category"));
+                        categoryNames.add(resultSetFetchItemNames.getString("category"));
+                    }
+                }//fetch items from sold items whose category=current value in set
+                //loop through set
+                for (String name : categoryNames
+                ) {
+                    SalesMasterClassCatOrIndividual classCategoricalSales = new SalesMasterClassCatOrIndividual();
+                    int totalprice = 0, totalsold = 0;
+//                    System.out.println(name);
+                    PreparedStatement fetchSoldItems = connection.prepareStatement("SELECT * FROM solditems where category =?");
+                    fetchSoldItems.setString(1, name);
+                    ResultSet resultSet = fetchSoldItems.executeQuery();
+                    if (resultSet.isBeforeFirst()) {
+                        while (resultSet.next()) {
+                            //loop through all sales with current name,,,
+                            // add the price and quantity sold to divide by time
+//                        get quantity remaining from database of items
+                            totalprice += Integer.parseInt(resultSet.getString("price")) * Integer.parseInt(resultSet.getString("quantitysold"));
+                            totalsold += Integer.parseInt(resultSet.getString("quantitysold"));
+                        }
+                    }
+                    classCategoricalSales.setId(classCategoricalSales.getId() + 1);
+                    classCategoricalSales.setName(name);
+                    classCategoricalSales.setPayout(String.valueOf(totalprice));
+                    classCategoricalSales.setRateOfSales(String.valueOf(totalsold));
+                    preparedStatementFetchItemNames = connection.prepareStatement("SELECT * FROM stocks WHERE category=?");
+                    preparedStatementFetchItemNames.setString(1, name);
+                    resultSet = preparedStatementFetchItemNames.executeQuery();
+                    int remainingCategoryAmount = 0;
+                    if (resultSet.isBeforeFirst()) {
+                        while (resultSet.next()) {
+                            classCategoricalSales.setRemaining(resultSet.getString("amount"));
+                            remainingCategoryAmount += Integer.parseInt(resultSet.getString("amount"));
+                        }
+                    }
+                    classCategoricalSales.setRemaining(String.valueOf(remainingCategoryAmount));
+                    salesMasterClassCatOrIndividuals.add(classCategoricalSales);
+                }
+                categorysalestable.setItems(salesMasterClassCatOrIndividuals);
+
+                assert categorysalestable != null : "fx:id=\"tableemployeesales\" was not injected: check your FXML ";
+                categorysalesname.setCellValueFactory(
+                        new PropertyValueFactory<>("name"));
+                categorysalesid.setCellValueFactory(
+                        new PropertyValueFactory<>("id"));
+                categorysalespayout.setCellValueFactory(
+                        new PropertyValueFactory<>("payout"));
+                categorysalessalesperday.setCellValueFactory(new PropertyValueFactory<>("rateOfSales"));
+//                categorysalessalesperday.setCellValueFactory(new PropertyValueFactory<>("rateOfSales"));
+                categorysalestable.refresh();
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -498,6 +659,25 @@ private TableView<SalesMaster> tableemployeesales;
     }
 
     private void buttonListeners() {
+        getSales.setOnAction(event -> {
+            String endDate;
+            String startDate = null;
+            try {
+                startDate = startDateCatOrIndSales.getValue().toString();
+            } catch (NullPointerException e) {
+                showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR!!", "specify a strting time for this action to be carried out!!");
+            }
+
+
+            try {
+                endDate = endDateCatOrIndSales.getValue().toString();
+            } catch (NullPointerException e) {
+                endDate = LocalDate.now().toString();
+            }
+
+
+            loadCategoricalOrIndividualSalesTableWithTime(startDate, endDate);
+        });
         queryEmpTimeReport.setOnAction(event -> {
 //      public DatePicker startDateEmployeeSales;
 //    public DatePicker endDateEmployeeSales;
@@ -643,7 +823,7 @@ private TableView<SalesMaster> tableemployeesales;
             salesMasterObservableList.clear();
             EmployeeMaster selectedEmployee = tableemployeelist.getSelectionModel().getSelectedItem();
             try {
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT  * FROM sales WHERE seller=? AND time<?");
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT  * FROM sales WHERE seller=? AND time<=?");
                 preparedStatement.setString(1, selectedEmployee.getEmail());
                 preparedStatement.setString(2, end);
                 ResultSet salesResultSet = preparedStatement.executeQuery();
@@ -692,7 +872,7 @@ private TableView<SalesMaster> tableemployeesales;
             salesMasterObservableList.clear();
             EmployeeMaster selectedEmployee = tableemployeelist.getSelectionModel().getSelectedItem();
             try {
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT  * FROM sales WHERE seller=? AND time>?");
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT  * FROM sales WHERE seller=? AND time>=?");
                 preparedStatement.setString(1, selectedEmployee.getEmail());
                 preparedStatement.setString(2, start);
                 ResultSet salesResultSet = preparedStatement.executeQuery();

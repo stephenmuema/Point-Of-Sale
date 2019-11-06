@@ -122,16 +122,16 @@
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                         <children>
                                             <Button fx:id="getSales" layoutX="539.0" layoutY="26.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="88.0" styleClass="buttonred" text="GET SALES" />
-                                            <TableView fx:id="categorysalestable" layoutX="3.0" layoutY="79.0" prefHeight="490.0" prefWidth="881.0">
+                                            <TableView fx:id="categorysalestable" layoutX="3.0" layoutY="118.0" prefHeight="451.0" prefWidth="881.0">
                                                 <columns>
-                                                    <TableColumn fx:id="categorysalesid" prefWidth="75.0" text="ID" />
+                                                    <TableColumn fx:id="categorysalesid" prefWidth="75.0" text="ID" visible="false" />
                                                     <TableColumn fx:id="categorysalesname" prefWidth="347.0" text="CATEGORY" />
                                                     <TableColumn fx:id="categorysalespayout" prefWidth="192.0" text="PAY OUT" />
                                                     <TableColumn fx:id="categorysalessalesperday" prefWidth="264.0" text="SALES/DAY" />
                                                 </columns>
                                             </TableView>
                                             <!--                               todo uncomment for categorical audits-->
-                                            <TableView fx:id="itemsalestable" layoutX="-2.0" layoutY="79.0" prefHeight="490.0" prefWidth="897.0">
+                                            <TableView fx:id="itemsalestable" layoutX="-2.0" layoutY="117.0" prefHeight="452.0" prefWidth="897.0">
                                                 <columns>
                                                     <TableColumn fx:id="itemsalesid" minWidth="0.0" prefWidth="0.0" resizable="false" text="ID" />
                                                     <TableColumn fx:id="itemsalesname" prefWidth="408.0" text="NAME" />
@@ -142,12 +142,17 @@
                                             </TableView>
                                             <Button layoutX="935.0" layoutY="150.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="168.0" styleClass="buttonorange" text="EXPORT ITEM REPORT" />
                                             <Button layoutX="935.0" layoutY="214.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="168.0" styleClass="buttonred" text="EXPORT SALES REPORT" />
-                                            <DatePicker layoutX="20.0" layoutY="26.0" prefHeight="36.0" prefWidth="206.0" promptText="START DATE" styleClass="textfields" />
-                                            <DatePicker layoutX="241.0" layoutY="26.0" prefHeight="36.0" prefWidth="206.0" promptText="END DATE" styleClass="textfields" />
+                                            <DatePicker fx:id="startDateCatOrIndSales" layoutX="20.0" layoutY="26.0" prefHeight="36.0" prefWidth="206.0" promptText="START DATE" styleClass="textfields" />
+                                            <DatePicker fx:id="endDateCatOrIndSales" layoutX="241.0" layoutY="26.0" prefHeight="36.0" prefWidth="206.0" promptText="END DATE" styleClass="textfields" />
                                             <RadioButton layoutX="935.0" layoutY="99.0" mnemonicParsing="false" text="CSV FORMAT" />
                                             <RadioButton layoutX="1080.0" layoutY="99.0" mnemonicParsing="false" text="PDF FORMAT" />
-                                 <RadioButton fx:id="catSalesRad" layoutX="634.0" layoutY="26.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="117.0" text="categorical sales" textFill="WHITE" />
-                                 <RadioButton fx:id="indSalesRad" layoutX="778.0" layoutY="26.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="134.0" text="individual sales" textFill="WHITE" />
+                                            <RadioButton fx:id="catSalesRad" layoutX="634.0" layoutY="26.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="117.0" text="categorical sales" textFill="WHITE" />
+                                            <RadioButton fx:id="indSalesRad" layoutX="778.0" layoutY="26.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="134.0" text="individual sales" textFill="WHITE" />
+                                 <Label fx:id="tblLblMsg" alignment="CENTER" layoutX="187.0" layoutY="74.0" prefHeight="36.0" prefWidth="412.0" text="Label" textFill="RED">
+                                    <font>
+                                       <Font size="18.0" />
+                                    </font>
+                                 </Label>
                                         </children>
                                     </AnchorPane>
                                 </content>
@@ -298,6 +303,7 @@
             <URL value="@../styles/tablecolors.css" />
         </stylesheets>
     </VBox>
+   <Button mnemonicParsing="false" text="Button" />
     <stylesheets>
         <URL value="@../styles/css.css" />
         <URL value="@../styles/panels.css" />
