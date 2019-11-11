@@ -235,11 +235,7 @@ public class LicensingController extends UtilityClass implements Initializable {
         } else {
             try {
                 AesCrypto aesCrypto = new AesCrypto();
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            } catch (NoSuchPaddingException e) {
-                e.printStackTrace();
-            } catch (NoSuchAlgorithmException e) {
+            } catch (UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException e) {
                 e.printStackTrace();
             }
             setDecryptedString(AesCipher.decrypt(aesKey, license.substring(0, license.length() - 50000)).getData());
