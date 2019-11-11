@@ -6,11 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="ADDED TIME SEARCH FOR CATEGORICAL SALES AND INDIVIDUAL SALES">
+    <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="ADDED TIME SEARCH FOR CATEGORICAL SALES AND INDIVIDUAL SALES BUT ITS NOT YET PERFECT">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/BarCodeScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/BarCodeScanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Testing.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -217,7 +218,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Testing">
     <configuration name="DriveMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gdrive.DriveMain" />
       <module name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
@@ -252,8 +253,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Testing" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.DriveMain" />
       </list>
     </recent_temporary>
@@ -623,21 +624,8 @@
       <workItem from="1572265456327" duration="9676000" />
       <workItem from="1572946724897" duration="14150000" />
       <workItem from="1573024575437" duration="580000" />
-      <workItem from="1573026878753" duration="11873000" />
-    </task>
-    <task id="LOCAL-00012" summary="chat box gui">
-      <created>1565196900471</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1565196900471</updated>
-    </task>
-    <task id="LOCAL-00013" summary="changed entire project to use maven">
-      <created>1566570514067</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1566570514068</updated>
+      <workItem from="1573026878753" duration="12148000" />
+      <workItem from="1573460755197" duration="2499000" />
     </task>
     <task id="LOCAL-00014" summary="changed entire project to use maven">
       <created>1566570563448</created>
@@ -968,7 +956,21 @@
       <option name="project" value="LOCAL" />
       <updated>1573034444437</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="ADDED TIME SEARCH FOR CATEGORICAL SALES AND INDIVIDUAL SALES BUT ITS NOT YET PERFECT">
+      <created>1573039580592</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1573039580592</updated>
+    </task>
+    <task id="LOCAL-00062" summary="ADDED TIME SEARCH FOR CATEGORICAL SALES AND INDIVIDUAL SALES BUT ITS NOT YET PERFECT">
+      <created>1573039758295</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1573039758295</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1005,7 +1007,6 @@
       <path value="$PROJECT_DIR$/POSnanotech-softwaresjava" />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="trial fixed" />
     <MESSAGE value="scanner 2 added" />
     <MESSAGE value="BACKUP FUNCTIONALITY ADDED" />
     <MESSAGE value="ADDED SCANNER AT INVENTORY AND CREATED SCANNER VIEW" />
@@ -1030,7 +1031,8 @@
     <MESSAGE value="ADDED TIME IN SALES PER EMPLOYEE" />
     <MESSAGE value="toggle for individual or categorical sales choices" />
     <MESSAGE value="CATEGORICAL SALES AND INDIVIDUAL SALES TABLE DONE" />
-    <option name="LAST_COMMIT_MESSAGE" value="CATEGORICAL SALES AND INDIVIDUAL SALES TABLE DONE" />
+    <MESSAGE value="ADDED TIME SEARCH FOR CATEGORICAL SALES AND INDIVIDUAL SALES BUT ITS NOT YET PERFECT" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADDED TIME SEARCH FOR CATEGORICAL SALES AND INDIVIDUAL SALES BUT ITS NOT YET PERFECT" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

@@ -1,29 +1,66 @@
-import javafx.application.Application;
-import javafx.scene.Cursor;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import org.apache.commons.codec.binary.Base64;
 
-public class Testing extends Application {
-    public static void main(String[] args) {
-        launch(args);
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.SecureRandom;
+import java.security.spec.KeySpec;
+import java.util.Arrays;
+
+public class Testing {
+    private static String factoryInstance = "PBKDF2WithHmacSHA256";
+    private static String cipherInstance = "AES/CBC/PKCS5PADDING";
+    private static String secretKeyType = "AES";
+    private static byte[] ivCode = new byte[16];
+    private static String secretKey = "yourSecretKey";
+
+    public static String encrypt(String secretKey, String salt, String value) throws Exception {
+        Cipher cipher = initCipher(secretKey, salt, Cipher.ENCRYPT_MODE);
+        byte[] encrypted = cipher.doFinal(value.getBytes());
+        byte[] cipherWithIv = addIVToCipher(encrypted);
+        return Base64.encodeBase64String(cipherWithIv);
     }
 
-    @Override
-    public void start(Stage stage) {
-        stage.initStyle(StageStyle.UNDECORATED);
-        Text text = new Text("Transparent!");
-        text.setFont(new Font(40));
-        VBox box = new VBox();
-        box.getChildren().add(text);
-        final Scene scene = new Scene(box, 300, 250);
-        scene.setFill(null);
-        stage.setScene(scene);
-        stage.show();
-        scene.setCursor(Cursor.WAIT);
+    public static String decrypt(String secretKey, String salt, String encrypted) throws Exception {
+        Cipher cipher = initCipher(secretKey, salt, Cipher.DECRYPT_MODE);
+        byte[] original = cipher.doFinal(Base64.decodeBase64(encrypted));
+        // unpad
+        byte[] originalWithoutIv = Arrays.copyOfRange(original, 16, original.length);
+        return new String(originalWithoutIv);
     }
+
+    private static Cipher initCipher(String secretKey, String salt, int mode) throws Exception {
+        SecretKeyFactory factory = SecretKeyFactory.getInstance(factoryInstance);
+        KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), salt.getBytes(), 65536, 256);
+        SecretKey tmp = factory.generateSecret(spec);
+        SecretKeySpec skeySpec = new SecretKeySpec(tmp.getEncoded(), secretKeyType);
+        Cipher cipher = Cipher.getInstance(cipherInstance);
+        // Generating random IV
+        SecureRandom random = new SecureRandom();
+        random.nextBytes(ivCode);
+
+        cipher.init(mode, skeySpec, new IvParameterSpec(ivCode));
+        return cipher;
+    }
+
+    private static byte[] addIVToCipher(byte[] encrypted) {
+        byte[] cipherWithIv = new byte[ivCode.length + encrypted.length];
+        System.arraycopy(ivCode, 0, cipherWithIv, 0, ivCode.length);
+        System.arraycopy(encrypted, 0, cipherWithIv, encrypted.length, encrypted.length);
+        return cipherWithIv;
+    }
+
+    public static void main(String[] args) throws Exception {
+        String fSalt = "anySaltYouCanUseOfOn";
+        String plainText = "M0993000353";
+        String cipherText = encrypt(secretKey, fSalt, plainText);
+        System.out.println("Cipher: " + cipherText);
+        String dcrCipherText = decrypt(secretKey, fSalt, cipherText);
+        System.out.println("Decrypted: " + dcrCipherText);
+    }
+
 
 }

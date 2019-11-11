@@ -267,7 +267,8 @@ public class LicensingController extends UtilityClass implements Initializable {
                 try {
                     fileOutputStream = new FileOutputStream(licensepath);
                 } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                    f.createNewFile();
+                    fileOutputStream = new FileOutputStream(licensepath);
                 }
                 try {
                     assert fileOutputStream != null;
