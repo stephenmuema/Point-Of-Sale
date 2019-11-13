@@ -15,7 +15,6 @@ public class BarCodeScanner extends Thread {
 
     private static String scan() {
         AtomicReference<String> code = new AtomicReference<>("");
-        System.out.println("hello");
         serialPort = new SerialPort("COM5");
         try {
             if (serialPort.isOpened()) {

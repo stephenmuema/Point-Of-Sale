@@ -6,12 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="ADDED TIME SEARCH FOR CATEGORICAL SALES AND INDIVIDUAL SALES">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/pycrypt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/ShopController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,32 +45,39 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="medica_pos@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="medica_pos@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="medica_pos@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="nanotech_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="medica_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="medica_pos@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="nanotech_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="medica_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="sales: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="medica_pos@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="nanotech_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="medica_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="solditems: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="medica_pos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="medica_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="stocks: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -212,7 +218,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Testing">
     <configuration name="DriveMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gdrive.DriveMain" />
       <module name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
@@ -247,8 +253,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Testing" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.DriveMain" />
       </list>
     </recent_temporary>
@@ -618,28 +624,9 @@
       <workItem from="1572265456327" duration="9676000" />
       <workItem from="1572946724897" duration="14150000" />
       <workItem from="1573024575437" duration="580000" />
-      <workItem from="1573026878753" duration="11873000" />
-    </task>
-    <task id="LOCAL-00012" summary="chat box gui">
-      <created>1565196900471</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1565196900471</updated>
-    </task>
-    <task id="LOCAL-00013" summary="changed entire project to use maven">
-      <created>1566570514067</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1566570514068</updated>
-    </task>
-    <task id="LOCAL-00014" summary="changed entire project to use maven">
-      <created>1566570563448</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1566570563448</updated>
+      <workItem from="1573026878753" duration="12148000" />
+      <workItem from="1573460755197" duration="2802000" />
+      <workItem from="1573471409238" duration="465000" />
     </task>
     <task id="LOCAL-00015" summary="Connections created in one file">
       <created>1566578888793</created>
@@ -963,7 +950,28 @@
       <option name="project" value="LOCAL" />
       <updated>1573034444437</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="ADDED TIME SEARCH FOR CATEGORICAL SALES AND INDIVIDUAL SALES BUT ITS NOT YET PERFECT">
+      <created>1573039580592</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1573039580592</updated>
+    </task>
+    <task id="LOCAL-00062" summary="ADDED TIME SEARCH FOR CATEGORICAL SALES AND INDIVIDUAL SALES BUT ITS NOT YET PERFECT">
+      <created>1573039758295</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1573039758295</updated>
+    </task>
+    <task id="LOCAL-00063" summary="added cryptography compatible with python">
+      <created>1573464291998</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1573464291998</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1000,9 +1008,6 @@
       <path value="$PROJECT_DIR$/POSnanotech-softwaresjava" />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="trial fixed" />
-    <MESSAGE value="scanner 2 added" />
-    <MESSAGE value="BACKUP FUNCTIONALITY ADDED" />
     <MESSAGE value="ADDED SCANNER AT INVENTORY AND CREATED SCANNER VIEW" />
     <MESSAGE value="added license checking during creation" />
     <MESSAGE value="added network check" />
@@ -1025,7 +1030,10 @@
     <MESSAGE value="ADDED TIME IN SALES PER EMPLOYEE" />
     <MESSAGE value="toggle for individual or categorical sales choices" />
     <MESSAGE value="CATEGORICAL SALES AND INDIVIDUAL SALES TABLE DONE" />
-    <option name="LAST_COMMIT_MESSAGE" value="CATEGORICAL SALES AND INDIVIDUAL SALES TABLE DONE" />
+    <MESSAGE value="ADDED TIME SEARCH FOR CATEGORICAL SALES AND INDIVIDUAL SALES BUT ITS NOT YET PERFECT" />
+    <MESSAGE value="added cryptography compatible with python" />
+    <MESSAGE value="added cryptography  with python" />
+    <option name="LAST_COMMIT_MESSAGE" value="added cryptography  with python" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

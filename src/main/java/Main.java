@@ -196,6 +196,45 @@ public class Main extends Application {
             }
 
         }
+        path = Paths.get(fileSavePath + "\\licenses");
+        if (!Files.exists(path)) {
+            try {
+                Files.createDirectories(Paths.get(fileSavePath + "\\licenses"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        path = Paths.get(fileSavePath + "\\dependencies");
+        if (!Files.exists(path)) {
+            try {
+                Files.createDirectories(Paths.get(fileSavePath + "\\dependencies"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        path = Paths.get(fileSavePath + "\\images");
+        if (!Files.exists(path)) {
+            try {
+                Files.createDirectories(Paths.get(fileSavePath + "\\images"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        path = Paths.get(fileSavePath + "\\files");
+        if (!Files.exists(path)) {
+            try {
+                Files.createDirectories(Paths.get(fileSavePath + "\\files"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                new File(fileSavePath + "files\\shoppingLocal.db");
+
+            }
+
+        }
 
         try {
             setUpReportsLocIfNotSet();
@@ -407,6 +446,21 @@ public class Main extends Application {
 
                 }
             }
+        } else if (environment.equals("development")) {
+            Parent root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/licensingPanel.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.DECORATED);
+            stage.getIcons().add(logoImageNanotechPos);
+            stage.setOnCloseRequest(event -> {
+                Platform.exit();
+                System.exit(123);
+            });
+
+//        APP TITLE
+            stage.setTitle(NANOTECHSOFTWARES_POS_SOLUTIONS + year + version + " Licensing" + "       CLIENT ID       " + licenseId);
+            Main.stage = stage;
+            stage.show();
         } else {
 //            GO TO LICENSING PANEL
             Parent root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/licensingPanel.fxml"));
