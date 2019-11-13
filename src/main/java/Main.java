@@ -261,7 +261,7 @@ public class Main extends Application {
                 Path path = Paths.get(fileSavePath + "licenses");
 
                 //set hidden attribute
-                Files.setAttribute(path, "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
+//                Files.setAttribute(path, "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
 
                 File fl = new File(fileSavePath + "licenses");
                 File[] files = fl.listFiles(new FileFilter() {

@@ -2,6 +2,7 @@ package Controllers.ShopControllers;
 
 import Controllers.IdleMonitor;
 import Controllers.UtilityClass;
+import MasterClasses.CostsMasterClass;
 import MasterClasses.EmployeeMaster;
 import MasterClasses.SalesMaster;
 import javafx.collections.FXCollections;
@@ -15,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -39,25 +42,87 @@ import static securityandtime.config.site;
 
 //made by steve
 public class AuditController extends UtilityClass implements Initializable {
-    public TableView<SalesMasterClassCatOrIndividual> categorysalestable;
-    public TableColumn<SalesMasterClassCatOrIndividual, String> categorysalesid;
-    public TableColumn<SalesMasterClassCatOrIndividual, String> categorysalesname;
-    public TableColumn<SalesMasterClassCatOrIndividual, String> categorysalespayout;
-    public TableColumn<SalesMasterClassCatOrIndividual, String> categorysalessalesperday;
-    public TableView<SalesMasterClassCatOrIndividual> itemsalestable;
-    public TableColumn<SalesMasterClassCatOrIndividual, String> itemsalesid;
-    public TableColumn<SalesMasterClassCatOrIndividual, String> itemsalesname;
-    public TableColumn<SalesMasterClassCatOrIndividual, String> itemsalespayout;
-    public TableColumn<SalesMasterClassCatOrIndividual, String> itemsalessalesperday;
-    public TableColumn<SalesMasterClassCatOrIndividual, String> itemsalessalesremainingstock;
-    public RadioButton indSalesRad;
-    public RadioButton catSalesRad;
-    public Button getSales;
-    public DatePicker startDateCatOrIndSales;
-    public DatePicker endDateCatOrIndSales;
-    public Label tblLblMsg;
-    ArrayList<DatePicker> showPastDatesArrayList = new ArrayList<>();
+    @FXML
+    private TableView<SalesMasterClassCatOrIndividual> categorysalestable;
+    @FXML
+    private TableColumn<SalesMasterClassCatOrIndividual, String> categorysalesid;
+    @FXML
+    private TableColumn<SalesMasterClassCatOrIndividual, String> categorysalesname;
+    @FXML
+    private TableColumn<SalesMasterClassCatOrIndividual, String> categorysalespayout;
+    @FXML
+    private TableColumn<SalesMasterClassCatOrIndividual, String> categorysalessalesperday;
+    @FXML
+    private TableView<SalesMasterClassCatOrIndividual> itemsalestable;
+    @FXML
+    private TableColumn<SalesMasterClassCatOrIndividual, String> itemsalesid;
+    @FXML
+    private TableColumn<SalesMasterClassCatOrIndividual, String> itemsalesname;
+    @FXML
+    private TableColumn<SalesMasterClassCatOrIndividual, String> itemsalespayout;
+    @FXML
+    private TableColumn<SalesMasterClassCatOrIndividual, String> itemsalessalesperday;
+    @FXML
+    private TableColumn<SalesMasterClassCatOrIndividual, String> itemsalessalesremainingstock;
+    @FXML
+    private RadioButton indSalesRad;
+    @FXML
+    private RadioButton catSalesRad;
+    @FXML
+    private Button getSales;
+    @FXML
+    private DatePicker startDateCatOrIndSales;
+    @FXML
+    private DatePicker endDateCatOrIndSales;
+    @FXML
+    private Label tblLblMsg;
+
+    private ArrayList<DatePicker> showPastDatesArrayList = new ArrayList<>();
     ////////////////////new tab
+
+
+    ///////////////////new costs tab
+    @FXML
+    private Tab tabcapandcost;
+    @FXML
+    private TabPane tapaneinnercapitalandcost;
+    @FXML
+    private Tab newcosts;
+    @FXML
+    private DatePicker newcostsdatecreated;
+    @FXML
+    private TextField newcostsamount;
+    @FXML
+    private TextField newcostsname;
+    @FXML
+    private Button newcostssubmit;
+    @FXML
+    private TextArea newcostdescription;
+    @FXML
+    private TextField showcurrentuser;
+    @FXML
+    private ComboBox combocategory;
+    @FXML
+    private Button createCostsCat;
+    @FXML
+    private CheckBox activatecostchkbox;
+    @FXML
+    private Tab pastcosts;
+    @FXML
+    private TableView<CostsMasterClass> pastcoststable;
+    @FXML
+    private TableColumn<CostsMasterClass, String> pastcoststableid;
+    @FXML
+    private TableColumn<CostsMasterClass, String> pastcoststablename;
+    @FXML
+    private TableColumn<CostsMasterClass, String> pastcoststabledateadded;
+    @FXML
+    private TableColumn<CostsMasterClass, String> pastcoststableamount;
+    @FXML
+    private TableColumn<CostsMasterClass, String> pastcoststableactiveinactivestatus;
+
+
+    ////end of costs tab
     @FXML
     private MenuItem details;
     @FXML
@@ -196,6 +261,7 @@ private TableView<SalesMaster> tableemployeesales;
     private DatePicker endDateEmployeeSales;
     @FXML
     private Button queryEmpTimeReport;
+
     //db connection
     private Connection connection;
     private ObservableList<EmployeeMaster> employeeMasterObservableList = FXCollections.observableArrayList();
@@ -208,6 +274,10 @@ private TableView<SalesMaster> tableemployeesales;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initScene();
+    }
+
+    private void initScene() {
         try {
             IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(900),
                     () -> {
@@ -250,10 +320,14 @@ private TableView<SalesMaster> tableemployeesales;
         navigatoryButtonListeners();
         loadTables();
         time(clock);
+        loadIndividualInitially();
+        loadCategoricalInitially();
     }
+
 
     private void initDatePickers() {
         showPastDatesArrayList.add(endDateCatOrIndSales);
+        showPastDatesArrayList.add(newcostsdatecreated);
         showPastDatesArrayList.add(startDateCatOrIndSales);
         showPastDatesArrayList.add(endDateEmployeeSales);
         showPastDatesArrayList.add(startDateEmployeeSales);
@@ -279,8 +353,6 @@ private TableView<SalesMaster> tableemployeesales;
     private void loadCategoricalOrIndividualSalesTable() {
         tblLblMsg.setText("****ALL SALES EVER DONE****");
         itemsalessalesperday.setText("TOTAL SALES");
-        Set<String> names = new LinkedHashSet<>();
-        Set<String> categoryNames = new LinkedHashSet<>();
 
         try {
             connection = new UtilityClass().getConnection();
@@ -289,131 +361,144 @@ private TableView<SalesMaster> tableemployeesales;
         }
         if (radSelected.contains("individual") || radSelected.contains("INDIVIDUAL")) {
             //SHOW INDIVIDUAL SALES
-            salesMasterClassCatOrIndividuals.clear();
 
             categorysalestable.setVisible(false);
             itemsalestable.setVisible(true);
-            //select item sales by name and display the total price sold in the specified time
-            //show the number of items remaining in the db adn show the rate of sales per day
-            try {
-                PreparedStatement preparedStatementFetchItemNames = connection.prepareStatement("SELECT * FROM solditems ");
-                ResultSet resultSetFetchItemNames = preparedStatementFetchItemNames.executeQuery();
-                if (resultSetFetchItemNames.isBeforeFirst()) {
-                    while (resultSetFetchItemNames.next()) {
-//                        System.out.println(resultSetFetchItemNames.getString("name"));
-                        names.add(resultSetFetchItemNames.getString("name"));
-                    }
-                }//fetch items from sold items whose name=current value in set
-
-                //loop through set
-                for (String name : names
-                ) {
-                    SalesMasterClassCatOrIndividual classIndividual = new SalesMasterClassCatOrIndividual();
-                    int totalprice = 0, totalsold = 0;
-//                    System.out.println(name);
-                    PreparedStatement fetchSoldItems = connection.prepareStatement("SELECT * FROM solditems where name =?");
-                    fetchSoldItems.setString(1, name);
-                    ResultSet resultSet = fetchSoldItems.executeQuery();
-                    if (resultSet.isBeforeFirst()) {
-                        while (resultSet.next()) {
-                            //loop through all sales with current name,,,
-                            // add the price and quantity sold to divide by time
-//                        get quantity remaining from database of items
-                            totalprice += Integer.parseInt(resultSet.getString("price")) * Integer.parseInt(resultSet.getString("quantitysold"));
-                            totalsold += Integer.parseInt(resultSet.getString("quantitysold"));
-                        }
-                    }
-                    classIndividual.setId(classIndividual.getId() + 1);
-                    classIndividual.setName(name);
-                    classIndividual.setPayout(String.valueOf(totalprice));
-                    classIndividual.setRateOfSales(String.valueOf(totalsold));
-                    preparedStatementFetchItemNames = connection.prepareStatement("SELECT * FROM stocks WHERE name=?");
-                    preparedStatementFetchItemNames.setString(1, name);
-                    resultSet = preparedStatementFetchItemNames.executeQuery();
-                    if (resultSet.isBeforeFirst()) {
-                        while (resultSet.next()) {
-                            classIndividual.setRemaining(resultSet.getString("amount"));
-                        }
-                    }
-                    salesMasterClassCatOrIndividuals.add(classIndividual);
-                }
-                itemsalestable.setItems(salesMasterClassCatOrIndividuals);
-
-                assert itemsalestable != null : "fx:id=\"tableemployeesales\" was not injected: check your FXML ";
-                itemsalesname.setCellValueFactory(
-                        new PropertyValueFactory<>("name"));
-                itemsalesid.setCellValueFactory(
-                        new PropertyValueFactory<>("id"));
-                itemsalespayout.setCellValueFactory(
-                        new PropertyValueFactory<>("payout"));
-                itemsalessalesperday.setCellValueFactory(new PropertyValueFactory<>("rateOfSales"));
-                itemsalessalesremainingstock.setCellValueFactory(new PropertyValueFactory<>("remaining"));
-                itemsalestable.refresh();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
 
         } else {
-            salesMasterClassCatOrIndividuals.clear();
 
             //SHOW CATEGORICAL SALES
             categorysalestable.setVisible(true);
             itemsalestable.setVisible(false);
             //select item sales by name and display the total price sold in the specified time
             //show the number of items remaining in the db adn show the rate of sales per day
-            try {
-                PreparedStatement preparedStatementFetchItemNames = connection.prepareStatement("SELECT * FROM solditems ");
-                ResultSet resultSetFetchItemNames = preparedStatementFetchItemNames.executeQuery();
-                if (resultSetFetchItemNames.isBeforeFirst()) {
-                    while (resultSetFetchItemNames.next()) {
+
+        }
+    }
+
+    private void loadCategoricalInitially() {
+        salesMasterClassCatOrIndividuals.clear();
+
+        Set<String> categoryNames = new LinkedHashSet<>();
+
+        try {
+            PreparedStatement preparedStatementFetchItemNames = connection.prepareStatement("SELECT * FROM solditems ");
+            ResultSet resultSetFetchItemNames = preparedStatementFetchItemNames.executeQuery();
+            if (resultSetFetchItemNames.isBeforeFirst()) {
+                while (resultSetFetchItemNames.next()) {
 //                        System.out.println(resultSetFetchItemNames.getString("category"));
-                        categoryNames.add(resultSetFetchItemNames.getString("category"));
-                    }
-                }//fetch items from sold items whose name=current value in set
-                //loop through set
-                for (String name : categoryNames
-                ) {
-                    SalesMasterClassCatOrIndividual classCategoricalSales = new SalesMasterClassCatOrIndividual();
-                    int totalprice = 0, totalsold = 0;
-//                    System.out.println(name);
-                    PreparedStatement fetchSoldItems = connection.prepareStatement("SELECT * FROM solditems where category =?");
-                    fetchSoldItems.setString(1, name);
-                    ResultSet resultSet = fetchSoldItems.executeQuery();
-                    if (resultSet.isBeforeFirst()) {
-                        while (resultSet.next()) {
-                            //loop through all sales with current name,,,
-                            // add the price and quantity sold to divide by time
-//                        get quantity remaining from database of items
-                            totalprice += Integer.parseInt(resultSet.getString("price")) * Integer.parseInt(resultSet.getString("quantitysold"));
-                            totalsold += Integer.parseInt(resultSet.getString("quantitysold"));
-                        }
-                    }
-                    classCategoricalSales.setId(classCategoricalSales.getId() + 1);
-                    classCategoricalSales.setName(name);
-                    classCategoricalSales.setPayout(String.valueOf(totalprice));
-                    classCategoricalSales.setRateOfSales(String.valueOf(totalsold));
-
-                    salesMasterClassCatOrIndividuals.add(classCategoricalSales);
+                    categoryNames.add(resultSetFetchItemNames.getString("category"));
                 }
-                categorysalestable.setItems(salesMasterClassCatOrIndividuals);
+            }//fetch items from sold items whose name=current value in set
+            //loop through set
+            for (String name : categoryNames
+            ) {
+                SalesMasterClassCatOrIndividual classCategoricalSales = new SalesMasterClassCatOrIndividual();
+                int totalprice = 0, totalsold = 0;
+//                    System.out.println(name);
+                PreparedStatement fetchSoldItems = connection.prepareStatement("SELECT * FROM solditems where category =?");
+                fetchSoldItems.setString(1, name);
+                ResultSet resultSet = fetchSoldItems.executeQuery();
+                if (resultSet.isBeforeFirst()) {
+                    while (resultSet.next()) {
+                        //loop through all sales with current name,,,
+                        // add the price and quantity sold to divide by time
+//                        get quantity remaining from database of items
+                        totalprice += Integer.parseInt(resultSet.getString("price")) * Integer.parseInt(resultSet.getString("quantitysold"));
+                        totalsold += Integer.parseInt(resultSet.getString("quantitysold"));
+                    }
+                }
+                classCategoricalSales.setId(classCategoricalSales.getId() + 1);
+                classCategoricalSales.setName(name);
+                classCategoricalSales.setPayout(String.valueOf(totalprice));
+                classCategoricalSales.setRateOfSales(String.valueOf(totalsold));
 
-                assert categorysalestable != null : "fx:id=\"tableemployeesales\" was not injected: check your FXML ";
-                categorysalesname.setCellValueFactory(
-                        new PropertyValueFactory<>("name"));
-                categorysalesid.setCellValueFactory(
-                        new PropertyValueFactory<>("id"));
-                categorysalespayout.setCellValueFactory(
-                        new PropertyValueFactory<>("payout"));
-                categorysalessalesperday.setCellValueFactory(new PropertyValueFactory<>("rateOfSales"));
-                itemsalestable.refresh();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
+                salesMasterClassCatOrIndividuals.add(classCategoricalSales);
             }
+            categorysalestable.setItems(salesMasterClassCatOrIndividuals);
 
+            assert categorysalestable != null : "fx:id=\"tableemployeesales\" was not injected: check your FXML ";
+            categorysalesname.setCellValueFactory(
+                    new PropertyValueFactory<>("name"));
+            categorysalesid.setCellValueFactory(
+                    new PropertyValueFactory<>("id"));
+            categorysalespayout.setCellValueFactory(
+                    new PropertyValueFactory<>("payout"));
+            categorysalessalesperday.setCellValueFactory(new PropertyValueFactory<>("rateOfSales"));
+            itemsalestable.refresh();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadIndividualInitially() {
+        salesMasterClassCatOrIndividuals.clear();
+        itemsalessalesremainingstock.setVisible(false);
+        Set<String> names = new LinkedHashSet<>();
+
+        //select item sales by name and display the total price sold in the specified time
+        //show the number of items remaining in the db adn show the rate of sales per day
+        try {
+            PreparedStatement preparedStatementFetchItemNames = connection.prepareStatement("SELECT * FROM solditems ");
+            ResultSet resultSetFetchItemNames = preparedStatementFetchItemNames.executeQuery();
+            if (resultSetFetchItemNames.isBeforeFirst()) {
+                while (resultSetFetchItemNames.next()) {
+//                        System.out.println(resultSetFetchItemNames.getString("name"));
+                    names.add(resultSetFetchItemNames.getString("name"));
+                }
+            }//fetch items from sold items whose name=current value in set
+
+            //loop through set
+            for (String name : names
+            ) {
+                SalesMasterClassCatOrIndividual classIndividual = new SalesMasterClassCatOrIndividual();
+                int totalprice = 0, totalsold = 0;
+//                    System.out.println(name);
+                PreparedStatement fetchSoldItems = connection.prepareStatement("SELECT * FROM solditems where name =?");
+                fetchSoldItems.setString(1, name);
+                ResultSet resultSet = fetchSoldItems.executeQuery();
+                if (resultSet.isBeforeFirst()) {
+                    while (resultSet.next()) {
+                        //loop through all sales with current name,,,
+                        // add the price and quantity sold to divide by time
+//                        get quantity remaining from database of items
+                        totalprice += Integer.parseInt(resultSet.getString("price")) * Integer.parseInt(resultSet.getString("quantitysold"));
+                        totalsold += Integer.parseInt(resultSet.getString("quantitysold"));
+                    }
+                }
+                classIndividual.setId(classIndividual.getId() + 1);
+                classIndividual.setName(name);
+                classIndividual.setPayout(String.valueOf(totalprice));
+                classIndividual.setRateOfSales(String.valueOf(totalsold));
+                preparedStatementFetchItemNames = connection.prepareStatement("SELECT * FROM stocks WHERE name=?");
+                preparedStatementFetchItemNames.setString(1, name);
+                resultSet = preparedStatementFetchItemNames.executeQuery();
+                if (resultSet.isBeforeFirst()) {
+                    while (resultSet.next()) {
+                        String amt = resultSet.getString("amount");
+                        classIndividual.setRemaining(amt);
+                        System.out.println(amt);
+                    }
+                }
+                salesMasterClassCatOrIndividuals.add(classIndividual);
+            }
+            itemsalestable.setItems(salesMasterClassCatOrIndividuals);
+
+            assert itemsalestable != null : "fx:id=\"tableemployeesales\" was not injected: check your FXML ";
+            itemsalesname.setCellValueFactory(
+                    new PropertyValueFactory<>("name"));
+            itemsalesid.setCellValueFactory(
+                    new PropertyValueFactory<>("id"));
+            itemsalespayout.setCellValueFactory(
+                    new PropertyValueFactory<>("payout"));
+            itemsalessalesperday.setCellValueFactory(new PropertyValueFactory<>("rateOfSales"));
+            itemsalessalesremainingstock.setCellValueFactory(new PropertyValueFactory<>("remaining"));
+            itemsalestable.refresh();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -421,6 +506,7 @@ private TableView<SalesMaster> tableemployeesales;
         tblLblMsg.setText("***SALES DONE BETWEEN " + start + " and " + end + "***");
         Set<String> names = new LinkedHashSet<>();
         Set<String> categoryNames = new LinkedHashSet<>();
+        itemsalessalesremainingstock.setVisible(true);
 
         try {
             connection = new UtilityClass().getConnection();
@@ -1310,5 +1396,532 @@ private TableView<SalesMaster> tableemployeesales;
         this.tosupplierbutton = tosupplierbutton;
     }
 
+    public TableView<SalesMasterClassCatOrIndividual> getCategorysalestable() {
+        return categorysalestable;
+    }
 
+    public void setCategorysalestable(TableView<SalesMasterClassCatOrIndividual> categorysalestable) {
+        this.categorysalestable = categorysalestable;
+    }
+
+    public TableColumn<SalesMasterClassCatOrIndividual, String> getCategorysalesid() {
+        return categorysalesid;
+    }
+
+    public void setCategorysalesid(TableColumn<SalesMasterClassCatOrIndividual, String> categorysalesid) {
+        this.categorysalesid = categorysalesid;
+    }
+
+    public TableColumn<SalesMasterClassCatOrIndividual, String> getCategorysalesname() {
+        return categorysalesname;
+    }
+
+    public void setCategorysalesname(TableColumn<SalesMasterClassCatOrIndividual, String> categorysalesname) {
+        this.categorysalesname = categorysalesname;
+    }
+
+    public TableColumn<SalesMasterClassCatOrIndividual, String> getCategorysalespayout() {
+        return categorysalespayout;
+    }
+
+    public void setCategorysalespayout(TableColumn<SalesMasterClassCatOrIndividual, String> categorysalespayout) {
+        this.categorysalespayout = categorysalespayout;
+    }
+
+    public TableColumn<SalesMasterClassCatOrIndividual, String> getCategorysalessalesperday() {
+        return categorysalessalesperday;
+    }
+
+    public void setCategorysalessalesperday(TableColumn<SalesMasterClassCatOrIndividual, String> categorysalessalesperday) {
+        this.categorysalessalesperday = categorysalessalesperday;
+    }
+
+    public TableView<SalesMasterClassCatOrIndividual> getItemsalestable() {
+        return itemsalestable;
+    }
+
+    public void setItemsalestable(TableView<SalesMasterClassCatOrIndividual> itemsalestable) {
+        this.itemsalestable = itemsalestable;
+    }
+
+    public TableColumn<SalesMasterClassCatOrIndividual, String> getItemsalesid() {
+        return itemsalesid;
+    }
+
+    public void setItemsalesid(TableColumn<SalesMasterClassCatOrIndividual, String> itemsalesid) {
+        this.itemsalesid = itemsalesid;
+    }
+
+    public TableColumn<SalesMasterClassCatOrIndividual, String> getItemsalesname() {
+        return itemsalesname;
+    }
+
+    public void setItemsalesname(TableColumn<SalesMasterClassCatOrIndividual, String> itemsalesname) {
+        this.itemsalesname = itemsalesname;
+    }
+
+    public TableColumn<SalesMasterClassCatOrIndividual, String> getItemsalespayout() {
+        return itemsalespayout;
+    }
+
+    public void setItemsalespayout(TableColumn<SalesMasterClassCatOrIndividual, String> itemsalespayout) {
+        this.itemsalespayout = itemsalespayout;
+    }
+
+    public TableColumn<SalesMasterClassCatOrIndividual, String> getItemsalessalesperday() {
+        return itemsalessalesperday;
+    }
+
+    public void setItemsalessalesperday(TableColumn<SalesMasterClassCatOrIndividual, String> itemsalessalesperday) {
+        this.itemsalessalesperday = itemsalessalesperday;
+    }
+
+    public TableColumn<SalesMasterClassCatOrIndividual, String> getItemsalessalesremainingstock() {
+        return itemsalessalesremainingstock;
+    }
+
+    public void setItemsalessalesremainingstock(TableColumn<SalesMasterClassCatOrIndividual, String> itemsalessalesremainingstock) {
+        this.itemsalessalesremainingstock = itemsalessalesremainingstock;
+    }
+
+    public RadioButton getIndSalesRad() {
+        return indSalesRad;
+    }
+
+    public void setIndSalesRad(RadioButton indSalesRad) {
+        this.indSalesRad = indSalesRad;
+    }
+
+    public RadioButton getCatSalesRad() {
+        return catSalesRad;
+    }
+
+    public void setCatSalesRad(RadioButton catSalesRad) {
+        this.catSalesRad = catSalesRad;
+    }
+
+    public Button getGetSales() {
+        return getSales;
+    }
+
+    public void setGetSales(Button getSales) {
+        this.getSales = getSales;
+    }
+
+    public DatePicker getStartDateCatOrIndSales() {
+        return startDateCatOrIndSales;
+    }
+
+    public void setStartDateCatOrIndSales(DatePicker startDateCatOrIndSales) {
+        this.startDateCatOrIndSales = startDateCatOrIndSales;
+    }
+
+    public DatePicker getEndDateCatOrIndSales() {
+        return endDateCatOrIndSales;
+    }
+
+    public void setEndDateCatOrIndSales(DatePicker endDateCatOrIndSales) {
+        this.endDateCatOrIndSales = endDateCatOrIndSales;
+    }
+
+    public Label getTblLblMsg() {
+        return tblLblMsg;
+    }
+
+    public void setTblLblMsg(Label tblLblMsg) {
+        this.tblLblMsg = tblLblMsg;
+    }
+
+    public ArrayList<DatePicker> getShowPastDatesArrayList() {
+        return showPastDatesArrayList;
+    }
+
+    public void setShowPastDatesArrayList(ArrayList<DatePicker> showPastDatesArrayList) {
+        this.showPastDatesArrayList = showPastDatesArrayList;
+    }
+
+    public Tab getTabcapandcost() {
+        return tabcapandcost;
+    }
+
+    public void setTabcapandcost(Tab tabcapandcost) {
+        this.tabcapandcost = tabcapandcost;
+    }
+
+    public TabPane getTapaneinnercapitalandcost() {
+        return tapaneinnercapitalandcost;
+    }
+
+    public void setTapaneinnercapitalandcost(TabPane tapaneinnercapitalandcost) {
+        this.tapaneinnercapitalandcost = tapaneinnercapitalandcost;
+    }
+
+    public Tab getNewcosts() {
+        return newcosts;
+    }
+
+    public void setNewcosts(Tab newcosts) {
+        this.newcosts = newcosts;
+    }
+
+    public DatePicker getNewcostsdatecreated() {
+        return newcostsdatecreated;
+    }
+
+    public void setNewcostsdatecreated(DatePicker newcostsdatecreated) {
+        this.newcostsdatecreated = newcostsdatecreated;
+    }
+
+    public TextField getNewcostsamount() {
+        return newcostsamount;
+    }
+
+    public void setNewcostsamount(TextField newcostsamount) {
+        this.newcostsamount = newcostsamount;
+    }
+
+    public TextField getNewcostsname() {
+        return newcostsname;
+    }
+
+    public void setNewcostsname(TextField newcostsname) {
+        this.newcostsname = newcostsname;
+    }
+
+    public Button getNewcostssubmit() {
+        return newcostssubmit;
+    }
+
+    public void setNewcostssubmit(Button newcostssubmit) {
+        this.newcostssubmit = newcostssubmit;
+    }
+
+    public TextArea getNewcostdescription() {
+        return newcostdescription;
+    }
+
+    public void setNewcostdescription(TextArea newcostdescription) {
+        this.newcostdescription = newcostdescription;
+    }
+
+    public TextField getShowcurrentuser() {
+        return showcurrentuser;
+    }
+
+    public void setShowcurrentuser(TextField showcurrentuser) {
+        this.showcurrentuser = showcurrentuser;
+    }
+
+    public ComboBox getCombocategory() {
+        return combocategory;
+    }
+
+    public void setCombocategory(ComboBox combocategory) {
+        this.combocategory = combocategory;
+    }
+
+    public Button getCreateCostsCat() {
+        return createCostsCat;
+    }
+
+    public void setCreateCostsCat(Button createCostsCat) {
+        this.createCostsCat = createCostsCat;
+    }
+
+    public CheckBox getActivatecostchkbox() {
+        return activatecostchkbox;
+    }
+
+    public void setActivatecostchkbox(CheckBox activatecostchkbox) {
+        this.activatecostchkbox = activatecostchkbox;
+    }
+
+    public Tab getPastcosts() {
+        return pastcosts;
+    }
+
+    public void setPastcosts(Tab pastcosts) {
+        this.pastcosts = pastcosts;
+    }
+
+    public TableView getPastcoststable() {
+        return pastcoststable;
+    }
+
+    public void setPastcoststable(TableView pastcoststable) {
+        this.pastcoststable = pastcoststable;
+    }
+
+    public TableColumn getPastcoststableid() {
+        return pastcoststableid;
+    }
+
+    public void setPastcoststableid(TableColumn pastcoststableid) {
+        this.pastcoststableid = pastcoststableid;
+    }
+
+    public TableColumn getPastcoststablename() {
+        return pastcoststablename;
+    }
+
+    public void setPastcoststablename(TableColumn pastcoststablename) {
+        this.pastcoststablename = pastcoststablename;
+    }
+
+    public TableColumn getPastcoststabledateadded() {
+        return pastcoststabledateadded;
+    }
+
+    public void setPastcoststabledateadded(TableColumn pastcoststabledateadded) {
+        this.pastcoststabledateadded = pastcoststabledateadded;
+    }
+
+    public TableColumn getPastcoststableamount() {
+        return pastcoststableamount;
+    }
+
+    public void setPastcoststableamount(TableColumn pastcoststableamount) {
+        this.pastcoststableamount = pastcoststableamount;
+    }
+
+    public TableColumn getPastcoststableactiveinactivestatus() {
+        return pastcoststableactiveinactivestatus;
+    }
+
+    public void setPastcoststableactiveinactivestatus(TableColumn pastcoststableactiveinactivestatus) {
+        this.pastcoststableactiveinactivestatus = pastcoststableactiveinactivestatus;
+    }
+
+    public MenuItem getDetails() {
+        return details;
+    }
+
+    public void setDetails(MenuItem details) {
+        this.details = details;
+    }
+
+    public MenuItem getMenulogout() {
+        return menulogout;
+    }
+
+    public void setMenulogout(MenuItem menulogout) {
+        this.menulogout = menulogout;
+    }
+
+    public Button getShowempperformancegraph() {
+        return showempperformancegraph;
+    }
+
+    public void setShowempperformancegraph(Button showempperformancegraph) {
+        this.showempperformancegraph = showempperformancegraph;
+    }
+
+    public Button getExportfirstempreport() {
+        return exportfirstempreport;
+    }
+
+    public void setExportfirstempreport(Button exportfirstempreport) {
+        this.exportfirstempreport = exportfirstempreport;
+    }
+
+    public Button getShowEmpReport() {
+        return showEmpReport;
+    }
+
+    public void setShowEmpReport(Button showEmpReport) {
+        this.showEmpReport = showEmpReport;
+    }
+
+    public MenuItem getEndDayMenu() {
+        return endDayMenu;
+    }
+
+    public void setEndDayMenu(MenuItem endDayMenu) {
+        this.endDayMenu = endDayMenu;
+    }
+
+    public MenuItem getReportIssuesMenu() {
+        return reportIssuesMenu;
+    }
+
+    public void setReportIssuesMenu(MenuItem reportIssuesMenu) {
+        this.reportIssuesMenu = reportIssuesMenu;
+    }
+
+    public MenuItem getRestartServerMenu() {
+        return restartServerMenu;
+    }
+
+    public void setRestartServerMenu(MenuItem restartServerMenu) {
+        this.restartServerMenu = restartServerMenu;
+    }
+
+    public MenuItem getTroubleShootMenu() {
+        return troubleShootMenu;
+    }
+
+    public void setTroubleShootMenu(MenuItem troubleShootMenu) {
+        this.troubleShootMenu = troubleShootMenu;
+    }
+
+    public MenuItem getAbtMenu() {
+        return abtMenu;
+    }
+
+    public void setAbtMenu(MenuItem abtMenu) {
+        this.abtMenu = abtMenu;
+    }
+
+    public MenuItem getTermsMenu() {
+        return termsMenu;
+    }
+
+    public void setTermsMenu(MenuItem termsMenu) {
+        this.termsMenu = termsMenu;
+    }
+
+    public MenuItem getCheckUpdatesMenu() {
+        return checkUpdatesMenu;
+    }
+
+    public void setCheckUpdatesMenu(MenuItem checkUpdatesMenu) {
+        this.checkUpdatesMenu = checkUpdatesMenu;
+    }
+
+    public MenuItem getReachUsMenu() {
+        return reachUsMenu;
+    }
+
+    public void setReachUsMenu(MenuItem reachUsMenu) {
+        this.reachUsMenu = reachUsMenu;
+    }
+
+    public MenuItem getGenerateReportsMenu() {
+        return generateReportsMenu;
+    }
+
+    public void setGenerateReportsMenu(MenuItem generateReportsMenu) {
+        this.generateReportsMenu = generateReportsMenu;
+    }
+
+    public MenuItem getDocumentationMenu() {
+        return documentationMenu;
+    }
+
+    public void setDocumentationMenu(MenuItem documentationMenu) {
+        this.documentationMenu = documentationMenu;
+    }
+
+    public MenuItem getMenuQuit() {
+        return menuQuit;
+    }
+
+    public void setMenuQuit(MenuItem menuQuit) {
+        this.menuQuit = menuQuit;
+    }
+
+    public MenuItem getStaffMenu() {
+        return staffMenu;
+    }
+
+    public void setStaffMenu(MenuItem staffMenu) {
+        this.staffMenu = staffMenu;
+    }
+
+    public MenuItem getCarWashMenu() {
+        return carWashMenu;
+    }
+
+    public void setCarWashMenu(MenuItem carWashMenu) {
+        this.carWashMenu = carWashMenu;
+    }
+
+    public MenuItem getInventoryMenu() {
+        return inventoryMenu;
+    }
+
+    public void setInventoryMenu(MenuItem inventoryMenu) {
+        this.inventoryMenu = inventoryMenu;
+    }
+
+    public MenuItem getMrMenu() {
+        return mrMenu;
+    }
+
+    public void setMrMenu(MenuItem mrMenu) {
+        this.mrMenu = mrMenu;
+    }
+
+    public MenuItem getAuditsMenu() {
+        return auditsMenu;
+    }
+
+    public void setAuditsMenu(MenuItem auditsMenu) {
+        this.auditsMenu = auditsMenu;
+    }
+
+    public MenuItem getMenuShutDown() {
+        return menuShutDown;
+    }
+
+    public void setMenuShutDown(MenuItem menuShutDown) {
+        this.menuShutDown = menuShutDown;
+    }
+
+    public MenuItem getMenuRestart() {
+        return menuRestart;
+    }
+
+    public void setMenuRestart(MenuItem menuRestart) {
+        this.menuRestart = menuRestart;
+    }
+
+    public DatePicker getStartDateEmployeeSales() {
+        return startDateEmployeeSales;
+    }
+
+    public void setStartDateEmployeeSales(DatePicker startDateEmployeeSales) {
+        this.startDateEmployeeSales = startDateEmployeeSales;
+    }
+
+    public DatePicker getEndDateEmployeeSales() {
+        return endDateEmployeeSales;
+    }
+
+    public void setEndDateEmployeeSales(DatePicker endDateEmployeeSales) {
+        this.endDateEmployeeSales = endDateEmployeeSales;
+    }
+
+    public Button getQueryEmpTimeReport() {
+        return queryEmpTimeReport;
+    }
+
+    public void setQueryEmpTimeReport(Button queryEmpTimeReport) {
+        this.queryEmpTimeReport = queryEmpTimeReport;
+    }
+
+
+    public ObservableList<SalesMasterClassCatOrIndividual> getSalesMasterClassCatOrIndividuals() {
+        return salesMasterClassCatOrIndividuals;
+    }
+
+    public void setSalesMasterClassCatOrIndividuals(ObservableList<SalesMasterClassCatOrIndividual> salesMasterClassCatOrIndividuals) {
+        this.salesMasterClassCatOrIndividuals = salesMasterClassCatOrIndividuals;
+    }
+
+    public String getSellerEmail() {
+        return sellerEmail;
+    }
+
+    public void setSellerEmail(String sellerEmail) {
+        this.sellerEmail = sellerEmail;
+    }
+
+    public String getRadSelected() {
+        return radSelected;
+    }
+
+    public void setRadSelected(String radSelected) {
+        this.radSelected = radSelected;
+    }
 }

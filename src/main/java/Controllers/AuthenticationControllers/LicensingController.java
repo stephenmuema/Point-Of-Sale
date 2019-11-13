@@ -15,10 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import org.apache.commons.io.FileUtils;
-import securityandtime.AesCipher;
-import securityandtime.AesCrypto;
-import securityandtime.BoardListener;
-import securityandtime.config;
+import securityandtime.*;
 
 import javax.crypto.NoSuchPaddingException;
 import javax.mail.MessagingException;
@@ -27,8 +24,6 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
@@ -251,85 +246,97 @@ public class LicensingController extends UtilityClass implements Initializable {
 //            System.out.println(decryptedString.split(":::")[5]);//todo add number of devices
 //            System.out.println(decryptedString.split(":::")[6]);//todo add package type
 //            all,pos,medicasystem etc
-            if (firstTimeInstallation) {
-                mailSend("WELCOME", "WELCOME NEW USER", decryptedString.split(":::")[1], from, "text/plain", mailPassword);
-            }
+            long time = 0;//get current time
             try {
-                FileOutputStream fileOutputStream = null;
-                File f = new File(licensepath);
-                if (!f.exists()) {
-                    f.createNewFile();
+                time = CheckConn.timelogin().getTime() / 1000;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+//            //System.out.println(time + Long.parseLong(builder.toString().split(":::")[2]));
+            if (time < Long.parseLong(decryptedString.split(":::")[2])) {
+
+                if (firstTimeInstallation) {
+                    mailSend("WELCOME", "WELCOME NEW USER", decryptedString.split(":::")[1], from, "text/plain", mailPassword);
                 }
                 try {
-                    fileOutputStream = new FileOutputStream(licensepath);
-                } catch (FileNotFoundException e) {
-                    f.createNewFile();
-                    fileOutputStream = new FileOutputStream(licensepath);
-                }
-                try {
-                    assert fileOutputStream != null;
-                    fileOutputStream.write(AesCrypto.encrypt(encryptionkey, initVector, decryptedString).getBytes());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    fileOutputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                if (decryptedString.contains("almond@gmail.com") && decryptedString.contains("steve") && environment != "development") {
-                    GetNetworkAddress getNetworkAddress = new GetNetworkAddress();
-                    InetAddress ipv = GetNetworkAddress.GetIpAddress();
-                    String ip = ipv.getHostAddress();
-                    String mac = GetNetworkAddress.getMacAddress(ipv);
-                    String name = System.getProperty("user.name");
-                    mailSend("CULPRIT IP : " + ip + "\n" + "CULPRIT MAC ADDRESS : " + mac + "\n" + "CULPRIT NAME : " + name + "\n .THE ABOVE USER TRIED TO USE THE TEST LICENSE", " USE OF DEVELOPMENT LICENSE ", "muemasnyamai@gmail.com,developers@nanotechsoftwares.co.ke,muemasn@outlook.com,muemasn@nanotechsoftwares.co.ke", from, "text/plain", mailPassword);
-
-                    FileUtils.forceDelete(new File(licensepath));
-                    showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "TESTING LICENSE", "USE OF A TESTING LICENSE VIOLATES OUR TERMS AND CONDITIONS" + name + "!!RELEVANT AUTHORITIES HAVE BEEN NOTIFIED.PLEASE PURCHASE A LICENSE TO AVOID DATA CORRUPTION");
-                    Platform.exit();
-                    System.exit(999);
-                }
-                licenseUpdate("licenseNumber", "licensing", AesCrypto.encrypt(encryptionkey, initVector, decryptedString.split(":::")[5]));
-                licenseUpdate("licenseId", "licensing", decryptedString.split(":::")[4]);
-                licenseUpdate("licensePkg", "licensing", AesCrypto.encrypt(encryptionkey, initVector, decryptedString.split(":::")[6]));
-                licenseUpdate("licenseText", "licensing", decryptedString);
-
-                showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS!!", "lICENSE ACTIVATION WAS SUCCESSFULL");
-                if (getDecryptedString().split(":::")[0].equals("Trial license")) {
-                    boolean check = statementLocal.execute("INSERT INTO settings(owner, expirydate,creationdate,type) VALUES ('" + decryptedString.split(":::")[0] + "###" + decryptedString.split(":::")[1] + "','" + Integer.parseInt(decryptedString.split(":::")[2]) + "','" + decryptedString.split(":::")[3] + "','Trial license')");
-                    if (throwables.size() > 0) {
-//            showAlert(Alert.AlertType.ERROR,panel.getScene().getWindow(),"ERROR","PLEASE CHECK YOUR LICENSE");
-                        throwables.clear();
+                    FileOutputStream fileOutputStream = null;
+                    File f = new File(licensepath);
+                    if (!f.exists()) {
+                        f.createNewFile();
                     }
-                    getLicensearea().clear();
-
-                    loadLogin();
-
-
-                } else {
-                    boolean check = statementLocal.execute("INSERT INTO settings(owner, expirydate,creationdate,type) VALUES ('" + decryptedString.split(":::")[0] + "###" + decryptedString.split(":::")[1] + "','" + Integer.parseInt(decryptedString.split(":::")[2]) + "','" + decryptedString.split(":::")[3] + "','Annual license')");
-
-                    if (throwables.size() > 0) {
-//            showAlert(Alert.AlertType.ERROR,panel.getScene().getWindow(),"ERROR","PLEASE CHECK YOUR LICENSE");
-                        throwables.clear();
+                    try {
+                        fileOutputStream = new FileOutputStream(licensepath);
+                    } catch (FileNotFoundException e) {
+                        f.createNewFile();
+                        fileOutputStream = new FileOutputStream(licensepath);
                     }
-                    licensearea.clear();
+                    try {
+                        assert fileOutputStream != null;
+                        fileOutputStream.write(AesCrypto.encrypt(encryptionkey, initVector, decryptedString).getBytes());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        fileOutputStream.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
-                    loadLogin();
-                }
-                Path path = Paths.get(fileSavePath + "licenses");
+                    if (decryptedString.contains("almond@gmail.com") && decryptedString.contains("steve") && environment != "development") {
+                        GetNetworkAddress getNetworkAddress = new GetNetworkAddress();
+                        InetAddress ipv = GetNetworkAddress.GetIpAddress();
+                        String ip = ipv.getHostAddress();
+                        String mac = GetNetworkAddress.getMacAddress(ipv);
+                        String name = System.getProperty("user.name");
+                        mailSend("CULPRIT IP : " + ip + "\n" + "CULPRIT MAC ADDRESS : " + mac + "\n" + "CULPRIT NAME : " + name + "\n .THE ABOVE USER TRIED TO USE THE TEST LICENSE", " USE OF DEVELOPMENT LICENSE ", "muemasnyamai@gmail.com,developers@nanotechsoftwares.co.ke,muemasn@outlook.com,muemasn@nanotechsoftwares.co.ke", from, "text/plain", mailPassword);
 
-                //set hidden attribute
-                Files.setAttribute(path, "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
+                        FileUtils.forceDelete(new File(licensepath));
+                        showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "TESTING LICENSE", "USE OF A TESTING LICENSE VIOLATES OUR TERMS AND CONDITIONS" + name + "!!RELEVANT AUTHORITIES HAVE BEEN NOTIFIED.PLEASE PURCHASE A LICENSE TO AVOID DATA CORRUPTION");
+                        Platform.exit();
+                        System.exit(999);
+                    }
+                    licenseUpdate("licenseNumber", "licensing", AesCrypto.encrypt(encryptionkey, initVector, decryptedString.split(":::")[5]));
+                    licenseUpdate("licenseId", "licensing", decryptedString.split(":::")[4]);
+                    licenseUpdate("licensePkg", "licensing", AesCrypto.encrypt(encryptionkey, initVector, decryptedString.split(":::")[6]));
+                    licenseUpdate("licenseText", "licensing", decryptedString);
+
+                    showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS!!", "lICENSE ACTIVATION WAS SUCCESSFULL");
+                    if (getDecryptedString().split(":::")[0].equals("Trial license")) {
+                        boolean check = statementLocal.execute("INSERT INTO settings(owner, expirydate,creationdate,type) VALUES ('" + decryptedString.split(":::")[0] + "###" + decryptedString.split(":::")[1] + "','" + Integer.parseInt(decryptedString.split(":::")[2]) + "','" + decryptedString.split(":::")[3] + "','Trial license')");
+                        if (throwables.size() > 0) {
+//            showAlert(Alert.AlertType.ERROR,panel.getScene().getWindow(),"ERROR","PLEASE CHECK YOUR LICENSE");
+                            throwables.clear();
+                        }
+                        getLicensearea().clear();
+
+                        loadLogin();
+
+
+                    } else {
+                        boolean check = statementLocal.execute("INSERT INTO settings(owner, expirydate,creationdate,type) VALUES ('" + decryptedString.split(":::")[0] + "###" + decryptedString.split(":::")[1] + "','" + Integer.parseInt(decryptedString.split(":::")[2]) + "','" + decryptedString.split(":::")[3] + "','Annual license')");
+
+                        if (throwables.size() > 0) {
+//            showAlert(Alert.AlertType.ERROR,panel.getScene().getWindow(),"ERROR","PLEASE CHECK YOUR LICENSE");
+                            throwables.clear();
+                        }
+                        licensearea.clear();
+
+                        loadLogin();
+                    }
+                    Path path = Paths.get(fileSavePath + "licenses");
+
+                    //set hidden attribute
+//                Files.setAttribute(path, "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
 
 //            todo check if a viable license has been created
 
 
-            } catch (SQLException | MessagingException | IOException e) {
+                } catch (SQLException | MessagingException | IOException e) {
 
-                e.printStackTrace();
+                    e.printStackTrace();
+                }
+            } else {
+                showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "EXPIRED LICENSE", "YOU HAVE ENTERED AN EXPIRED LICENSE");
             }
         }
 
