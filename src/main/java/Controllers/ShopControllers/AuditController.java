@@ -31,10 +31,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -101,7 +98,7 @@ public class AuditController extends UtilityClass implements Initializable {
     @FXML
     private TextField showcurrentuser;
     @FXML
-    private ComboBox combocategory;
+    private ComboBox<String> combocategory;
     @FXML
     private Button createCostsCat;
     @FXML
@@ -266,6 +263,7 @@ private TableView<SalesMaster> tableemployeesales;
     private ObservableList<EmployeeMaster> employeeMasterObservableList = FXCollections.observableArrayList();
     private ObservableList<SalesMaster> salesMasterObservableList = FXCollections.observableArrayList();
     private ObservableList<SalesMasterClassCatOrIndividual> salesMasterClassCatOrIndividuals = FXCollections.observableArrayList();
+    private ObservableList<CostsMasterClass> costsMasterClassObservableList = FXCollections.observableArrayList();
     private String sellerEmail;
     private String radSelected;
     public AuditController() throws IOException {
@@ -319,7 +317,68 @@ private TableView<SalesMaster> tableemployeesales;
         navigatoryButtonListeners();
         loadTables();
         time(clock);
+        //load combo box data
+        ObservableList<String> combodata = FXCollections.observableArrayList();
+        try {
+            Statement stmt = new UtilityClass().getConnection().createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM cost_category");
+            if (resultSet.isBeforeFirst()) {
+                while (resultSet.next()) {
+                    combodata.add(resultSet.getString("category_name"));
+                }
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        combocategory.setItems(combodata);
+        showcurrentuser.setText(config.user.get("userName"));
+        pastcosts.setOnSelectionChanged(event -> {
+            costsMasterClassObservableList.clear();
+            if (pastcosts.isSelected()) {
+//load table of past costs
+                try {
+                    connection = new UtilityClass().getConnection();
+                    Statement statement = connection.createStatement();
+                    ResultSet resultSetCosts = statement.executeQuery("SELECT * FROM costs");
+                    if (resultSetCosts.isBeforeFirst()) {
+                        while (resultSetCosts.next()) {
+                            CostsMasterClass costsMasterClass = new CostsMasterClass();
+                            costsMasterClass.setId(resultSetCosts.getString("id"));
+                            costsMasterClass.setAmount(resultSetCosts.getString("amount"));
+                            costsMasterClass.setDateadded(resultSetCosts.getString("datecreated"));
+                            costsMasterClass.setName(resultSetCosts.getString("name"));
+                            costsMasterClass.setIsactive(resultSetCosts.getString("status"));
+                            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM cost_category WHERE id=?");
+                            preparedStatement.setString(1, costsMasterClass.getId());
+                            ResultSet resultSet = preparedStatement.executeQuery();
+                            if (resultSet.isBeforeFirst()) {
+                                while (resultSet.next()) {
+                                    costsMasterClass.setCategory(resultSet.getString("category_name"));
+                                }
+                            }
+                            costsMasterClassObservableList.add(costsMasterClass);
+                        }
+                    }
 
+                } catch (IOException | SQLException e) {
+                    e.printStackTrace();
+                }
+
+
+                pastcoststable.setItems(costsMasterClassObservableList);
+
+
+                assert pastcoststable != null : "fx:id=\"pastcoststable\" was not injected: check your FXML ";
+                pastcoststableid.setCellValueFactory(
+                        new PropertyValueFactory<>("id"));
+                pastcoststablename.setCellValueFactory(
+                        new PropertyValueFactory<>("name"));
+                pastcoststabledateadded.setCellValueFactory(new PropertyValueFactory<>("dateadded"));
+                pastcoststableamount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+                pastcoststableactiveinactivestatus.setCellValueFactory(new PropertyValueFactory<>("isactive"));
+                pastcoststable.refresh();
+            }
+        });
     }
 
 
@@ -749,8 +808,64 @@ private TableView<SalesMaster> tableemployeesales;
     }
 
     private void buttonListeners() {
+        newcostssubmit.setOnAction(event -> {
+            try {
+                connection = new UtilityClass().getConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            String date = newcostsdatecreated.getValue().toString();
+            String newCostAmt = newcostsamount.getText();
+            String newCostsName = newcostsname.getText();
+            String newCostsDesc = newcostdescription.getText();
+            String user = showcurrentuser.getText();
+            String category = combocategory.getValue();
+            String activated = activatecostchkbox.isSelected() ? "active" : "inactive";
+            validateAddCostsMenu(date, newCostAmt, newCostsName, newCostsDesc, category);
+            PreparedStatement preparedStatement;
+            try {
+                preparedStatement = connection.prepareStatement("SELECT * FROM cost_category WHERE category_name=?");
+                preparedStatement.setString(1, category);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if (resultSet.isBeforeFirst()) {
+                    while (resultSet.next()) {
+                        category = resultSet.getString("id");
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                preparedStatement = connection.prepareStatement("SELECT * FROM costs WHERE name=?");
+                preparedStatement.setString(1, newCostsName);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if (resultSet.isBeforeFirst()) {
+                    showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "A PRICE WITH A SIMILAR NAME ALREADY EXISTS");
+                } else {
+                    preparedStatement = connection.prepareStatement("INSERT INTO costs (name, category, description, owner, status,datecreated,amount) VALUES (?,?,?,?,?,?,?)");
+                    preparedStatement.setString(1, newCostsName);
+                    preparedStatement.setString(2, category);
+                    preparedStatement.setString(3, newCostsDesc);
+                    preparedStatement.setString(4, user);
+                    preparedStatement.setString(5, activated);
+                    preparedStatement.setString(6, date);
+                    preparedStatement.setString(7, newCostAmt);
+                    if (preparedStatement.executeUpdate() > 0) {
+                        newcostsdatecreated.setValue(null);
+                        newcostsamount.clear();
+                        newcostsname.clear();
+                        newcostdescription.clear();
+                        activatecostchkbox.setSelected(false);
+                        showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS", "YOUR DATA HAS BEEN ADDED SUCCESSFULLY");
+
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
         createCostsCat.setOnAction(event -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/adminSettings.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("shopFiles/categoriesAdd.fxml"));
             try {
                 Parent parent = fxmlLoader.load();
                 Stage stage = new Stage();
@@ -812,6 +927,12 @@ private TableView<SalesMaster> tableemployeesales;
             }
 
         });
+    }
+
+    private void validateAddCostsMenu(String date, String newCostAmt, String newCostsName, String newCostsDesc, String category) {
+        if (date.isEmpty() || newCostAmt.isEmpty() || newCostsName.isEmpty() || newCostsDesc.isEmpty() || category.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "FILL ALL THE FIELDS BEFOR SUBMITTING THE FORM");
+        }
     }
 
     private void loadCashierSalesTableStartEnd(String start, String end) {
@@ -1630,11 +1751,11 @@ private TableView<SalesMaster> tableemployeesales;
         this.showcurrentuser = showcurrentuser;
     }
 
-    public ComboBox getCombocategory() {
+    public ComboBox<String> getCombocategory() {
         return combocategory;
     }
 
-    public void setCombocategory(ComboBox combocategory) {
+    public void setCombocategory(ComboBox<String> combocategory) {
         this.combocategory = combocategory;
     }
 
@@ -1662,51 +1783,51 @@ private TableView<SalesMaster> tableemployeesales;
         this.pastcosts = pastcosts;
     }
 
-    public TableView getPastcoststable() {
+    public TableView<CostsMasterClass> getPastcoststable() {
         return pastcoststable;
     }
 
-    public void setPastcoststable(TableView pastcoststable) {
+    public void setPastcoststable(TableView<CostsMasterClass> pastcoststable) {
         this.pastcoststable = pastcoststable;
     }
 
-    public TableColumn getPastcoststableid() {
+    public TableColumn<CostsMasterClass, String> getPastcoststableid() {
         return pastcoststableid;
     }
 
-    public void setPastcoststableid(TableColumn pastcoststableid) {
+    public void setPastcoststableid(TableColumn<CostsMasterClass, String> pastcoststableid) {
         this.pastcoststableid = pastcoststableid;
     }
 
-    public TableColumn getPastcoststablename() {
+    public TableColumn<CostsMasterClass, String> getPastcoststablename() {
         return pastcoststablename;
     }
 
-    public void setPastcoststablename(TableColumn pastcoststablename) {
+    public void setPastcoststablename(TableColumn<CostsMasterClass, String> pastcoststablename) {
         this.pastcoststablename = pastcoststablename;
     }
 
-    public TableColumn getPastcoststabledateadded() {
+    public TableColumn<CostsMasterClass, String> getPastcoststabledateadded() {
         return pastcoststabledateadded;
     }
 
-    public void setPastcoststabledateadded(TableColumn pastcoststabledateadded) {
+    public void setPastcoststabledateadded(TableColumn<CostsMasterClass, String> pastcoststabledateadded) {
         this.pastcoststabledateadded = pastcoststabledateadded;
     }
 
-    public TableColumn getPastcoststableamount() {
+    public TableColumn<CostsMasterClass, String> getPastcoststableamount() {
         return pastcoststableamount;
     }
 
-    public void setPastcoststableamount(TableColumn pastcoststableamount) {
+    public void setPastcoststableamount(TableColumn<CostsMasterClass, String> pastcoststableamount) {
         this.pastcoststableamount = pastcoststableamount;
     }
 
-    public TableColumn getPastcoststableactiveinactivestatus() {
+    public TableColumn<CostsMasterClass, String> getPastcoststableactiveinactivestatus() {
         return pastcoststableactiveinactivestatus;
     }
 
-    public void setPastcoststableactiveinactivestatus(TableColumn pastcoststableactiveinactivestatus) {
+    public void setPastcoststableactiveinactivestatus(TableColumn<CostsMasterClass, String> pastcoststableactiveinactivestatus) {
         this.pastcoststableactiveinactivestatus = pastcoststableactiveinactivestatus;
     }
 
