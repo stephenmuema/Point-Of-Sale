@@ -177,8 +177,7 @@ private TableView<SalesMaster> tableemployeesales;
     private TableColumn stockalerttablename;
     @FXML
     private TableColumn stockalerttabledate;
-    @FXML
-    private TableColumn stockalerttablemarkasread;
+
     @FXML
     private Tab taballaudits;
     //tab of all audits for exports or graphical viewing
@@ -320,8 +319,7 @@ private TableView<SalesMaster> tableemployeesales;
         navigatoryButtonListeners();
         loadTables();
         time(clock);
-        loadIndividualInitially();
-        loadCategoricalInitially();
+
     }
 
 
@@ -693,7 +691,6 @@ private TableView<SalesMaster> tableemployeesales;
         logoutbutton.setOnMouseClicked(event -> logout());
         tosupplierbutton.setOnMouseClicked(event -> {
             try {
-                //todo change link to supplier site
                 Desktop.getDesktop().browse(new URL(site).toURI());
             } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
@@ -752,6 +749,18 @@ private TableView<SalesMaster> tableemployeesales;
     }
 
     private void buttonListeners() {
+        createCostsCat.setOnAction(event -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("UserAccountManagementFiles/adminSettings.fxml"));
+            try {
+                Parent parent = fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         getSales.setOnAction(event -> {
             String endDate;
             String startDate = null;
@@ -858,9 +867,24 @@ private TableView<SalesMaster> tableemployeesales;
     private void loadTables() {
         loadCashiersTable();
         loadCashierSalesTable();
-//        loadSpecificItemsTable();// todo v1.2
-//        loadCategoricalSalesTable();// todo v1.2
-//        costsTableAndInput();// todo v1.2
+        loadIndividualInitially();
+        loadCategoricalInitially();
+        loadCosts();
+    }
+
+    private void loadCosts() {
+        try {
+            connection = new UtilityClass().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM costs");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.isBeforeFirst()) {
+                while (resultSet.next()) {
+                    //todo loop through costs table contents
+                }
+            }
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -1275,13 +1299,7 @@ private TableView<SalesMaster> tableemployeesales;
         this.stockalerttabledate = stockalerttabledate;
     }
 
-    public TableColumn getStockalerttablemarkasread() {
-        return stockalerttablemarkasread;
-    }
 
-    public void setStockalerttablemarkasread(TableColumn stockalerttablemarkasread) {
-        this.stockalerttablemarkasread = stockalerttablemarkasread;
-    }
 
     public Tab getTaballaudits() {
         return taballaudits;

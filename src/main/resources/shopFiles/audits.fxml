@@ -151,7 +151,6 @@
                                                                  text="SALES/DAY"/>
                                                 </columns>
                                             </TableView>
-                                            <!--                               todo uncomment for categorical audits-->
                                             <TableView fx:id="itemsalestable" layoutX="-2.0" layoutY="117.0"
                                                        prefHeight="452.0" prefWidth="897.0">
                                                 <columns>
@@ -322,7 +321,6 @@
                                     </AnchorPane>
                                 </content>
                             </Tab>
-                            <!--                                              todo v1.2-->
                             <Tab fx:id="tabfutureplans" text="FUTURE PLANS">
                                 <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -363,7 +361,6 @@
                                     </AnchorPane>
                                 </content>
                             </Tab>
-                            <!--                                              TODO V1.2-->
                             <Tab fx:id="tabstockalerts" text="STOCK ALERTS">
                                 <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -377,11 +374,11 @@
                                                                  resizable="false" text="ITEM NAME"/>
                                                     <TableColumn fx:id="stockalerttabledate" prefWidth="252.0"
                                                                  resizable="false" text="DATE"/>
-                                                    <TableColumn fx:id="stockalerttablemarkasread" prefWidth="166.0"
+                                                    <TableColumn fx:id="amountRemaining" prefWidth="166.0"
                                                                  resizable="false" text="AMOUNT REMAINING"/>
-                                                    <TableColumn fx:id="stockalerttablemarkasread1" prefWidth="166.0"
-                                                                 resizable="false" text="SALES PER HOUR"/>
-                                                    <TableColumn fx:id="stockalerttablemarkasread11" prefWidth="166.0"
+                                                    <TableColumn fx:id="slaesperday" prefWidth="166.0"
+                                                                 resizable="false" text="SALES PER DAY"/>
+                                                    <TableColumn fx:id="itemCategory" prefWidth="166.0"
                                                                  resizable="false" text="CATEGORY"/>
                                                 </columns>
                                             </TableView>

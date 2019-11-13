@@ -7,14 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/MasterClasses/CostsMasterClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AddCategoryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/categoriesAdd.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -610,13 +607,6 @@
       <workItem from="1573460755197" duration="2802000" />
       <workItem from="1573471409238" duration="465000" />
     </task>
-    <task id="LOCAL-00015" summary="Connections created in one file">
-      <created>1566578888793</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1566578888793</updated>
-    </task>
     <task id="LOCAL-00016" summary="Connections created in one file">
       <created>1566580103529</created>
       <option name="number" value="00016" />
@@ -953,7 +943,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573464291998</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="COMPLETED SHOW PAST SALES AND STARTED COSTS">
+      <created>1573637770285</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1573637770292</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -990,7 +987,6 @@
       <path value="$PROJECT_DIR$/POSnanotech-softwaresjava" />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="ADDED SCANNER AT INVENTORY AND CREATED SCANNER VIEW" />
     <MESSAGE value="added license checking during creation" />
     <MESSAGE value="added network check" />
     <MESSAGE value="ADDED CHANGE SETTINGS" />
@@ -1015,7 +1011,8 @@
     <MESSAGE value="ADDED TIME SEARCH FOR CATEGORICAL SALES AND INDIVIDUAL SALES BUT ITS NOT YET PERFECT" />
     <MESSAGE value="added cryptography compatible with python" />
     <MESSAGE value="added cryptography  with python" />
-    <option name="LAST_COMMIT_MESSAGE" value="added cryptography  with python" />
+    <MESSAGE value="COMPLETED SHOW PAST SALES AND STARTED COSTS" />
+    <option name="LAST_COMMIT_MESSAGE" value="COMPLETED SHOW PAST SALES AND STARTED COSTS" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
