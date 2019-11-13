@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -34,6 +35,21 @@ public class Main extends Application {
     private String licenseId;
 
     public static void main(String[] args) throws InterruptedException {
+        if (!new File(fileSavePath + "\\images\\logo.png").exists()) {
+            String path = defaultLogo;
+            javafx.scene.image.Image image = new javafx.scene.image.Image(path);
+            ImageView imageView = new ImageView(image);
+            try (InputStream in = new URL(path).openStream()) {
+                Files.copy(in, Paths.get(fileSavePath + "\\images\\logo.png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                Thread.sleep(8000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         Main mainMethod = new Main();
         mainMethod.initializeApp();
 
@@ -152,7 +168,7 @@ public class Main extends Application {
 
     private void initializeApp() {
 
-        System.out.println(logoImageNanotechPos.getHeight());
+//        System.out.println(logoImageNanotechPos.getHeight());
         Runnable target;
         Thread thread = new Thread(new NetworkCheck());
         try {

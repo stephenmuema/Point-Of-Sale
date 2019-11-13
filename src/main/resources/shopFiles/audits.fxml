@@ -321,46 +321,46 @@
                                     </AnchorPane>
                                 </content>
                             </Tab>
-                            <Tab fx:id="tabfutureplans" text="FUTURE PLANS">
-                                <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                        <children>
-                                            <!--                             table for future plans-->
-                                            <TableView layoutX="726.0" layoutY="20.0" prefHeight="376.0"
-                                                       prefWidth="467.0">
-                                                <columns>
-                                                    <TableColumn prefWidth="120.0" resizable="false" text="NAME"/>
-                                                    <TableColumn prefWidth="144.0" resizable="false" text="DATE"/>
-                                                    <TableColumn prefWidth="202.0" resizable="false"
-                                                                 text="DESCRIPTION"/>
-                                                </columns>
-                                            </TableView>
-                                            <AnchorPane layoutX="53.0" layoutY="20.0" prefHeight="413.0"
-                                                        prefWidth="620.0" styleClass="forminner">
-                                                <children>
-                                                    <TextField fx:id="tabfutureplansname" layoutX="137.0" layoutY="14.0"
-                                                               prefHeight="39.0" prefWidth="325.0" promptText="NAME"
-                                                               styleClass="textfields"/>
-                                                    <DatePicker fx:id="tabfutureplansdateofimplementation"
-                                                                layoutX="137.0" layoutY="78.0" prefHeight="39.0"
-                                                                prefWidth="325.0" promptText="DATE OF IMPLEMENTATION"
-                                                                styleClass="textfields"/>
-                                                    <TextArea fx:id="tabfutureplansdescription" layoutX="24.0"
-                                                              layoutY="134.0" prefHeight="200.0" prefWidth="574.0"
-                                                              promptText="SHORT DESCRIPTION OF THE PLANS........."
-                                                              styleClass="textfields"/>
-                                                    <Button fx:id="tabfutureplanssubmit" layoutX="264.0" layoutY="356.0"
-                                                            mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0"
-                                                            styleClass="buttonorange" text="SUBMIT"/>
-                                                </children>
-                                            </AnchorPane>
-                                            <Button layoutX="886.0" layoutY="415.0" mnemonicParsing="false"
-                                                    prefHeight="36.0" prefWidth="147.0" styleClass="buttonorange"
-                                                    text="EXPORT REPORT"/>
-                                        </children>
-                                    </AnchorPane>
-                                </content>
-                            </Tab>
+                            <!--                            <Tab fx:id="tabfutureplans" text="FUTURE PLANS" >-->
+                            <!--                                <content>-->
+                            <!--                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
+                            <!--                                        <children>-->
+                            <!--                                            &lt;!&ndash;                             table for future plans&ndash;&gt;-->
+                            <!--                                            <TableView layoutX="726.0" layoutY="20.0" prefHeight="376.0"-->
+                            <!--                                                       prefWidth="467.0">-->
+                            <!--                                                <columns>-->
+                            <!--                                                    <TableColumn prefWidth="120.0" resizable="false" text="NAME"/>-->
+                            <!--                                                    <TableColumn prefWidth="144.0" resizable="false" text="DATE"/>-->
+                            <!--                                                    <TableColumn prefWidth="202.0" resizable="false"-->
+                            <!--                                                                 text="DESCRIPTION"/>-->
+                            <!--                                                </columns>-->
+                            <!--                                            </TableView>-->
+                            <!--                                            <AnchorPane layoutX="53.0" layoutY="20.0" prefHeight="413.0"-->
+                            <!--                                                        prefWidth="620.0" styleClass="forminner">-->
+                            <!--                                                <children>-->
+                            <!--                                                    <TextField fx:id="tabfutureplansname" layoutX="137.0" layoutY="14.0"-->
+                            <!--                                                               prefHeight="39.0" prefWidth="325.0" promptText="NAME"-->
+                            <!--                                                               styleClass="textfields"/>-->
+                            <!--                                                    <DatePicker fx:id="tabfutureplansdateofimplementation"-->
+                            <!--                                                                layoutX="137.0" layoutY="78.0" prefHeight="39.0"-->
+                            <!--                                                                prefWidth="325.0" promptText="DATE OF IMPLEMENTATION"-->
+                            <!--                                                                styleClass="textfields"/>-->
+                            <!--                                                    <TextArea fx:id="tabfutureplansdescription" layoutX="24.0"-->
+                            <!--                                                              layoutY="134.0" prefHeight="200.0" prefWidth="574.0"-->
+                            <!--                                                              promptText="SHORT DESCRIPTION OF THE PLANS........."-->
+                            <!--                                                              styleClass="textfields"/>-->
+                            <!--                                                    <Button fx:id="tabfutureplanssubmit" layoutX="264.0" layoutY="356.0"-->
+                            <!--                                                            mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0"-->
+                            <!--                                                            styleClass="buttonorange" text="SUBMIT"/>-->
+                            <!--                                                </children>-->
+                            <!--                                            </AnchorPane>-->
+                            <!--                                            <Button layoutX="886.0" layoutY="415.0" mnemonicParsing="false"-->
+                            <!--                                                    prefHeight="36.0" prefWidth="147.0" styleClass="buttonorange"-->
+                            <!--                                                    text="EXPORT REPORT"/>-->
+                            <!--                                        </children>-->
+                            <!--                                    </AnchorPane>-->
+                            <!--                                </content>-->
+                            <!--                            </Tab>-->
                             <Tab fx:id="tabstockalerts" text="STOCK ALERTS">
                                 <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">

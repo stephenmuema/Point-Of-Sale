@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -379,6 +380,45 @@ private TableView<SalesMaster> tableemployeesales;
                 pastcoststableamount.setCellValueFactory(new PropertyValueFactory<>("amount"));
                 pastcoststableactiveinactivestatus.setCellValueFactory(new PropertyValueFactory<>("isactive"));
                 pastcoststable.refresh();
+            }
+        });
+        //add table past costs context menu
+        ContextMenu cm = new ContextMenu();
+        MenuItem contextToggleStatus = new MenuItem("TOGGLE STATUS");
+        cm.getItems().add(contextToggleStatus);
+        pastcoststable.addEventHandler(MouseEvent.MOUSE_CLICKED, t -> {
+            if (t.getButton() == MouseButton.SECONDARY) {
+                cm.show(pastcoststable, t.getScreenX(), t.getScreenY());
+            }
+        });
+        contextToggleStatus.setOnAction(event -> {
+            CostsMasterClass costsMasterClass = pastcoststable.getSelectionModel().getSelectedItem();
+            if (costsMasterClass != null) {
+                String status = costsMasterClass.getIsactive();
+                if (status.equalsIgnoreCase("active")) {
+                    //set status to inactive
+                    try {
+                        connection = new UtilityClass().getConnection();
+                        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE costs SET status=? WHERE id=?");
+                        preparedStatement.setString(1, "inactive".toUpperCase());
+                        preparedStatement.setString(2, costsMasterClass.getId());
+                        preparedStatement.executeUpdate();
+                    } catch (IOException | SQLException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    //set status to active if it is currently inactive
+                    try {
+                        connection = new UtilityClass().getConnection();
+                        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE costs SET status=? WHERE id=?");
+                        preparedStatement.setString(1, "active".toUpperCase());
+                        preparedStatement.setString(2, costsMasterClass.getId());
+                        preparedStatement.executeUpdate();
+                    } catch (IOException | SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                loadCosts();
             }
         });
     }
@@ -903,13 +943,13 @@ private TableView<SalesMaster> tableemployeesales;
                     showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "A PRICE WITH A SIMILAR NAME ALREADY EXISTS");
                 } else {
                     preparedStatement = connection.prepareStatement("INSERT INTO costs (name, category, description, owner, status,datecreated,amount) VALUES (?,?,?,?,?,?,?)");
-                    preparedStatement.setString(1, newCostsName);
-                    preparedStatement.setString(2, category);
-                    preparedStatement.setString(3, newCostsDesc);
+                    preparedStatement.setString(1, newCostsName.toUpperCase());
+                    preparedStatement.setString(2, category.toUpperCase());
+                    preparedStatement.setString(3, newCostsDesc.toUpperCase());
                     preparedStatement.setString(4, user);
-                    preparedStatement.setString(5, activated);
-                    preparedStatement.setString(6, date);
-                    preparedStatement.setString(7, newCostAmt);
+                    preparedStatement.setString(5, activated.toUpperCase());
+                    preparedStatement.setString(6, date.toUpperCase());
+                    preparedStatement.setString(7, newCostAmt.toUpperCase());
                     if (preparedStatement.executeUpdate() > 0) {
                         newcostsdatecreated.setValue(null);
                         newcostsamount.clear();
@@ -1050,22 +1090,49 @@ private TableView<SalesMaster> tableemployeesales;
         loadCashierSalesTable();
         loadIndividualInitially();
         loadCategoricalInitially();
-        loadCosts();
     }
 
     private void loadCosts() {
+        costsMasterClassObservableList.clear();
         try {
             connection = new UtilityClass().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM costs");
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.isBeforeFirst()) {
-                while (resultSet.next()) {
-                    //todo loop through costs table contents
+            Statement statement = connection.createStatement();
+            ResultSet resultSetCosts = statement.executeQuery("SELECT * FROM costs");
+            if (resultSetCosts.isBeforeFirst()) {
+                while (resultSetCosts.next()) {
+                    CostsMasterClass costsMasterClass1 = new CostsMasterClass();
+                    costsMasterClass1.setId(resultSetCosts.getString("id"));
+                    costsMasterClass1.setAmount(resultSetCosts.getString("amount"));
+                    costsMasterClass1.setDateadded(resultSetCosts.getString("datecreated"));
+                    costsMasterClass1.setName(resultSetCosts.getString("name"));
+                    costsMasterClass1.setIsactive(resultSetCosts.getString("status"));
+                    PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM cost_category WHERE id=?");
+                    preparedStatement.setString(1, costsMasterClass1.getId());
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    if (resultSet.isBeforeFirst()) {
+                        while (resultSet.next()) {
+                            costsMasterClass1.setCategory(resultSet.getString("category_name"));
+                        }
+                    }
+                    costsMasterClassObservableList.add(costsMasterClass1);
                 }
             }
+
         } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
+        pastcoststable.setItems(costsMasterClassObservableList);
+
+
+        assert pastcoststable != null : "fx:id=\"pastcoststable\" was not injected: check your FXML ";
+        pastcoststableid.setCellValueFactory(
+                new PropertyValueFactory<>("id"));
+        pastcoststablename.setCellValueFactory(
+                new PropertyValueFactory<>("name"));
+        pastcoststabledateadded.setCellValueFactory(new PropertyValueFactory<>("dateadded"));
+        pastcoststableamount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        pastcoststableactiveinactivestatus.setCellValueFactory(new PropertyValueFactory<>("isactive"));
+        pastcoststable.refresh();
     }
 
 

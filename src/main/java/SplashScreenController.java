@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -16,8 +17,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static securityandtime.config.companyLogoImageObj;
-import static securityandtime.config.license;
+import static securityandtime.config.*;
 
 public class SplashScreenController implements Initializable {
 
@@ -36,8 +36,11 @@ public class SplashScreenController implements Initializable {
         clientId.setText(license.get("clientId"));
         try {
             Date date = new Date();
+            if (new File(fileSavePath + "\\images\\logo.png").exists()) {
+                logo.setImage(companyLogoImageObj);
+                System.out.println("logo set");
+            }
 
-            logo.setImage(companyLogoImageObj);
             if (Objects.equals(license.get("name"), "Trial license")) {
                 date.setTime(Long.parseLong(license.get("time")) + System.currentTimeMillis());
 

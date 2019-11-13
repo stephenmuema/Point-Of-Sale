@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
@@ -24,8 +25,12 @@
                 <Font size="13.0"/>
             </font>
         </Label>
-        <ImageView fx:id="logo" fitHeight="541.0" fitWidth="745.0" layoutX="379.0" layoutY="96.0" pickOnBounds="true"
-                   preserveRatio="false"/>
+        <ImageView fx:id="logo" fitHeight="531.0" fitWidth="764.0" layoutX="360.0" layoutY="106.0" pickOnBounds="true"
+                   preserveRatio="false">
+            <image>
+                <Image url="@../images/defaultlogo.png"/>
+            </image>
+        </ImageView>
         <Label layoutX="515.0" layoutY="64.0" prefHeight="32.0" prefWidth="474.0"
                text="MEDICA HOSPITALS PHARMACY POS MODULE" textFill="#f8f8f8">
             <font>

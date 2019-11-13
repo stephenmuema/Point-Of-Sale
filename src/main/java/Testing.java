@@ -11,6 +11,7 @@ import java.security.spec.KeySpec;
 import java.util.Arrays;
 
 public class Testing {
+
     private static String factoryInstance = "PBKDF2WithHmacSHA256";
     private static String cipherInstance = "AES/CBC/PKCS5PADDING";
     private static String secretKeyType = "AES";
@@ -60,6 +61,7 @@ public class Testing {
         System.out.println("Cipher: " + cipherText);
         String dcrCipherText = decrypt(secretKey, fSalt, cipherText);
         System.out.println("Decrypted: " + dcrCipherText);
+
     }
 
 

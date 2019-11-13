@@ -68,4 +68,5 @@ public interface config {//host,user,password,des,port
     String pathToPOSSettings = NANOTECHSOFTWARES_SETTINGS + "POSConf.dll";
     String pathToMEDICASettings = NANOTECHSOFTWARES_SETTINGS + "MEDICAConf.dll";
 
+    String defaultLogo = "http://127.0.0.1:8000/static/img/defaultlogo.png";//todo change on release
 }
