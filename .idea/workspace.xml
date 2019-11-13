@@ -7,13 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AddCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AddCategoryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -623,13 +618,6 @@
       <workItem from="1573460755197" duration="2802000" />
       <workItem from="1573471409238" duration="465000" />
     </task>
-    <task id="LOCAL-00017" summary="Email sender created">
-      <created>1567079873635</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1567079873635</updated>
-    </task>
     <task id="LOCAL-00018" summary="MINOR ADDITION ON THE STATUS">
       <created>1567406073811</created>
       <option name="number" value="00018" />
@@ -966,7 +954,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573639969840</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="COSTS TABLE ADDS VALUES TO PREVIOUS COSTS TABLE">
+      <created>1573652862985</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1573652862985</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1003,7 +998,6 @@
       <path value="$PROJECT_DIR$/POSnanotech-softwaresjava" />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="added network check" />
     <MESSAGE value="ADDED CHANGE SETTINGS" />
     <MESSAGE value="CHANGE PATH TO BACKUP" />
     <MESSAGE value="UPDATED PANEL VARIABLES" />
@@ -1028,7 +1022,8 @@
     <MESSAGE value="added cryptography  with python" />
     <MESSAGE value="COMPLETED SHOW PAST SALES AND STARTED COSTS" />
     <MESSAGE value="CREATED ADD CATEGORIES VIEW AND ITS CONTROLLER" />
-    <option name="LAST_COMMIT_MESSAGE" value="CREATED ADD CATEGORIES VIEW AND ITS CONTROLLER" />
+    <MESSAGE value="COSTS TABLE ADDS VALUES TO PREVIOUS COSTS TABLE" />
+    <option name="LAST_COMMIT_MESSAGE" value="COSTS TABLE ADDS VALUES TO PREVIOUS COSTS TABLE" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

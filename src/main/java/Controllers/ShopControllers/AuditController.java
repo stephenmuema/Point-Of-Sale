@@ -20,6 +20,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -314,6 +315,7 @@ private TableView<SalesMaster> tableemployeesales;
         initDatePickers();
         menuListeners();
         buttonListeners();
+        setTableEditableProperty();
         navigatoryButtonListeners();
         loadTables();
         time(clock);
@@ -379,6 +381,64 @@ private TableView<SalesMaster> tableemployeesales;
                 pastcoststable.refresh();
             }
         });
+    }
+
+    private void setTableEditableProperty() {
+        pastcoststable.setEditable(true);
+
+        pastcoststablename.setCellFactory(TextFieldTableCell.forTableColumn());
+        pastcoststableamount.setCellFactory(TextFieldTableCell.forTableColumn());
+        pastcoststableamount.setOnEditCommit(
+                t -> {
+                    t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).setName(t.getNewValue());
+                    String newval = t.getNewValue();
+                    PreparedStatement preparedStatement = null;
+                    try {
+                        try {
+                            connection = new UtilityClass().getConnection();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        CostsMasterClass costsMasterClass = pastcoststable.getSelectionModel().getSelectedItem();
+                        String id = costsMasterClass.getId();
+                        preparedStatement = connection.prepareStatement("UPDATE costs set amount=? where id=?");
+                        preparedStatement.setString(1, newval.toUpperCase());
+                        preparedStatement.setString(2, id);
+                        preparedStatement.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+//                        preparedStatement.setString(1, name.getText());
+                }
+        );
+        pastcoststablename.setOnEditCommit(
+                t -> {
+                    t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).setName(t.getNewValue());
+                    String newval = t.getNewValue();
+                    PreparedStatement preparedStatement = null;
+                    try {
+                        try {
+                            connection = new UtilityClass().getConnection();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        CostsMasterClass costsMasterClass = pastcoststable.getSelectionModel().getSelectedItem();
+                        String id = costsMasterClass.getId();
+                        preparedStatement = connection.prepareStatement("UPDATE costs set name=? where id=?");
+                        preparedStatement.setString(1, newval.toUpperCase());
+                        preparedStatement.setString(2, id);
+                        preparedStatement.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+//                        preparedStatement.setString(1, name.getText());
+                }
+        );
+        // when character or numbers pressed it will start edit in editable
     }
 
 
