@@ -21,6 +21,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -372,6 +373,8 @@ public class AdminPanelController extends UtilityClass implements Initializable,
                 Stage stage = new Stage();
                 stage.setScene(new Scene(parent));
                 stage.initStyle(StageStyle.UTILITY);
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(panel.getScene().getWindow());
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();

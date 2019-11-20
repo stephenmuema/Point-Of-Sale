@@ -7,18 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/defaultlogo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SplashScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SplashScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Testing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/SplashScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AuthenticationFiles/SplashScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/AuthenticationFiles/SplashScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AuthenticationFiles/SplashScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SplashScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SplashScreenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/securityandtime/config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/securityandtime/config.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -628,13 +621,13 @@
       <workItem from="1573026878753" duration="12148000" />
       <workItem from="1573460755197" duration="2802000" />
       <workItem from="1573471409238" duration="465000" />
-    </task>
-    <task id="LOCAL-00019" summary="typos fixed">
-      <created>1567436925892</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1567436925892</updated>
+      <workItem from="1573673516237" duration="362000" />
+      <workItem from="1574035881174" duration="1516000" />
+      <workItem from="1574182999374" duration="1771000" />
+      <workItem from="1574185708315" duration="1151000" />
+      <workItem from="1574187705793" duration="230000" />
+      <workItem from="1574189137524" duration="1256000" />
+      <workItem from="1574191499389" duration="174000" />
     </task>
     <task id="LOCAL-00020" summary="typos fixed">
       <created>1567444147756</created>
@@ -972,7 +965,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573654093612</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="MADE AMOUNT AND NAME FIELDS OF PAST COSTS EDITABLE">
+      <created>1573661496702</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1573661496705</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
