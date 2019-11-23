@@ -5,6 +5,7 @@ import Controllers.UtilityClass;
 import MasterClasses.CostsMasterClass;
 import MasterClasses.EmployeeMaster;
 import MasterClasses.SalesMaster;
+import MasterClasses.StockAlertsMasterClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -41,6 +42,7 @@ import static securityandtime.config.site;
 
 //made by steve
 public class AuditController extends UtilityClass implements Initializable {
+
     @FXML
     private TableView<SalesMasterClassCatOrIndividual> categorysalestable;
     @FXML
@@ -167,16 +169,22 @@ private TableView<SalesMaster> tableemployeesales;
     private Tab tabstockalerts;
     //tab of alerts
     @FXML
-    private TableView stockalerttable;
+    private TableView<StockAlertsMasterClass> stockalerttable;
 
 
     @FXML
-    private TableColumn stockalerttableid;
+    private TableColumn<StockAlertsMasterClass, String> stockalerttableid;
     @FXML
-    private TableColumn stockalerttablename;
+    private TableColumn<StockAlertsMasterClass, String> stockalerttablename;
     @FXML
-    private TableColumn stockalerttabledate;
+    private TableColumn<StockAlertsMasterClass, String> stockalerttabledate;
 
+    @FXML
+    private TableColumn<StockAlertsMasterClass, String> amountRemaining;
+    @FXML
+    private TableColumn<StockAlertsMasterClass, String> salesperday;
+    @FXML
+    private TableColumn<StockAlertsMasterClass, String> itemCategory;
     @FXML
     private Tab taballaudits;
     //tab of all audits for exports or graphical viewing
@@ -266,6 +274,7 @@ private TableView<SalesMaster> tableemployeesales;
     private ObservableList<SalesMaster> salesMasterObservableList = FXCollections.observableArrayList();
     private ObservableList<SalesMasterClassCatOrIndividual> salesMasterClassCatOrIndividuals = FXCollections.observableArrayList();
     private ObservableList<CostsMasterClass> costsMasterClassObservableList = FXCollections.observableArrayList();
+    private ObservableList<StockAlertsMasterClass> stockAlertsMasterClassObservableList = FXCollections.observableArrayList();
     private String sellerEmail;
     private String radSelected;
     public AuditController() throws IOException {
@@ -276,7 +285,59 @@ private TableView<SalesMaster> tableemployeesales;
         initScene();
     }
 
+    public static void checkStocks() {
+        try {
+//            adding new stock alerts
+            String id = null;
+            Connection connection = new UtilityClass().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT *FROM stocks WHERE amount < ?");
+            preparedStatement.setString(1, "500");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.isBeforeFirst()) {
+                while (resultSet.next()) {
+                    id = resultSet.getString("id");
+                }
+            }
+            preparedStatement = connection.prepareStatement("SELECT * FROM stockalerts where itemid=?");
+            preparedStatement.setString(1, id);
+            if (resultSet.isBeforeFirst()) {
+                preparedStatement = connection.prepareStatement("INSERT INTO stockalerts (itemid) VALUES (?)");
+                preparedStatement.setString(1, id);
+                preparedStatement.executeUpdate();
+            }
+
+//            removing items tat have not reached alert level
+            //            adding new stock alerts
+            preparedStatement = connection.prepareStatement("SELECT *FROM stockalerts");
+            resultSet = preparedStatement.executeQuery();
+            if (!resultSet.isBeforeFirst()) {
+                while (resultSet.next()) {
+                    id = resultSet.getString("itemid");
+                }
+            }
+            preparedStatement = connection.prepareStatement("SELECT * FROM stocks where id=?");
+            preparedStatement.setString(1, id);
+            if (resultSet.isBeforeFirst()) {
+                if (Integer.parseInt(resultSet.getString("amount")) >= 500) {
+                    preparedStatement = connection.prepareStatement("DELETE FROM stockalerts WHERE itemid=?");
+                    preparedStatement.setString(1, id);
+                    preparedStatement.executeUpdate();
+                }
+            }
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void initScene() {
+
+        tabstockalerts.setOnSelectionChanged(event -> {
+            stockAlertsMasterClassObservableList.clear();
+            if (tabstockalerts.isSelected()) {
+                checkStocks();
+                loadAlerts();
+            }
+        });
         try {
             IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(900),
                     () -> {
@@ -421,6 +482,52 @@ private TableView<SalesMaster> tableemployeesales;
                 loadCosts();
             }
         });
+    }
+
+    private void loadAlerts() {
+        String query = "SELECT * FROM stockalerts ";
+        try {
+            connection = new UtilityClass().getConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSetFetchAlerts = preparedStatement.executeQuery();
+            if (resultSetFetchAlerts.isBeforeFirst()) {
+                while (resultSetFetchAlerts.next()) {
+                    StockAlertsMasterClass stockAlertsMasterClass = new StockAlertsMasterClass();
+
+                    stockAlertsMasterClass.setDate(resultSetFetchAlerts.getString("date"));
+                    preparedStatement = connection.prepareStatement("SELECT * FROM stocks where id=?");
+                    preparedStatement.setString(1, resultSetFetchAlerts.getString("itemid"));
+                    resultSetFetchAlerts = preparedStatement.executeQuery();
+                    if (resultSetFetchAlerts.isBeforeFirst()) {
+                        while (resultSetFetchAlerts.next()) {
+                            stockAlertsMasterClass.setId(Integer.parseInt(resultSetFetchAlerts.getString("id")));
+                            stockAlertsMasterClass.setCategory(resultSetFetchAlerts.getString("category"));
+                            stockAlertsMasterClass.setName(resultSetFetchAlerts.getString("name"));
+                            stockAlertsMasterClass.setRemaining(resultSetFetchAlerts.getString("amount"));
+                        }
+                    }
+                    stockAlertsMasterClassObservableList.add(stockAlertsMasterClass);
+                }
+                stockalerttable.setItems(stockAlertsMasterClassObservableList);
+                assert stockalerttable != null : "fx:id=\"stockalerttable\" was not injected: check your FXML ";
+
+                stockalerttableid.setCellValueFactory(
+                        new PropertyValueFactory<>("id"));
+                stockalerttablename.setCellValueFactory(
+                        new PropertyValueFactory<>("name"));
+                stockalerttabledate.setCellValueFactory(new PropertyValueFactory<>("date"));
+                amountRemaining.setCellValueFactory(new PropertyValueFactory<>("remaining"));
+                salesperday.setCellValueFactory(new PropertyValueFactory<>("rate"));
+                itemCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
+                stockalerttable.refresh();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setTableEditableProperty() {

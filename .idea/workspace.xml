@@ -7,12 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/license.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/MasterClasses/StockAlertsMasterClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/StockAlertCheck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/AuthenticationFiles/SplashScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AuthenticationFiles/SplashScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,14 +68,14 @@
         <item name="nanotech_pos@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="nanotech_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="cost_category: table" type="285a2a93:MysqlImplModel$Table" />
+        <item name="stockalerts: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="nanotech_pos@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="nanotech_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="costs: table" type="285a2a93:MysqlImplModel$Table" />
+        <item name="stocks: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -151,7 +155,7 @@
     <property name="database.console.LAST_STATE" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/chatbox/src" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -182,11 +186,11 @@
       <recent name="MasterClasses" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\PROJECTS\NanotechSoftwares\pos" />
       <recent name="E:\PROJECTS\NanotechSoftwares\pos\src\main\resources\images" />
       <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources" />
       <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src" />
       <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\java\jars" />
-      <recent name="E:\PROJECTS\NanotechSoftwares\poswithcarwash\src\main\resources\images" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="securityandtime" />
@@ -628,13 +632,11 @@
       <workItem from="1574187705793" duration="230000" />
       <workItem from="1574189137524" duration="1256000" />
       <workItem from="1574191499389" duration="174000" />
-    </task>
-    <task id="LOCAL-00020" summary="typos fixed">
-      <created>1567444147756</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1567444147756</updated>
+      <workItem from="1574223568450" duration="154000" />
+      <workItem from="1574487843717" duration="598000" />
+      <workItem from="1574493194821" duration="24000" />
+      <workItem from="1574493273962" duration="12000" />
+      <workItem from="1574538777756" duration="7802000" />
     </task>
     <task id="LOCAL-00021" summary="licensing fixed">
       <created>1567495198591</created>
@@ -972,7 +974,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573661496705</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="perfect lic">
+      <created>1574223685310</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1574223685310</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1009,7 +1018,6 @@
       <path value="$PROJECT_DIR$/POSnanotech-softwaresjava" />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="CHANGE PATH TO BACKUP" />
     <MESSAGE value="UPDATED PANEL VARIABLES" />
     <MESSAGE value="back up on satrt day and end day added" />
     <MESSAGE value="ADDED MENU TO EMPLOYEES" />
@@ -1034,7 +1042,8 @@
     <MESSAGE value="CREATED ADD CATEGORIES VIEW AND ITS CONTROLLER" />
     <MESSAGE value="COSTS TABLE ADDS VALUES TO PREVIOUS COSTS TABLE" />
     <MESSAGE value="MADE AMOUNT AND NAME FIELDS OF PAST COSTS EDITABLE" />
-    <option name="LAST_COMMIT_MESSAGE" value="MADE AMOUNT AND NAME FIELDS OF PAST COSTS EDITABLE" />
+    <MESSAGE value="perfect lic" />
+    <option name="LAST_COMMIT_MESSAGE" value="perfect lic" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

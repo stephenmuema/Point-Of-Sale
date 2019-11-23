@@ -237,14 +237,12 @@ public class LicensingController extends UtilityClass implements Initializable {
 //            System.out.println("Key:" + key);
 //            System.out.println(decryptedString.split(":::")[0]);//name
 //            System.out.println(decryptedString.split(":::")[1]);//email
-            //todo eliminate : symbol in string generation to avoid false negatives
-            //todo add verification of license from server
-            System.out.println(decryptedString);
+//            System.out.println(decryptedString);
 //            System.out.println(decryptedString.split(":::")[2]);//expiry
 //            System.out.println(decryptedString.split(":::")[3]);//date of creation
-//            System.out.println(decryptedString.split(":::")[4]);//todo add client id
-//            System.out.println(decryptedString.split(":::")[5]);//todo add number of devices
-//            System.out.println(decryptedString.split(":::")[6]);//todo add package type
+//            System.out.println(decryptedString.split(":::")[4]);
+//            System.out.println(decryptedString.split(":::")[5]);
+//            System.out.println(decryptedString.split(":::")[6]);
 //            all,pos,medicasystem etc
             long time = 0;//get current time
             try {

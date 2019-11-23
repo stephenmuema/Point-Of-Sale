@@ -51,8 +51,8 @@ public class UtilityClass extends FetchDbDetails {
     public UtilityClass() throws IOException {
         super();
 
-        {
-            try {
+
+        try {
                 connectionDbLocal = DriverManager.getConnection(localCartDb);
 
                 try {
@@ -69,7 +69,7 @@ public class UtilityClass extends FetchDbDetails {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
+
 
         Path path = Paths.get(fileSavePath);
 

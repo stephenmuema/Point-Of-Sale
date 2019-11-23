@@ -376,7 +376,7 @@
                                                                  resizable="false" text="DATE"/>
                                                     <TableColumn fx:id="amountRemaining" prefWidth="166.0"
                                                                  resizable="false" text="AMOUNT REMAINING"/>
-                                                    <TableColumn fx:id="slaesperday" prefWidth="166.0"
+                                                    <TableColumn fx:id="salesperday" prefWidth="166.0"
                                                                  resizable="false" text="SALES PER DAY"/>
                                                     <TableColumn fx:id="itemCategory" prefWidth="166.0"
                                                                  resizable="false" text="CATEGORY"/>

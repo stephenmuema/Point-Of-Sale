@@ -169,7 +169,6 @@ public class Main extends Application {
     private void initializeApp() {
 
 //        System.out.println(logoImageNanotechPos.getHeight());
-        Runnable target;
         Thread thread = new Thread(new NetworkCheck());
         try {
             thread.join();
@@ -183,6 +182,19 @@ public class Main extends Application {
             e.printStackTrace();
         }
 
+        thread = new Thread(new StockAlertCheck());
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        thread.start();
+        try {
+            Thread.sleep(1000);
+            System.out.println("checked for deficiencies");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         File dest = new File(CREDENTIALS_FULL_PATH);
         if (!dest.exists()) {
