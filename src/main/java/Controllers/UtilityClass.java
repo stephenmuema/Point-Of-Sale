@@ -13,6 +13,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
 import javafx.util.Duration;
+import logging.DbLogClass;
 import org.apache.commons.io.FileUtils;
 import securityandtime.AesCrypto;
 import securityandtime.CheckConn;
@@ -90,6 +91,8 @@ public class UtilityClass extends FetchDbDetails {
     }
 
     public static void shutdown() throws RuntimeException, IOException {
+        DbLogClass.systemLogDb("SHUT DOWN", "SYSTEM", true, "EXITED APPLICATION");
+
         String shutdownCommand;
         String operatingSystem = System.getProperty("os.name");
 //        System.out.println(operatingSystem);
@@ -106,6 +109,8 @@ public class UtilityClass extends FetchDbDetails {
     }
 
     public static void restart() throws RuntimeException, IOException {
+        DbLogClass.systemLogDb("RESTART", "SYSTEM", true, "EXITED APPLICATION");
+
         String restartCommand;
         String operatingSystem = System.getProperty("os.name");
 //        System.out.println(operatingSystem);
@@ -113,6 +118,8 @@ public class UtilityClass extends FetchDbDetails {
             restartCommand = "shutdown -r now";
         } else if (operatingSystem.startsWith("Windows")) {
             restartCommand = "shutdown.exe -r -t 0";
+            DbLogClass.systemLogDb("CHANGED BACKUP SETTINFG TO STARTUP", "SETTINGS", true, "CHANGED BACK UP SETTING TO STARTUP");
+
         } else {
             throw new RuntimeException("Unsupported operating system.");
         }
@@ -252,6 +259,7 @@ public class UtilityClass extends FetchDbDetails {
     }
 
     public void logout(AnchorPane panel) {
+        DbLogClass.systemLogDb("LOGGED OUT", "AUTHENTICATION", true, "USER LOGGED OUT");
 
         config.pricegot.clear();
         config.key.clear();
@@ -454,6 +462,8 @@ public class UtilityClass extends FetchDbDetails {
     }
 
     public void systemSettingsBackUp() throws SQLException {
+        DbLogClass.systemLogDb("CHANGED BACKUP SETTINFG TO STARTUP", "SETTINGS", true, "CHANGED BACK UP SETTING TO STARTUP");
+
         PreparedStatement preparedStatement1;
         preparedStatement1 = connection.prepareStatement("INSERT INTO systemsettings (name,type,value)VALUES (?,?,?)");
         preparedStatement1.setString(1, "backup");
@@ -466,6 +476,8 @@ public class UtilityClass extends FetchDbDetails {
 
     public void systemSettingsexportFormat() throws SQLException {
         PreparedStatement preparedStatement1;
+        DbLogClass.systemLogDb("CHANGED EXPORT FORMAT TO PDF", "SETTINGS", true, "CHANGED EXPORT FORMAT TO PDF");
+
         preparedStatement1 = connection.prepareStatement("INSERT INTO systemsettings (name,type,value)VALUES (?,?,?)");
         preparedStatement1.setString(1, "exportFormat");
         preparedStatement1.setString(2, "reporting");
@@ -498,28 +510,39 @@ public class UtilityClass extends FetchDbDetails {
     }
 
     public void exit() {
+        DbLogClass.systemLogDb("EXIT", "SYSTEM", true, "EXITED APPLICATION");
+
         Platform.exit();
         System.exit(111);
     }
 
 
-    public static void displayTray(String caption, String text, TrayIcon.MessageType type) throws AWTException {
-        //Obtain only one instance of the SystemTray object
-        SystemTray tray = SystemTray.getSystemTray();
+    public void displayTray(String caption, String text, TrayIcon.MessageType type) throws AWTException {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                //Obtain only one instance of the SystemTray object
+                SystemTray tray = SystemTray.getSystemTray();
 
-        //If the icon is a file
-        Image image = Toolkit.getDefaultToolkit().createImage("snm.png");
-        //Alternative (if the icon is on the classpath):
-        //Image image = Toolkit.getDefaultToolkit().createImage(getClass().getResource("icon.png"));
+                //If the icon is a file
+                Image image = Toolkit.getDefaultToolkit().createImage("snm.png");
+                //Alternative (if the icon is on the classpath):
+                //Image image = Toolkit.getDefaultToolkit().createImage(getClass().getResource("icon.png"));
 
-        TrayIcon trayIcon = new TrayIcon(image);
-        //Let the system resize the image if needed
-        trayIcon.setImageAutoSize(true);
-        //Set tooltip text for the tray icon
+                TrayIcon trayIcon = new TrayIcon(image);
+                //Let the system resize the image if needed
+                trayIcon.setImageAutoSize(true);
+                //Set tooltip text for the tray icon
 //        trayIcon.setToolTip("System tray icon demo");
-        tray.add(trayIcon);
+                try {
+                    tray.add(trayIcon);
+                } catch (AWTException e) {
+                    e.printStackTrace();
+                }
 
-        trayIcon.displayMessage(caption, text, type);
+                trayIcon.displayMessage(caption, text, type);
+            }
+        });
     }
 
 

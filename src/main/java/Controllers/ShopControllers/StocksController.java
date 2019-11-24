@@ -75,6 +75,19 @@ public class StocksController extends UtilityClass implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        table.setRowFactory(tv -> new TableRow<StockMaster>() {
+            @Override
+            public void updateItem(StockMaster item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null) {
+                    setStyle("");
+                } else if (Integer.parseInt(item.getAmount()) < 50) {
+                    setStyle("-fx-background-color: #ff0b00;");
+                } else {
+                    setStyle("-fx-background-color: #8eff68;");
+                }
+            }
+        });
         time(clock);
         menuclick();
         try {

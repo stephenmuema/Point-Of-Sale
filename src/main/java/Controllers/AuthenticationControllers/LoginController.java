@@ -19,6 +19,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
+import logging.DbLogClass;
 import logging.LogClass;
 import securityandtime.AesCrypto;
 import securityandtime.Security;
@@ -275,8 +276,10 @@ public class LoginController extends UtilityClass implements Initializable {
             if (resultSet.isBeforeFirst()) {
                 while (resultSet.next()) {
                     if (!resultSet.getString("status").equalsIgnoreCase("active")) {
+                        DbLogClass.systemLogDb("LOGIN", "AUTHENTICATION", true, "USER LOGIN BLOCKED DUE TO SUSPENDED ACCOUNT FOR " + emailSubmit);
+
                         showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(),
-                                "YUR ACCOUNT IS SUSPENDED", "PLEASE INFORM the ADMINISTRATOR TO ACTIVATE YOUR ACCOUNT");
+                                "YOUR ACCOUNT IS SUSPENDED", "PLEASE INFORM the ADMINISTRATOR TO ACTIVATE YOUR ACCOUNT");
 
                     } else {
                         if (resultSet.getBoolean("activated")) {
@@ -298,6 +301,7 @@ public class LoginController extends UtilityClass implements Initializable {
                                         config.key.put("key", resultSet.getString("subscribername"));
                                         config.user.put("backupemail", resultSet.getString("backupemail"));
                                         config.user.put("backupemailpassword", AesCrypto.decrypt(encryptionkey, resultSet.getString("backupemailpassword")));
+                                        DbLogClass.systemLogDb("LOGIN", "AUTHENTICATION", true, "USER LOGIN AS ADMIN");
 
                                     } catch (IOException e) {
                                         e.printStackTrace();
@@ -324,6 +328,7 @@ public class LoginController extends UtilityClass implements Initializable {
 
                                             config.user.put("user", resultSet.getString("email"));
                                             config.login.put("loggedinasemployee", true);
+                                            DbLogClass.systemLogDb("LOGIN", "AUTHENTICATION", true, "USER LOGIN AS STAFF");
 
 //                                    new ShopController().setTransID(String.valueOf(new Random().nextGaussian()));
                                             //                                    create a new transaction id for local sqlite cart
@@ -335,12 +340,16 @@ public class LoginController extends UtilityClass implements Initializable {
                                 }
                             } else {
 //                            if passwords do not match
+                                DbLogClass.systemLogDb("LOGIN", "AUTHENTICATION", true, "USER LOGIN BLOCKED DUE TO INCORRECT PASSWORD");
+
                                 LogClass.getLogger().log(Level.SEVERE, " passwords do not match");
                                 showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(),
                                         "WRONG PASSWORD!!", "ENTER THE CORRECT PASSWORD");
 
                             }
                         } else {
+                            DbLogClass.systemLogDb("LOGIN", "AUTHENTICATION", true, "USER LOGIN BLOCKED....DUE TO LICENSING");
+
                             showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(),
                                     "Activate your license/account !!", "PLEASE ACTIVATE YOUR ACCOUNT OR INFORM THE EMPLOYER TO RENEW THE LICENSE");
 
@@ -349,6 +358,8 @@ public class LoginController extends UtilityClass implements Initializable {
                 }
 
             } else {
+                DbLogClass.systemLogDb("LOGIN", "AUTHENTICATION", true, "USER LOGIN BLOCKED DUE TO INCORRECT EMAIL/NAME");
+
                 showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(),
                         "WRONG NAME/EMAIL !!", "PLEASE RE-ENTER A VALID USER NAME OR EMAIL");
 //                LogClass.getLogger().log(Level.SEVERE, " LOGIN ERROR");

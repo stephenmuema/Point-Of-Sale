@@ -7,16 +7,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/MasterClasses/StockAlertsMasterClass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/StockAlertCheck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/logging/DbLogClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LicensingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/SignupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AddCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AddCategoryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/AuditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/StocksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/StocksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UserAccountManagementControllers/AdminPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/UtilityClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/audits.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/StockAlertCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StockAlertCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Testing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/AdminPanelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UtilityClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UtilityClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/audits.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,6 +68,13 @@
         <item name="nanotech_pos@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="nanotech_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="nanotech_pos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="nanotech_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="security_logs: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -217,6 +230,13 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Main">
+    <configuration name="AnimatedPropertiesTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AnimatedPropertiesTest" />
+      <module name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DriveMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gdrive.DriveMain" />
       <module name="POSnanotech-softwareshotelshotelsjavamultiplestores" />
@@ -248,10 +268,12 @@
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.DriveMain" />
       <item itemvalue="Application.Testing" />
+      <item itemvalue="Application.AnimatedPropertiesTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.AnimatedPropertiesTest" />
         <item itemvalue="Application.Testing" />
         <item itemvalue="Application.DriveMain" />
       </list>
@@ -636,14 +658,10 @@
       <workItem from="1574487843717" duration="598000" />
       <workItem from="1574493194821" duration="24000" />
       <workItem from="1574493273962" duration="12000" />
-      <workItem from="1574538777756" duration="7802000" />
-    </task>
-    <task id="LOCAL-00021" summary="licensing fixed">
-      <created>1567495198591</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1567495198592</updated>
+      <workItem from="1574538777756" duration="8159000" />
+      <workItem from="1574581679692" duration="1417000" />
+      <workItem from="1574590150141" duration="4333000" />
+      <workItem from="1574594586816" duration="14179000" />
     </task>
     <task id="LOCAL-00022" summary="licensing fixed">
       <created>1567502039531</created>
@@ -981,7 +999,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574223685310</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="added stock alert table and logic">
+      <created>1574546728141</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1574546728142</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1018,7 +1043,6 @@
       <path value="$PROJECT_DIR$/POSnanotech-softwaresjava" />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="UPDATED PANEL VARIABLES" />
     <MESSAGE value="back up on satrt day and end day added" />
     <MESSAGE value="ADDED MENU TO EMPLOYEES" />
     <MESSAGE value="ADDED CONTACT DEVELOPERS PAGE" />
@@ -1043,7 +1067,8 @@
     <MESSAGE value="COSTS TABLE ADDS VALUES TO PREVIOUS COSTS TABLE" />
     <MESSAGE value="MADE AMOUNT AND NAME FIELDS OF PAST COSTS EDITABLE" />
     <MESSAGE value="perfect lic" />
-    <option name="LAST_COMMIT_MESSAGE" value="perfect lic" />
+    <MESSAGE value="added stock alert table and logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="added stock alert table and logic" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

@@ -7,6 +7,8 @@ import Controllers.SevenZ;
 import Controllers.UtilityClass;
 import com.smattme.MysqlExportService;
 import com.smattme.MysqlImportService;
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -15,6 +17,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -29,6 +35,7 @@ import org.apache.commons.io.FilenameUtils;
 import securityandtime.AesCrypto;
 import securityandtime.config;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
@@ -187,6 +194,33 @@ public class AdminPanelController extends UtilityClass implements Initializable,
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            checkAlerts();
+        } catch (IOException | SQLException | AWTException e) {
+            e.printStackTrace();
+        }
+        init();
+    }
+
+    private void checkAlerts() throws IOException, SQLException, AWTException {
+        System.out.println("checking for stock alerts");
+        connection = new UtilityClass().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM stockalerts");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.isBeforeFirst()) {
+            System.out.println("There are existing stock alerts");
+            audits.setStyle("-fx-background-color: red");
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), audits);
+            fadeTransition.setFromValue(1.0);
+            fadeTransition.setAutoReverse(true);
+            fadeTransition.setToValue(0.6);
+            fadeTransition.setCycleCount(Animation.INDEFINITE);
+            fadeTransition.play();
+        }
+
+    }
+
+    private void init() {
 
 
         config.panel.put("panel", panel);

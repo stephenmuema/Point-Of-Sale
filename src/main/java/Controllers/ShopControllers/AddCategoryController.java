@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import logging.DbLogClass;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,9 +39,12 @@ public class AddCategoryController extends UtilityClass implements Initializable
                     preparedStatement.setString(1, name.getText());
                     ResultSet rs = preparedStatement.executeQuery();
                     if (rs.isBeforeFirst()) {
+                        DbLogClass.systemLogDb("ADDING CATEGORY ERROR", "SHOP MANAGEMENT", true, "SUCH A CATEGORY EXISTS ALREADY ");
+
                         showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "SUCH A CATEGORY EXISTS ALREADY");
                     } else {
 //insert category into table
+
                         preparedStatement = connection.prepareStatement("INSERT INTO cost_category(category_name, description) VALUES (?,?)");
                         preparedStatement.setString(1, name.getText());
                         preparedStatement.setString(2, comment.getText());
@@ -50,6 +54,8 @@ public class AddCategoryController extends UtilityClass implements Initializable
                             showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(), "SUCCESS", "CATEGORY ADDED SUCCESSFULLY");
                             name.clear();
                             comment.clear();
+                            DbLogClass.systemLogDb("ADDING CATEGORY SUCCESS", "SHOP MANAGEMENT", true, "CATEGORY ADDED SUCCESSFULLY ");
+
                         }
                     }
                 } catch (IOException | SQLException e) {

@@ -7,14 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class StockAlertCheck implements Runnable {
-    public static void checkStocks() {
+    private static void checkStocks() {
         try {
 //            adding new stock alerts
-            System.out.println("run bitch!!");
+//            System.out.println("run bitch!!");
             String id = null;
             Connection connection = new UtilityClass().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT *FROM stocks WHERE amount < ?");
-            preparedStatement.setString(1, "500");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM stocks WHERE amount < ?");
+            preparedStatement.setInt(1, 50);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.isBeforeFirst()) {
 
@@ -24,13 +24,16 @@ public class StockAlertCheck implements Runnable {
             }
             preparedStatement = connection.prepareStatement("SELECT * FROM stockalerts where itemid=?");
             preparedStatement.setString(1, id);
-            if (resultSet.isBeforeFirst()) {
+            if (checkId(Integer.parseInt(id))) {
+                System.out.println("exists");
+            } else {
                 preparedStatement = connection.prepareStatement("INSERT INTO stockalerts (itemid) VALUES (?)");
                 preparedStatement.setString(1, id);
+//                System.out.println("run bitch");
+
                 preparedStatement.executeUpdate();
             }
-
-//            removing items tat have not reached alert level
+//            removing items that have not reached alert level
             //            adding new stock alerts
             preparedStatement = connection.prepareStatement("SELECT *FROM stockalerts");
             resultSet = preparedStatement.executeQuery();
@@ -41,11 +44,14 @@ public class StockAlertCheck implements Runnable {
             }
             preparedStatement = connection.prepareStatement("SELECT * FROM stocks where id=?");
             preparedStatement.setString(1, id);
+            resultSet = preparedStatement.executeQuery();
             if (resultSet.isBeforeFirst()) {
-                if (Integer.parseInt(resultSet.getString("amount")) >= 500) {
-                    preparedStatement = connection.prepareStatement("DELETE FROM stockalerts WHERE itemid=?");
-                    preparedStatement.setString(1, id);
-                    preparedStatement.executeUpdate();
+                while (resultSet.next()) {
+                    if (resultSet.getInt("amount") >= 50) {
+                        preparedStatement = connection.prepareStatement("DELETE FROM stockalerts WHERE itemid=? OR itemid is null ");
+                        preparedStatement.setString(1, id);
+                        preparedStatement.executeUpdate();
+                    }
                 }
             }
         } catch (IOException | SQLException e) {
@@ -53,6 +59,16 @@ public class StockAlertCheck implements Runnable {
         }
     }
 
+    public static boolean checkId(int itemid) throws IOException, SQLException {
+        String sql = "Select 1 from stockalerts where itemid = ?";
+
+        Connection connection = new UtilityClass().getConnection();
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, String.valueOf(itemid));
+        ResultSet rs = ps.executeQuery();
+
+        return rs.next();
+    }
     @Override
     public void run() {
 //        steve muema check time

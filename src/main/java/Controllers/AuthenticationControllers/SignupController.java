@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import logging.DbLogClass;
 import logging.LogClass;
 import securityandtime.Security;
 import securityandtime.config;
@@ -138,6 +139,7 @@ public class SignupController extends UtilityClass implements Initializable {
                 try {
                     try {
                         insertion(email, name, IDNUMBER, password, passwordconfirmation);
+
                     } catch (NoSuchAlgorithmException e) {
                         e.printStackTrace();
                     }
@@ -174,6 +176,7 @@ public class SignupController extends UtilityClass implements Initializable {
             showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(),
                     "EMAIL IN USE", "EMAIL IS IN USE");
             LogClass.getLogger().log(Level.SEVERE, " EMAIL IS IN USE");
+            DbLogClass.systemLogDb("REGISTRATION FAILED", "AUTHENTICATION", true, "EMAIL " + email.getText() + " IS IN USE");
 
         } else {
 
@@ -184,6 +187,8 @@ public class SignupController extends UtilityClass implements Initializable {
                 showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(),
                         "NAME IN USE", "NAME IS IN USE");
                 LogClass.getLogger().log(Level.SEVERE, " NAME IS IN USE");
+                DbLogClass.systemLogDb("REGISTRATION FAILED", "AUTHENTICATION", true, "NAME " + name.getText() + " IS IN USE");
+
 
             } else {
                 PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users(employeename,email,password, employeeid,activated,hash,admin,status)VALUES(?,?,?,?,?,?,?,?)");
@@ -205,6 +210,8 @@ public class SignupController extends UtilityClass implements Initializable {
 
                 }
                 if (preparedStatement.executeUpdate() > 0) {
+                    DbLogClass.systemLogDb("SIGNUP", "AUTHENTICATION", true, "CREATED ACCOUNT FOR " + email.getText());
+
                     LogClass.getLogger().log(Level.CONFIG, " Registration successful");
                     showAlert(Alert.AlertType.INFORMATION, panel.getScene().getWindow(),
                             "Transaction successfull!!", "Registration  successful");

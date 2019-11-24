@@ -28,6 +28,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import logging.DbLogClass;
 import securityandtime.config;
 
 import java.awt.*;
@@ -285,56 +286,12 @@ private TableView<SalesMaster> tableemployeesales;
         initScene();
     }
 
-    public static void checkStocks() {
-        try {
-//            adding new stock alerts
-            String id = null;
-            Connection connection = new UtilityClass().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT *FROM stocks WHERE amount < ?");
-            preparedStatement.setString(1, "500");
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.isBeforeFirst()) {
-                while (resultSet.next()) {
-                    id = resultSet.getString("id");
-                }
-            }
-            preparedStatement = connection.prepareStatement("SELECT * FROM stockalerts where itemid=?");
-            preparedStatement.setString(1, id);
-            if (resultSet.isBeforeFirst()) {
-                preparedStatement = connection.prepareStatement("INSERT INTO stockalerts (itemid) VALUES (?)");
-                preparedStatement.setString(1, id);
-                preparedStatement.executeUpdate();
-            }
-
-//            removing items tat have not reached alert level
-            //            adding new stock alerts
-            preparedStatement = connection.prepareStatement("SELECT *FROM stockalerts");
-            resultSet = preparedStatement.executeQuery();
-            if (!resultSet.isBeforeFirst()) {
-                while (resultSet.next()) {
-                    id = resultSet.getString("itemid");
-                }
-            }
-            preparedStatement = connection.prepareStatement("SELECT * FROM stocks where id=?");
-            preparedStatement.setString(1, id);
-            if (resultSet.isBeforeFirst()) {
-                if (Integer.parseInt(resultSet.getString("amount")) >= 500) {
-                    preparedStatement = connection.prepareStatement("DELETE FROM stockalerts WHERE itemid=?");
-                    preparedStatement.setString(1, id);
-                    preparedStatement.executeUpdate();
-                }
-            }
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     private void initScene() {
 
         tabstockalerts.setOnSelectionChanged(event -> {
             stockAlertsMasterClassObservableList.clear();
             if (tabstockalerts.isSelected()) {
-                checkStocks();
                 loadAlerts();
             }
         });
@@ -464,6 +421,8 @@ private TableView<SalesMaster> tableemployeesales;
                         preparedStatement.setString(1, "inactive".toUpperCase());
                         preparedStatement.setString(2, costsMasterClass.getId());
                         preparedStatement.executeUpdate();
+                        DbLogClass.systemLogDb("COST CHANGE", "ADMIN MANAGEMENT", true, "CHANGE OF STATUS FOR " + costsMasterClass.getName() + "FROM  ACTIVE TO INACTIVE ");
+
                     } catch (IOException | SQLException e) {
                         e.printStackTrace();
                     }
@@ -475,6 +434,8 @@ private TableView<SalesMaster> tableemployeesales;
                         preparedStatement.setString(1, "active".toUpperCase());
                         preparedStatement.setString(2, costsMasterClass.getId());
                         preparedStatement.executeUpdate();
+                        DbLogClass.systemLogDb("COST CHANGE", "ADMIN MANAGEMENT", true, "CHANGE OF STATUS FOR " + costsMasterClass.getName() + "FROM  INACTIVE TO ACTIVE ");
+
                     } catch (IOException | SQLException e) {
                         e.printStackTrace();
                     }
@@ -485,31 +446,34 @@ private TableView<SalesMaster> tableemployeesales;
     }
 
     private void loadAlerts() {
-        String query = "SELECT * FROM stockalerts ";
+        stockAlertsMasterClassObservableList.clear();
+
         try {
             connection = new UtilityClass().getConnection();
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM stockalerts");
             ResultSet resultSetFetchAlerts = preparedStatement.executeQuery();
             if (resultSetFetchAlerts.isBeforeFirst()) {
+                int counter = 1;
                 while (resultSetFetchAlerts.next()) {
                     StockAlertsMasterClass stockAlertsMasterClass = new StockAlertsMasterClass();
-
+                    System.out.println(counter + " is the counter");
                     stockAlertsMasterClass.setDate(resultSetFetchAlerts.getString("date"));
-                    preparedStatement = connection.prepareStatement("SELECT * FROM stocks where id=?");
-                    preparedStatement.setString(1, resultSetFetchAlerts.getString("itemid"));
-                    resultSetFetchAlerts = preparedStatement.executeQuery();
-                    if (resultSetFetchAlerts.isBeforeFirst()) {
-                        while (resultSetFetchAlerts.next()) {
-                            stockAlertsMasterClass.setId(Integer.parseInt(resultSetFetchAlerts.getString("id")));
-                            stockAlertsMasterClass.setCategory(resultSetFetchAlerts.getString("category"));
-                            stockAlertsMasterClass.setName(resultSetFetchAlerts.getString("name"));
-                            stockAlertsMasterClass.setRemaining(resultSetFetchAlerts.getString("amount"));
+                    PreparedStatement preparedStatementStocks = connection.prepareStatement("SELECT * FROM stocks where id=?");
+                    preparedStatementStocks.setString(1, resultSetFetchAlerts.getString("itemid"));
+                    ResultSet resultSetFetchAlertsStocks = preparedStatementStocks.executeQuery();
+                    if (resultSetFetchAlertsStocks.isBeforeFirst()) {
+                        while (resultSetFetchAlertsStocks.next()) {
+                            stockAlertsMasterClass.setId(Integer.parseInt(resultSetFetchAlertsStocks.getString("id")));
+                            stockAlertsMasterClass.setCategory(resultSetFetchAlertsStocks.getString("category"));
+                            stockAlertsMasterClass.setName(resultSetFetchAlertsStocks.getString("name"));
+                            stockAlertsMasterClass.setRemaining(resultSetFetchAlertsStocks.getString("amount"));
                         }
                     }
+                    counter++;
                     stockAlertsMasterClassObservableList.add(stockAlertsMasterClass);
                 }
                 stockalerttable.setItems(stockAlertsMasterClassObservableList);
@@ -553,6 +517,8 @@ private TableView<SalesMaster> tableemployeesales;
                         preparedStatement.setString(1, newval.toUpperCase());
                         preparedStatement.setString(2, id);
                         preparedStatement.executeUpdate();
+                        DbLogClass.systemLogDb("COST CHANGE", "ADMIN MANAGEMENT", true, "CHANGE OF COST VALUE FOR " + costsMasterClass.getName() + "FROM " + t.getOldValue() + " TO " + t.getNewValue());
+
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
@@ -578,6 +544,8 @@ private TableView<SalesMaster> tableemployeesales;
                         preparedStatement.setString(1, newval.toUpperCase());
                         preparedStatement.setString(2, id);
                         preparedStatement.executeUpdate();
+                        DbLogClass.systemLogDb("COST CHANGE", "ADMIN MANAGEMENT", true, "CHANGE OF NAME FOR " + costsMasterClass.getName() + "FROM " + t.getOldValue() + " TO " + t.getNewValue());
+
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
@@ -1058,6 +1026,8 @@ private TableView<SalesMaster> tableemployeesales;
                     preparedStatement.setString(6, date.toUpperCase());
                     preparedStatement.setString(7, newCostAmt.toUpperCase());
                     if (preparedStatement.executeUpdate() > 0) {
+                        DbLogClass.systemLogDb("COST ADDITION", "ADMIN MANAGEMENT", true, "ADDED COST " + newCostsName);
+
                         newcostsdatecreated.setValue(null);
                         newcostsamount.clear();
                         newcostsname.clear();

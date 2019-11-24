@@ -182,13 +182,13 @@ public class Main extends Application {
             e.printStackTrace();
         }
 
-        thread = new Thread(new StockAlertCheck());
+        Thread thread1 = new Thread(new StockAlertCheck());
         try {
-            thread.join();
+            thread1.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        thread.start();
+        thread1.start();
         try {
             Thread.sleep(1000);
             System.out.println("checked for deficiencies");
