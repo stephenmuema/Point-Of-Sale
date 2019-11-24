@@ -2,7 +2,7 @@ package Controllers.UserAccountManagementControllers;
 //made by steve
 
 import Controllers.FetchDbDetails;
-import Controllers.IdleMonitor;
+import Controllers.IdleMon;
 import Controllers.SevenZ;
 import Controllers.UtilityClass;
 import com.smattme.MysqlExportService;
@@ -10,7 +10,6 @@ import com.smattme.MysqlImportService;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -253,22 +252,8 @@ public class AdminPanelController extends UtilityClass implements Initializable,
         time(clock);
 
         config.panel.put("panel", panel);
-        IdleMonitor idleMonitor = null;
-        try {
-            idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                    () -> {
-                        try {
-                            config.login.put("loggedout", true);
+        new IdleMon(panel);
 
-                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }, true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        idleMonitor.register(panel, Event.ANY);
 
         if (environment != "development") {
             viewShiftInformation.setVisible(false);

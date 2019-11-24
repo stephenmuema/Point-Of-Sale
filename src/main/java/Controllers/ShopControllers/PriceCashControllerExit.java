@@ -1,13 +1,12 @@
 package Controllers.ShopControllers;
 
-import Controllers.IdleMonitor;
+import Controllers.IdleMon;
 import Controllers.SuperClass;
 import Controllers.UtilityClass;
 import MasterClasses.ReceiptMasterClass;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -85,23 +84,10 @@ public class PriceCashControllerExit extends UtilityClass implements Initializab
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        IdleMonitor idleMonitor = null;
-        try {
-            idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                    () -> {
-                        try {
-                            config.login.put("loggedout", true);
-                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }, true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         config.panel.put("panel", panel);
 
-        idleMonitor.register(panel, Event.ANY);
+        new IdleMon(panel);
         buttonListeners();
         load();
         setPrice();

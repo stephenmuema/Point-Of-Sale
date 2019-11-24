@@ -69,4 +69,5 @@ public interface config {//host,user,password,des,port
     String pathToMEDICASettings = NANOTECHSOFTWARES_SETTINGS + "MEDICAConf.dll";
 
     String defaultLogo = "http://127.0.0.1:8000/static/img/defaultlogo.png";//todo change on release
+    HashMap<String, Integer> timeou = new HashMap<>();
 }

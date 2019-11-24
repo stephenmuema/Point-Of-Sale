@@ -1,4 +1,4 @@
-package Controllers.ShopControllers;
+package MasterClasses;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;

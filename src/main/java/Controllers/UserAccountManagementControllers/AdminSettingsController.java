@@ -1,16 +1,13 @@
 package Controllers.UserAccountManagementControllers;
 
-import Controllers.IdleMonitor;
+import Controllers.IdleMon;
 import Controllers.UtilityClass;
-import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import javafx.util.Duration;
 import org.apache.commons.io.FileUtils;
 import securityandtime.AesCrypto;
 import securityandtime.Security;
@@ -24,8 +21,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -325,22 +320,8 @@ public class AdminSettingsController extends UtilityClass implements Initializab
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        IdleMonitor idleMonitor = null;
-        try {
-            idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                    () -> {
-                        try {
-                            config.login.put("loggedout", true);
+        new IdleMon(panel);
 
-                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }, true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        idleMonitor.register(panel, Event.ANY);
         stationName.setVisible(false);
         changeStationName.setVisible(false);
         if (!config.login.containsKey("loggedinasadmin")) {

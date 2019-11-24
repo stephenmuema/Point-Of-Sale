@@ -1,6 +1,7 @@
 package Controllers.UserAccountManagementControllers;
 
 import Controllers.FetchDbDetails;
+import Controllers.IdleMon;
 import Controllers.SevenZ;
 import Controllers.UtilityClass;
 import MasterClasses.BackUpFilesMaster;
@@ -120,6 +121,8 @@ public class ViewBackUpsController extends UtilityClass implements Initializable
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        new IdleMon(panel);
+
         menuClicked();
         buttonPressed();
         config.panel.put("panel", panel);

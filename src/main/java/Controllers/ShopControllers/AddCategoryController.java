@@ -1,5 +1,6 @@
 package Controllers.ShopControllers;
 
+import Controllers.IdleMon;
 import Controllers.UtilityClass;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -28,6 +29,8 @@ public class AddCategoryController extends UtilityClass implements Initializable
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        new IdleMon(panel);
+
         submit.setOnAction(event -> {
             if (name.getText().isEmpty() || comment.getText().isEmpty()) {
                 showAlert(Alert.AlertType.ERROR, panel.getScene().getWindow(), "ERROR", "FILL ALL FIELDS BEFORE SUBMITTING THIS FORM");

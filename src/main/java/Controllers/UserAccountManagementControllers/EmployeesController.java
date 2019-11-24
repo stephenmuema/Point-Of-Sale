@@ -1,7 +1,7 @@
 package Controllers.UserAccountManagementControllers;
 //made by steve
 
-import Controllers.IdleMonitor;
+import Controllers.IdleMon;
 import Controllers.UtilityClass;
 import MasterClasses.EmployeeMaster;
 import com.itextpdf.text.*;
@@ -24,7 +24,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Duration;
 import securityandtime.config;
 
 import java.io.FileNotFoundException;
@@ -130,21 +129,8 @@ public class EmployeesController extends UtilityClass implements Initializable {
         editable();
         config.panel.put("panel", panel);
 
-        IdleMonitor idleMonitor = null;
-        try {
-            idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                    () -> {
-                        try {
-                            config.login.put("loggedout", true);
-                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }, true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        idleMonitor.register(panel, Event.ANY);
+        new IdleMon(panel);
+
     }
 
     private void editable() {

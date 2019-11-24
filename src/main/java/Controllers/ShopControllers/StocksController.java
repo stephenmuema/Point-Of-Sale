@@ -1,6 +1,6 @@
 package Controllers.ShopControllers;
 
-import Controllers.IdleMonitor;
+import Controllers.IdleMon;
 import Controllers.UtilityClass;
 import MasterClasses.StockMaster;
 import javafx.application.Platform;
@@ -20,7 +20,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
-import javafx.util.Duration;
 import logging.LogClass;
 import securityandtime.config;
 
@@ -95,25 +94,10 @@ public class StocksController extends UtilityClass implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        IdleMonitor idleMonitor = null;
-        try {
-            idleMonitor = new IdleMonitor(Duration.seconds(9000),
-                    () -> {
-                        try {
+        new IdleMon(panel);
 
-                            config.login.put("loggedout", true);
-                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }, true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         config.panel.put("panel", panel);
 
-        idleMonitor.register(panel, Event.ANY);
     }
 
 

@@ -2,7 +2,7 @@ package Controllers.ShopControllers;
 //made by steve
 
 import Controllers.BarCodeScanner;
-import Controllers.IdleMonitor;
+import Controllers.IdleMon;
 import Controllers.UtilityClass;
 import MasterClasses.StockMaster;
 import javafx.application.Platform;
@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +22,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
-import javafx.util.Duration;
 import logging.LogClass;
 import securityandtime.config;
 
@@ -88,24 +86,8 @@ public class ScannerController extends UtilityClass implements Initializable {
         menuclick();
         buttonclick();
         config.panel.put("panel", panel);
+        new IdleMon(panel);
 
-        IdleMonitor idleMonitor = null;
-        try {
-            idleMonitor = new IdleMonitor(Duration.seconds(9000),
-                    () -> {
-                        try {
-
-                            config.login.put("loggedout", true);
-                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }, true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        idleMonitor.register(panel, Event.ANY);
     }
 
 

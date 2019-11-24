@@ -1,7 +1,6 @@
 package Controllers.ShopControllers;
 
-import Controllers.IdleMonitor;
-import javafx.event.Event;
+import Controllers.IdleMon;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import securityandtime.config;
 
 import java.io.IOException;
@@ -45,21 +43,8 @@ public class OnlinePaymentsController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        IdleMonitor idleMonitor = null;
-        try {
-            idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                    () -> {
-                        try {
-                            config.login.put("loggedout", true);
-                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }, true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        idleMonitor.register(panel, Event.ANY);
+        new IdleMon(panel);
+
         buttonListeners();
         utilities();
         config.panel.put("panel", panel);

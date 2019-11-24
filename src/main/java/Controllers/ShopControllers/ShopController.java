@@ -1,6 +1,6 @@
 package Controllers.ShopControllers;
 
-import Controllers.IdleMonitor;
+import Controllers.IdleMon;
 import Controllers.SuperClass;
 import Controllers.UtilityClass;
 import MasterClasses.CartMaster;
@@ -11,7 +11,6 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -111,23 +110,10 @@ public class ShopController extends CartIdGenerator implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        IdleMonitor idleMonitor = null;
-        try {
-            idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                    () -> {
-                        try {
-                            config.login.put("loggedout", true);
-                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }, true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        new IdleMon(panel);
+
         config.panel.put("panel", panel);
 
-        idleMonitor.register(panel, Event.ANY);
         getLogo();
         menuclick();
         buttonListeners();

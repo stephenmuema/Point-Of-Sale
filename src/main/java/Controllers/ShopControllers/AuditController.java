@@ -1,11 +1,8 @@
 package Controllers.ShopControllers;
 
-import Controllers.IdleMonitor;
+import Controllers.IdleMon;
 import Controllers.UtilityClass;
-import MasterClasses.CostsMasterClass;
-import MasterClasses.EmployeeMaster;
-import MasterClasses.SalesMaster;
-import MasterClasses.StockAlertsMasterClass;
+import MasterClasses.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -27,7 +24,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Duration;
 import logging.DbLogClass;
 import securityandtime.config;
 
@@ -295,20 +291,8 @@ private TableView<SalesMaster> tableemployeesales;
                 loadAlerts();
             }
         });
-        try {
-            IdleMonitor idleMonitor = new IdleMonitor(Duration.seconds(900),
-                    () -> {
-                        try {
-                            config.login.put("loggedout", true);
+        new IdleMon(panel);
 
-                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }, true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         ToggleGroup toggleGroup = new ToggleGroup();
         catSalesRad.setToggleGroup(toggleGroup);
         indSalesRad.setToggleGroup(toggleGroup);

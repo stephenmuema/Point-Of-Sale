@@ -1,8 +1,7 @@
 package Controllers.UserAccountManagementControllers;
 
-import Controllers.IdleMonitor;
+import Controllers.IdleMon;
 import Controllers.UtilityClass;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Duration;
 import securityandtime.AesCrypto;
 import securityandtime.config;
 
@@ -123,22 +121,8 @@ public class ReportIssuesController extends UtilityClass implements Initializabl
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        IdleMonitor idleMonitor = null;
-        try {
-            idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                    () -> {
-                        try {
-                            config.login.put("loggedout", true);
+        new IdleMon(panel);
 
-                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }, true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        idleMonitor.register(panel, Event.ANY);
         newFeature.setSelected(true);
         subject = newFeature.getText();
         tg.selectedToggleProperty().addListener((ob, o, n) -> {

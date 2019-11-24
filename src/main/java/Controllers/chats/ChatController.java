@@ -121,7 +121,7 @@ public class ChatController extends UtilityClass implements Initializable {
 
         IdleMonitor idleMonitor = null;
         try {
-            idleMonitor = new IdleMonitor(Duration.seconds(3600),
+            idleMonitor = new IdleMonitor(Duration.seconds(config.timeou.get("value")),
                     () -> {
                         try {
                             config.login.put("loggedout", true);

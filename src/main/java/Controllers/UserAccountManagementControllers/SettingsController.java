@@ -1,15 +1,13 @@
 package Controllers.UserAccountManagementControllers;
 
-import Controllers.IdleMonitor;
+import Controllers.IdleMon;
 import Controllers.UtilityClass;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
-import javafx.util.Duration;
 import securityandtime.AesCrypto;
 import securityandtime.Security;
 import securityandtime.config;
@@ -135,22 +133,8 @@ public class SettingsController extends UtilityClass implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        IdleMonitor idleMonitor = null;
-        try {
-            idleMonitor = new IdleMonitor(Duration.seconds(3600),
-                    () -> {
-                        try {
-                            config.login.put("loggedout", true);
+        new IdleMon(panel);
 
-                            panel.getChildren().setAll(Collections.singleton(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("AuthenticationFiles/Login.fxml")))));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }, true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        idleMonitor.register(panel, Event.ANY);
     }
 
     private void initialiseRadioButtons() throws SQLException {
