@@ -83,7 +83,7 @@ public class StocksController extends UtilityClass implements Initializable {
                 } else if (Integer.parseInt(item.getAmount()) < 50) {
                     setStyle("-fx-background-color: #ff0b00;");
                 } else {
-                    setStyle("-fx-background-color: #8eff68;");
+//                    setStyle("-fx-background-color: rgba(45,91,45,0.94);");
                 }
             }
         });

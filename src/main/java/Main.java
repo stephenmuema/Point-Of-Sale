@@ -167,7 +167,7 @@ public class Main extends Application {
     }
 
     private void initializeApp() {
-        timeou.put("value", 3000);//set timeou value for GUI to logout user automatically
+        timeou.put("value", 3000);//set timeout value for GUI to logout user automatically
 //        System.out.println(logoImageNanotechPos.getHeight());
         Thread thread = new Thread(new NetworkCheck());
         try {

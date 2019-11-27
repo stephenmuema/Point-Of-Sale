@@ -80,8 +80,8 @@
                                     <Font size="32.0" fx:id="x1"/>
                                 </font>
                             </Label>
-                            <TabPane fx:id="tabpane" layoutX="286.0" layoutY="56.0" pickOnBounds="false"
-                                     prefHeight="614.0" prefWidth="909.0" tabClosingPolicy="UNAVAILABLE">
+                            <TabPane fx:id="tabpane" layoutX="184.0" layoutY="56.0" pickOnBounds="false"
+                                     prefHeight="614.0" prefWidth="1011.0" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
                                     <Tab text="ADDING ITEMS">
                                         <content>
@@ -98,40 +98,71 @@
                                                             text="ADD STOCK ITEM BY SCANNING"/>
                                                     <ImageView fitHeight="293.0" fitWidth="297.0" layoutX="574.0"
                                                                layoutY="70.0" pickOnBounds="true" preserveRatio="true"/>
-                                                    <AnchorPane layoutX="137.0" layoutY="16.0" prefHeight="436.0"
-                                                                prefWidth="612.0" styleClass="forminner">
+                                                    <AnchorPane layoutX="23.0" layoutY="14.0" prefHeight="436.0"
+                                                                prefWidth="807.0" styleClass="forminner">
                                                         <children>
                                                             <TextField fx:id="itemname" alignment="CENTER"
-                                                                       layoutX="146.0" layoutY="23.0" prefHeight="54.0"
+                                                                       layoutX="22.0" layoutY="25.0" prefHeight="37.0"
                                                                        prefWidth="320.0" promptText="NAME"
                                                                        styleClass="textfields"/>
                                                             <TextField fx:id="itemcode" alignment="CENTER"
-                                                                       layoutX="146.0" layoutY="90.0" prefHeight="54.0"
+                                                                       layoutX="22.0" layoutY="76.0" prefHeight="35.0"
                                                                        prefWidth="321.0" promptText="BAR CODE"
                                                                        styleClass="textfields"/>
                                                             <TextField fx:id="itemprice" alignment="CENTER"
-                                                                       layoutX="146.0" layoutY="158.0" prefHeight="54.0"
+                                                                       layoutX="22.0" layoutY="126.0" prefHeight="37.0"
                                                                        prefWidth="321.0" promptText="PRICE"
                                                                        styleClass="textfields"/>
                                                             <TextField fx:id="itemcategory" alignment="CENTER"
-                                                                       layoutX="146.0" layoutY="226.0" prefHeight="54.0"
+                                                                       layoutX="22.0" layoutY="179.0" prefHeight="25.0"
                                                                        prefWidth="321.0" promptText="CATEGORY"
                                                                        styleClass="textfields"/>
-                                                            <TextField fx:id="amount" alignment="CENTER" layoutX="146.0"
-                                                                       layoutY="296.0" prefHeight="54.0"
+                                                            <TextField fx:id="amount" alignment="CENTER" layoutX="22.0"
+                                                                       layoutY="232.0" prefHeight="25.0"
                                                                        prefWidth="321.0" promptText="AMOUNT"
                                                                        styleClass="textfields"/>
-                                                            <Button fx:id="image" layoutX="249.0" layoutY="371.0"
-                                                                    mnemonicParsing="false" prefHeight="54.0"
+                                                            <Button fx:id="image" layoutX="369.0" layoutY="385.0"
+                                                                    mnemonicParsing="false" prefHeight="37.0"
                                                                     prefWidth="108.0" styleClass="buttonviolet"
                                                                     text="IMAGE FILE"/>
+                                                            <TextArea layoutX="22.0" layoutY="332.0" prefHeight="86.0"
+                                                                      prefWidth="330.0"
+                                                                      promptText="ENTER COMMENT HERE. ...."/>
+                                                            <CheckBox layoutX="22.0" layoutY="292.0"
+                                                                      mnemonicParsing="false" prefHeight="17.0"
+                                                                      prefWidth="316.0" text="MAKE TRANSFORMABLE"/>
+                                                            <TextField fx:id="grnNo" alignment="CENTER" disable="true"
+                                                                       layoutX="393.0" layoutY="25.0" prefHeight="37.0"
+                                                                       prefWidth="320.0" promptText="GRN NO"
+                                                                       styleClass="textfields"/>
+                                                            <RadioButton layoutX="386.0" layoutY="358.0"
+                                                                         mnemonicParsing="false" text="TO STORES"/>
+                                                            <RadioButton layoutX="705.0" layoutY="358.0"
+                                                                         mnemonicParsing="false" text="TO SHELF"/>
+                                                            <RadioButton layoutX="386.0" layoutY="320.0"
+                                                                         mnemonicParsing="false" text="FOR LOCAL USE"/>
+                                                            <RadioButton layoutX="705.0" layoutY="320.0"
+                                                                         mnemonicParsing="false" text="FOR SALE"/>
+                                                            <TextField fx:id="usrName" alignment="CENTER" disable="true"
+                                                                       layoutX="393.0" layoutY="76.0" prefHeight="37.0"
+                                                                       prefWidth="320.0" promptText="USER NAME"
+                                                                       styleClass="textfields"/>
+                                                            <RadioButton layoutX="559.0" layoutY="320.0"
+                                                                         mnemonicParsing="false" text="SPLIT  ITEMS"/>
+                                                            <RadioButton layoutX="559.0" layoutY="358.0"
+                                                                         mnemonicParsing="false" text="SPLIT  ITEMS"/>
+                                                            <TextField fx:id="usrName1" alignment="CENTER"
+                                                                       disable="true" layoutX="393.0" layoutY="126.0"
+                                                                       prefHeight="37.0" prefWidth="320.0"
+                                                                       promptText="SUPPLIER CONTACT"
+                                                                       styleClass="textfields"/>
                                                         </children>
                                                     </AnchorPane>
                                                 </children>
                                             </AnchorPane>
                                         </content>
                                     </Tab>
-                                    <Tab fx:id="existingstockdtab" text="EXISTING STOCK">
+                                    <Tab fx:id="existingstockdtab" text="EXISTING STOCK ON SHELVES  AND ADJUSTMENT">
                                         <content>
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
                                                         prefWidth="200.0">
@@ -179,15 +210,114 @@
                                             </AnchorPane>
                                         </content>
                                     </Tab>
+                                    <Tab fx:id="existingstockdtabstore" text="EXISTING STOCK IN STORE AND ADJUSTMENT">
+                                        <content>
+                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                                        prefWidth="200.0">
+                                                <children>
+                                                    <ScrollPane layoutX="11.0" layoutY="9.0" prefHeight="504.0"
+                                                                prefWidth="870.0">
+                                                        <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0"
+                                                                        prefHeight="496.0" prefWidth="862.0">
+                                                                <children>
+                                                                    <TableView fx:id="table1" layoutY="7.0"
+                                                                               prefHeight="487.0" prefWidth="859.0">
+                                                                        <placeholder>
+                                                                            <Label text=""/>
+                                                                        </placeholder>
+                                                                        <columns>
+                                                                            <TableColumn fx:id="name1" prefWidth="116.0"
+                                                                                         resizable="false" text="NAME"/>
+                                                                            <TableColumn fx:id="price1"
+                                                                                         prefWidth="133.0"
+                                                                                         resizable="false"
+                                                                                         text="PRICE"/>
+                                                                            <TableColumn fx:id="category1"
+                                                                                         prefWidth="174.0"
+                                                                                         resizable="false"
+                                                                                         text="CATEGORY"/>
+                                                                            <TableColumn fx:id="quantity1"
+                                                                                         prefWidth="204.0"
+                                                                                         resizable="false"
+                                                                                         text="QUANTITY"/>
+                                                                            <TableColumn fx:id="barcode1"
+                                                                                         prefWidth="231.0"
+                                                                                         resizable="false"
+                                                                                         text="BAR CODE"/>
+                                                                        </columns>
+                                                                    </TableView>
+                                                                </children>
+                                                            </AnchorPane>
+                                                        </content>
+                                                    </ScrollPane>
+                                                    <Button fx:id="delete1" layoutX="364.0" layoutY="519.0"
+                                                            mnemonicParsing="false" prefHeight="54.0" prefWidth="204.0"
+                                                            styleClass="buttonred" stylesheets="@../styles/css.css"
+                                                            text="DELETE SELECTED DETAILS"/>
+                                                </children>
+                                            </AnchorPane>
+                                        </content>
+                                    </Tab>
+                                    <Tab fx:id="transformation" text="TRANSFORMATION">
+                                        <content>
+                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                                        prefWidth="200.0">
+                                                <children>
+                                                    <ScrollPane layoutX="11.0" layoutY="9.0" prefHeight="504.0"
+                                                                prefWidth="870.0">
+                                                        <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0"
+                                                                        prefHeight="496.0" prefWidth="862.0">
+                                                                <children>
+                                                                    <TableView fx:id="table11" layoutY="7.0"
+                                                                               prefHeight="487.0" prefWidth="859.0">
+                                                                        <placeholder>
+                                                                            <Label text=""/>
+                                                                        </placeholder>
+                                                                        <columns>
+                                                                            <TableColumn fx:id="name11"
+                                                                                         prefWidth="116.0"
+                                                                                         resizable="false" text="NAME"/>
+                                                                            <TableColumn fx:id="price11"
+                                                                                         prefWidth="133.0"
+                                                                                         resizable="false"
+                                                                                         text="PRICE"/>
+                                                                            <TableColumn fx:id="category11"
+                                                                                         prefWidth="174.0"
+                                                                                         resizable="false"
+                                                                                         text="CATEGORY"/>
+                                                                            <TableColumn fx:id="quantity11"
+                                                                                         prefWidth="204.0"
+                                                                                         resizable="false"
+                                                                                         text="QUANTITY"/>
+                                                                            <TableColumn fx:id="barcode11"
+                                                                                         prefWidth="231.0"
+                                                                                         resizable="false"
+                                                                                         text="BAR CODE"/>
+                                                                        </columns>
+                                                                    </TableView>
+                                                                </children>
+                                                            </AnchorPane>
+                                                        </content>
+                                                    </ScrollPane>
+                                                    <Button fx:id="delete11" layoutX="364.0" layoutY="519.0"
+                                                            mnemonicParsing="false" prefHeight="54.0" prefWidth="204.0"
+                                                            styleClass="buttonred" stylesheets="@../styles/css.css"
+                                                            text="DELETE SELECTED DETAILS"/>
+                                                </children>
+                                            </AnchorPane>
+                                        </content>
+                                    </Tab>
                                 </tabs>
                             </TabPane>
                             <Label fx:id="clock" alignment="CENTER" contentDisplay="CENTER" layoutX="19.0"
-                                   layoutY="204.0" prefHeight="66.0" prefWidth="226.0">
+                                   layoutY="204.0" prefHeight="66.0" prefWidth="160.0">
                                 <font>
-                                    <Font name="Gabriola" size="44.0"/>
+                                    <Font name="Bell MT" size="26.0"/>
                                 </font>
                             </Label>
-                            <Button fx:id="home" layoutX="52.0" layoutY="382.0" mnemonicParsing="false"
+                            <Button fx:id="home" layoutX="19.0" layoutY="147.0" mnemonicParsing="false"
                                     prefHeight="57.0" prefWidth="160.0" styleClass="buttongreen" text="HOME"/>
                         </children>
                     </AnchorPane>
