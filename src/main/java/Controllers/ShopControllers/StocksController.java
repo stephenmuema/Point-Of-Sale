@@ -56,7 +56,6 @@ public class StocksController extends UtilityClass implements Initializable {
     public AnchorPane panel;
     public TextField itemname;
     public TextField itemprice;
-    public TextField itemcategory;
     public TextField itemcode;
     public Button addmanually;
     public Button usescanner;
@@ -64,6 +63,11 @@ public class StocksController extends UtilityClass implements Initializable {
     public TextField amount;
     public Button home;
     public Button image;
+    public ComboBox<String> supplier;
+    public ComboBox<String> itemcat;
+    public TextField usrName;
+    public TextField grnNo;
+
     private File file;
     private int length;
     private BufferedImage bufferedImage;
@@ -97,6 +101,18 @@ public class StocksController extends UtilityClass implements Initializable {
         new IdleMon(panel);
 
         config.panel.put("panel", panel);
+        usrName.setText(user.get("userName"));
+        try {
+            PreparedStatement prep = new UtilityClass().getConnection().prepareStatement("SELECT COUNT(*) FROM grn_table");
+            ResultSet rs = prep.executeQuery();
+
+            while (rs.next()) {
+                grnNo.setText(String.valueOf(rs.getInt(1) + 1));
+            }
+
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -150,7 +166,7 @@ public class StocksController extends UtilityClass implements Initializable {
             name = itemname.getText().toUpperCase();
             price = itemprice.getText().toUpperCase();
             barcode = itemcode.getText().toUpperCase();
-            category = itemcategory.getText().toUpperCase();
+            category = itemcat.getValue().toUpperCase();
             quantity = amount.getText().toUpperCase();
             PreparedStatement preparedStatement = null;
 
@@ -218,7 +234,6 @@ public class StocksController extends UtilityClass implements Initializable {
                             itemcode.clear();
                             itemname.clear();
                             itemprice.clear();
-                            itemcategory.clear();
                             amount.clear();
                         } else {
                             showAlert(Alert.AlertType.WARNING, panel.getScene().getWindow(), "  FAILURE", "ERROR WHEN INSERTING ITEMS");
@@ -620,14 +635,7 @@ public class StocksController extends UtilityClass implements Initializable {
         return this;
     }
 
-    public TextField getItemcategory() {
-        return itemcategory;
-    }
 
-    public StocksController setItemcategory(TextField itemcategory) {
-        this.itemcategory = itemcategory;
-        return this;
-    }
 
     public TextField getItemcode() {
         return itemcode;

@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -87,41 +88,89 @@
                 <items>
                     <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="550.0" prefWidth="700.0" styleClass="mainPanel">
                         <children>
-                            <Label alignment="CENTER" layoutX="639.0" layoutY="7.0" prefHeight="36.0" prefWidth="250.0" style="&#10;" text="STOCKS PANEL" textAlignment="CENTER" textFill="#fcfcfc" wrapText="false">
+                            <Label alignment="CENTER" layoutX="639.0" layoutY="1.0" prefHeight="25.0" prefWidth="250.0" style="&#10;" text="STOCKS PANEL" textAlignment="CENTER" textFill="#fcfcfc" wrapText="false">
                                 <font>
-                                    <Font size="32.0" fx:id="x1" />
+                                    <Font size="17.0" fx:id="x1" />
                                 </font>
                             </Label>
-                            <TabPane fx:id="tabpane" layoutX="184.0" layoutY="56.0" pickOnBounds="false" prefHeight="614.0" prefWidth="1011.0" tabClosingPolicy="UNAVAILABLE">
+                            <TabPane fx:id="tabpane" layoutX="184.0" layoutY="24.0" pickOnBounds="false" prefHeight="646.0" prefWidth="1011.0" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
                                     <Tab text="ADDING ITEMS">
                                         <content>
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="413.0" prefWidth="482.0">
                                                 <children>
-                                                    <Button fx:id="addmanually" layoutX="161.0" layoutY="470.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="243.0" styleClass="buttonred" stylesheets="@../styles/css.css" text="ADD STOCK ITEM MANUALLY" />
-                                                    <Button fx:id="usescanner" layoutX="443.0" layoutY="470.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="243.0" styleClass="buttonorange" stylesheets="@../styles/css.css" text="ADD STOCK ITEM BY SCANNING" />
+                                                    <Button fx:id="addmanually" layoutX="179.0" layoutY="571.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="243.0" styleClass="buttonred" stylesheets="@../styles/css.css" text="ADD STOCK ITEM MANUALLY" />
+                                                    <Button fx:id="usescanner" layoutX="461.0" layoutY="571.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="243.0" styleClass="buttonorange" stylesheets="@../styles/css.css" text="ADD STOCK ITEM BY SCANNING" />
                                                     <ImageView fitHeight="293.0" fitWidth="297.0" layoutX="574.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" />
-                                                    <AnchorPane layoutX="23.0" layoutY="14.0" prefHeight="436.0" prefWidth="807.0" styleClass="forminner">
-                                                        <children>
-                                                            <TextField fx:id="itemname" alignment="CENTER" layoutX="22.0" layoutY="25.0" prefHeight="37.0" prefWidth="320.0" promptText="NAME" styleClass="textfields" />
-                                                            <TextField fx:id="itemcode" alignment="CENTER" layoutX="22.0" layoutY="76.0" prefHeight="35.0" prefWidth="321.0" promptText="BAR CODE" styleClass="textfields" />
-                                                            <TextField fx:id="itemprice" alignment="CENTER" layoutX="22.0" layoutY="126.0" prefHeight="37.0" prefWidth="321.0" promptText="PRICE" styleClass="textfields" />
-                                                            <TextField fx:id="itemcategory" alignment="CENTER" layoutX="22.0" layoutY="179.0" prefHeight="25.0" prefWidth="321.0" promptText="CATEGORY" styleClass="textfields" />
-                                                            <TextField fx:id="amount" alignment="CENTER" layoutX="22.0" layoutY="232.0" prefHeight="25.0" prefWidth="321.0" promptText="AMOUNT" styleClass="textfields" />
-                                                            <Button fx:id="image" layoutX="369.0" layoutY="385.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="108.0" styleClass="buttonviolet" text="IMAGE FILE" />
-                                             <TextArea layoutX="22.0" layoutY="332.0" prefHeight="86.0" prefWidth="330.0" promptText="ENTER COMMENT HERE. ...." />
-                                             <CheckBox layoutX="22.0" layoutY="292.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="316.0" text="MAKE TRANSFORMABLE" />
-                                             <TextField fx:id="grnNo" alignment="CENTER" disable="true" layoutX="393.0" layoutY="25.0" prefHeight="37.0" prefWidth="320.0" promptText="GRN NO" styleClass="textfields" />
-                                             <RadioButton layoutX="386.0" layoutY="358.0" mnemonicParsing="false" text="TO STORES" />
-                                             <RadioButton layoutX="705.0" layoutY="358.0" mnemonicParsing="false" text="TO SHELF" />
-                                             <RadioButton layoutX="386.0" layoutY="320.0" mnemonicParsing="false" text="FOR LOCAL USE" />
-                                             <RadioButton layoutX="705.0" layoutY="320.0" mnemonicParsing="false" text="FOR SALE" />
-                                             <TextField fx:id="usrName" alignment="CENTER" disable="true" layoutX="393.0" layoutY="76.0" prefHeight="37.0" prefWidth="320.0" promptText="USER NAME" styleClass="textfields" />
-                                             <RadioButton layoutX="559.0" layoutY="320.0" mnemonicParsing="false" text="SPLIT  ITEMS" />
-                                             <RadioButton layoutX="559.0" layoutY="358.0" mnemonicParsing="false" text="SPLIT  ITEMS" />
-                                             <TextField fx:id="usrName1" alignment="CENTER" disable="true" layoutX="393.0" layoutY="126.0" prefHeight="37.0" prefWidth="320.0" promptText="SUPPLIER CONTACT" styleClass="textfields" />
-                                                        </children>
-                                                    </AnchorPane>
+                                       <TabPane layoutX="14.0" layoutY="17.0" prefHeight="531.0" prefWidth="989.0" tabClosingPolicy="UNAVAILABLE">
+                                         <tabs>
+                                           <Tab text="NEW ITEM">
+                                             <content>
+                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                      <children>
+                                                         <AnchorPane layoutY="21.0" prefHeight="475.0" prefWidth="974.0" styleClass="forminner">
+                                                            <children>
+                                                               <TextField fx:id="itemname" alignment="CENTER" layoutX="22.0" layoutY="25.0" prefHeight="37.0" prefWidth="320.0" promptText="NAME" styleClass="textfields" />
+                                                               <TextField fx:id="itemcode" alignment="CENTER" layoutX="22.0" layoutY="76.0" prefHeight="35.0" prefWidth="321.0" promptText="BAR CODE" styleClass="textfields" />
+                                                               <TextField fx:id="itemprice" alignment="CENTER" layoutX="22.0" layoutY="126.0" prefHeight="37.0" prefWidth="321.0" promptText="PRICE" styleClass="textfields" />
+                                                               <TextField fx:id="amount" alignment="CENTER" layoutX="22.0" layoutY="232.0" prefHeight="25.0" prefWidth="321.0" promptText="AMOUNT" styleClass="textfields" />
+                                                               <Button fx:id="image" layoutX="369.0" layoutY="385.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="108.0" styleClass="buttonviolet" text="IMAGE FILE" />
+                                                               <TextArea layoutX="22.0" layoutY="332.0" prefHeight="86.0" prefWidth="330.0" promptText="ENTER COMMENT HERE. ...." />
+                                                               <CheckBox layoutX="22.0" layoutY="292.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="316.0" text="MAKE TRANSFORMABLE" />
+                                                               <TextField fx:id="grnNo" alignment="CENTER" disable="true" layoutX="568.0" layoutY="24.0" prefHeight="37.0" prefWidth="320.0" promptText="GRN NO" styleClass="textfields" />
+                                                               <RadioButton layoutX="561.0" layoutY="357.0" mnemonicParsing="false" text="TO STORES" />
+                                                               <RadioButton layoutX="880.0" layoutY="357.0" mnemonicParsing="false" text="TO SHELF" />
+                                                               <RadioButton layoutX="561.0" layoutY="319.0" mnemonicParsing="false" text="FOR LOCAL USE" />
+                                                               <RadioButton layoutX="880.0" layoutY="319.0" mnemonicParsing="false" text="FOR SALE" />
+                                                               <TextField fx:id="usrName" alignment="CENTER" disable="true" layoutX="568.0" layoutY="182.0" prefHeight="37.0" prefWidth="320.0" promptText="USER NAME" styleClass="textfields" />
+                                                               <RadioButton layoutX="734.0" layoutY="319.0" mnemonicParsing="false" text="SPLIT  ITEMS" />
+                                                               <RadioButton layoutX="734.0" layoutY="357.0" mnemonicParsing="false" text="SPLIT  ITEMS" />
+                                                               <ComboBox fx:id="supplier" layoutX="568.0" layoutY="233.0" prefHeight="38.0" prefWidth="321.0" promptText="SUPPLIER"/>
+                                                               <ComboBox fx:id="itemcat" layoutX="22.0" layoutY="180.0" prefHeight="38.0" prefWidth="321.0" promptText="CATEGORY" />
+                                                               <Button layoutX="352.0" layoutY="182.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="43.0" text="NEW" />
+                                                               <Button layoutX="902.0" layoutY="235.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="43.0" text="NEW" />
+                                                               <RadioButton layoutX="561.0" layoutY="284.0" mnemonicParsing="false" text="WITH PURCHASE ORGER" />
+                                                               <RadioButton layoutX="880.0" layoutY="284.0" mnemonicParsing="false" text="FOR SALE" />
+                                                               <RadioButton layoutX="734.0" layoutY="284.0" mnemonicParsing="false" text="DIRECT  ACQUISITION" />
+                                                               <TextArea layoutX="567.0" layoutY="81.0" prefHeight="90.0" prefWidth="319.0" promptText="GRN COMMENT HERE...." />
+                                                            </children>
+                                                         </AnchorPane>
+                                                      </children>
+                                                   </AnchorPane>
+                                             </content>
+                                           </Tab>
+                                           <Tab text="EXISTING ITEM">
+                                                <content>
+                                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                      <children>
+                                                         <AnchorPane layoutY="21.0" prefHeight="475.0" prefWidth="974.0" styleClass="forminner">
+                                                            <children>
+                                                               <TextField fx:id="amount1" alignment="CENTER" layoutX="22.0" layoutY="232.0" prefHeight="25.0" prefWidth="321.0" promptText="AMOUNT" styleClass="textfields" />
+                                                               <Button fx:id="image1" layoutX="369.0" layoutY="385.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="108.0" styleClass="buttonviolet" text="IMAGE FILE" />
+                                                               <TextArea layoutX="22.0" layoutY="332.0" prefHeight="86.0" prefWidth="330.0" promptText="ENTER COMMENT HERE. ...." />
+                                                               <TextField fx:id="grnNo1" alignment="CENTER" disable="true" layoutX="568.0" layoutY="24.0" prefHeight="37.0" prefWidth="320.0" promptText="GRN NO" styleClass="textfields" />
+                                                               <RadioButton layoutX="561.0" layoutY="357.0" mnemonicParsing="false" text="TO STORES" />
+                                                               <RadioButton layoutX="880.0" layoutY="357.0" mnemonicParsing="false" text="TO SHELF" />
+                                                               <RadioButton layoutX="561.0" layoutY="319.0" mnemonicParsing="false" text="FOR LOCAL USE" />
+                                                               <RadioButton layoutX="880.0" layoutY="319.0" mnemonicParsing="false" text="FOR SALE" />
+                                                               <TextField fx:id="usrName1" alignment="CENTER" disable="true" layoutX="568.0" layoutY="182.0" prefHeight="37.0" prefWidth="320.0" promptText="USER NAME" styleClass="textfields" />
+                                                               <RadioButton layoutX="734.0" layoutY="319.0" mnemonicParsing="false" text="SPLIT  ITEMS" />
+                                                               <RadioButton layoutX="734.0" layoutY="357.0" mnemonicParsing="false" text="SPLIT  ITEMS" />
+                                                               <ComboBox fx:id="supplier1" layoutX="568.0" layoutY="233.0" prefHeight="38.0" prefWidth="321.0" promptText="SUPPLIER" />
+                                                               <ComboBox fx:id="itemcat1" layoutX="22.0" layoutY="180.0" prefHeight="38.0" prefWidth="321.0" promptText="CATEGORY" />
+                                                               <RadioButton layoutX="561.0" layoutY="284.0" mnemonicParsing="false" text="WITH PURCHASE ORGER" />
+                                                               <RadioButton layoutX="880.0" layoutY="284.0" mnemonicParsing="false" text="FOR SALE" />
+                                                               <RadioButton layoutX="734.0" layoutY="284.0" mnemonicParsing="false" text="DIRECT  ACQUISITION" />
+                                                               <TextArea layoutX="567.0" layoutY="81.0" prefHeight="90.0" prefWidth="319.0" promptText="GRN COMMENT HERE...." />
+                                                               <ComboBox fx:id="supplier11" layoutX="22.0" layoutY="25.0" prefHeight="38.0" prefWidth="321.0" promptText="ITEM NAME" />
+                                                            </children>
+                                                         </AnchorPane>
+                                                      </children>
+                                                   </AnchorPane>
+                                                </content>
+                                           </Tab>
+                                         </tabs>
+                                       </TabPane>
                                                 </children>
                                             </AnchorPane>
                                         </content>
@@ -155,64 +204,64 @@
                                             </AnchorPane>
                                         </content>
                                     </Tab>
-                           <Tab fx:id="existingstockdtabstore" text="EXISTING STOCK IN STORE AND ADJUSTMENT">
-                              <content>
-                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <children>
-                                       <ScrollPane layoutX="11.0" layoutY="9.0" prefHeight="504.0" prefWidth="870.0">
-                                          <content>
-                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="496.0" prefWidth="862.0">
+                                    <Tab fx:id="existingstockdtabstore" text="EXISTING STOCK IN STORE AND ADJUSTMENT">
+                                        <content>
+                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                 <children>
-                                                   <TableView fx:id="table1" layoutY="7.0" prefHeight="487.0" prefWidth="859.0">
-                                                      <placeholder>
-                                                         <Label text="" />
-                                                      </placeholder>
-                                                      <columns>
-                                                         <TableColumn fx:id="name1" prefWidth="116.0" resizable="false" text="NAME" />
-                                                         <TableColumn fx:id="price1" prefWidth="133.0" resizable="false" text="PRICE" />
-                                                         <TableColumn fx:id="category1" prefWidth="174.0" resizable="false" text="CATEGORY" />
-                                                         <TableColumn fx:id="quantity1" prefWidth="204.0" resizable="false" text="QUANTITY" />
-                                                         <TableColumn fx:id="barcode1" prefWidth="231.0" resizable="false" text="BAR CODE" />
-                                                      </columns>
-                                                   </TableView>
+                                                    <ScrollPane layoutX="11.0" layoutY="9.0" prefHeight="504.0" prefWidth="870.0">
+                                                        <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="496.0" prefWidth="862.0">
+                                                                <children>
+                                                                    <TableView fx:id="table1" layoutY="7.0" prefHeight="487.0" prefWidth="859.0">
+                                                                        <placeholder>
+                                                                            <Label text="" />
+                                                                        </placeholder>
+                                                                        <columns>
+                                                                            <TableColumn fx:id="name1" prefWidth="116.0" resizable="false" text="NAME" />
+                                                                            <TableColumn fx:id="price1" prefWidth="133.0" resizable="false" text="PRICE" />
+                                                                            <TableColumn fx:id="category1" prefWidth="174.0" resizable="false" text="CATEGORY" />
+                                                                            <TableColumn fx:id="quantity1" prefWidth="204.0" resizable="false" text="QUANTITY" />
+                                                                            <TableColumn fx:id="barcode1" prefWidth="231.0" resizable="false" text="BAR CODE" />
+                                                                        </columns>
+                                                                    </TableView>
+                                                                </children>
+                                                            </AnchorPane>
+                                                        </content>
+                                                    </ScrollPane>
+                                                    <Button fx:id="delete1" layoutX="364.0" layoutY="519.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="204.0" styleClass="buttonred" stylesheets="@../styles/css.css" text="DELETE SELECTED DETAILS" />
                                                 </children>
-                                             </AnchorPane>
-                                          </content>
-                                       </ScrollPane>
-                                       <Button fx:id="delete1" layoutX="364.0" layoutY="519.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="204.0" styleClass="buttonred" stylesheets="@../styles/css.css" text="DELETE SELECTED DETAILS" />
-                                    </children>
-                                 </AnchorPane>
-                              </content>
-                           </Tab>
-                           <Tab fx:id="transformation" text="TRANSFORMATION">
-                              <content>
-                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                    <children>
-                                       <ScrollPane layoutX="11.0" layoutY="9.0" prefHeight="504.0" prefWidth="870.0">
-                                          <content>
-                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="496.0" prefWidth="862.0">
+                                            </AnchorPane>
+                                        </content>
+                                    </Tab>
+                                    <Tab fx:id="transformation" text="TRANSFORMATION">
+                                        <content>
+                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                 <children>
-                                                   <TableView fx:id="table11" layoutY="7.0" prefHeight="487.0" prefWidth="859.0">
-                                                      <placeholder>
-                                                         <Label text="" />
-                                                      </placeholder>
-                                                      <columns>
-                                                         <TableColumn fx:id="name11" prefWidth="116.0" resizable="false" text="NAME" />
-                                                         <TableColumn fx:id="price11" prefWidth="133.0" resizable="false" text="PRICE" />
-                                                         <TableColumn fx:id="category11" prefWidth="174.0" resizable="false" text="CATEGORY" />
-                                                         <TableColumn fx:id="quantity11" prefWidth="204.0" resizable="false" text="QUANTITY" />
-                                                         <TableColumn fx:id="barcode11" prefWidth="231.0" resizable="false" text="BAR CODE" />
-                                                      </columns>
-                                                   </TableView>
+                                                    <ScrollPane layoutX="11.0" layoutY="9.0" prefHeight="504.0" prefWidth="870.0">
+                                                        <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="496.0" prefWidth="862.0">
+                                                                <children>
+                                                                    <TableView fx:id="table11" layoutY="7.0" prefHeight="487.0" prefWidth="859.0">
+                                                                        <placeholder>
+                                                                            <Label text="" />
+                                                                        </placeholder>
+                                                                        <columns>
+                                                                            <TableColumn fx:id="name11" prefWidth="116.0" resizable="false" text="NAME" />
+                                                                            <TableColumn fx:id="price11" prefWidth="133.0" resizable="false" text="PRICE" />
+                                                                            <TableColumn fx:id="category11" prefWidth="174.0" resizable="false" text="CATEGORY" />
+                                                                            <TableColumn fx:id="quantity11" prefWidth="204.0" resizable="false" text="QUANTITY" />
+                                                                            <TableColumn fx:id="barcode11" prefWidth="231.0" resizable="false" text="BAR CODE" />
+                                                                        </columns>
+                                                                    </TableView>
+                                                                </children>
+                                                            </AnchorPane>
+                                                        </content>
+                                                    </ScrollPane>
+                                                    <Button fx:id="delete11" layoutX="364.0" layoutY="519.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="204.0" styleClass="buttonred" stylesheets="@../styles/css.css" text="DELETE SELECTED DETAILS" />
                                                 </children>
-                                             </AnchorPane>
-                                          </content>
-                                       </ScrollPane>
-                                       <Button fx:id="delete11" layoutX="364.0" layoutY="519.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="204.0" styleClass="buttonred" stylesheets="@../styles/css.css" text="DELETE SELECTED DETAILS" />
-                                    </children>
-                                 </AnchorPane>
-                              </content>
-                           </Tab>
+                                            </AnchorPane>
+                                        </content>
+                                    </Tab>
                                 </tabs>
                             </TabPane>
                             <Label fx:id="clock" alignment="CENTER" contentDisplay="CENTER" layoutX="19.0" layoutY="204.0" prefHeight="66.0" prefWidth="160.0">

@@ -7,12 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/StocksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ShopControllers/StocksController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/shopFiles/stocks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shopFiles/stocks.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/ShopController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/ShopControllers/ShopController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/SettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/UserAccountManagementControllers/SettingsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/POSnanotech-softwareshotelshotelsjavamultiplestores.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/shopFiles/stocks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shopFiles/stocks.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,39 +48,25 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="nanotech_pos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="nanotechsoftwarespos@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="nanotech_pos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="nanotechsoftwarespos@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="nanotech_pos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="nanotechsoftwarespos@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="nanotech_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="nanotechsoftwarespos: schema" type="76f4a085:MysqlImplModel$Schema" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="nanotech_pos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="nanotechsoftwarespos@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="nanotech_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="security_logs: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="nanotech_pos@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="nanotech_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="stockalerts: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="nanotech_pos@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="nanotech_pos: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="stocks: table" type="285a2a93:MysqlImplModel$Table" />
+        <item name="nanotechsoftwarespos: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="grn_table: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -277,7 +264,17 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@b734cd67" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@efb39853" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@efb39853" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@248299e1" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@efb39853" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@320d272b" type="9fbbdea:ServiceModel$ServiceNode" />
             </path>
           </expand>
           <select />
@@ -655,14 +652,12 @@
       <workItem from="1574594586816" duration="16819000" />
       <workItem from="1574704663582" duration="793000" />
       <workItem from="1574785787380" duration="2988000" />
-      <workItem from="1574839322883" duration="1178000" />
-    </task>
-    <task id="LOCAL-00025" summary="fx errors fixed">
-      <created>1567512153982</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1567512153982</updated>
+      <workItem from="1574839322883" duration="5915000" />
+      <workItem from="1575100796601" duration="1632000" />
+      <workItem from="1575192545098" duration="480000" />
+      <workItem from="1575194955312" duration="44000" />
+      <workItem from="1575631495555" duration="117000" />
+      <workItem from="1576209250824" duration="3476000" />
     </task>
     <task id="LOCAL-00026" summary="fx errors fixed">
       <created>1567514727950</created>
@@ -1000,7 +995,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574619962821</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="added more grn,name,supplier,to stores,to shelf,for local use to the addinfg items panel">
+      <created>1574843020788</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1574843020789</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1037,7 +1039,6 @@
       <path value="$PROJECT_DIR$/POSnanotech-softwaresjava" />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="ADDED MENU TO EMPLOYEES" />
     <MESSAGE value="ADDED CONTACT DEVELOPERS PAGE" />
     <MESSAGE value="ADDED DB IMPORT BUT NOT TESTED IT" />
     <MESSAGE value="SEPARATED SETTINGS FOR BOTH ACCOUNTS" />
@@ -1062,7 +1063,8 @@
     <MESSAGE value="perfect lic" />
     <MESSAGE value="added stock alert table and logic" />
     <MESSAGE value="made idle monitor simpler" />
-    <option name="LAST_COMMIT_MESSAGE" value="made idle monitor simpler" />
+    <MESSAGE value="added more grn,name,supplier,to stores,to shelf,for local use to the addinfg items panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="added more grn,name,supplier,to stores,to shelf,for local use to the addinfg items panel" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
