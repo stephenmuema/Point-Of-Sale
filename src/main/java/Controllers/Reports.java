@@ -16,7 +16,7 @@ import static securityandtime.config.mailProp;
 
 public class Reports {
     private ArrayList<File> reports = new ArrayList<>();
-    private String filesDest = fileSavePath + "files\\";
+    private String filesDest = fileSavePath + "files"+File.separator+"";
 
     public ArrayList<File> getReports() {
         return reports;

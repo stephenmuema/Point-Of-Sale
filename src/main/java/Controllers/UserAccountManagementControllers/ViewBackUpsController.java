@@ -297,9 +297,9 @@ public class ViewBackUpsController extends UtilityClass implements Initializable
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                sevenZ.unzipBak(fname, sysconfig.get("backUpLoc") + "\\unzippedFiles");
+                sevenZ.unzipBak(fname, sysconfig.get("backUpLoc") + ""+File.separator+"unzippedFiles");
 
-                File directory = new File(sysconfig.get("backUpLoc") + "\\unzippedFiles");
+                File directory = new File(sysconfig.get("backUpLoc") + ""+File.separator+"unzippedFiles");
                 File[] files = directory.listFiles(new FileFilter() {
                     public boolean accept(File file) {
                         return file.isFile();

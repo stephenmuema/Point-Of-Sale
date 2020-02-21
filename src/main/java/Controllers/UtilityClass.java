@@ -78,11 +78,11 @@ public class UtilityClass extends FetchDbDetails {
 
             try {
                 Files.createDirectories(path);
-                Files.createDirectories(Paths.get(fileSavePath + "\\licenses"));
-                Files.createDirectories(Paths.get(fileSavePath + "\\dependencies"));
-                Files.createDirectories(Paths.get(fileSavePath + "\\images"));
-                Files.createDirectories(Paths.get(fileSavePath + "\\files"));
-                Files.createDirectories(Paths.get(fileSavePath + "\\files"));
+                Files.createDirectories(Paths.get(fileSavePath + ""+File.separator+"licenses"));
+                Files.createDirectories(Paths.get(fileSavePath + ""+File.separator+"dependencies"));
+                Files.createDirectories(Paths.get(fileSavePath + ""+File.separator+"images"));
+                Files.createDirectories(Paths.get(fileSavePath + ""+File.separator+"files"));
+                Files.createDirectories(Paths.get(fileSavePath + ""+File.separator+"files"));
                 Files.createDirectories(Paths.get(NANOTECHSOFTWARES_SETTINGS));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -492,7 +492,7 @@ public class UtilityClass extends FetchDbDetails {
                 new WritableImage((int) scene.getWidth(), (int) scene.getHeight());
         scene.snapshot(writableImage);
 
-        File file = new File(fileSavePath + "\\images\\" + new Date().toString() + ".png");
+        File file = new File(fileSavePath + ""+File.separator+"images"+File.separator+"" + new Date().toString() + ".png");
         try {
             ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
 //            System.out.println("snapshot saved: " + file.getAbsolutePath());
@@ -503,7 +503,7 @@ public class UtilityClass extends FetchDbDetails {
 
     public void clearDir() {
         try {
-            FileUtils.cleanDirectory(new File(sysconfig.get("backUpLoc") + "\\unzippedFiles"));
+            FileUtils.cleanDirectory(new File(sysconfig.get("backUpLoc") + ""+File.separator+"unzippedFiles"));
         } catch (IOException e) {
             e.printStackTrace();
         }

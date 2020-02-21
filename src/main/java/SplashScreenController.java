@@ -36,7 +36,7 @@ public class SplashScreenController implements Initializable {
         clientId.setText(license.get("clientId"));
         try {
             Date date = new Date();
-            if (new File(fileSavePath + "\\images\\logo.png").exists()) {
+            if (new File(fileSavePath + ""+File.separator+"images"+File.separator+"logo.png").exists()) {
                 logo.setImage(companyLogoImageObj);
                 System.out.println("logo set");
             }

@@ -27,7 +27,7 @@ public class SevenZ {
 
             try {
                 Files.createDirectories(path);
-                Files.createDirectories(Paths.get(sysconfig.get("backUpLoc") + "\\unzipped"));
+                Files.createDirectories(Paths.get(sysconfig.get("backUpLoc") + ""+File.separator+"unzipped"));
             } catch (IOException e) {
                 e.printStackTrace();
             }

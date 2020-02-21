@@ -35,12 +35,12 @@ public class Main extends Application {
     private String licenseId;
 
     public static void main(String[] args) throws InterruptedException {
-        if (!new File(fileSavePath + "\\images\\logo.png").exists()) {
+        if (!new File(fileSavePath + ""+File.separator+"images"+File.separator+"logo.png").exists()) {
             String path = defaultLogo;
             javafx.scene.image.Image image = new javafx.scene.image.Image(path);
             ImageView imageView = new ImageView(image);
             try (InputStream in = new URL(path).openStream()) {
-                Files.copy(in, Paths.get(fileSavePath + "\\images\\logo.png"));
+                Files.copy(in, Paths.get(fileSavePath + ""+File.separator+"images"+File.separator+"logo.png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -160,7 +160,7 @@ public class Main extends Application {
             }
             preparedStatement.setString(1, "reportLocation");
             preparedStatement.setString(2, "reporting");
-            preparedStatement.setString(3, fileSavePath + "\\files");
+            preparedStatement.setString(3, fileSavePath + ""+File.separator+"files");
             preparedStatement.executeUpdate();
             setUpReportsLocIfNotSet();
         }
@@ -214,51 +214,51 @@ public class Main extends Application {
             try {
 
                 Files.createDirectories(path);
-                Files.createDirectories(Paths.get(fileSavePath + "\\licenses"));
-                Files.createDirectories(Paths.get(fileSavePath + "\\dependencies"));
-                Files.createDirectories(Paths.get(fileSavePath + "\\images"));
-                Files.createDirectories(Paths.get(fileSavePath + "\\files"));
-                new File(fileSavePath + "files\\shoppingLocal.db");
+                Files.createDirectories(Paths.get(fileSavePath + ""+File.separator+"licenses"));
+                Files.createDirectories(Paths.get(fileSavePath + ""+File.separator+"dependencies"));
+                Files.createDirectories(Paths.get(fileSavePath + ""+File.separator+"images"));
+                Files.createDirectories(Paths.get(fileSavePath + ""+File.separator+"files"));
+                new File(fileSavePath + "files"+File.separator+"shoppingLocal.db");
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
         }
-        path = Paths.get(fileSavePath + "\\licenses");
+        path = Paths.get(fileSavePath + ""+File.separator+"licenses");
         if (!Files.exists(path)) {
             try {
-                Files.createDirectories(Paths.get(fileSavePath + "\\licenses"));
+                Files.createDirectories(Paths.get(fileSavePath + ""+File.separator+"licenses"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
         }
-        path = Paths.get(fileSavePath + "\\dependencies");
+        path = Paths.get(fileSavePath + ""+File.separator+"dependencies");
         if (!Files.exists(path)) {
             try {
-                Files.createDirectories(Paths.get(fileSavePath + "\\dependencies"));
+                Files.createDirectories(Paths.get(fileSavePath + ""+File.separator+"dependencies"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
         }
-        path = Paths.get(fileSavePath + "\\images");
+        path = Paths.get(fileSavePath + ""+File.separator+"images");
         if (!Files.exists(path)) {
             try {
-                Files.createDirectories(Paths.get(fileSavePath + "\\images"));
+                Files.createDirectories(Paths.get(fileSavePath + ""+File.separator+"images"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
         }
-        path = Paths.get(fileSavePath + "\\files");
+        path = Paths.get(fileSavePath + ""+File.separator+"files");
         if (!Files.exists(path)) {
             try {
-                Files.createDirectories(Paths.get(fileSavePath + "\\files"));
+                Files.createDirectories(Paths.get(fileSavePath + ""+File.separator+"files"));
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                new File(fileSavePath + "files\\shoppingLocal.db");
+                new File(fileSavePath + "files"+File.separator+"shoppingLocal.db");
 
             }
 
@@ -359,7 +359,7 @@ public class Main extends Application {
                     }
                     final PopupMenu popup = new PopupMenu();
 
-                    URL url = System.class.getResource(fileSavePath + "\\images\\logo.png");
+                    URL url = System.class.getResource(fileSavePath + ""+File.separator+"images"+File.separator+"logo.png");
                     Image image = Toolkit.getDefaultToolkit().getImage(url);
 
                     final TrayIcon trayIcon = new TrayIcon(image);

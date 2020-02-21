@@ -214,7 +214,7 @@ public class StocksController extends UtilityClass implements Initializable {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-//            System.getProperty("user.home")+"\\nanotechsoftwaresPOS\\"+
+//            System.getProperty("user.home")+""+File.separator+"nanotechsoftwaresPOS"+File.separator+""+
                 File f = new File(fileSavePath + System.currentTimeMillis() + file.getName());
                 try {
                     if (preparedStatement != null) {

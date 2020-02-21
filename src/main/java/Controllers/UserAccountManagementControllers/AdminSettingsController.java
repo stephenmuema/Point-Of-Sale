@@ -223,7 +223,7 @@ public class AdminSettingsController extends UtilityClass implements Initializab
 
         userAccountHintChange.setVisible(false);
         userAccountHintSet.setVisible(false);
-        companyImageName.setText(fileSavePath + "\\images\\logo.png");
+        companyImageName.setText(fileSavePath + ""+File.separator+"images"+File.separator+"logo.png");
         mainTabPane.getSelectionModel().selectedItemProperty().addListener(
                 (ov, t, t1) -> {
                     System.out.println(prev);
@@ -498,11 +498,11 @@ public class AdminSettingsController extends UtilityClass implements Initializab
             file = fileChooser.showOpenDialog(null);
             logoPath = file.getAbsolutePath();
             if (new File(logoPath).isFile()) {
-                companyImageName.setText(fileSavePath + "\\images\\logo.png");
+                companyImageName.setText(fileSavePath + ""+File.separator+"images"+File.separator+"logo.png");
 
             }
             File source = new File(logoPath);
-            File dest = new File(fileSavePath + "\\images\\logo.png");
+            File dest = new File(fileSavePath + ""+File.separator+"images"+File.separator+"logo.png");
 
             try {
                 copyFileUsingApache(source, dest);

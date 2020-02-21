@@ -324,8 +324,8 @@ public class AdminPanelController extends UtilityClass implements Initializable,
                 }
                 String fname = file.getAbsolutePath();
                 assert sevenZ != null;
-                sevenZ.unzipBak(fname, sysconfig.get("backUpLoc") + "\\unzippedFiles");
-                File directory = new File(sysconfig.get("backUpLoc") + "\\unzippedFiles");
+                sevenZ.unzipBak(fname, sysconfig.get("backUpLoc") + ""+File.separator+"unzippedFiles");
+                File directory = new File(sysconfig.get("backUpLoc") + ""+File.separator+"unzippedFiles");
                 File[] files = directory.listFiles(new FileFilter() {
                     public boolean accept(File file) {
                         return file.isFile();
