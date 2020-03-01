@@ -14,6 +14,7 @@ import org.apache.commons.io.FileUtils;
 import securityandtime.AesCrypto;
 import securityandtime.CheckConn;
 
+import javax.mail.MessagingException;
 import java.awt.*;
 import java.io.*;
 import java.net.URL;
@@ -31,18 +32,18 @@ import static securityandtime.config.*;
 
 public class Main extends Application {
 
-    static Stage stage = null;
+    static Stage stage = new Stage();
     private String licenseId;
 
-    public static void main(String[] args) throws InterruptedException {
-        if (!new File(fileSavePath + ""+File.separator+"images"+File.separator+"logo.png").exists()) {
+    public static void main(String[] args) {
+        if (!new File(fileSavePath + "" + File.separator + "images" + File.separator + "logo.png").exists()) {
             String path = defaultLogo;
             javafx.scene.image.Image image = new javafx.scene.image.Image(path);
             ImageView imageView = new ImageView(image);
             try (InputStream in = new URL(path).openStream()) {
-                Files.copy(in, Paths.get(fileSavePath + ""+File.separator+"images"+File.separator+"logo.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
+                Files.copy(in, Paths.get(fileSavePath + "" + File.separator + "images" + File.separator + "logo.png"));
+            } catch (IOException ignored) {
+
             }
             try {
                 Thread.sleep(8000);
@@ -66,6 +67,7 @@ public class Main extends Application {
         }
 
         try {
+            assert utilityClass != null;
             connection = utilityClass.getConnectionDbLocal();
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30); // set timeout to 30 sec.
@@ -110,6 +112,7 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        assert prep != null;
         prep.setString(1, "backupLocation");
         ResultSet rs = prep.executeQuery();
         if (rs.isBeforeFirst()) {
@@ -124,6 +127,7 @@ public class Main extends Application {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            assert preparedStatement != null;
             preparedStatement.setString(1, "backupLocation");
             preparedStatement.setString(2, "security");
             try {
@@ -144,6 +148,7 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        assert prep != null;
         prep.setString(1, "reportLocation");
         ResultSet rs = prep.executeQuery();
         if (rs.isBeforeFirst()) {
@@ -158,6 +163,7 @@ public class Main extends Application {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            assert preparedStatement != null;
             preparedStatement.setString(1, "reportLocation");
             preparedStatement.setString(2, "reporting");
             preparedStatement.setString(3, fileSavePath + ""+File.separator+"files");
@@ -191,7 +197,7 @@ public class Main extends Application {
         thread1.start();
         try {
             Thread.sleep(1000);
-            System.out.println("checked for deficiencies");
+//            System.out.println("checked for deficiencies");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -281,6 +287,26 @@ public class Main extends Application {
         createSqliteDb();
 
 
+//       loadWithLicensing();
+        loadFree();
+    }
+
+    private void loadFree() throws IOException {
+        AnchorPane root = FXMLLoader.load(getClass().getResource("AuthenticationFiles/SplashScreen.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.DECORATED);
+
+        stage.getIcons().add(logoImageNanotechPos);
+        stage.setTitle(NANOTECHSOFTWARES_POS_SOLUTIONS + year + version + "      CLIENT ID        " + licenseId);//TITLE
+        stage.setOnCloseRequest(event -> {
+            Platform.exit();
+            System.exit(123);
+        });
+        stage.show();
+    }
+
+    private void loadWithLicensing() throws IOException, MessagingException, SQLException {
         File file = new File(licensepath);
         boolean exists = file.exists();
 
@@ -292,11 +318,7 @@ public class Main extends Application {
 //                Files.setAttribute(path, "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
 
                 File fl = new File(fileSavePath + "licenses");
-                File[] files = fl.listFiles(new FileFilter() {
-                    public boolean accept(File file) {
-                        return file.isFile();
-                    }
-                });
+                File[] files = fl.listFiles(File::isFile);
                 long lastMod = Long.MIN_VALUE;
                 File choice = null;
                 assert files != null;
@@ -401,7 +423,6 @@ public class Main extends Application {
                 stage.setMaximized(true);
 
                 stage.setFullScreen(true);
-                Main.stage = stage;
                 stage.show();
             } else {
                 System.out.println(decrypt);
@@ -428,7 +449,6 @@ public class Main extends Application {
 
 
 //                    stage.setFullScreen(true);
-                    Main.stage = stage;
                     stage.show();
                 } else {
                     license.put("name", builder.toString().split(":::")[0]);
@@ -451,7 +471,6 @@ public class Main extends Application {
                             Platform.exit();
                             System.exit(123);
                         });
-                        Main.stage = stage;
                         stage.show();
                     } else {
                         throwables.put("INVALID KEY", new InvalidObjectException("invalid license key generated"));
@@ -468,7 +487,6 @@ public class Main extends Application {
                             Platform.exit();
                             System.exit(123);
                         });
-                        Main.stage = stage;
                         stage.show();
                     }
 
@@ -487,7 +505,6 @@ public class Main extends Application {
 
 //        APP TITLE
             stage.setTitle(NANOTECHSOFTWARES_POS_SOLUTIONS + year + version + " Licensing" + "       CLIENT ID       " + licenseId);
-            Main.stage = stage;
             stage.show();
         } else {
 //            GO TO LICENSING PANEL
@@ -503,7 +520,6 @@ public class Main extends Application {
 
 //        APP TITLE
             stage.setTitle(NANOTECHSOFTWARES_POS_SOLUTIONS + year + version + " Licensing" + "       CLIENT ID       " + licenseId);
-            Main.stage = stage;
             stage.show();
         }
 

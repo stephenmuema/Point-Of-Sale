@@ -155,7 +155,7 @@ public class LoginController extends UtilityClass implements Initializable {
             e.printStackTrace();
         }
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM DAYS WHERE completed=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM days WHERE completed=?");
             preparedStatement.setString(1, "incomplete");
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.isBeforeFirst()) {

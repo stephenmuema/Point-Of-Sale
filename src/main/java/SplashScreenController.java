@@ -51,8 +51,13 @@ public class SplashScreenController implements Initializable {
                 owner.setText(t.toUpperCase());
                 expiry.setText(s2.toUpperCase());
             } else {
-                date.setTime(Long.parseLong(license.get("time")) + System.currentTimeMillis());
+try {
+    date.setTime(Long.parseLong(license.get("time")) + System.currentTimeMillis());
 
+} catch (NumberFormatException e) {
+    date.setTime(System.currentTimeMillis());
+
+}
                 String s2 = new SimpleDateFormat("dd/MM/yyyy").format(date);
                 String t = "Registered to " + license.get("name");
                 owner.setText(t.toUpperCase());
