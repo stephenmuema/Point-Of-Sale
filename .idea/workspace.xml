@@ -6,26 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="added more grn,name,supplier,to stores,to shelf,for local use to the addinfg items panel">
-      <change afterPath="$PROJECT_DIR$/NANOTECHSOFTWARES/nanotechPOS/credentials/client_secret.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NANOTECHSOFTWARES/nanotechPOS/files/shoppingLocal.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NANOTECHSOFTWARES/nanotechPOS/images/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NANOTECHSOFTWARES/settings/DbConf.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NANOTECHSOFTWARES/settings/MEDICAConf.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NANOTECHSOFTWARES/settings/POSConf.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/UserAccountManagementFiles/settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9e8c7932-af41-429c-8dcc-b1434610b81d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AuthenticationControllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SplashScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SplashScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/securityandtime/config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LicensingController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/AuthenticationControllers/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SplashScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SplashScreenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/securityandtime/config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/securityandtime/config.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,6 +116,11 @@
   <component name="ProjectId" id="1QMa0KiLLrFTVDCze8nZCpQV5Ma" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
@@ -653,13 +640,7 @@
       <workItem from="1575631495555" duration="117000" />
       <workItem from="1576209250824" duration="3476000" />
       <workItem from="1582261608605" duration="428000" />
-    </task>
-    <task id="LOCAL-00026" summary="fx errors fixed">
-      <created>1567514727950</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1567514727951</updated>
+      <workItem from="1583090936012" duration="1145000" />
     </task>
     <task id="LOCAL-00027" summary="fx errors fixed">
       <created>1567514737050</created>
@@ -997,7 +978,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574843020789</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="made file separator platform independent">
+      <created>1583090745447</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1583090745447</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1034,7 +1022,6 @@
       <path value="$PROJECT_DIR$/POSnanotech-softwaresjava" />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="ADDED CONTACT DEVELOPERS PAGE" />
     <MESSAGE value="ADDED DB IMPORT BUT NOT TESTED IT" />
     <MESSAGE value="SEPARATED SETTINGS FOR BOTH ACCOUNTS" />
     <MESSAGE value="editing reports location in settings done" />
@@ -1059,7 +1046,8 @@
     <MESSAGE value="added stock alert table and logic" />
     <MESSAGE value="made idle monitor simpler" />
     <MESSAGE value="added more grn,name,supplier,to stores,to shelf,for local use to the addinfg items panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="added more grn,name,supplier,to stores,to shelf,for local use to the addinfg items panel" />
+    <MESSAGE value="made file separator platform independent" />
+    <option name="LAST_COMMIT_MESSAGE" value="made file separator platform independent" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1073,25 +1061,33 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="524" y="289" width="307" height="223" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.27.1366.741@0.27.1366.741" timestamp="1583081230929" />
-    <state x="152" y="27" width="1052" height="741" key="CommitChangelistDialog2" timestamp="1583090413991">
+    <state x="152" y="27" width="1052" height="741" key="CommitChangelistDialog2" timestamp="1583090745042">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="152" y="27" width="1052" height="741" key="CommitChangelistDialog2/0.27.1366.741@0.27.1366.741" timestamp="1583090413991" />
-    <state width="1320" height="179" key="GridCell.Tab.0.bottom" timestamp="1583090414076">
+    <state x="152" y="27" width="1052" height="741" key="CommitChangelistDialog2/0.27.1366.741@0.27.1366.741" timestamp="1583090745042" />
+    <state width="1320" height="179" key="GridCell.Tab.0.bottom" timestamp="1583092082874">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="179" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1583090414076" />
-    <state width="1320" height="179" key="GridCell.Tab.0.center" timestamp="1583090414075">
+    <state width="1320" height="179" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1583092082874" />
+    <state width="1320" height="179" key="GridCell.Tab.0.center" timestamp="1583092082874">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="179" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1583090414075" />
-    <state width="1320" height="179" key="GridCell.Tab.0.left" timestamp="1583090414075">
+    <state width="1320" height="179" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1583092082874" />
+    <state width="1320" height="179" key="GridCell.Tab.0.left" timestamp="1583092082874">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="179" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1583090414075" />
-    <state width="1320" height="179" key="GridCell.Tab.0.right" timestamp="1583090414075">
+    <state width="1320" height="179" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1583092082874" />
+    <state width="1320" height="179" key="GridCell.Tab.0.right" timestamp="1583092082874">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1320" height="179" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1583090414075" />
+    <state width="1320" height="179" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1583092082874" />
+    <state x="278" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1583090757654">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="278" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1366.741@0.27.1366.741" timestamp="1583090757654" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1583092071591">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1583092071591" />
   </component>
 </project>

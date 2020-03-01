@@ -493,7 +493,7 @@ public class AdminPanelController extends UtilityClass implements Initializable,
 
     private void checkIfPreviousDayEnded() throws SQLException {
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT id FROM DAYS WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
+        ResultSet resultSet = statement.executeQuery("SELECT id FROM days WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
         if (resultSet.isBeforeFirst()) {
             startDayMenu.setDisable(true);
             startDay.setVisible(false);
@@ -826,7 +826,7 @@ public class AdminPanelController extends UtilityClass implements Initializable,
                 String time = String.valueOf(myObj);
                 String id = null;
                 Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM DAYS WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM days WHERE end_time IS NULL ORDER BY id DESC LIMIT 1");
                 if (resultSet.isBeforeFirst()) {
                     while (resultSet.next()) {
                         if (resultSet.getString("start_time").equalsIgnoreCase(myObj.toString())) {
